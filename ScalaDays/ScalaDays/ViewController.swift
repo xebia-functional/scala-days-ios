@@ -7,16 +7,17 @@
 //
 
 import UIKit
-import Alamofire
 
-class ViewController: UIViewController,NSURLConnectionDelegate {
-    
+//import Alamofire
+
+class ViewController: UIViewController, NSURLConnectionDelegate {
+
     var data = NSMutableData()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        var data =  DataManager()
+        var data = DataManager()
         data.startConnection()
     }
 
@@ -24,9 +25,7 @@ class ViewController: UIViewController,NSURLConnectionDelegate {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-    
-    
-    
+
+
 }
 
