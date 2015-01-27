@@ -2,8 +2,13 @@
 //  ScalaDaysTests.swift
 //  ScalaDaysTests
 //
-//  Created by Ana on 15/1/15.
-//  Copyright (c) 2015 Ana. All rights reserved.
+//  Copyright (c) 2015 Scala Days. All rights reserved.
+//
+//  Developed by:
+//
+//  47 Degrees
+//  http://47deg.com
+//  hello@47deg.com
 //
 
 import UIKit
