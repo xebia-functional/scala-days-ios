@@ -8,8 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		101B49986EFC463363D4784C /* Alamofire.swift in Sources */ = {isa = PBXBuildFile; fileRef = 101B45045AF560B28ED066DB /* Alamofire.swift */; };
+		5951D0D61A76A5F5001528E8 /* Conference.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5951D0D51A76A5F5001528E8 /* Conference.swift */; };
 		84EFC40AF74037F095B5FD60 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2FB6FED00626F7CA4FD64E9E /* libPods.a */; };
-		A1B8E6621A6D267900F21468 /* Speaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B8E6611A6D267900F21468 /* Speaker.swift */; };
 		A1B8E6661A6D4B9600F21468 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B8E6651A6D4B9600F21468 /* DataManager.swift */; };
 		A1D795CD1A68267F009CCEB3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1D795CC1A68267F009CCEB3 /* AppDelegate.swift */; };
 		A1D795CF1A68267F009CCEB3 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1D795CE1A68267F009CCEB3 /* ViewController.swift */; };
@@ -45,10 +45,10 @@
 /* Begin PBXFileReference section */
 		101B45045AF560B28ED066DB /* Alamofire.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Alamofire.swift; sourceTree = "<group>"; };
 		2FB6FED00626F7CA4FD64E9E /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		5951D0D51A76A5F5001528E8 /* Conference.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Conference.swift; sourceTree = "<group>"; };
 		9AA114FE335624986EFB5A1D /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		A163DC2E1A6E595B00A21B8E /* libPods-SwiftyJSON.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPods-SwiftyJSON.a"; path = "Pods/build/Debug-iphoneos/libPods-SwiftyJSON.a"; sourceTree = "<group>"; };
 		A17D3AC71A690E3A00024062 /* Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Bridging-Header.h"; sourceTree = "<group>"; };
-		A1B8E6611A6D267900F21468 /* Speaker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Speaker.swift; sourceTree = "<group>"; };
 		A1B8E6651A6D4B9600F21468 /* DataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		A1D795C71A68267F009CCEB3 /* ScalaDays.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ScalaDays.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A1D795CB1A68267F009CCEB3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -102,7 +102,7 @@
 		A1B8E6601A6D266800F21468 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				A1B8E6611A6D267900F21468 /* Speaker.swift */,
+				5951D0D51A76A5F5001528E8 /* Conference.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -322,9 +322,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A1B8E6621A6D267900F21468 /* Speaker.swift in Sources */,
 				A1B8E6661A6D4B9600F21468 /* DataManager.swift in Sources */,
 				A1D795CF1A68267F009CCEB3 /* ViewController.swift in Sources */,
+				5951D0D61A76A5F5001528E8 /* Conference.swift in Sources */,
 				A1D795CD1A68267F009CCEB3 /* AppDelegate.swift in Sources */,
 				101B49986EFC463363D4784C /* Alamofire.swift in Sources */,
 			);
