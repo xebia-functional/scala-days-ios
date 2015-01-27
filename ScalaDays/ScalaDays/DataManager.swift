@@ -8,7 +8,6 @@
 
 import Foundation
 
-//import Alamofire
 
 let JsonURL = "http://scala-days-2015.s3.amazonaws.com/conferences.json"
 
@@ -25,9 +24,19 @@ class DataManager {
                 println(res)
             } else {
                 NSLog("Success: \(JsonURL)")
-                println(json)
+                let jsonFormat = JSON(json!)[0]
+                let speakers = jsonFormat["speakers"]
+                let schedule = jsonFormat["schedule"]
+                let sponsors = jsonFormat["sponsors"]
+                let info = jsonFormat["info"]
+                println("Information: \(info)")
+                println("Speakers : \(speakers)")
+                println("Schedule : \(schedule)")
+                println("Sponsors : \(sponsors)")
+
             }
         }
     }
+
 
 }
