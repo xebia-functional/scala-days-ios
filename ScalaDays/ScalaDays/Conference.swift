@@ -32,16 +32,19 @@ class Conference {
 // MARK: - Model object classes
 
 class Information {
-    let id: Int
-    let name: String
-    let longName: String
-    let nameAndLocation: String
-    let firstDay: String
-    let lastDay: String
-    let normalSite: String
-    let registrationSite: String
-    let utcTimezoneOffset: String
-    let utcTimezoneOffsetMillis: Float
+    let id: Int?
+    let name: String?
+    let longName: String?
+    let nameAndLocation: String?
+    let firstDay: String?
+    let lastDay: String!
+    let normalSite: String?
+    let registrationSite: String?
+    let utcTimezoneOffset: String?
+    let utcTimezoneOffsetMillis: Float?
+    
+    init(){        
+    }
     
     init(id : Int, name : String, longName : String, nameAndLocation : String, firstDay : String, lastDay : String, normalSite : String, registrationSite : String, utcTimezoneOffset : String, utcTimezoneOffsetMillis : Float) {
         self.id = id
@@ -55,6 +58,7 @@ class Information {
         self.utcTimezoneOffset = utcTimezoneOffset
         self.utcTimezoneOffsetMillis = utcTimezoneOffsetMillis
     }
+
 }
 
 class Event {
