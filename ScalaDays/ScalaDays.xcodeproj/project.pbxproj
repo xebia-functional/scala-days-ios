@@ -17,6 +17,7 @@
 		84EFC40AF74037F095B5FD60 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2FB6FED00626F7CA4FD64E9E /* libPods.a */; };
 		A1A94F2D1A76A36C003A6C0B /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1A94F2C1A76A36C003A6C0B /* SwiftyJSON.swift */; };
 		A1B8E6661A6D4B9600F21468 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B8E6651A6D4B9600F21468 /* DataManager.swift */; };
+		A1CC71E01A79071C00757B65 /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1A94F2C1A76A36C003A6C0B /* SwiftyJSON.swift */; };
 		A1D795CD1A68267F009CCEB3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1D795CC1A68267F009CCEB3 /* AppDelegate.swift */; };
 		A1D795CF1A68267F009CCEB3 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1D795CE1A68267F009CCEB3 /* ViewController.swift */; };
 		A1D795D21A68267F009CCEB3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A1D795D01A68267F009CCEB3 /* Main.storyboard */; };
@@ -364,6 +365,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A1CC71E01A79071C00757B65 /* SwiftyJSON.swift in Sources */,
 				593571ED1A77E4E9005AA332 /* Alamofire.swift in Sources */,
 				593571EA1A77E41C005AA332 /* StoringHelper.swift in Sources */,
 				593571EB1A77E41C005AA332 /* DataManager.swift in Sources */,

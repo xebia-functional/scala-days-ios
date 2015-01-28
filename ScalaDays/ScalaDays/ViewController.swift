@@ -23,13 +23,15 @@ class ViewController: UIViewController, NSURLConnectionDelegate {
             (json, error) -> () in
             if let unWrapperJson = json {
                 DataManager.sharedInstance.parseJSON(unWrapperJson)
+                if let info = DataManager.sharedInstance.information?.nameAndLocation{
+                    println(DataManager.sharedInstance.information?.nameAndLocation)
+                }
             } else {
                 println("nil")
             }
 
         }
     }
-
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

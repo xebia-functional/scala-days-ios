@@ -16,7 +16,7 @@ private let _DataManagerSharedInstance = DataManager()
 class DataManager {
 
     var conference: Conference?
-    var information: Information
+    var information: Information?
 
     class var sharedInstance: DataManager {
 
@@ -28,7 +28,6 @@ class DataManager {
     }
 
     init() {
-        self.information = Information()
     }
     
     func loadData(callback: (JSON?, NSError?)->()) {
@@ -53,7 +52,6 @@ class DataManager {
         let info = json["info"]
         self.information = Information(id: info["id"].intValue, name: info["name"].string!, longName: info["longName"].string!, nameAndLocation: info["nameAndLocation"].string!, firstDay: info["firstDay"].string!, lastDay: info["lastDay"].string!, normalSite: info["normalSite"].string!, registrationSite: info["registrationSite"].string!, utcTimezoneOffset: info["utcTimezoneOffset"].string!, utcTimezoneOffsetMillis: info["utcTimezoneOffsetMillis"].floatValue)
 
-        println("Information: \(self.information.name)")
 
         /*Speaker*/
         let speakers = json["speakers"]
