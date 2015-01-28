@@ -310,14 +310,16 @@ func == (lhs: Information, rhs: Information) -> Bool {
 
 func == (lhs: Event, rhs: Event) -> Bool {
     let equalityForSimpleValues = lhs.id == rhs.id && lhs.title == rhs.title && lhs.apiDescription == rhs.apiDescription && lhs.type == rhs.type && lhs.startTime == rhs.startTime && lhs.endTime == rhs.endTime && lhs.date == rhs.date && lhs.date == rhs.date && lhs.track == rhs.track && lhs.location == rhs.location
-    if let unwrappedLhsSpeakers = lhs.speakers {
-        if let unwrappedRhsSpeakers = rhs.speakers {
-            return equalityForSimpleValues && checkEqualityForArrays(unwrappedLhsSpeakers, unwrappedRhsSpeakers)
-        }
-    } else {
-        return equalityForSimpleValues && lhs.speakers == nil && rhs.speakers == nil
+    
+    // Unwrapping our two speaker arrays is easier using pattern matching:
+    switch(lhs.speakers, rhs.speakers) {
+    case let (.Some(unwrappedLhsSpeakers), .Some(unwrappedRhsSpeakers)):
+        return equalityForSimpleValues && checkEqualityForArrays(unwrappedLhsSpeakers, unwrappedRhsSpeakers)
+    case (nil, nil):
+        return equalityForSimpleValues
+    default:
+        return false
     }
-    return false
 }
 
 // MARK: Equatable implementation for class Speaker
