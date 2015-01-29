@@ -29,9 +29,10 @@ class DataManager {
 
     init() {
     }
-    
-    func loadData(callback: (JSON?, NSError?)->()) {
-        Manager.sharedInstance.request(.GET, JsonURL).responseJSON { (request, response, data, error) -> Void in
+
+    func loadData(callback: (JSON?, NSError?) -> ()) {
+        Manager.sharedInstance.request(.GET, JsonURL).responseJSON {
+            (request, response, data, error) -> Void in
             if (error != nil) {
                 NSLog("Error: \(error)")
                 println(request)
@@ -41,30 +42,22 @@ class DataManager {
                 let jsonFormat = JSON(data!)[0]
                 callback(jsonFormat, error)
             }
-           
+
         }
     }
 
 
     func parseJSON(json: JSON) {
-        
         /*Info*/
         let info = json["info"]
         self.information = Information(id: info["id"].intValue, name: info["name"].string!, longName: info["longName"].string!, nameAndLocation: info["nameAndLocation"].string!, firstDay: info["firstDay"].string!, lastDay: info["lastDay"].string!, normalSite: info["normalSite"].string!, registrationSite: info["registrationSite"].string!, utcTimezoneOffset: info["utcTimezoneOffset"].string!, utcTimezoneOffsetMillis: info["utcTimezoneOffsetMillis"].floatValue)
-
-
         /*Speaker*/
         let speakers = json["speakers"]
-
         /*Shedule*/
         let schedule = json["schedule"]
-
-
         /*Sponsors*/
         let sponsors = json["sponsors"]
-        
         println("End parse")
-
     }
 
 
