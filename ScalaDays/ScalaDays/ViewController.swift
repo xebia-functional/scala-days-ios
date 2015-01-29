@@ -8,8 +8,6 @@
 
 import UIKit
 
-//import Alamofire
-
 class ViewController: UIViewController, NSURLConnectionDelegate {
 
     var data = NSMutableData()
@@ -17,8 +15,22 @@ class ViewController: UIViewController, NSURLConnectionDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        var data = DataManager()
-        data.startConnection()
+        self.loadData()
+    }
+
+    func loadData() {
+        DataManager.sharedInstance.loadData() {
+            (json, error) -> () in
+            if let unWrapperJson = json {
+                DataManager.sharedInstance.parseJSON(unWrapperJson)
+                if let info = DataManager.sharedInstance.information?.nameAndLocation{
+                    println(DataManager.sharedInstance.information?.nameAndLocation)
+                }
+            } else {
+                println("nil")
+            }
+
+        }
     }
 
     override func didReceiveMemoryWarning() {

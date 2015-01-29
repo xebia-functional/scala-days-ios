@@ -15,26 +15,26 @@ import Foundation
 
 // MARK: - Model root object class
 
-class Conference : NSObject, NSCoding, Equatable {
-    let info : Information
-    let schedule : Array<Event>
-    let sponsors : Array<SponsorType>
-    let speakers : Array<Speaker>
-    
-    init(info : Information, schedule : Array<Event>, sponsors : Array<SponsorType>, speakers: Array<Speaker>) {
+class Conference: NSObject, NSCoding, Equatable {
+    let info: Information
+    let schedule: Array<Event>
+    let sponsors: Array<SponsorType>
+    let speakers: Array<Speaker>
+
+    init(info: Information, schedule: Array<Event>, sponsors: Array<SponsorType>, speakers: Array<Speaker>) {
         self.info = info
         self.schedule = schedule
         self.sponsors = sponsors
         self.speakers = speakers
     }
-    
+
     required init(coder aDecoder: NSCoder) {
         self.info = aDecoder.decodeObjectForKey("info") as Information
         self.schedule = aDecoder.decodeObjectForKey("schedule") as Array<Event>
         self.sponsors = aDecoder.decodeObjectForKey("sponsors") as Array<SponsorType>
         self.speakers = aDecoder.decodeObjectForKey("speakers") as Array<Speaker>
     }
-    
+
     func encodeWithCoder(aCoder: NSCoder) {
         aCoder.encodeObject(self.info, forKey: "info")
         aCoder.encodeObject(self.schedule, forKey: "schedule")
@@ -45,7 +45,7 @@ class Conference : NSObject, NSCoding, Equatable {
 
 // MARK: - Model object classes
 
-class Information : NSObject, NSCoding, Equatable {
+class Information: NSObject, NSCoding, Equatable {
     let id: Int
     let name: String
     let longName: String
@@ -56,8 +56,9 @@ class Information : NSObject, NSCoding, Equatable {
     let registrationSite: String
     let utcTimezoneOffset: String
     let utcTimezoneOffsetMillis: Float
-    
-    init(id : Int, name : String, longName : String, nameAndLocation : String, firstDay : String, lastDay : String, normalSite : String, registrationSite : String, utcTimezoneOffset : String, utcTimezoneOffsetMillis : Float) {
+
+
+    init(id: Int, name: String, longName: String, nameAndLocation: String, firstDay: String, lastDay: String, normalSite: String, registrationSite: String, utcTimezoneOffset: String, utcTimezoneOffsetMillis: Float) {
         self.id = id
         self.name = name
         self.longName = longName
@@ -69,7 +70,7 @@ class Information : NSObject, NSCoding, Equatable {
         self.utcTimezoneOffset = utcTimezoneOffset
         self.utcTimezoneOffsetMillis = utcTimezoneOffsetMillis
     }
-    
+
     required init(coder aDecoder: NSCoder) {
         self.id = aDecoder.decodeIntegerForKey("id")
         self.name = aDecoder.decodeObjectForKey("name") as String
@@ -82,7 +83,7 @@ class Information : NSObject, NSCoding, Equatable {
         self.utcTimezoneOffset = aDecoder.decodeObjectForKey("utcTimezoneOffset") as String
         self.utcTimezoneOffsetMillis = aDecoder.decodeFloatForKey("utcTimezoneOffsetMillis")
     }
-    
+
     func encodeWithCoder(aCoder: NSCoder) {
         aCoder.encodeInteger(self.id, forKey: "id")
         aCoder.encodeObject(self.name, forKey: "name")
@@ -97,8 +98,8 @@ class Information : NSObject, NSCoding, Equatable {
     }
 }
 
-class Event : NSObject, Equatable, NSCoding {
-    let id : Int
+class Event:  NSObject, Equatable, NSCoding {
+    let id: Int
     let title: String
     let apiDescription: String
     let type: Int
@@ -121,7 +122,7 @@ class Event : NSObject, Equatable, NSCoding {
         self.location = location
         self.speakers = speakers
     }
-    
+
     required init(coder aDecoder: NSCoder) {
         self.id = aDecoder.decodeIntegerForKey("id")
         self.title = aDecoder.decodeObjectForKey("title") as String
@@ -134,7 +135,7 @@ class Event : NSObject, Equatable, NSCoding {
         self.location = aDecoder.decodeObjectForKey("location") as Location?
         self.speakers = aDecoder.decodeObjectForKey("speakers") as Array<Speaker>?
     }
-    
+
     func encodeWithCoder(aCoder: NSCoder) {
         aCoder.encodeInteger(self.id, forKey: "id")
         aCoder.encodeObject(self.title, forKey: "title")
@@ -150,15 +151,15 @@ class Event : NSObject, Equatable, NSCoding {
 }
 
 class Speaker : NSObject, Equatable, NSCoding {
-    let bio : String
-    let company : String
+    let bio: String
+    let company: String
     let id: Int
     let name: String
     let picture: String?
-    let title : String
-    let twitter : String?
-    
-    init(bio : String, company : String, id: Int, name: String, picture: String?, title : String, twitter : String?) {
+    let title: String
+    let twitter: String?
+
+    init(bio: String, company: String, id: Int, name: String, picture: String?, title: String, twitter: String?) {
         self.bio = bio
         self.company = company
         self.id = id
@@ -167,7 +168,7 @@ class Speaker : NSObject, Equatable, NSCoding {
         self.title = title
         self.twitter = twitter
     }
-    
+
     required init(coder aDecoder: NSCoder) {
         self.bio = aDecoder.decodeObjectForKey("bio") as String
         self.company = aDecoder.decodeObjectForKey("company") as String
@@ -177,7 +178,7 @@ class Speaker : NSObject, Equatable, NSCoding {
         self.title = aDecoder.decodeObjectForKey("title") as String
         self.twitter = aDecoder.decodeObjectForKey("twitter") as String?
     }
-    
+
     func encodeWithCoder(aCoder: NSCoder) {
         aCoder.encodeObject(self.bio, forKey: "bio")
         aCoder.encodeObject(self.company, forKey: "company")
@@ -190,19 +191,19 @@ class Speaker : NSObject, Equatable, NSCoding {
 }
 
 class SponsorType : NSObject, Equatable, NSCoding {
-    let type : String
-    let items : Array<Sponsor>
-    
-    init(type : String, items : Array<Sponsor>) {
+    let type: String
+    let items: Array<Sponsor>
+
+    init(type: String, items: Array<Sponsor>) {
         self.type = type
         self.items = items
     }
-    
+
     required init(coder aDecoder: NSCoder) {
         self.type = aDecoder.decodeObjectForKey("type") as String
         self.items = aDecoder.decodeObjectForKey("items") as Array<Sponsor>
     }
-    
+
     func encodeWithCoder(aCoder: NSCoder) {
         aCoder.encodeObject(self.type, forKey: "type")
         aCoder.encodeObject(self.items, forKey: "items")
@@ -225,7 +226,7 @@ class Track : NSObject, Equatable, NSCoding {
         self.shortdescription = shortdescription
         self.apiDescription = apiDescription
     }
-    
+
     required init(coder aDecoder: NSCoder) {
         self.id = aDecoder.decodeIntegerForKey("id")
         self.name = aDecoder.decodeObjectForKey("name") as String
@@ -233,7 +234,7 @@ class Track : NSObject, Equatable, NSCoding {
         self.shortdescription = aDecoder.decodeObjectForKey("shortdescription") as String
         self.apiDescription = aDecoder.decodeObjectForKey("apiDescription") as String
     }
-    
+
     func encodeWithCoder(aCoder: NSCoder) {
         aCoder.encodeInteger(self.id, forKey: "id")
         aCoder.encodeObject(self.name, forKey: "name")
@@ -247,19 +248,19 @@ class Location : NSObject, Equatable, NSCoding {
     let id: Int
     let name: String
     let mapUrl: String
-    
+
     init(id: Int, let name: String, mapUrl: String) {
         self.id = id
         self.name = name
         self.mapUrl = mapUrl
     }
-    
+
     required init(coder aDecoder: NSCoder) {
         self.id = aDecoder.decodeIntegerForKey("id")
         self.name = aDecoder.decodeObjectForKey("name") as String
         self.mapUrl = aDecoder.decodeObjectForKey("mapUrl") as String
     }
-    
+
     func encodeWithCoder(aCoder: NSCoder) {
         aCoder.encodeInteger(self.id, forKey: "id")
         aCoder.encodeObject(self.name, forKey: "name")
@@ -275,12 +276,12 @@ class Sponsor : NSObject, Equatable, NSCoding {
         self.logo = logo
         self.url = url
     }
-    
+
     required init(coder aDecoder: NSCoder) {
         self.logo = aDecoder.decodeObjectForKey("logo") as String
         self.url = aDecoder.decodeObjectForKey("url") as String
     }
-    
+
     func encodeWithCoder(aCoder: NSCoder) {
         aCoder.encodeObject(self.logo, forKey: "logo")
         aCoder.encodeObject(self.url, forKey: "url")
