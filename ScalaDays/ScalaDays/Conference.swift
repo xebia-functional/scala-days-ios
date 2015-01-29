@@ -298,19 +298,39 @@ func == (lhs: Conference, rhs: Conference) -> Bool {
     let equalityForSchedule = checkEqualityForArrays(lhs.schedule, rhs.schedule)
     let equalityForSponsors = checkEqualityForArrays(lhs.sponsors, rhs.sponsors)
     let equalityForSpeakers = checkEqualityForArrays(lhs.speakers, rhs.speakers)
-    return equalityForInfo && equalityForSchedule && equalityForSponsors && equalityForSpeakers
+    return equalityForInfo &&
+            equalityForSchedule &&
+            equalityForSponsors &&
+            equalityForSpeakers
 }
 
 // MARK: Equatable implementation for class Information
 
 func == (lhs: Information, rhs: Information) -> Bool {
-    return lhs.id == rhs.id && lhs.name == rhs.name && lhs.longName == rhs.longName && lhs.nameAndLocation == rhs.nameAndLocation && lhs.firstDay == rhs.firstDay && lhs.lastDay == rhs.lastDay && lhs.normalSite == rhs.normalSite && lhs.registrationSite == rhs.registrationSite && lhs.utcTimezoneOffset == rhs.utcTimezoneOffset && lhs.utcTimezoneOffsetMillis == rhs.utcTimezoneOffsetMillis
+    return lhs.id == rhs.id &&
+            lhs.name == rhs.name &&
+            lhs.longName == rhs.longName &&
+            lhs.nameAndLocation == rhs.nameAndLocation &&
+            lhs.firstDay == rhs.firstDay &&
+            lhs.lastDay == rhs.lastDay &&
+            lhs.normalSite == rhs.normalSite &&
+            lhs.registrationSite == rhs.registrationSite &&
+            lhs.utcTimezoneOffset == rhs.utcTimezoneOffset &&
+            lhs.utcTimezoneOffsetMillis == rhs.utcTimezoneOffsetMillis
 }
 
 // MARK: Equatable implementation for class Event
 
 func == (lhs: Event, rhs: Event) -> Bool {
-    let equalityForSimpleValues = lhs.id == rhs.id && lhs.title == rhs.title && lhs.apiDescription == rhs.apiDescription && lhs.type == rhs.type && lhs.startTime == rhs.startTime && lhs.endTime == rhs.endTime && lhs.date == rhs.date && lhs.date == rhs.date && lhs.track == rhs.track && lhs.location == rhs.location
+    let equalityForSimpleValues = lhs.id == rhs.id &&
+        lhs.title == rhs.title &&
+        lhs.apiDescription == rhs.apiDescription &&
+        lhs.type == rhs.type &&
+        lhs.startTime == rhs.startTime &&
+        lhs.endTime == rhs.endTime &&
+        lhs.date == rhs.date &&
+        lhs.track == rhs.track &&
+        lhs.location == rhs.location
     
     // Unwrapping our two speaker arrays is easier using pattern matching:
     switch(lhs.speakers, rhs.speakers) {
@@ -326,31 +346,45 @@ func == (lhs: Event, rhs: Event) -> Bool {
 // MARK: Equatable implementation for class Speaker
 
 func == (lhs: Speaker, rhs: Speaker) -> Bool {
-    return lhs.id == rhs.id && lhs.bio == rhs.bio && lhs.company == rhs.company && lhs.name == rhs.name && lhs.picture == rhs.picture && lhs.title == rhs.title && lhs.twitter == rhs.twitter
+    return lhs.id == rhs.id &&
+            lhs.bio == rhs.bio &&
+            lhs.company == rhs.company &&
+            lhs.name == rhs.name &&
+            lhs.picture == rhs.picture &&
+            lhs.title == rhs.title &&
+            lhs.twitter == rhs.twitter
 }
 
 // MARK: Equatable implementation for class Sponsor
 
 func == (lhs: Sponsor, rhs: Sponsor) -> Bool {
-    return lhs.logo == rhs.logo && lhs.url == rhs.url
+    return lhs.logo == rhs.logo &&
+            lhs.url == rhs.url
 }
 
 // MARK: Equatable implementation for class SponsorType
 
 func == (lhs: SponsorType, rhs: SponsorType) -> Bool {
-    return lhs.type == rhs.type && checkEqualityForArrays(lhs.items, rhs.items)
+    return lhs.type == rhs.type &&
+            checkEqualityForArrays(lhs.items, rhs.items)
 }
 
 // MARK: Equatable implementation for class Track
 
 func == (lhs: Track, rhs: Track) -> Bool {
-    return lhs.id == rhs.id && lhs.name == rhs.name && lhs.host == rhs.host && lhs.shortdescription == rhs.shortdescription && lhs.apiDescription == rhs.apiDescription
+    return lhs.id == rhs.id &&
+            lhs.name == rhs.name &&
+            lhs.host == rhs.host &&
+            lhs.shortdescription == rhs.shortdescription &&
+            lhs.apiDescription == rhs.apiDescription
 }
 
 // MARK: Equatable implementation for class Location
 
 func == (lhs: Location, rhs: Location) -> Bool {
-    return lhs.id == rhs.id && lhs.name == rhs.name && lhs.mapUrl == rhs.mapUrl
+    return lhs.id == rhs.id &&
+            lhs.name == rhs.name &&
+            lhs.mapUrl == rhs.mapUrl
 }
 
 // MARK: Equality for arrays
