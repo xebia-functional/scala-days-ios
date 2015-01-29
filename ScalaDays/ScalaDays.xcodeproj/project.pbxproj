@@ -16,6 +16,9 @@
 		5951D0D61A76A5F5001528E8 /* Conference.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5951D0D51A76A5F5001528E8 /* Conference.swift */; };
 		84EFC40AF74037F095B5FD60 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2FB6FED00626F7CA4FD64E9E /* libPods.a */; };
 		A1B8E6661A6D4B9600F21468 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B8E6651A6D4B9600F21468 /* DataManager.swift */; };
+		A1CC71E21A7930D100757B65 /* SlideMenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1CC71E11A7930D100757B65 /* SlideMenuController.swift */; };
+		A1CC71F71A7939D000757B65 /* SDMenuViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A1CC71F61A7939D000757B65 /* SDMenuViewController.xib */; };
+		A1CC71F91A793A8E00757B65 /* SDMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1CC71F81A793A8E00757B65 /* SDMenuViewController.swift */; };
 		A1D795CD1A68267F009CCEB3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1D795CC1A68267F009CCEB3 /* AppDelegate.swift */; };
 		A1D795CF1A68267F009CCEB3 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1D795CE1A68267F009CCEB3 /* ViewController.swift */; };
 		A1D795D21A68267F009CCEB3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A1D795D01A68267F009CCEB3 /* Main.storyboard */; };
@@ -56,6 +59,9 @@
 		A163DC2E1A6E595B00A21B8E /* libPods-SwiftyJSON.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPods-SwiftyJSON.a"; path = "Pods/build/Debug-iphoneos/libPods-SwiftyJSON.a"; sourceTree = "<group>"; };
 		A17D3AC71A690E3A00024062 /* Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Bridging-Header.h"; sourceTree = "<group>"; };
 		A1B8E6651A6D4B9600F21468 /* DataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
+		A1CC71E11A7930D100757B65 /* SlideMenuController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SlideMenuController.swift; sourceTree = "<group>"; };
+		A1CC71F61A7939D000757B65 /* SDMenuViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SDMenuViewController.xib; sourceTree = "<group>"; };
+		A1CC71F81A793A8E00757B65 /* SDMenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SDMenuViewController.swift; sourceTree = "<group>"; };
 		A1D795C71A68267F009CCEB3 /* ScalaDays.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ScalaDays.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A1D795CB1A68267F009CCEB3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A1D795CC1A68267F009CCEB3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -88,9 +94,26 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		101B48707F372BB83194FA90 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				A1CC71F81A793A8E00757B65 /* SDMenuViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		101B4BF3F5876A0847F2D773 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				A1CC71F61A7939D000757B65 /* SDMenuViewController.xib */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
 		101B4FB1641809244D4A4CE8 /* External */ = {
 			isa = PBXGroup;
 			children = (
+				A1CC71E11A7930D100757B65 /* SlideMenuController.swift */,
 				101B45045AF560B28ED066DB /* Alamofire.swift */,
 			);
 			path = External;
@@ -160,17 +183,19 @@
 		A1D795C91A68267F009CCEB3 /* ScalaDays */ = {
 			isa = PBXGroup;
 			children = (
-				593571E61A77DD73005AA332 /* Helpers */,
-				A1B8E6641A6D4B8600F21468 /* Service */,
-				A1B8E6601A6D266800F21468 /* Models */,
+				A17D3AC71A690E3A00024062 /* Bridging-Header.h */,
 				A1D795CC1A68267F009CCEB3 /* AppDelegate.swift */,
 				A1D795CE1A68267F009CCEB3 /* ViewController.swift */,
-				A1D795D01A68267F009CCEB3 /* Main.storyboard */,
 				A1D795D31A68267F009CCEB3 /* Images.xcassets */,
-				A1D795D51A68267F009CCEB3 /* LaunchScreen.xib */,
-				A1D795CA1A68267F009CCEB3 /* Supporting Files */,
-				A17D3AC71A690E3A00024062 /* Bridging-Header.h */,
 				101B4FB1641809244D4A4CE8 /* External */,
+				593571E61A77DD73005AA332 /* Helpers */,
+				A1D795D51A68267F009CCEB3 /* LaunchScreen.xib */,
+				A1D795D01A68267F009CCEB3 /* Main.storyboard */,
+				A1B8E6601A6D266800F21468 /* Models */,
+				A1B8E6641A6D4B8600F21468 /* Service */,
+				A1D795CA1A68267F009CCEB3 /* Supporting Files */,
+				101B4BF3F5876A0847F2D773 /* UI */,
+				101B48707F372BB83194FA90 /* Controllers */,
 			);
 			path = ScalaDays;
 			sourceTree = "<group>";
@@ -292,6 +317,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A1CC71F71A7939D000757B65 /* SDMenuViewController.xib in Resources */,
 				A1D795D21A68267F009CCEB3 /* Main.storyboard in Resources */,
 				A1D795D71A68267F009CCEB3 /* LaunchScreen.xib in Resources */,
 				A1D795D41A68267F009CCEB3 /* Images.xcassets in Resources */,
@@ -345,7 +371,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A1CC71F91A793A8E00757B65 /* SDMenuViewController.swift in Sources */,
 				593571E91A77DDA8005AA332 /* StoringHelper.swift in Sources */,
+				A1CC71E21A7930D100757B65 /* SlideMenuController.swift in Sources */,
 				A1B8E6661A6D4B9600F21468 /* DataManager.swift in Sources */,
 				A1D795CF1A68267F009CCEB3 /* ViewController.swift in Sources */,
 				5951D0D61A76A5F5001528E8 /* Conference.swift in Sources */,

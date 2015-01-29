@@ -13,9 +13,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
+        self.createMenuView()
         return true
     }
 
@@ -39,6 +39,39 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationWillTerminate(application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+    }
+    
+   
+    private func createMenuView() {
+        
+        // create viewController code...
+        
+//        let nav = UINavigationController()
+        let vc = SDMenuViewController ( nibName:"SDMenuViewController", bundle: nil)
+        
+        // Push the vc onto the nav
+        let nvc: UINavigationController = UINavigationController(rootViewController: vc)
+        
+
+//        
+//        let mainViewController = SDMenuViewController(nibName: "SDMenuViewController", bundle: nil)
+//        let menuViewController = SDMenuViewController(nibName: "SDMenuViewController", bundle: nil)
+        
+//        let nvc: UINavigationController = UINavigationController(rootViewController: mainViewController)
+        
+//        menuViewController.mainViewController = nvc
+//        
+//        let slideMenuController = SlideMenuController(mainViewController:nvc, leftMenuViewController: menuViewController)
+        
+        window = UIWindow(frame: UIScreen.mainScreen().bounds)
+        if let window = window {
+            window.backgroundColor = UIColor.whiteColor()
+            window.rootViewController = nvc
+            window.makeKeyAndVisible()
+        }
+
+
+        
     }
 
 

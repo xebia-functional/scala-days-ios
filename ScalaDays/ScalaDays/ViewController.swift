@@ -19,6 +19,8 @@ class ViewController: UIViewController, NSURLConnectionDelegate {
         // Do any additional setup after loading the view, typically from a nib.
         var data = DataManager()
         data.startConnection()
+        
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -26,6 +28,10 @@ class ViewController: UIViewController, NSURLConnectionDelegate {
         // Dispose of any resources that can be recreated.
     }
 
+    @IBAction func buttonTest(sender: AnyObject) {
+        var menu:SDMenuViewController = SDMenuViewController(nibName: "SDMenuViewController", bundle: nil)
+        self.navigationController?.pushViewController(menu, animated:true)
+    }
 
 }
 
