@@ -12,6 +12,8 @@ class SDSlideMenuViewController: UIViewController,UITableViewDelegate,UITableVie
     
     @IBOutlet weak var tblMenu: UITableView!
     
+    @IBOutlet weak var heigthTable: NSLayoutConstraint!
+    
     enum Menu: Int {
         case Schedule = 0
         case Social
@@ -28,6 +30,8 @@ class SDSlideMenuViewController: UIViewController,UITableViewDelegate,UITableVie
         NSLocalizedString("places", comment: "Places"),
         NSLocalizedString("about", comment: "About")]
     
+    var menusImage = [icon_menu_schedule,icon_menu_social,icon_menu_ticket,icon_menu_sponsors,icon_menu_places,icon_menu_about]
+    
     var scheduleViewController: UIViewController!
     var socialViewController: UIViewController!
     var sponsorsViewController: UIViewController!
@@ -39,6 +43,7 @@ class SDSlideMenuViewController: UIViewController,UITableViewDelegate,UITableVie
         
         //Init aparence table
         self.tblMenu.backgroundColor = UIColor.appColor()
+        self.heigthTable.constant = CGFloat(menus.count * 44)
 
         // Do any additional setup after loading the view.
         let socialViewController = SDSocialViewController(nibName: "SDSocialViewController", bundle: nil)
@@ -74,8 +79,10 @@ class SDSlideMenuViewController: UIViewController,UITableViewDelegate,UITableVie
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell: UITableViewCell = UITableViewCell(style: UITableViewCellStyle.Subtitle, reuseIdentifier: "Cell")
+        let cell: UITableViewCell = UITableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: "Cell")
         cell.textLabel?.text = menus[indexPath.row]
+        cell.imageView?.image = UIImage(named: menusImage[indexPath.row] as NSString)
+        cell.backgroundColor = UIColor.appColor()
         return cell
     }
     

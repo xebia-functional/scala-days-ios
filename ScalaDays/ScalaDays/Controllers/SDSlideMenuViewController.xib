@@ -7,6 +7,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SDSlideMenuViewController" customModule="ScalaDays" customModuleProvider="target">
             <connections>
+                <outlet property="heigthTable" destination="UCW-so-Pom" id="39k-rM-hDV"/>
                 <outlet property="tblMenu" destination="lxn-hm-0cu" id="skZ-DC-Ar3"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -16,14 +17,6 @@
             <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="lxn-hm-0cu">
-                    <rect key="frame" x="0.0" y="160" width="600" height="440"/>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    <connections>
-                        <outlet property="dataSource" destination="-1" id="OEU-Lm-sYd"/>
-                        <outlet property="delegate" destination="-1" id="9l6-5A-M57"/>
-                    </connections>
-                </tableView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wmo-tt-doA">
                     <rect key="frame" x="0.0" y="0.0" width="600" height="161"/>
                     <subviews>
@@ -39,14 +32,24 @@
                         <constraint firstAttribute="trailing" secondItem="tpM-kA-yta" secondAttribute="trailing" id="jnh-L0-dA1"/>
                     </constraints>
                 </view>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="lxn-hm-0cu">
+                    <rect key="frame" x="0.0" y="160" width="600" height="30"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="30" id="UCW-so-Pom"/>
+                    </constraints>
+                    <connections>
+                        <outlet property="dataSource" destination="-1" id="OEU-Lm-sYd"/>
+                        <outlet property="delegate" destination="-1" id="9l6-5A-M57"/>
+                    </connections>
+                </tableView>
             </subviews>
-            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <color key="backgroundColor" red="0.21176470588235294" green="0.27058823529411763" blue="0.31372549019607843" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
                 <constraint firstItem="lxn-hm-0cu" firstAttribute="top" secondItem="wmo-tt-doA" secondAttribute="bottom" constant="-1" id="62C-aA-XDE"/>
                 <constraint firstAttribute="trailing" secondItem="wmo-tt-doA" secondAttribute="trailing" id="G9R-F7-1uA"/>
                 <constraint firstItem="lxn-hm-0cu" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="Pxn-7k-ql4"/>
                 <constraint firstItem="wmo-tt-doA" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="TrH-yL-nVc"/>
-                <constraint firstAttribute="bottom" secondItem="lxn-hm-0cu" secondAttribute="bottom" id="UAL-KB-GfD"/>
                 <constraint firstItem="wmo-tt-doA" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="Vn8-Rn-uof"/>
                 <constraint firstAttribute="trailing" secondItem="lxn-hm-0cu" secondAttribute="trailing" id="nzc-ej-6pE"/>
             </constraints>

@@ -39,6 +39,8 @@
 		A1FA1FF51A7B98FE00338AF0 /* SDSocialViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A1CC720E1A7A722C00757B65 /* SDSocialViewController.xib */; };
 		A1FA1FF61A7B98FE00338AF0 /* SDSlideMenuViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A1CC72141A7A727F00757B65 /* SDSlideMenuViewController.xib */; };
 		A1FA1FF71A7B991900338AF0 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = A1D795D51A68267F009CCEB3 /* LaunchScreen.xib */; };
+		A1FA1FF91A7BA95500338AF0 /* SDConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1FA1FF81A7BA95500338AF0 /* SDConstants.swift */; };
+		A1FA1FFB1A7BAE5B00338AF0 /* SDFonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1FA1FFA1A7BAE5B00338AF0 /* SDFonts.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -99,6 +101,8 @@
 		A1FA1FE61A7AA33F00338AF0 /* SDAboutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SDAboutViewController.swift; sourceTree = "<group>"; };
 		A1FA1FE71A7AA33F00338AF0 /* SDAboutViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SDAboutViewController.xib; sourceTree = "<group>"; };
 		A1FA1FEA1A7AA6AF00338AF0 /* SDColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SDColor.swift; sourceTree = "<group>"; };
+		A1FA1FF81A7BA95500338AF0 /* SDConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SDConstants.swift; sourceTree = "<group>"; };
+		A1FA1FFA1A7BAE5B00338AF0 /* SDFonts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SDFonts.swift; sourceTree = "<group>"; };
 		A90C18A2EE06F6072C2A6091 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -124,6 +128,7 @@
 		101B47CF1AFFD32B49F7BB46 /* Extension */ = {
 			isa = PBXGroup;
 			children = (
+				A1FA1FFA1A7BAE5B00338AF0 /* SDFonts.swift */,
 				A1FA1FEA1A7AA6AF00338AF0 /* SDColor.swift */,
 				A1CC71FF1A7A452E00757B65 /* SDUIViewControllerExtension.swift */,
 			);
@@ -170,6 +175,7 @@
 		593571E61A77DD73005AA332 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				A1FA1FF81A7BA95500338AF0 /* SDConstants.swift */,
 				593571E71A77DD97005AA332 /* Storing */,
 			);
 			path = Helpers;
@@ -425,6 +431,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A1FA1FFB1A7BAE5B00338AF0 /* SDFonts.swift in Sources */,
+				A1FA1FF91A7BA95500338AF0 /* SDConstants.swift in Sources */,
 				A1FA1FF11A7B920700338AF0 /* SDSlideMenuViewController.swift in Sources */,
 				A1FA1FEE1A7B91D100338AF0 /* SDScheduleViewController.swift in Sources */,
 				A1FA1FEF1A7B91D100338AF0 /* SDSocialViewController.swift in Sources */,
