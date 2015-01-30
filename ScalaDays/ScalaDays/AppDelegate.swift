@@ -15,6 +15,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
+        self.initAparence()
         self.createMenuView()
         return true
     }
@@ -53,10 +54,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         window = UIWindow(frame: UIScreen.mainScreen().bounds)
         if let window = window {
-            window.backgroundColor = UIColor.whiteColor()
+            window.backgroundColor = UIColor.appColor()
             window.rootViewController = slideMenuController
             window.makeKeyAndVisible()
         }
+    }
+    
+    func initAparence(){
+        UINavigationBar.appearance().barTintColor = UIColor.appColor()
+        UINavigationBar.appearance().tintColor = UIColor.whiteColor()
+        UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName : UIColor.whiteColor()]
     }
 
 }

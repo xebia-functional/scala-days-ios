@@ -20,8 +20,14 @@ class SDSlideMenuViewController: UIViewController,UITableViewDelegate,UITableVie
         case Places
         case About
     }
+
+    var menus = [NSLocalizedString("schedule", comment: "Schedule"),
+        NSLocalizedString("social", comment: "Social"),
+        NSLocalizedString("tickets", comment: "Tickets"),
+        NSLocalizedString("sponsors", comment: "Sponsors"),
+        NSLocalizedString("places", comment: "Places"),
+        NSLocalizedString("about", comment: "About")]
     
-    var menus = ["Schedule", "Social", "Tickets", "Sponsors", "Places", "About"]
     var scheduleViewController: UIViewController!
     var socialViewController: UIViewController!
     var sponsorsViewController: UIViewController!
@@ -30,25 +36,31 @@ class SDSlideMenuViewController: UIViewController,UITableViewDelegate,UITableVie
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        //Init aparence table
+        self.tblMenu.backgroundColor = UIColor.appColor()
 
         // Do any additional setup after loading the view.
+        let socialViewController = SDSocialViewController(nibName: "SDSocialViewController", bundle: nil)
+        self.socialViewController = UINavigationController(rootViewController: socialViewController)
+        
+        let sponsorsViewController = SDSponsorViewController(nibName: "SDSponsorViewController", bundle: nil)
+        self.sponsorsViewController = UINavigationController(rootViewController: sponsorsViewController)
+        
+        let placesViewController = SDPlacesViewController(nibName: "SDPlacesViewController", bundle: nil)
+        self.placesViewController = UINavigationController(rootViewController: placesViewController)
+        
+        let aboutViewController = SDAboutViewController(nibName: "SDAboutViewController", bundle: nil)
+        self.aboutViewController = UINavigationController(rootViewController: aboutViewController)
+        
+        
+        
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
     
 
     //MARK: UITableViewDataSource
@@ -62,8 +74,6 @@ class SDSlideMenuViewController: UIViewController,UITableViewDelegate,UITableVie
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-//        let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) as UITableViewCell
-//        configureCell(cell, forRowAtIndexPath: indexPath)
         let cell: UITableViewCell = UITableViewCell(style: UITableViewCellStyle.Subtitle, reuseIdentifier: "Cell")
         cell.textLabel?.text = menus[indexPath.row]
         return cell
@@ -73,7 +83,34 @@ class SDSlideMenuViewController: UIViewController,UITableViewDelegate,UITableVie
         
     }
 
-
-        
-
+    //MARK: UITableViewDelegate
+    
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        if let menu = Menu(rawValue: indexPath.item) {
+            
+            switch menu {
+            case .Schedule:
+                self.slideMenuController()?.changeMainViewController(self.scheduleViewController, close: true)
+                break
+            case .Social:
+                self.slideMenuController()?.changeMainViewController(self.socialViewController, close: true)
+                break
+            case .Sponsors:
+                self.slideMenuController()?.changeMainViewController(self.sponsorsViewController, close: true)
+                break
+            case .Places:
+                self.slideMenuController()?.changeMainViewController(self.placesViewController, close: true)
+                break
+            case .About:
+                self.slideMenuController()?.changeMainViewController(self.aboutViewController, close: true)
+                break
+                
+            default:
+                break
+            }
+        }
+ 
+    }
+    
+    
 }

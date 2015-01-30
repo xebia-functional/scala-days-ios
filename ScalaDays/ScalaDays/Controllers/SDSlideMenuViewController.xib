@@ -17,19 +17,37 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="lxn-hm-0cu">
-                    <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                    <rect key="frame" x="0.0" y="160" width="600" height="440"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <connections>
                         <outlet property="dataSource" destination="-1" id="OEU-Lm-sYd"/>
                         <outlet property="delegate" destination="-1" id="9l6-5A-M57"/>
                     </connections>
                 </tableView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wmo-tt-doA">
+                    <rect key="frame" x="0.0" y="0.0" width="600" height="161"/>
+                    <subviews>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="tpM-kA-yta">
+                            <rect key="frame" x="0.0" y="0.0" width="600" height="161"/>
+                        </imageView>
+                    </subviews>
+                    <constraints>
+                        <constraint firstAttribute="bottom" secondItem="tpM-kA-yta" secondAttribute="bottom" id="LIF-SW-LmG"/>
+                        <constraint firstItem="tpM-kA-yta" firstAttribute="leading" secondItem="wmo-tt-doA" secondAttribute="leading" id="OKr-Iw-ylC"/>
+                        <constraint firstAttribute="height" constant="161" id="b05-R2-Oic"/>
+                        <constraint firstItem="tpM-kA-yta" firstAttribute="top" secondItem="wmo-tt-doA" secondAttribute="top" id="cHU-nC-jZE"/>
+                        <constraint firstAttribute="trailing" secondItem="tpM-kA-yta" secondAttribute="trailing" id="jnh-L0-dA1"/>
+                    </constraints>
+                </view>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstItem="lxn-hm-0cu" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="IQj-k7-18n"/>
+                <constraint firstItem="lxn-hm-0cu" firstAttribute="top" secondItem="wmo-tt-doA" secondAttribute="bottom" constant="-1" id="62C-aA-XDE"/>
+                <constraint firstAttribute="trailing" secondItem="wmo-tt-doA" secondAttribute="trailing" id="G9R-F7-1uA"/>
                 <constraint firstItem="lxn-hm-0cu" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="Pxn-7k-ql4"/>
+                <constraint firstItem="wmo-tt-doA" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="TrH-yL-nVc"/>
                 <constraint firstAttribute="bottom" secondItem="lxn-hm-0cu" secondAttribute="bottom" id="UAL-KB-GfD"/>
+                <constraint firstItem="wmo-tt-doA" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="Vn8-Rn-uof"/>
                 <constraint firstAttribute="trailing" secondItem="lxn-hm-0cu" secondAttribute="trailing" id="nzc-ej-6pE"/>
             </constraints>
             <point key="canvasLocation" x="125" y="453"/>

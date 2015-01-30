@@ -28,6 +28,14 @@
 		A1D795D41A68267F009CCEB3 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A1D795D31A68267F009CCEB3 /* Images.xcassets */; };
 		A1D795D71A68267F009CCEB3 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = A1D795D51A68267F009CCEB3 /* LaunchScreen.xib */; };
 		A1D795E31A68267F009CCEB3 /* ScalaDaysTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1D795E21A68267F009CCEB3 /* ScalaDaysTests.swift */; };
+		A1FA1FD41A7A9DA200338AF0 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = A1FA1FD61A7A9DA200338AF0 /* Localizable.strings */; };
+		A1FA1FE01A7AA2FA00338AF0 /* SDSponsorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1FA1FDE1A7AA2FA00338AF0 /* SDSponsorViewController.swift */; };
+		A1FA1FE11A7AA2FA00338AF0 /* SDSponsorViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A1FA1FDF1A7AA2FA00338AF0 /* SDSponsorViewController.xib */; };
+		A1FA1FE41A7AA30F00338AF0 /* SDPlacesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1FA1FE21A7AA30F00338AF0 /* SDPlacesViewController.swift */; };
+		A1FA1FE51A7AA30F00338AF0 /* SDPlacesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A1FA1FE31A7AA30F00338AF0 /* SDPlacesViewController.xib */; };
+		A1FA1FE81A7AA33F00338AF0 /* SDAboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1FA1FE61A7AA33F00338AF0 /* SDAboutViewController.swift */; };
+		A1FA1FE91A7AA33F00338AF0 /* SDAboutViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A1FA1FE71A7AA33F00338AF0 /* SDAboutViewController.xib */; };
+		A1FA1FEB1A7AA6AF00338AF0 /* SDColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1FA1FEA1A7AA6AF00338AF0 /* SDColor.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -78,6 +86,14 @@
 		A1D795DC1A68267F009CCEB3 /* ScalaDaysTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ScalaDaysTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A1D795E11A68267F009CCEB3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A1D795E21A68267F009CCEB3 /* ScalaDaysTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScalaDaysTests.swift; sourceTree = "<group>"; };
+		A1FA1FD51A7A9DA200338AF0 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		A1FA1FDE1A7AA2FA00338AF0 /* SDSponsorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SDSponsorViewController.swift; sourceTree = "<group>"; };
+		A1FA1FDF1A7AA2FA00338AF0 /* SDSponsorViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SDSponsorViewController.xib; sourceTree = "<group>"; };
+		A1FA1FE21A7AA30F00338AF0 /* SDPlacesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SDPlacesViewController.swift; sourceTree = "<group>"; };
+		A1FA1FE31A7AA30F00338AF0 /* SDPlacesViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SDPlacesViewController.xib; sourceTree = "<group>"; };
+		A1FA1FE61A7AA33F00338AF0 /* SDAboutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SDAboutViewController.swift; sourceTree = "<group>"; };
+		A1FA1FE71A7AA33F00338AF0 /* SDAboutViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SDAboutViewController.xib; sourceTree = "<group>"; };
+		A1FA1FEA1A7AA6AF00338AF0 /* SDColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SDColor.swift; sourceTree = "<group>"; };
 		A90C18A2EE06F6072C2A6091 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -103,6 +119,7 @@
 		101B47CF1AFFD32B49F7BB46 /* Extension */ = {
 			isa = PBXGroup;
 			children = (
+				A1FA1FEA1A7AA6AF00338AF0 /* SDColor.swift */,
 				A1CC71FF1A7A452E00757B65 /* SDUIViewControllerExtension.swift */,
 			);
 			path = Extension;
@@ -117,6 +134,12 @@
 				A1CC720E1A7A722C00757B65 /* SDSocialViewController.xib */,
 				A1CC72131A7A727F00757B65 /* SDSlideMenuViewController.swift */,
 				A1CC72141A7A727F00757B65 /* SDSlideMenuViewController.xib */,
+				A1FA1FDE1A7AA2FA00338AF0 /* SDSponsorViewController.swift */,
+				A1FA1FDF1A7AA2FA00338AF0 /* SDSponsorViewController.xib */,
+				A1FA1FE21A7AA30F00338AF0 /* SDPlacesViewController.swift */,
+				A1FA1FE31A7AA30F00338AF0 /* SDPlacesViewController.xib */,
+				A1FA1FE61A7AA33F00338AF0 /* SDAboutViewController.swift */,
+				A1FA1FE71A7AA33F00338AF0 /* SDAboutViewController.xib */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -220,6 +243,7 @@
 		A1D795CA1A68267F009CCEB3 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				A1FA1FD61A7A9DA200338AF0 /* Localizable.strings */,
 				A1D795CB1A68267F009CCEB3 /* Info.plist */,
 			);
 			name = "Supporting Files";
@@ -336,6 +360,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				A1CC72101A7A722C00757B65 /* SDSocialViewController.xib in Resources */,
+				A1FA1FE91A7AA33F00338AF0 /* SDAboutViewController.xib in Resources */,
+				A1FA1FE51A7AA30F00338AF0 /* SDPlacesViewController.xib in Resources */,
+				A1FA1FD41A7A9DA200338AF0 /* Localizable.strings in Resources */,
+				A1FA1FE11A7AA2FA00338AF0 /* SDSponsorViewController.xib in Resources */,
 				A1CC720C1A7A71F400757B65 /* SDScheduleViewController.xib in Resources */,
 				A1D795D71A68267F009CCEB3 /* LaunchScreen.xib in Resources */,
 				A1CC72161A7A727F00757B65 /* SDSlideMenuViewController.xib in Resources */,
@@ -392,12 +420,16 @@
 			files = (
 				A1CC720F1A7A722C00757B65 /* SDSocialViewController.swift in Sources */,
 				A1CC720B1A7A71F400757B65 /* SDScheduleViewController.swift in Sources */,
+				A1FA1FEB1A7AA6AF00338AF0 /* SDColor.swift in Sources */,
+				A1FA1FE81A7AA33F00338AF0 /* SDAboutViewController.swift in Sources */,
+				A1FA1FE01A7AA2FA00338AF0 /* SDSponsorViewController.swift in Sources */,
 				A1CC72151A7A727F00757B65 /* SDSlideMenuViewController.swift in Sources */,
 				593571E91A77DDA8005AA332 /* StoringHelper.swift in Sources */,
 				A1CC71E21A7930D100757B65 /* SlideMenuController.swift in Sources */,
 				A1B8E6661A6D4B9600F21468 /* DataManager.swift in Sources */,
 				5951D0D61A76A5F5001528E8 /* Conference.swift in Sources */,
 				A1D795CD1A68267F009CCEB3 /* AppDelegate.swift in Sources */,
+				A1FA1FE41A7AA30F00338AF0 /* SDPlacesViewController.swift in Sources */,
 				101B49986EFC463363D4784C /* Alamofire.swift in Sources */,
 				A1CC72001A7A452E00757B65 /* SDUIViewControllerExtension.swift in Sources */,
 			);
@@ -432,6 +464,14 @@
 				A1D795D61A68267F009CCEB3 /* Base */,
 			);
 			name = LaunchScreen.xib;
+			sourceTree = "<group>";
+		};
+		A1FA1FD61A7A9DA200338AF0 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A1FA1FD51A7A9DA200338AF0 /* en */,
+			);
+			name = Localizable.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

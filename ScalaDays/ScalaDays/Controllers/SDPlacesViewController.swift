@@ -1,5 +1,5 @@
 //
-//  SDSocialViewController.swift
+//  SDPlacesViewController.swift
 //  ScalaDays
 //
 //  Created by Ana on 29/1/15.
@@ -7,15 +7,19 @@
 //
 
 import UIKit
+import MapKit
 
-class SDSocialViewController: UIViewController {
 
+class SDPlacesViewController: UIViewController {
+
+    @IBOutlet weak var mapPlaces: MKMapView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-         self.setNavigationBarItem()
-         self.title = NSLocalizedString("social",comment: "social")
+        self.setNavigationBarItem()
+        self.title = NSLocalizedString("places",comment: "Places")
     }
 
     override func didReceiveMemoryWarning() {
@@ -24,8 +28,6 @@ class SDSocialViewController: UIViewController {
     }
     
 
-    @IBAction func test(sender: AnyObject) {
-    }
     /*
     // MARK: - Navigation
 

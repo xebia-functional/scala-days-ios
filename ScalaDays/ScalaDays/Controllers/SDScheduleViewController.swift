@@ -15,6 +15,7 @@ class SDScheduleViewController: UIViewController {
 
         // Do any additional setup after loading the view.
        self.setNavigationBarItem()
+    self.title = NSLocalizedString("schedule",comment: "Schedule")
     }
 
     override func didReceiveMemoryWarning() {
