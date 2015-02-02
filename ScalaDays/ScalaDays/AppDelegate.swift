@@ -13,9 +13,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
+        self.initAparence()
+        self.createMenuView()
         return true
     }
 
@@ -40,7 +41,30 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationWillTerminate(application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
-
+    
+   
+    private func createMenuView() {
+        
+        let scheduleViewController = SDScheduleViewController(nibName: "SDScheduleViewController", bundle: nil)
+        let menuViewController = SDSlideMenuViewController ( nibName:"SDSlideMenuViewController", bundle: nil)
+        let nvc: UINavigationController = UINavigationController(rootViewController: scheduleViewController)
+        
+        menuViewController.scheduleViewController = nvc
+        let slideMenuController = SlideMenuController(mainViewController:nvc, leftMenuViewController:menuViewController )
+        
+        window = UIWindow(frame: UIScreen.mainScreen().bounds)
+        if let window = window {
+            window.backgroundColor = UIColor.appColor()
+            window.rootViewController = slideMenuController
+            window.makeKeyAndVisible()
+        }
+    }
+    
+    func initAparence(){
+        UINavigationBar.appearance().barTintColor = UIColor.appColor()
+        UINavigationBar.appearance().tintColor = UIColor.whiteColor()
+        UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName : UIColor.whiteColor()]
+    }
 
 }
 

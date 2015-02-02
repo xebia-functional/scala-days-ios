@@ -17,13 +17,30 @@
 		84EFC40AF74037F095B5FD60 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2FB6FED00626F7CA4FD64E9E /* libPods.a */; };
 		A1A94F2D1A76A36C003A6C0B /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1A94F2C1A76A36C003A6C0B /* SwiftyJSON.swift */; };
 		A1B8E6661A6D4B9600F21468 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B8E6651A6D4B9600F21468 /* DataManager.swift */; };
-		A1CC71E01A79071C00757B65 /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1A94F2C1A76A36C003A6C0B /* SwiftyJSON.swift */; };
 		A1D795CD1A68267F009CCEB3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1D795CC1A68267F009CCEB3 /* AppDelegate.swift */; };
-		A1D795CF1A68267F009CCEB3 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1D795CE1A68267F009CCEB3 /* ViewController.swift */; };
-		A1D795D21A68267F009CCEB3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A1D795D01A68267F009CCEB3 /* Main.storyboard */; };
 		A1D795D41A68267F009CCEB3 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A1D795D31A68267F009CCEB3 /* Images.xcassets */; };
-		A1D795D71A68267F009CCEB3 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = A1D795D51A68267F009CCEB3 /* LaunchScreen.xib */; };
 		A1D795E31A68267F009CCEB3 /* ScalaDaysTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1D795E21A68267F009CCEB3 /* ScalaDaysTests.swift */; };
+		A1FA1FD41A7A9DA200338AF0 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = A1FA1FD61A7A9DA200338AF0 /* Localizable.strings */; };
+		A1FA1FE01A7AA2FA00338AF0 /* SDSponsorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1FA1FDE1A7AA2FA00338AF0 /* SDSponsorViewController.swift */; };
+		A1FA1FE11A7AA2FA00338AF0 /* SDSponsorViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A1FA1FDF1A7AA2FA00338AF0 /* SDSponsorViewController.xib */; };
+		A1FA1FE41A7AA30F00338AF0 /* SDPlacesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1FA1FE21A7AA30F00338AF0 /* SDPlacesViewController.swift */; };
+		A1FA1FE51A7AA30F00338AF0 /* SDPlacesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A1FA1FE31A7AA30F00338AF0 /* SDPlacesViewController.xib */; };
+		A1FA1FE81A7AA33F00338AF0 /* SDAboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1FA1FE61A7AA33F00338AF0 /* SDAboutViewController.swift */; };
+		A1FA1FE91A7AA33F00338AF0 /* SDAboutViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A1FA1FE71A7AA33F00338AF0 /* SDAboutViewController.xib */; };
+		A1FA1FEB1A7AA6AF00338AF0 /* SDColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1FA1FEA1A7AA6AF00338AF0 /* SDColor.swift */; };
+		A1FA1FEC1A7B90DD00338AF0 /* SDUIViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1CC71FF1A7A452E00757B65 /* SDUIViewControllerExtension.swift */; };
+		A1FA1FED1A7B919900338AF0 /* SlideMenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1CC71E11A7930D100757B65 /* SlideMenuController.swift */; };
+		A1FA1FEE1A7B91D100338AF0 /* SDScheduleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1CC72091A7A71F400757B65 /* SDScheduleViewController.swift */; };
+		A1FA1FEF1A7B91D100338AF0 /* SDSocialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1CC720D1A7A722C00757B65 /* SDSocialViewController.swift */; };
+		A1FA1FF11A7B920700338AF0 /* SDSlideMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1CC72131A7A727F00757B65 /* SDSlideMenuViewController.swift */; };
+		A1FA1FF21A7B927500338AF0 /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1A94F2C1A76A36C003A6C0B /* SwiftyJSON.swift */; };
+		A1FA1FF31A7B927A00338AF0 /* SwiftyJSON.h in Sources */ = {isa = PBXBuildFile; fileRef = A1A94F2B1A76A36C003A6C0B /* SwiftyJSON.h */; };
+		A1FA1FF41A7B98FE00338AF0 /* SDScheduleViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A1CC720A1A7A71F400757B65 /* SDScheduleViewController.xib */; };
+		A1FA1FF51A7B98FE00338AF0 /* SDSocialViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A1CC720E1A7A722C00757B65 /* SDSocialViewController.xib */; };
+		A1FA1FF61A7B98FE00338AF0 /* SDSlideMenuViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A1CC72141A7A727F00757B65 /* SDSlideMenuViewController.xib */; };
+		A1FA1FF71A7B991900338AF0 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = A1D795D51A68267F009CCEB3 /* LaunchScreen.xib */; };
+		A1FA1FF91A7BA95500338AF0 /* SDConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1FA1FF81A7BA95500338AF0 /* SDConstants.swift */; };
+		A1FA1FFB1A7BAE5B00338AF0 /* SDFonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1FA1FFA1A7BAE5B00338AF0 /* SDFonts.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,16 +77,32 @@
 		A1A94F2B1A76A36C003A6C0B /* SwiftyJSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SwiftyJSON.h; sourceTree = "<group>"; };
 		A1A94F2C1A76A36C003A6C0B /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyJSON.swift; sourceTree = "<group>"; };
 		A1B8E6651A6D4B9600F21468 /* DataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
+		A1CC71E11A7930D100757B65 /* SlideMenuController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SlideMenuController.swift; sourceTree = "<group>"; };
+		A1CC71FF1A7A452E00757B65 /* SDUIViewControllerExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SDUIViewControllerExtension.swift; sourceTree = "<group>"; };
+		A1CC72091A7A71F400757B65 /* SDScheduleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SDScheduleViewController.swift; sourceTree = "<group>"; };
+		A1CC720A1A7A71F400757B65 /* SDScheduleViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SDScheduleViewController.xib; sourceTree = "<group>"; };
+		A1CC720D1A7A722C00757B65 /* SDSocialViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SDSocialViewController.swift; sourceTree = "<group>"; };
+		A1CC720E1A7A722C00757B65 /* SDSocialViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SDSocialViewController.xib; sourceTree = "<group>"; };
+		A1CC72131A7A727F00757B65 /* SDSlideMenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SDSlideMenuViewController.swift; sourceTree = "<group>"; };
+		A1CC72141A7A727F00757B65 /* SDSlideMenuViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SDSlideMenuViewController.xib; sourceTree = "<group>"; };
 		A1D795C71A68267F009CCEB3 /* ScalaDays.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ScalaDays.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A1D795CB1A68267F009CCEB3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A1D795CC1A68267F009CCEB3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		A1D795CE1A68267F009CCEB3 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		A1D795D11A68267F009CCEB3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		A1D795D31A68267F009CCEB3 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		A1D795D61A68267F009CCEB3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		A1D795DC1A68267F009CCEB3 /* ScalaDaysTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ScalaDaysTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A1D795E11A68267F009CCEB3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A1D795E21A68267F009CCEB3 /* ScalaDaysTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScalaDaysTests.swift; sourceTree = "<group>"; };
+		A1FA1FD51A7A9DA200338AF0 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		A1FA1FDE1A7AA2FA00338AF0 /* SDSponsorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SDSponsorViewController.swift; sourceTree = "<group>"; };
+		A1FA1FDF1A7AA2FA00338AF0 /* SDSponsorViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SDSponsorViewController.xib; sourceTree = "<group>"; };
+		A1FA1FE21A7AA30F00338AF0 /* SDPlacesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SDPlacesViewController.swift; sourceTree = "<group>"; };
+		A1FA1FE31A7AA30F00338AF0 /* SDPlacesViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SDPlacesViewController.xib; sourceTree = "<group>"; };
+		A1FA1FE61A7AA33F00338AF0 /* SDAboutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SDAboutViewController.swift; sourceTree = "<group>"; };
+		A1FA1FE71A7AA33F00338AF0 /* SDAboutViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SDAboutViewController.xib; sourceTree = "<group>"; };
+		A1FA1FEA1A7AA6AF00338AF0 /* SDColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SDColor.swift; sourceTree = "<group>"; };
+		A1FA1FF81A7BA95500338AF0 /* SDConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SDConstants.swift; sourceTree = "<group>"; };
+		A1FA1FFA1A7BAE5B00338AF0 /* SDFonts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SDFonts.swift; sourceTree = "<group>"; };
 		A90C18A2EE06F6072C2A6091 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -92,9 +125,46 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		101B47CF1AFFD32B49F7BB46 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				A1FA1FFA1A7BAE5B00338AF0 /* SDFonts.swift */,
+				A1FA1FEA1A7AA6AF00338AF0 /* SDColor.swift */,
+				A1CC71FF1A7A452E00757B65 /* SDUIViewControllerExtension.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
+		101B48707F372BB83194FA90 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				A1CC72091A7A71F400757B65 /* SDScheduleViewController.swift */,
+				A1CC720A1A7A71F400757B65 /* SDScheduleViewController.xib */,
+				A1CC720D1A7A722C00757B65 /* SDSocialViewController.swift */,
+				A1CC720E1A7A722C00757B65 /* SDSocialViewController.xib */,
+				A1CC72131A7A727F00757B65 /* SDSlideMenuViewController.swift */,
+				A1CC72141A7A727F00757B65 /* SDSlideMenuViewController.xib */,
+				A1FA1FDE1A7AA2FA00338AF0 /* SDSponsorViewController.swift */,
+				A1FA1FDF1A7AA2FA00338AF0 /* SDSponsorViewController.xib */,
+				A1FA1FE21A7AA30F00338AF0 /* SDPlacesViewController.swift */,
+				A1FA1FE31A7AA30F00338AF0 /* SDPlacesViewController.xib */,
+				A1FA1FE61A7AA33F00338AF0 /* SDAboutViewController.swift */,
+				A1FA1FE71A7AA33F00338AF0 /* SDAboutViewController.xib */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		101B4BF3F5876A0847F2D773 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
 		101B4FB1641809244D4A4CE8 /* External */ = {
 			isa = PBXGroup;
 			children = (
+				A1CC71E11A7930D100757B65 /* SlideMenuController.swift */,
 				A1A94F2B1A76A36C003A6C0B /* SwiftyJSON.h */,
 				A1A94F2C1A76A36C003A6C0B /* SwiftyJSON.swift */,
 				101B45045AF560B28ED066DB /* Alamofire.swift */,
@@ -105,6 +175,7 @@
 		593571E61A77DD73005AA332 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				A1FA1FF81A7BA95500338AF0 /* SDConstants.swift */,
 				593571E71A77DD97005AA332 /* Storing */,
 			);
 			path = Helpers;
@@ -166,17 +237,18 @@
 		A1D795C91A68267F009CCEB3 /* ScalaDays */ = {
 			isa = PBXGroup;
 			children = (
-				593571E61A77DD73005AA332 /* Helpers */,
-				A1B8E6641A6D4B8600F21468 /* Service */,
-				A1B8E6601A6D266800F21468 /* Models */,
-				A1D795CC1A68267F009CCEB3 /* AppDelegate.swift */,
-				A1D795CE1A68267F009CCEB3 /* ViewController.swift */,
-				A1D795D01A68267F009CCEB3 /* Main.storyboard */,
-				A1D795D31A68267F009CCEB3 /* Images.xcassets */,
-				A1D795D51A68267F009CCEB3 /* LaunchScreen.xib */,
-				A1D795CA1A68267F009CCEB3 /* Supporting Files */,
 				A17D3AC71A690E3A00024062 /* Bridging-Header.h */,
+				A1D795CC1A68267F009CCEB3 /* AppDelegate.swift */,
+				A1D795D31A68267F009CCEB3 /* Images.xcassets */,
 				101B4FB1641809244D4A4CE8 /* External */,
+				593571E61A77DD73005AA332 /* Helpers */,
+				A1D795D51A68267F009CCEB3 /* LaunchScreen.xib */,
+				A1B8E6601A6D266800F21468 /* Models */,
+				A1B8E6641A6D4B8600F21468 /* Service */,
+				A1D795CA1A68267F009CCEB3 /* Supporting Files */,
+				101B4BF3F5876A0847F2D773 /* UI */,
+				101B48707F372BB83194FA90 /* Controllers */,
+				101B47CF1AFFD32B49F7BB46 /* Extension */,
 			);
 			path = ScalaDays;
 			sourceTree = "<group>";
@@ -184,6 +256,7 @@
 		A1D795CA1A68267F009CCEB3 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				A1FA1FD61A7A9DA200338AF0 /* Localizable.strings */,
 				A1D795CB1A68267F009CCEB3 /* Info.plist */,
 			);
 			name = "Supporting Files";
@@ -267,6 +340,7 @@
 				TargetAttributes = {
 					A1D795C61A68267F009CCEB3 = {
 						CreatedOnToolsVersion = 6.1.1;
+						DevelopmentTeam = 985FQDQUFA;
 					};
 					A1D795DB1A68267F009CCEB3 = {
 						CreatedOnToolsVersion = 6.1.1;
@@ -298,8 +372,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A1D795D21A68267F009CCEB3 /* Main.storyboard in Resources */,
-				A1D795D71A68267F009CCEB3 /* LaunchScreen.xib in Resources */,
+				A1FA1FF71A7B991900338AF0 /* LaunchScreen.xib in Resources */,
+				A1FA1FF41A7B98FE00338AF0 /* SDScheduleViewController.xib in Resources */,
+				A1FA1FF51A7B98FE00338AF0 /* SDSocialViewController.xib in Resources */,
+				A1FA1FF61A7B98FE00338AF0 /* SDSlideMenuViewController.xib in Resources */,
+				A1FA1FE91A7AA33F00338AF0 /* SDAboutViewController.xib in Resources */,
+				A1FA1FE51A7AA30F00338AF0 /* SDPlacesViewController.xib in Resources */,
+				A1FA1FD41A7A9DA200338AF0 /* Localizable.strings in Resources */,
+				A1FA1FE11A7AA2FA00338AF0 /* SDSponsorViewController.xib in Resources */,
 				A1D795D41A68267F009CCEB3 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -351,12 +431,22 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A1FA1FFB1A7BAE5B00338AF0 /* SDFonts.swift in Sources */,
+				A1FA1FF91A7BA95500338AF0 /* SDConstants.swift in Sources */,
+				A1FA1FF11A7B920700338AF0 /* SDSlideMenuViewController.swift in Sources */,
+				A1FA1FEE1A7B91D100338AF0 /* SDScheduleViewController.swift in Sources */,
+				A1FA1FEF1A7B91D100338AF0 /* SDSocialViewController.swift in Sources */,
+				A1FA1FED1A7B919900338AF0 /* SlideMenuController.swift in Sources */,
+				A1FA1FEC1A7B90DD00338AF0 /* SDUIViewControllerExtension.swift in Sources */,
+				A1FA1FEB1A7AA6AF00338AF0 /* SDColor.swift in Sources */,
+				A1FA1FE81A7AA33F00338AF0 /* SDAboutViewController.swift in Sources */,
+				A1FA1FE01A7AA2FA00338AF0 /* SDSponsorViewController.swift in Sources */,
 				593571E91A77DDA8005AA332 /* StoringHelper.swift in Sources */,
 				A1B8E6661A6D4B9600F21468 /* DataManager.swift in Sources */,
-				A1D795CF1A68267F009CCEB3 /* ViewController.swift in Sources */,
 				A1A94F2D1A76A36C003A6C0B /* SwiftyJSON.swift in Sources */,
 				5951D0D61A76A5F5001528E8 /* Conference.swift in Sources */,
 				A1D795CD1A68267F009CCEB3 /* AppDelegate.swift in Sources */,
+				A1FA1FE41A7AA30F00338AF0 /* SDPlacesViewController.swift in Sources */,
 				101B49986EFC463363D4784C /* Alamofire.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -365,7 +455,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A1CC71E01A79071C00757B65 /* SwiftyJSON.swift in Sources */,
+				A1FA1FF31A7B927A00338AF0 /* SwiftyJSON.h in Sources */,
+				A1FA1FF21A7B927500338AF0 /* SwiftyJSON.swift in Sources */,
 				593571ED1A77E4E9005AA332 /* Alamofire.swift in Sources */,
 				593571EA1A77E41C005AA332 /* StoringHelper.swift in Sources */,
 				593571EB1A77E41C005AA332 /* DataManager.swift in Sources */,
@@ -385,20 +476,20 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		A1D795D01A68267F009CCEB3 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				A1D795D11A68267F009CCEB3 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		A1D795D51A68267F009CCEB3 /* LaunchScreen.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
 				A1D795D61A68267F009CCEB3 /* Base */,
 			);
 			name = LaunchScreen.xib;
+			sourceTree = "<group>";
+		};
+		A1FA1FD61A7A9DA200338AF0 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A1FA1FD51A7A9DA200338AF0 /* en */,
+			);
+			name = Localizable.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -488,6 +579,7 @@
 			baseConfigurationReference = 9AA114FE335624986EFB5A1D /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				INFOPLIST_FILE = ScalaDays/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
@@ -499,6 +591,7 @@
 				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "ScalaDays/Bridging-Header.h";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -507,6 +600,7 @@
 			baseConfigurationReference = A90C18A2EE06F6072C2A6091 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				INFOPLIST_FILE = ScalaDays/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
@@ -518,6 +612,7 @@
 				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "ScalaDays/Bridging-Header.h";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
