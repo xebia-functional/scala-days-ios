@@ -14,15 +14,15 @@ class SDScheduleViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-       self.setNavigationBarItem()
-    self.title = NSLocalizedString("schedule",comment: "Schedule")
+        self.setNavigationBarItem()
+        self.title = NSLocalizedString("schedule", comment: "Schedule")
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
+
 
     /*
     // MARK: - Navigation
