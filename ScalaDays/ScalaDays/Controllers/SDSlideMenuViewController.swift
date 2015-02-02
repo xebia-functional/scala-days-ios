@@ -1,10 +1,19 @@
-//
-//  SDSlideMenuViewController.swift
-//  ScalaDays
-//
-//  Created by Ana on 29/1/15.
-//  Copyright (c) 2015 Ana. All rights reserved.
-//
+/*
+* Copyright (C) 2015 47 Degrees, LLC http://47deg.com hello@47deg.com
+*
+* Licensed under the Apache License, Version 2.0 (the "License"); you may
+* not use this file except in compliance with the License. You may obtain
+* a copy of the License at
+*
+*     http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
 
 import UIKit
 
@@ -13,10 +22,12 @@ class SDSlideMenuViewController: UIViewController,UITableViewDelegate,UITableVie
     @IBOutlet weak var tblMenu: UITableView!
     
     @IBOutlet weak var heigthTable: NSLayoutConstraint!
+    @IBOutlet weak var heigthHeader: NSLayoutConstraint!
     
     enum Menu: Int {
         case Schedule = 0
         case Social
+        case Contact
         case Tickets
         case Sponsors
         case Places
@@ -25,15 +36,17 @@ class SDSlideMenuViewController: UIViewController,UITableViewDelegate,UITableVie
 
     var menus = [NSLocalizedString("schedule", comment: "Schedule"),
         NSLocalizedString("social", comment: "Social"),
+        NSLocalizedString("contacts", comment: "Contacts"),
         NSLocalizedString("tickets", comment: "Tickets"),
         NSLocalizedString("sponsors", comment: "Sponsors"),
         NSLocalizedString("places", comment: "Places"),
         NSLocalizedString("about", comment: "About")]
     
-    var menusImage = [icon_menu_schedule,icon_menu_social,icon_menu_ticket,icon_menu_sponsors,icon_menu_places,icon_menu_about]
+    var menusImage = [icon_menu_schedule,icon_menu_social,icon_menu_contact,icon_menu_ticket,icon_menu_sponsors,icon_menu_places,icon_menu_about]
     
     var scheduleViewController: UIViewController!
     var socialViewController: UIViewController!
+    var contactViewController: UIViewController!
     var sponsorsViewController: UIViewController!
     var placesViewController: UIViewController!
     var aboutViewController: UIViewController!
@@ -41,13 +54,21 @@ class SDSlideMenuViewController: UIViewController,UITableViewDelegate,UITableVie
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        if(IS_IPHONE5){
+            heigthHeader.constant = Height_Header_Menu
+        }
+        
         //Init aparence table
-        self.tblMenu.backgroundColor = UIColor.appColor()
-        self.heigthTable.constant = CGFloat(menus.count * 44)
+        self.heigthTable.constant = CGFloat(menus.count * Int(Height_Row_Menu))
+        self.tblMenu.scrollEnabled = false
+        self.tblMenu.separatorColor = UIColor(white: 1, alpha: 0.1)
 
         // Do any additional setup after loading the view.
         let socialViewController = SDSocialViewController(nibName: "SDSocialViewController", bundle: nil)
         self.socialViewController = UINavigationController(rootViewController: socialViewController)
+        
+        let contactViewController = SDContactViewController(nibName: "SDContactViewController", bundle: nil)
+        self.contactViewController = UINavigationController(rootViewController: contactViewController)
         
         let sponsorsViewController = SDSponsorViewController(nibName: "SDSponsorViewController", bundle: nil)
         self.sponsorsViewController = UINavigationController(rootViewController: sponsorsViewController)
@@ -81,18 +102,26 @@ class SDSlideMenuViewController: UIViewController,UITableViewDelegate,UITableVie
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell: UITableViewCell = UITableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: "Cell")
         cell.textLabel?.text = menus[indexPath.row]
+        cell.textLabel?.setCustomFont(UIFont.fontHelveticaNeue(15), colorFont: UIColor(white: 1, alpha: 0.8))
         cell.imageView?.image = UIImage(named: menusImage[indexPath.row] as NSString)
         cell.backgroundColor = UIColor.appColor()
+        
+        var bgColorView = UIView()
+        bgColorView.backgroundColor = UIColor.selectedCellMenu()
+        cell.selectedBackgroundView = bgColorView
+               
         return cell
     }
     
-    func configureCell(cell: UITableViewCell, forRowAtIndexPath: NSIndexPath) {
+    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         
+        return Height_Row_Menu
     }
-
+    
     //MARK: UITableViewDelegate
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        
         if let menu = Menu(rawValue: indexPath.item) {
             
             switch menu {
@@ -101,6 +130,9 @@ class SDSlideMenuViewController: UIViewController,UITableViewDelegate,UITableVie
                 break
             case .Social:
                 self.slideMenuController()?.changeMainViewController(self.socialViewController, close: true)
+                break
+            case .Contact:
+                self.slideMenuController()?.changeMainViewController(self.contactViewController, close: true)
                 break
             case .Sponsors:
                 self.slideMenuController()?.changeMainViewController(self.sponsorsViewController, close: true)

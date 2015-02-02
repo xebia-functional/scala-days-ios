@@ -7,6 +7,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SDSlideMenuViewController" customModule="ScalaDays" customModuleProvider="target">
             <connections>
+                <outlet property="heigthHeader" destination="b05-R2-Oic" id="M3z-f2-L8J"/>
                 <outlet property="heigthTable" destination="UCW-so-Pom" id="39k-rM-hDV"/>
                 <outlet property="tblMenu" destination="lxn-hm-0cu" id="skZ-DC-Ar3"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -18,22 +19,24 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wmo-tt-doA">
-                    <rect key="frame" x="0.0" y="0.0" width="600" height="161"/>
+                    <rect key="frame" x="0.0" y="0.0" width="600" height="150"/>
                     <subviews>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="tpM-kA-yta">
-                            <rect key="frame" x="0.0" y="0.0" width="600" height="161"/>
+                            <rect key="frame" x="0.0" y="0.0" width="600" height="150"/>
+                            <color key="backgroundColor" red="1" green="0.10436369243421052" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         </imageView>
                     </subviews>
+                    <color key="backgroundColor" red="1" green="0.1043636924" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="bottom" secondItem="tpM-kA-yta" secondAttribute="bottom" id="LIF-SW-LmG"/>
                         <constraint firstItem="tpM-kA-yta" firstAttribute="leading" secondItem="wmo-tt-doA" secondAttribute="leading" id="OKr-Iw-ylC"/>
-                        <constraint firstAttribute="height" constant="161" id="b05-R2-Oic"/>
+                        <constraint firstAttribute="height" constant="150" id="b05-R2-Oic"/>
                         <constraint firstItem="tpM-kA-yta" firstAttribute="top" secondItem="wmo-tt-doA" secondAttribute="top" id="cHU-nC-jZE"/>
                         <constraint firstAttribute="trailing" secondItem="tpM-kA-yta" secondAttribute="trailing" id="jnh-L0-dA1"/>
                     </constraints>
                 </view>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="lxn-hm-0cu">
-                    <rect key="frame" x="0.0" y="160" width="600" height="30"/>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" allowsSelectionDuringEditing="YES" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="lxn-hm-0cu">
+                    <rect key="frame" x="0.0" y="149" width="600" height="30"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="30" id="UCW-so-Pom"/>
