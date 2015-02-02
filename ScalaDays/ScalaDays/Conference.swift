@@ -20,12 +20,14 @@ class Conference: NSObject, NSCoding, Equatable {
     let schedule: Array<Event>
     let sponsors: Array<SponsorType>
     let speakers: Array<Speaker>
+    let codeOfConduct: String
 
-    init(info: Information, schedule: Array<Event>, sponsors: Array<SponsorType>, speakers: Array<Speaker>) {
+    init(info: Information, schedule: Array<Event>, sponsors: Array<SponsorType>, speakers: Array<Speaker>, codeOfConduct: String) {
         self.info = info
         self.schedule = schedule
         self.sponsors = sponsors
         self.speakers = speakers
+        self.codeOfConduct = codeOfConduct
     }
 
     required init(coder aDecoder: NSCoder) {
@@ -33,6 +35,7 @@ class Conference: NSObject, NSCoding, Equatable {
         self.schedule = aDecoder.decodeObjectForKey("schedule") as Array<Event>
         self.sponsors = aDecoder.decodeObjectForKey("sponsors") as Array<SponsorType>
         self.speakers = aDecoder.decodeObjectForKey("speakers") as Array<Speaker>
+        self.codeOfConduct = aDecoder.decodeObjectForKey("codeOfConduct") as String
     }
 
     func encodeWithCoder(aCoder: NSCoder) {
@@ -40,6 +43,7 @@ class Conference: NSObject, NSCoding, Equatable {
         aCoder.encodeObject(self.schedule, forKey: "schedule")
         aCoder.encodeObject(self.sponsors, forKey: "sponsors")
         aCoder.encodeObject(self.speakers, forKey: "speakers")
+        aCoder.encodeObject(self.codeOfConduct, forKey: "codeOfConduct")
     }
 }
 
@@ -298,10 +302,12 @@ func == (lhs: Conference, rhs: Conference) -> Bool {
     let equalityForSchedule = checkEqualityForArrays(lhs.schedule, rhs.schedule)
     let equalityForSponsors = checkEqualityForArrays(lhs.sponsors, rhs.sponsors)
     let equalityForSpeakers = checkEqualityForArrays(lhs.speakers, rhs.speakers)
+    let equalityForCodeOfConduct = lhs.codeOfConduct == rhs.codeOfConduct
     return equalityForInfo &&
             equalityForSchedule &&
             equalityForSponsors &&
-            equalityForSpeakers
+            equalityForSpeakers &&
+            equalityForCodeOfConduct
 }
 
 // MARK: Equatable implementation for class Information
