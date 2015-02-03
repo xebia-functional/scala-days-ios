@@ -61,6 +61,7 @@ class DataManager {
             registrationSite: info["registrationSite"].string!,
             utcTimezoneOffset: info["utcTimezoneOffset"].string!,
             utcTimezoneOffsetMillis: info["utcTimezoneOffsetMillis"].floatValue,
+            hashtag: info["hashtag"].string!,
             pictures: [])
         
         let speakers = json["speakers"]
