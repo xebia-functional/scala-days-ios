@@ -33,16 +33,22 @@ class DataManager {
     func loadData(callback: (JSON?, NSError?) -> ()) {
         Manager.sharedInstance.request(.GET, JsonURL).responseJSON {
             (request, response, data, error) -> Void in
-            if (error != nil) {
-                NSLog("Error: \(error)")
-                println(request)
-                println(response)
-            } else {
-                NSLog("Success: \(JsonURL)")
-                let jsonFormat = JSON(data!)[0]
-                callback(jsonFormat, error)
-            }
 
+            if let conference = StoringHelper.sharedInstance.loadConferenceData() {
+                if let date = response?.allHeaderFields["Date"] as NSString? {
+                    println("\(date)")
+                }
+            } else {
+                if (error != nil) {
+                    NSLog("Error: \(error)")
+                    println(request)
+                    println(response)
+                } else {
+                    NSLog("Success: \(JsonURL)")
+                    let jsonFormat = JSON(data!)[0]
+                    callback(jsonFormat, error)
+                }
+            }
         }
     }
 
@@ -53,7 +59,12 @@ class DataManager {
         let speakers = json["speakers"]
         let schedule = json["schedule"]
         let sponsors = json["sponsors"]
-        println("End parse")
+        
+
+        if let unWrapperJson = self.conference {
+            StoringHelper.sharedInstance.storeConferenceData(unWrapperJson)
+        }
+
     }
 
 

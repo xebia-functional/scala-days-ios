@@ -56,6 +56,7 @@ class SDSlideMenuViewController: UIViewController,UITableViewDelegate,UITableVie
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        println("SDSlideMenuViewController")
         
         if(IS_IPHONE5){
             heigthHeader.constant = Height_Header_Menu
@@ -162,5 +163,6 @@ class SDSlideMenuViewController: UIViewController,UITableViewDelegate,UITableVie
             self.viewSelectedConference.hidden = true
         }
     }
+    
     
 }
