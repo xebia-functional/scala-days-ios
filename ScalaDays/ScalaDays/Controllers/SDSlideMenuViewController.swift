@@ -20,9 +20,12 @@ import UIKit
 class SDSlideMenuViewController: UIViewController,UITableViewDelegate,UITableViewDataSource {
     
     @IBOutlet weak var tblMenu: UITableView!
+    @IBOutlet weak var titleConference: UILabel!
     
     @IBOutlet weak var heigthTable: NSLayoutConstraint!
     @IBOutlet weak var heigthHeader: NSLayoutConstraint!
+    
+    @IBOutlet var viewSelectedConference: UIView!
     
     enum Menu: Int {
         case Schedule = 0
@@ -62,6 +65,7 @@ class SDSlideMenuViewController: UIViewController,UITableViewDelegate,UITableVie
         self.heigthTable.constant = CGFloat(menus.count * Int(Height_Row_Menu))
         self.tblMenu.scrollEnabled = false
         self.tblMenu.separatorColor = UIColor(white: 1, alpha: 0.1)
+        self.titleConference.setCustomFont(UIFont.fontHelveticaNeue(17), colorFont: UIColor.whiteColor())
 
         // Do any additional setup after loading the view.
         let socialViewController = SDSocialViewController(nibName: "SDSocialViewController", bundle: nil)
@@ -79,7 +83,7 @@ class SDSlideMenuViewController: UIViewController,UITableViewDelegate,UITableVie
         let aboutViewController = SDAboutViewController(nibName: "SDAboutViewController", bundle: nil)
         self.aboutViewController = UINavigationController(rootViewController: aboutViewController)
         
-        
+        self.viewSelectedConference.hidden = true
         
     }
 
@@ -143,7 +147,6 @@ class SDSlideMenuViewController: UIViewController,UITableViewDelegate,UITableVie
             case .About:
                 self.slideMenuController()?.changeMainViewController(self.aboutViewController, close: true)
                 break
-                
             default:
                 break
             }
@@ -151,5 +154,13 @@ class SDSlideMenuViewController: UIViewController,UITableViewDelegate,UITableVie
  
     }
     
+    @IBAction func selectedConference(sender: AnyObject) {
+        
+        if( self.viewSelectedConference.hidden){
+            self.viewSelectedConference.hidden = false
+        }else{
+            self.viewSelectedConference.hidden = true
+        }
+    }
     
 }
