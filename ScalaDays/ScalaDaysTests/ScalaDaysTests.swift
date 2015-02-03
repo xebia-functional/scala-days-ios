@@ -70,6 +70,12 @@ class ScalaDaysTests: XCTestCase {
             title: "",
             twitter: "@speaker")
         
+        var venue = Venue(
+            name: "Lodging & Training",
+            address: "Hyatt Fisherman's Wharf 555 North Pont Street San Francisco, CA 94133",
+            website: "http://fishermanswharf.hyatt.com/en/hotel/home.html",
+            map: "https://www.google.com/maps/place/Hyatt+Fisherman's+Wharf/@37.805954,-122.416108,17z/data=!3m1!4b1!4m2!3m1!1s0x808580e4799a55a5:0x6d7309ae49b784bb")
+        
         var event = Event(
             id: 6520,
             title: "Registration Open",
@@ -100,6 +106,7 @@ class ScalaDaysTests: XCTestCase {
                     url: "http://www.scala-days-sponsor1.com")]
                 )],
             speakers: [speaker],
+            venues: [venue],
             codeOfConduct: "Our Code of Conduct is inspired by the kind folks at NE Scala, who adopted theirs from PNW Scala.")
         
         StoringHelper.sharedInstance.storeConferenceData(conference)

@@ -20,13 +20,15 @@ class Conference: NSObject, NSCoding, Equatable {
     let schedule: Array<Event>
     let sponsors: Array<SponsorType>
     let speakers: Array<Speaker>
+    let venues: Array<Venue>
     let codeOfConduct: String
 
-    init(info: Information, schedule: Array<Event>, sponsors: Array<SponsorType>, speakers: Array<Speaker>, codeOfConduct: String) {
+    init(info: Information, schedule: Array<Event>, sponsors: Array<SponsorType>, speakers: Array<Speaker>, venues: Array<Venue>, codeOfConduct: String) {
         self.info = info
         self.schedule = schedule
         self.sponsors = sponsors
         self.speakers = speakers
+        self.venues = venues
         self.codeOfConduct = codeOfConduct
     }
 
@@ -35,6 +37,7 @@ class Conference: NSObject, NSCoding, Equatable {
         self.schedule = aDecoder.decodeObjectForKey("schedule") as Array<Event>
         self.sponsors = aDecoder.decodeObjectForKey("sponsors") as Array<SponsorType>
         self.speakers = aDecoder.decodeObjectForKey("speakers") as Array<Speaker>
+        self.venues = aDecoder.decodeObjectForKey("venues") as Array<Venue>
         self.codeOfConduct = aDecoder.decodeObjectForKey("codeOfConduct") as String
     }
 
@@ -43,6 +46,7 @@ class Conference: NSObject, NSCoding, Equatable {
         aCoder.encodeObject(self.schedule, forKey: "schedule")
         aCoder.encodeObject(self.sponsors, forKey: "sponsors")
         aCoder.encodeObject(self.speakers, forKey: "speakers")
+        aCoder.encodeObject(self.venues, forKey: "venues")
         aCoder.encodeObject(self.codeOfConduct, forKey: "codeOfConduct")
     }
 }
@@ -194,6 +198,34 @@ class Speaker : NSObject, Equatable, NSCoding {
     }
 }
 
+class Venue: NSObject, Equatable, NSCoding {
+    let name: String
+    let address: String
+    let website: String
+    let map: String
+    
+    init(name: String, address: String, website: String, map: String) {
+        self.name = name
+        self.address = address
+        self.website = website
+        self.map = map
+    }
+    
+    required init(coder aDecoder: NSCoder) {
+        self.name = aDecoder.decodeObjectForKey("name") as String
+        self.address = aDecoder.decodeObjectForKey("address") as String
+        self.website = aDecoder.decodeObjectForKey("website") as String
+        self.map = aDecoder.decodeObjectForKey("map") as String
+    }
+    
+    func encodeWithCoder(aCoder: NSCoder) {
+        aCoder.encodeObject(self.name, forKey: "name")
+        aCoder.encodeObject(self.address, forKey: "address")
+        aCoder.encodeObject(self.website, forKey: "website")
+        aCoder.encodeObject(self.map, forKey: "map")
+    }
+}
+
 class SponsorType : NSObject, Equatable, NSCoding {
     let type: String
     let items: Array<Sponsor>
@@ -302,11 +334,13 @@ func == (lhs: Conference, rhs: Conference) -> Bool {
     let equalityForSchedule = checkEqualityForArrays(lhs.schedule, rhs.schedule)
     let equalityForSponsors = checkEqualityForArrays(lhs.sponsors, rhs.sponsors)
     let equalityForSpeakers = checkEqualityForArrays(lhs.speakers, rhs.speakers)
+    let equalityForVenues = checkEqualityForArrays(lhs.venues, rhs.venues)
     let equalityForCodeOfConduct = lhs.codeOfConduct == rhs.codeOfConduct
     return equalityForInfo &&
             equalityForSchedule &&
             equalityForSponsors &&
             equalityForSpeakers &&
+            equalityForVenues &&
             equalityForCodeOfConduct
 }
 
@@ -353,12 +387,21 @@ func == (lhs: Event, rhs: Event) -> Bool {
 
 func == (lhs: Speaker, rhs: Speaker) -> Bool {
     return lhs.id == rhs.id &&
-            lhs.bio == rhs.bio &&
-            lhs.company == rhs.company &&
-            lhs.name == rhs.name &&
-            lhs.picture == rhs.picture &&
-            lhs.title == rhs.title &&
-            lhs.twitter == rhs.twitter
+        lhs.bio == rhs.bio &&
+        lhs.company == rhs.company &&
+        lhs.name == rhs.name &&
+        lhs.picture == rhs.picture &&
+        lhs.title == rhs.title &&
+        lhs.twitter == rhs.twitter
+}
+
+// MARK: Equatable implementation for class Vanue
+
+func == (lhs: Venue, rhs: Venue) -> Bool {
+    return lhs.name == rhs.name &&
+        lhs.address == rhs.address &&
+        lhs.website == rhs.website &&
+        lhs.map == rhs.map
 }
 
 // MARK: Equatable implementation for class Sponsor
