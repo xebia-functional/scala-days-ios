@@ -61,6 +61,7 @@ class ScalaDaysTests: XCTestCase {
             registrationSite: "https://secure.trifork.com/scaladays-sanfran-2015/registration/",
             utcTimezoneOffset: "America/Los_Angeles",
             utcTimezoneOffsetMillis: -25200000,
+            hashtag: "#SDSanFrancisto15",
             pictures: [Picture(
                 width: 298,
                 height: 188,

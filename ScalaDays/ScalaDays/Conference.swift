@@ -64,10 +64,11 @@ class Information: NSObject, NSCoding, Equatable {
     let registrationSite: String
     let utcTimezoneOffset: String
     let utcTimezoneOffsetMillis: Float
+    let hashtag: String
     let pictures: Array<Picture>
 
 
-    init(id: Int, name: String, longName: String, nameAndLocation: String, firstDay: String, lastDay: String, normalSite: String, registrationSite: String, utcTimezoneOffset: String, utcTimezoneOffsetMillis: Float, pictures: Array<Picture>) {
+    init(id: Int, name: String, longName: String, nameAndLocation: String, firstDay: String, lastDay: String, normalSite: String, registrationSite: String, utcTimezoneOffset: String, utcTimezoneOffsetMillis: Float, hashtag: String, pictures: Array<Picture>) {
         self.id = id
         self.name = name
         self.longName = longName
@@ -78,6 +79,7 @@ class Information: NSObject, NSCoding, Equatable {
         self.registrationSite = registrationSite
         self.utcTimezoneOffset = utcTimezoneOffset
         self.utcTimezoneOffsetMillis = utcTimezoneOffsetMillis
+        self.hashtag = hashtag
         self.pictures = pictures
     }
 
@@ -92,6 +94,7 @@ class Information: NSObject, NSCoding, Equatable {
         self.registrationSite = aDecoder.decodeObjectForKey("registrationSite") as String
         self.utcTimezoneOffset = aDecoder.decodeObjectForKey("utcTimezoneOffset") as String
         self.utcTimezoneOffsetMillis = aDecoder.decodeFloatForKey("utcTimezoneOffsetMillis")
+        self.hashtag = aDecoder.decodeObjectForKey("hashtag") as String
         self.pictures = aDecoder.decodeObjectForKey("pictures") as Array<Picture>
     }
 
@@ -106,6 +109,7 @@ class Information: NSObject, NSCoding, Equatable {
         aCoder.encodeObject(self.registrationSite, forKey: "registrationSite")
         aCoder.encodeObject(self.utcTimezoneOffset, forKey: "utcTimezoneOffset")
         aCoder.encodeFloat(self.utcTimezoneOffsetMillis, forKey: "utcTimezoneOffsetMillis")
+        aCoder.encodeObject(self.hashtag, forKey: "hashtag")
         aCoder.encodeObject(self.pictures, forKey: "pictures")
     }
 }
@@ -377,6 +381,7 @@ func == (lhs: Conference, rhs: Conference) -> Bool {
 func == (lhs: Information, rhs: Information) -> Bool {
     let equalityForId = lhs.id == rhs.id
     let equalityForTimezoneOffsetMillis = lhs.utcTimezoneOffsetMillis == rhs.utcTimezoneOffsetMillis
+    let equalityForHashtag = lhs.hashtag == rhs.hashtag
     let equalityForPictures = checkEqualityForArrays(lhs.pictures, rhs.pictures)
     return equalityForId &&
         lhs.name == rhs.name &&
@@ -387,6 +392,7 @@ func == (lhs: Information, rhs: Information) -> Bool {
         lhs.normalSite == rhs.normalSite &&
         lhs.registrationSite == rhs.registrationSite &&
         lhs.utcTimezoneOffset == rhs.utcTimezoneOffset &&
+        equalityForHashtag &&
         equalityForTimezoneOffsetMillis &&
         equalityForPictures
 }
