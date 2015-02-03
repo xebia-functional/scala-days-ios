@@ -3,10 +3,12 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SDAboutViewController" customModule="ScalaDays" customModuleProvider="target">
             <connections>
+                <outlet property="codeConductText" destination="WJT-fA-aW7" id="1o6-lS-mHG"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -15,17 +17,27 @@
             <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="About" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0HR-Ym-jUF">
-                    <rect key="frame" x="277" y="289" width="47" height="21"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Code of conduct" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sby-jM-SDo">
+                    <rect key="frame" x="40" y="73" width="511" height="32"/>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" editable="NO" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WJT-fA-aW7">
+                    <rect key="frame" x="40" y="119" width="502" height="366"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                </textView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstAttribute="centerX" secondItem="0HR-Ym-jUF" secondAttribute="centerX" id="Kvn-PV-vi3"/>
-                <constraint firstAttribute="centerY" secondItem="0HR-Ym-jUF" secondAttribute="centerY" id="ghh-Kh-g9l"/>
+                <constraint firstAttribute="trailingMargin" secondItem="sby-jM-SDo" secondAttribute="trailing" constant="20" id="De4-ys-EGE"/>
+                <constraint firstItem="WJT-fA-aW7" firstAttribute="top" secondItem="sby-jM-SDo" secondAttribute="bottom" constant="14" id="FV1-ou-Whk"/>
+                <constraint firstItem="sby-jM-SDo" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leadingMargin" constant="20" id="IbO-dl-THi"/>
+                <constraint firstAttribute="centerX" secondItem="sby-jM-SDo" secondAttribute="centerX" id="RF3-cJ-fLY"/>
+                <constraint firstItem="WJT-fA-aW7" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leadingMargin" constant="20" id="bLc-2n-eSg"/>
+                <constraint firstAttribute="trailingMargin" secondItem="WJT-fA-aW7" secondAttribute="trailing" constant="20" id="oe9-7m-8av"/>
             </constraints>
         </view>
     </objects>
