@@ -64,9 +64,10 @@ class Information: NSObject, NSCoding, Equatable {
     let registrationSite: String
     let utcTimezoneOffset: String
     let utcTimezoneOffsetMillis: Float
+    let pictures: Array<Picture>
 
 
-    init(id: Int, name: String, longName: String, nameAndLocation: String, firstDay: String, lastDay: String, normalSite: String, registrationSite: String, utcTimezoneOffset: String, utcTimezoneOffsetMillis: Float) {
+    init(id: Int, name: String, longName: String, nameAndLocation: String, firstDay: String, lastDay: String, normalSite: String, registrationSite: String, utcTimezoneOffset: String, utcTimezoneOffsetMillis: Float, pictures: Array<Picture>) {
         self.id = id
         self.name = name
         self.longName = longName
@@ -77,6 +78,7 @@ class Information: NSObject, NSCoding, Equatable {
         self.registrationSite = registrationSite
         self.utcTimezoneOffset = utcTimezoneOffset
         self.utcTimezoneOffsetMillis = utcTimezoneOffsetMillis
+        self.pictures = pictures
     }
 
     required init(coder aDecoder: NSCoder) {
@@ -90,6 +92,7 @@ class Information: NSObject, NSCoding, Equatable {
         self.registrationSite = aDecoder.decodeObjectForKey("registrationSite") as String
         self.utcTimezoneOffset = aDecoder.decodeObjectForKey("utcTimezoneOffset") as String
         self.utcTimezoneOffsetMillis = aDecoder.decodeFloatForKey("utcTimezoneOffsetMillis")
+        self.pictures = aDecoder.decodeObjectForKey("pictures") as Array<Picture>
     }
 
     func encodeWithCoder(aCoder: NSCoder) {
@@ -103,6 +106,31 @@ class Information: NSObject, NSCoding, Equatable {
         aCoder.encodeObject(self.registrationSite, forKey: "registrationSite")
         aCoder.encodeObject(self.utcTimezoneOffset, forKey: "utcTimezoneOffset")
         aCoder.encodeFloat(self.utcTimezoneOffsetMillis, forKey: "utcTimezoneOffsetMillis")
+        aCoder.encodeObject(self.pictures, forKey: "pictures")
+    }
+}
+
+class Picture: NSObject, Equatable, NSCoding {
+    let width: Int
+    let height: Int
+    let url: String
+    
+    init(width: Int, height: Int, url: String) {
+        self.width = width
+        self.height = height
+        self.url = url
+    }
+    
+    required init(coder aDecoder: NSCoder) {
+        self.width = aDecoder.decodeIntegerForKey("width")
+        self.height = aDecoder.decodeIntegerForKey("height")
+        self.url = aDecoder.decodeObjectForKey("url") as String
+    }
+    
+    func encodeWithCoder(aCoder: NSCoder) {
+        aCoder.encodeInteger(self.width, forKey: "width")
+        aCoder.encodeInteger(self.height, forKey: "height")
+        aCoder.encodeObject(self.url, forKey: "url")
     }
 }
 
@@ -347,16 +375,28 @@ func == (lhs: Conference, rhs: Conference) -> Bool {
 // MARK: Equatable implementation for class Information
 
 func == (lhs: Information, rhs: Information) -> Bool {
-    return lhs.id == rhs.id &&
-            lhs.name == rhs.name &&
-            lhs.longName == rhs.longName &&
-            lhs.nameAndLocation == rhs.nameAndLocation &&
-            lhs.firstDay == rhs.firstDay &&
-            lhs.lastDay == rhs.lastDay &&
-            lhs.normalSite == rhs.normalSite &&
-            lhs.registrationSite == rhs.registrationSite &&
-            lhs.utcTimezoneOffset == rhs.utcTimezoneOffset &&
-            lhs.utcTimezoneOffsetMillis == rhs.utcTimezoneOffsetMillis
+    let equalityForId = lhs.id == rhs.id
+    let equalityForTimezoneOffsetMillis = lhs.utcTimezoneOffsetMillis == rhs.utcTimezoneOffsetMillis
+    let equalityForPictures = checkEqualityForArrays(lhs.pictures, rhs.pictures)
+    return equalityForId &&
+        lhs.name == rhs.name &&
+        lhs.longName == rhs.longName &&
+        lhs.nameAndLocation == rhs.nameAndLocation &&
+        lhs.firstDay == rhs.firstDay &&
+        lhs.lastDay == rhs.lastDay &&
+        lhs.normalSite == rhs.normalSite &&
+        lhs.registrationSite == rhs.registrationSite &&
+        lhs.utcTimezoneOffset == rhs.utcTimezoneOffset &&
+        equalityForTimezoneOffsetMillis &&
+        equalityForPictures
+}
+
+// MARK: Equatable implementation for class Picture
+
+func == (lhs: Picture, rhs: Picture) -> Bool {
+    return lhs.width == rhs.width &&
+        lhs.height == rhs.height &&
+        lhs.url == rhs.url
 }
 
 // MARK: Equatable implementation for class Event

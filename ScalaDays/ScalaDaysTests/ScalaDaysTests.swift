@@ -49,6 +49,7 @@ class ScalaDaysTests: XCTestCase {
     }
     
     func testStoringAndLoadingConference() {
+        
         var information = Information(
             id: 111,
             name: "scaladays-sanfran-2015",
@@ -59,7 +60,11 @@ class ScalaDaysTests: XCTestCase {
             normalSite: "http://gotocon.com/scaladays-sanfran-2015",
             registrationSite: "https://secure.trifork.com/scaladays-sanfran-2015/registration/",
             utcTimezoneOffset: "America/Los_Angeles",
-            utcTimezoneOffsetMillis: -25200000)
+            utcTimezoneOffsetMillis: -25200000,
+            pictures: [Picture(
+                width: 298,
+                height: 188,
+                url: "http://scala-days-2015.s3.amazonaws.com/san_francisco.png")])
         
         var speaker = Speaker(
             bio: "Speaker 1 biography\nhttp://event.scaladays.org",
