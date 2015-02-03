@@ -49,22 +49,40 @@ class DataManager {
                     callback(jsonFormat, error)
                 }
             }
+
         }
     }
 
 
     func parseJSON(json: JSON) {
         let info = json["info"]
-        self.information = Information(id: info["id"].intValue, name: info["name"].string!, longName: info["longName"].string!, nameAndLocation: info["nameAndLocation"].string!, firstDay: info["firstDay"].string!, lastDay: info["lastDay"].string!, normalSite: info["normalSite"].string!, registrationSite: info["registrationSite"].string!, utcTimezoneOffset: info["utcTimezoneOffset"].string!, utcTimezoneOffsetMillis: info["utcTimezoneOffsetMillis"].floatValue)
+
+        self.information = Information(
+            id: info["id"].intValue,
+            name: info["name"].string!,
+            longName: info["longName"].string!,
+            nameAndLocation: info["nameAndLocation"].string!,
+            firstDay: info["firstDay"].string!,
+            lastDay: info["lastDay"].string!,
+            normalSite: info["normalSite"].string!,
+            registrationSite: info["registrationSite"].string!,
+            utcTimezoneOffset: info["utcTimezoneOffset"].string!,
+            utcTimezoneOffsetMillis: info["utcTimezoneOffsetMillis"].floatValue,
+            pictures: [])
+        
         let speakers = json["speakers"]
         let schedule = json["schedule"]
         let sponsors = json["sponsors"]
         
+        
 
+        let venues = json["venues"]
+        let codeOfConduct = json["codeOfConduct"]
+        println("End parse")
+        
         if let unWrapperJson = self.conference {
             StoringHelper.sharedInstance.storeConferenceData(unWrapperJson)
         }
-
     }
 
 
