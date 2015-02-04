@@ -16,8 +16,6 @@ class SDScheduleViewController: UIViewController {
         // Do any additional setup after loading the view.
         self.setNavigationBarItem()
         self.title = NSLocalizedString("schedule", comment: "Schedule")
-//        self.loadData()
-         println("SDScheduleViewController")
 
     }
 
@@ -26,21 +24,5 @@ class SDScheduleViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    func loadData() {
-        SVProgressHUD.show()
-        DataManager.sharedInstance.loadData() {
-            (json, error) -> () in
-            if let unWrapperJson = json {
-                DataManager.sharedInstance.parseJSON(unWrapperJson)
-                SVProgressHUD.dismiss()
-                if let info = DataManager.sharedInstance.information?.nameAndLocation{
-                    println(DataManager.sharedInstance.information?.nameAndLocation)
-                }
-            } else {
-                println("nil")
-            }
-            
-        }
-    }
-
+   
 }

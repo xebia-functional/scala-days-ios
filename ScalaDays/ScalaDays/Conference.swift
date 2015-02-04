@@ -15,7 +15,27 @@ import Foundation
 
 // MARK: - Model root object class
 
+class Conferences: NSObject, NSCoding, Equatable {
+
+    let conferences: Array<Conference>
+    
+    init(conferences : Array<Conference>) {
+        self.conferences = conferences
+    }
+
+    required init(coder aDecoder: NSCoder) {
+        self.conferences = aDecoder.decodeObjectForKey("conferences") as Array<Conference>
+    }
+
+    func encodeWithCoder(aCoder: NSCoder) {
+        aCoder.encodeObject(self.conferences, forKey: "conferences")
+    }
+
+}
+
+
 class Conference: NSObject, NSCoding, Equatable {
+    
     let info: Information
     let schedule: Array<Event>
     let sponsors: Array<SponsorType>
@@ -114,19 +134,19 @@ class Picture: NSObject, Equatable, NSCoding {
     let width: Int
     let height: Int
     let url: String
-    
+
     init(width: Int, height: Int, url: String) {
         self.width = width
         self.height = height
         self.url = url
     }
-    
+
     required init(coder aDecoder: NSCoder) {
         self.width = aDecoder.decodeIntegerForKey("width")
         self.height = aDecoder.decodeIntegerForKey("height")
         self.url = aDecoder.decodeObjectForKey("url") as String
     }
-    
+
     func encodeWithCoder(aCoder: NSCoder) {
         aCoder.encodeInteger(self.width, forKey: "width")
         aCoder.encodeInteger(self.height, forKey: "height")
@@ -134,7 +154,7 @@ class Picture: NSObject, Equatable, NSCoding {
     }
 }
 
-class Event:  NSObject, Equatable, NSCoding {
+class Event: NSObject, Equatable, NSCoding {
     let id: Int
     let title: String
     let apiDescription: String
@@ -145,8 +165,8 @@ class Event:  NSObject, Equatable, NSCoding {
     let track: Track?
     let location: Location?
     let speakers: Array<Speaker>?
-    
-    init(id : Int, title: String, apiDescription : String, type : Int, startTime : String, endTime : String, date : String, track : Track?, location : Location?, speakers : Array<Speaker>?) {
+
+    init(id: Int, title: String, apiDescription: String, type: Int, startTime: String, endTime: String, date: String, track: Track?, location: Location?, speakers: Array<Speaker>?) {
         self.id = id
         self.title = title
         self.apiDescription = apiDescription
@@ -186,7 +206,7 @@ class Event:  NSObject, Equatable, NSCoding {
     }
 }
 
-class Speaker : NSObject, Equatable, NSCoding {
+class Speaker: NSObject, Equatable, NSCoding {
     let bio: String
     let company: String
     let id: Int
@@ -231,21 +251,21 @@ class Venue: NSObject, Equatable, NSCoding {
     let address: String
     let website: String
     let map: String
-    
+
     init(name: String, address: String, website: String, map: String) {
         self.name = name
         self.address = address
         self.website = website
         self.map = map
     }
-    
+
     required init(coder aDecoder: NSCoder) {
         self.name = aDecoder.decodeObjectForKey("name") as String
         self.address = aDecoder.decodeObjectForKey("address") as String
         self.website = aDecoder.decodeObjectForKey("website") as String
         self.map = aDecoder.decodeObjectForKey("map") as String
     }
-    
+
     func encodeWithCoder(aCoder: NSCoder) {
         aCoder.encodeObject(self.name, forKey: "name")
         aCoder.encodeObject(self.address, forKey: "address")
@@ -254,7 +274,7 @@ class Venue: NSObject, Equatable, NSCoding {
     }
 }
 
-class SponsorType : NSObject, Equatable, NSCoding {
+class SponsorType: NSObject, Equatable, NSCoding {
     let type: String
     let items: Array<Sponsor>
 
@@ -276,13 +296,13 @@ class SponsorType : NSObject, Equatable, NSCoding {
 
 // MARK: - Model object components classes
 
-class Track : NSObject, Equatable, NSCoding {
+class Track: NSObject, Equatable, NSCoding {
     let id: Int
     let name: String
     let host: String
     let shortdescription: String
     let apiDescription: String
-    
+
     init(id: Int, name: String, host: String, shortdescription: String, apiDescription: String) {
         self.id = id
         self.name = name
@@ -308,7 +328,7 @@ class Track : NSObject, Equatable, NSCoding {
     }
 }
 
-class Location : NSObject, Equatable, NSCoding {
+class Location: NSObject, Equatable, NSCoding {
     let id: Int
     let name: String
     let mapUrl: String
@@ -332,11 +352,11 @@ class Location : NSObject, Equatable, NSCoding {
     }
 }
 
-class Sponsor : NSObject, Equatable, NSCoding {
-    let logo : String
-    let url : String
-    
-    init(logo : String, url : String) {
+class Sponsor: NSObject, Equatable, NSCoding {
+    let logo: String
+    let url: String
+
+    init(logo: String, url: String) {
         self.logo = logo
         self.url = url
     }
@@ -354,9 +374,15 @@ class Sponsor : NSObject, Equatable, NSCoding {
 
 // MARK: - Equatable protocol methods implementation
 
+// MARK: Equatable implementation for class Conferences
+
+func ==(lhs: Conferences, rhs: Conferences) -> Bool {
+    return checkEqualityForArrays(lhs.conferences, rhs.conferences)
+}
+
 // MARK: Equatable implementation for class Conference
 
-func == (lhs: Conference, rhs: Conference) -> Bool {
+func ==(lhs: Conference, rhs: Conference) -> Bool {
     // Expressions need to be split to not mess with Swift compiler
     let equalityForInfo = lhs.info == rhs.info
     let equalityForSchedule = checkEqualityForArrays(lhs.schedule, rhs.schedule)
@@ -374,46 +400,46 @@ func == (lhs: Conference, rhs: Conference) -> Bool {
 
 // MARK: Equatable implementation for class Information
 
-func == (lhs: Information, rhs: Information) -> Bool {
+func ==(lhs: Information, rhs: Information) -> Bool {
     let equalityForId = lhs.id == rhs.id
     let equalityForTimezoneOffsetMillis = lhs.utcTimezoneOffsetMillis == rhs.utcTimezoneOffsetMillis
     let equalityForPictures = checkEqualityForArrays(lhs.pictures, rhs.pictures)
     return equalityForId &&
-        lhs.name == rhs.name &&
-        lhs.longName == rhs.longName &&
-        lhs.nameAndLocation == rhs.nameAndLocation &&
-        lhs.firstDay == rhs.firstDay &&
-        lhs.lastDay == rhs.lastDay &&
-        lhs.normalSite == rhs.normalSite &&
-        lhs.registrationSite == rhs.registrationSite &&
-        lhs.utcTimezoneOffset == rhs.utcTimezoneOffset &&
-        equalityForTimezoneOffsetMillis &&
-        equalityForPictures
+            lhs.name == rhs.name &&
+            lhs.longName == rhs.longName &&
+            lhs.nameAndLocation == rhs.nameAndLocation &&
+            lhs.firstDay == rhs.firstDay &&
+            lhs.lastDay == rhs.lastDay &&
+            lhs.normalSite == rhs.normalSite &&
+            lhs.registrationSite == rhs.registrationSite &&
+            lhs.utcTimezoneOffset == rhs.utcTimezoneOffset &&
+            equalityForTimezoneOffsetMillis &&
+            equalityForPictures
 }
 
 // MARK: Equatable implementation for class Picture
 
-func == (lhs: Picture, rhs: Picture) -> Bool {
+func ==(lhs: Picture, rhs: Picture) -> Bool {
     return lhs.width == rhs.width &&
-        lhs.height == rhs.height &&
-        lhs.url == rhs.url
+            lhs.height == rhs.height &&
+            lhs.url == rhs.url
 }
 
 // MARK: Equatable implementation for class Event
 
-func == (lhs: Event, rhs: Event) -> Bool {
+func ==(lhs: Event, rhs: Event) -> Bool {
     let equalityForSimpleValues = lhs.id == rhs.id &&
-        lhs.title == rhs.title &&
-        lhs.apiDescription == rhs.apiDescription &&
-        lhs.type == rhs.type &&
-        lhs.startTime == rhs.startTime &&
-        lhs.endTime == rhs.endTime &&
-        lhs.date == rhs.date &&
-        lhs.track == rhs.track &&
-        lhs.location == rhs.location
-    
+            lhs.title == rhs.title &&
+            lhs.apiDescription == rhs.apiDescription &&
+            lhs.type == rhs.type &&
+            lhs.startTime == rhs.startTime &&
+            lhs.endTime == rhs.endTime &&
+            lhs.date == rhs.date &&
+            lhs.track == rhs.track &&
+            lhs.location == rhs.location
+
     // Unwrapping our two speaker arrays is easier using pattern matching:
-    switch(lhs.speakers, rhs.speakers) {
+    switch (lhs.speakers, rhs.speakers) {
     case let (.Some(unwrappedLhsSpeakers), .Some(unwrappedRhsSpeakers)):
         return equalityForSimpleValues && checkEqualityForArrays(unwrappedLhsSpeakers, unwrappedRhsSpeakers)
     case (nil, nil):
@@ -425,42 +451,42 @@ func == (lhs: Event, rhs: Event) -> Bool {
 
 // MARK: Equatable implementation for class Speaker
 
-func == (lhs: Speaker, rhs: Speaker) -> Bool {
+func ==(lhs: Speaker, rhs: Speaker) -> Bool {
     return lhs.id == rhs.id &&
-        lhs.bio == rhs.bio &&
-        lhs.company == rhs.company &&
-        lhs.name == rhs.name &&
-        lhs.picture == rhs.picture &&
-        lhs.title == rhs.title &&
-        lhs.twitter == rhs.twitter
+            lhs.bio == rhs.bio &&
+            lhs.company == rhs.company &&
+            lhs.name == rhs.name &&
+            lhs.picture == rhs.picture &&
+            lhs.title == rhs.title &&
+            lhs.twitter == rhs.twitter
 }
 
 // MARK: Equatable implementation for class Vanue
 
-func == (lhs: Venue, rhs: Venue) -> Bool {
+func ==(lhs: Venue, rhs: Venue) -> Bool {
     return lhs.name == rhs.name &&
-        lhs.address == rhs.address &&
-        lhs.website == rhs.website &&
-        lhs.map == rhs.map
+            lhs.address == rhs.address &&
+            lhs.website == rhs.website &&
+            lhs.map == rhs.map
 }
 
 // MARK: Equatable implementation for class Sponsor
 
-func == (lhs: Sponsor, rhs: Sponsor) -> Bool {
+func ==(lhs: Sponsor, rhs: Sponsor) -> Bool {
     return lhs.logo == rhs.logo &&
             lhs.url == rhs.url
 }
 
 // MARK: Equatable implementation for class SponsorType
 
-func == (lhs: SponsorType, rhs: SponsorType) -> Bool {
+func ==(lhs: SponsorType, rhs: SponsorType) -> Bool {
     return lhs.type == rhs.type &&
             checkEqualityForArrays(lhs.items, rhs.items)
 }
 
 // MARK: Equatable implementation for class Track
 
-func == (lhs: Track, rhs: Track) -> Bool {
+func ==(lhs: Track, rhs: Track) -> Bool {
     return lhs.id == rhs.id &&
             lhs.name == rhs.name &&
             lhs.host == rhs.host &&
@@ -470,7 +496,7 @@ func == (lhs: Track, rhs: Track) -> Bool {
 
 // MARK: Equatable implementation for class Location
 
-func == (lhs: Location, rhs: Location) -> Bool {
+func ==(lhs: Location, rhs: Location) -> Bool {
     return lhs.id == rhs.id &&
             lhs.name == rhs.name &&
             lhs.mapUrl == rhs.mapUrl
@@ -478,13 +504,13 @@ func == (lhs: Location, rhs: Location) -> Bool {
 
 // MARK: Equality for arrays
 
-func checkEqualityForArrays<T: Equatable>(lhs: Array<T>, rhs: Array<T>) -> Bool {
-    if(lhs.count != rhs.count) {
+func checkEqualityForArrays<T:Equatable>(lhs: Array<T>, rhs: Array<T>) -> Bool {
+    if (lhs.count != rhs.count) {
         return false
     }
-    
+
     for (index, element) in enumerate(lhs) {
-        if(element != rhs[index]) {
+        if (element != rhs[index]) {
             return false
         }
     }

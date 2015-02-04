@@ -84,8 +84,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             if let unWrapperJson = json {
                 DataManager.sharedInstance.parseJSON(unWrapperJson)
                 SVProgressHUD.dismiss()
-                if let info = DataManager.sharedInstance.information?.nameAndLocation{
-                    println(DataManager.sharedInstance.information?.nameAndLocation)
+                if let info = DataManager.sharedInstance.conferences?{
+                    println(DataManager.sharedInstance.conferences?)
                 }
             } else {
                 println("Error load json")
