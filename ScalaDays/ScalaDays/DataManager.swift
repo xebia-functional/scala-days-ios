@@ -96,8 +96,9 @@ class DataManager {
             let registrationSite = info["registrationSite"].string!
             let utcTimezoneOffset = info["utcTimezoneOffset"].string!
             let utcTimezoneOffsetMillis = info["utcTimezoneOffsetMillis"].floatValue
+            let hashtag = info["hashtag"].string!
             let pictures: [Picture] = []
-            let infoParse = Information(id: id, name: name, longName: longName, nameAndLocation: nameAndLocation, firstDay: firstDay, lastDay: lastDay, normalSite: normalSite, registrationSite: registrationSite, utcTimezoneOffset: utcTimezoneOffset, utcTimezoneOffsetMillis: utcTimezoneOffsetMillis, pictures: pictures)
+            let infoParse = Information(id: id, name: name, longName: longName, nameAndLocation: nameAndLocation, firstDay: firstDay, lastDay: lastDay, normalSite: normalSite, registrationSite: registrationSite, utcTimezoneOffset: utcTimezoneOffset, utcTimezoneOffsetMillis: utcTimezoneOffsetMillis,hashtag: hashtag, pictures: pictures)
 
             let arraySpeaker = confe["speakers"]
             var arraySpeakerParse: [Speaker] = []
