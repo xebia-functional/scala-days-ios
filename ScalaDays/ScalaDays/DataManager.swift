@@ -16,29 +16,27 @@ private let _DataManagerSharedInstance = DataManager()
 class DataManager {
 
     var conferences: Conferences?
-    
-    var lastDate : [NSDate] {
+
+    var lastDate: [NSDate] {
         get {
             var returnValue: [NSDate]? = NSUserDefaults.standardUserDefaults().objectForKey("date") as? [NSDate]
-            if returnValue == nil //Check for first run of app
-            {
+            if returnValue == nil {
                 returnValue = nil //Default value
             }
             return returnValue!
         }
-        set (newValue) {
+        set(newValue) {
             NSUserDefaults.standardUserDefaults().setObject(newValue, forKey: "date")
             NSUserDefaults.standardUserDefaults().synchronize()
         }
     }
-    
-    func dateformatterDateString(dateString: NSString) -> NSDate?
-    {
+
+    func dateformatterDateString(dateString: NSString) -> NSDate? {
         var dateFormatter: NSDateFormatter = NSDateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
         dateFormatter.timeZone = NSTimeZone(abbreviation: "UTC")
-        
-        
+
+
         return dateFormatter.dateFromString(dateString)
     }
 
@@ -59,6 +57,7 @@ class DataManager {
             (request, response, data, error) -> Void in
             if let conference = StoringHelper.sharedInstance.loadConferenceData() {
                 /* File exists. Check if changed */
+                //TODO:Implement logic for json when change date
                 if let date = response?.allHeaderFields["Date"] as NSString? {
                     println("\(date)")
                 }
@@ -98,7 +97,7 @@ class DataManager {
             let utcTimezoneOffsetMillis = info["utcTimezoneOffsetMillis"].floatValue
             let hashtag = info["hashtag"].string!
             let pictures: [Picture] = []
-            let infoParse = Information(id: id, name: name, longName: longName, nameAndLocation: nameAndLocation, firstDay: firstDay, lastDay: lastDay, normalSite: normalSite, registrationSite: registrationSite, utcTimezoneOffset: utcTimezoneOffset, utcTimezoneOffsetMillis: utcTimezoneOffsetMillis,hashtag: hashtag, pictures: pictures)
+            let infoParse = Information(id: id, name: name, longName: longName, nameAndLocation: nameAndLocation, firstDay: firstDay, lastDay: lastDay, normalSite: normalSite, registrationSite: registrationSite, utcTimezoneOffset: utcTimezoneOffset, utcTimezoneOffsetMillis: utcTimezoneOffsetMillis, hashtag: hashtag, pictures: pictures)
 
             let arraySpeaker = confe["speakers"]
             var arraySpeakerParse: [Speaker] = []
