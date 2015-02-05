@@ -13,3 +13,6 @@ pod 'UIView+AutoLayout', '~> 1.3'
 
 # Distribution
 pod 'TestFlightSDK', '~> 3.0.0'
+
+# Miscellaneous Utils
+pod 'NSDate+TimeAgo', '~> 1.0.2'

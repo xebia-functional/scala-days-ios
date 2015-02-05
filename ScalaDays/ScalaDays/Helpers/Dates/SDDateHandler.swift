@@ -16,21 +16,20 @@
 
 import UIKit
 
-class SDScheduleViewController: UIViewController {
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
-        self.setNavigationBarItem()
-        self.title = NSLocalizedString("schedule", comment: "Schedule")
-
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+class SDDateHandler: NSObject {
+    lazy var dateFormatter : NSDateFormatter = NSDateFormatter()
+    let kTwitterDateFormat = "EEE MMM d HH:mm:ss Z y"
+    
+    class var sharedInstance: SDDateHandler {
+        struct Static {
+            static let instance: SDDateHandler = SDDateHandler()
+        }
+        return Static.instance
     }
     
-   
+    func parseTwitterDate(twitterDate: String) -> NSDate? {
+        dateFormatter.locale = NSLocale(localeIdentifier: "en_US_POSIX")
+        dateFormatter.dateFormat = kTwitterDateFormat
+        return dateFormatter.dateFromString(twitterDate)
+    }
 }

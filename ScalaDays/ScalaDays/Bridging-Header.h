@@ -12,5 +12,7 @@
 #define ScalaDays_Bridging_Header_h
 
 #import <SVProgressHUD/SVProgressHUD.h>
+#import "UIImageView+WebCache.h"
+#import "NSDate+TimeAgo.h"
 
 #endif

@@ -15,6 +15,7 @@
 */
 
 import Foundation
+import UIKit
 
 let IS_IPHONE5 = UIScreen.mainScreen().bounds.size.height == 480;
 
@@ -26,5 +27,26 @@ let icon_menu_sponsors = "menu_icon_sponsors"
 let icon_menu_places = "menu_icon_places"
 let icon_menu_about = "menu_icon_about"
 
-let Height_Row_Menu:CGFloat = 50
-let Height_Header_Menu:CGFloat = 130
+let Height_Row_Menu: CGFloat = 50
+let Height_Header_Menu: CGFloat = 130
+
+let kAnimationShowHideTimeInterval : NSTimeInterval = 0.3
+let kTweetCount = 100
+let kGlobalPadding : CGFloat = 15.0
+
+let isIOS8OrLater = {() -> Bool in
+    switch UIDevice.currentDevice().systemVersion.compare("8.0.0", options: NSStringCompareOptions.NumericSearch) {
+    case .OrderedSame, .OrderedDescending:
+        return true
+    case .OrderedAscending:
+        return false
+    }
+}
+
+let launchSafariToUrl = {(url: NSURL) -> Bool in
+    if UIApplication.sharedApplication().canOpenURL(url) {
+        UIApplication.sharedApplication().openURL(url)
+        return true
+    }
+    return false
+}

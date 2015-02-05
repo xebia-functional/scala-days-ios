@@ -16,21 +16,12 @@
 
 import UIKit
 
-class SDScheduleViewController: UIViewController {
+extension UIImageView {
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
-        self.setNavigationBarItem()
-        self.title = NSLocalizedString("schedule", comment: "Schedule")
-
+    func circularImage() -> Void {
+        self.layer.cornerRadius = self.frame.size.width / 2
+        self.layer.masksToBounds = true
+        self.clipsToBounds = true
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
-   
 }

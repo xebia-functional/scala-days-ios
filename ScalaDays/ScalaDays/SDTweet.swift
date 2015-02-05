@@ -14,23 +14,22 @@
 * limitations under the License.
 */
 
-import UIKit
+import Foundation
 
-class SDScheduleViewController: UIViewController {
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
-        self.setNavigationBarItem()
-        self.title = NSLocalizedString("schedule", comment: "Schedule")
-
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
+class SDTweet: NSObject {
+    let username : String
+    let fullName : String
+    let tweetText : String
+    let profileImage : String
+    let dateString : String
+    let id : String
     
-   
+    init(username : String, fullName : String, tweetText : String, profileImage : String, dateString : String, id: String) {
+        self.username = username
+        self.fullName = fullName
+        self.tweetText = tweetText
+        self.profileImage = profileImage
+        self.dateString = dateString
+        self.id = id
+    }
 }
