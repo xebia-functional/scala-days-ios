@@ -23,6 +23,8 @@
 		593571ED1A77E4E9005AA332 /* Alamofire.swift in Sources */ = {isa = PBXBuildFile; fileRef = 101B45045AF560B28ED066DB /* Alamofire.swift */; };
 		5951D0D61A76A5F5001528E8 /* Conference.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5951D0D51A76A5F5001528E8 /* Conference.swift */; };
 		84EFC40AF74037F095B5FD60 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2FB6FED00626F7CA4FD64E9E /* libPods.a */; };
+		A19C65C71A7FC30A00A206FC /* SDContactViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A19C65C51A7FC30A00A206FC /* SDContactViewController.swift */; };
+		A19C65C81A7FC30A00A206FC /* SDContactViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A19C65C61A7FC30A00A206FC /* SDContactViewController.xib */; };
 		A1A94F2D1A76A36C003A6C0B /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1A94F2C1A76A36C003A6C0B /* SwiftyJSON.swift */; };
 		A1B8E6661A6D4B9600F21468 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B8E6651A6D4B9600F21468 /* DataManager.swift */; };
 		A1D795CD1A68267F009CCEB3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1D795CC1A68267F009CCEB3 /* AppDelegate.swift */; };
@@ -88,6 +90,8 @@
 		9AA114FE335624986EFB5A1D /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		A163DC2E1A6E595B00A21B8E /* libPods-SwiftyJSON.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPods-SwiftyJSON.a"; path = "Pods/build/Debug-iphoneos/libPods-SwiftyJSON.a"; sourceTree = "<group>"; };
 		A17D3AC71A690E3A00024062 /* Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Bridging-Header.h"; sourceTree = "<group>"; };
+		A19C65C51A7FC30A00A206FC /* SDContactViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SDContactViewController.swift; sourceTree = "<group>"; };
+		A19C65C61A7FC30A00A206FC /* SDContactViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SDContactViewController.xib; sourceTree = "<group>"; };
 		A1A94F2B1A76A36C003A6C0B /* SwiftyJSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SwiftyJSON.h; sourceTree = "<group>"; };
 		A1A94F2C1A76A36C003A6C0B /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyJSON.swift; sourceTree = "<group>"; };
 		A1B8E6651A6D4B9600F21468 /* DataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
@@ -165,6 +169,8 @@
 				A1FA1FE31A7AA30F00338AF0 /* SDPlacesViewController.xib */,
 				A1FA1FE61A7AA33F00338AF0 /* SDAboutViewController.swift */,
 				A1FA1FE71A7AA33F00338AF0 /* SDAboutViewController.xib */,
+				A19C65C51A7FC30A00A206FC /* SDContactViewController.swift */,
+				A19C65C61A7FC30A00A206FC /* SDContactViewController.xib */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -420,6 +426,7 @@
 				A1FA1FF41A7B98FE00338AF0 /* SDScheduleViewController.xib in Resources */,
 				A1FA1FF51A7B98FE00338AF0 /* SDSocialViewController.xib in Resources */,
 				A1FA1FF61A7B98FE00338AF0 /* SDSlideMenuViewController.xib in Resources */,
+				A19C65C81A7FC30A00A206FC /* SDContactViewController.xib in Resources */,
 				A1FA1FE91A7AA33F00338AF0 /* SDAboutViewController.xib in Resources */,
 				A1FA1FE51A7AA30F00338AF0 /* SDPlacesViewController.xib in Resources */,
 				A1FA1FD41A7A9DA200338AF0 /* Localizable.strings in Resources */,
@@ -497,6 +504,7 @@
 				A1D795CD1A68267F009CCEB3 /* AppDelegate.swift in Sources */,
 				A1FA1FE41A7AA30F00338AF0 /* SDPlacesViewController.swift in Sources */,
 				592978031A82106D00EE3BA3 /* SDSocialTableViewCell.swift in Sources */,
+				A19C65C71A7FC30A00A206FC /* SDContactViewController.swift in Sources */,
 				101B49986EFC463363D4784C /* Alamofire.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
