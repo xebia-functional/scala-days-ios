@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		101B49986EFC463363D4784C /* Alamofire.swift in Sources */ = {isa = PBXBuildFile; fileRef = 101B45045AF560B28ED066DB /* Alamofire.swift */; };
+		590DDD771A83C5E800E4CC3F /* SDDateHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 590DDD761A83C5E800E4CC3F /* SDDateHandler.swift */; };
 		592978031A82106D00EE3BA3 /* SDSocialTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 592978011A82106D00EE3BA3 /* SDSocialTableViewCell.swift */; };
 		592978041A82106D00EE3BA3 /* SDSocialTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 592978021A82106D00EE3BA3 /* SDSocialTableViewCell.xib */; };
 		592978061A8210B800EE3BA3 /* SDImageView-Circular.swift in Sources */ = {isa = PBXBuildFile; fileRef = 592978051A8210B800EE3BA3 /* SDImageView-Circular.swift */; };
@@ -79,6 +80,7 @@
 /* Begin PBXFileReference section */
 		101B45045AF560B28ED066DB /* Alamofire.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Alamofire.swift; sourceTree = "<group>"; };
 		2FB6FED00626F7CA4FD64E9E /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		590DDD761A83C5E800E4CC3F /* SDDateHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SDDateHandler.swift; sourceTree = "<group>"; };
 		592978011A82106D00EE3BA3 /* SDSocialTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SDSocialTableViewCell.swift; sourceTree = "<group>"; };
 		592978021A82106D00EE3BA3 /* SDSocialTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SDSocialTableViewCell.xib; sourceTree = "<group>"; };
 		592978051A8210B800EE3BA3 /* SDImageView-Circular.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SDImageView-Circular.swift"; sourceTree = "<group>"; };
@@ -186,6 +188,14 @@
 			path = External;
 			sourceTree = "<group>";
 		};
+		590DDD751A83C5DE00E4CC3F /* Dates */ = {
+			isa = PBXGroup;
+			children = (
+				590DDD761A83C5E800E4CC3F /* SDDateHandler.swift */,
+			);
+			path = Dates;
+			sourceTree = "<group>";
+		};
 		592977FF1A82106D00EE3BA3 /* UI */ = {
 			isa = PBXGroup;
 			children = (
@@ -222,6 +232,7 @@
 		593571E61A77DD73005AA332 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				590DDD751A83C5DE00E4CC3F /* Dates */,
 				593223C41A837C51009189C0 /* Alerts */,
 				A1FA1FF81A7BA95500338AF0 /* SDConstants.swift */,
 				592978071A8213FF00EE3BA3 /* Social */,
@@ -484,6 +495,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A1FA1FFB1A7BAE5B00338AF0 /* SDFonts.swift in Sources */,
+				590DDD771A83C5E800E4CC3F /* SDDateHandler.swift in Sources */,
 				A1FA1FF91A7BA95500338AF0 /* SDConstants.swift in Sources */,
 				A1FA1FF11A7B920700338AF0 /* SDSlideMenuViewController.swift in Sources */,
 				592978091A82141400EE3BA3 /* SDSocialHandler.swift in Sources */,

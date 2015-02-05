@@ -31,8 +31,6 @@ let kTweetDKStatus = "status"
 let kTweetDKID = "id_str"
 let kTwitterBaseURL = "http://www.twitter.com/"
 
-let kTwitterDateFormat = "EEE MMM d HH:mm:ss Z y"
-
 enum SDSocialErrors : Int {
     case NoError
     case AccountAccessNotGranted
@@ -46,7 +44,6 @@ class SDSocialHandler: NSObject {
     
     let errorDomain = "SDSocialHandler.scala-days"
     let accountStore = ACAccountStore()
-    lazy var dateFormatter = NSDateFormatter()
     
     // MARK: - Composing tweets
     
@@ -148,14 +145,6 @@ class SDSocialHandler: NSObject {
             }
         }
         return results
-    }
-    
-    // MARK: - Tweet date handling
-    
-    func parseTwitterDate(twitterDate: String) -> NSDate? {
-        dateFormatter.locale = NSLocale(localeIdentifier: "en_US_POSIX")
-        dateFormatter.dateFormat = kTwitterDateFormat
-        return dateFormatter.dateFromString(twitterDate)
     }
     
     // MARK: - Tweet detail URL creation

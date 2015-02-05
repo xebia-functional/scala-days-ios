@@ -23,7 +23,6 @@ class SDSocialViewController: UIViewController {
     @IBOutlet weak var lblError : UILabel!
     
     let kReuseIdentifier = "socialViewControllerCell"
-    let kTweetCount = 100
     var listOfTweets : Array<SDTweet> = []
     let socialHandler = SDSocialHandler()
     lazy var refreshControl = UIRefreshControl()
@@ -41,9 +40,6 @@ class SDSocialViewController: UIViewController {
         self.navigationItem.rightBarButtonItem = barButtonCreateTweet
         
         tblView?.registerNib(UINib(nibName: "SDSocialTableViewCell", bundle: nil), forCellReuseIdentifier: kReuseIdentifier)
-        if(isIOS8OrLater()) {
-            tblView?.estimatedRowHeight = 68.0
-        }
         tblView?.addSubview(refreshControl)
         refreshControl.addTarget(self, action: "didActivateRefresh", forControlEvents: UIControlEvents.ValueChanged)
     }
@@ -149,21 +145,20 @@ class SDSocialViewController: UIViewController {
         return cell.contentView.systemLayoutSizeFittingSize(UILayoutFittingCompressedSize).height
     }
     
-    //MARK: UITableViewDataSource protocol implementation
+    // MARK: UITableViewDataSource protocol implementation
 
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 1
-    }
-    
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return listOfTweets.count
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        var cell : UITableViewCell? = tableView.dequeueReusableCellWithIdentifier(kReuseIdentifier) as? SDSocialTableViewCell
+        var cell : SDSocialTableViewCell? = tableView.dequeueReusableCellWithIdentifier(kReuseIdentifier) as? SDSocialTableViewCell
         switch cell {
         case let(.Some(cell)):
-            configureCell(cell, forRowAtIndexPath: indexPath)
+            if(listOfTweets.count > indexPath.row) {
+                let currentTweet : SDTweet = listOfTweets[indexPath.row]
+                cell.drawTweetData(currentTweet)
+            }
             cell.frame = CGRectMake(0, 0, tableView.bounds.size.width, cell.frame.size.height);
             cell.layoutIfNeeded()
             cell.layoutSubviews()
@@ -172,25 +167,7 @@ class SDSocialViewController: UIViewController {
             return SDSocialTableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: kReuseIdentifier)
         }
     }
-    
-    func configureCell(cell: UITableViewCell, forRowAtIndexPath: NSIndexPath) {
-        if(listOfTweets.count > forRowAtIndexPath.row) {
-            let currentTweet : SDTweet = listOfTweets[forRowAtIndexPath.row]
-            let socialCell = cell as SDSocialTableViewCell
-            socialCell.lblFullName?.text = currentTweet.fullName
-            socialCell.lblUsername?.text = "@\(currentTweet.username)"
-            socialCell.lblContent?.text = currentTweet.tweetText
-            if let date = socialHandler.parseTwitterDate(currentTweet.dateString) {
-                socialCell.lblDate?.text = date.timeAgoSimple()
-            }
-            let imageUrl = NSURL(string: currentTweet.profileImage)
-            if let profileImageUrl = imageUrl {
-                socialCell.imgView?.sd_setImageWithURL(profileImageUrl)
-            }
-            socialCell.layoutSubviews()
-        }
-    }
-    
+        
     // MARK: - Error feedback
     
     func showErrorFeedback(message: String) {
