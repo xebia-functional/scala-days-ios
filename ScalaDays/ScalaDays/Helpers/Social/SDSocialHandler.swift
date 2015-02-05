@@ -106,8 +106,7 @@ class SDSocialHandler: NSObject {
                         }
                     })                    
                 case let (nil, url):
-                    completionHandler(nil, NSError(domain: self.errorDomain, code: SDSocialErrors.NoTwitterAccountAvailable.rawValue, userInfo: nil))
-                    
+                    completionHandler(nil, NSError(domain: self.errorDomain, code: SDSocialErrors.NoTwitterAccountAvailable.rawValue, userInfo: nil))                    
                 default:
                     completionHandler(nil, NSError(domain: self.errorDomain, code: SDSocialErrors.InvalidRequest.rawValue, userInfo: nil))
                 }

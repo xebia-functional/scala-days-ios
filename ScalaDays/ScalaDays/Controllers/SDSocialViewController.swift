@@ -93,7 +93,6 @@ class SDSocialViewController: UIViewController {
                         }
                     }
                     
-                    
                 default :
                     if let error = error {
                         var errorMessage : String = ""
@@ -145,8 +144,7 @@ class SDSocialViewController: UIViewController {
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         if (isIOS8OrLater()) {
             return UITableViewAutomaticDimension
-        }
-        
+        }        
         let cell = self.tableView(tableView, cellForRowAtIndexPath: indexPath) as SDSocialTableViewCell
         return cell.contentView.systemLayoutSizeFittingSize(UILayoutFittingCompressedSize).height
     }
