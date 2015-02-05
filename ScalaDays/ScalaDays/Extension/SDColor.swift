@@ -14,8 +14,6 @@
 * limitations under the License.
 */
 
-
-
 import UIKit
 
 extension UIColor {
@@ -30,6 +28,10 @@ extension UIColor {
     
     class func selectedCellMenu() -> UIColor {
         return UIColor(red: 43/255, green: 56/255, blue: 65/255, alpha: 255/255)
+    }
+    
+    class func appRedColor() -> UIColor {
+        return UIColor(red: 224/255, green: 95/255, blue: 94/255, alpha: 255/255)
     }
 
 }
