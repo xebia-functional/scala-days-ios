@@ -33,6 +33,7 @@ class SDSlideMenuViewController: UIViewController, UITableViewDelegate, UITableV
         case Tickets
         case Sponsors
         case Places
+        case Speakers
         case About
     }
 
@@ -42,6 +43,7 @@ class SDSlideMenuViewController: UIViewController, UITableViewDelegate, UITableV
                  NSLocalizedString("tickets", comment: "Tickets"),
                  NSLocalizedString("sponsors", comment: "Sponsors"),
                  NSLocalizedString("places", comment: "Places"),
+                 NSLocalizedString("speakers", comment: "Speakers"),
                  NSLocalizedString("about", comment: "About")]
 
     var menusImage = [icon_menu_schedule,
@@ -50,6 +52,7 @@ class SDSlideMenuViewController: UIViewController, UITableViewDelegate, UITableV
                       icon_menu_ticket,
                       icon_menu_sponsors,
                       icon_menu_places,
+                      icon_menu_contact,
                       icon_menu_about]
 
     var scheduleViewController: UIViewController!
@@ -58,6 +61,7 @@ class SDSlideMenuViewController: UIViewController, UITableViewDelegate, UITableV
     var sponsorsViewController: UIViewController!
     var placesViewController: UIViewController!
     var aboutViewController: UIViewController!
+    var speakersViewController: UIViewController!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -88,6 +92,9 @@ class SDSlideMenuViewController: UIViewController, UITableViewDelegate, UITableV
 
         let aboutViewController = SDAboutViewController(nibName: "SDAboutViewController", bundle: nil)
         self.aboutViewController = UINavigationController(rootViewController: aboutViewController)
+        
+        let speakersViewController = SDSpeakersListViewController(nibName: "SDSpeakersListViewController", bundle: nil)
+        self.speakersViewController = UINavigationController(rootViewController: speakersViewController)
 
         self.viewSelectedConference.hidden = true
 
@@ -153,6 +160,8 @@ class SDSlideMenuViewController: UIViewController, UITableViewDelegate, UITableV
             case .About:
                 self.slideMenuController()?.changeMainViewController(self.aboutViewController, close: true)
                 break
+            case .Speakers:
+                self.slideMenuController()?.changeMainViewController(self.speakersViewController, close: true)
             default:
                 break
             }

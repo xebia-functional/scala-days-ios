@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		101B49986EFC463363D4784C /* Alamofire.swift in Sources */ = {isa = PBXBuildFile; fileRef = 101B45045AF560B28ED066DB /* Alamofire.swift */; };
+		590DDD6A1A83BAC100E4CC3F /* SDSpeakersListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 590DDD691A83BAC100E4CC3F /* SDSpeakersListViewController.swift */; };
+		590DDD6E1A83BAFD00E4CC3F /* SDSpeakersListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 590DDD6D1A83BAFD00E4CC3F /* SDSpeakersListViewController.xib */; };
+		590DDD701A83BE9B00E4CC3F /* SDSpeakersTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 590DDD6F1A83BE9B00E4CC3F /* SDSpeakersTableViewCell.swift */; };
+		590DDD721A83BEA800E4CC3F /* SDSpeakersTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 590DDD711A83BEA800E4CC3F /* SDSpeakersTableViewCell.xib */; };
 		592978031A82106D00EE3BA3 /* SDSocialTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 592978011A82106D00EE3BA3 /* SDSocialTableViewCell.swift */; };
 		592978041A82106D00EE3BA3 /* SDSocialTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 592978021A82106D00EE3BA3 /* SDSocialTableViewCell.xib */; };
 		592978061A8210B800EE3BA3 /* SDImageView-Circular.swift in Sources */ = {isa = PBXBuildFile; fileRef = 592978051A8210B800EE3BA3 /* SDImageView-Circular.swift */; };
@@ -79,6 +83,10 @@
 /* Begin PBXFileReference section */
 		101B45045AF560B28ED066DB /* Alamofire.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Alamofire.swift; sourceTree = "<group>"; };
 		2FB6FED00626F7CA4FD64E9E /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		590DDD691A83BAC100E4CC3F /* SDSpeakersListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SDSpeakersListViewController.swift; sourceTree = "<group>"; };
+		590DDD6D1A83BAFD00E4CC3F /* SDSpeakersListViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SDSpeakersListViewController.xib; sourceTree = "<group>"; };
+		590DDD6F1A83BE9B00E4CC3F /* SDSpeakersTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SDSpeakersTableViewCell.swift; sourceTree = "<group>"; };
+		590DDD711A83BEA800E4CC3F /* SDSpeakersTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SDSpeakersTableViewCell.xib; sourceTree = "<group>"; };
 		592978011A82106D00EE3BA3 /* SDSocialTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SDSocialTableViewCell.swift; sourceTree = "<group>"; };
 		592978021A82106D00EE3BA3 /* SDSocialTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SDSocialTableViewCell.xib; sourceTree = "<group>"; };
 		592978051A8210B800EE3BA3 /* SDImageView-Circular.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SDImageView-Circular.swift"; sourceTree = "<group>"; };
@@ -171,6 +179,8 @@
 				A1FA1FE71A7AA33F00338AF0 /* SDAboutViewController.xib */,
 				A19C65C51A7FC30A00A206FC /* SDContactViewController.swift */,
 				A19C65C61A7FC30A00A206FC /* SDContactViewController.xib */,
+				590DDD691A83BAC100E4CC3F /* SDSpeakersListViewController.swift */,
+				590DDD6D1A83BAFD00E4CC3F /* SDSpeakersListViewController.xib */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -199,6 +209,8 @@
 			children = (
 				592978011A82106D00EE3BA3 /* SDSocialTableViewCell.swift */,
 				592978021A82106D00EE3BA3 /* SDSocialTableViewCell.xib */,
+				590DDD6F1A83BE9B00E4CC3F /* SDSpeakersTableViewCell.swift */,
+				590DDD711A83BEA800E4CC3F /* SDSpeakersTableViewCell.xib */,
 			);
 			path = TableViewCells;
 			sourceTree = "<group>";
@@ -428,6 +440,8 @@
 				A1FA1FF61A7B98FE00338AF0 /* SDSlideMenuViewController.xib in Resources */,
 				A19C65C81A7FC30A00A206FC /* SDContactViewController.xib in Resources */,
 				A1FA1FE91A7AA33F00338AF0 /* SDAboutViewController.xib in Resources */,
+				590DDD721A83BEA800E4CC3F /* SDSpeakersTableViewCell.xib in Resources */,
+				590DDD6E1A83BAFD00E4CC3F /* SDSpeakersListViewController.xib in Resources */,
 				A1FA1FE51A7AA30F00338AF0 /* SDPlacesViewController.xib in Resources */,
 				A1FA1FD41A7A9DA200338AF0 /* Localizable.strings in Resources */,
 				A1FA1FE11A7AA2FA00338AF0 /* SDSponsorViewController.xib in Resources */,
@@ -483,7 +497,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				590DDD701A83BE9B00E4CC3F /* SDSpeakersTableViewCell.swift in Sources */,
 				A1FA1FFB1A7BAE5B00338AF0 /* SDFonts.swift in Sources */,
+				590DDD6A1A83BAC100E4CC3F /* SDSpeakersListViewController.swift in Sources */,
 				A1FA1FF91A7BA95500338AF0 /* SDConstants.swift in Sources */,
 				A1FA1FF11A7B920700338AF0 /* SDSlideMenuViewController.swift in Sources */,
 				592978091A82141400EE3BA3 /* SDSocialHandler.swift in Sources */,
