@@ -24,9 +24,6 @@ class SDSocialTableViewCell: UITableViewCell {
     @IBOutlet weak var lblDate : UILabel!
     @IBOutlet weak var lblContentBottomConstraint : NSLayoutConstraint!
     
-    let kPaddingLeftForLblContent : CGFloat = 15.0
-    let kPaddingRightForLblContent : CGFloat = 15.0
-    let kPaddingLeftForImgView : CGFloat = 15.0
     let kWidthForImgView : CGFloat = 40.0
     
     override func awakeFromNib() {
@@ -41,6 +38,20 @@ class SDSocialTableViewCell: UITableViewCell {
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        lblContent?.preferredMaxLayoutWidth = self.frame.size.width - kWidthForImgView - kPaddingLeftForImgView - kPaddingLeftForLblContent - kPaddingRightForLblContent
+        lblContent?.preferredMaxLayoutWidth = self.frame.size.width - kWidthForImgView - (kGlobalPadding * 3)
+    }
+    
+    func drawTweetData(tweet: SDTweet) {
+        lblFullName.text = tweet.fullName
+        lblUsername.text = "@\(tweet.username)"
+        lblContent.text = tweet.tweetText
+        if let date = SDDateHandler.sharedInstance.parseTwitterDate(tweet.dateString) {
+            lblDate.text = date.timeAgoSimple()
+        }
+        let imageUrl = NSURL(string: tweet.profileImage)
+        if let profileImageUrl = imageUrl {
+            imgView.sd_setImageWithURL(profileImageUrl)
+        }
+        layoutSubviews()
     }
 }

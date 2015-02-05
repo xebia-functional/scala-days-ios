@@ -31,6 +31,8 @@ let Height_Row_Menu: CGFloat = 50
 let Height_Header_Menu: CGFloat = 130
 
 let kAnimationShowHideTimeInterval : NSTimeInterval = 0.3
+let kTweetCount = 100
+let kGlobalPadding : CGFloat = 15.0
 
 let isIOS8OrLater = {() -> Bool in
     switch UIDevice.currentDevice().systemVersion.compare("8.0.0", options: NSStringCompareOptions.NumericSearch) {
