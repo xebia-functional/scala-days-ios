@@ -24,14 +24,12 @@ class SDSocialTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         imgView?.circularImage()
         lblContent?.numberOfLines = 0
-        
-        if(!SDUtils.isIosVersionAtLeastVersion("8.0")) {
-            if let constraint = lblContentBottomConstraint {
-                //self.removeConstraint(constraint)
-                self.layoutIfNeeded()
-            }
-        }
+        /*lblContent?.textColor = UIColor.appColor()
+        lblFullName?.textColor = UIColor.appColor()
+        lblDate?.textColor = UIColor.appColor()
+        lblUsername?.textColor = UIColor.appRedColor()*/
     }
+    
     override func layoutSubviews() {
         super.layoutSubviews()
         lblContent?.preferredMaxLayoutWidth = self.frame.size.width - kWidthForImgView - kPaddingLeftForImgView - kPaddingLeftForLblContent - kPaddingRightForLblContent

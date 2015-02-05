@@ -14,3 +14,14 @@ let icon_menu_ticket = "menu_icon_ticket"
 let icon_menu_sponsors = "menu_icon_sponsors"
 let icon_menu_places = "menu_icon_places"
 let icon_menu_about = "menu_icon_about"
+
+let isIOS8OrLater : () -> Bool = {
+    switch UIDevice.currentDevice().systemVersion.compare("8.0.0", options: NSStringCompareOptions.NumericSearch) {
+    case .OrderedSame, .OrderedDescending:
+        return true
+    case .OrderedAscending:
+        return false
+    }
+}
+
+let animationShowHideTimeInterval : NSTimeInterval = 0.3

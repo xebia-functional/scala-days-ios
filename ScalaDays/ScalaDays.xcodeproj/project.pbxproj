@@ -8,6 +8,13 @@
 
 /* Begin PBXBuildFile section */
 		101B49986EFC463363D4784C /* Alamofire.swift in Sources */ = {isa = PBXBuildFile; fileRef = 101B45045AF560B28ED066DB /* Alamofire.swift */; };
+		592978031A82106D00EE3BA3 /* SDSocialTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 592978011A82106D00EE3BA3 /* SDSocialTableViewCell.swift */; };
+		592978041A82106D00EE3BA3 /* SDSocialTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 592978021A82106D00EE3BA3 /* SDSocialTableViewCell.xib */; };
+		592978061A8210B800EE3BA3 /* SDImageView-Circular.swift in Sources */ = {isa = PBXBuildFile; fileRef = 592978051A8210B800EE3BA3 /* SDImageView-Circular.swift */; };
+		592978091A82141400EE3BA3 /* SDSocialHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 592978081A82141400EE3BA3 /* SDSocialHandler.swift */; };
+		5929780A1A82141400EE3BA3 /* SDSocialHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 592978081A82141400EE3BA3 /* SDSocialHandler.swift */; };
+		5929780C1A82310100EE3BA3 /* SDTweet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5929780B1A82310100EE3BA3 /* SDTweet.swift */; };
+		5929780D1A82310100EE3BA3 /* SDTweet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5929780B1A82310100EE3BA3 /* SDTweet.swift */; };
 		593571E91A77DDA8005AA332 /* StoringHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 593571E81A77DDA8005AA332 /* StoringHelper.swift */; };
 		593571EA1A77E41C005AA332 /* StoringHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 593571E81A77DDA8005AA332 /* StoringHelper.swift */; };
 		593571EB1A77E41C005AA332 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B8E6651A6D4B9600F21468 /* DataManager.swift */; };
@@ -69,6 +76,11 @@
 /* Begin PBXFileReference section */
 		101B45045AF560B28ED066DB /* Alamofire.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Alamofire.swift; sourceTree = "<group>"; };
 		2FB6FED00626F7CA4FD64E9E /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		592978011A82106D00EE3BA3 /* SDSocialTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SDSocialTableViewCell.swift; sourceTree = "<group>"; };
+		592978021A82106D00EE3BA3 /* SDSocialTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SDSocialTableViewCell.xib; sourceTree = "<group>"; };
+		592978051A8210B800EE3BA3 /* SDImageView-Circular.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SDImageView-Circular.swift"; sourceTree = "<group>"; };
+		592978081A82141400EE3BA3 /* SDSocialHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SDSocialHandler.swift; sourceTree = "<group>"; };
+		5929780B1A82310100EE3BA3 /* SDTweet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SDTweet.swift; sourceTree = "<group>"; };
 		593571E81A77DDA8005AA332 /* StoringHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoringHelper.swift; sourceTree = "<group>"; };
 		5951D0D51A76A5F5001528E8 /* Conference.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Conference.swift; sourceTree = "<group>"; };
 		9AA114FE335624986EFB5A1D /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
@@ -128,6 +140,7 @@
 		101B47CF1AFFD32B49F7BB46 /* Extension */ = {
 			isa = PBXGroup;
 			children = (
+				592978051A8210B800EE3BA3 /* SDImageView-Circular.swift */,
 				A1FA1FFA1A7BAE5B00338AF0 /* SDFonts.swift */,
 				A1FA1FEA1A7AA6AF00338AF0 /* SDColor.swift */,
 				A1CC71FF1A7A452E00757B65 /* SDUIViewControllerExtension.swift */,
@@ -154,13 +167,6 @@
 			path = Controllers;
 			sourceTree = "<group>";
 		};
-		101B4BF3F5876A0847F2D773 /* UI */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = UI;
-			sourceTree = "<group>";
-		};
 		101B4FB1641809244D4A4CE8 /* External */ = {
 			isa = PBXGroup;
 			children = (
@@ -172,10 +178,36 @@
 			path = External;
 			sourceTree = "<group>";
 		};
+		592977FF1A82106D00EE3BA3 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				592978001A82106D00EE3BA3 /* TableViewCells */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
+		592978001A82106D00EE3BA3 /* TableViewCells */ = {
+			isa = PBXGroup;
+			children = (
+				592978011A82106D00EE3BA3 /* SDSocialTableViewCell.swift */,
+				592978021A82106D00EE3BA3 /* SDSocialTableViewCell.xib */,
+			);
+			path = TableViewCells;
+			sourceTree = "<group>";
+		};
+		592978071A8213FF00EE3BA3 /* Social */ = {
+			isa = PBXGroup;
+			children = (
+				592978081A82141400EE3BA3 /* SDSocialHandler.swift */,
+			);
+			path = Social;
+			sourceTree = "<group>";
+		};
 		593571E61A77DD73005AA332 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
 				A1FA1FF81A7BA95500338AF0 /* SDConstants.swift */,
+				592978071A8213FF00EE3BA3 /* Social */,
 				593571E71A77DD97005AA332 /* Storing */,
 			);
 			path = Helpers;
@@ -202,6 +234,7 @@
 			isa = PBXGroup;
 			children = (
 				5951D0D51A76A5F5001528E8 /* Conference.swift */,
+				5929780B1A82310100EE3BA3 /* SDTweet.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -246,7 +279,7 @@
 				A1B8E6601A6D266800F21468 /* Models */,
 				A1B8E6641A6D4B8600F21468 /* Service */,
 				A1D795CA1A68267F009CCEB3 /* Supporting Files */,
-				101B4BF3F5876A0847F2D773 /* UI */,
+				592977FF1A82106D00EE3BA3 /* UI */,
 				101B48707F372BB83194FA90 /* Controllers */,
 				101B47CF1AFFD32B49F7BB46 /* Extension */,
 			);
@@ -340,7 +373,7 @@
 				TargetAttributes = {
 					A1D795C61A68267F009CCEB3 = {
 						CreatedOnToolsVersion = 6.1.1;
-						DevelopmentTeam = 985FQDQUFA;
+						DevelopmentTeam = P548S5LU96;
 					};
 					A1D795DB1A68267F009CCEB3 = {
 						CreatedOnToolsVersion = 6.1.1;
@@ -381,6 +414,7 @@
 				A1FA1FD41A7A9DA200338AF0 /* Localizable.strings in Resources */,
 				A1FA1FE11A7AA2FA00338AF0 /* SDSponsorViewController.xib in Resources */,
 				A1D795D41A68267F009CCEB3 /* Images.xcassets in Resources */,
+				592978041A82106D00EE3BA3 /* SDSocialTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -434,19 +468,23 @@
 				A1FA1FFB1A7BAE5B00338AF0 /* SDFonts.swift in Sources */,
 				A1FA1FF91A7BA95500338AF0 /* SDConstants.swift in Sources */,
 				A1FA1FF11A7B920700338AF0 /* SDSlideMenuViewController.swift in Sources */,
+				592978091A82141400EE3BA3 /* SDSocialHandler.swift in Sources */,
 				A1FA1FEE1A7B91D100338AF0 /* SDScheduleViewController.swift in Sources */,
 				A1FA1FEF1A7B91D100338AF0 /* SDSocialViewController.swift in Sources */,
 				A1FA1FED1A7B919900338AF0 /* SlideMenuController.swift in Sources */,
 				A1FA1FEC1A7B90DD00338AF0 /* SDUIViewControllerExtension.swift in Sources */,
+				5929780C1A82310100EE3BA3 /* SDTweet.swift in Sources */,
 				A1FA1FEB1A7AA6AF00338AF0 /* SDColor.swift in Sources */,
 				A1FA1FE81A7AA33F00338AF0 /* SDAboutViewController.swift in Sources */,
 				A1FA1FE01A7AA2FA00338AF0 /* SDSponsorViewController.swift in Sources */,
 				593571E91A77DDA8005AA332 /* StoringHelper.swift in Sources */,
+				592978061A8210B800EE3BA3 /* SDImageView-Circular.swift in Sources */,
 				A1B8E6661A6D4B9600F21468 /* DataManager.swift in Sources */,
 				A1A94F2D1A76A36C003A6C0B /* SwiftyJSON.swift in Sources */,
 				5951D0D61A76A5F5001528E8 /* Conference.swift in Sources */,
 				A1D795CD1A68267F009CCEB3 /* AppDelegate.swift in Sources */,
 				A1FA1FE41A7AA30F00338AF0 /* SDPlacesViewController.swift in Sources */,
+				592978031A82106D00EE3BA3 /* SDSocialTableViewCell.swift in Sources */,
 				101B49986EFC463363D4784C /* Alamofire.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -455,6 +493,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5929780D1A82310100EE3BA3 /* SDTweet.swift in Sources */,
+				5929780A1A82141400EE3BA3 /* SDSocialHandler.swift in Sources */,
 				A1FA1FF31A7B927A00338AF0 /* SwiftyJSON.h in Sources */,
 				A1FA1FF21A7B927500338AF0 /* SwiftyJSON.swift in Sources */,
 				593571ED1A77E4E9005AA332 /* Alamofire.swift in Sources */,
@@ -588,8 +628,9 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Pods/build/Debug-iphoneos",
 				);
-				OTHER_LDFLAGS = "";
+				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "ScalaDays/Bridging-Header.h";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -609,8 +650,9 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Pods/build/Debug-iphoneos",
 				);
-				OTHER_LDFLAGS = "";
+				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "ScalaDays/Bridging-Header.h";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
