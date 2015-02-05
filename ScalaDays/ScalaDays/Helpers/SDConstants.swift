@@ -15,6 +15,7 @@
 */
 
 import Foundation
+import UIKit
 
 let IS_IPHONE5 = UIScreen.mainScreen().bounds.size.height == 480;
 
@@ -31,11 +32,19 @@ let Height_Header_Menu: CGFloat = 130
 
 let kAnimationShowHideTimeInterval : NSTimeInterval = 0.3
 
-let isIOS8OrLater : () -> Bool = {
+let isIOS8OrLater = {() -> Bool in
     switch UIDevice.currentDevice().systemVersion.compare("8.0.0", options: NSStringCompareOptions.NumericSearch) {
     case .OrderedSame, .OrderedDescending:
         return true
     case .OrderedAscending:
         return false
     }
+}
+
+let launchSafariToUrl = {(url: NSURL) -> Bool in
+    if UIApplication.sharedApplication().canOpenURL(url) {
+        UIApplication.sharedApplication().openURL(url)
+        return true
+    }
+    return false
 }

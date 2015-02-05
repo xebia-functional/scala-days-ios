@@ -27,6 +27,9 @@ let kTweetDKScreenName = "screen_name"
 let kTweetDKProfileImage = "profile_image_url"
 let kTweetDKStatuses = "statuses"
 let kTweetDKCreatedAt = "created_at"
+let kTweetDKStatus = "status"
+let kTweetDKID = "id_str"
+let kTwitterBaseURL = "http://www.twitter.com/"
 
 let kTwitterDateFormat = "EEE MMM d HH:mm:ss Z y"
 
@@ -126,17 +129,20 @@ class SDSocialHandler: NSObject {
                         user[kTweetDKProfileImage],
                         user[kTweetDKScreenName],
                         unprocessedTweet[kTweetDKText],
-                        unprocessedTweet[kTweetDKCreatedAt]) {
+                        unprocessedTweet[kTweetDKCreatedAt],
+                        unprocessedTweet[kTweetDKID]) {
                 case let(.Some(name),
                          .Some(profileImage),
                          .Some(screenName),
                          .Some(tweetText),
-                         .Some(tweetDate)):
+                         .Some(tweetDate),
+                         .Some(tweetId)):
                             results.append(SDTweet(username: (screenName as String),
                                                    fullName: (name as String),
                                                    tweetText: (tweetText as String),
                                                    profileImage: (profileImage as String),
-                                                   dateString: (tweetDate as String)))
+                                                   dateString: (tweetDate as String),
+                                                   id: (tweetId as String)))
                 default:
                     break
                 }
@@ -145,11 +151,19 @@ class SDSocialHandler: NSObject {
         return results
     }
     
-    // MARK: Tweet date handling
+    // MARK: - Tweet date handling
     
     func parseTwitterDate(twitterDate: String) -> NSDate? {
         dateFormatter.locale = NSLocale(localeIdentifier: "en_US_POSIX")
         dateFormatter.dateFormat = kTwitterDateFormat
         return dateFormatter.dateFromString(twitterDate)
+    }
+    
+    // MARK: - Tweet detail URL creation
+    
+    func urlForTweetDetail(tweet: SDTweet) -> NSURL? {
+        return NSURL(string: kTwitterBaseURL.stringByAppendingPathComponent(tweet.username)
+                                            .stringByAppendingPathComponent(kTweetDKStatus)
+                                            .stringByAppendingPathComponent(tweet.id))
     }
 }

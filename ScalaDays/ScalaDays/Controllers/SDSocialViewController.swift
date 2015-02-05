@@ -28,6 +28,8 @@ class SDSocialViewController: UIViewController {
     let socialHandler = SDSocialHandler()
     lazy var refreshControl = UIRefreshControl()
     var isFirstLoad : Bool = true
+    lazy var selectedConference : Conference? = DataManager.sharedInstance.currentlySelectedConference
+    var hashtag = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -47,8 +49,11 @@ class SDSocialViewController: UIViewController {
     }
     
     override func viewDidAppear(animated: Bool) {
-        if isFirstLoad {
+        if let conference = selectedConference {
+            hashtag = conference.info.hashtag
             reloadTweets()
+        } else {
+            // TODO: handle error if we don't have enough data from the servers to get the hashtag...
         }
     }
     
@@ -71,41 +76,51 @@ class SDSocialViewController: UIViewController {
             self.showProgressHUD()
         }
         
-        socialHandler.requestTweetListWithHashtag("#MaterialFest", count: count) { (tweets, error) -> Void in
-            self.hideProgressHUD()
-            
-            switch(tweets, error) {
-            case let (.Some(tweets), nil) :
-                self.listOfTweets = tweets as Array<SDTweet>
-                dispatch_async(dispatch_get_main_queue()) {
-                    self.tblView.reloadData()
-                    self.hideErrorFeedback()
-                    self.showTableView()
-                }
-            default :
-                if let error = error {
-                    var errorMessage : String = ""
-                    
-                    switch(error.code) {
-                    case SDSocialErrors.AccountAccessNotGranted.rawValue:
-                        errorMessage = NSLocalizedString("social_error_message_not_granted_access", comment: "")
-                    case SDSocialErrors.NoTwitterAccountAvailable.rawValue:
-                        errorMessage = NSLocalizedString("social_error_message_no_twitter_account_configured", comment: "")
-                    case SDSocialErrors.NoValidDataFromAPI.rawValue, SDSocialErrors.InvalidRequest.rawValue:
-                        if(self.listOfTweets.count == 0) {
-                            errorMessage = NSLocalizedString("social_error_no_valid_tweets", comment: "")
+        if(hashtag != "") {
+            socialHandler.requestTweetListWithHashtag(hashtag, count: count) { (tweets, error) -> Void in
+                self.hideProgressHUD()
+                
+                switch(tweets, error) {
+                case let (.Some(tweets), nil) :
+                    self.listOfTweets = tweets as Array<SDTweet>
+                    dispatch_async(dispatch_get_main_queue()) {
+                        if self.listOfTweets.count > 0 {
+                            self.tblView.reloadData()
+                            self.hideErrorFeedback()
+                            self.showTableView()
+                        } else {
+                            self.showErrorFeedback(NSLocalizedString("social_error_no_tweets_for_current_hashtag", comment: ""))
                         }
-                    default:
-                        break
                     }
                     
-                    if(errorMessage != "") {
-                        dispatch_async(dispatch_get_main_queue()) {
-                            self.showErrorFeedback(errorMessage)
+                    
+                default :
+                    if let error = error {
+                        var errorMessage : String = ""
+                        
+                        switch(error.code) {
+                        case SDSocialErrors.AccountAccessNotGranted.rawValue:
+                            errorMessage = NSLocalizedString("social_error_message_not_granted_access", comment: "")
+                        case SDSocialErrors.NoTwitterAccountAvailable.rawValue:
+                            errorMessage = NSLocalizedString("social_error_message_no_twitter_account_configured", comment: "")
+                        case SDSocialErrors.NoValidDataFromAPI.rawValue, SDSocialErrors.InvalidRequest.rawValue:
+                            if(self.listOfTweets.count == 0) {
+                                errorMessage = NSLocalizedString("social_error_no_valid_tweets", comment: "")
+                            }
+                        default:
+                            break
+                        }
+                        
+                        if(errorMessage != "") {
+                            dispatch_async(dispatch_get_main_queue()) {
+                                self.showErrorFeedback(errorMessage)
+                            }
                         }
                     }
                 }
             }
+        } else {
+            // TODO: handle error if we don't have enough data from the servers to get the hashtag...
         }
     }
     
@@ -119,6 +134,12 @@ class SDSocialViewController: UIViewController {
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        if(listOfTweets.count > indexPath.row) {
+            let tweet = listOfTweets[indexPath.row] as SDTweet
+            if let url = socialHandler.urlForTweetDetail(tweet) {
+                launchSafariToUrl(url)
+            }
+        }        
     }
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {

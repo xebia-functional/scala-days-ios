@@ -38,6 +38,19 @@ class DataManager {
             NSUserDefaults.standardUserDefaults().synchronize()
         }
     }
+    
+    var selectedConferenceIndex = 0
+    
+    var currentlySelectedConference : Conference? {
+        get {
+            if let listOfConferences = conferences?.conferences {
+                if(listOfConferences.count > selectedConferenceIndex) {
+                    return listOfConferences[selectedConferenceIndex]
+                }
+            }
+            return nil
+        }
+    }
 
     func dateformatterDateString(dateString: NSString) -> NSDate? {
         var dateFormatter: NSDateFormatter = NSDateFormatter()
@@ -63,9 +76,10 @@ class DataManager {
     func loadData(callback: (JSON?, NSError?) -> ()) {
         Manager.sharedInstance.request(.GET, JsonURL).responseJSON {
             (request, response, data, error) -> Void in
-            if let conference = StoringHelper.sharedInstance.loadConferenceData() {
+            if let conferencesData = StoringHelper.sharedInstance.loadConferenceData() {
                 /* File exists. Check if changed */
-                //TODO:Implement logic for json when change date
+                // TODO: Implement logic for json when change date
+                self.conferences = conferencesData
                 if let date = response?.allHeaderFields["Date"] as NSString? {
                     println("\(date)")
                 }

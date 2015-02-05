@@ -22,12 +22,14 @@ class SDTweet: NSObject {
     let tweetText : String
     let profileImage : String
     let dateString : String
+    let id : String
     
-    init(username : String, fullName : String, tweetText : String, profileImage : String, dateString : String) {
+    init(username : String, fullName : String, tweetText : String, profileImage : String, dateString : String, id: String) {
         self.username = username
         self.fullName = fullName
         self.tweetText = tweetText
         self.profileImage = profileImage
         self.dateString = dateString
+        self.id = id
     }
 }
