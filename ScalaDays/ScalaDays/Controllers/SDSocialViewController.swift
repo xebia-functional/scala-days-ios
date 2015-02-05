@@ -10,9 +10,9 @@ import UIKit
 
 class SDSocialViewController: UIViewController {
     
-    @IBOutlet var tblView : UITableView?
-    @IBOutlet var viewError : UIView?
-    @IBOutlet var lblError : UILabel?
+    @IBOutlet weak var tblView : UITableView!
+    @IBOutlet weak var viewError : UIView!
+    @IBOutlet weak var lblError : UILabel!
     
     let kReuseIdentifier = "socialViewControllerCell"
     let kTweetCount = 100
@@ -70,11 +70,9 @@ class SDSocialViewController: UIViewController {
             case let (.Some(tweets), nil) :
                 self.listOfTweets = tweets as Array<SDTweet>
                 dispatch_async(dispatch_get_main_queue()) {
-                    if let tableView = self.tblView {
-                        tableView.reloadData()
-                        self.hideErrorFeedback()
-                        self.showTableView()
-                    }
+                    self.tblView.reloadData()
+                    self.hideErrorFeedback()
+                    self.showTableView()
                 }
             default :
                 if let error = error {
@@ -169,57 +167,42 @@ class SDSocialViewController: UIViewController {
     // MARK: - Error feedback
     
     func showErrorFeedback(message: String) {
-        switch(viewError, viewError?.hidden) {
-        case let(.Some(view), .Some(hidden)) :
-            if(hidden) {
-                lblError?.text = message
-                view.alpha = 0
-                view.hidden = false
-                UIView.animateWithDuration(kAnimationShowHideTimeInterval, animations: {() -> Void in
-                    view.alpha = 1.0
+        if(viewError.hidden) {
+            lblError.text = message
+            viewError.alpha = 0
+            viewError.hidden = false
+            UIView.animateWithDuration(kAnimationShowHideTimeInterval, animations: {() -> Void in
+                self.viewError.alpha = 1.0
+                return
+                }, completion: { (delay) -> Void in
+                    self.tblView.hidden = true
                     return
-                    }, completion: { (delay) -> Void in
-                        self.tblView?.hidden = true
-                        return
-                })
-            }
-        default:
-            break
+            })
         }
     }
     
     func hideErrorFeedback() {
-        switch(viewError, viewError?.hidden) {
-        case let(.Some(view), .Some(hidden)) :
-            if(!hidden) {
-                UIView.animateWithDuration(kAnimationShowHideTimeInterval, animations: {() -> Void in
-                    self.viewError?.alpha = 0
+        if(!viewError.hidden) {
+            UIView.animateWithDuration(kAnimationShowHideTimeInterval, animations: {() -> Void in
+                self.viewError.alpha = 0
+                return
+                }, completion: { (delay) -> Void in
+                    self.viewError.alpha = 1.0
+                    self.viewError.hidden = true
+                    self.showTableView()
                     return
-                    }, completion: { (delay) -> Void in
-                        self.viewError?.alpha = 1.0
-                        self.viewError?.hidden = true
-                        self.showTableView()
-                        return
-                })
-            }
-        default:
-            break
+            })
         }
     }
     
     func showTableView() {
-        switch(tblView, tblView?.hidden) {
-        case let(.Some(tableView), .Some(hidden)) :
-            if(hidden) {
-                tableView.alpha = 0
-                tableView.hidden = false
-                UIView.animateWithDuration(kAnimationShowHideTimeInterval, animations: {() -> Void in
-                    tableView.alpha = 1
-                    return
-                })
-            }
-        default:
-            break
+        if(tblView.hidden) {
+            tblView.alpha = 0
+            tblView.hidden = false
+            UIView.animateWithDuration(kAnimationShowHideTimeInterval, animations: {() -> Void in
+                self.tblView.alpha = 1
+                return
+            })
         }
     }
     
