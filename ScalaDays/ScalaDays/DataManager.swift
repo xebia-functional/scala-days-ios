@@ -42,7 +42,6 @@ class DataManager {
         return dateFormatter.dateFromString(dateString)
     }
 
-
     class var sharedInstance: DataManager {
 
         struct Static {
@@ -196,7 +195,6 @@ class DataManager {
         }
     }
 
+
 }
-
-
 
