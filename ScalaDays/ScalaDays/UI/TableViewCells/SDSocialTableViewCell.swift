@@ -22,18 +22,17 @@ class SDSocialTableViewCell: UITableViewCell {
     @IBOutlet weak var lblUsername : UILabel!
     @IBOutlet weak var lblContent : UILabel!
     @IBOutlet weak var lblDate : UILabel!
-    @IBOutlet weak var lblContentBottomConstraint : NSLayoutConstraint!
     
     let kWidthForImgView : CGFloat = 40.0
     
     override func awakeFromNib() {
-        imgView.circularImage()
-        lblContent.numberOfLines = 0
-        lblContent.setCustomFont(UIFont.fontHelveticaNeueLight(15), colorFont: UIColor.appColor())
-        lblFullName.setCustomFont(UIFont.fontHelveticaNeueMedium(15), colorFont: UIColor.appColor())
-        lblDate.setCustomFont(UIFont.fontHelveticaNeue(12), colorFont: UIColor.appColor())
-        lblDate.alpha = 0.7
-        lblUsername.setCustomFont(UIFont.fontHelveticaNeue(15), colorFont: UIColor.appRedColor())
+        self.imgView.circularImage()
+        self.lblContent.numberOfLines = 0
+        self.lblContent.setCustomFont(UIFont.fontHelveticaNeueLight(15), colorFont: UIColor.appColor())
+        self.lblFullName.setCustomFont(UIFont.fontHelveticaNeueMedium(15), colorFont: UIColor.appColor())
+        self.lblDate.setCustomFont(UIFont.fontHelveticaNeue(12), colorFont: UIColor.appColor())
+        self.lblDate.alpha = 0.7
+        self.lblUsername.setCustomFont(UIFont.fontHelveticaNeue(15), colorFont: UIColor.appRedColor())
     }
     
     override func layoutSubviews() {
@@ -41,7 +40,7 @@ class SDSocialTableViewCell: UITableViewCell {
         lblContent?.preferredMaxLayoutWidth = self.frame.size.width - kWidthForImgView - (kGlobalPadding * 3)
     }
     
-    func drawTweetData(tweet: SDTweet) {
+    internal func drawTweetData(tweet: SDTweet) {
         lblFullName.text = tweet.fullName
         lblUsername.text = "@\(tweet.username)"
         lblContent.text = tweet.tweetText

@@ -15,13 +15,32 @@ class SDSpeakersListViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.tblView.reloadData()
+        
+        self.setNavigationBarItem()
+        self.title = NSLocalizedString("speakers",comment: "speakers")
+        
+        tblView.registerNib(UINib(nibName: "SDSpeakersTableViewCell", bundle: nil), forCellReuseIdentifier: kReuseIdentifier)
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        tblView.reloadData()
     }
     
     // MARK: - UITableViewDelegate & UITableViewDataSource implementation
    
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        if let listOfSpeakers = speakers {
+            if listOfSpeakers.count > indexPath.row {
+                let currentSpeaker = listOfSpeakers[indexPath.row]
+                if let twitterAccount = currentSpeaker.twitter {
+                    if let url = SDSocialHandler.urlForTwitterAccount(twitterAccount) {
+                        launchSafariToUrl(url)
+                    }
+                }
+            }
+        }
     }
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
@@ -40,30 +59,23 @@ class SDSpeakersListViewController: UIViewController {
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        var cell : UITableViewCell? = tableView.dequeueReusableCellWithIdentifier(kReuseIdentifier) as? SDSpeakersTableViewCell
+        var cell : SDSpeakersTableViewCell? = tableView.dequeueReusableCellWithIdentifier(kReuseIdentifier) as? SDSpeakersTableViewCell
         switch cell {
         case let(.Some(cell)):
-            configureCell(cell, forRowAtIndexPath: indexPath)
+            if let listOfSpeakers = speakers {
+                if(listOfSpeakers.count > indexPath.row) {
+                    let currentSpeaker : Speaker = listOfSpeakers[indexPath.row]
+                    let speakerCell = cell as SDSpeakersTableViewCell
+                    speakerCell.drawSpeakerData(listOfSpeakers[indexPath.row])
+                    speakerCell.layoutSubviews()
+                }
+            }
             cell.frame = CGRectMake(0, 0, tableView.bounds.size.width, cell.frame.size.height);
             cell.layoutIfNeeded()
             cell.layoutSubviews()
             return cell
         default:
             return SDSpeakersTableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: kReuseIdentifier)
-        }
-    }
-    
-    func configureCell(cell: UITableViewCell, forRowAtIndexPath: NSIndexPath) {
-        if let listOfSpeakers = speakers {
-            if(listOfSpeakers.count > forRowAtIndexPath.row) {
-                let currentSpeaker : Speaker = listOfSpeakers[forRowAtIndexPath.row]
-                let speakerCell = cell as SDSpeakersTableViewCell
-                
-                // TODO: test, change with real views after layout is done
-                speakerCell.textLabel?.text = currentSpeaker.name
-                
-                speakerCell.layoutSubviews()
-            }
         }
     }
     

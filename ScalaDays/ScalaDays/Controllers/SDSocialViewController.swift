@@ -131,7 +131,7 @@ class SDSocialViewController: UIViewController {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
         if(listOfTweets.count > indexPath.row) {
             let tweet = listOfTweets[indexPath.row] as SDTweet
-            if let url = socialHandler.urlForTweetDetail(tweet) {
+            if let url = SDSocialHandler.urlForTweetDetail(tweet) {
                 launchSafariToUrl(url)
             }
         }        
