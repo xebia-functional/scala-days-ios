@@ -7,6 +7,11 @@
 */
 
 
+// Common
+
+"common_ok" = "OK";
+"common_cancel" = "Cancel";
+
 //Menu
 "schedule" = "Schedule";
 "social" = "Social";
@@ -14,3 +19,10 @@
 "sponsors" = "Sponsors";
 "places" = "Places";
 "about" = "About";
+
+// Social
+
+"social_error_message_not_granted_access" = "Scala Days needs permission to access to your Twitter account to be able to retrieve the latest tweets. You can grant access to this app in the \"Settings\" app of your device. Then tap on this message to try again.";
+"social_error_message_no_twitter_account_configured" = "Scala Days needs access to a valid Twitter account to be able to retrieve the latest tweets. Please configure your Twitter account in the \"Settings\" app of your device. Then tap on this message to try again.";
+"social_error_no_valid_tweets" = "Something happened while trying to retrieve the latest Scala Days tweets. Please tap on this message to try again in a few minutes.";
+"social_default_message" = "#ScalaDays2015";

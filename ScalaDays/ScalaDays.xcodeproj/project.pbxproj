@@ -15,6 +15,7 @@
 		5929780A1A82141400EE3BA3 /* SDSocialHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 592978081A82141400EE3BA3 /* SDSocialHandler.swift */; };
 		5929780C1A82310100EE3BA3 /* SDTweet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5929780B1A82310100EE3BA3 /* SDTweet.swift */; };
 		5929780D1A82310100EE3BA3 /* SDTweet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5929780B1A82310100EE3BA3 /* SDTweet.swift */; };
+		593223C61A837C6A009189C0 /* SDAlertViewHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 593223C51A837C6A009189C0 /* SDAlertViewHelper.swift */; };
 		593571E91A77DDA8005AA332 /* StoringHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 593571E81A77DDA8005AA332 /* StoringHelper.swift */; };
 		593571EA1A77E41C005AA332 /* StoringHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 593571E81A77DDA8005AA332 /* StoringHelper.swift */; };
 		593571EB1A77E41C005AA332 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B8E6651A6D4B9600F21468 /* DataManager.swift */; };
@@ -81,6 +82,7 @@
 		592978051A8210B800EE3BA3 /* SDImageView-Circular.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SDImageView-Circular.swift"; sourceTree = "<group>"; };
 		592978081A82141400EE3BA3 /* SDSocialHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SDSocialHandler.swift; sourceTree = "<group>"; };
 		5929780B1A82310100EE3BA3 /* SDTweet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SDTweet.swift; sourceTree = "<group>"; };
+		593223C51A837C6A009189C0 /* SDAlertViewHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SDAlertViewHelper.swift; sourceTree = "<group>"; };
 		593571E81A77DDA8005AA332 /* StoringHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoringHelper.swift; sourceTree = "<group>"; };
 		5951D0D51A76A5F5001528E8 /* Conference.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Conference.swift; sourceTree = "<group>"; };
 		9AA114FE335624986EFB5A1D /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
@@ -203,9 +205,18 @@
 			path = Social;
 			sourceTree = "<group>";
 		};
+		593223C41A837C51009189C0 /* Alerts */ = {
+			isa = PBXGroup;
+			children = (
+				593223C51A837C6A009189C0 /* SDAlertViewHelper.swift */,
+			);
+			path = Alerts;
+			sourceTree = "<group>";
+		};
 		593571E61A77DD73005AA332 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				593223C41A837C51009189C0 /* Alerts */,
 				A1FA1FF81A7BA95500338AF0 /* SDConstants.swift */,
 				592978071A8213FF00EE3BA3 /* Social */,
 				593571E71A77DD97005AA332 /* Storing */,
@@ -475,6 +486,7 @@
 				A1FA1FEC1A7B90DD00338AF0 /* SDUIViewControllerExtension.swift in Sources */,
 				5929780C1A82310100EE3BA3 /* SDTweet.swift in Sources */,
 				A1FA1FEB1A7AA6AF00338AF0 /* SDColor.swift in Sources */,
+				593223C61A837C6A009189C0 /* SDAlertViewHelper.swift in Sources */,
 				A1FA1FE81A7AA33F00338AF0 /* SDAboutViewController.swift in Sources */,
 				A1FA1FE01A7AA2FA00338AF0 /* SDSponsorViewController.swift in Sources */,
 				593571E91A77DDA8005AA332 /* StoringHelper.swift in Sources */,

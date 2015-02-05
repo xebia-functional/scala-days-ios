@@ -24,4 +24,4 @@ let isIOS8OrLater : () -> Bool = {
     }
 }
 
-let animationShowHideTimeInterval : NSTimeInterval = 0.3
+let kAnimationShowHideTimeInterval : NSTimeInterval = 0.3

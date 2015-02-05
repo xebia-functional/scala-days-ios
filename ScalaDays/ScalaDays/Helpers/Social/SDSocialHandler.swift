@@ -22,18 +22,35 @@ let kTweetDKCreatedAt = "created_at"
 
 let kTwitterDateFormat = "EEE MMM d HH:mm:ss Z y"
 
+enum SDSocialErrors : Int {
+    case NoError
+    case AccountAccessNotGranted
+    case NoTwitterAccountAvailable
+    case NoValidDataFromAPI
+    case InvalidRequest
+}
+
 class SDSocialHandler: NSObject {
     typealias SDGetTweetsHandler = (Array<AnyObject>?, NSError?) -> Void
-    enum SDSocialErrors : Int {
-        case AccountAccessNotGranted
-        case NoTwitterAccountAvailable
-        case NoValidDataFromAPI
-        case InvalidRequest
-    }
     
     let errorDomain = "SDSocialHandler.scala-days"
     let accountStore = ACAccountStore()
     lazy var dateFormatter = NSDateFormatter()
+    
+    // MARK: - Composing tweets
+    
+    func showTweetComposerWithTweetText(tweetText: String!, onViewController: UIViewController!) -> SDSocialErrors {
+        if SLComposeViewController.isAvailableForServiceType(SLServiceTypeTwitter) {
+            let twitterSheet = SLComposeViewController(forServiceType: SLServiceTypeTwitter)
+            twitterSheet.setInitialText(tweetText)
+            onViewController.presentViewController(twitterSheet, animated: true, completion: nil)
+        } else {
+            return .NoTwitterAccountAvailable
+        }
+        return .NoError
+    }
+    
+    // MARK: - Retrieving tweets
     
     private func defaultTwitterAccount() -> ACAccount? {
         let accounts = accountStore.accountsWithAccountType(accountStore.accountTypeWithAccountTypeIdentifier(ACAccountTypeIdentifierTwitter))
