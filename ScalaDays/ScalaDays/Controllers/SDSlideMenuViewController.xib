@@ -7,9 +7,12 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SDSlideMenuViewController" customModule="ScalaDays" customModuleProvider="target">
             <connections>
+                <outlet property="heigthHeader" destination="b05-R2-Oic" id="M3z-f2-L8J"/>
                 <outlet property="heigthTable" destination="UCW-so-Pom" id="39k-rM-hDV"/>
                 <outlet property="tblMenu" destination="lxn-hm-0cu" id="skZ-DC-Ar3"/>
+                <outlet property="titleConference" destination="JLQ-ZL-etP" id="AHS-9A-IT8"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+                <outlet property="viewSelectedConference" destination="SmI-Vt-pyz" id="lHP-JT-Yd2"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -18,22 +21,46 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wmo-tt-doA">
-                    <rect key="frame" x="0.0" y="0.0" width="600" height="161"/>
+                    <rect key="frame" x="0.0" y="0.0" width="600" height="150"/>
                     <subviews>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="tpM-kA-yta">
-                            <rect key="frame" x="0.0" y="0.0" width="600" height="161"/>
+                            <rect key="frame" x="0.0" y="0.0" width="600" height="150"/>
                         </imageView>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="San Francisco" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JLQ-ZL-etP">
+                            <rect key="frame" x="15" y="112" width="110" height="21"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="A2a-gt-hi5">
+                            <rect key="frame" x="22" y="95" width="558" height="55"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="55" id="mkA-9v-uxq"/>
+                            </constraints>
+                            <state key="normal" image="menu_icon_about">
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="selectedConference:" destination="-1" eventType="touchDown" id="FTo-z7-Nl4"/>
+                            </connections>
+                        </button>
                     </subviews>
+                    <color key="backgroundColor" red="1" green="0.1043636924" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
+                        <constraint firstItem="A2a-gt-hi5" firstAttribute="centerY" secondItem="JLQ-ZL-etP" secondAttribute="centerY" id="Afy-ng-Ydh"/>
                         <constraint firstAttribute="bottom" secondItem="tpM-kA-yta" secondAttribute="bottom" id="LIF-SW-LmG"/>
                         <constraint firstItem="tpM-kA-yta" firstAttribute="leading" secondItem="wmo-tt-doA" secondAttribute="leading" id="OKr-Iw-ylC"/>
-                        <constraint firstAttribute="height" constant="161" id="b05-R2-Oic"/>
+                        <constraint firstAttribute="bottom" secondItem="A2a-gt-hi5" secondAttribute="bottom" id="YaA-fN-BBf"/>
+                        <constraint firstAttribute="height" constant="150" id="b05-R2-Oic"/>
                         <constraint firstItem="tpM-kA-yta" firstAttribute="top" secondItem="wmo-tt-doA" secondAttribute="top" id="cHU-nC-jZE"/>
                         <constraint firstAttribute="trailing" secondItem="tpM-kA-yta" secondAttribute="trailing" id="jnh-L0-dA1"/>
+                        <constraint firstAttribute="trailing" secondItem="A2a-gt-hi5" secondAttribute="trailing" constant="20" id="uAH-JV-MZL"/>
+                        <constraint firstItem="JLQ-ZL-etP" firstAttribute="leading" secondItem="wmo-tt-doA" secondAttribute="leading" constant="15" id="xLy-aw-Zmg"/>
+                        <constraint firstItem="A2a-gt-hi5" firstAttribute="leading" secondItem="wmo-tt-doA" secondAttribute="leading" constant="22" id="zc8-vl-dFI"/>
                     </constraints>
                 </view>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="lxn-hm-0cu">
-                    <rect key="frame" x="0.0" y="160" width="600" height="30"/>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" allowsSelectionDuringEditing="YES" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="lxn-hm-0cu">
+                    <rect key="frame" x="0.0" y="149" width="600" height="30"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="30" id="UCW-so-Pom"/>
@@ -43,6 +70,27 @@
                         <outlet property="delegate" destination="-1" id="9l6-5A-M57"/>
                     </connections>
                 </tableView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SmI-Vt-pyz">
+                    <rect key="frame" x="0.0" y="149" width="600" height="142"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ikI-04-NUO">
+                            <rect key="frame" x="21" y="24" width="471" height="30"/>
+                            <state key="normal" title="San Francisco">
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nqz-vj-cGO">
+                            <rect key="frame" x="21" y="81" width="471" height="30"/>
+                            <state key="normal" title="Londres">
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" red="0.21176470589999999" green="0.27058823529999998" blue="0.31372549020000001" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="142" id="48q-jr-w1a"/>
+                    </constraints>
+                </view>
             </subviews>
             <color key="backgroundColor" red="0.21176470588235294" green="0.27058823529411763" blue="0.31372549019607843" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
@@ -51,9 +99,15 @@
                 <constraint firstItem="lxn-hm-0cu" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="Pxn-7k-ql4"/>
                 <constraint firstItem="wmo-tt-doA" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="TrH-yL-nVc"/>
                 <constraint firstItem="wmo-tt-doA" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="Vn8-Rn-uof"/>
+                <constraint firstItem="lxn-hm-0cu" firstAttribute="top" secondItem="SmI-Vt-pyz" secondAttribute="top" id="gpA-nk-lfd"/>
+                <constraint firstAttribute="trailing" secondItem="SmI-Vt-pyz" secondAttribute="trailing" id="h1l-5L-Y21"/>
+                <constraint firstItem="SmI-Vt-pyz" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="k7W-Tq-77i"/>
                 <constraint firstAttribute="trailing" secondItem="lxn-hm-0cu" secondAttribute="trailing" id="nzc-ej-6pE"/>
             </constraints>
             <point key="canvasLocation" x="125" y="453"/>
         </view>
     </objects>
+    <resources>
+        <image name="menu_icon_about" width="24" height="24"/>
+    </resources>
 </document>
