@@ -14,7 +14,7 @@
 import Foundation
 
 class StoringHelper {
-    let kMainConferenceStoringFilename = "sdConference.data"
+    let kMainConferenceStoringFilename = "sdConferences.data"
     
     class var sharedInstance: StoringHelper {
         struct Static {
@@ -23,17 +23,17 @@ class StoringHelper {
         return Static.instance
     }
     
-    func storeConferenceData(conference : Conference) {
+    func storeConferenceData(conferences : Conferences) {
         let conferenceDataPath = StoringHelper.documentsFolderPath().stringByAppendingPathComponent(kMainConferenceStoringFilename)
-        NSKeyedArchiver.archiveRootObject(conference, toFile: conferenceDataPath)
+        NSKeyedArchiver.archiveRootObject(conferences, toFile: conferenceDataPath)
     }
     
-    func loadConferenceData() -> Conference? {
+    func loadConferenceData() -> Conferences? {
         let fileManager = NSFileManager.defaultManager()
         let conferenceDataPath = StoringHelper.documentsFolderPath().stringByAppendingPathComponent(kMainConferenceStoringFilename)
         
         if(fileManager.fileExistsAtPath(conferenceDataPath)) {
-            return NSKeyedUnarchiver.unarchiveObjectWithFile(conferenceDataPath) as? Conference
+            return NSKeyedUnarchiver.unarchiveObjectWithFile(conferenceDataPath) as? Conferences
         }
         return nil
     }

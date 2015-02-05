@@ -16,6 +16,32 @@ private let _DataManagerSharedInstance = DataManager()
 class DataManager {
 
     var conferences: Conferences?
+    
+    var lastDate : [NSDate] {
+        get {
+            var returnValue: [NSDate]? = NSUserDefaults.standardUserDefaults().objectForKey("date") as? [NSDate]
+            if returnValue == nil //Check for first run of app
+            {
+                returnValue = nil //Default value
+            }
+            return returnValue!
+        }
+        set (newValue) {
+            NSUserDefaults.standardUserDefaults().setObject(newValue, forKey: "date")
+            NSUserDefaults.standardUserDefaults().synchronize()
+        }
+    }
+    
+    func dateformatterDateString(dateString: NSString) -> NSDate?
+    {
+        var dateFormatter: NSDateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
+        dateFormatter.timeZone = NSTimeZone(abbreviation: "UTC")
+        
+        
+        return dateFormatter.dateFromString(dateString)
+    }
+
 
     class var sharedInstance: DataManager {
 
@@ -129,15 +155,15 @@ class DataManager {
                 let date = event["date"].string!
 
                 let track = event["track"]
-                var trackParse:Track?
+                var trackParse: Track?
                 if (track) {
                     trackParse = Track(id: track["id"].intValue, name: track["name"].string!, host: track["host"].string!, shortdescription: track["shortdescription"].string!, apiDescription: track["description"].string!)
                 }
 
                 let location = event["location"]
                 var locationParse: Location?
-                if(location){
-                  locationParse = Location(id: location["id"].intValue, name: location["name"].string!, mapUrl: location["mapUrl"].string!)
+                if (location) {
+                    locationParse = Location(id: location["id"].intValue, name: location["name"].string!, mapUrl: location["mapUrl"].string!)
                 }
 
                 let arraySpeakerEvent = event["speakers"]
@@ -164,9 +190,10 @@ class DataManager {
         self.conferences = Conferences(conferences: arrayConferencesParse)
         println("End parse")
 
-//        if let unWrapperJson = self.conference {
-//            StoringHelper.sharedInstance.storeConferenceData(unWrapperJson)
-//        }
+        if let unWrapperJson = self.conferences {
+            StoringHelper.sharedInstance.storeConferenceData(unWrapperJson)
+            println("Save parse")
+        }
     }
 
 }
