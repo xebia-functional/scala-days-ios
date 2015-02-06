@@ -27,6 +27,7 @@
 "sponsors" = "Sponsors";
 "places" = "Places";
 "about" = "About";
+"speakers" = "Speakers";
 
 // Social
 // TODO: Error messages are yet to be reviewed

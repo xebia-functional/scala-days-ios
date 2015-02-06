@@ -73,7 +73,6 @@
             <connections>
                 <outlet property="imgView" destination="Zd4-Hr-SWq" id="zV8-d1-F5i"/>
                 <outlet property="lblContent" destination="OMf-HF-JG4" id="YX5-37-IEF"/>
-                <outlet property="lblContentBottomConstraint" destination="YG2-Mf-b6s" id="3Nt-L0-BuN"/>
                 <outlet property="lblDate" destination="GaI-gF-yEE" id="b3f-bN-3PO"/>
                 <outlet property="lblFullName" destination="LdR-fe-uSb" id="qUv-Q0-W8V"/>
                 <outlet property="lblUsername" destination="Jln-r8-itq" id="CZ3-St-iUN"/>

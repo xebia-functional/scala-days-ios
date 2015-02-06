@@ -149,9 +149,13 @@ class SDSocialHandler: NSObject {
     
     // MARK: - Tweet detail URL creation
     
-    func urlForTweetDetail(tweet: SDTweet) -> NSURL? {
+    class func urlForTweetDetail(tweet: SDTweet) -> NSURL? {
         return NSURL(string: kTwitterBaseURL.stringByAppendingPathComponent(tweet.username)
                                             .stringByAppendingPathComponent(kTweetDKStatus)
                                             .stringByAppendingPathComponent(tweet.id))
+    }
+    
+    class func urlForTwitterAccount(twitterAccount: String) -> NSURL? {
+        return NSURL(string: kTwitterBaseURL.stringByAppendingPathComponent(twitterAccount))
     }
 }
