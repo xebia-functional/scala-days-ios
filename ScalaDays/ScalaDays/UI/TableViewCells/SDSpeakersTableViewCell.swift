@@ -20,7 +20,11 @@ class SDSpeakersTableViewCell: SDSocialTableViewCell {
     func drawSpeakerData(speaker: Speaker) {
         lblFullName.text = speaker.name
         if let twitterUsername = speaker.twitter {
-            lblUsername.text = twitterUsername
+            if contains(twitterUsername, "@") {
+                lblUsername.text = twitterUsername
+            } else {
+                lblUsername.text = "@\(twitterUsername)"
+            }            
         } else {
             lblUsername.text = ""
         }
@@ -28,7 +32,7 @@ class SDSpeakersTableViewCell: SDSocialTableViewCell {
         
         if let pictureUrlString = speaker.picture {
             if let pictureUrl = NSURL(string: pictureUrlString) {
-                imgView.sd_setImageWithURL(pictureUrl)
+                imgView.sd_setImageWithURL(pictureUrl, placeholderImage: UIImage(named: "avatar")!)
             }
         }
         layoutSubviews()

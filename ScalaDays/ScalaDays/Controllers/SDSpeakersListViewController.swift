@@ -64,7 +64,6 @@ class SDSpeakersListViewController: UIViewController {
         case let(.Some(cell)):
             if let listOfSpeakers = speakers {
                 if(listOfSpeakers.count > indexPath.row) {
-                    let currentSpeaker : Speaker = listOfSpeakers[indexPath.row]
                     let speakerCell = cell as SDSpeakersTableViewCell
                     speakerCell.drawSpeakerData(listOfSpeakers[indexPath.row])
                     speakerCell.layoutSubviews()
