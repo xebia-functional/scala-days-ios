@@ -257,27 +257,31 @@ class Venue: NSObject, Equatable, NSCoding {
     let name: String
     let address: String
     let website: String
-    let map: String
+    let latitude: String
+    let longitude: String
 
-    init(name: String, address: String, website: String, map: String) {
+    init(name: String, address: String, website: String, latitude: String, longitude: String) {
         self.name = name
         self.address = address
         self.website = website
-        self.map = map
+        self.latitude = latitude
+        self.longitude = longitude
     }
 
     required init(coder aDecoder: NSCoder) {
         self.name = aDecoder.decodeObjectForKey("name") as String
         self.address = aDecoder.decodeObjectForKey("address") as String
         self.website = aDecoder.decodeObjectForKey("website") as String
-        self.map = aDecoder.decodeObjectForKey("map") as String
+        self.latitude = aDecoder.decodeObjectForKey("latitude") as String
+        self.longitude = aDecoder.decodeObjectForKey("longitude") as String
     }
 
     func encodeWithCoder(aCoder: NSCoder) {
         aCoder.encodeObject(self.name, forKey: "name")
         aCoder.encodeObject(self.address, forKey: "address")
         aCoder.encodeObject(self.website, forKey: "website")
-        aCoder.encodeObject(self.map, forKey: "map")
+        aCoder.encodeObject(self.latitude, forKey: "latitude")
+        aCoder.encodeObject(self.longitude, forKey: "longitude")
     }
 }
 
@@ -476,7 +480,8 @@ func ==(lhs: Venue, rhs: Venue) -> Bool {
     return lhs.name == rhs.name &&
             lhs.address == rhs.address &&
             lhs.website == rhs.website &&
-            lhs.map == rhs.map
+            lhs.latitude == rhs.latitude &&
+            lhs.longitude == lhs.longitude
 }
 
 // MARK: Equatable implementation for class Sponsor
