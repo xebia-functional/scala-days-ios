@@ -18,12 +18,6 @@ import UIKit
 import MobileCoreServices
 import AddressBook
 
-enum SDContactViewControllerScanErrors : Int {
-    case NoError
-    case ImageCaptureError
-    case ScanError
-}
-
 class SDContactViewController: UIViewController,
                                 ZBarReaderDelegate,
                                 UINavigationControllerDelegate,
@@ -33,6 +27,7 @@ class SDContactViewController: UIViewController,
 
     lazy var scannerVC = ZBarReaderViewController()
     let kTagForRequestAlertView = 666
+    var currentVCardString = ""
     
     @IBOutlet weak var lblScanResult: UILabel!
     @IBOutlet weak var imgIcon: UIImageView!
@@ -57,10 +52,8 @@ class SDContactViewController: UIViewController,
         // Disabled recognition of rarely used I2/5 symbology to improve performance:
         scannerVC.scanner.setSymbology(ZBAR_I25, config: ZBAR_CFG_ENABLE, to: 0)
         scannerVC.showsZBarControls = false
-        
         let scannerVCOverlayView = SDQRScannerOverlayView(frame: self.view.frame)
         scannerVCOverlayView.delegate = self
-        
         scannerVC.cameraOverlayView = scannerVCOverlayView
         
         self.presentViewController(scannerVC, animated: true, completion: nil)
@@ -131,11 +124,12 @@ class SDContactViewController: UIViewController,
         default:
             drawErrorWithMessage(NSLocalizedString("contacts_regular_feedback_error_unknown", comment: ""))
         }
+        currentVCardString = ""
     }
     
     func drawErrorWithMessage(message: String) {
-        imgIcon.image = UIImage(named: "placeholder_error")
-        lblScanResult.text = message
+        imgIcon?.image = UIImage(named: "placeholder_error")
+        lblScanResult?.text = message
     }
     
     func drawRegularFeedback() {
@@ -152,6 +146,8 @@ class SDContactViewController: UIViewController,
         } else {
             message = NSLocalizedString("contacts_add_contact_request_no_name", comment: "")
         }
+        currentVCardString = vCardString
+        
         SDAlertViewHelper.showSimpleAlertViewOnViewController(self, title: "", message: message, cancelButtonTitle: NSLocalizedString("common_cancel", comment: ""), otherButtonTitle: NSLocalizedString("common_ok", comment: ""), tag: kTagForRequestAlertView, delegate: self) { (alertAction) -> Void in
             if alertAction.style != .Cancel {
                 SDContactCreationHelper.createContactInAddressBookFromVCardString(vCardString, completion: { (error) -> Void in
@@ -163,6 +159,16 @@ class SDContactViewController: UIViewController,
     
     func showAlertForContactAddSuccess() {
         SDAlertViewHelper.showSimpleAlertViewOnViewController(self, title: nil, message: NSLocalizedString("contacts_add_contact_success_message", comment: ""), cancelButtonTitle: NSLocalizedString("common_ok", comment: ""), otherButtonTitle: nil, tag: 0, delegate: nil, handler: nil)
+    }
+    
+    // MARK: - Alert view delegate
+    
+    func alertView(alertView: UIAlertView, clickedButtonAtIndex buttonIndex: Int) {
+        if alertView.tag == kTagForRequestAlertView && buttonIndex != alertView.cancelButtonIndex {
+            SDContactCreationHelper.createContactInAddressBookFromVCardString(currentVCardString, completion: { (error) -> Void in
+                self.handleResultsFromAddressBookWithErrorMessage(error)
+            })
+        }
     }
     
 }
