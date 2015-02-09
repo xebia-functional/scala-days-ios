@@ -23,6 +23,7 @@ class SDSlideMenuViewController: UIViewController, UITableViewDelegate, UITableV
     @IBOutlet weak var titleConference: UILabel!
     @IBOutlet weak var heigthTable: NSLayoutConstraint!
     @IBOutlet weak var heigthHeader: NSLayoutConstraint!
+    @IBOutlet weak var imgHeader: UIImageView!
 
     @IBOutlet var viewSelectedConference: UIView!
 
@@ -62,10 +63,11 @@ class SDSlideMenuViewController: UIViewController, UITableViewDelegate, UITableV
     var placesViewController: UIViewController!
     var aboutViewController: UIViewController!
     var speakersViewController: UIViewController!
+    
+    var infoSelected: Information?
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        println("SDSlideMenuViewController")
 
         if (IS_IPHONE5) {
             heigthHeader.constant = Height_Header_Menu
@@ -98,6 +100,17 @@ class SDSlideMenuViewController: UIViewController, UITableViewDelegate, UITableV
 
         self.viewSelectedConference.hidden = true
 
+    }
+    override func  viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        if let  infoSelected = DataManager.sharedInstance.currentlySelectedConference?.info{
+            self.titleConference.text = infoSelected.longName
+            let image = infoSelected.pictures[2]
+            let imageUrl = NSURL(string: image.url)
+            if let infoImageUrl = imageUrl {
+                self.imgHeader.sd_setImageWithURL(infoImageUrl, placeholderImage: UIImage(named: ""))
+            }
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -150,6 +163,11 @@ class SDSlideMenuViewController: UIViewController, UITableViewDelegate, UITableV
                 break
             case .Contact:
                 self.slideMenuController()?.changeMainViewController(self.contactViewController, close: true)
+                break
+            case .Tickets:
+                  if let registration = infoSelected?.registrationSite {
+                    UIApplication.sharedApplication().openURL(NSURL(string:registration)!)
+                  }
                 break
             case .Sponsors:
                 self.slideMenuController()?.changeMainViewController(self.sponsorsViewController, close: true)

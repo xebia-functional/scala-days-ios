@@ -34,6 +34,8 @@ let kAnimationShowHideTimeInterval : NSTimeInterval = 0.3
 let kTweetCount = 100
 let kGlobalPadding : CGFloat = 15.0
 
+let lastModifiedDate = "Last-Modified"
+
 let isIOS8OrLater = {() -> Bool in
     switch UIDevice.currentDevice().systemVersion.compare("8.0.0", options: NSStringCompareOptions.NumericSearch) {
     case .OrderedSame, .OrderedDescending:

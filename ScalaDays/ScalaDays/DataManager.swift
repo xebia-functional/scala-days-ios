@@ -15,6 +15,7 @@
 */
 
 import Foundation
+import UIKit
 
 
 let JsonURL = "http://scala-days-2015.s3.amazonaws.com/conferences.json"
@@ -25,9 +26,9 @@ class DataManager {
 
     var conferences: Conferences?
 
-    var lastDate: [NSDate] {
+    var lastDate: NSDate? {
         get {
-            var returnValue: [NSDate]? = NSUserDefaults.standardUserDefaults().objectForKey("date") as? [NSDate]
+            var returnValue: NSDate? = NSUserDefaults.standardUserDefaults().objectForKey("date") as? NSDate
             if returnValue == nil {
                 returnValue = nil //Default value
             }
@@ -38,27 +39,18 @@ class DataManager {
             NSUserDefaults.standardUserDefaults().synchronize()
         }
     }
-    
+
     var selectedConferenceIndex = 0
-    
-    var currentlySelectedConference : Conference? {
+
+    var currentlySelectedConference: Conference? {
         get {
             if let listOfConferences = conferences?.conferences {
-                if(listOfConferences.count > selectedConferenceIndex) {
+                if (listOfConferences.count > selectedConferenceIndex) {
                     return listOfConferences[selectedConferenceIndex]
                 }
             }
             return nil
         }
-    }
-
-    func dateformatterDateString(dateString: NSString) -> NSDate? {
-        var dateFormatter: NSDateFormatter = NSDateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
-        dateFormatter.timeZone = NSTimeZone(abbreviation: "UTC")
-
-
-        return dateFormatter.dateFromString(dateString)
     }
 
     class var sharedInstance: DataManager {
@@ -73,28 +65,44 @@ class DataManager {
     init() {
     }
 
-    func loadData(callback: (JSON?, NSError?) -> ()) {
+    func loadDataJson(callback: (Bool, NSError?) -> ()) {
         Manager.sharedInstance.request(.GET, JsonURL).responseJSON {
             (request, response, data, error) -> Void in
             if let conferencesData = StoringHelper.sharedInstance.loadConferenceData() {
-                /* File exists. Check if changed */
-                // TODO: Implement logic for json when change date
                 self.conferences = conferencesData
-                if let date = response?.allHeaderFields["Date"] as NSString? {
-                    println("\(date)")
+                if let date = response?.allHeaderFields[lastModifiedDate] as NSString? {
+                    let dateJson = SDDateHandler.sharedInstance.dateformatterDateString(date)
+                    if (dateJson == self.lastDate) {
+                        println("Json no modified")
+                        callback(false, error)
+                    } else {
+                        if (error != nil) {
+                            NSLog("Error: \(error)")
+                            println(request)
+                            println(response)
+                            callback(false, error)
+                        } else {
+                            let jsonFormat = JSON(data!)
+                            self.parseJSON(jsonFormat)
+                            callback(true, error)
+                        }
+                    }
                 }
             } else {
+                if let date = response?.allHeaderFields[lastModifiedDate] as NSString? {
+                    self.lastDate = SDDateHandler.sharedInstance.dateformatterDateString(date)
+                }
                 if (error != nil) {
                     NSLog("Error: \(error)")
                     println(request)
                     println(response)
+                    callback(false, error)
                 } else {
-                    NSLog("Success: \(JsonURL)")
                     let jsonFormat = JSON(data!)
-                    callback(jsonFormat, error)
+                    self.parseJSON(jsonFormat)
+                    callback(true, error)
                 }
             }
-
         }
     }
 
@@ -118,8 +126,18 @@ class DataManager {
             let utcTimezoneOffset = info["utcTimezoneOffset"].string!
             let utcTimezoneOffsetMillis = info["utcTimezoneOffsetMillis"].floatValue
             let hashtag = info["hashtag"].string!
-            let pictures: [Picture] = []
-            let infoParse = Information(id: id, name: name, longName: longName, nameAndLocation: nameAndLocation, firstDay: firstDay, lastDay: lastDay, normalSite: normalSite, registrationSite: registrationSite, utcTimezoneOffset: utcTimezoneOffset, utcTimezoneOffsetMillis: utcTimezoneOffsetMillis, hashtag: hashtag, pictures: pictures)
+
+            let pictures = info["pictures"]
+            var picturesParse: [Picture] = []
+            for (index, picture) in pictures {
+                let width = picture["width"].intValue
+                let height = picture["height"].intValue
+                let url = picture["url"].string!
+                let pictureParse = Picture(width: width, height: height, url: url)
+                picturesParse.append(pictureParse)
+            }
+
+            let infoParse = Information(id: id, name: name, longName: longName, nameAndLocation: nameAndLocation, firstDay: firstDay, lastDay: lastDay, normalSite: normalSite, registrationSite: registrationSite, utcTimezoneOffset: utcTimezoneOffset, utcTimezoneOffsetMillis: utcTimezoneOffsetMillis, hashtag: hashtag, pictures: picturesParse)
 
             let arraySpeaker = confe["speakers"]
             var arraySpeakerParse: [Speaker] = []
