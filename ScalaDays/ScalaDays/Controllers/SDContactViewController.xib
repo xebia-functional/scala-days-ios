@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6254" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6254" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
@@ -7,6 +7,8 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SDContactViewController" customModule="ScalaDays" customModuleProvider="target">
             <connections>
+                <outlet property="imgIcon" destination="RGq-AU-ug5" id="KDz-t8-19O"/>
+                <outlet property="lblScanResult" destination="w4R-E1-9uD" id="KTq-gc-Niu"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -14,7 +16,50 @@
         <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
             <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="placeholder_contact" translatesAutoresizingMaskIntoConstraints="NO" id="RGq-AU-ug5">
+                    <rect key="frame" x="219" y="130" width="163" height="132"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="163" id="ewl-Bo-VLk"/>
+                        <constraint firstAttribute="height" constant="132" id="m8c-0R-H6m"/>
+                    </constraints>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" placeholderIntrinsicWidth="544" placeholderIntrinsicHeight="78" text="Message" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w4R-E1-9uD">
+                    <rect key="frame" x="32" y="290" width="536" height="78"/>
+                    <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="19"/>
+                    <color key="textColor" red="0.21176470588235294" green="0.27058823529411763" blue="0.31372549019607843" alpha="0.54000000000000004" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Y4q-2Q-nKg">
+                    <rect key="frame" x="187" y="408" width="226" height="44"/>
+                    <color key="backgroundColor" red="0.8784313725490196" green="0.37254901960784315" blue="0.36862745098039218" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="226" id="L2F-8Q-7sT"/>
+                        <constraint firstAttribute="height" constant="44" id="Xch-OM-WDJ"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="14"/>
+                    <state key="normal" title="SCAN CONTACT">
+                        <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="didTapScanButton" destination="-1" eventType="touchUpInside" id="mWD-hi-e04"/>
+                    </connections>
+                </button>
+            </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="RGq-AU-ug5" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="130" id="SFW-tv-1lV"/>
+                <constraint firstAttribute="centerX" secondItem="Y4q-2Q-nKg" secondAttribute="centerX" id="kjb-v2-fgl"/>
+                <constraint firstItem="w4R-E1-9uD" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="32" id="kuN-bO-Utn"/>
+                <constraint firstAttribute="trailing" secondItem="w4R-E1-9uD" secondAttribute="trailing" constant="32" id="net-cQ-PJr"/>
+                <constraint firstItem="Y4q-2Q-nKg" firstAttribute="top" secondItem="w4R-E1-9uD" secondAttribute="bottom" constant="40" id="oFn-To-Pif"/>
+                <constraint firstItem="w4R-E1-9uD" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="290" id="upY-ZZ-66I"/>
+                <constraint firstAttribute="centerX" secondItem="RGq-AU-ug5" secondAttribute="centerX" id="ygT-nJ-62s"/>
+            </constraints>
         </view>
     </objects>
+    <resources>
+        <image name="placeholder_contact" width="163" height="119"/>
+    </resources>
 </document>
