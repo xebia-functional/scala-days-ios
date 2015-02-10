@@ -5,7 +5,7 @@
 * not use this file except in compliance with the License. You may obtain
 * a copy of the License at
 *
-*     http://www.apache.org/licenses/LICENSE-2.0
+* http://www.apache.org/licenses/LICENSE-2.0
 *
 * Unless required by applicable law or agreed to in writing, software
 * distributed under the License is distributed on an "AS IS" BASIS,
@@ -14,40 +14,34 @@
 * limitations under the License.
 */
 
+
 import MapKit
 
 extension MKMapView {
     
-    // This should be an internal function to zoomToFitMapAnnotations, but Swift compiler won't allow a local function to reference itself for some reason...
-    func findCornerCoordinatesInListOfAnnotations(listOfAnnotations: [MKAnnotation], cornerCoordinates: (topLeftCoord: CLLocationCoordinate2D, bottomRightCoord: CLLocationCoordinate2D)) -> (topLeftCoord: CLLocationCoordinate2D, bottomRightCoord: CLLocationCoordinate2D) {
-        if let currentAnnotation = listOfAnnotations.first {
-            let restOfAnnotations : [MKAnnotation] = Array(dropFirst(listOfAnnotations))
-            
-            let topLeftCoordLongitude = fmin(cornerCoordinates.topLeftCoord.longitude, currentAnnotation.coordinate.longitude)
-            let topLeftCoordLatitude = fmax(cornerCoordinates.topLeftCoord.latitude, currentAnnotation.coordinate.latitude)
-            let bottomRightCoordLongitude = fmax(cornerCoordinates.bottomRightCoord.longitude, currentAnnotation.coordinate.longitude)
-            let bottomRightCoordLatitude = fmin(cornerCoordinates.bottomRightCoord.latitude, currentAnnotation.coordinate.latitude)
-            
-            return findCornerCoordinatesInListOfAnnotations(restOfAnnotations, cornerCoordinates: (CLLocationCoordinate2D(latitude: topLeftCoordLatitude, longitude: topLeftCoordLongitude), CLLocationCoordinate2D(latitude: bottomRightCoordLatitude, longitude: bottomRightCoordLongitude)))
-        }
-        return (cornerCoordinates.topLeftCoord, cornerCoordinates.bottomRightCoord)
-    }
+    // TODO: the ideal approach to this would be to use a recursive function to calculate the middle point of
+    // our map's annotations in order to avoid mutability. But sadly it seems that while Swift uses tail call
+    // optimization *sometimes*, it won't guarantee that in any way.
+    //
+    // You can find more information about this in this blog post from Natasha The Robot:
+    // http://natashatherobot.com/functional-swift-tail-recursion/
     
     func zoomToFitMapAnnotations() {
-        
+        let kZoomOutRatio = 50.0
         if self.annotations.count == 0 {
             return
         }
-        
-        let kZoomOutRatio = 50.0
-        let startingTopLeftCoord = CLLocationCoordinate2D(latitude: -90, longitude: 180)
-        let startingBottomRightCoord = CLLocationCoordinate2D(latitude: 90, longitude: -180)
-        let cornerCoordinates = findCornerCoordinatesInListOfAnnotations(self.annotations as [MKAnnotation], cornerCoordinates: (startingTopLeftCoord, startingBottomRightCoord))
-        
-        let region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: cornerCoordinates.topLeftCoord.latitude - (cornerCoordinates.topLeftCoord.latitude - cornerCoordinates.bottomRightCoord.latitude) * 0.5,
-                                        longitude: cornerCoordinates.topLeftCoord.longitude + (cornerCoordinates.bottomRightCoord.longitude - cornerCoordinates.topLeftCoord.longitude) * 0.5),
-                                        span: MKCoordinateSpan(latitudeDelta: fabs(cornerCoordinates.topLeftCoord.latitude - cornerCoordinates.bottomRightCoord.latitude) * kZoomOutRatio, longitudeDelta: fabs(cornerCoordinates.topLeftCoord.latitude - cornerCoordinates.bottomRightCoord.latitude) * kZoomOutRatio))
+        var topLeftCoord = CLLocationCoordinate2D(latitude: -90, longitude: 180)
+        var bottomRightCoord = CLLocationCoordinate2D(latitude: 90, longitude: -180)
+        for annotation in self.annotations as [MKAnnotation] {
+            topLeftCoord.longitude = fmin(topLeftCoord.longitude, annotation.coordinate.longitude);
+            topLeftCoord.latitude = fmax(topLeftCoord.latitude, annotation.coordinate.latitude);
+            bottomRightCoord.longitude = fmax(bottomRightCoord.longitude, annotation.coordinate.longitude);
+            bottomRightCoord.latitude = fmin(bottomRightCoord.latitude, annotation.coordinate.latitude);
+        }
+        var region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: topLeftCoord.latitude - (topLeftCoord.latitude - bottomRightCoord.latitude) * 0.5,
+            longitude: topLeftCoord.longitude + (bottomRightCoord.longitude - topLeftCoord.longitude) * 0.5),
+            span: MKCoordinateSpan(latitudeDelta: fabs(topLeftCoord.latitude - bottomRightCoord.latitude) * kZoomOutRatio, longitudeDelta: fabs(topLeftCoord.latitude - bottomRightCoord.latitude) * kZoomOutRatio))
         self.setRegion(region, animated: true)
     }
-    
 }
