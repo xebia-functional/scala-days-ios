@@ -17,33 +17,54 @@
 import UIKit
 import MapKit
 
-
-class SDPlacesViewController: UIViewController {
+class SDPlacesViewController: UIViewController, MKMapViewDelegate {
 
     @IBOutlet weak var mapPlaces: MKMapView!
+    lazy var selectedConference : Conference? = DataManager.sharedInstance.currentlySelectedConference
+    let kMapDefaultDistanceInMeters : CLLocationDistance = 10000
+    let kMapReuseIdentifier = "SDPlacesViewControllerMapAnnotation"
+    var didShowFirstVenue = false
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
         self.setNavigationBarItem()
-        self.title = NSLocalizedString("places",comment: "Places")
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+        self.title = NSLocalizedString("places", comment: "Places")
+        mapPlaces.delegate = self
+        if let conference = selectedConference {
+            drawMapPushPinsForVenues(conference.venues)
+        }
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    // MARK: - Map handling
+    
+    func drawMapPushPinsForVenues(venues: Array<Venue>) {
+        let geocoder = CLGeocoder()
+        
+        for venue in venues {
+            let coordinate = CLLocationCoordinate2D(latitude: venue.latitude, longitude: venue.longitude)
+            let annotation = SDMapAnnotation(title: venue.name, subtitle: venue.address, coordinate: coordinate)
+            self.mapPlaces.addAnnotation(annotation)
+        }
+        mapPlaces.zoomToFitMapAnnotations()
     }
-    */
-
+    
+    // MARK: - MKMapViewDelegate protocol implementation
+    
+    func mapView(mapView: MKMapView!, viewForAnnotation annotation: MKAnnotation!) -> MKAnnotationView! {
+        if annotation is MKUserLocation {
+            return nil
+        } else {
+            var annotationView = mapView.dequeueReusableAnnotationViewWithIdentifier(kMapReuseIdentifier)
+            if annotationView == nil {
+                annotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: kMapReuseIdentifier)
+            }
+            annotationView.canShowCallout = true
+            annotationView.image = UIImage(named: "map_pushpin")
+            annotationView.annotation = annotation
+            return annotationView
+        }
+    }
 }
