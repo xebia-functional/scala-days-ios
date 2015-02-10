@@ -14,5 +14,7 @@
 #import <SVProgressHUD/SVProgressHUD.h>
 #import "UIImageView+WebCache.h"
 #import "NSDate+TimeAgo.h"
+#import "ZBarSDK.h"
+#import "SDContactCreationHelper.h"
 
 #endif

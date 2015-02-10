@@ -37,3 +37,14 @@
 "social_error_no_valid_tweets" = "Something happened while trying to retrieve the latest Scala Days tweets. Please tap on this message to try again in a few minutes.";
 "social_error_no_tweets_for_current_hashtag" = "We haven't found any tweets about this conference yet. Please tap on this message to try again in a few minutes.";
 "social_default_message" = "#ScalaDays2015";
+
+// Contacts
+// TODO: Messages are yet to be reviewed
+
+"contacts_regular_feedback_message" = "You can add a contact by tapping on \"SCAN CONTACT\" and scanning the corresponding QR Code.";
+"contacts_regular_feedback_error_no_access" = "Scala Days needs permission to access your Address Book in order to create a new contact. You can grant access to this app in the \"Settings\" app of your device.";
+"contacts_regular_feedback_error_invalid_qr_code" = "The QR Code seems to be invalid. Please try again by tapping on \"SCAN CONTACT\".";
+"contacts_regular_feedback_error_unknown" = "There was an error while scanning the QR Code. Please try again by tapping on \"SCAN CONTACT\".";
+"contacts_add_contact_success_message" = "Contact was successfully added to your Address Book!";
+"contacts_add_contact_request" = "Do you really want to add %@ to your Address Book?";
+"contacts_add_contact_request_no_name" = "Scanned contact doesn't have a proper name or last name, do you really want to add it to your Address Book?";

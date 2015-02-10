@@ -13,6 +13,7 @@
 		590DDD701A83BE9B00E4CC3F /* SDSpeakersTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 590DDD6F1A83BE9B00E4CC3F /* SDSpeakersTableViewCell.swift */; };
 		590DDD721A83BEA800E4CC3F /* SDSpeakersTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 590DDD711A83BEA800E4CC3F /* SDSpeakersTableViewCell.xib */; };
 		590DDD771A83C5E800E4CC3F /* SDDateHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 590DDD761A83C5E800E4CC3F /* SDDateHandler.swift */; };
+		5928D1751A88A9FA00E5049E /* SDContactCreationHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 5928D1741A88A9FA00E5049E /* SDContactCreationHelper.m */; };
 		592978031A82106D00EE3BA3 /* SDSocialTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 592978011A82106D00EE3BA3 /* SDSocialTableViewCell.swift */; };
 		592978041A82106D00EE3BA3 /* SDSocialTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 592978021A82106D00EE3BA3 /* SDSocialTableViewCell.xib */; };
 		592978061A8210B800EE3BA3 /* SDImageView-Circular.swift in Sources */ = {isa = PBXBuildFile; fileRef = 592978051A8210B800EE3BA3 /* SDImageView-Circular.swift */; };
@@ -25,6 +26,11 @@
 		593571EB1A77E41C005AA332 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B8E6651A6D4B9600F21468 /* DataManager.swift */; };
 		593571EC1A77E41C005AA332 /* Conference.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5951D0D51A76A5F5001528E8 /* Conference.swift */; };
 		593571ED1A77E4E9005AA332 /* Alamofire.swift in Sources */ = {isa = PBXBuildFile; fileRef = 101B45045AF560B28ED066DB /* Alamofire.swift */; };
+		595003011A84C1DA00A1C24F /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 595003001A84C1DA00A1C24F /* MobileCoreServices.framework */; };
+		595003031A84C43B00A1C24F /* SDZBarSymbolSet-Enumeration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 595003021A84C43B00A1C24F /* SDZBarSymbolSet-Enumeration.swift */; };
+		595003061A84DE2600A1C24F /* SDQRScannerOverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 595003051A84DE2600A1C24F /* SDQRScannerOverlayView.swift */; };
+		595003081A84DE3B00A1C24F /* SDQRScannerOverlayView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 595003071A84DE3B00A1C24F /* SDQRScannerOverlayView.xib */; };
+		5950030A1A84EDD500A1C24F /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 595003091A84EDD500A1C24F /* AddressBook.framework */; };
 		5951D0D61A76A5F5001528E8 /* Conference.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5951D0D51A76A5F5001528E8 /* Conference.swift */; };
 		84EFC40AF74037F095B5FD60 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2FB6FED00626F7CA4FD64E9E /* libPods.a */; };
 		A171433E1A88F6880068FD33 /* SDConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1FA1FF81A7BA95500338AF0 /* SDConstants.swift */; };
@@ -90,6 +96,8 @@
 		590DDD6F1A83BE9B00E4CC3F /* SDSpeakersTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SDSpeakersTableViewCell.swift; sourceTree = "<group>"; };
 		590DDD711A83BEA800E4CC3F /* SDSpeakersTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SDSpeakersTableViewCell.xib; sourceTree = "<group>"; };
 		590DDD761A83C5E800E4CC3F /* SDDateHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SDDateHandler.swift; sourceTree = "<group>"; };
+		5928D1731A88A9FA00E5049E /* SDContactCreationHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDContactCreationHelper.h; sourceTree = "<group>"; };
+		5928D1741A88A9FA00E5049E /* SDContactCreationHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDContactCreationHelper.m; sourceTree = "<group>"; };
 		592978011A82106D00EE3BA3 /* SDSocialTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SDSocialTableViewCell.swift; sourceTree = "<group>"; };
 		592978021A82106D00EE3BA3 /* SDSocialTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SDSocialTableViewCell.xib; sourceTree = "<group>"; };
 		592978051A8210B800EE3BA3 /* SDImageView-Circular.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SDImageView-Circular.swift"; sourceTree = "<group>"; };
@@ -97,6 +105,11 @@
 		5929780B1A82310100EE3BA3 /* SDTweet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SDTweet.swift; sourceTree = "<group>"; };
 		593223C51A837C6A009189C0 /* SDAlertViewHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SDAlertViewHelper.swift; sourceTree = "<group>"; };
 		593571E81A77DDA8005AA332 /* StoringHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoringHelper.swift; sourceTree = "<group>"; };
+		595003001A84C1DA00A1C24F /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		595003021A84C43B00A1C24F /* SDZBarSymbolSet-Enumeration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SDZBarSymbolSet-Enumeration.swift"; sourceTree = "<group>"; };
+		595003051A84DE2600A1C24F /* SDQRScannerOverlayView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SDQRScannerOverlayView.swift; sourceTree = "<group>"; };
+		595003071A84DE3B00A1C24F /* SDQRScannerOverlayView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SDQRScannerOverlayView.xib; sourceTree = "<group>"; };
+		595003091A84EDD500A1C24F /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
 		5951D0D51A76A5F5001528E8 /* Conference.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Conference.swift; sourceTree = "<group>"; };
 		9AA114FE335624986EFB5A1D /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		A163DC2E1A6E595B00A21B8E /* libPods-SwiftyJSON.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPods-SwiftyJSON.a"; path = "Pods/build/Debug-iphoneos/libPods-SwiftyJSON.a"; sourceTree = "<group>"; };
@@ -140,6 +153,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5950030A1A84EDD500A1C24F /* AddressBook.framework in Frameworks */,
+				595003011A84C1DA00A1C24F /* MobileCoreServices.framework in Frameworks */,
 				84EFC40AF74037F095B5FD60 /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -161,6 +176,7 @@
 				A1FA1FFA1A7BAE5B00338AF0 /* SDFonts.swift */,
 				A1FA1FEA1A7AA6AF00338AF0 /* SDColor.swift */,
 				A1CC71FF1A7A452E00757B65 /* SDUIViewControllerExtension.swift */,
+				595003021A84C43B00A1C24F /* SDZBarSymbolSet-Enumeration.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -207,9 +223,19 @@
 			path = Dates;
 			sourceTree = "<group>";
 		};
+		5928D1721A88A9E500E5049E /* Contacts */ = {
+			isa = PBXGroup;
+			children = (
+				5928D1731A88A9FA00E5049E /* SDContactCreationHelper.h */,
+				5928D1741A88A9FA00E5049E /* SDContactCreationHelper.m */,
+			);
+			path = Contacts;
+			sourceTree = "<group>";
+		};
 		592977FF1A82106D00EE3BA3 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				595003041A84D87200A1C24F /* CustomViews */,
 				592978001A82106D00EE3BA3 /* TableViewCells */,
 			);
 			path = UI;
@@ -245,6 +271,7 @@
 		593571E61A77DD73005AA332 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				5928D1721A88A9E500E5049E /* Contacts */,
 				590DDD751A83C5DE00E4CC3F /* Dates */,
 				593223C41A837C51009189C0 /* Alerts */,
 				A1FA1FF81A7BA95500338AF0 /* SDConstants.swift */,
@@ -262,9 +289,20 @@
 			path = Storing;
 			sourceTree = "<group>";
 		};
+		595003041A84D87200A1C24F /* CustomViews */ = {
+			isa = PBXGroup;
+			children = (
+				595003051A84DE2600A1C24F /* SDQRScannerOverlayView.swift */,
+				595003071A84DE3B00A1C24F /* SDQRScannerOverlayView.xib */,
+			);
+			path = CustomViews;
+			sourceTree = "<group>";
+		};
 		6DBA1EBEE9CFF41D967A4DF1 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				595003091A84EDD500A1C24F /* AddressBook.framework */,
+				595003001A84C1DA00A1C24F /* MobileCoreServices.framework */,
 				A163DC2E1A6E595B00A21B8E /* libPods-SwiftyJSON.a */,
 				2FB6FED00626F7CA4FD64E9E /* libPods.a */,
 			);
@@ -450,6 +488,7 @@
 				A1FA1FF41A7B98FE00338AF0 /* SDScheduleViewController.xib in Resources */,
 				A1FA1FF51A7B98FE00338AF0 /* SDSocialViewController.xib in Resources */,
 				A1FA1FF61A7B98FE00338AF0 /* SDSlideMenuViewController.xib in Resources */,
+				595003081A84DE3B00A1C24F /* SDQRScannerOverlayView.xib in Resources */,
 				A19C65C81A7FC30A00A206FC /* SDContactViewController.xib in Resources */,
 				A1FA1FE91A7AA33F00338AF0 /* SDAboutViewController.xib in Resources */,
 				590DDD721A83BEA800E4CC3F /* SDSpeakersTableViewCell.xib in Resources */,
@@ -513,6 +552,7 @@
 				A1FA1FFB1A7BAE5B00338AF0 /* SDFonts.swift in Sources */,
 				590DDD6A1A83BAC100E4CC3F /* SDSpeakersListViewController.swift in Sources */,
 				590DDD771A83C5E800E4CC3F /* SDDateHandler.swift in Sources */,
+				595003031A84C43B00A1C24F /* SDZBarSymbolSet-Enumeration.swift in Sources */,
 				A1FA1FF91A7BA95500338AF0 /* SDConstants.swift in Sources */,
 				A1FA1FF11A7B920700338AF0 /* SDSlideMenuViewController.swift in Sources */,
 				592978091A82141400EE3BA3 /* SDSocialHandler.swift in Sources */,
@@ -520,11 +560,13 @@
 				A1FA1FEF1A7B91D100338AF0 /* SDSocialViewController.swift in Sources */,
 				A1FA1FED1A7B919900338AF0 /* SlideMenuController.swift in Sources */,
 				A1FA1FEC1A7B90DD00338AF0 /* SDUIViewControllerExtension.swift in Sources */,
+				595003061A84DE2600A1C24F /* SDQRScannerOverlayView.swift in Sources */,
 				5929780C1A82310100EE3BA3 /* SDTweet.swift in Sources */,
 				A1FA1FEB1A7AA6AF00338AF0 /* SDColor.swift in Sources */,
 				593223C61A837C6A009189C0 /* SDAlertViewHelper.swift in Sources */,
 				A1FA1FE81A7AA33F00338AF0 /* SDAboutViewController.swift in Sources */,
 				A1FA1FE01A7AA2FA00338AF0 /* SDSponsorViewController.swift in Sources */,
+				5928D1751A88A9FA00E5049E /* SDContactCreationHelper.m in Sources */,
 				593571E91A77DDA8005AA332 /* StoringHelper.swift in Sources */,
 				592978061A8210B800EE3BA3 /* SDImageView-Circular.swift in Sources */,
 				A1B8E6661A6D4B9600F21468 /* DataManager.swift in Sources */,
