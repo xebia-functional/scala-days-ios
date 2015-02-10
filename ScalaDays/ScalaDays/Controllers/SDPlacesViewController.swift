@@ -43,10 +43,8 @@ class SDPlacesViewController: UIViewController, MKMapViewDelegate {
     func drawMapPushPinsForVenues(venues: Array<Venue>) {
         let geocoder = CLGeocoder()
         
-        var currentRegion = mapPlaces.region
-        
         for venue in venues {
-            let coordinate = CLLocationCoordinate2D(latitude: (venue.latitude as NSString).doubleValue, longitude: (venue.longitude as NSString).doubleValue)
+            let coordinate = CLLocationCoordinate2D(latitude: venue.latitude, longitude: venue.longitude)
             let annotation = SDMapAnnotation(title: venue.name, subtitle: venue.address, coordinate: coordinate)
             self.mapPlaces.addAnnotation(annotation)
         }

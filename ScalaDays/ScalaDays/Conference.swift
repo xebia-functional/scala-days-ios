@@ -257,10 +257,10 @@ class Venue: NSObject, Equatable, NSCoding {
     let name: String
     let address: String
     let website: String
-    let latitude: String
-    let longitude: String
+    let latitude: Double
+    let longitude: Double
 
-    init(name: String, address: String, website: String, latitude: String, longitude: String) {
+    init(name: String, address: String, website: String, latitude: Double, longitude: Double) {
         self.name = name
         self.address = address
         self.website = website
@@ -272,8 +272,8 @@ class Venue: NSObject, Equatable, NSCoding {
         self.name = aDecoder.decodeObjectForKey("name") as String
         self.address = aDecoder.decodeObjectForKey("address") as String
         self.website = aDecoder.decodeObjectForKey("website") as String
-        self.latitude = aDecoder.decodeObjectForKey("latitude") as String
-        self.longitude = aDecoder.decodeObjectForKey("longitude") as String
+        self.latitude = aDecoder.decodeObjectForKey("latitude") as Double
+        self.longitude = aDecoder.decodeObjectForKey("longitude") as Double
     }
 
     func encodeWithCoder(aCoder: NSCoder) {

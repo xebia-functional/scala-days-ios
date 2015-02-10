@@ -157,8 +157,8 @@ class DataManager {
                 let name = venue["name"].string!
                 let address = venue["address"].string!
                 let website = venue["website"].string!
-                let latitude = venue["latitude"].string!
-                let longitude = venue["longitude"].string!
+                let latitude = venue["latitude"].double!
+                let longitude = venue["longitude"].double!
                 let venueParse = Venue(name: name, address: address, website: website, latitude: latitude, longitude: longitude)
                 arrayVenueParse.append(venueParse)
             }
