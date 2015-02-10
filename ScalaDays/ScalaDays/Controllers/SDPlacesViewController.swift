@@ -44,7 +44,7 @@ class SDPlacesViewController: UIViewController, MKMapViewDelegate {
         let geocoder = CLGeocoder()
         
         for venue in venues {
-            let coordinate = CLLocationCoordinate2D(latitude: (venue.latitude as NSString).doubleValue, longitude: (venue.longitude as NSString).doubleValue)
+            let coordinate = CLLocationCoordinate2D(latitude: venue.latitude, longitude: venue.longitude)
             let annotation = SDMapAnnotation(title: venue.name, subtitle: venue.address, coordinate: coordinate)
             self.mapPlaces.addAnnotation(annotation)
         }

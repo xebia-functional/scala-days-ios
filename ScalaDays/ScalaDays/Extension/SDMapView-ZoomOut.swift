@@ -18,7 +18,7 @@ import MapKit
 
 extension MKMapView {
     
-    // This should be an internal function to zoomToFitMapAnnotations, but Swift compiler won't allow a local function to reference itself for some reason...    
+    // This should be an internal function to zoomToFitMapAnnotations, but Swift compiler won't allow a local function to reference itself for some reason...
     func findCornerCoordinatesInListOfAnnotations(listOfAnnotations: [MKAnnotation], cornerCoordinates: (topLeftCoord: CLLocationCoordinate2D, bottomRightCoord: CLLocationCoordinate2D)) -> (topLeftCoord: CLLocationCoordinate2D, bottomRightCoord: CLLocationCoordinate2D) {
         if let currentAnnotation = listOfAnnotations.first {
             let restOfAnnotations : [MKAnnotation] = Array(dropFirst(listOfAnnotations))
