@@ -103,9 +103,10 @@ class SDSlideMenuViewController: UIViewController, UITableViewDelegate, UITableV
     }
     override func  viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        if let  infoSelected = DataManager.sharedInstance.currentlySelectedConference?.info{
-            self.titleConference.text = infoSelected.longName
-            let image = infoSelected.pictures[2]
+        if let  info = DataManager.sharedInstance.currentlySelectedConference?.info{
+            self.infoSelected = info
+            self.titleConference.text = info.longName
+            let image = info.pictures[2]
             let imageUrl = NSURL(string: image.url)
             if let infoImageUrl = imageUrl {
                 self.imgHeader.sd_setImageWithURL(infoImageUrl, placeholderImage: UIImage(named: ""))
@@ -165,7 +166,7 @@ class SDSlideMenuViewController: UIViewController, UITableViewDelegate, UITableV
                 self.slideMenuController()?.changeMainViewController(self.contactViewController, close: true)
                 break
             case .Tickets:
-                  if let registration = infoSelected?.registrationSite {
+                  if let registration = self.infoSelected?.registrationSite {
                     UIApplication.sharedApplication().openURL(NSURL(string:registration)!)
                   }
                 break
