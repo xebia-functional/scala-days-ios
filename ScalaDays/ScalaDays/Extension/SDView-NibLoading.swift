@@ -20,11 +20,10 @@ extension UIView {
    
     func loadNibSubviewsFromNib(nibName: String) -> UIView? {
         let objects = NSBundle.mainBundle().loadNibNamed(nibName, owner: self, options: nil)
-        var containerView : UIView
         
         objects.filter({$0 is UIView})
         if objects.count > 0 {
-            containerView = objects[0] as UIView
+            let containerView = objects[0] as UIView
             containerView.setTranslatesAutoresizingMaskIntoConstraints(false)
             addSubview(containerView)
             needsUpdateConstraints()
@@ -34,7 +33,7 @@ extension UIView {
         return nil
     }
     
-    func updateCustomConstraints(customConstraints : NSMutableArray, var containerView: UIView!) {
+    func updateCustomConstraints(customConstraints : NSMutableArray, containerView: UIView!) {
         removeConstraints(customConstraints)
         customConstraints.removeAllObjects()
         

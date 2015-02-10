@@ -18,7 +18,7 @@ class SDQRScannerOverlayView: UIView {
     
     @IBOutlet weak var btnCancel: UIBarButtonItem!
     
-    var customConstraints : NSMutableArray = NSMutableArray()
+    let customConstraints : NSMutableArray = NSMutableArray()
     var containerView: UIView!
     weak var delegate : SDQRScannerOverlayViewDelegate?
     
