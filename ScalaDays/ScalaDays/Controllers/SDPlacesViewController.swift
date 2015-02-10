@@ -63,7 +63,7 @@ class SDPlacesViewController: UIViewController, MKMapViewDelegate {
             if annotationView == nil {
                 annotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: kMapReuseIdentifier)
             }
-            annotationView!.canShowCallout = true
+            annotationView.canShowCallout = true
             annotationView.image = UIImage(named: "map_pushpin")
             annotationView.annotation = annotation
             return annotationView
