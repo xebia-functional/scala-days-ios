@@ -18,19 +18,70 @@ import UIKit
 
 class SDScheduleViewController: UIViewController {
 
+    @IBOutlet weak var tblMain: UITableView!
+    let kReuseIdentifier = "SDScheduleViewControllerCell"
+    lazy var selectedConference : Conference? = DataManager.sharedInstance.currentlySelectedConference
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
         self.setNavigationBarItem()
         self.title = NSLocalizedString("schedule", comment: "Schedule")
-
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+        
+        /*if let scheduleDates = scheduledDates() {
+            println(scheduledDates)
+        }*/
     }
     
-   
+    // MARK: UITableViewDataSource implementation
+
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        return 1
+    }
+    
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 1
+    }
+    
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCellWithIdentifier(kReuseIdentifier, forIndexPath: indexPath) as UITableViewCell
+        configureCell(cell, forRowAtIndexPath: indexPath)
+        return cell
+    }
+    
+    func configureCell(cell: UITableViewCell, forRowAtIndexPath: NSIndexPath) {
+        
+    }
+        //MARK: UITableViewDelegate
+    
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        
+    }
+    
+    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return 44
+    }
+    
+    func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 0
+    }
+    
+    // MARK: - Data handling
+    
+    /*func scheduledDates() -> Array<String>? {
+        if let conference = selectedConference {
+            let dates = conference.schedule.reduce([String](), combine: {
+                var temp = $0
+                let date = $1.date
+                
+                let count: Int = temp.filter({
+                    $0 == date
+                }).count
+                
+                return temp
+            })
+        }
+        return nil
+    }*/
 }
