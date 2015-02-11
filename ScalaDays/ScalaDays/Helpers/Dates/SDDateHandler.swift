@@ -35,7 +35,7 @@ class SDDateHandler: NSObject {
         return dateFormatter.dateFromString(twitterDate)
     }
 
-    func dateformatterDateString(dateString: NSString) -> NSDate? {
+    func parseServerDate(dateString: NSString) -> NSDate? {
         var dateFormatter: NSDateFormatter = NSDateFormatter()
         dateFormatter.dateFormat = kResponseDateFormat
         return dateFormatter.dateFromString(dateString)

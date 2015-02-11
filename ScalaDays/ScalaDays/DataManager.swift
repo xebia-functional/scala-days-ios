@@ -29,10 +29,7 @@ class DataManager {
     var lastDate: NSDate? {
         get {
             var returnValue: NSDate? = NSUserDefaults.standardUserDefaults().objectForKey("date") as? NSDate
-            if returnValue == nil {
-                returnValue = nil //Default value
-            }
-            return returnValue!
+            return returnValue
         }
         set(newValue) {
             NSUserDefaults.standardUserDefaults().setObject(newValue, forKey: "date")
@@ -71,7 +68,7 @@ class DataManager {
             if let conferencesData = StoringHelper.sharedInstance.loadConferenceData() {
                 self.conferences = conferencesData
                 if let date = response?.allHeaderFields[lastModifiedDate] as NSString? {
-                    let dateJson = SDDateHandler.sharedInstance.dateformatterDateString(date)
+                    let dateJson = SDDateHandler.sharedInstance.parseServerDate(date)
                     if (dateJson == self.lastDate) {
                         println("Json no modified")
                         callback(false, error)
@@ -90,7 +87,7 @@ class DataManager {
                 }
             } else {
                 if let date = response?.allHeaderFields[lastModifiedDate] as NSString? {
-                    self.lastDate = SDDateHandler.sharedInstance.dateformatterDateString(date)
+                    self.lastDate = SDDateHandler.sharedInstance.parseServerDate(date)
                 }
                 if (error != nil) {
                     NSLog("Error: \(error)")
