@@ -24,10 +24,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
         self.initAparence()
-        
-        self.loadData()
-        
-        self.createMenuView()
+        self.createMenuView()        
         return true
     }
 
@@ -77,23 +74,5 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName : UIColor.whiteColor()]
         UIApplication.sharedApplication().setStatusBarStyle(.LightContent, animated: false)
     }
-
-    func loadData() {
-        SVProgressHUD.show()
-        DataManager.sharedInstance.loadData() {
-            (json, error) -> () in
-            if let unWrapperJson = json {
-                DataManager.sharedInstance.parseJSON(unWrapperJson)
-                SVProgressHUD.dismiss()
-                if let info = DataManager.sharedInstance.conferences?{
-                    println(DataManager.sharedInstance.conferences?)
-                }
-            } else {
-                println("Error load json")
-            }
-            
-        }
-    }
-    
 }
 

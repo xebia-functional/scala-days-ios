@@ -18,19 +18,49 @@ import UIKit
 
 class SDScheduleViewController: UIViewController {
 
+    @IBOutlet weak var tblSchedule: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
         self.setNavigationBarItem()
         self.title = NSLocalizedString("schedule", comment: "Schedule")
+        self.loadData()
 
+        tblSchedule?.registerNib(UINib(nibName: "SDSocialTableViewCell", bundle: nil), forCellReuseIdentifier: "socialViewControllerCell")
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-   
+
+    func loadData() {
+        SVProgressHUD.show()
+        DataManager.sharedInstance.loadDataJson() {
+            (bool, error) -> () in
+            if(bool){
+                println ("Json modified, reload data")
+            }
+            SVProgressHUD.dismiss()
+        }
+    }
+
+
+//MARK: UITableViewDataSource
+
+
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 0
+    }
+
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        return SDSocialTableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: "socialViewControllerCell")
+    }
+
+//MARK: UITableViewDelegate
+
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+
+    }
 }

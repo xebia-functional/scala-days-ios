@@ -9,6 +9,7 @@
             <connections>
                 <outlet property="heigthHeader" destination="b05-R2-Oic" id="M3z-f2-L8J"/>
                 <outlet property="heigthTable" destination="UCW-so-Pom" id="39k-rM-hDV"/>
+                <outlet property="imgHeader" destination="tpM-kA-yta" id="flC-OM-Lgr"/>
                 <outlet property="tblMenu" destination="lxn-hm-0cu" id="skZ-DC-Ar3"/>
                 <outlet property="titleConference" destination="JLQ-ZL-etP" id="AHS-9A-IT8"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
