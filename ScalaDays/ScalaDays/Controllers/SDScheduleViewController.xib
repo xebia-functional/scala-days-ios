@@ -7,7 +7,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SDScheduleViewController" customModule="ScalaDays" customModuleProvider="target">
             <connections>
-                <outlet property="tblMain" destination="DpH-YU-HSH" id="5x9-gl-3Nc"/>
+                <outlet property="tblSchedule" destination="DpH-YU-HSH" id="qLf-EV-QW3"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -19,6 +19,10 @@
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="DpH-YU-HSH">
                     <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <connections>
+                        <outlet property="dataSource" destination="-1" id="Nzu-kR-JH8"/>
+                        <outlet property="delegate" destination="-1" id="m77-MW-wC6"/>
+                    </connections>
                 </tableView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -28,6 +32,7 @@
                 <constraint firstItem="DpH-YU-HSH" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="j14-9k-d6c"/>
                 <constraint firstItem="DpH-YU-HSH" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="yLe-ld-VsT"/>
             </constraints>
+            <point key="canvasLocation" x="145" y="263"/>
         </view>
     </objects>
 </document>

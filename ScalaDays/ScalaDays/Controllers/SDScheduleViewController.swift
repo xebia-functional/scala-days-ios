@@ -16,11 +16,14 @@
 
 import UIKit
 
-class SDScheduleViewController: UIViewController {
+class SDScheduleViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
-    @IBOutlet weak var tblMain: UITableView!
+    @IBOutlet weak var tblSchedule: UITableView!
     let kReuseIdentifier = "SDScheduleViewControllerCell"
     lazy var selectedConference : Conference? = DataManager.sharedInstance.currentlySelectedConference
+    
+    var dates: [String]?
+    var events: [[Event]]?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,32 +31,65 @@ class SDScheduleViewController: UIViewController {
         // Do any additional setup after loading the view.
         self.setNavigationBarItem()
         self.title = NSLocalizedString("schedule", comment: "Schedule")
+        tblSchedule?.registerClass(UITableViewCell.self, forCellReuseIdentifier: kReuseIdentifier)
         
-        /*if let scheduleDates = scheduledDates() {
-            println(scheduledDates)
-        }*/
+        self.loadData()
+    }
+    
+    // MARK: - Data loading
+    
+    func loadData() {
+        SVProgressHUD.show()
+        DataManager.sharedInstance.loadDataJson() {
+            (bool, error) -> () in
+            if(bool){
+                println ("Json modified, reload data")
+            }
+            SVProgressHUD.dismiss()
+            
+            self.dates = self.scheduledDates()
+            self.events = self.listOfEventsSortedByDates()
+            self.tblSchedule.reloadData()
+        }
     }
     
     // MARK: UITableViewDataSource implementation
 
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 1
+        if let scheduledDates = dates {
+            return scheduledDates.count
+        }
+        return 0
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        if let events = events {
+            return events[section].count
+        }
+        return 0
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier(kReuseIdentifier, forIndexPath: indexPath) as UITableViewCell
-        configureCell(cell, forRowAtIndexPath: indexPath)
+        configureCell(cell, indexPath: indexPath)
         return cell
     }
     
-    func configureCell(cell: UITableViewCell, forRowAtIndexPath: NSIndexPath) {
-        
+    func configureCell(cell: UITableViewCell, indexPath: NSIndexPath) {
+        if let events = events {
+            let event = events[indexPath.section][indexPath.row]
+            cell.textLabel?.text = event.title
+        }
     }
-        //MARK: UITableViewDelegate
+    
+    func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        if let dates = dates {
+            return dates[section]
+        }
+        return nil
+    }
+    
+    // MARK: - UITableViewDelegate
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
@@ -64,24 +100,45 @@ class SDScheduleViewController: UIViewController {
     }
     
     func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 0
+        return 44.0
     }
+    
     
     // MARK: - Data handling
     
-    /*func scheduledDates() -> Array<String>? {
-        if let conference = selectedConference {
-            let dates = conference.schedule.reduce([String](), combine: {
+    func scheduledDates() -> [String]? {
+        if let schedule = selectedConference?.schedule {
+            let result = schedule.reduce([String](), {
                 var temp = $0
-                let date = $1.date
                 
-                let count: Int = temp.filter({
-                    $0 == date
-                }).count
-                
+                if $0.count == 0 {
+                    return [$1.date]
+                } else if $1.date != $0.last {
+                    temp.append($1.date)
+                }
                 return temp
             })
+            return result
         }
         return nil
-    }*/
+    }
+    
+    func listOfEventsSortedByDates() -> [[Event]]? {
+        var temp = [[Event]]()
+
+        switch(dates, selectedConference?.schedule) {
+            case let (.Some(_dates), .Some(_schedule)):
+            for date in _dates {
+                let filteredEvents = _schedule.filter { $0.date == date}
+                temp.append(filteredEvents)
+            }
+            return temp
+            default:
+                break;
+        }
+
+        return nil
+    }
+    
 }
+

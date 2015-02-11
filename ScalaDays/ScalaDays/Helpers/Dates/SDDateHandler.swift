@@ -17,19 +17,27 @@
 import UIKit
 
 class SDDateHandler: NSObject {
-    lazy var dateFormatter : NSDateFormatter = NSDateFormatter()
+    lazy var dateFormatter: NSDateFormatter = NSDateFormatter()
     let kTwitterDateFormat = "EEE MMM d HH:mm:ss Z y"
-    
+    let kResponseDateFormat = "EEE, dd MMM yyyy HH:mm:ss Z"
     class var sharedInstance: SDDateHandler {
+
         struct Static {
             static let instance: SDDateHandler = SDDateHandler()
         }
+
         return Static.instance
     }
-    
+
     func parseTwitterDate(twitterDate: String) -> NSDate? {
         dateFormatter.locale = NSLocale(localeIdentifier: "en_US_POSIX")
         dateFormatter.dateFormat = kTwitterDateFormat
         return dateFormatter.dateFromString(twitterDate)
+    }
+
+    func parseServerDate(dateString: NSString) -> NSDate? {
+        var dateFormatter: NSDateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = kResponseDateFormat
+        return dateFormatter.dateFromString(dateString)
     }
 }

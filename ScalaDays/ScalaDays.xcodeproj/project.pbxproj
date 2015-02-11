@@ -25,7 +25,6 @@
 		592978041A82106D00EE3BA3 /* SDSocialTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 592978021A82106D00EE3BA3 /* SDSocialTableViewCell.xib */; };
 		592978061A8210B800EE3BA3 /* SDImageView-Circular.swift in Sources */ = {isa = PBXBuildFile; fileRef = 592978051A8210B800EE3BA3 /* SDImageView-Circular.swift */; };
 		592978091A82141400EE3BA3 /* SDSocialHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 592978081A82141400EE3BA3 /* SDSocialHandler.swift */; };
-		5929780A1A82141400EE3BA3 /* SDSocialHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 592978081A82141400EE3BA3 /* SDSocialHandler.swift */; };
 		5929780C1A82310100EE3BA3 /* SDTweet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5929780B1A82310100EE3BA3 /* SDTweet.swift */; };
 		5929780D1A82310100EE3BA3 /* SDTweet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5929780B1A82310100EE3BA3 /* SDTweet.swift */; };
 		593223C61A837C6A009189C0 /* SDAlertViewHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 593223C51A837C6A009189C0 /* SDAlertViewHelper.swift */; };
@@ -41,6 +40,8 @@
 		5950030A1A84EDD500A1C24F /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 595003091A84EDD500A1C24F /* AddressBook.framework */; };
 		5951D0D61A76A5F5001528E8 /* Conference.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5951D0D51A76A5F5001528E8 /* Conference.swift */; };
 		84EFC40AF74037F095B5FD60 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2FB6FED00626F7CA4FD64E9E /* libPods.a */; };
+		A171433E1A88F6880068FD33 /* SDConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1FA1FF81A7BA95500338AF0 /* SDConstants.swift */; };
+		A171433F1A88F7730068FD33 /* SDDateHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 590DDD761A83C5E800E4CC3F /* SDDateHandler.swift */; };
 		A19C65C71A7FC30A00A206FC /* SDContactViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A19C65C51A7FC30A00A206FC /* SDContactViewController.swift */; };
 		A19C65C81A7FC30A00A206FC /* SDContactViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A19C65C61A7FC30A00A206FC /* SDContactViewController.xib */; };
 		A1A94F2D1A76A36C003A6C0B /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1A94F2C1A76A36C003A6C0B /* SwiftyJSON.swift */; };
@@ -605,6 +606,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A171433F1A88F7730068FD33 /* SDDateHandler.swift in Sources */,
+				A171433E1A88F6880068FD33 /* SDConstants.swift in Sources */,
 				5929780D1A82310100EE3BA3 /* SDTweet.swift in Sources */,
 				5929780A1A82141400EE3BA3 /* SDSocialHandler.swift in Sources */,
 				5928D18D1A89096500E5049E /* SDView-NibLoading.swift in Sources */,
