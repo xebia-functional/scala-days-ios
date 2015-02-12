@@ -17,12 +17,14 @@ class SDScheduleListTableViewCell: UITableViewCell {
     let kDefaultTopSpaceForSpeakerTwitter : CGFloat = 6.0
     let kWidthOfTimeContainer : CGFloat = 68.0
     let kDefaultHorizontalPadding : CGFloat = 15.0
+    let kDefaultMaxAlphaForSelectionBG : CGFloat = 0.3
     
     @IBOutlet weak var lblLocation: UILabel!
     @IBOutlet weak var lblTitle: UILabel!
     @IBOutlet weak var lblSpeaker: UILabel!
     @IBOutlet weak var lblTwitter: UILabel!
     @IBOutlet weak var lblTime: UILabel!
+    @IBOutlet weak var selectedBGView: UIView!
     
     @IBOutlet weak var constraintForLblLocationHeight: NSLayoutConstraint!
     @IBOutlet weak var constraintForLblSpeaker: NSLayoutConstraint!
@@ -30,6 +32,15 @@ class SDScheduleListTableViewCell: UITableViewCell {
     @IBOutlet weak var constraintForLblLocationBottomSpace: NSLayoutConstraint!
     @IBOutlet weak var constraintForLblSpeakerTopSpace: NSLayoutConstraint!
     @IBOutlet weak var constraintForLblTwitterTopSpace: NSLayoutConstraint!
+    
+    
+    override func setHighlighted(highlighted: Bool, animated: Bool) {
+        self.selectedBGView.alpha = highlighted ? kDefaultMaxAlphaForSelectionBG : 0
+    }
+    
+    override func setSelected(selected: Bool, animated: Bool) {
+        self.selectedBGView.alpha = selected ? kDefaultMaxAlphaForSelectionBG : 0
+    }
     
     override func layoutSubviews() {
         super.layoutSubviews()

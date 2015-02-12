@@ -67,16 +67,24 @@
                         <color key="textColor" red="0.21176470588235294" green="0.27058823529411763" blue="0.31372549019607843" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <view alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gAd-Vu-ffH" userLabel="Selected BG View">
+                        <rect key="frame" x="0.0" y="0.0" width="640" height="108"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
                 </subviews>
                 <color key="backgroundColor" red="0.41960784313725491" green="0.81176470588235294" blue="0.9137254901960784" alpha="1" colorSpace="calibratedRGB"/>
                 <constraints>
                     <constraint firstItem="qCh-Rh-O4u" firstAttribute="leading" secondItem="zrO-zq-C4M" secondAttribute="trailing" constant="8" id="0f8-gS-iID"/>
                     <constraint firstAttribute="bottom" secondItem="uOZ-dw-dqz" secondAttribute="bottom" constant="1" id="0vw-b6-byG"/>
                     <constraint firstAttribute="bottom" secondItem="iZC-Ux-GCx" secondAttribute="bottom" constant="1" id="1AY-rY-JIF"/>
+                    <constraint firstItem="gAd-Vu-ffH" firstAttribute="top" secondItem="WYi-j6-dN4" secondAttribute="top" id="2h3-NR-Xmj"/>
                     <constraint firstItem="uOZ-dw-dqz" firstAttribute="leading" secondItem="WYi-j6-dN4" secondAttribute="leading" id="2lz-sm-cXp"/>
+                    <constraint firstAttribute="bottom" secondItem="gAd-Vu-ffH" secondAttribute="bottom" id="2ow-IK-vo5"/>
                     <constraint firstItem="Abz-WY-eRT" firstAttribute="top" secondItem="WYi-j6-dN4" secondAttribute="top" constant="12" id="2tV-WT-dkF"/>
+                    <constraint firstAttribute="trailing" secondItem="gAd-Vu-ffH" secondAttribute="trailing" id="7Kf-au-uBY"/>
                     <constraint firstItem="78z-hW-SG4" firstAttribute="top" secondItem="Abz-WY-eRT" secondAttribute="bottom" constant="6" id="9vJ-fd-XIO"/>
                     <constraint firstItem="iZC-Ux-GCx" firstAttribute="leading" secondItem="uOZ-dw-dqz" secondAttribute="trailing" constant="1" id="Jmg-dR-tCj"/>
+                    <constraint firstItem="gAd-Vu-ffH" firstAttribute="leading" secondItem="WYi-j6-dN4" secondAttribute="leading" id="JsD-ch-Cse"/>
                     <constraint firstItem="iZC-Ux-GCx" firstAttribute="top" secondItem="WYi-j6-dN4" secondAttribute="top" id="QnM-w5-Hsl"/>
                     <constraint firstItem="78z-hW-SG4" firstAttribute="leading" secondItem="uOZ-dw-dqz" secondAttribute="trailing" constant="15" id="Srh-Uk-eWc"/>
                     <constraint firstAttribute="bottom" secondItem="qCh-Rh-O4u" secondAttribute="bottom" priority="666" constant="12" id="WbC-Or-qRj"/>
@@ -101,6 +109,7 @@
                 <outlet property="lblTime" destination="RdK-wi-8OD" id="dBs-5T-Sei"/>
                 <outlet property="lblTitle" destination="78z-hW-SG4" id="nYz-Iw-kqf"/>
                 <outlet property="lblTwitter" destination="qCh-Rh-O4u" id="ESc-ZU-ywu"/>
+                <outlet property="selectedBGView" destination="gAd-Vu-ffH" id="Lob-gv-dG9"/>
             </connections>
             <point key="canvasLocation" x="102" y="-3"/>
         </tableViewCell>
