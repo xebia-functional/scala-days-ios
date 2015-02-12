@@ -19,7 +19,9 @@ import UIKit
 class SDScheduleViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     @IBOutlet weak var tblSchedule: UITableView!
+    
     let kReuseIdentifier = "SDScheduleViewControllerCell"
+    let kHeaderHeight : CGFloat = 40.0
     lazy var selectedConference : Conference? = DataManager.sharedInstance.currentlySelectedConference
     
     var dates: [String]?
@@ -28,10 +30,11 @@ class SDScheduleViewController: UIViewController, UITableViewDelegate, UITableVi
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
         self.setNavigationBarItem()
         self.title = NSLocalizedString("schedule", comment: "Schedule")
-        tblSchedule?.registerClass(UITableViewCell.self, forCellReuseIdentifier: kReuseIdentifier)
+        tblSchedule?.registerNib(UINib(nibName: "SDScheduleListTableViewCell", bundle: nil), forCellReuseIdentifier: kReuseIdentifier)
+        tblSchedule?.registerNib(UINib(nibName: "SDScheduleListTableViewHeader", bundle: nil), forHeaderFooterViewReuseIdentifier: kReuseIdentifier)
+        tblSchedule?.separatorStyle = .None
         
         self.loadData()
     }
@@ -50,6 +53,9 @@ class SDScheduleViewController: UIViewController, UITableViewDelegate, UITableVi
             self.dates = self.scheduledDates()
             self.events = self.listOfEventsSortedByDates()
             self.tblSchedule.reloadData()
+            
+            let test = self.selectedConference?.schedule.filter({ $0.location != nil })
+            println("lel")
         }
     }
     
@@ -70,15 +76,15 @@ class SDScheduleViewController: UIViewController, UITableViewDelegate, UITableVi
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier(kReuseIdentifier, forIndexPath: indexPath) as UITableViewCell
+        let cell = tableView.dequeueReusableCellWithIdentifier(kReuseIdentifier, forIndexPath: indexPath) as SDScheduleListTableViewCell
         configureCell(cell, indexPath: indexPath)
         return cell
     }
     
-    func configureCell(cell: UITableViewCell, indexPath: NSIndexPath) {
+    func configureCell(cell: SDScheduleListTableViewCell, indexPath: NSIndexPath) {
         if let events = events {
             let event = events[indexPath.section][indexPath.row]
-            cell.textLabel?.text = event.title
+            cell.drawEventData(event)
         }
     }
     
@@ -92,17 +98,32 @@ class SDScheduleViewController: UIViewController, UITableViewDelegate, UITableVi
     // MARK: - UITableViewDelegate
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        
+        tableView.deselectRowAtIndexPath(indexPath, animated: true)
     }
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        return 44
+        if (isIOS8OrLater()) {
+            return UITableViewAutomaticDimension
+        }
+        let cell = self.tableView(tableView, cellForRowAtIndexPath: indexPath) as SDScheduleListTableViewCell
+        return cell.contentView.systemLayoutSizeFittingSize(UILayoutFittingCompressedSize).height
     }
     
     func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 44.0
+        return kHeaderHeight
     }
     
+    
+    func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        switch(tableView.dequeueReusableHeaderFooterViewWithIdentifier(kReuseIdentifier), dates) {
+        case let (.Some(headerView as SDScheduleListTableViewHeader), .Some(dates)):
+            headerView.lblDate.text = dates[section]
+            return headerView
+        default:
+            break
+        }
+        return nil
+    }
     
     // MARK: - Data handling
     

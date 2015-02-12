@@ -33,7 +33,19 @@ extension UIColor {
     class func appRedColor() -> UIColor {
         return UIColor(red: 224/255, green: 95/255, blue: 94/255, alpha: 255/255)
     }
+    
+    class func appScheduleBlueBackgroundColor() -> UIColor {
+        return UIColor(red: 108/255, green: 207/255, blue: 233/255, alpha: 255/255)
+    }
 
+    class func appScheduleTimeBlueBackgroundColor() -> UIColor {
+        return UIColor(red: 70/255, green: 149/255, blue: 174/255, alpha: 255/255)
+    }
+    
+    class func appScheduleMainCellBackgroundColor() -> UIColor {
+        return UIColor(red: 85/255, green: 178/255, blue: 206/255, alpha: 255/255)
+    }    
+    
 }
 
  
