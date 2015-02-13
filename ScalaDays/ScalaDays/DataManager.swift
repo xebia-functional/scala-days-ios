@@ -175,6 +175,7 @@ class DataManager {
 
                 }
                 let sponsorType = SponsorType(type: type, items: arrayItemsParse)
+                arraySponsorParse.append(sponsorType)
             }
 
             let arrayVenue = confe["venues"]
