@@ -43,8 +43,6 @@
 		595003081A84DE3B00A1C24F /* SDQRScannerOverlayView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 595003071A84DE3B00A1C24F /* SDQRScannerOverlayView.xib */; };
 		5950030A1A84EDD500A1C24F /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 595003091A84EDD500A1C24F /* AddressBook.framework */; };
 		5951D0D61A76A5F5001528E8 /* Conference.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5951D0D51A76A5F5001528E8 /* Conference.swift */; };
-		59DA40AB1A8D09D4005F5D8C /* SDScheduleListTableViewHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59DA40AA1A8D09D4005F5D8C /* SDScheduleListTableViewHeader.swift */; };
-		59DA40AD1A8D09E4005F5D8C /* SDScheduleListTableViewHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 59DA40AC1A8D09E4005F5D8C /* SDScheduleListTableViewHeader.xib */; };
 		84EFC40AF74037F095B5FD60 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2FB6FED00626F7CA4FD64E9E /* libPods.a */; };
 		A171433E1A88F6880068FD33 /* SDConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1FA1FF81A7BA95500338AF0 /* SDConstants.swift */; };
 		A171433F1A88F7730068FD33 /* SDDateHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 590DDD761A83C5E800E4CC3F /* SDDateHandler.swift */; };
@@ -131,8 +129,6 @@
 		595003071A84DE3B00A1C24F /* SDQRScannerOverlayView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SDQRScannerOverlayView.xib; sourceTree = "<group>"; };
 		595003091A84EDD500A1C24F /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
 		5951D0D51A76A5F5001528E8 /* Conference.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Conference.swift; sourceTree = "<group>"; };
-		59DA40AA1A8D09D4005F5D8C /* SDScheduleListTableViewHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SDScheduleListTableViewHeader.swift; sourceTree = "<group>"; };
-		59DA40AC1A8D09E4005F5D8C /* SDScheduleListTableViewHeader.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SDScheduleListTableViewHeader.xib; sourceTree = "<group>"; };
 		9AA114FE335624986EFB5A1D /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		A163DC2E1A6E595B00A21B8E /* libPods-SwiftyJSON.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPods-SwiftyJSON.a"; path = "Pods/build/Debug-iphoneos/libPods-SwiftyJSON.a"; sourceTree = "<group>"; };
 		A17D3AC71A690E3A00024062 /* Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Bridging-Header.h"; sourceTree = "<group>"; };
@@ -276,8 +272,6 @@
 				590DDD711A83BEA800E4CC3F /* SDSpeakersTableViewCell.xib */,
 				5906A52E1A8BF9D7008EA06B /* SDScheduleListTableViewCell.swift */,
 				5906A5311A8BFA7D008EA06B /* SDScheduleListTableViewCell.xib */,
-				59DA40AA1A8D09D4005F5D8C /* SDScheduleListTableViewHeader.swift */,
-				59DA40AC1A8D09E4005F5D8C /* SDScheduleListTableViewHeader.xib */,
 			);
 			path = TableViewCells;
 			sourceTree = "<group>";
@@ -526,7 +520,6 @@
 				A1FA1FE91A7AA33F00338AF0 /* SDAboutViewController.xib in Resources */,
 				590DDD721A83BEA800E4CC3F /* SDSpeakersTableViewCell.xib in Resources */,
 				590DDD6E1A83BAFD00E4CC3F /* SDSpeakersListViewController.xib in Resources */,
-				59DA40AD1A8D09E4005F5D8C /* SDScheduleListTableViewHeader.xib in Resources */,
 				A1FA1FE51A7AA30F00338AF0 /* SDPlacesViewController.xib in Resources */,
 				A1FA1FD41A7A9DA200338AF0 /* Localizable.strings in Resources */,
 				A1FA1FE11A7AA2FA00338AF0 /* SDSponsorViewController.xib in Resources */,
@@ -598,7 +591,6 @@
 				A1FA1FEC1A7B90DD00338AF0 /* SDUIViewControllerExtension.swift in Sources */,
 				5928D18C1A89096500E5049E /* SDView-NibLoading.swift in Sources */,
 				595003061A84DE2600A1C24F /* SDQRScannerOverlayView.swift in Sources */,
-				59DA40AB1A8D09D4005F5D8C /* SDScheduleListTableViewHeader.swift in Sources */,
 				5929780C1A82310100EE3BA3 /* SDTweet.swift in Sources */,
 				A1FA1FEB1A7AA6AF00338AF0 /* SDColor.swift in Sources */,
 				593223C61A837C6A009189C0 /* SDAlertViewHelper.swift in Sources */,

@@ -22,6 +22,10 @@ class SDScheduleViewController: UIViewController, UITableViewDelegate, UITableVi
     
     let kReuseIdentifier = "SDScheduleViewControllerCell"
     let kHeaderHeight : CGFloat = 40.0
+    let kHeaderTextPadding : CGPoint = CGPointMake(15, 13)
+    let kHeaderTextInitialWidth : CGFloat = 300.0
+    let kHeaderTextInitialHeight : CGFloat = 15.0
+    
     lazy var selectedConference : Conference? = DataManager.sharedInstance.currentlySelectedConference
     
     var dates: [String]?
@@ -33,7 +37,6 @@ class SDScheduleViewController: UIViewController, UITableViewDelegate, UITableVi
         self.setNavigationBarItem()
         self.title = NSLocalizedString("schedule", comment: "Schedule")
         tblSchedule?.registerNib(UINib(nibName: "SDScheduleListTableViewCell", bundle: nil), forCellReuseIdentifier: kReuseIdentifier)
-        tblSchedule?.registerNib(UINib(nibName: "SDScheduleListTableViewHeader", bundle: nil), forHeaderFooterViewReuseIdentifier: kReuseIdentifier)
         tblSchedule?.separatorStyle = .None
         
         self.loadData()
@@ -53,9 +56,6 @@ class SDScheduleViewController: UIViewController, UITableViewDelegate, UITableVi
             self.dates = self.scheduledDates()
             self.events = self.listOfEventsSortedByDates()
             self.tblSchedule.reloadData()
-            
-            let test = self.selectedConference?.schedule.filter({ $0.location != nil })
-            println("lel")
         }
     }
     
@@ -76,9 +76,16 @@ class SDScheduleViewController: UIViewController, UITableViewDelegate, UITableVi
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier(kReuseIdentifier, forIndexPath: indexPath) as SDScheduleListTableViewCell
-        configureCell(cell, indexPath: indexPath)
-        return cell
+        let cell : SDScheduleListTableViewCell? = tableView.dequeueReusableCellWithIdentifier(kReuseIdentifier) as? SDScheduleListTableViewCell
+        switch cell {
+        case let(.Some(cell)):
+            configureCell(cell, indexPath: indexPath)
+            return cell
+        default:
+            let cell = SDScheduleListTableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: kReuseIdentifier)
+            configureCell(cell, indexPath: indexPath)
+            return cell
+        }
     }
     
     func configureCell(cell: SDScheduleListTableViewCell, indexPath: NSIndexPath) {
@@ -86,6 +93,9 @@ class SDScheduleViewController: UIViewController, UITableViewDelegate, UITableVi
             let event = events[indexPath.section][indexPath.row]
             cell.drawEventData(event)
         }
+        cell.frame = CGRectMake(0, 0, tblSchedule.bounds.size.width, cell.frame.size.height);
+        cell.layoutIfNeeded()
+        cell.layoutSubviews()
     }
     
     func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
@@ -115,12 +125,18 @@ class SDScheduleViewController: UIViewController, UITableViewDelegate, UITableVi
     
     
     func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        switch(tableView.dequeueReusableHeaderFooterViewWithIdentifier(kReuseIdentifier), dates) {
-        case let (.Some(headerView as SDScheduleListTableViewHeader), .Some(dates)):
-            headerView.lblDate.text = dates[section]
+        // It seems that there are problems trying to use NIB files to instantiate table view headers in iOS7 (the run-time asks for a call to super.layoutSubviews() even if it's specifically overriden in the header subclass). We need to do it by hand in this case...
+        
+        if let _dates = dates {
+            let headerView = UIView(frame: CGRectMake(0, 0, tblSchedule.frame.size.width, kHeaderHeight))
+            headerView.backgroundColor = UIColor.appScheduleTimeBlueBackgroundColor()
+            let lblDate = UILabel(frame: CGRectMake(kHeaderTextPadding.x, kHeaderTextPadding.y, kHeaderTextInitialWidth, kHeaderTextInitialHeight))
+            lblDate.backgroundColor = UIColor.clearColor()
+            lblDate.setCustomFont(UIFont.fontHelveticaNeue(13), colorFont: UIColor.whiteColor())
+            lblDate.text = _dates[section]
+            lblDate.sizeToFit()
+            headerView.addSubview(lblDate)
             return headerView
-        default:
-            break
         }
         return nil
     }

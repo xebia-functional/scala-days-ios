@@ -196,12 +196,6 @@ class DataManager {
                 if track != nil {
                     trackParse = Track(id: track["id"].intValue, name: track["name"].string!, host: track["host"].string!, shortdescription: track["shortdescription"].string!, apiDescription: track["description"].string!)
                 }
-
-                if event["title"] == "Keynote Tuesday" {
-                    for (key, value) in event {
-                        println("Key: \(key); Value: \(value)")
-                    }
-                }
                 
                 let location = event["location"]
                 var locationParse: Location?
