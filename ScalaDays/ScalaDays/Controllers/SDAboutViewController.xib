@@ -7,6 +7,8 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SDAboutViewController" customModule="ScalaDays" customModuleProvider="target">
             <connections>
+                <outlet property="cnsLeftLabel" destination="Hcp-cu-Tg0" id="Bhf-m1-1J2"/>
+                <outlet property="cnsRightLabel" destination="JYJ-Dk-tjf" id="6Lm-G7-hSi"/>
                 <outlet property="lblCodeConduct" destination="sby-jM-SDo" id="FuN-VQ-EeS"/>
                 <outlet property="lblDescription" destination="0Fk-tw-aKJ" id="Ot9-wA-7Eb"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -26,22 +28,37 @@
                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Fk-tw-aKJ">
-                            <rect key="frame" x="15" y="59" width="155" height="21"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" placeholderIntrinsicWidth="155" placeholderIntrinsicHeight="20" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Fk-tw-aKJ">
+                            <rect key="frame" x="15" y="59" width="155" height="20"/>
+                            <attributedString key="attributedText">
+                                <fragment content="Label">
+                                    <attributes>
+                                        <color key="NSColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <font key="NSFont" size="17" name="HelveticaNeue"/>
+                                        <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineSpacing="4" paragraphSpacing="10" paragraphSpacingBefore="4" lineHeightMultiple="1"/>
+                                    </attributes>
+                                </fragment>
+                            </attributedString>
                             <nil key="highlightedColor"/>
                         </label>
                     </subviews>
                     <constraints>
-                        <constraint firstAttribute="bottom" secondItem="0Fk-tw-aKJ" secondAttribute="bottom" constant="512" id="Fgq-X9-EB6"/>
+                        <constraint firstAttribute="trailing" secondItem="0Fk-tw-aKJ" secondAttribute="trailing" constant="430" id="2HV-2M-swI"/>
                         <constraint firstItem="0Fk-tw-aKJ" firstAttribute="leading" secondItem="MGa-NH-xnj" secondAttribute="leading" constant="15" id="Hcp-cu-Tg0"/>
+                        <constraint firstAttribute="trailing" secondItem="0Fk-tw-aKJ" secondAttribute="trailing" constant="15" id="JYJ-Dk-tjf"/>
                         <constraint firstAttribute="trailing" secondItem="0Fk-tw-aKJ" secondAttribute="trailing" constant="15" id="RHr-cp-e44"/>
                         <constraint firstAttribute="trailing" secondItem="sby-jM-SDo" secondAttribute="trailing" constant="15" id="bZ3-s0-Dk8"/>
                         <constraint firstItem="0Fk-tw-aKJ" firstAttribute="top" secondItem="sby-jM-SDo" secondAttribute="bottom" constant="13" id="fR8-gB-pE9"/>
                         <constraint firstItem="sby-jM-SDo" firstAttribute="leading" secondItem="MGa-NH-xnj" secondAttribute="leading" constant="15" id="hPL-Pm-ysB"/>
                         <constraint firstItem="sby-jM-SDo" firstAttribute="top" secondItem="MGa-NH-xnj" secondAttribute="top" constant="22" id="qrm-uW-9c1"/>
+                        <constraint firstAttribute="bottom" secondItem="0Fk-tw-aKJ" secondAttribute="bottom" constant="15" id="u7l-Ii-EqE"/>
                     </constraints>
+                    <variation key="default">
+                        <mask key="constraints">
+                            <exclude reference="2HV-2M-swI"/>
+                            <exclude reference="RHr-cp-e44"/>
+                        </mask>
+                    </variation>
                 </scrollView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8tL-Xa-Mlu" userLabel="View47">
                     <rect key="frame" x="0.0" y="510" width="600" height="90"/>
