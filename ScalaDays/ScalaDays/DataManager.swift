@@ -28,8 +28,7 @@ class DataManager {
 
     var lastDate: NSDate? {
         get {
-            var returnValue: NSDate? = NSUserDefaults.standardUserDefaults().objectForKey("date") as? NSDate
-            return returnValue
+            return NSUserDefaults.standardUserDefaults().objectForKey("date") as? NSDate
         }
         set(newValue) {
             NSUserDefaults.standardUserDefaults().setObject(newValue, forKey: "date")
@@ -39,8 +38,7 @@ class DataManager {
     
     var favoritedEvents: [Int]? {
         get {
-            var returnValue: [Int]? = NSUserDefaults.standardUserDefaults().objectForKey("favoritedEvents") as?[Int]
-            return returnValue
+            return NSUserDefaults.standardUserDefaults().objectForKey("favoritedEvents") as?[Int]
         }
         set(newValue) {
             NSUserDefaults.standardUserDefaults().setObject(newValue, forKey: "favoritedEvents")

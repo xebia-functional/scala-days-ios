@@ -112,22 +112,21 @@ class SDScheduleViewController: UIViewController, UITableViewDelegate, UITableVi
         let cell : SDScheduleListTableViewCell? = tableView.dequeueReusableCellWithIdentifier(kReuseIdentifier) as? SDScheduleListTableViewCell
         switch cell {
         case let(.Some(cell)):
-            configureCell(cell, indexPath: indexPath)
-            return cell
+            return configureCell(cell, indexPath: indexPath)
         default:
             let cell = SDScheduleListTableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: kReuseIdentifier)
-            configureCell(cell, indexPath: indexPath)
-            return cell
+            return configureCell(cell, indexPath: indexPath)
         }
     }
     
-    func configureCell(cell: SDScheduleListTableViewCell, indexPath: NSIndexPath) {
+    func configureCell(cell: SDScheduleListTableViewCell, indexPath: NSIndexPath) -> SDScheduleListTableViewCell {
         if let events = eventsToShow {
             let event = events[indexPath.section][indexPath.row]
             cell.drawEventData(event)
         }
         cell.frame = CGRectMake(0, 0, tblSchedule.bounds.size.width, cell.frame.size.height);
         cell.layoutIfNeeded()
+        return cell
     }
     
     func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
