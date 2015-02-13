@@ -152,27 +152,22 @@ class SDSocialViewController: UIViewController {
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell : SDSocialTableViewCell? = tableView.dequeueReusableCellWithIdentifier(kReuseIdentifier) as? SDSocialTableViewCell
+        var cell : SDSocialTableViewCell? = tableView.dequeueReusableCellWithIdentifier(kReuseIdentifier) as? SDSocialTableViewCell
         switch cell {
         case let(.Some(cell)):
-            configureCell(cell, indexPath: indexPath)
+            if(listOfTweets.count > indexPath.row) {
+                let currentTweet : SDTweet = listOfTweets[indexPath.row]
+                cell.drawTweetData(currentTweet)
+            }
+            cell.frame = CGRectMake(0, 0, tableView.bounds.size.width, cell.frame.size.height);
+            cell.layoutIfNeeded()
+            cell.layoutSubviews()
             return cell
         default:
-            let cell = SDSocialTableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: kReuseIdentifier)
-            configureCell(cell, indexPath: indexPath)
-            return cell
+            return SDSocialTableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: kReuseIdentifier)
         }
     }
-    
-    func configureCell(cell: SDSocialTableViewCell, indexPath: NSIndexPath) {
-        if(listOfTweets.count > indexPath.row) {
-            let currentTweet : SDTweet = listOfTweets[indexPath.row]
-            cell.drawTweetData(currentTweet)
-        }
-        cell.frame = CGRectMake(0, 0, tblView.bounds.size.width, cell.frame.size.height);
-        cell.layoutIfNeeded()
-    }
-    
+        
     // MARK: - Error feedback
     
     func showErrorFeedback(message: String) {
