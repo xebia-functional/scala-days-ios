@@ -20,6 +20,8 @@ class SDDateHandler: NSObject {
     lazy var dateFormatter: NSDateFormatter = NSDateFormatter()
     let kTwitterDateFormat = "EEE MMM d HH:mm:ss Z y"
     let kResponseDateFormat = "EEE, dd MMM yyyy HH:mm:ss Z"
+    let kScheduleDateFormat = "yyyy-MM-dd'T'HH:mm:ss'Z'"
+    
     class var sharedInstance: SDDateHandler {
 
         struct Static {
@@ -36,8 +38,19 @@ class SDDateHandler: NSObject {
     }
 
     func parseServerDate(dateString: NSString) -> NSDate? {
-        var dateFormatter: NSDateFormatter = NSDateFormatter()
         dateFormatter.dateFormat = kResponseDateFormat
+        dateFormatter.timeZone = NSTimeZone(abbreviation: "GMT")
         return dateFormatter.dateFromString(dateString)
+    }
+    
+    func parseScheduleDate(dateString: NSString) -> NSDate? {
+        dateFormatter.dateFormat = kScheduleDateFormat
+        dateFormatter.timeZone = NSTimeZone(abbreviation: "UTC")
+        return dateFormatter.dateFromString(dateString)
+    }
+    
+    func hoursAndMinutesFromDate(date: NSDate) -> String? {
+        dateFormatter.dateFormat = "HH:mm"
+        return dateFormatter.stringFromDate(date)
     }
 }

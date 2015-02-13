@@ -36,6 +36,17 @@ class DataManager {
             NSUserDefaults.standardUserDefaults().synchronize()
         }
     }
+    
+    var favoritedEvents: [Int]? {
+        get {
+            var returnValue: [Int]? = NSUserDefaults.standardUserDefaults().objectForKey("favoritedEvents") as?[Int]
+            return returnValue
+        }
+        set(newValue) {
+            NSUserDefaults.standardUserDefaults().setObject(newValue, forKey: "favoritedEvents")
+            NSUserDefaults.standardUserDefaults().synchronize()
+        }
+    }
 
     var selectedConferenceIndex = 0
 
@@ -193,13 +204,14 @@ class DataManager {
 
                 let track = event["track"]
                 var trackParse: Track?
-                if (track) {
+                if track != nil {
                     trackParse = Track(id: track["id"].intValue, name: track["name"].string!, host: track["host"].string!, shortdescription: track["shortdescription"].string!, apiDescription: track["description"].string!)
                 }
-
+                
                 let location = event["location"]
                 var locationParse: Location?
-                if (location) {
+                
+                if location != nil {
                     locationParse = Location(id: location["id"].intValue, name: location["name"].string!, mapUrl: location["mapUrl"].string!)
                 }
 
