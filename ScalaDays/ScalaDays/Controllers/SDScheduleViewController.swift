@@ -33,9 +33,6 @@ class SDScheduleViewController: UIViewController, UITableViewDelegate, UITableVi
     
     let kReuseIdentifier = "SDScheduleViewControllerCell"
     let kHeaderHeight : CGFloat = 40.0
-    let kHeaderTextPadding : CGPoint = CGPointMake(15, 13)
-    let kHeaderTextInitialWidth : CGFloat = 300.0
-    let kHeaderTextInitialHeight : CGFloat = 15.0
     
     lazy var selectedConference : Conference? = DataManager.sharedInstance.currentlySelectedConference
     
@@ -158,7 +155,9 @@ class SDScheduleViewController: UIViewController, UITableViewDelegate, UITableVi
     }
     
     func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        // It seems that there are problems trying to use NIB files to instantiate table view headers in iOS7 (the run-time asks for a call to super.layoutSubviews() even if it's specifically overriden in the header subclass). We need to do it by hand in this case...
+        // It seems that there are problems trying to use NIB files to instantiate table view headers in iOS7
+        // (the run-time asks for a call to super.layoutSubviews() even if it's specifically overriden in the header subclass).
+        // We need to do it by hand in this case...
         if let _dates = dates {
             let headerView = SDTableHeaderView(frame: CGRectMake(0, 0, tblSchedule.frame.size.width, kHeaderHeight))
             headerView.lblDate.text = _dates[section]
