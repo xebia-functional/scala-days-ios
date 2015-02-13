@@ -18,28 +18,41 @@ import UIKit
 
 class SDAboutViewController: UIViewController {
 
-
+    @IBOutlet weak var cnsLeftLabel: NSLayoutConstraint!
+    @IBOutlet weak var cnsRightLabel: NSLayoutConstraint!
     @IBOutlet weak var lblCodeConduct: UILabel!
-
     @IBOutlet weak var lblDescription: UILabel!
+    lazy var selectedConference : Conference? = DataManager.sharedInstance.currentlySelectedConference
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
         self.setNavigationBarItem()
         self.title = NSLocalizedString("about", comment: "About")
-        self.lblDescription .setCustomFont(UIFont.fontHelveticaNeueLight(15), colorFont: UIColor.appColor())
+        self.lblCodeConduct.setCustomFont(UIFont.fontHelveticaNeueMedium(17), colorFont: UIColor.appRedColor())
+        self.lblDescription.setCustomFont(UIFont.fontHelveticaNeueLight(15), colorFont: UIColor.appColor())
         loadCodeOfConductText()
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        self.lblDescription.preferredMaxLayoutWidth = UIScreen.mainScreen().bounds.width
+            - self.cnsLeftLabel.constant
+            - self.cnsRightLabel.constant
+        self.view.layoutIfNeeded()
     }
 
     func loadCodeOfConductText() {
-        self.lblDescription.text = "Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.\nDuis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda."
-
+        if let conference = selectedConference {
+            self.lblDescription.text = conference.codeOfConduct
+        }
     }
 
+    @IBAction func didTapOn47Logo(sender: AnyObject) {
+        launchSafariToUrl(NSURL(string: url47Website)!)
+    }
 }
