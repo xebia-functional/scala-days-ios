@@ -36,6 +36,9 @@ class SDScheduleViewController: UIViewController, UITableViewDelegate, UITableVi
 
         self.setNavigationBarItem()
         self.title = NSLocalizedString("schedule", comment: "Schedule")
+        let barButtonOptions = UIBarButtonItem(image: UIImage(named: "navigation_bar_icon_options"), style: .Plain, target: self, action: "didTapOptionsButton")
+        self.navigationItem.rightBarButtonItem = barButtonOptions
+        
         tblSchedule?.registerNib(UINib(nibName: "SDScheduleListTableViewCell", bundle: nil), forCellReuseIdentifier: kReuseIdentifier)
         tblSchedule?.separatorStyle = .None
         
@@ -56,6 +59,7 @@ class SDScheduleViewController: UIViewController, UITableViewDelegate, UITableVi
             self.dates = self.scheduledDates()
             self.events = self.listOfEventsSortedByDates()
             self.tblSchedule.reloadData()
+            self.view.backgroundColor = UIColor.appScheduleTimeBlueBackgroundColor()
         }
     }
     
@@ -95,7 +99,6 @@ class SDScheduleViewController: UIViewController, UITableViewDelegate, UITableVi
         }
         cell.frame = CGRectMake(0, 0, tblSchedule.bounds.size.width, cell.frame.size.height);
         cell.layoutIfNeeded()
-        cell.layoutSubviews()
     }
     
     func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
@@ -175,6 +178,12 @@ class SDScheduleViewController: UIViewController, UITableViewDelegate, UITableVi
         }
 
         return nil
+    }
+    
+    // MARK: - Button handling
+    
+    func didTapOptionsButton() {
+        
     }
     
 }
