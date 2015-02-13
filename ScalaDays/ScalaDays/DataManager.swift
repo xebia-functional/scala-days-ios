@@ -28,11 +28,20 @@ class DataManager {
 
     var lastDate: NSDate? {
         get {
-            var returnValue: NSDate? = NSUserDefaults.standardUserDefaults().objectForKey("date") as? NSDate
-            return returnValue
+            return NSUserDefaults.standardUserDefaults().objectForKey("date") as? NSDate
         }
         set(newValue) {
             NSUserDefaults.standardUserDefaults().setObject(newValue, forKey: "date")
+            NSUserDefaults.standardUserDefaults().synchronize()
+        }
+    }
+    
+    var favoritedEvents: [Int]? {
+        get {
+            return NSUserDefaults.standardUserDefaults().objectForKey("favoritedEvents") as?[Int]
+        }
+        set(newValue) {
+            NSUserDefaults.standardUserDefaults().setObject(newValue, forKey: "favoritedEvents")
             NSUserDefaults.standardUserDefaults().synchronize()
         }
     }
@@ -164,6 +173,7 @@ class DataManager {
 
                 }
                 let sponsorType = SponsorType(type: type, items: arrayItemsParse)
+                arraySponsorParse.append(sponsorType)
             }
 
             let arrayVenue = confe["venues"]

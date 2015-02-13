@@ -62,21 +62,24 @@ class SDSpeakersListViewController: UIViewController {
         var cell : SDSpeakersTableViewCell? = tableView.dequeueReusableCellWithIdentifier(kReuseIdentifier) as? SDSpeakersTableViewCell
         switch cell {
         case let(.Some(cell)):
-            if let listOfSpeakers = speakers {
-                if(listOfSpeakers.count > indexPath.row) {
-                    let speakerCell = cell as SDSpeakersTableViewCell
-                    speakerCell.drawSpeakerData(listOfSpeakers[indexPath.row])
-                    speakerCell.layoutSubviews()
-                }
-            }
-            cell.frame = CGRectMake(0, 0, tableView.bounds.size.width, cell.frame.size.height);
-            cell.layoutIfNeeded()
-            cell.layoutSubviews()
-            return cell
+            return configureCell(cell, indexPath: indexPath)
         default:
-            return SDSpeakersTableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: kReuseIdentifier)
+            let cell = SDSpeakersTableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: kReuseIdentifier)
+            return configureCell(cell, indexPath: indexPath)
         }
     }
     
+    func configureCell(cell: SDSpeakersTableViewCell, indexPath: NSIndexPath) -> SDSpeakersTableViewCell {
+        if let listOfSpeakers = speakers {
+            if(listOfSpeakers.count > indexPath.row) {
+                let speakerCell = cell as SDSpeakersTableViewCell
+                speakerCell.drawSpeakerData(listOfSpeakers[indexPath.row])
+                speakerCell.layoutSubviews()
+            }
+        }
+        cell.frame = CGRectMake(0, 0, tblView.bounds.size.width, cell.frame.size.height);
+        cell.layoutIfNeeded()
+        return cell
+    }
     
 }
