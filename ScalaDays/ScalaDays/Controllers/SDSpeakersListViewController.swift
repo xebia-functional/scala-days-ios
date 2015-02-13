@@ -70,16 +70,14 @@ class SDSpeakersListViewController: UIViewController {
         let cell : SDSpeakersTableViewCell? = tableView.dequeueReusableCellWithIdentifier(kReuseIdentifier) as? SDSpeakersTableViewCell
         switch cell {
         case let(.Some(cell)):
-            configureCell(cell, indexPath: indexPath)
-            return cell
+            return configureCell(cell, indexPath: indexPath)
         default:
             let cell = SDSpeakersTableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: kReuseIdentifier)
-            configureCell(cell, indexPath: indexPath)
-            return cell
+            return configureCell(cell, indexPath: indexPath)
         }
     }
     
-    func configureCell(cell: SDSpeakersTableViewCell, indexPath: NSIndexPath) {
+    func configureCell(cell: SDSpeakersTableViewCell, indexPath: NSIndexPath) -> SDSpeakersTableViewCell {
         if let listOfSpeakers = speakers {
             if(listOfSpeakers.count > indexPath.row) {
                 let speakerCell = cell as SDSpeakersTableViewCell
@@ -89,6 +87,7 @@ class SDSpeakersListViewController: UIViewController {
         }
         cell.frame = CGRectMake(0, 0, tblView.bounds.size.width, cell.frame.size.height);
         cell.layoutIfNeeded()
+        return cell
     }
     
 }
