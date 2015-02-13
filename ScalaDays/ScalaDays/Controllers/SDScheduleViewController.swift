@@ -16,7 +16,18 @@
 
 import UIKit
 
-class SDScheduleViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+enum SDScheduleActionSheetButtons : Int {
+    case Cancel = 0
+    case All = 1
+    case Favorites = 2
+}
+
+enum SDScheduleSelectedDataSource {
+    case All
+    case Favorites
+}
+
+class SDScheduleViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UIActionSheetDelegate {
 
     @IBOutlet weak var tblSchedule: UITableView!
     
@@ -30,6 +41,23 @@ class SDScheduleViewController: UIViewController, UITableViewDelegate, UITableVi
     
     var dates: [String]?
     var events: [[Event]]?
+    var favorites: [[Event]]?
+    var selectedDataSource : SDScheduleSelectedDataSource = .All
+    var eventsToShow : [[Event]]? {
+        get {
+            switch(selectedDataSource) {
+            case .All:
+                return events
+            case .Favorites:
+                if let _favoritesIndexes = DataManager.sharedInstance.favoritedEvents {
+                    return _favoritesIndexes.count == 0 ? events : favorites
+                }
+                return events
+            default:
+                return nil
+            }
+         }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -60,6 +88,10 @@ class SDScheduleViewController: UIViewController, UITableViewDelegate, UITableVi
             self.events = self.listOfEventsSortedByDates()
             self.tblSchedule.reloadData()
             self.view.backgroundColor = UIColor.appScheduleTimeBlueBackgroundColor()
+
+            if let favs = self.favoritedEvents() {
+                self.favorites = favs
+            }
         }
     }
     
@@ -73,7 +105,7 @@ class SDScheduleViewController: UIViewController, UITableViewDelegate, UITableVi
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if let events = events {
+        if let events = eventsToShow {
             return events[section].count
         }
         return 0
@@ -93,7 +125,7 @@ class SDScheduleViewController: UIViewController, UITableViewDelegate, UITableVi
     }
     
     func configureCell(cell: SDScheduleListTableViewCell, indexPath: NSIndexPath) {
-        if let events = events {
+        if let events = eventsToShow {
             let event = events[indexPath.section][indexPath.row]
             cell.drawEventData(event)
         }
@@ -126,19 +158,12 @@ class SDScheduleViewController: UIViewController, UITableViewDelegate, UITableVi
         return kHeaderHeight
     }
     
-    
     func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         // It seems that there are problems trying to use NIB files to instantiate table view headers in iOS7 (the run-time asks for a call to super.layoutSubviews() even if it's specifically overriden in the header subclass). We need to do it by hand in this case...
-        
         if let _dates = dates {
-            let headerView = UIView(frame: CGRectMake(0, 0, tblSchedule.frame.size.width, kHeaderHeight))
-            headerView.backgroundColor = UIColor.appScheduleTimeBlueBackgroundColor()
-            let lblDate = UILabel(frame: CGRectMake(kHeaderTextPadding.x, kHeaderTextPadding.y, kHeaderTextInitialWidth, kHeaderTextInitialHeight))
-            lblDate.backgroundColor = UIColor.clearColor()
-            lblDate.setCustomFont(UIFont.fontHelveticaNeue(13), colorFont: UIColor.whiteColor())
-            lblDate.text = _dates[section]
-            lblDate.sizeToFit()
-            headerView.addSubview(lblDate)
+            let headerView = SDTableHeaderView(frame: CGRectMake(0, 0, tblSchedule.frame.size.width, kHeaderHeight))
+            headerView.lblDate.text = _dates[section]
+            headerView.lblDate.sizeToFit()
             return headerView
         }
         return nil
@@ -183,7 +208,76 @@ class SDScheduleViewController: UIViewController, UITableViewDelegate, UITableVi
     // MARK: - Button handling
     
     func didTapOptionsButton() {
+        launchFilterSheet()
+    }
+    
+    // MARK: - Favorites handling
+    
+    func testFavorites() {
+        if let favorites = DataManager.sharedInstance.favoritedEvents {
+            println("Favorites: \(favorites)")
+            return
+        }
+        DataManager.sharedInstance.favoritedEvents = [6520, 6525]
+    }
+    
+    func favoritedEvents() -> [[Event]]? {
+        if let _events = events {
+            return _events.map({
+                $0.filter({
+                    if let favoritedEvents = DataManager.sharedInstance.favoritedEvents {
+                        let event = $0
+                        return favoritedEvents.reduce(false, {
+                            return $0 ? $0 : event.id == $1
+                        })
+                    }
+                    return false
+                })
+            })
+        }
+        return nil
+    }
+    
+    func launchFilterSheet() {
+        let title = NSLocalizedString("schedule_action_sheet_filter_title", comment: "")
+        let actionTitleAll = NSLocalizedString("schedule_action_sheet_filter_message_all", comment: "")
+        let actionTitleFavorites = NSLocalizedString("schedule_action_sheet_filter_message_favorites", comment: "")
+        let actionTitleCancel = NSLocalizedString("common_cancel", comment: "")
         
+        if(isIOS8OrLater()) {
+            let actionSheet = UIAlertController(title: title, message: nil, preferredStyle: .ActionSheet)
+            actionSheet.addAction(UIAlertAction(title: actionTitleAll, style: .Default, handler: { (alertAction) -> Void in
+                self.reloadTableDataWithFilter(.All)
+            }))
+            actionSheet.addAction(UIAlertAction(title: actionTitleFavorites, style: .Default, handler: { (alertAction) -> Void in
+                self.reloadTableDataWithFilter(.Favorites)
+            }))
+            actionSheet.addAction(UIAlertAction(title: actionTitleAll, style: .Cancel, handler: { (alertAction) -> Void in
+                
+            }))
+            self.presentViewController(actionSheet, animated: true, completion: nil)
+        } else {
+            let actionSheet = UIActionSheet(title: title, delegate: self, cancelButtonTitle: actionTitleCancel, destructiveButtonTitle: nil, otherButtonTitles: actionTitleAll, actionTitleFavorites)
+            actionSheet.showInView(self.view)
+        }
+    }
+    
+    func actionSheet(actionSheet: UIActionSheet, clickedButtonAtIndex buttonIndex: Int) {
+        switch(buttonIndex) {
+        case actionSheet.cancelButtonIndex:
+            return
+        case SDScheduleActionSheetButtons.All.rawValue:
+            self.reloadTableDataWithFilter(.All)
+        case SDScheduleActionSheetButtons.Favorites.rawValue:
+            self.reloadTableDataWithFilter(.Favorites)
+        default:
+            break
+        }
+    }
+    
+    func reloadTableDataWithFilter(filter: SDScheduleSelectedDataSource) {
+        selectedDataSource = filter
+        tblSchedule.reloadData()
     }
     
 }

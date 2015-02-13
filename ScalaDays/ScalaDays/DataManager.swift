@@ -36,6 +36,17 @@ class DataManager {
             NSUserDefaults.standardUserDefaults().synchronize()
         }
     }
+    
+    var favoritedEvents: [Int]? {
+        get {
+            var returnValue: [Int]? = NSUserDefaults.standardUserDefaults().objectForKey("favoritedEvents") as?[Int]
+            return returnValue
+        }
+        set(newValue) {
+            NSUserDefaults.standardUserDefaults().setObject(newValue, forKey: "favoritedEvents")
+            NSUserDefaults.standardUserDefaults().synchronize()
+        }
+    }
 
     var selectedConferenceIndex = 0
 
