@@ -203,14 +203,13 @@ class DataManager {
 
                 let track = event["track"]
                 var trackParse: Track?
-                if track != nil {
+                if (track) {
                     trackParse = Track(id: track["id"].intValue, name: track["name"].string!, host: track["host"].string!, shortdescription: track["shortdescription"].string!, apiDescription: track["description"].string!)
                 }
-                
+
                 let location = event["location"]
                 var locationParse: Location?
-                
-                if location != nil {
+                if (location) {
                     locationParse = Location(id: location["id"].intValue, name: location["name"].string!, mapUrl: location["mapUrl"].string!)
                 }
 
