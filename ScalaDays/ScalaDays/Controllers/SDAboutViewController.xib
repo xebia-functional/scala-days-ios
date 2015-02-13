@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6254" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6254" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
@@ -18,7 +18,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MGa-NH-xnj">
-                    <rect key="frame" x="0.0" y="0.0" width="600" height="592"/>
+                    <rect key="frame" x="0.0" y="0.0" width="600" height="510"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Code of conduct" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sby-jM-SDo">
                             <rect key="frame" x="15" y="22" width="155" height="24"/>
@@ -43,14 +43,56 @@
                         <constraint firstItem="sby-jM-SDo" firstAttribute="top" secondItem="MGa-NH-xnj" secondAttribute="top" constant="22" id="qrm-uW-9c1"/>
                     </constraints>
                 </scrollView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8tL-Xa-Mlu" userLabel="View47">
+                    <rect key="frame" x="0.0" y="510" width="600" height="90"/>
+                    <subviews>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo_47deg" translatesAutoresizingMaskIntoConstraints="NO" id="dvg-HY-4XP">
+                            <rect key="frame" x="15" y="15" width="60" height="60"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="60" id="4Wb-a9-9hF"/>
+                                <constraint firstAttribute="width" constant="60" id="lFn-Du-GkY"/>
+                            </constraints>
+                        </imageView>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="The official Scala Days App for iOS handcrafted by 47 Degrees" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jG5-ky-XNF">
+                            <rect key="frame" x="90" y="25" width="502" height="18"/>
+                            <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="15"/>
+                            <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <gestureRecognizers/>
+                    <constraints>
+                        <constraint firstAttribute="bottom" secondItem="dvg-HY-4XP" secondAttribute="bottom" constant="15" id="8xo-5D-wfT"/>
+                        <constraint firstItem="dvg-HY-4XP" firstAttribute="top" secondItem="8tL-Xa-Mlu" secondAttribute="top" constant="15" id="QpK-RO-Jx3"/>
+                        <constraint firstAttribute="height" constant="90" id="X7O-Qb-sNw"/>
+                        <constraint firstItem="jG5-ky-XNF" firstAttribute="top" secondItem="8tL-Xa-Mlu" secondAttribute="top" constant="25" id="gsR-Z8-piP"/>
+                        <constraint firstAttribute="trailing" secondItem="jG5-ky-XNF" secondAttribute="trailing" constant="8" id="hcy-U4-5gG"/>
+                        <constraint firstItem="dvg-HY-4XP" firstAttribute="leading" secondItem="8tL-Xa-Mlu" secondAttribute="leading" constant="15" id="oTN-CD-DYR"/>
+                        <constraint firstItem="jG5-ky-XNF" firstAttribute="leading" secondItem="dvg-HY-4XP" secondAttribute="trailing" constant="15" id="rBi-bZ-F6n"/>
+                    </constraints>
+                    <connections>
+                        <outletCollection property="gestureRecognizers" destination="Kot-YP-7dU" appends="YES" id="pS5-gF-r4Z"/>
+                    </connections>
+                </view>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstAttribute="bottom" secondItem="MGa-NH-xnj" secondAttribute="bottom" constant="8" id="5T0-St-zMb"/>
                 <constraint firstItem="MGa-NH-xnj" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="GJn-3f-5zV"/>
                 <constraint firstAttribute="trailing" secondItem="MGa-NH-xnj" secondAttribute="trailing" id="IH6-vA-xVi"/>
+                <constraint firstAttribute="trailing" secondItem="8tL-Xa-Mlu" secondAttribute="trailing" id="LaC-pd-hEn"/>
+                <constraint firstItem="8tL-Xa-Mlu" firstAttribute="top" secondItem="MGa-NH-xnj" secondAttribute="bottom" id="asA-lN-UUT"/>
                 <constraint firstItem="MGa-NH-xnj" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="fr1-Mf-nyw"/>
+                <constraint firstItem="8tL-Xa-Mlu" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="rxB-TP-lmA"/>
+                <constraint firstAttribute="bottom" secondItem="8tL-Xa-Mlu" secondAttribute="bottom" id="tWC-F6-AU7"/>
             </constraints>
         </view>
+        <tapGestureRecognizer id="Kot-YP-7dU">
+            <connections>
+                <action selector="didTapOn47Logo:" destination="-1" id="igF-Po-4GW"/>
+            </connections>
+        </tapGestureRecognizer>
     </objects>
+    <resources>
+        <image name="logo_47deg" width="60" height="60"/>
+    </resources>
 </document>

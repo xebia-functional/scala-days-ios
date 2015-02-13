@@ -22,13 +22,15 @@ class SDAboutViewController: UIViewController {
     @IBOutlet weak var lblCodeConduct: UILabel!
 
     @IBOutlet weak var lblDescription: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
         self.setNavigationBarItem()
         self.title = NSLocalizedString("about", comment: "About")
-        self.lblDescription .setCustomFont(UIFont.fontHelveticaNeueLight(15), colorFont: UIColor.appColor())
+        self.lblCodeConduct.setCustomFont(UIFont.fontHelveticaNeueMedium(17), colorFont: UIColor.appRedColor())
+        self.lblDescription.setCustomFont(UIFont.fontHelveticaNeueLight(15), colorFont: UIColor.appColor())
         loadCodeOfConductText()
     }
 
@@ -42,4 +44,7 @@ class SDAboutViewController: UIViewController {
 
     }
 
+    @IBAction func didTapOn47Logo(sender: AnyObject) {
+        launchSafariToUrl(NSURL(string: url47Website)!)
+    }
 }
