@@ -18,12 +18,14 @@
             <subviews>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="aYa-PJ-khn">
                     <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <connections>
                         <outlet property="dataSource" destination="-1" id="rtE-b1-Oal"/>
                         <outlet property="delegate" destination="-1" id="fgb-oU-f5F"/>
                     </connections>
                 </tableView>
             </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstItem="aYa-PJ-khn" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="9dV-eL-XI7"/>
                 <constraint firstAttribute="trailing" secondItem="aYa-PJ-khn" secondAttribute="trailing" id="Lfv-vl-Wkr"/>

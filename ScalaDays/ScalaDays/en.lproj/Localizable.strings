@@ -29,13 +29,6 @@
 "about" = "About";
 "speakers" = "Speakers";
 
-// Schedule
-// TODO: Messages are yet to be reviewed
-
-"schedule_action_sheet_filter_title" = "Filter events";
-"schedule_action_sheet_filter_message_all" = "All Events";
-"schedule_action_sheet_filter_message_favorites" = "Favorites";
-
 // Social
 // TODO: Error messages are yet to be reviewed
 
