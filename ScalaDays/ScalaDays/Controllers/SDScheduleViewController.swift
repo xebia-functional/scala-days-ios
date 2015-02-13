@@ -213,14 +213,6 @@ class SDScheduleViewController: UIViewController, UITableViewDelegate, UITableVi
     
     // MARK: - Favorites handling
     
-    func testFavorites() {
-        if let favorites = DataManager.sharedInstance.favoritedEvents {
-            println("Favorites: \(favorites)")
-            return
-        }
-        DataManager.sharedInstance.favoritedEvents = [6520, 6525]
-    }
-    
     func favoritedEvents() -> [[Event]]? {
         if let _events = events {
             return _events.map({
