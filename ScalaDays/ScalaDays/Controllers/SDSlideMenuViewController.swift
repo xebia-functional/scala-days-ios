@@ -26,6 +26,7 @@ class SDSlideMenuViewController: UIViewController, UITableViewDelegate, UITableV
     @IBOutlet weak var heigthHeader: NSLayoutConstraint!
     @IBOutlet weak var imgHeader: UIImageView!
     @IBOutlet weak var tblConferences: UITableView!
+    let kConferenceReuseIdentifier = "ConferencesListCell"
 
 
     enum Menu: Int {
@@ -79,6 +80,8 @@ class SDSlideMenuViewController: UIViewController, UITableViewDelegate, UITableV
         //Conferences aparence table
         self.tblConferences.scrollEnabled = false
         self.tblConferences.separatorColor = UIColor(white: 1, alpha: 0.1)
+        self.tblConferences.registerNib(UINib(nibName: "SDConferenceTableViewCell", bundle: nil), forCellReuseIdentifier: kConferenceReuseIdentifier)
+        self.tblConferences.alpha = 0
         
         //Init aparence table
         self.heigthTable.constant = CGFloat(menus.count * Int(Height_Row_Menu))
@@ -104,18 +107,23 @@ class SDSlideMenuViewController: UIViewController, UITableViewDelegate, UITableV
         
         let speakersViewController = SDSpeakersListViewController(nibName: "SDSpeakersListViewController", bundle: nil)
         self.speakersViewController = UINavigationController(rootViewController: speakersViewController)
-
-        self.tblConferences.alpha = 0
-
+       
     }
+    
     override func  viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        
+        componeConferenceTable()
+        drawSelectedConference()
+    }
+    
+    func componeConferenceTable(){
         if let conferences = DataManager.sharedInstance.conferences?{
             self.currentConferences = conferences
-            println(self.currentConferences?.conferences.count)
+            self.tblConferences.reloadData()
         }
-        
+    }
+    
+    func drawSelectedConference(){
         if let  info = DataManager.sharedInstance.currentlySelectedConference?.info{
             self.infoSelected = info
             self.titleConference.text = info.longName
@@ -126,7 +134,7 @@ class SDSlideMenuViewController: UIViewController, UITableViewDelegate, UITableV
             }
         }
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -140,7 +148,6 @@ class SDSlideMenuViewController: UIViewController, UITableViewDelegate, UITableV
     }
 
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
         switch (tableView, self.currentConferences) {
             case (self.tblConferences, .Some(let x)):
                 self.heightConferenceTable.constant = CGFloat(x.conferences.count * Int(Height_Row_Menu))
@@ -152,31 +159,42 @@ class SDSlideMenuViewController: UIViewController, UITableViewDelegate, UITableV
     }
 
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell: UITableViewCell = UITableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: "Cell")
-        cell.textLabel?.setCustomFont(UIFont.fontHelveticaNeue(15), colorFont: UIColor(white: 1, alpha: 0.8))
-        cell.backgroundColor = UIColor.appColor()
-        var bgColorView = UIView()
-        bgColorView.backgroundColor = UIColor.selectedCellMenu()
-        cell.selectedBackgroundView = bgColorView
-        
-        
-        
         switch (tableView, self.currentConferences) {
             case (self.tblConferences, .Some(let x)):
+                var cell : SDConferenceTableViewCell? = tableView.dequeueReusableCellWithIdentifier(kConferenceReuseIdentifier) as? SDConferenceTableViewCell
                 
-                if let pictureUrl = NSURL(string: x.conferences[indexPath.row].info.pictures[0].url) {
-                    cell.imageView?.sd_setImageWithURL(pictureUrl, placeholderImage: UIImage(named: "avatar"))
+                switch cell {
+                    case let(.Some(cell)): return configureConferenceCell(cell, indexPath: indexPath)
+                    default:
+                        let cell = SDConferenceTableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: kConferenceReuseIdentifier)
+                        return configureConferenceCell(cell, indexPath: indexPath)
                 }
-                cell.textLabel?.text = x.conferences[indexPath.row].info.longName
-            
             default :
+                let cell: UITableViewCell = UITableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: "CellMenu")
+                cell.textLabel?.setCustomFont(UIFont.fontHelveticaNeue(15), colorFont: UIColor(white: 1, alpha: 0.8))
+                cell.backgroundColor = UIColor.appColor()
+                var bgColorView = UIView()
+                bgColorView.backgroundColor = UIColor.selectedCellMenu()
+                cell.selectedBackgroundView = bgColorView
                 cell.textLabel?.text = menus[indexPath.row]
                 cell.imageView?.image = UIImage(named: menusImage[indexPath.row] as NSString)
+                cell.layoutIfNeeded()
+                return cell
         }
         
+    }
+    
+    func configureConferenceCell(cell: SDConferenceTableViewCell, indexPath: NSIndexPath) -> SDConferenceTableViewCell {
+       if let listOfConferences = self.currentConferences {
+            if(listOfConferences.conferences.count > indexPath.row) {
+                let conferenceCell = cell as SDConferenceTableViewCell
+                conferenceCell.drawConferenceData(listOfConferences.conferences[indexPath.row])
+                conferenceCell.layoutSubviews()
+            }
+        }
+        cell.frame = CGRectMake(0, 0, tblConferences.bounds.size.width, cell.frame.size.height);
         cell.layoutIfNeeded()
         return cell
-        
     }
 
 
@@ -186,59 +204,48 @@ class SDSlideMenuViewController: UIViewController, UITableViewDelegate, UITableV
     }
 
     //MARK: UITableViewDelegate
-
+    
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-
-        if let menu = Menu(rawValue: indexPath.item) {
-
-            switch menu {
-            case .Schedule:
-                self.slideMenuController()?.changeMainViewController(self.scheduleViewController, close: true)
-                break
-            case .Social:
-                self.slideMenuController()?.changeMainViewController(self.socialViewController, close: true)
-                break
-            case .Contact:
-                self.slideMenuController()?.changeMainViewController(self.contactViewController, close: true)
-                break
-            case .Tickets:
-                  if let registration = self.infoSelected?.registrationSite {
+   
+        switch (tableView, Menu(rawValue: indexPath.item)) {
+            case (self.tblConferences, _) :
+                DataManager.sharedInstance.selectedConferenceIndex = indexPath.row
+                drawSelectedConference()
+                toggleTblConference()
+            case (self.tblMenu, .Some(.Schedule)): self.slideMenuController()?.changeMainViewController(self.scheduleViewController, close: true)
+            case (self.tblMenu, .Some(.Social)): self.slideMenuController()?.changeMainViewController(self.socialViewController, close: true)
+            case (self.tblMenu, .Some(.Contact)): self.slideMenuController()?.changeMainViewController(self.contactViewController, close: true)
+            case (self.tblMenu, .Some(.Sponsors)): self.slideMenuController()?.changeMainViewController(self.sponsorsViewController, close: true)
+            case (self.tblMenu, .Some(.Places)): self.slideMenuController()?.changeMainViewController(self.placesViewController, close: true)
+            case (self.tblMenu, .Some(.About)): self.slideMenuController()?.changeMainViewController(self.aboutViewController, close: true)
+            case (self.tblMenu, .Some(.Speakers)): self.slideMenuController()?.changeMainViewController(self.speakersViewController, close: true)
+            case (self.tblMenu, .Some(.Tickets)):
+                if let registration = self.infoSelected?.registrationSite {
                     UIApplication.sharedApplication().openURL(NSURL(string:registration)!)
-                  }
-                break
-            case .Sponsors:
-                self.slideMenuController()?.changeMainViewController(self.sponsorsViewController, close: true)
-                break
-            case .Places:
-                self.slideMenuController()?.changeMainViewController(self.placesViewController, close: true)
-                break
-            case .About:
-                self.slideMenuController()?.changeMainViewController(self.aboutViewController, close: true)
-                break
-            case .Speakers:
-                self.slideMenuController()?.changeMainViewController(self.speakersViewController, close: true)
-            default:
-                break
-            }
+                }
+            default: break
         }
 
     }
 
     @IBAction func selectedConference(sender: AnyObject) {
-
+        toggleTblConference()
+    }
+    
+    func toggleTblConference() {
         if (self.tblConferences.alpha == 0.0) {
-            self.tblConferences.reloadData()
             UIView.animateWithDuration(0.5, animations: {
                 self.tblConferences.alpha = 1.0
                 self.tblMenu.alpha = 0.0
-                return // <== add this
+                return
             })
         } else {
             UIView.animateWithDuration(0.5, animations: {
                 self.tblConferences.alpha = 0.0
                 self.tblMenu.alpha = 1.0
-                return // <== add this
+                return
             })
+            
         }
     }
 
