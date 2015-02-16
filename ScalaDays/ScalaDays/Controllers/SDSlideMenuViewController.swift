@@ -22,10 +22,11 @@ class SDSlideMenuViewController: UIViewController, UITableViewDelegate, UITableV
     @IBOutlet weak var tblMenu: UITableView!
     @IBOutlet weak var titleConference: UILabel!
     @IBOutlet weak var heigthTable: NSLayoutConstraint!
+    @IBOutlet weak var heightConferenceTable: NSLayoutConstraint!
     @IBOutlet weak var heigthHeader: NSLayoutConstraint!
     @IBOutlet weak var imgHeader: UIImageView!
+    @IBOutlet weak var tblConferences: UITableView!
 
-    @IBOutlet var viewSelectedConference: UIView!
 
     enum Menu: Int {
         case Schedule = 0
@@ -65,6 +66,8 @@ class SDSlideMenuViewController: UIViewController, UITableViewDelegate, UITableV
     var speakersViewController: UIViewController!
     
     var infoSelected: Information?
+    
+    var currentConferences: Conferences?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -72,7 +75,11 @@ class SDSlideMenuViewController: UIViewController, UITableViewDelegate, UITableV
         if (IS_IPHONE5) {
             heigthHeader.constant = Height_Header_Menu
         }
-
+        
+        //Conferences aparence table
+        self.tblConferences.scrollEnabled = false
+        self.tblConferences.separatorColor = UIColor(white: 1, alpha: 0.1)
+        
         //Init aparence table
         self.heigthTable.constant = CGFloat(menus.count * Int(Height_Row_Menu))
         self.tblMenu.scrollEnabled = false
@@ -98,11 +105,17 @@ class SDSlideMenuViewController: UIViewController, UITableViewDelegate, UITableV
         let speakersViewController = SDSpeakersListViewController(nibName: "SDSpeakersListViewController", bundle: nil)
         self.speakersViewController = UINavigationController(rootViewController: speakersViewController)
 
-        self.viewSelectedConference.hidden = true
+        self.tblConferences.alpha = 0
 
     }
     override func  viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
+        
+        if let conferences = DataManager.sharedInstance.conferences?{
+            self.currentConferences = conferences
+            println(self.currentConferences?.conferences.count)
+        }
+        
         if let  info = DataManager.sharedInstance.currentlySelectedConference?.info{
             self.infoSelected = info
             self.titleConference.text = info.longName
@@ -127,22 +140,45 @@ class SDSlideMenuViewController: UIViewController, UITableViewDelegate, UITableV
     }
 
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return menus.count
+        
+        switch (tableView, self.currentConferences) {
+            case (self.tblConferences, .Some(let x)):
+                self.heightConferenceTable.constant = CGFloat(x.conferences.count * Int(Height_Row_Menu))
+                return x.conferences.count
+            case (self.tblConferences, .None): return 0
+            default: return menus.count
+        }
+
     }
 
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell: UITableViewCell = UITableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: "Cell")
-        cell.textLabel?.text = menus[indexPath.row]
         cell.textLabel?.setCustomFont(UIFont.fontHelveticaNeue(15), colorFont: UIColor(white: 1, alpha: 0.8))
-        cell.imageView?.image = UIImage(named: menusImage[indexPath.row] as NSString)
         cell.backgroundColor = UIColor.appColor()
-
         var bgColorView = UIView()
         bgColorView.backgroundColor = UIColor.selectedCellMenu()
         cell.selectedBackgroundView = bgColorView
-
+        
+        
+        
+        switch (tableView, self.currentConferences) {
+            case (self.tblConferences, .Some(let x)):
+                
+                if let pictureUrl = NSURL(string: x.conferences[indexPath.row].info.pictures[0].url) {
+                    cell.imageView?.sd_setImageWithURL(pictureUrl, placeholderImage: UIImage(named: "avatar"))
+                }
+                cell.textLabel?.text = x.conferences[indexPath.row].info.longName
+            
+            default :
+                cell.textLabel?.text = menus[indexPath.row]
+                cell.imageView?.image = UIImage(named: menusImage[indexPath.row] as NSString)
+        }
+        
+        cell.layoutIfNeeded()
         return cell
+        
     }
+
 
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
 
@@ -190,10 +226,19 @@ class SDSlideMenuViewController: UIViewController, UITableViewDelegate, UITableV
 
     @IBAction func selectedConference(sender: AnyObject) {
 
-        if (self.viewSelectedConference.hidden) {
-            self.viewSelectedConference.hidden = false
+        if (self.tblConferences.alpha == 0.0) {
+            self.tblConferences.reloadData()
+            UIView.animateWithDuration(0.5, animations: {
+                self.tblConferences.alpha = 1.0
+                self.tblMenu.alpha = 0.0
+                return // <== add this
+            })
         } else {
-            self.viewSelectedConference.hidden = true
+            UIView.animateWithDuration(0.5, animations: {
+                self.tblConferences.alpha = 0.0
+                self.tblMenu.alpha = 1.0
+                return // <== add this
+            })
         }
     }
 

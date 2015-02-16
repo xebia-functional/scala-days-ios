@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6254" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6254" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
@@ -7,13 +7,14 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SDSlideMenuViewController" customModule="ScalaDays" customModuleProvider="target">
             <connections>
+                <outlet property="heightConferenceTable" destination="rHa-mP-oUU" id="2X8-E8-hY8"/>
                 <outlet property="heigthHeader" destination="b05-R2-Oic" id="M3z-f2-L8J"/>
                 <outlet property="heigthTable" destination="UCW-so-Pom" id="39k-rM-hDV"/>
                 <outlet property="imgHeader" destination="tpM-kA-yta" id="flC-OM-Lgr"/>
+                <outlet property="tblConferences" destination="A86-Fs-poj" id="iBV-2b-oeX"/>
                 <outlet property="tblMenu" destination="lxn-hm-0cu" id="skZ-DC-Ar3"/>
                 <outlet property="titleConference" destination="JLQ-ZL-etP" id="AHS-9A-IT8"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
-                <outlet property="viewSelectedConference" destination="SmI-Vt-pyz" id="lHP-JT-Yd2"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -62,49 +63,48 @@
                 </view>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" allowsSelectionDuringEditing="YES" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="lxn-hm-0cu">
                     <rect key="frame" x="0.0" y="149" width="600" height="30"/>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <color key="backgroundColor" red="0.21176470589999999" green="0.27058823529999998" blue="0.31372549020000001" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="30" id="UCW-so-Pom"/>
                     </constraints>
+                    <color key="sectionIndexBackgroundColor" red="0.21176470589999999" green="0.27058823529999998" blue="0.31372549020000001" alpha="1" colorSpace="calibratedRGB"/>
                     <connections>
                         <outlet property="dataSource" destination="-1" id="OEU-Lm-sYd"/>
                         <outlet property="delegate" destination="-1" id="9l6-5A-M57"/>
                     </connections>
                 </tableView>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SmI-Vt-pyz">
-                    <rect key="frame" x="0.0" y="149" width="600" height="142"/>
-                    <subviews>
-                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ikI-04-NUO">
-                            <rect key="frame" x="21" y="24" width="471" height="30"/>
-                            <state key="normal" title="San Francisco">
-                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                            </state>
-                        </button>
-                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nqz-vj-cGO">
-                            <rect key="frame" x="21" y="81" width="471" height="30"/>
-                            <state key="normal" title="Londres">
-                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                            </state>
-                        </button>
-                    </subviews>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" allowsSelectionDuringEditing="YES" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="A86-Fs-poj">
+                    <rect key="frame" x="0.0" y="149" width="600" height="30"/>
                     <color key="backgroundColor" red="0.21176470589999999" green="0.27058823529999998" blue="0.31372549020000001" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="142" id="48q-jr-w1a"/>
+                        <constraint firstAttribute="height" constant="30" id="rHa-mP-oUU"/>
                     </constraints>
-                </view>
+                    <color key="sectionIndexBackgroundColor" red="0.21176470589999999" green="0.27058823529999998" blue="0.31372549020000001" alpha="1" colorSpace="calibratedRGB"/>
+                    <color key="sectionIndexTrackingBackgroundColor" red="0.21176470589999999" green="0.27058823529999998" blue="0.31372549020000001" alpha="1" colorSpace="calibratedRGB"/>
+                    <connections>
+                        <outlet property="dataSource" destination="-1" id="PuC-wJ-KmN"/>
+                        <outlet property="delegate" destination="-1" id="1rM-vT-mdL"/>
+                    </connections>
+                </tableView>
             </subviews>
             <color key="backgroundColor" red="0.21176470588235294" green="0.27058823529411763" blue="0.31372549019607843" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
+                <constraint firstAttribute="bottom" secondItem="A86-Fs-poj" secondAttribute="bottom" id="4h0-P1-kms"/>
                 <constraint firstItem="lxn-hm-0cu" firstAttribute="top" secondItem="wmo-tt-doA" secondAttribute="bottom" constant="-1" id="62C-aA-XDE"/>
                 <constraint firstAttribute="trailing" secondItem="wmo-tt-doA" secondAttribute="trailing" id="G9R-F7-1uA"/>
+                <constraint firstItem="A86-Fs-poj" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="JTL-0z-hvU"/>
                 <constraint firstItem="lxn-hm-0cu" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="Pxn-7k-ql4"/>
                 <constraint firstItem="wmo-tt-doA" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="TrH-yL-nVc"/>
                 <constraint firstItem="wmo-tt-doA" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="Vn8-Rn-uof"/>
-                <constraint firstItem="lxn-hm-0cu" firstAttribute="top" secondItem="SmI-Vt-pyz" secondAttribute="top" id="gpA-nk-lfd"/>
-                <constraint firstAttribute="trailing" secondItem="SmI-Vt-pyz" secondAttribute="trailing" id="h1l-5L-Y21"/>
-                <constraint firstItem="SmI-Vt-pyz" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="k7W-Tq-77i"/>
+                <constraint firstAttribute="trailing" secondItem="A86-Fs-poj" secondAttribute="trailing" id="caB-ae-l6n"/>
                 <constraint firstAttribute="trailing" secondItem="lxn-hm-0cu" secondAttribute="trailing" id="nzc-ej-6pE"/>
+                <constraint firstItem="A86-Fs-poj" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="149" id="z3U-BV-cDY"/>
             </constraints>
+            <variation key="default">
+                <mask key="constraints">
+                    <exclude reference="4h0-P1-kms"/>
+                </mask>
+            </variation>
             <point key="canvasLocation" x="125" y="453"/>
         </view>
     </objects>
