@@ -55,9 +55,9 @@ class SDScheduleViewController: UIViewController, UITableViewDelegate, UITableVi
             }
         }
     }
-    
-    override func viewWillAppear(animated: Bool){
-     self.tblSchedule.reloadData()
+
+    override func viewWillAppear(animated: Bool) {
+        self.tblSchedule.reloadData()
     }
 
     override func viewDidLoad() {
@@ -73,7 +73,7 @@ class SDScheduleViewController: UIViewController, UITableViewDelegate, UITableVi
 
         self.loadData()
     }
-    
+
 
     // MARK: - Data loading
 
@@ -144,6 +144,16 @@ class SDScheduleViewController: UIViewController, UITableViewDelegate, UITableVi
     // MARK: - UITableViewDelegate
 
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        let scheduleDetailViewController = SDScheduleDetailViewController(nibName: "SDScheduleDetailViewController", bundle: nil)
+        if let events = eventsToShow {
+            let event: Event = events[indexPath.section][indexPath.row]
+            if (event.type == 2) {
+                scheduleDetailViewController.event = event
+                self.navigationController?.pushViewController(scheduleDetailViewController, animated: true)
+            }
+
+        }
+
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
     }
 
@@ -172,7 +182,7 @@ class SDScheduleViewController: UIViewController, UITableViewDelegate, UITableVi
         return nil
     }
 
-    // MARK: - Data handling
+// MARK: - Data handling
 
     func scheduledDates() -> [String]? {
         if let schedule = selectedConference?.schedule {
@@ -210,13 +220,13 @@ class SDScheduleViewController: UIViewController, UITableViewDelegate, UITableVi
         return nil
     }
 
-    // MARK: - Button handling
+// MARK: - Button handling
 
     func didTapOptionsButton() {
         launchFilterSheet()
     }
 
-    // MARK: - Favorites handling
+// MARK: - Favorites handling
 
     func favoritedEvents() -> [[Event]]? {
         if let _events = events {
