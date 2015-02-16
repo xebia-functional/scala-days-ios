@@ -55,6 +55,10 @@ class SDScheduleViewController: UIViewController, UITableViewDelegate, UITableVi
             }
         }
     }
+    
+    override func viewWillAppear(animated: Bool){
+     self.tblSchedule.reloadData()
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -69,6 +73,7 @@ class SDScheduleViewController: UIViewController, UITableViewDelegate, UITableVi
 
         self.loadData()
     }
+    
 
     // MARK: - Data loading
 
