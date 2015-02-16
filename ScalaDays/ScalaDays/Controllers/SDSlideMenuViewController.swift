@@ -53,7 +53,7 @@ class SDSlideMenuViewController: UIViewController, UITableViewDelegate, UITableV
                       icon_menu_ticket,
                       icon_menu_sponsors,
                       icon_menu_places,
-                      icon_menu_contact,
+                      icon_menu_speakers,
                       icon_menu_about]
 
     var scheduleViewController: UIViewController!

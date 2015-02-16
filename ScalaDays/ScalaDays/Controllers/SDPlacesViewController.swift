@@ -66,5 +66,6 @@ class SDPlacesViewController: UIViewController, MKMapViewDelegate {
             annotationView.annotation = annotation
             return annotationView
         }
-    }
+    }    
+    
 }
