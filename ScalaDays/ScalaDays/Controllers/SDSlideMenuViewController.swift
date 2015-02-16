@@ -190,11 +190,11 @@ class SDSlideMenuViewController: UIViewController, UITableViewDelegate, UITableV
 
     @IBAction func selectedConference(sender: AnyObject) {
 
-        if (self.viewSelectedConference.hidden) {
-            self.viewSelectedConference.hidden = false
-        } else {
-            self.viewSelectedConference.hidden = true
-        }
+//        if (self.viewSelectedConference.hidden) {
+//            self.viewSelectedConference.hidden = false
+//        } else {
+//            self.viewSelectedConference.hidden = true
+//        }
     }
 
 

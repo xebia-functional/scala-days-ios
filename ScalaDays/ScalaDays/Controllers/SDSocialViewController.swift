@@ -44,6 +44,9 @@ class SDSocialViewController: UIViewController {
         refreshControl.addTarget(self, action: "didActivateRefresh", forControlEvents: UIControlEvents.ValueChanged)
     }
     
+    override func viewWillAppear(animated: Bool){
+        self.tblView.reloadData()
+    }
     override func viewDidAppear(animated: Bool) {
         if let conference = selectedConference {
             hashtag = conference.info.hashtag
