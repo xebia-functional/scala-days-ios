@@ -24,7 +24,7 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wmo-tt-doA">
                     <rect key="frame" x="0.0" y="0.0" width="600" height="150"/>
                     <subviews>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="tpM-kA-yta">
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="placeholder_menu" translatesAutoresizingMaskIntoConstraints="NO" id="tpM-kA-yta">
                             <rect key="frame" x="0.0" y="0.0" width="600" height="150"/>
                         </imageView>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="San Francisco" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JLQ-ZL-etP">
@@ -38,7 +38,7 @@
                             <constraints>
                                 <constraint firstAttribute="height" constant="55" id="mkA-9v-uxq"/>
                             </constraints>
-                            <state key="normal" image="menu_icon_about">
+                            <state key="normal" image="menu_header_select_arrow">
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
                             <connections>
@@ -46,7 +46,6 @@
                             </connections>
                         </button>
                     </subviews>
-                    <color key="backgroundColor" red="1" green="0.1043636924" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstItem="A2a-gt-hi5" firstAttribute="centerY" secondItem="JLQ-ZL-etP" secondAttribute="centerY" id="Afy-ng-Ydh"/>
                         <constraint firstAttribute="bottom" secondItem="tpM-kA-yta" secondAttribute="bottom" id="LIF-SW-LmG"/>
@@ -109,6 +108,7 @@
         </view>
     </objects>
     <resources>
-        <image name="menu_icon_about" width="24" height="24"/>
+        <image name="menu_header_select_arrow" width="11" height="11"/>
+        <image name="placeholder_menu" width="298" height="188"/>
     </resources>
 </document>
