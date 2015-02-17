@@ -36,13 +36,18 @@ class DataManager {
         }
     }
     
-    var favoritedEvents: [Int]? {
+    var favoritedEvents: Dictionary<Int, Array<Int>>? {
         get {
-            return NSUserDefaults.standardUserDefaults().objectForKey("favoritedEvents") as?[Int]
+            if let data = NSUserDefaults.standardUserDefaults().objectForKey("favoritedEvents") as? NSData {
+                return NSKeyedUnarchiver.unarchiveObjectWithData(data) as? Dictionary<Int, Array<Int>>
+            }
+            return nil
         }
         set(newValue) {
-            NSUserDefaults.standardUserDefaults().setObject(newValue, forKey: "favoritedEvents")
-            NSUserDefaults.standardUserDefaults().synchronize()
+            if let favoritesDict = newValue {
+                NSUserDefaults.standardUserDefaults().setObject(NSKeyedArchiver.archivedDataWithRootObject(favoritesDict), forKey: "favoritedEvents")
+                NSUserDefaults.standardUserDefaults().synchronize()
+            }
         }
     }
 

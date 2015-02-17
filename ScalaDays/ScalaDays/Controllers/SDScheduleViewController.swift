@@ -233,18 +233,22 @@ class SDScheduleViewController: UIViewController, UITableViewDelegate, UITableVi
 // MARK: - Favorites handling
 
     func favoritedEvents() -> [[Event]]? {
-        if let _events = events {
-            return _events.map({
-                $0.filter({
-                    if let favoritedEvents = DataManager.sharedInstance.favoritedEvents {
-                        let event = $0
-                        return favoritedEvents.reduce(false, {
-                            return $0 ? $0 : event.id == $1
-                        })
-                    }
-                    return false
+        if let _conference = selectedConference {
+            if let _events = events {
+                return _events.map({
+                    $0.filter({
+                        if let favoritesDict = DataManager.sharedInstance.favoritedEvents {
+                            if let favoritedEvents = favoritesDict[_conference.info.id] {
+                                let event = $0
+                                return favoritedEvents.reduce(false, {
+                                    return $0 ? $0 : event.id == $1
+                                })
+                            }
+                        }
+                        return false
+                    })
                 })
-            })
+            }
         }
         return nil
     }
