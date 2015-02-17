@@ -88,9 +88,7 @@ class SDPlacesViewController: UIViewController, MKMapViewDelegate {
                         let venue = conference.venues[indexOfVenue]
                         let urlString = "http://maps.apple.com/?ll=\(venue.latitude),\(venue.longitude)&daddr=\(venue.address.removeWhitespace().stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)!)"
                         if let mapUrl = NSURL(string: urlString) {
-                            if UIApplication.sharedApplication().canOpenURL(mapUrl) {
-                                UIApplication.sharedApplication().openURL(mapUrl)
-                            }
+                            launchSafariToUrl(mapUrl)
                         }
                     }                    
                 }
