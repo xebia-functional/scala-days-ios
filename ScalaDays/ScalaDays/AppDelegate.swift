@@ -25,7 +25,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
         Crashlytics.startWithAPIKey("***REMOVED***")
-        self.initAparence()
+        self.initAppearence()
         self.createMenuView()        
         return true
     }
@@ -51,8 +51,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationWillTerminate(application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
-    
-   
+       
     private func createMenuView() {
         
         let scheduleViewController = SDScheduleViewController(nibName: "SDScheduleViewController", bundle: nil)
@@ -70,10 +69,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
     }
     
-    func initAparence(){
+    func initAppearence(){
         UINavigationBar.appearance().barTintColor = UIColor.appColor()
         UINavigationBar.appearance().tintColor = UIColor.whiteColor()
+        UINavigationBar.appearance().translucent = false
         UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName : UIColor.whiteColor()]
+        UINavigationBar.appearance().backIndicatorImage = UIImage(named: "navigation_bar_icon_arrow")
+        UINavigationBar.appearance().backIndicatorTransitionMaskImage = UIImage(named: "navigation_bar_icon_arrow")
         UIApplication.sharedApplication().setStatusBarStyle(.LightContent, animated: false)
     }
 }
