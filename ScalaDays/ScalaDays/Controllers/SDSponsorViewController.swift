@@ -41,6 +41,11 @@ class SDSponsorViewController: UIViewController {
         }
     }
     
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        tblSponsors.reloadData()
+    }
+    
     // MARK: UITableViewDataSource implementation
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
@@ -86,8 +91,7 @@ class SDSponsorViewController: UIViewController {
             if let url = NSURL(string: sponsors[indexPath.row].url) {
                 launchSafariToUrl(url)
             }
-        }
-        
+        }        
     }
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
