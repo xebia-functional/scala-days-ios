@@ -261,7 +261,7 @@ class SDScheduleViewController: UIViewController, UITableViewDelegate, UITableVi
                 (alertAction) -> Void in
                 self.reloadTableDataWithFilter(.Favorites)
             }))
-            actionSheet.addAction(UIAlertAction(title: actionTitleAll, style: .Cancel, handler: {
+            actionSheet.addAction(UIAlertAction(title: actionTitleCancel, style: .Cancel, handler: {
                 (alertAction) -> Void in
 
             }))

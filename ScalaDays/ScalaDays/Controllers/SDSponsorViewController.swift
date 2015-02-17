@@ -22,6 +22,7 @@ class SDSponsorViewController: UIViewController {
     
     let kReuseIdentifier = "SDSponsorViewControllerCell"
     let kHeaderHeight : CGFloat = 40.0
+    let kRowHeight : CGFloat = 100.0
     
     lazy var sponsors : [SponsorType]? = DataManager.sharedInstance.currentlySelectedConference?.sponsors
     var filteredSponsorTypes : [String]? = nil
@@ -86,16 +87,11 @@ class SDSponsorViewController: UIViewController {
             if let url = NSURL(string: sponsors[indexPath.row].url) {
                 launchSafariToUrl(url)
             }
-        }
-        
+        }        
     }
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        if (isIOS8OrLater()) {
-            return UITableViewAutomaticDimension
-        }
-        let cell = self.tableView(tableView, cellForRowAtIndexPath: indexPath) as SDSponsorsTableViewCell
-        return cell.contentView.systemLayoutSizeFittingSize(UILayoutFittingCompressedSize).height
+        return kRowHeight
     }
     
     func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
