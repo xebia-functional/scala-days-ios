@@ -26,40 +26,40 @@ class SDScheduleDetailViewController: UIViewController {
 
     @IBOutlet weak var lblSpeakers: UILabel!
     @IBOutlet weak var viewSpeaker: UIView!
+    
+    @IBOutlet weak var constraintForLblRoomTopSpace: NSLayoutConstraint!
+    @IBOutlet weak var constraintForLblDescriptionTopSpace: NSLayoutConstraint!
 
     var event: Event?
+    let kPadding : CGFloat = 15.0
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        if let eventCurrent = event {
-
-            if let arraySpeaker = eventCurrent.speakers? {
+        if let currentEvent = event {
+            if let arraySpeaker = currentEvent.speakers? {
                 if (arraySpeaker.count < 1) {
                     viewSpeaker.hidden = true
                 }
             }
-            titleSection.text = eventCurrent.title
-            lblDateSection.text = eventCurrent.date
+            
+            titleSection.text = currentEvent.title
+            lblDateSection.text = currentEvent.date
+            if currentEvent.date == "" {
+                constraintForLblRoomTopSpace.constant = 0
+            }
+            
             lblRoom.text = ""
-            lblDescription.text = eventCurrent.apiDescription
+            if let room = currentEvent.location {
+                lblRoom.text = room.name
+            }
+            if lblRoom == "" {
+                constraintForLblDescriptionTopSpace.constant = 0
+            }
+            
+            lblDescription.text = currentEvent.apiDescription
+            lblDescription.preferredMaxLayoutWidth = UIScreen.mainScreen().bounds.width - (kPadding * 2)
         }
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }
