@@ -55,3 +55,5 @@ let launchSafariToUrl = {(url: NSURL) -> Bool in
     }
     return false
 }
+
+let screenBounds = UIScreen.mainScreen().bounds
