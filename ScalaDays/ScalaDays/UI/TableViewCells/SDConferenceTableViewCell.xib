@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6254" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="50" id="KGk-i7-Jjw" customClass="SDConferenceTableViewCell" customModule="ScalaDays" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kcd-Ag-vyf">
+                        <rect key="frame" x="10" y="5" width="40" height="40"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="35" id="dG1-4y-cCP"/>
+                            <constraint firstAttribute="width" constant="35" id="txH-ku-iNJ"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m1e-Vl-10Q" userLabel="ConferenceName">
+                        <rect key="frame" x="69" y="14" width="213" height="23"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="trailingMargin" secondItem="m1e-Vl-10Q" secondAttribute="trailing" constant="30" id="4Ol-Wg-pSu"/>
+                    <constraint firstItem="kcd-Ag-vyf" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" id="HDB-hf-4fs"/>
+                    <constraint firstItem="m1e-Vl-10Q" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="6" id="O28-63-7a4"/>
+                    <constraint firstItem="m1e-Vl-10Q" firstAttribute="leading" secondItem="kcd-Ag-vyf" secondAttribute="trailing" constant="6" id="ZYI-dT-cji"/>
+                    <constraint firstItem="m1e-Vl-10Q" firstAttribute="leading" secondItem="kcd-Ag-vyf" secondAttribute="trailing" constant="6" id="eoL-tS-CyJ"/>
+                    <constraint firstItem="kcd-Ag-vyf" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="kHW-k8-8Vp"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="m1e-Vl-10Q" secondAttribute="bottom" constant="4" id="xKl-3f-0dX"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="conferenceImageView" destination="kcd-Ag-vyf" id="aXf-Ru-7Oz"/>
+                <outlet property="lblConferenceName" destination="m1e-Vl-10Q" id="vSG-im-hFu"/>
+            </connections>
+            <point key="canvasLocation" x="493" y="482"/>
+        </tableViewCell>
+    </objects>
+</document>

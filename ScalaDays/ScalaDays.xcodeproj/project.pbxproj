@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		101B49986EFC463363D4784C /* Alamofire.swift in Sources */ = {isa = PBXBuildFile; fileRef = 101B45045AF560B28ED066DB /* Alamofire.swift */; };
+		1EA75E8B1A925BFF00884EC8 /* SDConferenceTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EA75E891A925BFF00884EC8 /* SDConferenceTableViewCell.swift */; };
+		1EA75E8C1A925BFF00884EC8 /* SDConferenceTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1EA75E8A1A925BFF00884EC8 /* SDConferenceTableViewCell.xib */; };
 		590DDD6A1A83BAC100E4CC3F /* SDSpeakersListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 590DDD691A83BAC100E4CC3F /* SDSpeakersListViewController.swift */; };
 		590DDD6E1A83BAFD00E4CC3F /* SDSpeakersListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 590DDD6D1A83BAFD00E4CC3F /* SDSpeakersListViewController.xib */; };
 		590DDD701A83BE9B00E4CC3F /* SDSpeakersTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 590DDD6F1A83BE9B00E4CC3F /* SDSpeakersTableViewCell.swift */; };
@@ -105,6 +107,8 @@
 
 /* Begin PBXFileReference section */
 		101B45045AF560B28ED066DB /* Alamofire.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Alamofire.swift; sourceTree = "<group>"; };
+		1EA75E891A925BFF00884EC8 /* SDConferenceTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SDConferenceTableViewCell.swift; sourceTree = "<group>"; };
+		1EA75E8A1A925BFF00884EC8 /* SDConferenceTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SDConferenceTableViewCell.xib; sourceTree = "<group>"; };
 		2FB6FED00626F7CA4FD64E9E /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		590DDD691A83BAC100E4CC3F /* SDSpeakersListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SDSpeakersListViewController.swift; sourceTree = "<group>"; };
 		590DDD6D1A83BAFD00E4CC3F /* SDSpeakersListViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SDSpeakersListViewController.xib; sourceTree = "<group>"; };
@@ -288,6 +292,8 @@
 				590DDD711A83BEA800E4CC3F /* SDSpeakersTableViewCell.xib */,
 				59D174611A8E0C2B001E87CF /* SDSponsorsTableViewCell.swift */,
 				59D174631A8E0C3A001E87CF /* SDSponsorsTableViewCell.xib */,
+				1EA75E891A925BFF00884EC8 /* SDConferenceTableViewCell.swift */,
+				1EA75E8A1A925BFF00884EC8 /* SDConferenceTableViewCell.xib */,
 			);
 			path = TableViewCells;
 			sourceTree = "<group>";
@@ -474,6 +480,7 @@
 				A1D795D81A68267F009CCEB3 /* Sources */,
 				A1D795D91A68267F009CCEB3 /* Frameworks */,
 				A1D795DA1A68267F009CCEB3 /* Resources */,
+				1EA75E881A92445700884EC8 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -496,10 +503,11 @@
 				TargetAttributes = {
 					A1D795C61A68267F009CCEB3 = {
 						CreatedOnToolsVersion = 6.1.1;
-						DevelopmentTeam = P548S5LU96;
+						DevelopmentTeam = R78N9RCVT7;
 					};
 					A1D795DB1A68267F009CCEB3 = {
 						CreatedOnToolsVersion = 6.1.1;
+						DevelopmentTeam = R78N9RCVT7;
 						TestTargetID = A1D795C61A68267F009CCEB3;
 					};
 				};
@@ -539,6 +547,7 @@
 				590DDD721A83BEA800E4CC3F /* SDSpeakersTableViewCell.xib in Resources */,
 				590DDD6E1A83BAFD00E4CC3F /* SDSpeakersListViewController.xib in Resources */,
 				A1FA1FE51A7AA30F00338AF0 /* SDPlacesViewController.xib in Resources */,
+				1EA75E8C1A925BFF00884EC8 /* SDConferenceTableViewCell.xib in Resources */,
 				A1FA1FD41A7A9DA200338AF0 /* Localizable.strings in Resources */,
 				A1FA1FE11A7AA2FA00338AF0 /* SDSponsorViewController.xib in Resources */,
 				A1C8B8811A9208C8008599FF /* SDScheduleDetailViewController.xib in Resources */,
@@ -572,6 +581,19 @@
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
+		};
+		1EA75E881A92445700884EC8 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "./Crashlytics.framework/run ***REMOVED*** 2c56ab5ccb4f21cd496c8f733a95205cb91e19601dadd81a60e13f963f31c19c";
 		};
 		6B34A8DE02A83B2AC5E25535 /* Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -622,6 +644,7 @@
 				A1FA1FED1A7B919900338AF0 /* SlideMenuController.swift in Sources */,
 				5925ADA11A897AAD000EA5E7 /* SDMapView-ZoomOut.swift in Sources */,
 				A1C8B87A1A8E6F56008599FF /* SDTableHeaderView.swift in Sources */,
+				1EA75E8B1A925BFF00884EC8 /* SDConferenceTableViewCell.swift in Sources */,
 				A1FA1FEC1A7B90DD00338AF0 /* SDUIViewControllerExtension.swift in Sources */,
 				5928D18C1A89096500E5049E /* SDView-NibLoading.swift in Sources */,
 				595003061A84DE2600A1C24F /* SDQRScannerOverlayView.swift in Sources */,
@@ -783,6 +806,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -810,6 +834,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
