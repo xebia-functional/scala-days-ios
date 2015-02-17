@@ -91,11 +91,6 @@ class SDSponsorViewController: UIViewController {
     }
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-//        if (isIOS8OrLater()) {
-//            return UITableViewAutomaticDimension
-//        }
-//        let cell = self.tableView(tableView, cellForRowAtIndexPath: indexPath) as SDSponsorsTableViewCell
-//        return cell.contentView.systemLayoutSizeFittingSize(UILayoutFittingCompressedSize).height
         return kRowHeight
     }
     
