@@ -23,34 +23,21 @@ class SDConferenceTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
         self.conferenceImageView.circularImage()
         self.lblConferenceName.numberOfLines = 0
-        self.lblConferenceName.setCustomFont(UIFont.fontHelveticaNeueLight(15), colorFont: UIColor.appColor())
-        
-        
-        
         self.lblConferenceName.setCustomFont(UIFont.fontHelveticaNeue(15), colorFont: UIColor(white: 1, alpha: 0.8))
         self.backgroundColor = UIColor.appColor()
         var bgColorView = UIView()
         bgColorView.backgroundColor = UIColor.selectedCellMenu()
         self.selectedBackgroundView = bgColorView
-
-        
-
     }
 
     func drawConferenceData(conference: Conference) {
         self.lblConferenceName.text = conference.info.longName
-        
         if let pictureUrl = NSURL(string: conference.info.pictures[0].url) {
             conferenceImageView.sd_setImageWithURL(pictureUrl, placeholderImage: UIImage(named: "menu_icon_places"))
-            
         }
-        
         layoutSubviews()
     }
-    
-    
     
 }
