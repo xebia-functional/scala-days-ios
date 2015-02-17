@@ -23,6 +23,7 @@ class SDPlacesViewController: UIViewController, MKMapViewDelegate {
     lazy var selectedConference : Conference? = DataManager.sharedInstance.currentlySelectedConference
     let kMapDefaultDistanceInMeters : CLLocationDistance = 10000
     let kMapReuseIdentifier = "SDPlacesViewControllerMapAnnotation"
+    let kDefaultTagForAnnotations = 666
     var didShowFirstVenue = false
     
     
@@ -65,6 +66,35 @@ class SDPlacesViewController: UIViewController, MKMapViewDelegate {
             annotationView.image = UIImage(named: "map_pushpin")
             annotationView.annotation = annotation
             return annotationView
+        }
+    }
+    
+    func mapView(mapView: MKMapView!, didSelectAnnotationView view: MKAnnotationView!) {
+        view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: "didTapCallout:"))
+    }
+    
+    func didTapCallout(sender: UITapGestureRecognizer) {
+        let annotationView = sender.view as MKAnnotationView
+        let annotation = annotationView.annotation as SDMapAnnotation
+        
+        // It seems there's a bug in Swift that provokes EXC_BAD_ACCESS exceptions while trying to interpolate certain strings,
+        // (in this case, while trying to access annotation's subtitle and coordinate properties, which aren't optional and 
+        // should come with a valid value). So while we find a better solution we have to access the venue's location and address
+        // from the conference object in a more cumbersome way:
+        if let annotations = self.mapPlaces.annotations as? [SDMapAnnotation] {
+            if let indexOfVenue = find(annotations, annotation) {
+                if let conference = selectedConference {
+                    if conference.venues.count > indexOfVenue {
+                        let venue = conference.venues[indexOfVenue]
+                        let urlString = "http://maps.apple.com/?ll=\(venue.latitude),\(venue.longitude)&daddr=\(venue.address.removeWhitespace().stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)!)"
+                        if let mapUrl = NSURL(string: urlString) {
+                            if UIApplication.sharedApplication().canOpenURL(mapUrl) {
+                                UIApplication.sharedApplication().openURL(mapUrl)
+                            }
+                        }
+                    }                    
+                }
+            }
         }
     }
 }
