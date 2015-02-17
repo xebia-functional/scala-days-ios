@@ -42,11 +42,6 @@ class SDSponsorViewController: UIViewController {
         }
     }
     
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
-        tblSponsors.reloadData()
-    }
-    
     // MARK: UITableViewDataSource implementation
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
