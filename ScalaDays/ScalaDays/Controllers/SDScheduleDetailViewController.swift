@@ -26,9 +26,12 @@ class SDScheduleDetailViewController: UIViewController {
 
     @IBOutlet weak var lblSpeakers: UILabel!
     @IBOutlet weak var viewSpeaker: UIView!
+    @IBOutlet weak var scrollView: UIScrollView!
+    @IBOutlet weak var viewSpeakerListContainer: UIView!
     
     @IBOutlet weak var constraintForLblRoomTopSpace: NSLayoutConstraint!
     @IBOutlet weak var constraintForLblDescriptionTopSpace: NSLayoutConstraint!
+    @IBOutlet weak var constraintForSpeakerListContainerHeight: NSLayoutConstraint!
 
     var event: Event?
     let kPadding : CGFloat = 15.0
@@ -37,12 +40,6 @@ class SDScheduleDetailViewController: UIViewController {
         super.viewDidLoad()
 
         if let currentEvent = event {
-            if let arraySpeaker = currentEvent.speakers? {
-                if (arraySpeaker.count < 1) {
-                    viewSpeaker.hidden = true
-                }
-            }
-            
             titleSection.text = currentEvent.title
             lblDateSection.text = currentEvent.date
             if currentEvent.date == "" {
@@ -58,7 +55,30 @@ class SDScheduleDetailViewController: UIViewController {
             }
             
             lblDescription.text = currentEvent.apiDescription
-            lblDescription.preferredMaxLayoutWidth = UIScreen.mainScreen().bounds.width - (kPadding * 2)
+            lblDescription.preferredMaxLayoutWidth = screenBounds.width - (kPadding * 2)
+            
+            
+            if let speakers = currentEvent.speakers? {
+                if (speakers.count < 1) {
+                    viewSpeaker.hidden = true
+                } else {
+                    var lastSpeakerBottomPos : CGFloat = 0
+                    for (index, speaker) in enumerate(speakers) {
+                        let speakerView = SDSpeakerDetailView(frame: CGRectMake(0, lastSpeakerBottomPos, screenBounds.width, 150.0))
+                        speakerView.drawSpeakerData(speaker)
+                        viewSpeakerListContainer.addSubview(speakerView)
+                        
+                        if speakers.last != speaker {
+                            speakerView.drawSeparator()
+                        }
+                        
+                        let height = speakerView.contentHeight()
+                        speakerView.frame = CGRectMake(0, lastSpeakerBottomPos, screenBounds.width, height)
+                        lastSpeakerBottomPos += height
+                    }
+                    constraintForSpeakerListContainerHeight.constant = lastSpeakerBottomPos
+                }
+            }
         }
     }
 

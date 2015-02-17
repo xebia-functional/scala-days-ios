@@ -27,6 +27,12 @@ enum SDScheduleSelectedDataSource {
     case Favorites
 }
 
+enum SDScheduleEventType: Int {
+    case Courses = 1
+    case Keynotes = 2
+    case Others = 3
+}
+
 class SDScheduleViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UIActionSheetDelegate {
 
     @IBOutlet weak var tblSchedule: UITableView!
@@ -147,13 +153,11 @@ class SDScheduleViewController: UIViewController, UITableViewDelegate, UITableVi
         let scheduleDetailViewController = SDScheduleDetailViewController(nibName: "SDScheduleDetailViewController", bundle: nil)
         if let events = eventsToShow {
             let event: Event = events[indexPath.section][indexPath.row]
-            if (event.type == 2) {
+            if (event.type == SDScheduleEventType.Keynotes.rawValue || event.type == SDScheduleEventType.Courses.rawValue) {
                 scheduleDetailViewController.event = event
                 self.navigationController?.pushViewController(scheduleDetailViewController, animated: true)
             }
-
         }
-
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
     }
 
