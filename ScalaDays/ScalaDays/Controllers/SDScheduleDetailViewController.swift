@@ -35,11 +35,16 @@ class SDScheduleDetailViewController: UIViewController {
 
     var event: Event?
     let kPadding : CGFloat = 15.0
+    var barButtonFavorites : UIBarButtonItem!
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         if let currentEvent = event {
+            
+            barButtonFavorites = UIBarButtonItem(image: UIImage(named: "navigation_bar_icon_favorite_default"), style: .Plain, target: self, action: "didTapFavoritesButton")
+            self.navigationItem.rightBarButtonItem = barButtonFavorites
+            
             titleSection.text = currentEvent.title
             lblDateSection.text = currentEvent.date
             if currentEvent.date == "" {
@@ -56,7 +61,6 @@ class SDScheduleDetailViewController: UIViewController {
             
             lblDescription.text = currentEvent.apiDescription
             lblDescription.preferredMaxLayoutWidth = screenBounds.width - (kPadding * 2)
-            
             
             if let speakers = currentEvent.speakers? {
                 if (speakers.count < 1) {
@@ -80,6 +84,16 @@ class SDScheduleDetailViewController: UIViewController {
                 }
             }
         }
+    }
+    
+    func didTapFavoritesButton() {
+        
+        
+        
+        // TODO: test
+        
+        DataManager.sharedInstance.favoritedEvents = [111 : [6524, 6525]]
+        println("lel")
     }
 
 }
