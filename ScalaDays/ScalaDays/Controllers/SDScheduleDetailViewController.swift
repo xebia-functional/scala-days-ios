@@ -36,13 +36,16 @@ class SDScheduleDetailViewController: UIViewController {
     var event: Event?
     let kPadding : CGFloat = 15.0
     var barButtonFavorites : UIBarButtonItem!
-
+    lazy var selectedConference: Conference? = DataManager.sharedInstance.currentlySelectedConference
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         if let currentEvent = event {
             
+            let favoritesIconColor = DataManager.sharedInstance.isFavoriteEvent(event, selectedConference: selectedConference) ? UIColor.appRedColor() : UIColor.whiteColor()
             barButtonFavorites = UIBarButtonItem(image: UIImage(named: "navigation_bar_icon_favorite_default"), style: .Plain, target: self, action: "didTapFavoritesButton")
+            barButtonFavorites.tintColor = favoritesIconColor
             self.navigationItem.rightBarButtonItem = barButtonFavorites
             
             titleSection.text = currentEvent.title
@@ -88,12 +91,14 @@ class SDScheduleDetailViewController: UIViewController {
     
     func didTapFavoritesButton() {
         
+        if DataManager.sharedInstance.isFavoriteEvent(event, selectedConference: selectedConference) {
+            DataManager.sharedInstance.storeOrRemoveFavoriteEvent(true, event: event, selectedConference: selectedConference)
+            barButtonFavorites.tintColor = UIColor.whiteColor()
+        } else {
+            DataManager.sharedInstance.storeOrRemoveFavoriteEvent(false, event: event, selectedConference: selectedConference)
+            barButtonFavorites.tintColor = UIColor.appRedColor()
+        }
         
-        
-        // TODO: test
-        
-        DataManager.sharedInstance.favoritedEvents = [111 : [6524, 6525]]
-        println("lel")
     }
-
+    
 }

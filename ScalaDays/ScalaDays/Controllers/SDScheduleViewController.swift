@@ -61,16 +61,20 @@ class SDScheduleViewController: UIViewController, UITableViewDelegate, UITableVi
             }
         }
     }
+    var isDataLoaded : Bool = false
 
     override func viewWillAppear(animated: Bool) {
+        self.title = NSLocalizedString("schedule", comment: "Schedule")
         self.tblSchedule.reloadData()
+        if isDataLoaded {
+            self.loadFavorites()
+        }
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         self.setNavigationBarItem()
-        self.title = NSLocalizedString("schedule", comment: "Schedule")
         let barButtonOptions = UIBarButtonItem(image: UIImage(named: "navigation_bar_icon_options"), style: .Plain, target: self, action: "didTapOptionsButton")
         self.navigationItem.rightBarButtonItem = barButtonOptions
 
@@ -90,6 +94,8 @@ class SDScheduleViewController: UIViewController, UITableViewDelegate, UITableVi
             if (bool) {
                 println("Json modified, reload data")
             }
+            self.isDataLoaded = true
+            
             SVProgressHUD.dismiss()
 
             self.dates = self.scheduledDates()
@@ -97,9 +103,13 @@ class SDScheduleViewController: UIViewController, UITableViewDelegate, UITableVi
             self.tblSchedule.reloadData()
             self.view.backgroundColor = UIColor.appScheduleTimeBlueBackgroundColor()
 
-            if let favs = self.favoritedEvents() {
-                self.favorites = favs
-            }
+            self.loadFavorites()
+        }
+    }
+    
+    func loadFavorites() {
+        if let favs = self.favoritedEvents() {
+            self.favorites = favs
         }
     }
 
@@ -154,6 +164,7 @@ class SDScheduleViewController: UIViewController, UITableViewDelegate, UITableVi
         if let events = eventsToShow {
             let event: Event = events[indexPath.section][indexPath.row]
             if (event.type == SDScheduleEventType.Keynotes.rawValue || event.type == SDScheduleEventType.Courses.rawValue) {
+                self.title = ""
                 scheduleDetailViewController.event = event
                 self.navigationController?.pushViewController(scheduleDetailViewController, animated: true)
             }
