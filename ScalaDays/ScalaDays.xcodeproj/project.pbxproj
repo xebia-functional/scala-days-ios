@@ -503,11 +503,11 @@
 				TargetAttributes = {
 					A1D795C61A68267F009CCEB3 = {
 						CreatedOnToolsVersion = 6.1.1;
-						DevelopmentTeam = R78N9RCVT7;
+						DevelopmentTeam = P548S5LU96;
 					};
 					A1D795DB1A68267F009CCEB3 = {
 						CreatedOnToolsVersion = 6.1.1;
-						DevelopmentTeam = R78N9RCVT7;
+						DevelopmentTeam = 985FQDQUFA;
 						TestTargetID = A1D795C61A68267F009CCEB3;
 					};
 				};
