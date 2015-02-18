@@ -36,13 +36,60 @@ class DataManager {
         }
     }
     
-    var favoritedEvents: [Int]? {
+    var favoritedEvents: Dictionary<Int, Array<Int>>? {
         get {
-            return NSUserDefaults.standardUserDefaults().objectForKey("favoritedEvents") as?[Int]
+            if let data = NSUserDefaults.standardUserDefaults().objectForKey("favoritedEvents") as? NSData {
+                return NSKeyedUnarchiver.unarchiveObjectWithData(data) as? Dictionary<Int, Array<Int>>
+            }
+            return Dictionary<Int, Array<Int>>()
         }
         set(newValue) {
-            NSUserDefaults.standardUserDefaults().setObject(newValue, forKey: "favoritedEvents")
-            NSUserDefaults.standardUserDefaults().synchronize()
+            if let favoritesDict = newValue {
+                NSUserDefaults.standardUserDefaults().setObject(NSKeyedArchiver.archivedDataWithRootObject(favoritesDict), forKey: "favoritedEvents")
+                NSUserDefaults.standardUserDefaults().synchronize()
+            }
+        }
+    }
+    
+    func isFavoriteEvent(event: Event?, selectedConference: Conference?) -> Bool {
+        switch (selectedConference, DataManager.sharedInstance.favoritedEvents, event) {
+        case let (.Some(conference), .Some(favoritesDict), .Some(currentEvent)):
+            if let favoritedEvents = favoritesDict[conference.info.id] {
+                return contains(favoritedEvents, currentEvent.id)
+            }
+            break
+        default:
+            break
+        }
+        return false
+    }
+    
+    func storeOrRemoveFavoriteEvent(shouldRemove: Bool, event: Event?, selectedConference: Conference?) {
+        switch (selectedConference, DataManager.sharedInstance.favoritedEvents, event) {
+        case let (.Some(conference), .Some(favoritesDict), .Some(currentEvent)):
+            if let favoritedEvents = favoritesDict[conference.info.id] {
+                if contains(favoritedEvents, currentEvent.id) {
+                    if shouldRemove {
+                        var temp = favoritedEvents
+                        temp.removeAtIndex(find(favoritedEvents, currentEvent.id)!)
+                        DataManager.sharedInstance.favoritedEvents![conference.info.id] = temp
+                    }
+                } else {
+                    if !shouldRemove {
+                        var temp = favoritedEvents
+                        temp.append(currentEvent.id)
+                        DataManager.sharedInstance.favoritedEvents![conference.info.id] = temp
+                    }
+                }
+            } else {
+                if !shouldRemove {
+                    let temp = [conference.info.id : [currentEvent.id]]
+                    DataManager.sharedInstance.favoritedEvents = temp
+                }
+            }
+            break
+        default:
+            break
         }
     }
 

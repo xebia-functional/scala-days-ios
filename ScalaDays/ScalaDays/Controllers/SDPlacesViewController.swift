@@ -94,5 +94,6 @@ class SDPlacesViewController: UIViewController, MKMapViewDelegate {
                 }
             }
         }
-    }
+    }    
+    
 }

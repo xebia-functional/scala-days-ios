@@ -66,7 +66,7 @@
                 <outlet property="lblFullName" destination="6pQ-OD-SEB" id="rNX-q2-rSY"/>
                 <outlet property="lblUsername" destination="ajq-lL-NRj" id="YY5-kM-Emc"/>
             </connections>
-            <point key="canvasLocation" x="414" y="-6.5"/>
+            <point key="canvasLocation" x="361" y="-7.5"/>
         </tableViewCell>
     </objects>
 </document>

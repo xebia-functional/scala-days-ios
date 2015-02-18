@@ -27,6 +27,12 @@ enum SDScheduleSelectedDataSource {
     case Favorites
 }
 
+enum SDScheduleEventType: Int {
+    case Courses = 1
+    case Keynotes = 2
+    case Others = 3
+}
+
 class SDScheduleViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UIActionSheetDelegate {
 
     @IBOutlet weak var tblSchedule: UITableView!
@@ -55,16 +61,20 @@ class SDScheduleViewController: UIViewController, UITableViewDelegate, UITableVi
             }
         }
     }
-    
-    override func viewWillAppear(animated: Bool){
-     self.tblSchedule.reloadData()
+    var isDataLoaded : Bool = false
+
+    override func viewWillAppear(animated: Bool) {
+        self.title = NSLocalizedString("schedule", comment: "Schedule")
+        self.tblSchedule.reloadData()
+        if isDataLoaded {
+            self.loadFavorites()
+        }
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         self.setNavigationBarItem()
-        self.title = NSLocalizedString("schedule", comment: "Schedule")
         let barButtonOptions = UIBarButtonItem(image: UIImage(named: "navigation_bar_icon_options"), style: .Plain, target: self, action: "didTapOptionsButton")
         self.navigationItem.rightBarButtonItem = barButtonOptions
 
@@ -73,7 +83,7 @@ class SDScheduleViewController: UIViewController, UITableViewDelegate, UITableVi
 
         self.loadData()
     }
-    
+
 
     // MARK: - Data loading
 
@@ -84,6 +94,8 @@ class SDScheduleViewController: UIViewController, UITableViewDelegate, UITableVi
             if (bool) {
                 println("Json modified, reload data")
             }
+            self.isDataLoaded = true
+            
             SVProgressHUD.dismiss()
 
             self.dates = self.scheduledDates()
@@ -91,9 +103,13 @@ class SDScheduleViewController: UIViewController, UITableViewDelegate, UITableVi
             self.tblSchedule.reloadData()
             self.view.backgroundColor = UIColor.appScheduleTimeBlueBackgroundColor()
 
-            if let favs = self.favoritedEvents() {
-                self.favorites = favs
-            }
+            self.loadFavorites()
+        }
+    }
+    
+    func loadFavorites() {
+        if let favs = self.favoritedEvents() {
+            self.favorites = favs
         }
     }
 
@@ -144,6 +160,15 @@ class SDScheduleViewController: UIViewController, UITableViewDelegate, UITableVi
     // MARK: - UITableViewDelegate
 
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        let scheduleDetailViewController = SDScheduleDetailViewController(nibName: "SDScheduleDetailViewController", bundle: nil)
+        if let events = eventsToShow {
+            let event: Event = events[indexPath.section][indexPath.row]
+            if (event.type == SDScheduleEventType.Keynotes.rawValue || event.type == SDScheduleEventType.Courses.rawValue) {
+                self.title = ""
+                scheduleDetailViewController.event = event
+                self.navigationController?.pushViewController(scheduleDetailViewController, animated: true)
+            }
+        }
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
     }
 
@@ -172,7 +197,7 @@ class SDScheduleViewController: UIViewController, UITableViewDelegate, UITableVi
         return nil
     }
 
-    // MARK: - Data handling
+// MARK: - Data handling
 
     func scheduledDates() -> [String]? {
         if let schedule = selectedConference?.schedule {
@@ -210,27 +235,31 @@ class SDScheduleViewController: UIViewController, UITableViewDelegate, UITableVi
         return nil
     }
 
-    // MARK: - Button handling
+// MARK: - Button handling
 
     func didTapOptionsButton() {
         launchFilterSheet()
     }
 
-    // MARK: - Favorites handling
+// MARK: - Favorites handling
 
     func favoritedEvents() -> [[Event]]? {
-        if let _events = events {
-            return _events.map({
-                $0.filter({
-                    if let favoritedEvents = DataManager.sharedInstance.favoritedEvents {
-                        let event = $0
-                        return favoritedEvents.reduce(false, {
-                            return $0 ? $0 : event.id == $1
-                        })
-                    }
-                    return false
+        if let _conference = selectedConference {
+            if let _events = events {
+                return _events.map({
+                    $0.filter({
+                        if let favoritesDict = DataManager.sharedInstance.favoritedEvents {
+                            if let favoritedEvents = favoritesDict[_conference.info.id] {
+                                let event = $0
+                                return favoritedEvents.reduce(false, {
+                                    return $0 ? $0 : event.id == $1
+                                })
+                            }
+                        }
+                        return false
+                    })
                 })
-            })
+            }
         }
         return nil
     }
