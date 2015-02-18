@@ -85,7 +85,7 @@ class SDSlideMenuViewController: UIViewController, UITableViewDelegate, UITableV
         
         //Init aparence table
         self.heigthTable.constant = CGFloat(menus.count * Int(Height_Row_Menu))
-        self.tblMenu.scrollEnabled = false
+        self.tblMenu.scrollEnabled = IS_IPHONE5
         self.tblMenu.separatorColor = UIColor(white: 1, alpha: 0.1)
         self.titleConference.setCustomFont(UIFont.fontHelveticaNeue(17), colorFont: UIColor.whiteColor())
 
@@ -150,10 +150,21 @@ class SDSlideMenuViewController: UIViewController, UITableViewDelegate, UITableV
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch (tableView, self.currentConferences) {
             case (self.tblConferences, .Some(let x)):
-                self.heightConferenceTable.constant = CGFloat(x.conferences.count * Int(Height_Row_Menu))
-                return x.conferences.count
+                if IS_IPHONE5 {
+                    self.heightConferenceTable.constant = CGFloat(screenBounds.height - Height_Header_Menu)
+                    return x.conferences.count
+                } else {
+                    self.heightConferenceTable.constant = CGFloat(x.conferences.count * Int(Height_Row_Menu))
+                    return x.conferences.count
+                }
             case (self.tblConferences, .None): return 0
-            default: return menus.count
+            default:
+                if IS_IPHONE5 {
+                    self.heigthTable.constant = CGFloat(screenBounds.height - Height_Header_Menu)
+                } else {
+                    self.heigthTable.constant = CGFloat(menus.count * Int(Height_Row_Menu))
+                }
+                return menus.count
         }
 
     }
