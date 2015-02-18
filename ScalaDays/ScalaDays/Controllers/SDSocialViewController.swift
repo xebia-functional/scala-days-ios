@@ -16,19 +16,22 @@
 
 import UIKit
 
-class SDSocialViewController: UIViewController {
+class SDSocialViewController: UIViewController, SDErrorPlaceholderViewDelegate, SDMenuControllerItem {
     
     @IBOutlet weak var tblView : UITableView!
     @IBOutlet weak var viewError : UIView!
     @IBOutlet weak var lblError : UILabel!
+    
+    var errorPlaceholderView : SDErrorPlaceholderView!
     
     let kReuseIdentifier = "socialViewControllerCell"
     var listOfTweets : Array<SDTweet> = []
     let socialHandler = SDSocialHandler()
     lazy var refreshControl = UIRefreshControl()
     var isFirstLoad : Bool = true
-    lazy var selectedConference : Conference? = DataManager.sharedInstance.currentlySelectedConference
+    var selectedConference : Conference?
     var hashtag = ""
+    var isDataLoaded : Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,21 +45,56 @@ class SDSocialViewController: UIViewController {
         tblView?.registerNib(UINib(nibName: "SDSocialTableViewCell", bundle: nil), forCellReuseIdentifier: kReuseIdentifier)
         tblView?.addSubview(refreshControl)
         refreshControl.addTarget(self, action: "didActivateRefresh", forControlEvents: UIControlEvents.ValueChanged)
+        
+        errorPlaceholderView = SDErrorPlaceholderView(frame: screenBounds)
+        errorPlaceholderView.delegate = self
+        self.view.addSubview(errorPlaceholderView)
     }
     
     override func viewWillAppear(animated: Bool){
         self.tblView.reloadData()
     }
+    
     override func viewDidAppear(animated: Bool) {
-        if let conference = selectedConference {
-            hashtag = conference.info.hashtag
-            reloadTweets()
+        if isDataLoaded {
+            if let conference = selectedConference {
+                hashtag = conference.info.hashtag
+                reloadTweets()
+            } else {
+                loadData()
+            }
         } else {
-            // TODO: handle error if we don't have enough data from the servers to get the hashtag...
+            loadData()
         }
     }
     
     // MARK: - Network access implementation
+    
+    func loadData() {
+        SVProgressHUD.show()
+        DataManager.sharedInstance.loadDataJson() {
+            (bool, error) -> () in
+            
+            if let badError = error {
+                self.errorPlaceholderView.show(NSLocalizedString("error_message_no_data_available", comment: ""))
+                SVProgressHUD.dismiss()
+            } else {
+                self.selectedConference = DataManager.sharedInstance.currentlySelectedConference
+                
+                SVProgressHUD.dismiss()
+                self.errorPlaceholderView.hide()
+                
+                if let conference = self.selectedConference {
+                    self.hashtag = conference.info.hashtag
+                    self.reloadTweets()
+                    self.isDataLoaded = true
+                } else {
+                    // Handling error if we don't have enough data from the servers to get the hashtag...
+                    self.errorPlaceholderView.show(NSLocalizedString("social_error_no_valid_tweets", comment: ""))
+                }                
+            }
+        }
+    }
     
     func reloadTweets() {
         loadTweetData(kTweetCount, isRefreshing: false)
@@ -85,10 +123,10 @@ class SDSocialViewController: UIViewController {
                     dispatch_async(dispatch_get_main_queue()) {
                         if self.listOfTweets.count > 0 {
                             self.tblView.reloadData()
-                            self.hideErrorFeedback()
+                            self.errorPlaceholderView.hide()
                             self.showTableView()
                         } else {
-                            self.showErrorFeedback(NSLocalizedString("social_error_no_tweets_for_current_hashtag", comment: ""))
+                            self.errorPlaceholderView.show(NSLocalizedString("social_error_no_tweets_for_current_hashtag", comment: ""))
                         }
                     }
                     
@@ -111,14 +149,14 @@ class SDSocialViewController: UIViewController {
                         
                         if(errorMessage != "") {
                             dispatch_async(dispatch_get_main_queue()) {
-                                self.showErrorFeedback(errorMessage)
+                                self.errorPlaceholderView.show(errorMessage)
                             }
                         }
                     }
                 }
             }
         } else {
-            // TODO: handle error if we don't have enough data from the servers to get the hashtag...
+            self.errorPlaceholderView.show(NSLocalizedString("social_error_no_valid_tweets", comment: ""))
         }
     }
     
@@ -175,37 +213,6 @@ class SDSocialViewController: UIViewController {
         return cell
     }
     
-    // MARK: - Error feedback
-    
-    func showErrorFeedback(message: String) {
-        if(viewError.hidden) {
-            lblError.text = message
-            viewError.alpha = 0
-            viewError.hidden = false
-            UIView.animateWithDuration(kAnimationShowHideTimeInterval, animations: {() -> Void in
-                self.viewError.alpha = 1.0
-                return
-                }, completion: { (delay) -> Void in
-                    self.tblView.hidden = true
-                    return
-            })
-        }
-    }
-    
-    func hideErrorFeedback() {
-        if(!viewError.hidden) {
-            UIView.animateWithDuration(kAnimationShowHideTimeInterval, animations: {() -> Void in
-                self.viewError.alpha = 0
-                return
-                }, completion: { (delay) -> Void in
-                    self.viewError.alpha = 1.0
-                    self.viewError.hidden = true
-                    self.showTableView()
-                    return
-            })
-        }
-    }
-    
     func showTableView() {
         if(tblView.hidden) {
             tblView.alpha = 0
@@ -217,9 +224,10 @@ class SDSocialViewController: UIViewController {
         }
     }
     
-    @IBAction func didTapOnErrorView() {
-        SVProgressHUD.show()
-        reloadTweets()
+    // MARK: - SDErrorPlaceholderViewDelegate protocol implementation
+    
+    func didTapRefreshButtonInErrorPlaceholder() {
+        loadData()
     }
     
     // MARK: - Composing tweet

@@ -15,6 +15,9 @@
 		590DDD701A83BE9B00E4CC3F /* SDSpeakersTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 590DDD6F1A83BE9B00E4CC3F /* SDSpeakersTableViewCell.swift */; };
 		590DDD721A83BEA800E4CC3F /* SDSpeakersTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 590DDD711A83BEA800E4CC3F /* SDSpeakersTableViewCell.xib */; };
 		590DDD771A83C5E800E4CC3F /* SDDateHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 590DDD761A83C5E800E4CC3F /* SDDateHandler.swift */; };
+		5920EA5E1A9484A800564014 /* SDErrorPlaceholderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5920EA5D1A9484A800564014 /* SDErrorPlaceholderView.swift */; };
+		5920EA601A9484B600564014 /* SDErrorPlaceholderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5920EA5F1A9484B600564014 /* SDErrorPlaceholderView.xib */; };
+		5920EA661A94B20800564014 /* SDMenuControllerItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5920EA651A94B20800564014 /* SDMenuControllerItem.swift */; };
 		5925ADA11A897AAD000EA5E7 /* SDMapView-ZoomOut.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5925ADA01A897AAD000EA5E7 /* SDMapView-ZoomOut.swift */; };
 		5928D1751A88A9FA00E5049E /* SDContactCreationHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 5928D1741A88A9FA00E5049E /* SDContactCreationHelper.m */; };
 		5928D1781A88E5C800E5049E /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5928D1761A88E5AB00E5049E /* MapKit.framework */; };
@@ -127,6 +130,9 @@
 		590DDD6F1A83BE9B00E4CC3F /* SDSpeakersTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SDSpeakersTableViewCell.swift; sourceTree = "<group>"; };
 		590DDD711A83BEA800E4CC3F /* SDSpeakersTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SDSpeakersTableViewCell.xib; sourceTree = "<group>"; };
 		590DDD761A83C5E800E4CC3F /* SDDateHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SDDateHandler.swift; sourceTree = "<group>"; };
+		5920EA5D1A9484A800564014 /* SDErrorPlaceholderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SDErrorPlaceholderView.swift; sourceTree = "<group>"; };
+		5920EA5F1A9484B600564014 /* SDErrorPlaceholderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SDErrorPlaceholderView.xib; sourceTree = "<group>"; };
+		5920EA651A94B20800564014 /* SDMenuControllerItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SDMenuControllerItem.swift; sourceTree = "<group>"; };
 		5925ADA01A897AAD000EA5E7 /* SDMapView-ZoomOut.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SDMapView-ZoomOut.swift"; sourceTree = "<group>"; };
 		5928D1731A88A9FA00E5049E /* SDContactCreationHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDContactCreationHelper.h; sourceTree = "<group>"; };
 		5928D1741A88A9FA00E5049E /* SDContactCreationHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDContactCreationHelper.m; sourceTree = "<group>"; };
@@ -276,6 +282,14 @@
 			path = Dates;
 			sourceTree = "<group>";
 		};
+		5920EA641A94B1FB00564014 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				5920EA651A94B20800564014 /* SDMenuControllerItem.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
 		5928D1721A88A9E500E5049E /* Contacts */ = {
 			isa = PBXGroup;
 			children = (
@@ -331,6 +345,7 @@
 		593571E61A77DD73005AA332 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				5920EA641A94B1FB00564014 /* Protocols */,
 				5928D1721A88A9E500E5049E /* Contacts */,
 				590DDD751A83C5DE00E4CC3F /* Dates */,
 				593223C41A837C51009189C0 /* Alerts */,
@@ -356,6 +371,8 @@
 				595003071A84DE3B00A1C24F /* SDQRScannerOverlayView.xib */,
 				59A7DF6A1A9371A8009F4639 /* SDSpeakerDetailView.swift */,
 				59A7DF6C1A93725E009F4639 /* SDSpeakerDetailView.xib */,
+				5920EA5D1A9484A800564014 /* SDErrorPlaceholderView.swift */,
+				5920EA5F1A9484B600564014 /* SDErrorPlaceholderView.xib */,
 			);
 			path = CustomViews;
 			sourceTree = "<group>";
@@ -570,6 +587,7 @@
 				A1FA1FE11A7AA2FA00338AF0 /* SDSponsorViewController.xib in Resources */,
 				59D174641A8E0C3A001E87CF /* SDSponsorsTableViewCell.xib in Resources */,
 				A1D795D41A68267F009CCEB3 /* Images.xcassets in Resources */,
+				5920EA601A9484B600564014 /* SDErrorPlaceholderView.xib in Resources */,
 				592978041A82106D00EE3BA3 /* SDSocialTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -661,11 +679,13 @@
 				A1FA1FED1A7B919900338AF0 /* SlideMenuController.swift in Sources */,
 				5925ADA11A897AAD000EA5E7 /* SDMapView-ZoomOut.swift in Sources */,
 				A1C8B87A1A8E6F56008599FF /* SDTableHeaderView.swift in Sources */,
+				5920EA5E1A9484A800564014 /* SDErrorPlaceholderView.swift in Sources */,
 				1EA75E8B1A925BFF00884EC8 /* SDConferenceTableViewCell.swift in Sources */,
 				A1FA1FEC1A7B90DD00338AF0 /* SDUIViewControllerExtension.swift in Sources */,
 				5928D18C1A89096500E5049E /* SDView-NibLoading.swift in Sources */,
 				595003061A84DE2600A1C24F /* SDQRScannerOverlayView.swift in Sources */,
 				5929780C1A82310100EE3BA3 /* SDTweet.swift in Sources */,
+				5920EA661A94B20800564014 /* SDMenuControllerItem.swift in Sources */,
 				A1FA1FEB1A7AA6AF00338AF0 /* SDColor.swift in Sources */,
 				593223C61A837C6A009189C0 /* SDAlertViewHelper.swift in Sources */,
 				5928D17C1A88F53900E5049E /* SDString+RemoveWhiteSpaces.swift in Sources */,

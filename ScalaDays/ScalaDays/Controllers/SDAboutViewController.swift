@@ -16,13 +16,17 @@
 
 import UIKit
 
-class SDAboutViewController: UIViewController {
+class SDAboutViewController: UIViewController, SDErrorPlaceholderViewDelegate, SDMenuControllerItem {
 
     @IBOutlet weak var cnsLeftLabel: NSLayoutConstraint!
     @IBOutlet weak var cnsRightLabel: NSLayoutConstraint!
     @IBOutlet weak var lblCodeConduct: UILabel!
     @IBOutlet weak var lblDescription: UILabel!
-    lazy var selectedConference : Conference? = DataManager.sharedInstance.currentlySelectedConference
+    
+    var errorPlaceholderView : SDErrorPlaceholderView!
+    var isDataLoaded = false
+    
+    var selectedConference : Conference?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,11 +35,18 @@ class SDAboutViewController: UIViewController {
         self.title = NSLocalizedString("about", comment: "About")
         self.lblCodeConduct.setCustomFont(UIFont.fontHelveticaNeueMedium(17), colorFont: UIColor.appRedColor())
         self.lblDescription.setCustomFont(UIFont.fontHelveticaNeueLight(15), colorFont: UIColor.appColor())
-        loadCodeOfConductText()
+        
+        errorPlaceholderView = SDErrorPlaceholderView(frame: screenBounds)
+        errorPlaceholderView.delegate = self
+        self.view.addSubview(errorPlaceholderView)
+        
+        loadData()
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
+    override func viewWillAppear(animated: Bool) {
+        if !isDataLoaded {
+            loadData()
+        }
     }
     
     override func viewDidLayoutSubviews() {
@@ -45,14 +56,45 @@ class SDAboutViewController: UIViewController {
             - self.cnsRightLabel.constant
         self.view.layoutIfNeeded()
     }
-
-    func loadCodeOfConductText() {
-        if let conference = selectedConference {
-            self.lblDescription.text = conference.codeOfConduct
+    
+    // MARK: - Data loading
+    
+    func loadData() {
+        SVProgressHUD.show()
+        DataManager.sharedInstance.loadDataJson() {
+            (bool, error) -> () in
+            
+            if let badError = error {
+                self.errorPlaceholderView.show(NSLocalizedString("error_message_no_data_available", comment: ""))
+                SVProgressHUD.dismiss()
+            } else {
+                self.selectedConference = DataManager.sharedInstance.currentlySelectedConference
+                self.isDataLoaded = true
+                
+                SVProgressHUD.dismiss()
+                
+                if let conference = self.selectedConference {
+                    if conference.codeOfConduct == "" {
+                        self.errorPlaceholderView.show(NSLocalizedString("error_insufficient_content", comment: ""), isGeneralMessage: true)
+                    } else {
+                        self.errorPlaceholderView.hide()
+                        self.lblDescription.text = conference.codeOfConduct
+                    }
+                } else {
+                    self.errorPlaceholderView.show(NSLocalizedString("error_message_no_data_available", comment: ""))
+                }
+            }
         }
     }
 
     @IBAction func didTapOn47Logo(sender: AnyObject) {
         launchSafariToUrl(NSURL(string: url47Website)!)
     }
+    
+    // MARK: SDErrorPlaceholderViewDelegate protocol implementation
+    
+    func didTapRefreshButtonInErrorPlaceholder() {
+        loadData()
+    }
+    
 }
