@@ -16,17 +16,21 @@
 
 import UIKit
 
-class SDSponsorViewController: UIViewController {
+class SDSponsorViewController: UIViewController, SDErrorPlaceholderViewDelegate {
 
     @IBOutlet weak var tblSponsors: UITableView!
+    
+    var errorPlaceholderView : SDErrorPlaceholderView!
     
     let kReuseIdentifier = "SDSponsorViewControllerCell"
     let kHeaderHeight : CGFloat = 40.0
     let kRowHeight : CGFloat = 100.0
     
-    lazy var sponsors : [SponsorType]? = DataManager.sharedInstance.currentlySelectedConference?.sponsors
+    var sponsors : [SponsorType]!
     var filteredSponsorTypes : [String]? = nil
     var filteredSponsors : [[Sponsor]]? = nil
+    
+    var isDataLoaded : Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,9 +40,44 @@ class SDSponsorViewController: UIViewController {
         
         tblSponsors?.registerNib(UINib(nibName: "SDSponsorsTableViewCell", bundle: nil), forCellReuseIdentifier: kReuseIdentifier)
         
-        if let result = filterSponsors() {
-            filteredSponsorTypes = result.types
-            filteredSponsors = result.sponsors
+        errorPlaceholderView = SDErrorPlaceholderView(frame: screenBounds)
+        errorPlaceholderView.delegate = self
+        self.view.addSubview(errorPlaceholderView)
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        if !isDataLoaded {
+            loadData()
+        }
+    }
+    
+    // MARK: - Data loading
+    
+    func loadData() {
+        SVProgressHUD.show()
+        DataManager.sharedInstance.loadDataJson() {
+            (bool, error) -> () in
+            
+            if let badError = error {
+                self.errorPlaceholderView.show(NSLocalizedString("error_message_no_data_available", comment: ""))
+                SVProgressHUD.dismiss()
+            } else {
+                self.sponsors = DataManager.sharedInstance.currentlySelectedConference?.sponsors
+                
+                SVProgressHUD.dismiss()
+                self.errorPlaceholderView.hide()
+                
+                if let result = self.filterSponsors() {
+                    self.filteredSponsorTypes = result.types
+                    self.filteredSponsors = result.sponsors
+                    self.tblSponsors?.reloadData()
+                } else {
+                    self.errorPlaceholderView.show(NSLocalizedString("error_message_no_data_available", comment: ""))
+                }
+                
+                self.tblSponsors?.reloadData()
+                self.isDataLoaded = true
+            }
         }
     }
     
@@ -126,4 +165,11 @@ class SDSponsorViewController: UIViewController {
         }
         return nil
     }
+    
+    // MARK: SDErrorPlaceholderViewDelegate protocol implementation
+    
+    func didTapRefreshButtonInErrorPlaceholder() {
+        loadData()
+    }
+    
 }
