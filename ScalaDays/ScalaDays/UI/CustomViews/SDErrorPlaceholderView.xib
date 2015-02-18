@@ -8,6 +8,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SDErrorPlaceholderView" customModule="ScalaDays" customModuleProvider="target">
             <connections>
                 <outlet property="btnRefresh" destination="awa-EW-PN0" id="xS0-bx-BLL"/>
+                <outlet property="imgIcon" destination="QcY-d0-nfY" id="nEL-Wq-cyT"/>
                 <outlet property="lblErrorMessage" destination="lXu-rf-cR7" id="Ea3-n8-7BD"/>
             </connections>
         </placeholder>

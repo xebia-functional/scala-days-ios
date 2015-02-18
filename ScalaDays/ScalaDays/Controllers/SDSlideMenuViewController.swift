@@ -226,6 +226,7 @@ class SDSlideMenuViewController: UIViewController, UITableViewDelegate, UITableV
             drawSelectedConference()
             toggleTblConference()
             askControllersToReload()
+            self.slideMenuController()?.closeLeft()
         case (self.tblMenu, .Some(.Schedule)): self.slideMenuController()?.changeMainViewController(self.scheduleViewController, close: true)
         case (self.tblMenu, .Some(.Social)): self.slideMenuController()?.changeMainViewController(self.socialViewController, close: true)
         case (self.tblMenu, .Some(.Contact)): self.slideMenuController()?.changeMainViewController(self.contactViewController, close: true)

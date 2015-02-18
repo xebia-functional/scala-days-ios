@@ -63,10 +63,14 @@ class SDPlacesViewController: UIViewController, MKMapViewDelegate, SDErrorPlaceh
                 self.isDataLoaded = true
                 
                 SVProgressHUD.dismiss()
-                self.errorPlaceholderView.hide()
-                
+            
                 if let conference = self.selectedConference {
-                    self.drawMapPushPinsForVenues(conference.venues)
+                    if conference.venues.count == 0 {
+                        self.errorPlaceholderView.show(NSLocalizedString("error_insufficient_content", comment: ""), isGeneralMessage: true)
+                    } else {
+                        self.errorPlaceholderView.hide()
+                        self.drawMapPushPinsForVenues(conference.venues)
+                    }                    
                 } else {
                     self.errorPlaceholderView.show(NSLocalizedString("error_message_no_data_available", comment: ""))
                 }

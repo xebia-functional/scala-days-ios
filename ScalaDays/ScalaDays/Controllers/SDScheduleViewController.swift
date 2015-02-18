@@ -106,7 +106,6 @@ class SDScheduleViewController: UIViewController, UITableViewDelegate, UITableVi
                 self.isDataLoaded = true
                 
                 SVProgressHUD.dismiss()
-                self.errorPlaceholderView.hide()
                 
                 self.dates = self.scheduledDates()
                 self.events = self.listOfEventsSortedByDates()
@@ -114,6 +113,14 @@ class SDScheduleViewController: UIViewController, UITableViewDelegate, UITableVi
                 self.view.backgroundColor = UIColor.appScheduleTimeBlueBackgroundColor()
                 
                 self.loadFavorites()
+                
+                if let _dates = self.dates {
+                    if _dates.count == 0 {
+                        self.errorPlaceholderView.show(NSLocalizedString("error_insufficient_content", comment: ""), isGeneralMessage: true)
+                    } else {
+                        self.errorPlaceholderView.hide()
+                    }
+                }
             }
         }
     }

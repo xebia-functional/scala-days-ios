@@ -72,10 +72,14 @@ class SDAboutViewController: UIViewController, SDErrorPlaceholderViewDelegate, S
                 self.isDataLoaded = true
                 
                 SVProgressHUD.dismiss()
-                self.errorPlaceholderView.hide()
                 
                 if let conference = self.selectedConference {
-                    self.lblDescription.text = conference.codeOfConduct
+                    if conference.codeOfConduct == "" {
+                        self.errorPlaceholderView.show(NSLocalizedString("error_insufficient_content", comment: ""), isGeneralMessage: true)
+                    } else {
+                        self.errorPlaceholderView.hide()
+                        self.lblDescription.text = conference.codeOfConduct
+                    }
                 } else {
                     self.errorPlaceholderView.show(NSLocalizedString("error_message_no_data_available", comment: ""))
                 }

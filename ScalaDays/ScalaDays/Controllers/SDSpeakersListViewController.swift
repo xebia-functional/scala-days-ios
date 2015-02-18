@@ -59,10 +59,14 @@ class SDSpeakersListViewController: UIViewController, SDErrorPlaceholderViewDele
                 self.isDataLoaded = true
                 
                 SVProgressHUD.dismiss()
-                self.errorPlaceholderView.hide()
                 
                 if let _speakers = self.speakers {
-                    self.tblView.reloadData()
+                    if _speakers.count == 0 {
+                        self.errorPlaceholderView.show(NSLocalizedString("error_insufficient_content", comment: ""), isGeneralMessage: true)
+                    } else {
+                        self.errorPlaceholderView.hide()
+                        self.tblView.reloadData()
+                    }
                 } else {
                     self.errorPlaceholderView.show(NSLocalizedString("error_message_no_data_available", comment: ""))
                 }

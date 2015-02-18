@@ -17,6 +17,7 @@ import UIKit
 class SDErrorPlaceholderView: UIView {
     
     @IBOutlet weak var lblErrorMessage: UILabel!
+    @IBOutlet weak var imgIcon: UIImageView!
     @IBOutlet weak var btnRefresh: UIButton!
     weak var delegate : SDErrorPlaceholderViewDelegate?
     
@@ -52,10 +53,15 @@ class SDErrorPlaceholderView: UIView {
     }
     
     func show(message: String) {
+        show(message, isGeneralMessage: false)
+    }
+    
+    func show(message: String, isGeneralMessage: Bool) {
         if self.hidden {
             self.alpha = 0
             self.hidden = false
             self.lblErrorMessage.text = message
+            self.imgIcon.image = isGeneralMessage ? UIImage(named: "placeholder_general") : UIImage(named: "placeholder_error")
             UIView.animateWithDuration(kAnimationShowHideTimeInterval, animations: { () -> Void in
                 self.alpha = 1
             })
