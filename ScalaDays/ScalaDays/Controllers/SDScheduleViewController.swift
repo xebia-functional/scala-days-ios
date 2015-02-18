@@ -33,14 +33,15 @@ enum SDScheduleEventType: Int {
     case Others = 3
 }
 
-class SDScheduleViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UIActionSheetDelegate {
+class SDScheduleViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UIActionSheetDelegate, SDErrorPlaceholderViewDelegate, SDMenuControllerItem {
 
     @IBOutlet weak var tblSchedule: UITableView!
 
     let kReuseIdentifier = "SDScheduleViewControllerCell"
     let kHeaderHeight: CGFloat = 40.0
 
-    lazy var selectedConference: Conference? = DataManager.sharedInstance.currentlySelectedConference
+    var selectedConference: Conference?
+    var errorPlaceholderView : SDErrorPlaceholderView!
 
     var dates: [String]?
     var events: [[Event]]?
@@ -53,9 +54,9 @@ class SDScheduleViewController: UIViewController, UITableViewDelegate, UITableVi
                 return events
             case .Favorites:
                 if let _favoritesIndexes = DataManager.sharedInstance.favoritedEvents {
-                    return _favoritesIndexes.count == 0 ? events : favorites
+                    return _favoritesIndexes.count == 0 ? [[Event]]() : favorites
                 }
-                return events
+                return [[Event]]()
             default:
                 return nil
             }
@@ -65,10 +66,12 @@ class SDScheduleViewController: UIViewController, UITableViewDelegate, UITableVi
 
     override func viewWillAppear(animated: Bool) {
         self.title = NSLocalizedString("schedule", comment: "Schedule")
-        self.tblSchedule.reloadData()
         if isDataLoaded {
             self.loadFavorites()
+        } else {
+            self.loadData()
         }
+        self.tblSchedule.reloadData()
     }
 
     override func viewDidLoad() {
@@ -80,8 +83,10 @@ class SDScheduleViewController: UIViewController, UITableViewDelegate, UITableVi
 
         tblSchedule?.registerNib(UINib(nibName: "SDScheduleListTableViewCell", bundle: nil), forCellReuseIdentifier: kReuseIdentifier)
         tblSchedule?.separatorStyle = .None
-
-        self.loadData()
+        
+        errorPlaceholderView = SDErrorPlaceholderView(frame: screenBounds)
+        errorPlaceholderView.delegate = self
+        self.view.addSubview(errorPlaceholderView)
     }
 
 
@@ -91,19 +96,32 @@ class SDScheduleViewController: UIViewController, UITableViewDelegate, UITableVi
         SVProgressHUD.show()
         DataManager.sharedInstance.loadDataJson() {
             (bool, error) -> () in
-            if (bool) {
-                println("Json modified, reload data")
-            }
-            self.isDataLoaded = true
             
-            SVProgressHUD.dismiss()
-
-            self.dates = self.scheduledDates()
-            self.events = self.listOfEventsSortedByDates()
-            self.tblSchedule.reloadData()
-            self.view.backgroundColor = UIColor.appScheduleTimeBlueBackgroundColor()
-
-            self.loadFavorites()
+            if let badError = error {
+                self.errorPlaceholderView.show(NSLocalizedString("error_message_no_data_available", comment: ""))
+                SVProgressHUD.dismiss()
+            } else {
+                self.selectedConference = DataManager.sharedInstance.currentlySelectedConference
+                self.selectedDataSource = .All
+                self.isDataLoaded = true
+                
+                SVProgressHUD.dismiss()
+                
+                self.dates = self.scheduledDates()
+                self.events = self.listOfEventsSortedByDates()
+                self.tblSchedule.reloadData()
+                self.view.backgroundColor = UIColor.appScheduleTimeBlueBackgroundColor()
+                
+                self.loadFavorites()
+                
+                if let _dates = self.dates {
+                    if _dates.count == 0 {
+                        self.errorPlaceholderView.show(NSLocalizedString("error_insufficient_content", comment: ""), isGeneralMessage: true)
+                    } else {
+                        self.errorPlaceholderView.hide()
+                    }
+                }
+            }
         }
     }
     
@@ -144,8 +162,17 @@ class SDScheduleViewController: UIViewController, UITableViewDelegate, UITableVi
         if let events = eventsToShow {
             let event = events[indexPath.section][indexPath.row]
             cell.drawEventData(event)
+            switch (selectedConference, DataManager.sharedInstance.favoritedEvents) {
+            case let (.Some(conference), .Some(favoritedEvents)):
+                if let currentConferenceFavorites = favoritedEvents[conference.info.id] {
+                    if contains(currentConferenceFavorites, event.id) {
+                        cell.imgFavoriteIcon.hidden = false
+                    }
+                }
+            default: break
+            }
         }
-        cell.frame = CGRectMake(0, 0, tblSchedule.bounds.size.width, cell.frame.size.height);
+        cell.frame = CGRectMake(0, 0, screenBounds.width, cell.frame.size.height);
         cell.layoutIfNeeded()
         return cell
     }
@@ -238,7 +265,9 @@ class SDScheduleViewController: UIViewController, UITableViewDelegate, UITableVi
 // MARK: - Button handling
 
     func didTapOptionsButton() {
-        launchFilterSheet()
+        if isDataLoaded {
+            launchFilterSheet()
+        }
     }
 
 // MARK: - Favorites handling
@@ -309,5 +338,11 @@ class SDScheduleViewController: UIViewController, UITableViewDelegate, UITableVi
         tblSchedule.reloadData()
     }
 
+    
+    // MARK: SDErrorPlaceholderViewDelegate protocol implementation
+    
+    func didTapRefreshButtonInErrorPlaceholder() {
+        loadData()
+    }
 }
 

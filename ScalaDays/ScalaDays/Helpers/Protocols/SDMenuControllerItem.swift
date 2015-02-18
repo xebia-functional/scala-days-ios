@@ -14,15 +14,10 @@
 * limitations under the License.
 */
 
-import UIKit
-
-class SDSponsorsTableViewCell: UITableViewCell {
-
-    @IBOutlet weak var imgView: UIImageView!
-    @IBOutlet weak var constraintForImageHeight: NSLayoutConstraint!
+@objc protocol SDMenuControllerItem {
     
-    func drawSponsorData(sponsor: Sponsor) {
-        imgView.sd_setImageWithURL(NSURL(string: sponsor.logo), placeholderImage: UIImage(named: "placeholder_sponsors"))
-    }
+    var isDataLoaded : Bool { get set }
+    
+    func loadData()
     
 }

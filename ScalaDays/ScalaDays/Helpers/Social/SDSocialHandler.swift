@@ -88,19 +88,22 @@ class SDSocialHandler: NSObject {
                     postRequest.account = account
                     postRequest.performRequestWithHandler({ (responseData, urlResponse, error) -> Void in
                         var parseError: NSError? = NSError()
-                        let testString = NSString(data: responseData, encoding: NSUTF8StringEncoding)
-                        let tweetsData: Dictionary<String, AnyObject>? = NSJSONSerialization.JSONObjectWithData(responseData, options: NSJSONReadingOptions.AllowFragments, error: &parseError) as? Dictionary
-                        
-                        if let tweets = tweetsData {
-                            let statuses = tweets[kTweetDKStatuses] as? Array<Dictionary<String, AnyObject>>
-                            if let unwrappedTweets = statuses {
-                                completionHandler(self.processedListOfTweets(unwrappedTweets), nil)
+                        if let data = responseData {
+                            let tweetsData: Dictionary<String, AnyObject>? = NSJSONSerialization.JSONObjectWithData(responseData, options: NSJSONReadingOptions.AllowFragments, error: &parseError) as? Dictionary
+                            
+                            if let tweets = tweetsData {
+                                let statuses = tweets[kTweetDKStatuses] as? Array<Dictionary<String, AnyObject>>
+                                if let unwrappedTweets = statuses {
+                                    completionHandler(self.processedListOfTweets(unwrappedTweets), nil)
+                                } else {
+                                    completionHandler(nil, NSError(domain: self.errorDomain, code: SDSocialErrors.NoValidDataFromAPI.rawValue, userInfo: nil))
+                                }
                             } else {
                                 completionHandler(nil, NSError(domain: self.errorDomain, code: SDSocialErrors.NoValidDataFromAPI.rawValue, userInfo: nil))
                             }
                         } else {
                             completionHandler(nil, NSError(domain: self.errorDomain, code: SDSocialErrors.NoValidDataFromAPI.rawValue, userInfo: nil))
-                        }
+                        }                        
                     })                    
                 case let (nil, url):
                     completionHandler(nil, NSError(domain: self.errorDomain, code: SDSocialErrors.NoTwitterAccountAvailable.rawValue, userInfo: nil))                    

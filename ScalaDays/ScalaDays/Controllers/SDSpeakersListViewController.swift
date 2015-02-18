@@ -16,9 +16,13 @@
 
 import UIKit
 
-class SDSpeakersListViewController: UIViewController {
+class SDSpeakersListViewController: UIViewController, SDErrorPlaceholderViewDelegate, SDMenuControllerItem {
+    
     @IBOutlet weak var tblView: UITableView!
-    lazy var speakers : Array<Speaker>? = DataManager.sharedInstance.currentlySelectedConference?.speakers
+    var errorPlaceholderView : SDErrorPlaceholderView!
+    var isDataLoaded = false
+    
+    var speakers : Array<Speaker>?
     let kReuseIdentifier = "SpeakersListCell"
     
     override func viewDidLoad() {
@@ -28,11 +32,46 @@ class SDSpeakersListViewController: UIViewController {
         self.title = NSLocalizedString("speakers",comment: "speakers")
         
         tblView.registerNib(UINib(nibName: "SDSpeakersTableViewCell", bundle: nil), forCellReuseIdentifier: kReuseIdentifier)
+        
+        errorPlaceholderView = SDErrorPlaceholderView(frame: screenBounds)
+        errorPlaceholderView.delegate = self
+        self.view.addSubview(errorPlaceholderView)
     }
     
     override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
-        tblView.reloadData()
+        if !isDataLoaded {
+            loadData()
+        }
+    }
+    
+    // MARK: - Data loading
+    
+    func loadData() {
+        SVProgressHUD.show()
+        DataManager.sharedInstance.loadDataJson() {
+            (bool, error) -> () in
+            
+            if let badError = error {
+                self.errorPlaceholderView.show(NSLocalizedString("error_message_no_data_available", comment: ""))
+                SVProgressHUD.dismiss()
+            } else {
+                self.speakers = DataManager.sharedInstance.currentlySelectedConference?.speakers
+                self.isDataLoaded = true
+                
+                SVProgressHUD.dismiss()
+                
+                if let _speakers = self.speakers {
+                    if _speakers.count == 0 {
+                        self.errorPlaceholderView.show(NSLocalizedString("error_insufficient_content", comment: ""), isGeneralMessage: true)
+                    } else {
+                        self.errorPlaceholderView.hide()
+                        self.tblView.reloadData()
+                    }
+                } else {
+                    self.errorPlaceholderView.show(NSLocalizedString("error_message_no_data_available", comment: ""))
+                }
+            }
+        }
     }
     
     // MARK: - UITableViewDelegate & UITableViewDataSource implementation
@@ -88,6 +127,12 @@ class SDSpeakersListViewController: UIViewController {
         cell.frame = CGRectMake(0, 0, tblView.bounds.size.width, cell.frame.size.height);
         cell.layoutIfNeeded()
         return cell
+    }
+    
+    // MARK: SDErrorPlaceholderViewDelegate protocol implementation
+    
+    func didTapRefreshButtonInErrorPlaceholder() {
+        loadData()
     }
     
 }

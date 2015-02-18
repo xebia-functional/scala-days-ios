@@ -55,3 +55,10 @@
 "contacts_add_contact_success_message" = "Contact was successfully added to your Address Book!";
 "contacts_add_contact_request" = "Do you really want to add %@ to your Address Book?";
 "contacts_add_contact_request_no_name" = "Scanned contact doesn't have a proper name or last name, do you really want to add it to your Address Book?";
+
+// Error placeholder
+// TODO: Messages are yet to be reviewed
+
+"error_placeholder_button_refresh" = "RELOAD";
+"error_message_no_data_available" = "There was an error while trying to retrieve the latest Scala Days information. Please tap on the \"RELOAD\" button to try again.";
+"error_insufficient_content" = "We haven't found enough data for this section yet. Please tap on the \"RELOAD\" button to try again.";

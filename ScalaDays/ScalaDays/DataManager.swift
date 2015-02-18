@@ -140,6 +140,9 @@ class DataManager {
                             callback(true, error)
                         }
                     }
+                } else {
+                    // We're here if we don't have a valid internet connection but we have cached data... we just relay it to the recipient:
+                    callback(false, nil)
                 }
             } else {
                 if let date = response?.allHeaderFields[lastModifiedDate] as NSString? {

@@ -43,8 +43,8 @@
                         <color key="textColor" red="0.25882352941176467" green="0.49411764705882355" blue="0.56862745098039214" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" placeholderIntrinsicWidth="304" placeholderIntrinsicHeight="25" text="Title" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="280" translatesAutoresizingMaskIntoConstraints="NO" id="78z-hW-SG4">
-                        <rect key="frame" x="83" y="33" width="304" height="39"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" placeholderIntrinsicWidth="304" placeholderIntrinsicHeight="25" text="Title" lineBreakMode="clip" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="280" translatesAutoresizingMaskIntoConstraints="NO" id="78z-hW-SG4">
+                        <rect key="frame" x="83" y="33" width="517" height="39"/>
                         <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="15"/>
                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
@@ -67,6 +67,13 @@
                         <color key="textColor" red="0.21176470588235294" green="0.27058823529411763" blue="0.31372549019607843" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="schedule_tag_favorite" translatesAutoresizingMaskIntoConstraints="NO" id="kZw-1b-gKd">
+                        <rect key="frame" x="606" y="0.0" width="24" height="25"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="25" id="Lr9-az-Yc6"/>
+                            <constraint firstAttribute="width" constant="24" id="faT-hn-tfu"/>
+                        </constraints>
+                    </imageView>
                     <view alpha="0.0" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gAd-Vu-ffH" userLabel="Selected BG View">
                         <rect key="frame" x="0.0" y="0.0" width="640" height="108"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -92,8 +99,11 @@
                     <constraint firstItem="Abz-WY-eRT" firstAttribute="leading" secondItem="uOZ-dw-dqz" secondAttribute="trailing" constant="15" id="c3V-JN-NNH"/>
                     <constraint firstAttribute="bottom" secondItem="zrO-zq-C4M" secondAttribute="bottom" priority="666" constant="12" id="igE-bX-IAD"/>
                     <constraint firstItem="zrO-zq-C4M" firstAttribute="top" secondItem="78z-hW-SG4" secondAttribute="bottom" constant="6" id="mUj-BF-7Z0"/>
+                    <constraint firstAttribute="trailing" secondItem="78z-hW-SG4" secondAttribute="trailing" constant="40" id="nCN-dq-1kr"/>
                     <constraint firstItem="zrO-zq-C4M" firstAttribute="leading" secondItem="uOZ-dw-dqz" secondAttribute="trailing" constant="15" id="oFG-6r-oY7"/>
+                    <constraint firstItem="kZw-1b-gKd" firstAttribute="top" secondItem="WYi-j6-dN4" secondAttribute="top" id="riG-kL-m4E"/>
                     <constraint firstAttribute="trailing" secondItem="iZC-Ux-GCx" secondAttribute="trailing" id="sBj-Qv-Gfd"/>
+                    <constraint firstAttribute="trailing" secondItem="kZw-1b-gKd" secondAttribute="trailing" constant="10" id="ul2-dp-mB3"/>
                     <constraint firstItem="qCh-Rh-O4u" firstAttribute="top" secondItem="78z-hW-SG4" secondAttribute="bottom" constant="6" id="vzS-3c-d7m"/>
                 </constraints>
             </tableViewCellContentView>
@@ -104,6 +114,7 @@
                 <outlet property="constraintForLblSpeakerTopSpace" destination="mUj-BF-7Z0" id="RoH-6o-Evp"/>
                 <outlet property="constraintForLblTwitter" destination="54P-4P-RWF" id="b8P-zN-BhZ"/>
                 <outlet property="constraintForLblTwitterTopSpace" destination="vzS-3c-d7m" id="zqs-Xp-q8G"/>
+                <outlet property="imgFavoriteIcon" destination="kZw-1b-gKd" id="ZgF-hh-nBK"/>
                 <outlet property="lblLocation" destination="Abz-WY-eRT" id="o1g-oT-HKY"/>
                 <outlet property="lblSpeaker" destination="zrO-zq-C4M" id="CP0-v6-thC"/>
                 <outlet property="lblTime" destination="RdK-wi-8OD" id="dBs-5T-Sei"/>
@@ -114,4 +125,7 @@
             <point key="canvasLocation" x="102" y="-3"/>
         </tableViewCell>
     </objects>
+    <resources>
+        <image name="schedule_tag_favorite" width="48" height="50"/>
+    </resources>
 </document>
