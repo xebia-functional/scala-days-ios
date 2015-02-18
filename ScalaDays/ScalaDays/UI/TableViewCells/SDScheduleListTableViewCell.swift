@@ -24,7 +24,8 @@ class SDScheduleListTableViewCell: UITableViewCell {
     let kDefaultBottomSpaceForLblLocation : CGFloat = 6.0
     let kDefaultTopSpaceForSpeakerTwitter : CGFloat = 6.0
     let kWidthOfTimeContainer : CGFloat = 68.0
-    let kDefaultHorizontalPadding : CGFloat = 15.0
+    let kDefaultHorizontalLeading : CGFloat = 15.0
+    let kDefaultHorizontalTrailing : CGFloat = 40.0
     let kDefaultMaxAlphaForSelectionBG : CGFloat = 0.3
     
     @IBOutlet weak var lblLocation: UILabel!
@@ -33,6 +34,7 @@ class SDScheduleListTableViewCell: UITableViewCell {
     @IBOutlet weak var lblTwitter: UILabel!
     @IBOutlet weak var lblTime: UILabel!
     @IBOutlet weak var selectedBGView: UIView!
+    @IBOutlet weak var imgFavoriteIcon: UIImageView!
     
     @IBOutlet weak var constraintForLblLocationHeight: NSLayoutConstraint!
     @IBOutlet weak var constraintForLblSpeaker: NSLayoutConstraint!
@@ -52,7 +54,7 @@ class SDScheduleListTableViewCell: UITableViewCell {
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        lblTitle?.preferredMaxLayoutWidth = self.frame.size.width - kWidthOfTimeContainer - kDefaultHorizontalPadding * 2
+        lblTitle?.preferredMaxLayoutWidth = self.frame.size.width - kWidthOfTimeContainer - kDefaultHorizontalLeading - kDefaultHorizontalTrailing
     }
     
     func drawEventData(event: Event) {
@@ -91,6 +93,7 @@ class SDScheduleListTableViewCell: UITableViewCell {
             lblSpeaker.text = ""
             lblTwitter.text = ""
         }
+        imgFavoriteIcon.hidden = true
         layoutSubviews()        
     }
 }
