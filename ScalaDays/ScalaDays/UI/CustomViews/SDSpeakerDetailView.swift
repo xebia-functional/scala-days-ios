@@ -30,6 +30,7 @@ class SDSpeakerDetailView: UIView {
     let kSeparatorHeight : CGFloat = 1.0
     let kBottomPadding : CGFloat = 30.0
     let kHorizontalPadding : CGFloat = 18.0
+    let kPaddingForSeparator : CGFloat = 15.0
     
     required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -86,7 +87,7 @@ class SDSpeakerDetailView: UIView {
     func drawSeparator() {
         let separatorLayer = CALayer()
         let contentHeight = self.contentHeight()
-        separatorLayer.frame = CGRectMake(0, contentHeight - kSeparatorHeight, self.frame.size.width, kSeparatorHeight)
+        separatorLayer.frame = CGRectMake(kPaddingForSeparator, contentHeight - kSeparatorHeight, self.frame.size.width, kSeparatorHeight)
         separatorLayer.backgroundColor = UIColor.appSeparatorLineColor().CGColor
         self.layer.addSublayer(separatorLayer)
     }

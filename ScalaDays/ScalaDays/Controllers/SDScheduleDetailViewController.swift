@@ -71,7 +71,7 @@ class SDScheduleDetailViewController: UIViewController {
                 } else {
                     var lastSpeakerBottomPos : CGFloat = 0
                     for (index, speaker) in enumerate(speakers) {
-                        let speakerView = SDSpeakerDetailView(frame: CGRectMake(0, lastSpeakerBottomPos, screenBounds.width, 150.0))
+                        let speakerView = SDSpeakerDetailView(frame: CGRectMake(0, lastSpeakerBottomPos, screenBounds.width, 0))
                         speakerView.drawSpeakerData(speaker)
                         viewSpeakerListContainer.addSubview(speakerView)
                         
