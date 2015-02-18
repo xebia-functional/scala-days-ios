@@ -63,14 +63,18 @@ class SDSponsorViewController: UIViewController, SDErrorPlaceholderViewDelegate,
                 SVProgressHUD.dismiss()
             } else {
                 self.sponsors = DataManager.sharedInstance.currentlySelectedConference?.sponsors
-                
                 SVProgressHUD.dismiss()
-                self.errorPlaceholderView.hide()
                 
                 if let result = self.filterSponsors() {
                     self.filteredSponsorTypes = result.types
                     self.filteredSponsors = result.sponsors
                     self.tblSponsors?.reloadData()
+                    
+                    if result.sponsors.count == 0 {
+                        self.errorPlaceholderView.show(NSLocalizedString("error_insufficient_content", comment: ""), isGeneralMessage: true)
+                    } else {
+                        self.errorPlaceholderView.hide()
+                    }
                 } else {
                     self.errorPlaceholderView.show(NSLocalizedString("error_message_no_data_available", comment: ""))
                 }

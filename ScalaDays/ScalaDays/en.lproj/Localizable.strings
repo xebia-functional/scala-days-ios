@@ -61,3 +61,4 @@
 
 "error_placeholder_button_refresh" = "REFRESH";
 "error_message_no_data_available" = "There was an error while trying to retrieve the latest Scala Days information. Please tap on the \"REFRESH\" button to try again.";
+"error_insufficient_content" = "We haven't found enough data for this section yet. Please tap on the \"REFRESH\" button to try again.";
