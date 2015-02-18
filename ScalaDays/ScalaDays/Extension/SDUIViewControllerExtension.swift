@@ -20,5 +20,6 @@ extension UIViewController {
     
     func setNavigationBarItem() {
         self.addLeftBarButtonWithImage(UIImage(named: "navigation_bar_icon_menu")!)
+        self.navigationController?.navigationBar.translucent = false
     }
 }

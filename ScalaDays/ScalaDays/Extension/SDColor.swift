@@ -41,6 +41,10 @@ extension UIColor {
     class func appScheduleTimeBlueBackgroundColor() -> UIColor {
         return UIColor(red: 108/255, green: 207/255, blue: 233/255, alpha: 255/255)
     }
+    
+    class func appSeparatorLineColor() -> UIColor {
+        return UIColor(red: 54/255, green: 69/255, blue: 80/255, alpha: 0.3)
+    }
 
 }
 

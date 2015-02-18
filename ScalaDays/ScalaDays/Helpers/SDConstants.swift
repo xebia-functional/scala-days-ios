@@ -21,11 +21,12 @@ let IS_IPHONE5 = UIScreen.mainScreen().bounds.size.height == 480;
 
 let icon_menu_schedule = "menu_icon_schedule"
 let icon_menu_social = "menu_icon_social"
-let icon_menu_contact = "menu_icon_social"
+let icon_menu_contact = "menu_icon_contact"
 let icon_menu_ticket = "menu_icon_ticket"
 let icon_menu_sponsors = "menu_icon_sponsors"
 let icon_menu_places = "menu_icon_places"
 let icon_menu_about = "menu_icon_about"
+let icon_menu_speakers = "menu_icon_speakers"
 
 let Height_Row_Menu: CGFloat = 50
 let Height_Header_Menu: CGFloat = 130
@@ -54,3 +55,5 @@ let launchSafariToUrl = {(url: NSURL) -> Bool in
     }
     return false
 }
+
+let screenBounds = UIScreen.mainScreen().bounds
