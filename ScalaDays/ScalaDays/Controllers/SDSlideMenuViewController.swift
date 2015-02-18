@@ -143,7 +143,7 @@ class SDSlideMenuViewController: UIViewController, UITableViewDelegate, UITableV
     }
 
 
-    //MARK: UITableViewDataSource
+    // MARK: - UITableViewDataSource implementation
 
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
@@ -216,7 +216,7 @@ class SDSlideMenuViewController: UIViewController, UITableViewDelegate, UITableV
         return Height_Row_Menu
     }
 
-    //MARK: UITableViewDelegate
+    // MARK: - UITableViewDelegate implementation
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
    
