@@ -16,7 +16,7 @@
 
 import UIKit
 
-class SDSponsorViewController: UIViewController, SDErrorPlaceholderViewDelegate {
+class SDSponsorViewController: UIViewController, SDErrorPlaceholderViewDelegate, SDMenuControllerItem {
 
     @IBOutlet weak var tblSponsors: UITableView!
     

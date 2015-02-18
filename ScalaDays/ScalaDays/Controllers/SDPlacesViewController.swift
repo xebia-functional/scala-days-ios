@@ -17,7 +17,7 @@
 import UIKit
 import MapKit
 
-class SDPlacesViewController: UIViewController, MKMapViewDelegate, SDErrorPlaceholderViewDelegate {
+class SDPlacesViewController: UIViewController, MKMapViewDelegate, SDErrorPlaceholderViewDelegate, SDMenuControllerItem {
 
     @IBOutlet weak var mapPlaces: MKMapView!
     var selectedConference : Conference?

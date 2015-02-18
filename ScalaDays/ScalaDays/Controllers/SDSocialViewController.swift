@@ -16,7 +16,7 @@
 
 import UIKit
 
-class SDSocialViewController: UIViewController, SDErrorPlaceholderViewDelegate {
+class SDSocialViewController: UIViewController, SDErrorPlaceholderViewDelegate, SDMenuControllerItem {
     
     @IBOutlet weak var tblView : UITableView!
     @IBOutlet weak var viewError : UIView!
