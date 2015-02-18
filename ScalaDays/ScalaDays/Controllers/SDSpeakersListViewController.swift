@@ -16,7 +16,7 @@
 
 import UIKit
 
-class SDSpeakersListViewController: UIViewController, SDErrorPlaceholderViewDelegate {
+class SDSpeakersListViewController: UIViewController, SDErrorPlaceholderViewDelegate, SDMenuControllerItem {
     
     @IBOutlet weak var tblView: UITableView!
     var errorPlaceholderView : SDErrorPlaceholderView!

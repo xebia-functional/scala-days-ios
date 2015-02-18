@@ -33,14 +33,14 @@ enum SDScheduleEventType: Int {
     case Others = 3
 }
 
-class SDScheduleViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UIActionSheetDelegate, SDErrorPlaceholderViewDelegate {
+class SDScheduleViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UIActionSheetDelegate, SDErrorPlaceholderViewDelegate, SDMenuControllerItem {
 
     @IBOutlet weak var tblSchedule: UITableView!
 
     let kReuseIdentifier = "SDScheduleViewControllerCell"
     let kHeaderHeight: CGFloat = 40.0
 
-    lazy var selectedConference: Conference? = DataManager.sharedInstance.currentlySelectedConference
+    var selectedConference: Conference?
     var errorPlaceholderView : SDErrorPlaceholderView!
 
     var dates: [String]?
@@ -101,6 +101,8 @@ class SDScheduleViewController: UIViewController, UITableViewDelegate, UITableVi
                 self.errorPlaceholderView.show(NSLocalizedString("error_message_no_data_available", comment: ""))
                 SVProgressHUD.dismiss()
             } else {
+                self.selectedConference = DataManager.sharedInstance.currentlySelectedConference
+                self.selectedDataSource = .All
                 self.isDataLoaded = true
                 
                 SVProgressHUD.dismiss()

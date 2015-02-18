@@ -16,7 +16,7 @@
 
 import UIKit
 
-class SDAboutViewController: UIViewController, SDErrorPlaceholderViewDelegate {
+class SDAboutViewController: UIViewController, SDErrorPlaceholderViewDelegate, SDMenuControllerItem {
 
     @IBOutlet weak var cnsLeftLabel: NSLayoutConstraint!
     @IBOutlet weak var cnsRightLabel: NSLayoutConstraint!

@@ -27,6 +27,7 @@ class SDSlideMenuViewController: UIViewController, UITableViewDelegate, UITableV
     @IBOutlet weak var imgHeader: UIImageView!
     @IBOutlet weak var tblConferences: UITableView!
     let kConferenceReuseIdentifier = "ConferencesListCell"
+    var controllers : [UIViewController]!
 
 
     enum Menu: Int {
@@ -107,7 +108,8 @@ class SDSlideMenuViewController: UIViewController, UITableViewDelegate, UITableV
         
         let speakersViewController = SDSpeakersListViewController(nibName: "SDSpeakersListViewController", bundle: nil)
         self.speakersViewController = UINavigationController(rootViewController: speakersViewController)
-       
+        
+        controllers = [socialViewController, contactViewController, sponsorsViewController, placesViewController, aboutViewController, speakersViewController]
     }
     
     override func  viewWillAppear(animated: Bool) {
@@ -219,22 +221,23 @@ class SDSlideMenuViewController: UIViewController, UITableViewDelegate, UITableV
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
    
         switch (tableView, Menu(rawValue: indexPath.item)) {
-            case (self.tblConferences, _) :
-                DataManager.sharedInstance.selectedConferenceIndex = indexPath.row
-                drawSelectedConference()
-                toggleTblConference()
-            case (self.tblMenu, .Some(.Schedule)): self.slideMenuController()?.changeMainViewController(self.scheduleViewController, close: true)
-            case (self.tblMenu, .Some(.Social)): self.slideMenuController()?.changeMainViewController(self.socialViewController, close: true)
-            case (self.tblMenu, .Some(.Contact)): self.slideMenuController()?.changeMainViewController(self.contactViewController, close: true)
-            case (self.tblMenu, .Some(.Sponsors)): self.slideMenuController()?.changeMainViewController(self.sponsorsViewController, close: true)
-            case (self.tblMenu, .Some(.Places)): self.slideMenuController()?.changeMainViewController(self.placesViewController, close: true)
-            case (self.tblMenu, .Some(.About)): self.slideMenuController()?.changeMainViewController(self.aboutViewController, close: true)
-            case (self.tblMenu, .Some(.Speakers)): self.slideMenuController()?.changeMainViewController(self.speakersViewController, close: true)
-            case (self.tblMenu, .Some(.Tickets)):
-                if let registration = self.infoSelected?.registrationSite {
-                    UIApplication.sharedApplication().openURL(NSURL(string:registration)!)
-                }
-            default: break
+        case (self.tblConferences, _) :
+            DataManager.sharedInstance.selectedConferenceIndex = indexPath.row
+            drawSelectedConference()
+            toggleTblConference()
+            askControllersToReload()
+        case (self.tblMenu, .Some(.Schedule)): self.slideMenuController()?.changeMainViewController(self.scheduleViewController, close: true)
+        case (self.tblMenu, .Some(.Social)): self.slideMenuController()?.changeMainViewController(self.socialViewController, close: true)
+        case (self.tblMenu, .Some(.Contact)): self.slideMenuController()?.changeMainViewController(self.contactViewController, close: true)
+        case (self.tblMenu, .Some(.Sponsors)): self.slideMenuController()?.changeMainViewController(self.sponsorsViewController, close: true)
+        case (self.tblMenu, .Some(.Places)): self.slideMenuController()?.changeMainViewController(self.placesViewController, close: true)
+        case (self.tblMenu, .Some(.About)): self.slideMenuController()?.changeMainViewController(self.aboutViewController, close: true)
+        case (self.tblMenu, .Some(.Speakers)): self.slideMenuController()?.changeMainViewController(self.speakersViewController, close: true)
+        case (self.tblMenu, .Some(.Tickets)):
+            if let registration = self.infoSelected?.registrationSite {
+                UIApplication.sharedApplication().openURL(NSURL(string:registration)!)
+            }
+        default: break
         }
 
     }
@@ -260,5 +263,22 @@ class SDSlideMenuViewController: UIViewController, UITableViewDelegate, UITableV
         }
     }
 
+    // MARK: - Notify controllers of conference swapping
+    
+    func askControllersToReload() {
+        // We need to notify our main controllers that their data need to be updated, also our visible controller needs to reload ASAP:
+        for controller in controllers {
+            if controller is SDMenuControllerItem {
+                let controllerItem = controller as SDMenuControllerItem
+                controllerItem.isDataLoaded = false
+            }
+        }
+        
+        if let mainNavController = self.slideMenuController()?.mainViewController as? UINavigationController {
+            if let currentController = mainNavController.visibleViewController as? SDMenuControllerItem {
+                currentController.loadData()
+            }
+        }
+    }
 
 }
