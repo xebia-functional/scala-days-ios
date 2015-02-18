@@ -17,25 +17,60 @@
 import UIKit
 import MapKit
 
-class SDPlacesViewController: UIViewController, MKMapViewDelegate {
+class SDPlacesViewController: UIViewController, MKMapViewDelegate, SDErrorPlaceholderViewDelegate {
 
     @IBOutlet weak var mapPlaces: MKMapView!
-    lazy var selectedConference : Conference? = DataManager.sharedInstance.currentlySelectedConference
+    var selectedConference : Conference?
     let kMapDefaultDistanceInMeters : CLLocationDistance = 10000
     let kMapReuseIdentifier = "SDPlacesViewControllerMapAnnotation"
     let kDefaultTagForAnnotations = 666
     var didShowFirstVenue = false
     
+    var errorPlaceholderView : SDErrorPlaceholderView!
+    var isDataLoaded = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
         self.setNavigationBarItem()
         self.title = NSLocalizedString("places", comment: "Places")
+        
+        errorPlaceholderView = SDErrorPlaceholderView(frame: screenBounds)
+        errorPlaceholderView.delegate = self
+        self.view.addSubview(errorPlaceholderView)
+        
         mapPlaces.delegate = self
-        if let conference = selectedConference {
-            drawMapPushPinsForVenues(conference.venues)
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        if !isDataLoaded {
+            loadData()
+        }
+    }
+    
+    // MARK: - Data loading
+    
+    func loadData() {
+        SVProgressHUD.show()
+        DataManager.sharedInstance.loadDataJson() {
+            (bool, error) -> () in
+            
+            if let badError = error {
+                self.errorPlaceholderView.show(NSLocalizedString("error_message_no_data_available", comment: ""))
+                SVProgressHUD.dismiss()
+            } else {
+                self.selectedConference = DataManager.sharedInstance.currentlySelectedConference
+                self.isDataLoaded = true
+                
+                SVProgressHUD.dismiss()
+                self.errorPlaceholderView.hide()
+                
+                if let conference = self.selectedConference {
+                    self.drawMapPushPinsForVenues(conference.venues)
+                } else {
+                    self.errorPlaceholderView.show(NSLocalizedString("error_message_no_data_available", comment: ""))
+                }
+            }
         }
     }
     
@@ -94,6 +129,12 @@ class SDPlacesViewController: UIViewController, MKMapViewDelegate {
                 }
             }
         }
-    }    
+    }
+    
+    // MARK: SDErrorPlaceholderViewDelegate protocol implementation
+    
+    func didTapRefreshButtonInErrorPlaceholder() {
+        loadData()
+    }
     
 }

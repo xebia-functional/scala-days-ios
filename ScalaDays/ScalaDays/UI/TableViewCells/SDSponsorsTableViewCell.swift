@@ -22,7 +22,7 @@ class SDSponsorsTableViewCell: UITableViewCell {
     @IBOutlet weak var constraintForImageHeight: NSLayoutConstraint!
     
     func drawSponsorData(sponsor: Sponsor) {
-        imgView.sd_setImageWithURL(NSURL(string: sponsor.logo), placeholderImage: UIImage())
+        imgView.sd_setImageWithURL(NSURL(string: sponsor.logo), placeholderImage: UIImage(named: "placeholder_sponsors"))
     }
     
 }

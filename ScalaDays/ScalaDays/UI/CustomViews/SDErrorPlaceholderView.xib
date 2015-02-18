@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6254" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SDErrorPlaceholderView" customModule="ScalaDays" customModuleProvider="target">
+            <connections>
+                <outlet property="btnRefresh" destination="awa-EW-PN0" id="xS0-bx-BLL"/>
+                <outlet property="lblErrorMessage" destination="lXu-rf-cR7" id="Ea3-n8-7BD"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="placeholder_error" translatesAutoresizingMaskIntoConstraints="NO" id="QcY-d0-nfY">
+                    <rect key="frame" x="234" y="76" width="132" height="132"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="132" id="rBS-Kf-p0g"/>
+                        <constraint firstAttribute="height" constant="132" id="tUp-Zq-Nnv"/>
+                    </constraints>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" placeholderIntrinsicWidth="584" placeholderIntrinsicHeight="22" text="Error message" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lXu-rf-cR7">
+                    <rect key="frame" x="32" y="260" width="536" height="22"/>
+                    <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="19"/>
+                    <color key="textColor" red="0.21176470588235294" green="0.27058823529411763" blue="0.31372549019607843" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="awa-EW-PN0">
+                    <rect key="frame" x="187" y="323" width="226" height="44"/>
+                    <color key="backgroundColor" red="0.87843137250000003" green="0.37254901959999998" blue="0.36862745099999999" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="226" id="1cb-Mx-74d"/>
+                        <constraint firstAttribute="height" constant="44" id="32d-8D-BL0"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="14"/>
+                    <state key="normal" title="RELOAD">
+                        <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="didTapRefreshButton" destination="-1" eventType="touchUpInside" id="ElW-n3-by5"/>
+                    </connections>
+                </button>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="lXu-rf-cR7" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="32" id="3Up-xZ-BiA"/>
+                <constraint firstAttribute="centerX" secondItem="awa-EW-PN0" secondAttribute="centerX" id="AK4-ic-x3v"/>
+                <constraint firstItem="lXu-rf-cR7" firstAttribute="top" secondItem="QcY-d0-nfY" secondAttribute="bottom" constant="52" id="LeE-sD-f0v"/>
+                <constraint firstAttribute="trailing" secondItem="lXu-rf-cR7" secondAttribute="trailing" constant="32" id="OJV-GE-t7A"/>
+                <constraint firstItem="QcY-d0-nfY" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="76" id="XIK-r3-MqS"/>
+                <constraint firstAttribute="centerX" secondItem="QcY-d0-nfY" secondAttribute="centerX" id="YYo-az-afg"/>
+                <constraint firstItem="awa-EW-PN0" firstAttribute="top" secondItem="lXu-rf-cR7" secondAttribute="bottom" constant="41" id="zwV-pe-7NO"/>
+            </constraints>
+        </view>
+    </objects>
+    <resources>
+        <image name="placeholder_error" width="132" height="132"/>
+    </resources>
+</document>
