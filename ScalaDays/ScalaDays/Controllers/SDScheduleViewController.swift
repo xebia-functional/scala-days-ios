@@ -54,9 +54,9 @@ class SDScheduleViewController: UIViewController, UITableViewDelegate, UITableVi
                 return events
             case .Favorites:
                 if let _favoritesIndexes = DataManager.sharedInstance.favoritedEvents {
-                    return _favoritesIndexes.count == 0 ? events : favorites
+                    return _favoritesIndexes.count == 0 ? [[Event]]() : favorites
                 }
-                return events
+                return [[Event]]()
             default:
                 return nil
             }
@@ -66,12 +66,12 @@ class SDScheduleViewController: UIViewController, UITableViewDelegate, UITableVi
 
     override func viewWillAppear(animated: Bool) {
         self.title = NSLocalizedString("schedule", comment: "Schedule")
-        self.tblSchedule.reloadData()
         if isDataLoaded {
             self.loadFavorites()
         } else {
             self.loadData()
         }
+        self.tblSchedule.reloadData()
     }
 
     override func viewDidLoad() {
