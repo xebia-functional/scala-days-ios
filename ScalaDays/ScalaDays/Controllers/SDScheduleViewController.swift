@@ -162,8 +162,17 @@ class SDScheduleViewController: UIViewController, UITableViewDelegate, UITableVi
         if let events = eventsToShow {
             let event = events[indexPath.section][indexPath.row]
             cell.drawEventData(event)
+            switch (selectedConference, DataManager.sharedInstance.favoritedEvents) {
+            case let (.Some(conference), .Some(favoritedEvents)):
+                if let currentConferenceFavorites = favoritedEvents[conference.info.id] {
+                    if contains(currentConferenceFavorites, event.id) {
+                        cell.imgFavoriteIcon.hidden = false
+                    }
+                }
+            default: break
+            }
         }
-        cell.frame = CGRectMake(0, 0, tblSchedule.bounds.size.width, cell.frame.size.height);
+        cell.frame = CGRectMake(0, 0, screenBounds.width, cell.frame.size.height);
         cell.layoutIfNeeded()
         return cell
     }
