@@ -83,6 +83,9 @@ class SDScheduleViewController: UIViewController, UITableViewDelegate, UITableVi
 
         tblSchedule?.registerNib(UINib(nibName: "SDScheduleListTableViewCell", bundle: nil), forCellReuseIdentifier: kReuseIdentifier)
         tblSchedule?.separatorStyle = .None
+        if isIOS8OrLater() {
+            tblSchedule?.estimatedRowHeight = kEstimatedDynamicCellsRowHeightLow
+        }
         
         errorPlaceholderView = SDErrorPlaceholderView(frame: screenBounds)
         errorPlaceholderView.delegate = self

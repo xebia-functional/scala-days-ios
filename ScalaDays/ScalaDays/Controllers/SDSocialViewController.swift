@@ -44,6 +44,9 @@ class SDSocialViewController: UIViewController, SDErrorPlaceholderViewDelegate, 
         
         tblView?.registerNib(UINib(nibName: "SDSocialTableViewCell", bundle: nil), forCellReuseIdentifier: kReuseIdentifier)
         tblView?.addSubview(refreshControl)
+        if isIOS8OrLater() {
+            tblView?.estimatedRowHeight = kEstimatedDynamicCellsRowHeightHigh
+        }
         refreshControl.addTarget(self, action: "didActivateRefresh", forControlEvents: UIControlEvents.ValueChanged)
         
         errorPlaceholderView = SDErrorPlaceholderView(frame: screenBounds)
