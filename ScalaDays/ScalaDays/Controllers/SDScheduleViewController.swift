@@ -71,7 +71,6 @@ class SDScheduleViewController: UIViewController, UITableViewDelegate, UITableVi
         } else {
             self.loadData()
         }
-        self.tblSchedule.reloadData()
     }
 
     override func viewDidLoad() {
@@ -124,6 +123,8 @@ class SDScheduleViewController: UIViewController, UITableViewDelegate, UITableVi
                         self.errorPlaceholderView.hide()
                     }
                 }
+                
+                self.tblSchedule.reloadData()
             }
         }
     }

@@ -59,7 +59,7 @@ class SDSlideMenuViewController: UIViewController, UITableViewDelegate, UITableV
                       icon_menu_speakers,
                       icon_menu_about]
 
-    var scheduleViewController: UIViewController!
+    var scheduleViewController: UINavigationController!
     var socialViewController: UIViewController!
     var contactViewController: UIViewController!
     var sponsorsViewController: UIViewController!
@@ -109,7 +109,7 @@ class SDSlideMenuViewController: UIViewController, UITableViewDelegate, UITableV
         let speakersViewController = SDSpeakersListViewController(nibName: "SDSpeakersListViewController", bundle: nil)
         self.speakersViewController = UINavigationController(rootViewController: speakersViewController)
         
-        controllers = [socialViewController, contactViewController, sponsorsViewController, placesViewController, aboutViewController, speakersViewController]
+        controllers = [scheduleViewController.visibleViewController, socialViewController, contactViewController, sponsorsViewController, placesViewController, aboutViewController, speakersViewController]
     }
     
     override func  viewWillAppear(animated: Bool) {
