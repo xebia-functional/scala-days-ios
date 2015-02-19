@@ -285,7 +285,7 @@ class SDScheduleViewController: UIViewController, UITableViewDelegate, UITableVi
 // MARK: - Button handling
 
     func didTapOptionsButton() {
-        if isDataLoaded {
+        if isDataLoaded && errorPlaceholderView.hidden {
             launchFilterSheet()
         }
     }
