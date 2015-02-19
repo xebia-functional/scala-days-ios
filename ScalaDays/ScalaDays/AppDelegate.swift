@@ -17,6 +17,7 @@
 import UIKit
 import Crashlytics
 
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
@@ -24,7 +25,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var menuViewController : SDSlideMenuViewController!
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        // Override point for customization after application launch.
+        GAI.sharedInstance().trackerWithTrackingId("***REMOVED***")
         Crashlytics.startWithAPIKey("***REMOVED***")
         self.initAppearence()
         self.createMenuView()        

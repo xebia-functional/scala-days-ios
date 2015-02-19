@@ -52,6 +52,8 @@ class SDSocialViewController: UIViewController, SDErrorPlaceholderViewDelegate, 
         errorPlaceholderView = SDErrorPlaceholderView(frame: screenBounds)
         errorPlaceholderView.delegate = self
         self.view.addSubview(errorPlaceholderView)
+        
+        SDGoogleAnalyticsHandler.sendGoogleAnalyticsTrackingWithScreenName(kGAScreenNameSocial, category: nil, action: nil, label: nil)
     }
     
     override func viewWillAppear(animated: Bool){
@@ -177,6 +179,7 @@ class SDSocialViewController: UIViewController, SDErrorPlaceholderViewDelegate, 
         if(listOfTweets.count > indexPath.row) {
             let tweet = listOfTweets[indexPath.row] as SDTweet
             if let url = SDSocialHandler.urlForTweetDetail(tweet) {
+                SDGoogleAnalyticsHandler.sendGoogleAnalyticsTrackingWithScreenName(kGAScreenNameSocial, category: nil, action: kGAActionSocialGoToTweet, label: nil)
                 launchSafariToUrl(url)
             }
         }        

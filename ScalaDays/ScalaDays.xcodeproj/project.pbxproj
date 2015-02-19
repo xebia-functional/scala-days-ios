@@ -60,6 +60,7 @@
 		59A7DF881A938A41009F4639 /* SDMapView-ZoomOut.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5925ADA01A897AAD000EA5E7 /* SDMapView-ZoomOut.swift */; };
 		59D174621A8E0C2B001E87CF /* SDSponsorsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59D174611A8E0C2B001E87CF /* SDSponsorsTableViewCell.swift */; };
 		59D174641A8E0C3A001E87CF /* SDSponsorsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 59D174631A8E0C3A001E87CF /* SDSponsorsTableViewCell.xib */; };
+		59E430EF1A964BEF00185C41 /* SDGoogleAnalyticsHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59E430EE1A964BEF00185C41 /* SDGoogleAnalyticsHandler.swift */; };
 		84EFC40AF74037F095B5FD60 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2FB6FED00626F7CA4FD64E9E /* libPods.a */; };
 		A171433E1A88F6880068FD33 /* SDConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1FA1FF81A7BA95500338AF0 /* SDConstants.swift */; };
 		A171433F1A88F7730068FD33 /* SDDateHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 590DDD761A83C5E800E4CC3F /* SDDateHandler.swift */; };
@@ -159,6 +160,7 @@
 		59A7DF6C1A93725E009F4639 /* SDSpeakerDetailView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SDSpeakerDetailView.xib; sourceTree = "<group>"; };
 		59D174611A8E0C2B001E87CF /* SDSponsorsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SDSponsorsTableViewCell.swift; sourceTree = "<group>"; };
 		59D174631A8E0C3A001E87CF /* SDSponsorsTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SDSponsorsTableViewCell.xib; sourceTree = "<group>"; };
+		59E430EE1A964BEF00185C41 /* SDGoogleAnalyticsHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SDGoogleAnalyticsHandler.swift; sourceTree = "<group>"; };
 		9AA114FE335624986EFB5A1D /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		A163DC2E1A6E595B00A21B8E /* libPods-SwiftyJSON.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPods-SwiftyJSON.a"; path = "Pods/build/Debug-iphoneos/libPods-SwiftyJSON.a"; sourceTree = "<group>"; };
 		A17D3AC71A690E3A00024062 /* Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Bridging-Header.h"; sourceTree = "<group>"; };
@@ -345,6 +347,7 @@
 		593571E61A77DD73005AA332 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				59E430ED1A964BDE00185C41 /* Analytics */,
 				5920EA641A94B1FB00564014 /* Protocols */,
 				5928D1721A88A9E500E5049E /* Contacts */,
 				590DDD751A83C5DE00E4CC3F /* Dates */,
@@ -375,6 +378,14 @@
 				5920EA5F1A9484B600564014 /* SDErrorPlaceholderView.xib */,
 			);
 			path = CustomViews;
+			sourceTree = "<group>";
+		};
+		59E430ED1A964BDE00185C41 /* Analytics */ = {
+			isa = PBXGroup;
+			children = (
+				59E430EE1A964BEF00185C41 /* SDGoogleAnalyticsHandler.swift */,
+			);
+			path = Analytics;
 			sourceTree = "<group>";
 		};
 		6DBA1EBEE9CFF41D967A4DF1 /* Frameworks */ = {
@@ -678,6 +689,7 @@
 				A1FA1FEF1A7B91D100338AF0 /* SDSocialViewController.swift in Sources */,
 				A1FA1FED1A7B919900338AF0 /* SlideMenuController.swift in Sources */,
 				5925ADA11A897AAD000EA5E7 /* SDMapView-ZoomOut.swift in Sources */,
+				59E430EF1A964BEF00185C41 /* SDGoogleAnalyticsHandler.swift in Sources */,
 				A1C8B87A1A8E6F56008599FF /* SDTableHeaderView.swift in Sources */,
 				5920EA5E1A9484A800564014 /* SDErrorPlaceholderView.swift in Sources */,
 				1EA75E8B1A925BFF00884EC8 /* SDConferenceTableViewCell.swift in Sources */,
