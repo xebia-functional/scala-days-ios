@@ -21,3 +21,9 @@
     func loadData()
     
 }
+
+@objc protocol SDSliderMenuBar {
+    
+    func didCloseMenu()
+    
+}
