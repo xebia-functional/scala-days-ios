@@ -41,6 +41,8 @@ class SDAboutViewController: UIViewController, SDErrorPlaceholderViewDelegate, S
         self.view.addSubview(errorPlaceholderView)
         
         loadData()
+        
+        SDGoogleAnalyticsHandler.sendGoogleAnalyticsTrackingWithScreenName(kGAScreenNameAbout, category: nil, action: nil, label: nil)
     }
 
     override func viewWillAppear(animated: Bool) {
@@ -88,6 +90,7 @@ class SDAboutViewController: UIViewController, SDErrorPlaceholderViewDelegate, S
     }
 
     @IBAction func didTapOn47Logo(sender: AnyObject) {
+        SDGoogleAnalyticsHandler.sendGoogleAnalyticsTrackingWithScreenName(kGAScreenNameAbout, category: nil, action: kGAActionAboutGoToSite, label: nil)
         launchSafariToUrl(NSURL(string: url47Website)!)
     }
     

@@ -40,6 +40,8 @@ class SDSpeakersListViewController: UIViewController, SDErrorPlaceholderViewDele
         errorPlaceholderView = SDErrorPlaceholderView(frame: screenBounds)
         errorPlaceholderView.delegate = self
         self.view.addSubview(errorPlaceholderView)
+        
+        SDGoogleAnalyticsHandler.sendGoogleAnalyticsTrackingWithScreenName(kGAScreenNameSpeakers, category: nil, action: nil, label: nil)
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -90,6 +92,7 @@ class SDSpeakersListViewController: UIViewController, SDErrorPlaceholderViewDele
                 let currentSpeaker = listOfSpeakers[indexPath.row]
                 if let twitterAccount = currentSpeaker.twitter {
                     if let url = SDSocialHandler.urlForTwitterAccount(twitterAccount) {
+                        SDGoogleAnalyticsHandler.sendGoogleAnalyticsTrackingWithScreenName(kGAScreenNameSpeakers, category: nil, action: kGAActionSpeakersGoToUser, label: nil)
                         launchSafariToUrl(url)
                     }
                 }

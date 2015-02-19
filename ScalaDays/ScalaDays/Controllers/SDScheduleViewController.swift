@@ -75,7 +75,7 @@ class SDScheduleViewController: UIViewController, UITableViewDelegate, UITableVi
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         self.setNavigationBarItem()
         let barButtonOptions = UIBarButtonItem(image: UIImage(named: "navigation_bar_icon_options"), style: .Plain, target: self, action: "didTapOptionsButton")
         self.navigationItem.rightBarButtonItem = barButtonOptions
@@ -89,6 +89,8 @@ class SDScheduleViewController: UIViewController, UITableViewDelegate, UITableVi
         errorPlaceholderView = SDErrorPlaceholderView(frame: screenBounds)
         errorPlaceholderView.delegate = self
         self.view.addSubview(errorPlaceholderView)
+        
+        SDGoogleAnalyticsHandler.sendGoogleAnalyticsTrackingWithScreenName(kGAScreenNameSchedule, category: kGACategoryList, action: nil, label: nil)
     }
 
 
@@ -366,10 +368,12 @@ class SDScheduleViewController: UIViewController, UITableViewDelegate, UITableVi
             } else {
                 selectedDataSource = filter
                 tblSchedule.reloadData()
+                SDGoogleAnalyticsHandler.sendGoogleAnalyticsTrackingWithScreenName(kGAScreenNameSchedule, category: kGACategoryList, action: kGAActionScheduleFilterFavorites, label: nil)
             }
         } else {
             selectedDataSource = filter
             tblSchedule.reloadData()
+            SDGoogleAnalyticsHandler.sendGoogleAnalyticsTrackingWithScreenName(kGAScreenNameSchedule, category: kGACategoryList, action: kGAActionScheduleFilterAll, label: nil)
         }
     }
 

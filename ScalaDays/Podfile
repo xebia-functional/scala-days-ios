@@ -4,7 +4,8 @@ platform :ios, '7.0'
 # Inhibit warnings from dependencies
 inhibit_all_warnings!
 
-# AFNetworking
+# Google Analytics
+pod 'GoogleAnalytics-iOS-SDK', '~> 3.10'
 
 # UI
 pod 'SDWebImage', '~> 3.5'
