@@ -46,7 +46,6 @@ class SDSpeakersListViewController: UIViewController, SDErrorPlaceholderViewDele
         if !isDataLoaded {
             loadData()
         }
-        tblView.reloadData()
     }
     
     // MARK: - Data loading
@@ -75,6 +74,9 @@ class SDSpeakersListViewController: UIViewController, SDErrorPlaceholderViewDele
                 } else {
                     self.errorPlaceholderView.show(NSLocalizedString("error_message_no_data_available", comment: ""))
                 }
+                
+                self.tblView.reloadData()
+                self.tblView.setContentOffset(CGPointZero, animated: true)
             }
         }
     }

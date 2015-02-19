@@ -126,6 +126,7 @@ class SDSocialViewController: UIViewController, SDErrorPlaceholderViewDelegate, 
                     dispatch_async(dispatch_get_main_queue()) {
                         if self.listOfTweets.count > 0 {
                             self.tblView.reloadData()
+                            self.tblView.setContentOffset(CGPointZero, animated: true)
                             self.errorPlaceholderView.hide()
                             self.showTableView()
                         } else {
