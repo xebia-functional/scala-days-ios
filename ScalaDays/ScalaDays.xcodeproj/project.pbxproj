@@ -873,7 +873,7 @@
 				);
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "6577afa8-392b-4a7e-9dc9-ebb860ebbe41";
+				PROVISIONING_PROFILE = "b2709d87-9dea-44f8-81f4-bc6e7186f765";
 				SWIFT_OBJC_BRIDGING_HEADER = "ScalaDays/Bridging-Header.h";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -900,7 +900,7 @@
 				);
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "6577afa8-392b-4a7e-9dc9-ebb860ebbe41";
+				PROVISIONING_PROFILE = "b2709d87-9dea-44f8-81f4-bc6e7186f765";
 				SWIFT_OBJC_BRIDGING_HEADER = "ScalaDays/Bridging-Header.h";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
