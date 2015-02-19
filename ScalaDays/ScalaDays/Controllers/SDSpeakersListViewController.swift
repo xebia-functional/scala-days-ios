@@ -33,6 +33,10 @@ class SDSpeakersListViewController: UIViewController, SDErrorPlaceholderViewDele
         
         tblView.registerNib(UINib(nibName: "SDSpeakersTableViewCell", bundle: nil), forCellReuseIdentifier: kReuseIdentifier)
         
+        if isIOS8OrLater() {
+            tblView.estimatedRowHeight = kEstimatedDynamicCellsRowHeightHigh
+        }
+        
         errorPlaceholderView = SDErrorPlaceholderView(frame: screenBounds)
         errorPlaceholderView.delegate = self
         self.view.addSubview(errorPlaceholderView)
@@ -42,6 +46,7 @@ class SDSpeakersListViewController: UIViewController, SDErrorPlaceholderViewDele
         if !isDataLoaded {
             loadData()
         }
+        tblView.reloadData()
     }
     
     // MARK: - Data loading
