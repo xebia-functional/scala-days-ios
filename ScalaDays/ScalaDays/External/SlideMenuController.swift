@@ -200,6 +200,12 @@ class SlideMenuController: UIViewController, UIGestureRecognizerDelegate {
     override func closeLeft() {
         self.closeLeftWithVelocity(0.0)
         self.setCloseWindowLebel()
+        
+        if let leftVC = leftViewController {
+            if leftVC is SDSliderMenuBar {
+                (leftVC as SDSliderMenuBar).didCloseMenu()
+            }
+        }
     }
     
     override func closeRight() {

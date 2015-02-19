@@ -17,7 +17,7 @@
 
 import UIKit
 
-class SDSlideMenuViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class SDSlideMenuViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, SDSliderMenuBar {
 
     @IBOutlet weak var tblMenu: UITableView!
     @IBOutlet weak var titleConference: UILabel!
@@ -78,19 +78,18 @@ class SDSlideMenuViewController: UIViewController, UITableViewDelegate, UITableV
             heigthHeader.constant = Height_Header_Menu
         }
         
-        //Conferences aparence table
+        // Conferences aparence table
         self.tblConferences.scrollEnabled = false
         self.tblConferences.separatorColor = UIColor(white: 1, alpha: 0.1)
         self.tblConferences.registerNib(UINib(nibName: "SDConferenceTableViewCell", bundle: nil), forCellReuseIdentifier: kConferenceReuseIdentifier)
         self.tblConferences.alpha = 0
         
-        //Init aparence table
+        // Init aparence table
         self.heigthTable.constant = CGFloat(menus.count * Int(Height_Row_Menu))
         self.tblMenu.scrollEnabled = IS_IPHONE5
         self.tblMenu.separatorColor = UIColor(white: 1, alpha: 0.1)
         self.titleConference.setCustomFont(UIFont.fontHelveticaNeue(17), colorFont: UIColor.whiteColor())
 
-        // Do any additional setup after loading the view.
         let socialViewController = SDSocialViewController(nibName: "SDSocialViewController", bundle: nil)
         self.socialViewController = UINavigationController(rootViewController: socialViewController)
 
@@ -112,7 +111,7 @@ class SDSlideMenuViewController: UIViewController, UITableViewDelegate, UITableV
         controllers = [scheduleViewController.visibleViewController, socialViewController, contactViewController, sponsorsViewController, placesViewController, aboutViewController, speakersViewController]
     }
     
-    override func  viewWillAppear(animated: Bool) {
+    override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         componeConferenceTable()
         drawSelectedConference()
@@ -132,16 +131,10 @@ class SDSlideMenuViewController: UIViewController, UITableViewDelegate, UITableV
             let image = info.pictures[2]
             let imageUrl = NSURL(string: image.url)
             if let infoImageUrl = imageUrl {
-                self.imgHeader.sd_setImageWithURL(infoImageUrl, placeholderImage: UIImage(named: ""))
+                self.imgHeader.sd_setImageWithURL(infoImageUrl, placeholderImage: UIImage(named: "placeholder_menu"))
             }
         }
     }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
 
     // MARK: - UITableViewDataSource implementation
 
@@ -212,14 +205,12 @@ class SDSlideMenuViewController: UIViewController, UITableViewDelegate, UITableV
 
 
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-
         return Height_Row_Menu
     }
 
     // MARK: - UITableViewDelegate implementation
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-   
         switch (tableView, Menu(rawValue: indexPath.item)) {
         case (self.tblConferences, _) :
             DataManager.sharedInstance.selectedConferenceIndex = indexPath.row
@@ -240,7 +231,6 @@ class SDSlideMenuViewController: UIViewController, UITableViewDelegate, UITableV
             }
         default: break
         }
-
     }
 
     @IBAction func selectedConference(sender: AnyObject) {
@@ -255,12 +245,17 @@ class SDSlideMenuViewController: UIViewController, UITableViewDelegate, UITableV
                 return
             })
         } else {
+            hideTblConference()
+        }
+    }
+    
+    func hideTblConference() {
+        if tblConferences.alpha > 0 {
             UIView.animateWithDuration(0.5, animations: {
                 self.tblConferences.alpha = 0.0
                 self.tblMenu.alpha = 1.0
                 return
             })
-            
         }
     }
 
@@ -280,6 +275,12 @@ class SDSlideMenuViewController: UIViewController, UITableViewDelegate, UITableV
                 currentController.loadData()
             }
         }
+    }
+    
+    // MARK: - SDSliderMenuBar protocol implementation
+    
+    func didCloseMenu() {
+        hideTblConference()
     }
 
 }
