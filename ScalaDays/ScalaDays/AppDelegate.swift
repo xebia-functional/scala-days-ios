@@ -77,6 +77,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UINavigationBar.appearance().backIndicatorImage = UIImage(named: "navigation_bar_icon_arrow")
         UINavigationBar.appearance().backIndicatorTransitionMaskImage = UIImage(named: "navigation_bar_icon_arrow")
         UIApplication.sharedApplication().setStatusBarStyle(.LightContent, animated: false)
+        SVProgressHUD.setBackgroundColor(UIColor.clearColor())
     }
     
 }
