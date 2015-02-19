@@ -16,5 +16,6 @@
 #import "NSDate+TimeAgo.h"
 #import "ZBarSDK.h"
 #import "SDContactCreationHelper.h"
+#import "Localytics.h"
 
 #endif
