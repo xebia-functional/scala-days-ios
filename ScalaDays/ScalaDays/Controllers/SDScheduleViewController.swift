@@ -92,7 +92,7 @@ class SDScheduleViewController: UIViewController, UITableViewDelegate, UITableVi
     }
 
 
-    // MARK: - Data loading
+    // MARK: - Data loading / SDMenuControllerItem protocol implementation
 
     func loadData() {
         SVProgressHUD.show()
@@ -134,7 +134,7 @@ class SDScheduleViewController: UIViewController, UITableViewDelegate, UITableVi
             self.favorites = favs
         }
     }
-
+    
     // MARK: UITableViewDataSource implementation
 
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
@@ -348,5 +348,6 @@ class SDScheduleViewController: UIViewController, UITableViewDelegate, UITableVi
     func didTapRefreshButtonInErrorPlaceholder() {
         loadData()
     }
+    
 }
 

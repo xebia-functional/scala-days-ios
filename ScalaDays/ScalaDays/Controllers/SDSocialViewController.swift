@@ -257,4 +257,5 @@ class SDSocialViewController: UIViewController, SDErrorPlaceholderViewDelegate, 
             self.refreshControl.endRefreshing()
         }
     }
+    
 }

@@ -88,6 +88,10 @@ class SDSlideMenuViewController: UIViewController, UITableViewDelegate, UITableV
         self.heigthTable.constant = CGFloat(menus.count * Int(Height_Row_Menu))
         self.tblMenu.scrollEnabled = IS_IPHONE5
         self.tblMenu.separatorColor = UIColor(white: 1, alpha: 0.1)
+        
+        self.tblMenu.scrollsToTop = false
+        self.tblConferences.scrollsToTop = false        
+        
         self.titleConference.setCustomFont(UIFont.fontHelveticaNeue(17), colorFont: UIColor.whiteColor())
 
         let socialViewController = SDSocialViewController(nibName: "SDSocialViewController", bundle: nil)
@@ -261,6 +265,15 @@ class SDSlideMenuViewController: UIViewController, UITableViewDelegate, UITableV
 
     // MARK: - Notify controllers of conference swapping
     
+    func currentVisibleController() -> SDMenuControllerItem? {
+        if let mainNavController = self.slideMenuController()?.mainViewController as? UINavigationController {
+            if let currentController = mainNavController.visibleViewController as? SDMenuControllerItem {
+                return currentController
+            }
+        }
+        return nil
+    }
+    
     func askControllersToReload() {
         // We need to notify our main controllers that their data need to be updated, also our visible controller needs to reload ASAP:
         for controller in controllers {
@@ -270,10 +283,8 @@ class SDSlideMenuViewController: UIViewController, UITableViewDelegate, UITableV
             }
         }
         
-        if let mainNavController = self.slideMenuController()?.mainViewController as? UINavigationController {
-            if let currentController = mainNavController.visibleViewController as? SDMenuControllerItem {
-                currentController.loadData()
-            }
+        if let currentController = currentVisibleController() {
+            currentController.loadData()
         }
     }
     
