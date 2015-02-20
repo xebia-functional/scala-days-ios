@@ -26,7 +26,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
 
         Localytics.integrate("***REMOVED***")
-        
 
         UIApplication.sharedApplication().registerForRemoteNotifications()
 
