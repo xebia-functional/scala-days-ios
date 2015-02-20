@@ -17,6 +17,10 @@
 import Foundation
 import UIKit
 
+let kExternalKeysPlistFilename = "SDExternalKeys"
+let kExternalKeysDKGoogleAnalytics = "GoogleAnalytics"
+let kExternalKeysDKCrashlytics = "Crashlytics"
+
 let IS_IPHONE5 = UIScreen.mainScreen().bounds.size.height == 480;
 
 let icon_menu_schedule = "menu_icon_schedule"
