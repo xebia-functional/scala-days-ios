@@ -36,6 +36,16 @@ class DataManager {
         }
     }
     
+    var lastConnectionAttemptDate: NSDate? {
+        get {
+            return NSUserDefaults.standardUserDefaults().objectForKey("lastConnectionAttemptDate") as? NSDate
+        }
+        set(newValue) {
+            NSUserDefaults.standardUserDefaults().setObject(newValue, forKey: "lastConnectionAttemptDate")
+            NSUserDefaults.standardUserDefaults().synchronize()
+        }
+    }
+    
     var favoritedEvents: Dictionary<Int, Array<Int>>? {
         get {
             if let data = NSUserDefaults.standardUserDefaults().objectForKey("favoritedEvents") as? NSData {
@@ -116,49 +126,65 @@ class DataManager {
     }
 
     init() {
+        if let conferencesData = StoringHelper.sharedInstance.loadConferenceData() {
+            self.conferences = conferencesData
+        }
     }
 
     func loadDataJson(callback: (Bool, NSError?) -> ()) {
-        Manager.sharedInstance.request(.GET, JsonURL).responseJSON {
-            (request, response, data, error) -> Void in
-            if let conferencesData = StoringHelper.sharedInstance.loadConferenceData() {
-                self.conferences = conferencesData
-                if let date = response?.allHeaderFields[lastModifiedDate] as NSString? {
-                    let dateJson = SDDateHandler.sharedInstance.parseServerDate(date)
-                    if (dateJson == self.lastDate) {
-                        println("Json no modified")
-                        callback(false, error)
-                    } else {
-                        if (error != nil) {
-                            NSLog("Error: \(error)")
-                            println(request)
-                            println(response)
+        var shouldReconnect = true
+        if let lastConnectionDate = self.lastConnectionAttemptDate {
+            if NSDate().timeIntervalSinceDate(lastConnectionDate) < kMinimumTimeToDownloadDataFromApiInSeconds {
+                shouldReconnect = false
+            }
+        }
+        
+        if shouldReconnect {
+            Manager.sharedInstance.request(.GET, JsonURL).responseJSON {
+                (request, response, data, error) -> Void in
+                self.lastConnectionAttemptDate = NSDate()
+                
+                if let conferencesData = StoringHelper.sharedInstance.loadConferenceData() {
+                    self.conferences = conferencesData
+                    if let date = response?.allHeaderFields[lastModifiedDate] as NSString? {
+                        let dateJson = SDDateHandler.sharedInstance.parseServerDate(date)
+                        if (dateJson == self.lastDate) {
+                            println("Json no modified")
                             callback(false, error)
                         } else {
-                            let jsonFormat = JSON(data!)
-                            self.parseJSON(jsonFormat)
-                            callback(true, error)
+                            if (error != nil) {
+                                NSLog("Error: \(error)")
+                                println(request)
+                                println(response)
+                                callback(false, error)
+                            } else {
+                                let jsonFormat = JSON(data!)
+                                self.parseJSON(jsonFormat)
+                                callback(true, error)
+                            }
                         }
+                    } else {
+                        // We're here if we don't have a valid internet connection but we have cached data... we just relay it to the recipient:
+                        callback(false, nil)
                     }
                 } else {
-                    // We're here if we don't have a valid internet connection but we have cached data... we just relay it to the recipient:
-                    callback(false, nil)
-                }
-            } else {
-                if let date = response?.allHeaderFields[lastModifiedDate] as NSString? {
-                    self.lastDate = SDDateHandler.sharedInstance.parseServerDate(date)
-                }
-                if (error != nil) {
-                    NSLog("Error: \(error)")
-                    println(request)
-                    println(response)
-                    callback(false, error)
-                } else {
-                    let jsonFormat = JSON(data!)
-                    self.parseJSON(jsonFormat)
-                    callback(true, error)
+                    if let date = response?.allHeaderFields[lastModifiedDate] as NSString? {
+                        self.lastDate = SDDateHandler.sharedInstance.parseServerDate(date)
+                    }
+                    if (error != nil) {
+                        NSLog("Error: \(error)")
+                        println(request)
+                        println(response)
+                        callback(false, error)
+                    } else {
+                        let jsonFormat = JSON(data!)
+                        self.parseJSON(jsonFormat)
+                        callback(true, error)
+                    }
                 }
             }
+        } else {
+            callback(false, nil)
         }
     }
 
