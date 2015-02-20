@@ -18,6 +18,7 @@
 
 "common_ok" = "OK";
 "common_cancel" = "Cancel";
+"common_back" = "Back";
 
 //Menu
 "schedule" = "Schedule";

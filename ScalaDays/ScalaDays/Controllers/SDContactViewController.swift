@@ -18,7 +18,7 @@ import UIKit
 import MobileCoreServices
 import AddressBook
 
-class SDContactViewController: UIViewController,
+class SDContactViewController: GAITrackedViewController,
                                 ZBarReaderDelegate,
                                 UINavigationControllerDelegate,
                                 UIImagePickerControllerDelegate,
@@ -39,6 +39,8 @@ class SDContactViewController: UIViewController,
         self.setNavigationBarItem()
         self.title = NSLocalizedString("contacts", comment: "Contact")
         drawRegularFeedback()
+        
+        self.screenName = kGAScreenNameContact
     }
 
     // MARK: - QR Code scanning logic
@@ -54,6 +56,8 @@ class SDContactViewController: UIViewController,
         scannerVC.cameraOverlayView = scannerVCOverlayView
         
         self.presentViewController(scannerVC, animated: true, completion: nil)
+        
+        SDGoogleAnalyticsHandler.sendGoogleAnalyticsTrackingWithScreenName(kGAScreenNameContact, category: nil, action: kGAActionContactScanContact, label: nil)
     }
     
     func readerControllerDidFailToRead(reader: ZBarReaderController!, withRetry retry: Bool) {

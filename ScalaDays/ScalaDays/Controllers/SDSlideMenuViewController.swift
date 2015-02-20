@@ -222,6 +222,11 @@ class SDSlideMenuViewController: UIViewController, UITableViewDelegate, UITableV
             toggleTblConference()
             askControllersToReload()
             self.slideMenuController()?.closeLeft()
+            
+            if let selectedConference = DataManager.sharedInstance.conferences?.conferences[indexPath.row] {
+                SDGoogleAnalyticsHandler.sendGoogleAnalyticsTrackingWithScreenName(nil, category: kGACategoryNavigate, action: kGAActionMenuChangeConference, label: selectedConference.info.name)
+            }
+            
         case (self.tblMenu, .Some(.Schedule)): self.slideMenuController()?.changeMainViewController(self.scheduleViewController, close: true)
         case (self.tblMenu, .Some(.Social)): self.slideMenuController()?.changeMainViewController(self.socialViewController, close: true)
         case (self.tblMenu, .Some(.Contact)): self.slideMenuController()?.changeMainViewController(self.contactViewController, close: true)
@@ -231,7 +236,8 @@ class SDSlideMenuViewController: UIViewController, UITableViewDelegate, UITableV
         case (self.tblMenu, .Some(.Speakers)): self.slideMenuController()?.changeMainViewController(self.speakersViewController, close: true)
         case (self.tblMenu, .Some(.Tickets)):
             if let registration = self.infoSelected?.registrationSite {
-                UIApplication.sharedApplication().openURL(NSURL(string:registration)!)
+                SDGoogleAnalyticsHandler.sendGoogleAnalyticsTrackingWithScreenName(nil, category: kGACategoryNavigate, action: kGAActionTicketsGoToTicket, label: nil)
+                launchSafariToUrl(NSURL(string: registration)!)
             }
         default: break
         }
