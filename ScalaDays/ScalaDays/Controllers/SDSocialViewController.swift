@@ -87,7 +87,6 @@ class SDSocialViewController: GAITrackedViewController, SDErrorPlaceholderViewDe
                 self.selectedConference = DataManager.sharedInstance.currentlySelectedConference
                 
                 SVProgressHUD.dismiss()
-                self.errorPlaceholderView.hide()
                 
                 if let conference = self.selectedConference {
                     self.hashtag = conference.info.hashtag
