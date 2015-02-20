@@ -25,8 +25,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var menuViewController : SDSlideMenuViewController!
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        GAI.sharedInstance().trackerWithTrackingId("***REMOVED***")
-        Crashlytics.startWithAPIKey("***REMOVED***")
+        let externalKeys = AppDelegate.loadExternalKeys()
+        if let googleAnalyticsKey = externalKeys.googleAnalyticsKey {
+            GAI.sharedInstance().trackerWithTrackingId(googleAnalyticsKey)
+        }
+        if let crashlyticsKey = externalKeys.crashlyticsKey {
+            Crashlytics.startWithAPIKey(crashlyticsKey)
+        }
         self.initAppearence()
         self.createMenuView()        
         return true
@@ -81,5 +86,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         SVProgressHUD.setBackgroundColor(UIColor.clearColor())
     }
     
+    class func loadExternalKeys() -> (googleAnalyticsKey: String?, crashlyticsKey: String?) {
+        if let path = NSBundle.mainBundle().pathForResource(kExternalKeysPlistFilename, ofType: "plist") {
+            if let keysDict = NSDictionary(contentsOfFile: path) {
+                return (keysDict[kExternalKeysDKGoogleAnalytics] as? String, keysDict[kExternalKeysDKCrashlytics] as? String)
+            }
+        }
+        return (nil, nil)
+    }
 }
 
