@@ -19,3 +19,6 @@ DerivedData
 #CocoaPods
 Pods
 Podfile.lock
+
+#Local keys file
+SDExternalKeys.plist

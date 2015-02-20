@@ -33,7 +33,7 @@ enum SDScheduleEventType: Int {
     case Others = 3
 }
 
-class SDScheduleViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UIActionSheetDelegate, SDErrorPlaceholderViewDelegate, SDMenuControllerItem {
+class SDScheduleViewController: GAITrackedViewController, UITableViewDelegate, UITableViewDataSource, UIActionSheetDelegate, SDErrorPlaceholderViewDelegate, SDMenuControllerItem {
 
     @IBOutlet weak var tblSchedule: UITableView!
 
@@ -75,7 +75,7 @@ class SDScheduleViewController: UIViewController, UITableViewDelegate, UITableVi
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         self.setNavigationBarItem()
         let barButtonOptions = UIBarButtonItem(image: UIImage(named: "navigation_bar_icon_options"), style: .Plain, target: self, action: "didTapOptionsButton")
         self.navigationItem.rightBarButtonItem = barButtonOptions
@@ -89,6 +89,8 @@ class SDScheduleViewController: UIViewController, UITableViewDelegate, UITableVi
         errorPlaceholderView = SDErrorPlaceholderView(frame: screenBounds)
         errorPlaceholderView.delegate = self
         self.view.addSubview(errorPlaceholderView)
+        
+        self.screenName = kGAScreenNameSchedule
     }
 
 
@@ -112,6 +114,7 @@ class SDScheduleViewController: UIViewController, UITableViewDelegate, UITableVi
                 self.dates = self.scheduledDates()
                 self.events = self.listOfEventsSortedByDates()
                 self.tblSchedule.reloadData()
+                self.showTableView()
                 self.view.backgroundColor = UIColor.appScheduleTimeBlueBackgroundColor()
                 
                 self.loadFavorites()
@@ -206,6 +209,7 @@ class SDScheduleViewController: UIViewController, UITableViewDelegate, UITableVi
                 self.title = ""
                 scheduleDetailViewController.event = event
                 self.navigationController?.pushViewController(scheduleDetailViewController, animated: true)
+                SDGoogleAnalyticsHandler.sendGoogleAnalyticsTrackingWithScreenName(kGAScreenNameSchedule, category: kGACategoryNavigate, action: kGAActionScheduleGoToDetail, label: event.title)
             }
         }
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
@@ -362,22 +366,32 @@ class SDScheduleViewController: UIViewController, UITableViewDelegate, UITableVi
             }
             
             if favoritesCount == 0 {
-                errorPlaceholderView.show(NSLocalizedString("error_no_favorites", comment: ""), isGeneralMessage: true, buttonTitle: NSLocalizedString("common_ok", comment: ""))
+                errorPlaceholderView.show(NSLocalizedString("error_no_favorites", comment: ""), isGeneralMessage: true, buttonTitle: NSLocalizedString("common_back", comment: "").uppercaseString)
             } else {
                 selectedDataSource = filter
                 tblSchedule.reloadData()
+                SDGoogleAnalyticsHandler.sendGoogleAnalyticsTrackingWithScreenName(kGAScreenNameSchedule, category: kGACategoryFilter, action: kGAActionScheduleFilterFavorites, label: nil)
             }
         } else {
             selectedDataSource = filter
             tblSchedule.reloadData()
+            SDGoogleAnalyticsHandler.sendGoogleAnalyticsTrackingWithScreenName(kGAScreenNameSchedule, category: kGACategoryFilter, action: kGAActionScheduleFilterAll, label: nil)
         }
     }
 
     
-    // MARK: SDErrorPlaceholderViewDelegate protocol implementation
+    // MARK: - SDErrorPlaceholderViewDelegate protocol implementation
     
     func didTapRefreshButtonInErrorPlaceholder() {
         loadData()
+    }
+    
+    // MARK: - Animations
+    
+    func showTableView() {
+        if(tblSchedule.hidden) {
+            SDAnimationHelper.showViewWithFadeInAnimation(tblSchedule)
+        }
     }
     
 }

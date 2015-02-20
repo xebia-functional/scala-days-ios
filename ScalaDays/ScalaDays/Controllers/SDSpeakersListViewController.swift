@@ -16,7 +16,7 @@
 
 import UIKit
 
-class SDSpeakersListViewController: UIViewController, SDErrorPlaceholderViewDelegate, SDMenuControllerItem {
+class SDSpeakersListViewController: GAITrackedViewController, SDErrorPlaceholderViewDelegate, SDMenuControllerItem {
     
     @IBOutlet weak var tblView: UITableView!
     var errorPlaceholderView : SDErrorPlaceholderView!
@@ -40,6 +40,8 @@ class SDSpeakersListViewController: UIViewController, SDErrorPlaceholderViewDele
         errorPlaceholderView = SDErrorPlaceholderView(frame: screenBounds)
         errorPlaceholderView.delegate = self
         self.view.addSubview(errorPlaceholderView)
+        
+        self.screenName = kGAScreenNameSpeakers
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -70,6 +72,7 @@ class SDSpeakersListViewController: UIViewController, SDErrorPlaceholderViewDele
                     } else {
                         self.errorPlaceholderView.hide()
                         self.tblView.reloadData()
+                        self.showTableView()
                     }
                 } else {
                     self.errorPlaceholderView.show(NSLocalizedString("error_message_no_data_available", comment: ""))
@@ -90,6 +93,7 @@ class SDSpeakersListViewController: UIViewController, SDErrorPlaceholderViewDele
                 let currentSpeaker = listOfSpeakers[indexPath.row]
                 if let twitterAccount = currentSpeaker.twitter {
                     if let url = SDSocialHandler.urlForTwitterAccount(twitterAccount) {
+                        SDGoogleAnalyticsHandler.sendGoogleAnalyticsTrackingWithScreenName(kGAScreenNameSpeakers, category: kGACategoryNavigate, action: kGAActionSpeakersGoToUser, label: nil)
                         launchSafariToUrl(url)
                     }
                 }
@@ -142,4 +146,11 @@ class SDSpeakersListViewController: UIViewController, SDErrorPlaceholderViewDele
         loadData()
     }
     
+    // Animations
+    
+    func showTableView() {
+        if self.tblView.hidden {
+            SDAnimationHelper.showViewWithFadeInAnimation(self.tblView)
+        }
+    }
 }
