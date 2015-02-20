@@ -16,7 +16,7 @@
 
 import UIKit
 
-class SDScheduleDetailViewController: UIViewController {
+class SDScheduleDetailViewController: GAITrackedViewController {
 
 
     @IBOutlet weak var titleSection: UILabel!
@@ -86,7 +86,7 @@ class SDScheduleDetailViewController: UIViewController {
                     constraintForSpeakerListContainerHeight.constant = lastSpeakerBottomPos
                 }
             }
-            SDGoogleAnalyticsHandler.sendGoogleAnalyticsTrackingWithScreenName(kGAScreenNameSchedule, category: kGACategoryDetail, action: nil, label: currentEvent.title)
+            self.screenName = kGAScreenNameSchedule
         }
     }
     
@@ -95,11 +95,11 @@ class SDScheduleDetailViewController: UIViewController {
         if DataManager.sharedInstance.isFavoriteEvent(event, selectedConference: selectedConference) {
             DataManager.sharedInstance.storeOrRemoveFavoriteEvent(true, event: event, selectedConference: selectedConference)
             barButtonFavorites.tintColor = UIColor.whiteColor()
-            SDGoogleAnalyticsHandler.sendGoogleAnalyticsTrackingWithScreenName(kGAScreenNameSchedule, category: kGACategoryDetail, action: kGAActionScheduleDetailRemoveToFavorite, label: event?.title)
+            SDGoogleAnalyticsHandler.sendGoogleAnalyticsTrackingWithScreenName(kGAScreenNameSchedule, category: kGACategoryFavorites, action: kGAActionScheduleDetailRemoveToFavorite, label: event?.title)
         } else {
             DataManager.sharedInstance.storeOrRemoveFavoriteEvent(false, event: event, selectedConference: selectedConference)
             barButtonFavorites.tintColor = UIColor.appRedColor()
-            SDGoogleAnalyticsHandler.sendGoogleAnalyticsTrackingWithScreenName(kGAScreenNameSchedule, category: kGACategoryDetail, action: kGAActionScheduleDetailAddToFavorite, label: event?.title)
+            SDGoogleAnalyticsHandler.sendGoogleAnalyticsTrackingWithScreenName(kGAScreenNameSchedule, category: kGACategoryFavorites, action: kGAActionScheduleDetailAddToFavorite, label: event?.title)
         }
         
     }

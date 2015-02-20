@@ -33,7 +33,7 @@ enum SDScheduleEventType: Int {
     case Others = 3
 }
 
-class SDScheduleViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UIActionSheetDelegate, SDErrorPlaceholderViewDelegate, SDMenuControllerItem {
+class SDScheduleViewController: GAITrackedViewController, UITableViewDelegate, UITableViewDataSource, UIActionSheetDelegate, SDErrorPlaceholderViewDelegate, SDMenuControllerItem {
 
     @IBOutlet weak var tblSchedule: UITableView!
 
@@ -90,7 +90,7 @@ class SDScheduleViewController: UIViewController, UITableViewDelegate, UITableVi
         errorPlaceholderView.delegate = self
         self.view.addSubview(errorPlaceholderView)
         
-        SDGoogleAnalyticsHandler.sendGoogleAnalyticsTrackingWithScreenName(kGAScreenNameSchedule, category: kGACategoryList, action: nil, label: nil)
+        self.screenName = kGAScreenNameSchedule
     }
 
 
@@ -208,6 +208,7 @@ class SDScheduleViewController: UIViewController, UITableViewDelegate, UITableVi
                 self.title = ""
                 scheduleDetailViewController.event = event
                 self.navigationController?.pushViewController(scheduleDetailViewController, animated: true)
+                SDGoogleAnalyticsHandler.sendGoogleAnalyticsTrackingWithScreenName(kGAScreenNameSchedule, category: kGACategoryNavigate, action: kGAActionScheduleGoToDetail, label: event.title)
             }
         }
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
@@ -368,12 +369,12 @@ class SDScheduleViewController: UIViewController, UITableViewDelegate, UITableVi
             } else {
                 selectedDataSource = filter
                 tblSchedule.reloadData()
-                SDGoogleAnalyticsHandler.sendGoogleAnalyticsTrackingWithScreenName(kGAScreenNameSchedule, category: kGACategoryList, action: kGAActionScheduleFilterFavorites, label: nil)
+                SDGoogleAnalyticsHandler.sendGoogleAnalyticsTrackingWithScreenName(kGAScreenNameSchedule, category: kGACategoryFilter, action: kGAActionScheduleFilterFavorites, label: nil)
             }
         } else {
             selectedDataSource = filter
             tblSchedule.reloadData()
-            SDGoogleAnalyticsHandler.sendGoogleAnalyticsTrackingWithScreenName(kGAScreenNameSchedule, category: kGACategoryList, action: kGAActionScheduleFilterAll, label: nil)
+            SDGoogleAnalyticsHandler.sendGoogleAnalyticsTrackingWithScreenName(kGAScreenNameSchedule, category: kGACategoryFilter, action: kGAActionScheduleFilterAll, label: nil)
         }
     }
 
