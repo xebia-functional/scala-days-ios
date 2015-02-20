@@ -26,15 +26,19 @@ let kGAScreenNamePlaces = "Schedule"
 let kGAScreenNameAbout = "About"
 let kGAScreenNameMenu = "Menu"
 
-let kGACategoryList = "List"
-let kGACategoryDetail = "Detail"
+let kGACategoryFilter = "Filter"
+let kGACategoryFavorites = "Favorites"
+let kGACategoryNavigate = "Navigate"
 
-let kGAActionScheduleFilterAll = "Filter All"
-let kGAActionScheduleFilterFavorites = "Filter Favorites"
-let kGAActionScheduleDetailAddToFavorite = "Add to Favorite"
-let kGAActionScheduleDetailRemoveToFavorite = "Remove Favorite"
+let kGAActionScheduleFilterAll = "All"
+let kGAActionScheduleFilterFavorites = "Favorites"
+let kGAActionScheduleGoToDetail = "Go to Detail"
+let kGAActionScheduleDetailAddToFavorite = "Add"
+let kGAActionScheduleDetailRemoveToFavorite = "Remove"
 let kGAActionSocialGoToTweet = "Go to Tweet"
+let kGAActionSocialPostTweet = "Post Tweet"
 let kGAActionSpeakersGoToUser = "Go to User"
+let kGAActionTicketsGoToTicket = "Go to Ticket"
 let kGAActionContactScanContact = "Scan Contact"
 let kGAActionSponsorsGoToSponsor = "Go to Sponsor"
 let kGAActionPlacesGoToMap = "Go to Map"
@@ -43,9 +47,11 @@ let kGAActionMenuChangeConference = "Change Conference"
 
 class SDGoogleAnalyticsHandler: NSObject {
     
-    class func sendGoogleAnalyticsTrackingWithScreenName(screenName: String, category: String?, action: String?, label: String?) {
+    class func sendGoogleAnalyticsTrackingWithScreenName(screenName: String?, category: String?, action: String?, label: String?) {
         let tracker = GAI.sharedInstance().defaultTracker
-        tracker.set(kGAIScreenName, value: screenName)
+        if let _screenName = screenName {
+            tracker.set(kGAIScreenName, value: _screenName)
+        }
         
         let parameters = GAIDictionaryBuilder.createEventWithCategory(category, action: action, label: label, value: nil).build()
         tracker.send(parameters)

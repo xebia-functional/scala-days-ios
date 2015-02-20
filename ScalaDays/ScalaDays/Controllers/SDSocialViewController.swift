@@ -16,7 +16,7 @@
 
 import UIKit
 
-class SDSocialViewController: UIViewController, SDErrorPlaceholderViewDelegate, SDMenuControllerItem {
+class SDSocialViewController: GAITrackedViewController, SDErrorPlaceholderViewDelegate, SDMenuControllerItem {
     
     @IBOutlet weak var tblView : UITableView!
     @IBOutlet weak var viewError : UIView!
@@ -53,7 +53,7 @@ class SDSocialViewController: UIViewController, SDErrorPlaceholderViewDelegate, 
         errorPlaceholderView.delegate = self
         self.view.addSubview(errorPlaceholderView)
         
-        SDGoogleAnalyticsHandler.sendGoogleAnalyticsTrackingWithScreenName(kGAScreenNameSocial, category: nil, action: nil, label: nil)
+        self.screenName = kGAScreenNameSocial
     }
     
     override func viewWillAppear(animated: Bool){
@@ -179,7 +179,7 @@ class SDSocialViewController: UIViewController, SDErrorPlaceholderViewDelegate, 
         if(listOfTweets.count > indexPath.row) {
             let tweet = listOfTweets[indexPath.row] as SDTweet
             if let url = SDSocialHandler.urlForTweetDetail(tweet) {
-                SDGoogleAnalyticsHandler.sendGoogleAnalyticsTrackingWithScreenName(kGAScreenNameSocial, category: nil, action: kGAActionSocialGoToTweet, label: nil)
+                SDGoogleAnalyticsHandler.sendGoogleAnalyticsTrackingWithScreenName(kGAScreenNameSocial, category: kGACategoryNavigate, action: kGAActionSocialGoToTweet, label: nil)
                 launchSafariToUrl(url)
             }
         }        
@@ -243,6 +243,7 @@ class SDSocialViewController: UIViewController, SDErrorPlaceholderViewDelegate, 
         let error = self.socialHandler.showTweetComposerWithTweetText(NSLocalizedString("social_default_message", comment: ""), onViewController: self)
         if(error != .NoError) {
             SDAlertViewHelper.showSimpleAlertViewOnViewController(self, title: nil, message: NSLocalizedString("social_error_message_no_twitter_account_configured", comment: ""), cancelButtonTitle: NSLocalizedString("common_ok", comment: ""), otherButtonTitle: nil, tag: nil, delegate: nil, handler: nil)
+            SDGoogleAnalyticsHandler.sendGoogleAnalyticsTrackingWithScreenName(kGAScreenNameSocial, category: kGACategoryNavigate, action: kGAActionSocialPostTweet, label: nil)
         }
     }
     

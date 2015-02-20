@@ -18,7 +18,7 @@ import UIKit
 import MobileCoreServices
 import AddressBook
 
-class SDContactViewController: UIViewController,
+class SDContactViewController: GAITrackedViewController,
                                 ZBarReaderDelegate,
                                 UINavigationControllerDelegate,
                                 UIImagePickerControllerDelegate,
@@ -40,7 +40,7 @@ class SDContactViewController: UIViewController,
         self.title = NSLocalizedString("contacts", comment: "Contact")
         drawRegularFeedback()
         
-        SDGoogleAnalyticsHandler.sendGoogleAnalyticsTrackingWithScreenName(kGAScreenNameContact, category: nil, action: nil, label: nil)
+        self.screenName = kGAScreenNameContact
     }
 
     // MARK: - QR Code scanning logic

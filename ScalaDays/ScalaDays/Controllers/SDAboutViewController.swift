@@ -16,7 +16,7 @@
 
 import UIKit
 
-class SDAboutViewController: UIViewController, SDErrorPlaceholderViewDelegate, SDMenuControllerItem {
+class SDAboutViewController: GAITrackedViewController, SDErrorPlaceholderViewDelegate, SDMenuControllerItem {
 
     @IBOutlet weak var cnsLeftLabel: NSLayoutConstraint!
     @IBOutlet weak var cnsRightLabel: NSLayoutConstraint!
@@ -42,7 +42,7 @@ class SDAboutViewController: UIViewController, SDErrorPlaceholderViewDelegate, S
         
         loadData()
         
-        SDGoogleAnalyticsHandler.sendGoogleAnalyticsTrackingWithScreenName(kGAScreenNameAbout, category: nil, action: nil, label: nil)
+        self.screenName = kGAScreenNameAbout
     }
 
     override func viewWillAppear(animated: Bool) {

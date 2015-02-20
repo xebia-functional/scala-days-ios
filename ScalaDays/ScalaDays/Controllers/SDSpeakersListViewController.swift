@@ -16,7 +16,7 @@
 
 import UIKit
 
-class SDSpeakersListViewController: UIViewController, SDErrorPlaceholderViewDelegate, SDMenuControllerItem {
+class SDSpeakersListViewController: GAITrackedViewController, SDErrorPlaceholderViewDelegate, SDMenuControllerItem {
     
     @IBOutlet weak var tblView: UITableView!
     var errorPlaceholderView : SDErrorPlaceholderView!
@@ -41,7 +41,7 @@ class SDSpeakersListViewController: UIViewController, SDErrorPlaceholderViewDele
         errorPlaceholderView.delegate = self
         self.view.addSubview(errorPlaceholderView)
         
-        SDGoogleAnalyticsHandler.sendGoogleAnalyticsTrackingWithScreenName(kGAScreenNameSpeakers, category: nil, action: nil, label: nil)
+        self.screenName = kGAScreenNameSpeakers
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -92,7 +92,7 @@ class SDSpeakersListViewController: UIViewController, SDErrorPlaceholderViewDele
                 let currentSpeaker = listOfSpeakers[indexPath.row]
                 if let twitterAccount = currentSpeaker.twitter {
                     if let url = SDSocialHandler.urlForTwitterAccount(twitterAccount) {
-                        SDGoogleAnalyticsHandler.sendGoogleAnalyticsTrackingWithScreenName(kGAScreenNameSpeakers, category: nil, action: kGAActionSpeakersGoToUser, label: nil)
+                        SDGoogleAnalyticsHandler.sendGoogleAnalyticsTrackingWithScreenName(kGAScreenNameSpeakers, category: kGACategoryNavigate, action: kGAActionSpeakersGoToUser, label: nil)
                         launchSafariToUrl(url)
                     }
                 }

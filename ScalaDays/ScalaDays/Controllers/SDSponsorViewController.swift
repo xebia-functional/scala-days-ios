@@ -16,7 +16,7 @@
 
 import UIKit
 
-class SDSponsorViewController: UIViewController, SDErrorPlaceholderViewDelegate, SDMenuControllerItem {
+class SDSponsorViewController: GAITrackedViewController, SDErrorPlaceholderViewDelegate, SDMenuControllerItem {
 
     @IBOutlet weak var tblSponsors: UITableView!
     
@@ -44,7 +44,7 @@ class SDSponsorViewController: UIViewController, SDErrorPlaceholderViewDelegate,
         errorPlaceholderView.delegate = self
         self.view.addSubview(errorPlaceholderView)
         
-        SDGoogleAnalyticsHandler.sendGoogleAnalyticsTrackingWithScreenName(kGAScreenNameSponsors, category: nil, action: nil, label: nil)
+        self.screenName = kGAScreenNameSponsors
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -130,7 +130,7 @@ class SDSponsorViewController: UIViewController, SDErrorPlaceholderViewDelegate,
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
         if let sponsors = filteredSponsors?[indexPath.section] {
             if let url = NSURL(string: sponsors[indexPath.row].url) {
-                SDGoogleAnalyticsHandler.sendGoogleAnalyticsTrackingWithScreenName(kGAScreenNameSponsors, category: nil, action: kGAActionSponsorsGoToSponsor, label: nil)
+                SDGoogleAnalyticsHandler.sendGoogleAnalyticsTrackingWithScreenName(kGAScreenNameSponsors, category: kGACategoryNavigate, action: kGAActionSponsorsGoToSponsor, label: nil)
                 launchSafariToUrl(url)
             }
         }        

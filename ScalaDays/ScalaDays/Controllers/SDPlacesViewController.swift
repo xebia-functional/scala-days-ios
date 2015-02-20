@@ -17,7 +17,7 @@
 import UIKit
 import MapKit
 
-class SDPlacesViewController: UIViewController, MKMapViewDelegate, SDErrorPlaceholderViewDelegate, SDMenuControllerItem {
+class SDPlacesViewController: GAITrackedViewController, MKMapViewDelegate, SDErrorPlaceholderViewDelegate, SDMenuControllerItem {
 
     @IBOutlet weak var mapPlaces: MKMapView!
     var selectedConference : Conference?
@@ -41,7 +41,7 @@ class SDPlacesViewController: UIViewController, MKMapViewDelegate, SDErrorPlaceh
         
         mapPlaces.delegate = self
         
-        SDGoogleAnalyticsHandler.sendGoogleAnalyticsTrackingWithScreenName(kGAScreenNamePlaces, category: nil, action: nil, label: nil)
+        self.screenName = kGAScreenNamePlaces
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -130,7 +130,7 @@ class SDPlacesViewController: UIViewController, MKMapViewDelegate, SDErrorPlaceh
                             let venue = conference.venues[indexOfVenue]
                             let urlString = "http://maps.apple.com/?ll=\(venue.latitude),\(venue.longitude)&daddr=\(venue.address.removeWhitespace().stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)!)"
                             if let mapUrl = NSURL(string: urlString) {
-                                SDGoogleAnalyticsHandler.sendGoogleAnalyticsTrackingWithScreenName(kGAScreenNamePlaces, category: nil, action: kGAActionPlacesGoToMap, label: venue.name)
+                                SDGoogleAnalyticsHandler.sendGoogleAnalyticsTrackingWithScreenName(kGAScreenNamePlaces, category: kGACategoryNavigate, action: kGAActionPlacesGoToMap, label: venue.name)
                                 launchSafariToUrl(mapUrl)
                             }
                         }
