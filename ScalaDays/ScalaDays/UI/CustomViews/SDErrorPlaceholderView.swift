@@ -27,7 +27,10 @@ class SDErrorPlaceholderView: UIView {
     @IBOutlet weak var lblErrorMessage: UILabel!
     @IBOutlet weak var imgIcon: UIImageView!
     @IBOutlet weak var btnRefresh: UIButton!
+    @IBOutlet weak var constraintForImgIconTopSpace: NSLayoutConstraint!
     weak var delegate : SDErrorPlaceholderViewDelegate?
+    
+    let kTopSpaceForImgIconInSmallerIphones : CGFloat = 15.0
     
     let customConstraints : NSMutableArray = NSMutableArray()
     var containerView: UIView!
@@ -48,6 +51,10 @@ class SDErrorPlaceholderView: UIView {
             containerView = container
         }
         self.hidden = true
+        
+        if IS_IPHONE5 {
+            constraintForImgIconTopSpace.constant = kTopSpaceForImgIconInSmallerIphones
+        }
     }
     
     override func updateConstraints() {
