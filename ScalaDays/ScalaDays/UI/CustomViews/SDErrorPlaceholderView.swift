@@ -47,7 +47,6 @@ class SDErrorPlaceholderView: UIView {
         if let container = loadNibSubviewsFromNib("SDErrorPlaceholderView") {
             containerView = container
         }
-        btnRefresh.setTitle(NSLocalizedString("error_placeholder_button_refresh", comment: ""), forState: UIControlState.Normal)
         self.hidden = true
     }
     
@@ -65,9 +64,14 @@ class SDErrorPlaceholderView: UIView {
     }
     
     func show(message: String, isGeneralMessage: Bool) {
+        show(message, isGeneralMessage: isGeneralMessage, buttonTitle: NSLocalizedString("error_placeholder_button_refresh", comment: ""))
+    }
+    
+    func show(message: String, isGeneralMessage: Bool, buttonTitle: String) {
         if self.hidden {
             self.alpha = 0
             self.hidden = false
+            self.btnRefresh.setTitle(buttonTitle, forState: .Normal)
             self.lblErrorMessage.text = message
             self.imgIcon.image = isGeneralMessage ? UIImage(named: "placeholder_general") : UIImage(named: "placeholder_error")
             UIView.animateWithDuration(kAnimationShowHideTimeInterval, animations: { () -> Void in

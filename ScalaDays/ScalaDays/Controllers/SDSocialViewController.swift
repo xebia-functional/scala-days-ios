@@ -44,6 +44,9 @@ class SDSocialViewController: UIViewController, SDErrorPlaceholderViewDelegate, 
         
         tblView?.registerNib(UINib(nibName: "SDSocialTableViewCell", bundle: nil), forCellReuseIdentifier: kReuseIdentifier)
         tblView?.addSubview(refreshControl)
+        if isIOS8OrLater() {
+            tblView?.estimatedRowHeight = kEstimatedDynamicCellsRowHeightHigh
+        }
         refreshControl.addTarget(self, action: "didActivateRefresh", forControlEvents: UIControlEvents.ValueChanged)
         
         errorPlaceholderView = SDErrorPlaceholderView(frame: screenBounds)
@@ -123,6 +126,7 @@ class SDSocialViewController: UIViewController, SDErrorPlaceholderViewDelegate, 
                     dispatch_async(dispatch_get_main_queue()) {
                         if self.listOfTweets.count > 0 {
                             self.tblView.reloadData()
+                            self.tblView.setContentOffset(CGPointZero, animated: true)
                             self.errorPlaceholderView.hide()
                             self.showTableView()
                         } else {
@@ -253,4 +257,5 @@ class SDSocialViewController: UIViewController, SDErrorPlaceholderViewDelegate, 
             self.refreshControl.endRefreshing()
         }
     }
+    
 }
