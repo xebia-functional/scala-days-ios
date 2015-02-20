@@ -21,6 +21,7 @@ class SDDateHandler: NSObject {
     let kTwitterDateFormat = "EEE MMM d HH:mm:ss Z y"
     let kResponseDateFormat = "EEE, dd MMM yyyy HH:mm:ss Z"
     let kScheduleDateFormat = "yyyy-MM-dd'T'HH:mm:ss'Z'"
+    let kScheduleDetailDateFormat = "EEEE '('MMMM dd')' HH:mm"
 
     class var sharedInstance: SDDateHandler {
 
@@ -48,9 +49,22 @@ class SDDateHandler: NSObject {
         dateFormatter.timeZone = NSTimeZone(abbreviation: "UTC")
         return dateFormatter.dateFromString(dateString)
     }
-
+    
+    func formatScheduleDetailDate(date: NSDate) -> String? {
+        dateFormatter.dateFormat = kScheduleDetailDateFormat
+        return dateFormatter.stringFromDate(date)
+    }
+    
     func hoursAndMinutesFromDate(date: NSDate) -> String? {
         dateFormatter.dateFormat = "HH:mm"
         return dateFormatter.stringFromDate(date)
+    }
+    
+    class func convertDateToLocalTime(date: NSDate, timeZoneName: String) -> NSDate? {
+        if let tz = NSTimeZone(name: timeZoneName) {
+            let seconds : NSTimeInterval = NSTimeInterval(tz.secondsFromGMTForDate(date))
+            return NSDate(timeInterval: seconds, sinceDate: date)
+        }
+        return nil
     }
 }

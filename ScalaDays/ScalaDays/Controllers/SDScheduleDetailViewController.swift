@@ -49,7 +49,18 @@ class SDScheduleDetailViewController: GAITrackedViewController {
             self.navigationItem.rightBarButtonItem = barButtonFavorites
             
             titleSection.text = currentEvent.title
-            lblDateSection.text = currentEvent.date
+            
+            if let timeZoneName = DataManager.sharedInstance.conferences?.conferences[DataManager.sharedInstance.selectedConferenceIndex].info.utcTimezoneOffset {
+                if let startDate = SDDateHandler.sharedInstance.parseScheduleDate(currentEvent.startTime) {
+                    if let localStartDate = SDDateHandler.convertDateToLocalTime(startDate, timeZoneName: timeZoneName) {
+                        // TODO parse detail
+                        lblDateSection.text = SDDateHandler.sharedInstance.formatScheduleDetailDate(localStartDate)
+                        //lblDateSection.text = localStartDate
+                    }
+                }
+            }
+            
+            
             if currentEvent.date == "" {
                 constraintForLblRoomTopSpace.constant = 0
             }
