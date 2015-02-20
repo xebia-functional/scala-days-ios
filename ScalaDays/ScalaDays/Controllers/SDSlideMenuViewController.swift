@@ -17,7 +17,7 @@
 
 import UIKit
 
-class SDSlideMenuViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class SDSlideMenuViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, SDSliderMenuBar {
 
     @IBOutlet weak var tblMenu: UITableView!
     @IBOutlet weak var titleConference: UILabel!
@@ -59,7 +59,7 @@ class SDSlideMenuViewController: UIViewController, UITableViewDelegate, UITableV
                       icon_menu_speakers,
                       icon_menu_about]
 
-    var scheduleViewController: UIViewController!
+    var scheduleViewController: UINavigationController!
     var socialViewController: UIViewController!
     var contactViewController: UIViewController!
     var sponsorsViewController: UIViewController!
@@ -78,19 +78,22 @@ class SDSlideMenuViewController: UIViewController, UITableViewDelegate, UITableV
             heigthHeader.constant = Height_Header_Menu
         }
         
-        //Conferences aparence table
+        // Conferences aparence table
         self.tblConferences.scrollEnabled = false
         self.tblConferences.separatorColor = UIColor(white: 1, alpha: 0.1)
         self.tblConferences.registerNib(UINib(nibName: "SDConferenceTableViewCell", bundle: nil), forCellReuseIdentifier: kConferenceReuseIdentifier)
         self.tblConferences.alpha = 0
         
-        //Init aparence table
+        // Init aparence table
         self.heigthTable.constant = CGFloat(menus.count * Int(Height_Row_Menu))
         self.tblMenu.scrollEnabled = IS_IPHONE5
         self.tblMenu.separatorColor = UIColor(white: 1, alpha: 0.1)
+        
+        self.tblMenu.scrollsToTop = false
+        self.tblConferences.scrollsToTop = false        
+        
         self.titleConference.setCustomFont(UIFont.fontHelveticaNeue(17), colorFont: UIColor.whiteColor())
 
-        // Do any additional setup after loading the view.
         let socialViewController = SDSocialViewController(nibName: "SDSocialViewController", bundle: nil)
         self.socialViewController = UINavigationController(rootViewController: socialViewController)
 
@@ -109,10 +112,10 @@ class SDSlideMenuViewController: UIViewController, UITableViewDelegate, UITableV
         let speakersViewController = SDSpeakersListViewController(nibName: "SDSpeakersListViewController", bundle: nil)
         self.speakersViewController = UINavigationController(rootViewController: speakersViewController)
         
-        controllers = [socialViewController, contactViewController, sponsorsViewController, placesViewController, aboutViewController, speakersViewController]
+        controllers = [scheduleViewController.visibleViewController, socialViewController, contactViewController, sponsorsViewController, placesViewController, aboutViewController, speakersViewController]
     }
     
-    override func  viewWillAppear(animated: Bool) {
+    override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         componeConferenceTable()
         drawSelectedConference()
@@ -132,16 +135,10 @@ class SDSlideMenuViewController: UIViewController, UITableViewDelegate, UITableV
             let image = info.pictures[2]
             let imageUrl = NSURL(string: image.url)
             if let infoImageUrl = imageUrl {
-                self.imgHeader.sd_setImageWithURL(infoImageUrl, placeholderImage: UIImage(named: ""))
+                self.imgHeader.sd_setImageWithURL(infoImageUrl, placeholderImage: UIImage(named: "placeholder_menu"))
             }
         }
     }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
 
     // MARK: - UITableViewDataSource implementation
 
@@ -212,14 +209,12 @@ class SDSlideMenuViewController: UIViewController, UITableViewDelegate, UITableV
 
 
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-
         return Height_Row_Menu
     }
 
     // MARK: - UITableViewDelegate implementation
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-   
         switch (tableView, Menu(rawValue: indexPath.item)) {
         case (self.tblConferences, _) :
             DataManager.sharedInstance.selectedConferenceIndex = indexPath.row
@@ -227,6 +222,11 @@ class SDSlideMenuViewController: UIViewController, UITableViewDelegate, UITableV
             toggleTblConference()
             askControllersToReload()
             self.slideMenuController()?.closeLeft()
+            
+            if let selectedConference = DataManager.sharedInstance.conferences?.conferences[indexPath.row] {
+                SDGoogleAnalyticsHandler.sendGoogleAnalyticsTrackingWithScreenName(nil, category: kGACategoryNavigate, action: kGAActionMenuChangeConference, label: selectedConference.info.name)
+            }
+            
         case (self.tblMenu, .Some(.Schedule)): self.slideMenuController()?.changeMainViewController(self.scheduleViewController, close: true)
         case (self.tblMenu, .Some(.Social)): self.slideMenuController()?.changeMainViewController(self.socialViewController, close: true)
         case (self.tblMenu, .Some(.Contact)): self.slideMenuController()?.changeMainViewController(self.contactViewController, close: true)
@@ -236,11 +236,11 @@ class SDSlideMenuViewController: UIViewController, UITableViewDelegate, UITableV
         case (self.tblMenu, .Some(.Speakers)): self.slideMenuController()?.changeMainViewController(self.speakersViewController, close: true)
         case (self.tblMenu, .Some(.Tickets)):
             if let registration = self.infoSelected?.registrationSite {
-                UIApplication.sharedApplication().openURL(NSURL(string:registration)!)
+                SDGoogleAnalyticsHandler.sendGoogleAnalyticsTrackingWithScreenName(nil, category: kGACategoryNavigate, action: kGAActionTicketsGoToTicket, label: nil)
+                launchSafariToUrl(NSURL(string: registration)!)
             }
         default: break
         }
-
     }
 
     @IBAction func selectedConference(sender: AnyObject) {
@@ -255,16 +255,30 @@ class SDSlideMenuViewController: UIViewController, UITableViewDelegate, UITableV
                 return
             })
         } else {
+            hideTblConference()
+        }
+    }
+    
+    func hideTblConference() {
+        if tblConferences.alpha > 0 {
             UIView.animateWithDuration(0.5, animations: {
                 self.tblConferences.alpha = 0.0
                 self.tblMenu.alpha = 1.0
                 return
             })
-            
         }
     }
 
     // MARK: - Notify controllers of conference swapping
+    
+    func currentVisibleController() -> SDMenuControllerItem? {
+        if let mainNavController = self.slideMenuController()?.mainViewController as? UINavigationController {
+            if let currentController = mainNavController.visibleViewController as? SDMenuControllerItem {
+                return currentController
+            }
+        }
+        return nil
+    }
     
     func askControllersToReload() {
         // We need to notify our main controllers that their data need to be updated, also our visible controller needs to reload ASAP:
@@ -275,11 +289,15 @@ class SDSlideMenuViewController: UIViewController, UITableViewDelegate, UITableV
             }
         }
         
-        if let mainNavController = self.slideMenuController()?.mainViewController as? UINavigationController {
-            if let currentController = mainNavController.visibleViewController as? SDMenuControllerItem {
-                currentController.loadData()
-            }
+        if let currentController = currentVisibleController() {
+            currentController.loadData()
         }
+    }
+    
+    // MARK: - SDSliderMenuBar protocol implementation
+    
+    func didCloseMenu() {
+        hideTblConference()
     }
 
 }

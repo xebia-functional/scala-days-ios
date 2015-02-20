@@ -17,10 +17,12 @@
 import UIKit
 import Crashlytics
 
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
+    var menuViewController : SDSlideMenuViewController!
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject:AnyObject]?) -> Bool {
         // Override point for customization after application launch.
@@ -32,7 +34,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let settings = UIUserNotificationSettings(forTypes: .Alert | .Sound | .Badge, categories: nil)
         UIApplication.sharedApplication().registerUserNotificationSettings(settings)
 
-        Crashlytics.startWithAPIKey("***REMOVED***")
+        let externalKeys = AppDelegate.loadExternalKeys()
+        if let googleAnalyticsKey = externalKeys.googleAnalyticsKey {
+            GAI.sharedInstance().trackerWithTrackingId(googleAnalyticsKey)
+        }
+        if let crashlyticsKey = externalKeys.crashlyticsKey {
+            Crashlytics.startWithAPIKey(crashlyticsKey)
+        }
+        
         self.initAppearence()
         self.createMenuView()
         return true
@@ -73,7 +82,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     private func createMenuView() {
 
         let scheduleViewController = SDScheduleViewController(nibName: "SDScheduleViewController", bundle: nil)
-        let menuViewController = SDSlideMenuViewController(nibName: "SDSlideMenuViewController", bundle: nil)
+        menuViewController = SDSlideMenuViewController ( nibName:"SDSlideMenuViewController", bundle: nil)
         let nvc: UINavigationController = UINavigationController(rootViewController: scheduleViewController)
 
         menuViewController.scheduleViewController = nvc
@@ -94,6 +103,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UINavigationBar.appearance().backIndicatorImage = UIImage(named: "navigation_bar_icon_arrow")
         UINavigationBar.appearance().backIndicatorTransitionMaskImage = UIImage(named: "navigation_bar_icon_arrow")
         UIApplication.sharedApplication().setStatusBarStyle(.LightContent, animated: false)
+        SVProgressHUD.setBackgroundColor(UIColor.clearColor())
+    }
+    
+    class func loadExternalKeys() -> (googleAnalyticsKey: String?, crashlyticsKey: String?) {
+        if let path = NSBundle.mainBundle().pathForResource(kExternalKeysPlistFilename, ofType: "plist") {
+            if let keysDict = NSDictionary(contentsOfFile: path) {
+                return (keysDict[kExternalKeysDKGoogleAnalytics] as? String, keysDict[kExternalKeysDKCrashlytics] as? String)
+            }
+        }
+        return (nil, nil)
     }
 
 

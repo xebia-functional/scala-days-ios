@@ -18,7 +18,7 @@ import UIKit
 import MobileCoreServices
 import AddressBook
 
-class SDContactViewController: UIViewController,
+class SDContactViewController: GAITrackedViewController,
                                 ZBarReaderDelegate,
                                 UINavigationControllerDelegate,
                                 UIImagePickerControllerDelegate,
@@ -27,21 +27,20 @@ class SDContactViewController: UIViewController,
 
     lazy var scannerVC = ZBarReaderViewController()
     let kTagForRequestAlertView = 666
+    let kImgIconTopSpaceForSmallerIphones : CGFloat = 20.0
     var currentVCardString = ""
     
     @IBOutlet weak var lblScanResult: UILabel!
     @IBOutlet weak var imgIcon: UIImageView!
+    @IBOutlet weak var constraintForImgTopSpace: NSLayoutConstraint!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setNavigationBarItem()
         self.title = NSLocalizedString("contacts", comment: "Contact")
         drawRegularFeedback()
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+        
+        self.screenName = kGAScreenNameContact
     }
 
     // MARK: - QR Code scanning logic
@@ -57,6 +56,8 @@ class SDContactViewController: UIViewController,
         scannerVC.cameraOverlayView = scannerVCOverlayView
         
         self.presentViewController(scannerVC, animated: true, completion: nil)
+        
+        SDGoogleAnalyticsHandler.sendGoogleAnalyticsTrackingWithScreenName(kGAScreenNameContact, category: nil, action: kGAActionContactScanContact, label: nil)
     }
     
     func readerControllerDidFailToRead(reader: ZBarReaderController!, withRetry retry: Bool) {
@@ -135,6 +136,9 @@ class SDContactViewController: UIViewController,
     func drawRegularFeedback() {
         imgIcon?.image = UIImage(named: "placeholder_contact")
         lblScanResult?.text = NSLocalizedString("contacts_regular_feedback_message", comment: "")
+        if IS_IPHONE5 {
+            constraintForImgTopSpace.constant = kImgIconTopSpaceForSmallerIphones
+        }
     }
     
     // MARK: - Alert views

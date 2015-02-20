@@ -16,7 +16,7 @@
 
 import UIKit
 
-class SDAboutViewController: UIViewController, SDErrorPlaceholderViewDelegate, SDMenuControllerItem {
+class SDAboutViewController: GAITrackedViewController, SDErrorPlaceholderViewDelegate, SDMenuControllerItem {
 
     @IBOutlet weak var cnsLeftLabel: NSLayoutConstraint!
     @IBOutlet weak var cnsRightLabel: NSLayoutConstraint!
@@ -41,6 +41,8 @@ class SDAboutViewController: UIViewController, SDErrorPlaceholderViewDelegate, S
         self.view.addSubview(errorPlaceholderView)
         
         loadData()
+        
+        self.screenName = kGAScreenNameAbout
     }
 
     override func viewWillAppear(animated: Bool) {
@@ -88,6 +90,7 @@ class SDAboutViewController: UIViewController, SDErrorPlaceholderViewDelegate, S
     }
 
     @IBAction func didTapOn47Logo(sender: AnyObject) {
+        SDGoogleAnalyticsHandler.sendGoogleAnalyticsTrackingWithScreenName(kGAScreenNameAbout, category: nil, action: kGAActionAboutGoToSite, label: nil)
         launchSafariToUrl(NSURL(string: url47Website)!)
     }
     

@@ -16,12 +16,14 @@
 
 import UIKit
 
-extension UIViewController {
-    
-    func setNavigationBarItem() {
-        self.addLeftBarButtonWithImage(UIImage(named: "navigation_bar_icon_menu")!)
-        self.navigationController?.navigationBar.translucent = false        
-        self.navigationController?.navigationBar.shadowImage = UIImage()
-        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), forBarMetrics: .Default)
+class SDAnimationHelper: NSObject {
+
+    class func showViewWithFadeInAnimation(view: UIView) {
+        view.alpha = 0
+        view.hidden = false
+        UIView.animateWithDuration(kAnimationShowHideTimeInterval, animations: { () -> Void in
+            view.alpha = 1
+        })
     }
+    
 }

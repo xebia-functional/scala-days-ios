@@ -58,9 +58,14 @@ class SDScheduleListTableViewCell: UITableViewCell {
     }
     
     func drawEventData(event: Event) {
-        if let startDate = SDDateHandler.sharedInstance.parseScheduleDate(event.startTime) {
-            lblTime.text = SDDateHandler.sharedInstance.hoursAndMinutesFromDate(startDate)
-        }        
+        if let timeZoneName = DataManager.sharedInstance.conferences?.conferences[DataManager.sharedInstance.selectedConferenceIndex].info.utcTimezoneOffset {
+            if let startDate = SDDateHandler.sharedInstance.parseScheduleDate(event.startTime) {
+                if let localStartDate = SDDateHandler.convertDateToLocalTime(startDate, timeZoneName: timeZoneName) {
+                    lblTime.text = SDDateHandler.sharedInstance.hoursAndMinutesFromDate(localStartDate)
+                }
+            }
+        }
+        
         lblTitle.text = event.title        
         if let eventLocation = event.location {
             constraintForLblLocationHeight.constant = kDefaultHeightForLblLocation

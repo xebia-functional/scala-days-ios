@@ -27,7 +27,10 @@ class SDErrorPlaceholderView: UIView {
     @IBOutlet weak var lblErrorMessage: UILabel!
     @IBOutlet weak var imgIcon: UIImageView!
     @IBOutlet weak var btnRefresh: UIButton!
+    @IBOutlet weak var constraintForImgIconTopSpace: NSLayoutConstraint!
     weak var delegate : SDErrorPlaceholderViewDelegate?
+    
+    let kTopSpaceForImgIconInSmallerIphones : CGFloat = 15.0
     
     let customConstraints : NSMutableArray = NSMutableArray()
     var containerView: UIView!
@@ -47,8 +50,11 @@ class SDErrorPlaceholderView: UIView {
         if let container = loadNibSubviewsFromNib("SDErrorPlaceholderView") {
             containerView = container
         }
-        btnRefresh.setTitle(NSLocalizedString("error_placeholder_button_refresh", comment: ""), forState: UIControlState.Normal)
         self.hidden = true
+        
+        if IS_IPHONE5 {
+            constraintForImgIconTopSpace.constant = kTopSpaceForImgIconInSmallerIphones
+        }
     }
     
     override func updateConstraints() {
@@ -65,9 +71,14 @@ class SDErrorPlaceholderView: UIView {
     }
     
     func show(message: String, isGeneralMessage: Bool) {
+        show(message, isGeneralMessage: isGeneralMessage, buttonTitle: NSLocalizedString("error_placeholder_button_refresh", comment: ""))
+    }
+    
+    func show(message: String, isGeneralMessage: Bool, buttonTitle: String) {
         if self.hidden {
             self.alpha = 0
             self.hidden = false
+            self.btnRefresh.setTitle(buttonTitle, forState: .Normal)
             self.lblErrorMessage.text = message
             self.imgIcon.image = isGeneralMessage ? UIImage(named: "placeholder_general") : UIImage(named: "placeholder_error")
             UIView.animateWithDuration(kAnimationShowHideTimeInterval, animations: { () -> Void in

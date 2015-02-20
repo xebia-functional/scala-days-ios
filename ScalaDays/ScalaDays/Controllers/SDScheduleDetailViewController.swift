@@ -16,7 +16,7 @@
 
 import UIKit
 
-class SDScheduleDetailViewController: UIViewController {
+class SDScheduleDetailViewController: GAITrackedViewController {
 
 
     @IBOutlet weak var titleSection: UILabel!
@@ -49,7 +49,18 @@ class SDScheduleDetailViewController: UIViewController {
             self.navigationItem.rightBarButtonItem = barButtonFavorites
             
             titleSection.text = currentEvent.title
-            lblDateSection.text = currentEvent.date
+            
+            if let timeZoneName = DataManager.sharedInstance.conferences?.conferences[DataManager.sharedInstance.selectedConferenceIndex].info.utcTimezoneOffset {
+                if let startDate = SDDateHandler.sharedInstance.parseScheduleDate(currentEvent.startTime) {
+                    if let localStartDate = SDDateHandler.convertDateToLocalTime(startDate, timeZoneName: timeZoneName) {
+                        // TODO parse detail
+                        lblDateSection.text = SDDateHandler.sharedInstance.formatScheduleDetailDate(localStartDate)
+                        //lblDateSection.text = localStartDate
+                    }
+                }
+            }
+            
+            
             if currentEvent.date == "" {
                 constraintForLblRoomTopSpace.constant = 0
             }
@@ -86,6 +97,7 @@ class SDScheduleDetailViewController: UIViewController {
                     constraintForSpeakerListContainerHeight.constant = lastSpeakerBottomPos
                 }
             }
+            self.screenName = kGAScreenNameSchedule
         }
     }
     
@@ -94,9 +106,11 @@ class SDScheduleDetailViewController: UIViewController {
         if DataManager.sharedInstance.isFavoriteEvent(event, selectedConference: selectedConference) {
             DataManager.sharedInstance.storeOrRemoveFavoriteEvent(true, event: event, selectedConference: selectedConference)
             barButtonFavorites.tintColor = UIColor.whiteColor()
+            SDGoogleAnalyticsHandler.sendGoogleAnalyticsTrackingWithScreenName(kGAScreenNameSchedule, category: kGACategoryFavorites, action: kGAActionScheduleDetailRemoveToFavorite, label: event?.title)
         } else {
             DataManager.sharedInstance.storeOrRemoveFavoriteEvent(false, event: event, selectedConference: selectedConference)
             barButtonFavorites.tintColor = UIColor.appRedColor()
+            SDGoogleAnalyticsHandler.sendGoogleAnalyticsTrackingWithScreenName(kGAScreenNameSchedule, category: kGACategoryFavorites, action: kGAActionScheduleDetailAddToFavorite, label: event?.title)
         }
         
     }

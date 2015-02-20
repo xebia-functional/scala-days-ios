@@ -16,7 +16,7 @@
 
 import UIKit
 
-class SDSocialViewController: UIViewController, SDErrorPlaceholderViewDelegate, SDMenuControllerItem {
+class SDSocialViewController: GAITrackedViewController, SDErrorPlaceholderViewDelegate, SDMenuControllerItem {
     
     @IBOutlet weak var tblView : UITableView!
     @IBOutlet weak var viewError : UIView!
@@ -44,11 +44,16 @@ class SDSocialViewController: UIViewController, SDErrorPlaceholderViewDelegate, 
         
         tblView?.registerNib(UINib(nibName: "SDSocialTableViewCell", bundle: nil), forCellReuseIdentifier: kReuseIdentifier)
         tblView?.addSubview(refreshControl)
+        if isIOS8OrLater() {
+            tblView?.estimatedRowHeight = kEstimatedDynamicCellsRowHeightHigh
+        }
         refreshControl.addTarget(self, action: "didActivateRefresh", forControlEvents: UIControlEvents.ValueChanged)
         
         errorPlaceholderView = SDErrorPlaceholderView(frame: screenBounds)
         errorPlaceholderView.delegate = self
         self.view.addSubview(errorPlaceholderView)
+        
+        self.screenName = kGAScreenNameSocial
     }
     
     override func viewWillAppear(animated: Bool){
@@ -82,7 +87,6 @@ class SDSocialViewController: UIViewController, SDErrorPlaceholderViewDelegate, 
                 self.selectedConference = DataManager.sharedInstance.currentlySelectedConference
                 
                 SVProgressHUD.dismiss()
-                self.errorPlaceholderView.hide()
                 
                 if let conference = self.selectedConference {
                     self.hashtag = conference.info.hashtag
@@ -123,6 +127,7 @@ class SDSocialViewController: UIViewController, SDErrorPlaceholderViewDelegate, 
                     dispatch_async(dispatch_get_main_queue()) {
                         if self.listOfTweets.count > 0 {
                             self.tblView.reloadData()
+                            self.tblView.setContentOffset(CGPointZero, animated: true)
                             self.errorPlaceholderView.hide()
                             self.showTableView()
                         } else {
@@ -173,6 +178,7 @@ class SDSocialViewController: UIViewController, SDErrorPlaceholderViewDelegate, 
         if(listOfTweets.count > indexPath.row) {
             let tweet = listOfTweets[indexPath.row] as SDTweet
             if let url = SDSocialHandler.urlForTweetDetail(tweet) {
+                SDGoogleAnalyticsHandler.sendGoogleAnalyticsTrackingWithScreenName(kGAScreenNameSocial, category: kGACategoryNavigate, action: kGAActionSocialGoToTweet, label: nil)
                 launchSafariToUrl(url)
             }
         }        
@@ -215,12 +221,7 @@ class SDSocialViewController: UIViewController, SDErrorPlaceholderViewDelegate, 
     
     func showTableView() {
         if(tblView.hidden) {
-            tblView.alpha = 0
-            tblView.hidden = false
-            UIView.animateWithDuration(kAnimationShowHideTimeInterval, animations: {() -> Void in
-                self.tblView.alpha = 1
-                return
-            })
+            SDAnimationHelper.showViewWithFadeInAnimation(tblView)
         }
     }
     
@@ -236,6 +237,7 @@ class SDSocialViewController: UIViewController, SDErrorPlaceholderViewDelegate, 
         let error = self.socialHandler.showTweetComposerWithTweetText(NSLocalizedString("social_default_message", comment: ""), onViewController: self)
         if(error != .NoError) {
             SDAlertViewHelper.showSimpleAlertViewOnViewController(self, title: nil, message: NSLocalizedString("social_error_message_no_twitter_account_configured", comment: ""), cancelButtonTitle: NSLocalizedString("common_ok", comment: ""), otherButtonTitle: nil, tag: nil, delegate: nil, handler: nil)
+            SDGoogleAnalyticsHandler.sendGoogleAnalyticsTrackingWithScreenName(kGAScreenNameSocial, category: kGACategoryNavigate, action: kGAActionSocialPostTweet, label: nil)
         }
     }
     
@@ -253,4 +255,5 @@ class SDSocialViewController: UIViewController, SDErrorPlaceholderViewDelegate, 
             self.refreshControl.endRefreshing()
         }
     }
+    
 }

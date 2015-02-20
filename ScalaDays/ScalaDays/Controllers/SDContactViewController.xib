@@ -7,6 +7,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SDContactViewController" customModule="ScalaDays" customModuleProvider="target">
             <connections>
+                <outlet property="constraintForImgTopSpace" destination="SFW-tv-1lV" id="swW-uC-HhC"/>
                 <outlet property="imgIcon" destination="RGq-AU-ug5" id="KDz-t8-19O"/>
                 <outlet property="lblScanResult" destination="w4R-E1-9uD" id="KTq-gc-Niu"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -54,7 +55,7 @@
                 <constraint firstItem="w4R-E1-9uD" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="32" id="kuN-bO-Utn"/>
                 <constraint firstAttribute="trailing" secondItem="w4R-E1-9uD" secondAttribute="trailing" constant="32" id="net-cQ-PJr"/>
                 <constraint firstItem="Y4q-2Q-nKg" firstAttribute="top" secondItem="w4R-E1-9uD" secondAttribute="bottom" constant="40" id="oFn-To-Pif"/>
-                <constraint firstItem="w4R-E1-9uD" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="290" id="upY-ZZ-66I"/>
+                <constraint firstItem="w4R-E1-9uD" firstAttribute="top" secondItem="RGq-AU-ug5" secondAttribute="bottom" constant="28" id="sxY-Do-z5P"/>
                 <constraint firstAttribute="centerX" secondItem="RGq-AU-ug5" secondAttribute="centerX" id="ygT-nJ-62s"/>
             </constraints>
         </view>

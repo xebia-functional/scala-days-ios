@@ -33,7 +33,7 @@ enum SDScheduleEventType: Int {
     case Others = 3
 }
 
-class SDScheduleViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UIActionSheetDelegate, SDErrorPlaceholderViewDelegate, SDMenuControllerItem {
+class SDScheduleViewController: GAITrackedViewController, UITableViewDelegate, UITableViewDataSource, UIActionSheetDelegate, SDErrorPlaceholderViewDelegate, SDMenuControllerItem {
 
     @IBOutlet weak var tblSchedule: UITableView!
 
@@ -71,26 +71,30 @@ class SDScheduleViewController: UIViewController, UITableViewDelegate, UITableVi
         } else {
             self.loadData()
         }
-        self.tblSchedule.reloadData()
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         self.setNavigationBarItem()
         let barButtonOptions = UIBarButtonItem(image: UIImage(named: "navigation_bar_icon_options"), style: .Plain, target: self, action: "didTapOptionsButton")
         self.navigationItem.rightBarButtonItem = barButtonOptions
 
         tblSchedule?.registerNib(UINib(nibName: "SDScheduleListTableViewCell", bundle: nil), forCellReuseIdentifier: kReuseIdentifier)
         tblSchedule?.separatorStyle = .None
+        if isIOS8OrLater() {
+            tblSchedule?.estimatedRowHeight = kEstimatedDynamicCellsRowHeightLow
+        }
         
         errorPlaceholderView = SDErrorPlaceholderView(frame: screenBounds)
         errorPlaceholderView.delegate = self
         self.view.addSubview(errorPlaceholderView)
+        
+        self.screenName = kGAScreenNameSchedule
     }
 
 
-    // MARK: - Data loading
+    // MARK: - Data loading / SDMenuControllerItem protocol implementation
 
     func loadData() {
         SVProgressHUD.show()
@@ -110,6 +114,7 @@ class SDScheduleViewController: UIViewController, UITableViewDelegate, UITableVi
                 self.dates = self.scheduledDates()
                 self.events = self.listOfEventsSortedByDates()
                 self.tblSchedule.reloadData()
+                self.showTableView()
                 self.view.backgroundColor = UIColor.appScheduleTimeBlueBackgroundColor()
                 
                 self.loadFavorites()
@@ -121,6 +126,8 @@ class SDScheduleViewController: UIViewController, UITableViewDelegate, UITableVi
                         self.errorPlaceholderView.hide()
                     }
                 }
+                
+                self.tblSchedule.reloadData()
             }
         }
     }
@@ -128,9 +135,21 @@ class SDScheduleViewController: UIViewController, UITableViewDelegate, UITableVi
     func loadFavorites() {
         if let favs = self.favoritedEvents() {
             self.favorites = favs
+            reloadTableDataWithFilter(selectedDataSource)
         }
     }
-
+    
+    func listOfCurrentConferenceFavoritesIDs() -> [Int]? {
+        switch (selectedConference, DataManager.sharedInstance.favoritedEvents) {
+        case let (.Some(conference), .Some(favoritedEvents)):
+            if let currentConferenceFavorites = favoritedEvents[conference.info.id] {
+                return currentConferenceFavorites
+            }
+        default: break
+        }
+        return nil
+    }
+    
     // MARK: UITableViewDataSource implementation
 
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
@@ -162,14 +181,10 @@ class SDScheduleViewController: UIViewController, UITableViewDelegate, UITableVi
         if let events = eventsToShow {
             let event = events[indexPath.section][indexPath.row]
             cell.drawEventData(event)
-            switch (selectedConference, DataManager.sharedInstance.favoritedEvents) {
-            case let (.Some(conference), .Some(favoritedEvents)):
-                if let currentConferenceFavorites = favoritedEvents[conference.info.id] {
-                    if contains(currentConferenceFavorites, event.id) {
-                        cell.imgFavoriteIcon.hidden = false
-                    }
+            if let currentConferenceFavorites = listOfCurrentConferenceFavoritesIDs() {
+                if contains(currentConferenceFavorites, event.id) {
+                    cell.imgFavoriteIcon.hidden = false
                 }
-            default: break
             }
         }
         cell.frame = CGRectMake(0, 0, screenBounds.width, cell.frame.size.height);
@@ -194,6 +209,7 @@ class SDScheduleViewController: UIViewController, UITableViewDelegate, UITableVi
                 self.title = ""
                 scheduleDetailViewController.event = event
                 self.navigationController?.pushViewController(scheduleDetailViewController, animated: true)
+                SDGoogleAnalyticsHandler.sendGoogleAnalyticsTrackingWithScreenName(kGAScreenNameSchedule, category: kGACategoryNavigate, action: kGAActionScheduleGoToDetail, label: event.title)
             }
         }
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
@@ -208,7 +224,15 @@ class SDScheduleViewController: UIViewController, UITableViewDelegate, UITableVi
     }
 
     func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return kHeaderHeight
+        if selectedDataSource == .Favorites {
+            if let favs = self.favorites {
+                if favs[section].count > 0 {
+                    return kHeaderHeight
+                }
+            }
+            return 0
+        }
+        return kHeaderHeight        
     }
 
     func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
@@ -265,7 +289,7 @@ class SDScheduleViewController: UIViewController, UITableViewDelegate, UITableVi
 // MARK: - Button handling
 
     func didTapOptionsButton() {
-        if isDataLoaded {
+        if isDataLoaded && errorPlaceholderView.hidden {
             launchFilterSheet()
         }
     }
@@ -334,15 +358,41 @@ class SDScheduleViewController: UIViewController, UITableViewDelegate, UITableVi
     }
 
     func reloadTableDataWithFilter(filter: SDScheduleSelectedDataSource) {
-        selectedDataSource = filter
-        tblSchedule.reloadData()
+        if filter == .Favorites {
+            var favoritesCount = 0
+            
+            if let currentConferenceFavorites = listOfCurrentConferenceFavoritesIDs() {
+                favoritesCount = currentConferenceFavorites.count
+            }
+            
+            if favoritesCount == 0 {
+                errorPlaceholderView.show(NSLocalizedString("error_no_favorites", comment: ""), isGeneralMessage: true, buttonTitle: NSLocalizedString("common_back", comment: "").uppercaseString)
+            } else {
+                selectedDataSource = filter
+                tblSchedule.reloadData()
+                SDGoogleAnalyticsHandler.sendGoogleAnalyticsTrackingWithScreenName(kGAScreenNameSchedule, category: kGACategoryFilter, action: kGAActionScheduleFilterFavorites, label: nil)
+            }
+        } else {
+            selectedDataSource = filter
+            tblSchedule.reloadData()
+            SDGoogleAnalyticsHandler.sendGoogleAnalyticsTrackingWithScreenName(kGAScreenNameSchedule, category: kGACategoryFilter, action: kGAActionScheduleFilterAll, label: nil)
+        }
     }
 
     
-    // MARK: SDErrorPlaceholderViewDelegate protocol implementation
+    // MARK: - SDErrorPlaceholderViewDelegate protocol implementation
     
     func didTapRefreshButtonInErrorPlaceholder() {
         loadData()
     }
+    
+    // MARK: - Animations
+    
+    func showTableView() {
+        if(tblSchedule.hidden) {
+            SDAnimationHelper.showViewWithFadeInAnimation(tblSchedule)
+        }
+    }
+    
 }
 
