@@ -16,7 +16,7 @@
 
 import UIKit
 
-class SDSponsorViewController: UIViewController, SDErrorPlaceholderViewDelegate, SDMenuControllerItem {
+class SDSponsorViewController: GAITrackedViewController, SDErrorPlaceholderViewDelegate, SDMenuControllerItem {
 
     @IBOutlet weak var tblSponsors: UITableView!
     
@@ -43,6 +43,8 @@ class SDSponsorViewController: UIViewController, SDErrorPlaceholderViewDelegate,
         errorPlaceholderView = SDErrorPlaceholderView(frame: screenBounds)
         errorPlaceholderView.delegate = self
         self.view.addSubview(errorPlaceholderView)
+        
+        self.screenName = kGAScreenNameSponsors
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -80,6 +82,7 @@ class SDSponsorViewController: UIViewController, SDErrorPlaceholderViewDelegate,
                 }
                 
                 self.tblSponsors?.reloadData()
+                self.showTableView()
                 self.isDataLoaded = true
             }
         }
@@ -128,6 +131,7 @@ class SDSponsorViewController: UIViewController, SDErrorPlaceholderViewDelegate,
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
         if let sponsors = filteredSponsors?[indexPath.section] {
             if let url = NSURL(string: sponsors[indexPath.row].url) {
+                SDGoogleAnalyticsHandler.sendGoogleAnalyticsTrackingWithScreenName(kGAScreenNameSponsors, category: kGACategoryNavigate, action: kGAActionSponsorsGoToSponsor, label: nil)
                 launchSafariToUrl(url)
             }
         }        
@@ -174,6 +178,14 @@ class SDSponsorViewController: UIViewController, SDErrorPlaceholderViewDelegate,
     
     func didTapRefreshButtonInErrorPlaceholder() {
         loadData()
+    }
+    
+    // Animations
+    
+    func showTableView() {
+        if self.tblSponsors.hidden {
+            SDAnimationHelper.showViewWithFadeInAnimation(self.tblSponsors)
+        }
     }
     
 }

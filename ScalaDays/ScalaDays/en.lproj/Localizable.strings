@@ -18,6 +18,7 @@
 
 "common_ok" = "OK";
 "common_cancel" = "Cancel";
+"common_back" = "Back";
 
 //Menu
 "schedule" = "Schedule";
@@ -62,3 +63,4 @@
 "error_placeholder_button_refresh" = "RELOAD";
 "error_message_no_data_available" = "There was an error while trying to retrieve the latest Scala Days information. Please tap on the \"RELOAD\" button to try again.";
 "error_insufficient_content" = "We haven't found enough data for this section yet. Please tap on the \"RELOAD\" button to try again.";
+"error_no_favorites" = "You haven't selected any favorite events. You can select an event and mark it as favorite by tapping on the button at the upper-right part of the screen.";
