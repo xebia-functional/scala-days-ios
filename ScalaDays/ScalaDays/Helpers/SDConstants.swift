@@ -41,6 +41,8 @@ let kAnimationShowHideTimeInterval : NSTimeInterval = 0.3
 let kTweetCount = 100
 let kGlobalPadding : CGFloat = 15.0
 
+let kMinimumTimeToDownloadDataFromApiInSeconds : NSTimeInterval = 14400
+
 let lastModifiedDate = "Last-Modified"
 
 let url47Website = "http://www.47deg.com"
