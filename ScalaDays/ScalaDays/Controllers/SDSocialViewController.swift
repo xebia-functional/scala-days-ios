@@ -222,12 +222,7 @@ class SDSocialViewController: GAITrackedViewController, SDErrorPlaceholderViewDe
     
     func showTableView() {
         if(tblView.hidden) {
-            tblView.alpha = 0
-            tblView.hidden = false
-            UIView.animateWithDuration(kAnimationShowHideTimeInterval, animations: {() -> Void in
-                self.tblView.alpha = 1
-                return
-            })
+            SDAnimationHelper.showViewWithFadeInAnimation(tblView)
         }
     }
     

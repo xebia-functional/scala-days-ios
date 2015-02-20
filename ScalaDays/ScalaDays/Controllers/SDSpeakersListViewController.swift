@@ -72,6 +72,7 @@ class SDSpeakersListViewController: GAITrackedViewController, SDErrorPlaceholder
                     } else {
                         self.errorPlaceholderView.hide()
                         self.tblView.reloadData()
+                        self.showTableView()
                     }
                 } else {
                     self.errorPlaceholderView.show(NSLocalizedString("error_message_no_data_available", comment: ""))
@@ -145,4 +146,11 @@ class SDSpeakersListViewController: GAITrackedViewController, SDErrorPlaceholder
         loadData()
     }
     
+    // Animations
+    
+    func showTableView() {
+        if self.tblView.hidden {
+            SDAnimationHelper.showViewWithFadeInAnimation(self.tblView)
+        }
+    }
 }

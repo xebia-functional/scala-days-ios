@@ -19,6 +19,7 @@
 		5920EA601A9484B600564014 /* SDErrorPlaceholderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5920EA5F1A9484B600564014 /* SDErrorPlaceholderView.xib */; };
 		5920EA661A94B20800564014 /* SDMenuControllerItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5920EA651A94B20800564014 /* SDMenuControllerItem.swift */; };
 		5925ADA11A897AAD000EA5E7 /* SDMapView-ZoomOut.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5925ADA01A897AAD000EA5E7 /* SDMapView-ZoomOut.swift */; };
+		592609921A973C610055A3D4 /* SDAnimationHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 592609911A973C610055A3D4 /* SDAnimationHelper.swift */; };
 		5928D1751A88A9FA00E5049E /* SDContactCreationHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 5928D1741A88A9FA00E5049E /* SDContactCreationHelper.m */; };
 		5928D1781A88E5C800E5049E /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5928D1761A88E5AB00E5049E /* MapKit.framework */; };
 		5928D17A1A88EF8900E5049E /* SDMapAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5928D1791A88EF8900E5049E /* SDMapAnnotation.swift */; };
@@ -135,6 +136,7 @@
 		5920EA5F1A9484B600564014 /* SDErrorPlaceholderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SDErrorPlaceholderView.xib; sourceTree = "<group>"; };
 		5920EA651A94B20800564014 /* SDMenuControllerItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SDMenuControllerItem.swift; sourceTree = "<group>"; };
 		5925ADA01A897AAD000EA5E7 /* SDMapView-ZoomOut.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SDMapView-ZoomOut.swift"; sourceTree = "<group>"; };
+		592609911A973C610055A3D4 /* SDAnimationHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SDAnimationHelper.swift; sourceTree = "<group>"; };
 		5928D1731A88A9FA00E5049E /* SDContactCreationHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDContactCreationHelper.h; sourceTree = "<group>"; };
 		5928D1741A88A9FA00E5049E /* SDContactCreationHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDContactCreationHelper.m; sourceTree = "<group>"; };
 		5928D1761A88E5AB00E5049E /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
@@ -292,6 +294,14 @@
 			path = Protocols;
 			sourceTree = "<group>";
 		};
+		592609901A973C520055A3D4 /* Animation */ = {
+			isa = PBXGroup;
+			children = (
+				592609911A973C610055A3D4 /* SDAnimationHelper.swift */,
+			);
+			path = Animation;
+			sourceTree = "<group>";
+		};
 		5928D1721A88A9E500E5049E /* Contacts */ = {
 			isa = PBXGroup;
 			children = (
@@ -347,6 +357,7 @@
 		593571E61A77DD73005AA332 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				592609901A973C520055A3D4 /* Animation */,
 				59E430ED1A964BDE00185C41 /* Analytics */,
 				5920EA641A94B1FB00564014 /* Protocols */,
 				5928D1721A88A9E500E5049E /* Contacts */,
@@ -680,6 +691,7 @@
 				A1FA1FFB1A7BAE5B00338AF0 /* SDFonts.swift in Sources */,
 				590DDD6A1A83BAC100E4CC3F /* SDSpeakersListViewController.swift in Sources */,
 				590DDD771A83C5E800E4CC3F /* SDDateHandler.swift in Sources */,
+				592609921A973C610055A3D4 /* SDAnimationHelper.swift in Sources */,
 				595003031A84C43B00A1C24F /* SDZBarSymbolSet-Enumeration.swift in Sources */,
 				A1C8B8781A8E6CE7008599FF /* SDScheduleListTableViewCell.swift in Sources */,
 				A1FA1FF91A7BA95500338AF0 /* SDConstants.swift in Sources */,
