@@ -114,6 +114,7 @@ class SDScheduleViewController: GAITrackedViewController, UITableViewDelegate, U
                 self.dates = self.scheduledDates()
                 self.events = self.listOfEventsSortedByDates()
                 self.tblSchedule.reloadData()
+                self.showTableView()
                 self.view.backgroundColor = UIColor.appScheduleTimeBlueBackgroundColor()
                 
                 self.loadFavorites()
@@ -365,7 +366,7 @@ class SDScheduleViewController: GAITrackedViewController, UITableViewDelegate, U
             }
             
             if favoritesCount == 0 {
-                errorPlaceholderView.show(NSLocalizedString("error_no_favorites", comment: ""), isGeneralMessage: true, buttonTitle: NSLocalizedString("common_ok", comment: ""))
+                errorPlaceholderView.show(NSLocalizedString("error_no_favorites", comment: ""), isGeneralMessage: true, buttonTitle: NSLocalizedString("common_back", comment: "").uppercaseString)
             } else {
                 selectedDataSource = filter
                 tblSchedule.reloadData()
@@ -379,10 +380,18 @@ class SDScheduleViewController: GAITrackedViewController, UITableViewDelegate, U
     }
 
     
-    // MARK: SDErrorPlaceholderViewDelegate protocol implementation
+    // MARK: - SDErrorPlaceholderViewDelegate protocol implementation
     
     func didTapRefreshButtonInErrorPlaceholder() {
         loadData()
+    }
+    
+    // MARK: - Animations
+    
+    func showTableView() {
+        if(tblSchedule.hidden) {
+            SDAnimationHelper.showViewWithFadeInAnimation(tblSchedule)
+        }
     }
     
 }

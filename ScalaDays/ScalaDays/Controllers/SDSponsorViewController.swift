@@ -82,6 +82,7 @@ class SDSponsorViewController: GAITrackedViewController, SDErrorPlaceholderViewD
                 }
                 
                 self.tblSponsors?.reloadData()
+                self.showTableView()
                 self.isDataLoaded = true
             }
         }
@@ -177,6 +178,14 @@ class SDSponsorViewController: GAITrackedViewController, SDErrorPlaceholderViewD
     
     func didTapRefreshButtonInErrorPlaceholder() {
         loadData()
+    }
+    
+    // Animations
+    
+    func showTableView() {
+        if self.tblSponsors.hidden {
+            SDAnimationHelper.showViewWithFadeInAnimation(self.tblSponsors)
+        }
     }
     
 }
