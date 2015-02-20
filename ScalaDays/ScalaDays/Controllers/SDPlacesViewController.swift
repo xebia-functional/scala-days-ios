@@ -114,22 +114,24 @@ class SDPlacesViewController: UIViewController, MKMapViewDelegate, SDErrorPlaceh
     
     func didTapCallout(sender: UITapGestureRecognizer) {
         let annotationView = sender.view as MKAnnotationView
-        let annotation = annotationView.annotation as SDMapAnnotation
-        
-        // It seems there's a bug in Swift that provokes EXC_BAD_ACCESS exceptions while trying to interpolate certain strings,
-        // (in this case, while trying to access annotation's subtitle and coordinate properties, which aren't optional and 
-        // should come with a valid value). So while we find a better solution we have to access the venue's location and address
-        // from the conference object in a more cumbersome way:
-        if let annotations = self.mapPlaces.annotations as? [SDMapAnnotation] {
-            if let indexOfVenue = find(annotations, annotation) {
-                if let conference = selectedConference {
-                    if conference.venues.count > indexOfVenue {
-                        let venue = conference.venues[indexOfVenue]
-                        let urlString = "http://maps.apple.com/?ll=\(venue.latitude),\(venue.longitude)&daddr=\(venue.address.removeWhitespace().stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)!)"
-                        if let mapUrl = NSURL(string: urlString) {
-                            launchSafariToUrl(mapUrl)
+        if annotationView.selected {
+            let annotation = annotationView.annotation as SDMapAnnotation
+            
+            // It seems there's a bug in Swift that provokes EXC_BAD_ACCESS exceptions while trying to interpolate certain strings,
+            // (in this case, while trying to access annotation's subtitle and coordinate properties, which aren't optional and
+            // should come with a valid value). So while we find a better solution we have to access the venue's location and address
+            // from the conference object in a more cumbersome way:
+            if let annotations = self.mapPlaces.annotations as? [SDMapAnnotation] {
+                if let indexOfVenue = find(annotations, annotation) {
+                    if let conference = selectedConference {
+                        if conference.venues.count > indexOfVenue {
+                            let venue = conference.venues[indexOfVenue]
+                            let urlString = "http://maps.apple.com/?ll=\(venue.latitude),\(venue.longitude)&daddr=\(venue.address.removeWhitespace().stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)!)"
+                            if let mapUrl = NSURL(string: urlString) {
+                                launchSafariToUrl(mapUrl)
+                            }
                         }
-                    }                    
+                    }
                 }
             }
         }

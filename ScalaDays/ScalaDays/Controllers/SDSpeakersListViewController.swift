@@ -33,6 +33,10 @@ class SDSpeakersListViewController: UIViewController, SDErrorPlaceholderViewDele
         
         tblView.registerNib(UINib(nibName: "SDSpeakersTableViewCell", bundle: nil), forCellReuseIdentifier: kReuseIdentifier)
         
+        if isIOS8OrLater() {
+            tblView.estimatedRowHeight = kEstimatedDynamicCellsRowHeightHigh
+        }
+        
         errorPlaceholderView = SDErrorPlaceholderView(frame: screenBounds)
         errorPlaceholderView.delegate = self
         self.view.addSubview(errorPlaceholderView)
@@ -70,6 +74,9 @@ class SDSpeakersListViewController: UIViewController, SDErrorPlaceholderViewDele
                 } else {
                     self.errorPlaceholderView.show(NSLocalizedString("error_message_no_data_available", comment: ""))
                 }
+                
+                self.tblView.reloadData()
+                self.tblView.setContentOffset(CGPointZero, animated: true)
             }
         }
     }
