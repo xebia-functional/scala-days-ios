@@ -73,7 +73,13 @@ class SDScheduleDetailViewController: GAITrackedViewController {
             
             lblRoom.text = ""
             if let room = currentEvent.location {
-                lblRoom.text = NSLocalizedString("schedule_location_title", comment: "") + room.name
+                let roomTitle = NSLocalizedString("schedule_location_title", comment: "") + room.name
+                lblRoom.attributedText = NSAttributedString(string: roomTitle)
+                if let locationMapUrl = currentEventLocationMapUrl() {
+                    lblRoom.attributedText = NSAttributedString(string: roomTitle, attributes: [NSUnderlineStyleAttributeName : NSUnderlineStyle.StyleSingle.rawValue])
+                    lblRoom.addGestureRecognizer(UITapGestureRecognizer(target: self, action: "didTapOnLocationLabel"))
+                    lblRoom.userInteractionEnabled = true
+                }
             }
             if lblRoom == "" {
                 constraintForLblDescriptionTopSpace.constant = 0
@@ -119,4 +125,27 @@ class SDScheduleDetailViewController: GAITrackedViewController {
         }
     }
     
+    // MARK: - Location map stuff
+    
+    func currentEventLocationMapUrl() -> NSURL? {
+        if let currentEvent = event {
+            if let locationMapString = currentEvent.location?.mapUrl {
+                if locationMapString == "" {
+                    return nil
+                }
+                return NSURL(string: locationMapString)
+            }
+        }
+        return nil
+    }
+    
+    func didTapOnLocationLabel() {
+        let webViewController = SDWebViewController(nibName: "SDWebViewController", bundle: nil)
+        self.navigationController?.pushViewController(webViewController, animated: true)
+        self.title = ""
+        
+        if let url = currentEventLocationMapUrl() {
+            webViewController.url = url
+        }
+    }
 }
