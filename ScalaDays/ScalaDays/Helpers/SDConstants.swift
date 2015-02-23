@@ -20,6 +20,7 @@ import UIKit
 let kExternalKeysPlistFilename = "SDExternalKeys"
 let kExternalKeysDKGoogleAnalytics = "GoogleAnalytics"
 let kExternalKeysDKCrashlytics = "Crashlytics"
+let kExternalKeysDKLocalytics = "Localytics"
 
 let IS_IPHONE5 = UIScreen.mainScreen().bounds.size.height == 480;
 
@@ -40,6 +41,8 @@ let kEstimatedDynamicCellsRowHeightLow : CGFloat = 80.0
 let kAnimationShowHideTimeInterval : NSTimeInterval = 0.3
 let kTweetCount = 100
 let kGlobalPadding : CGFloat = 15.0
+
+let kMinimumTimeToDownloadDataFromApiInSeconds : NSTimeInterval = 14400
 
 let lastModifiedDate = "Last-Modified"
 

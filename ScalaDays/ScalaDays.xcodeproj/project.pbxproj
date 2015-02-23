@@ -62,6 +62,7 @@
 		59A7DF841A938A41009F4639 /* SDFonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1FA1FFA1A7BAE5B00338AF0 /* SDFonts.swift */; };
 		59A7DF851A938A41009F4639 /* SDColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1FA1FEA1A7AA6AF00338AF0 /* SDColor.swift */; };
 		59A7DF881A938A41009F4639 /* SDMapView-ZoomOut.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5925ADA01A897AAD000EA5E7 /* SDMapView-ZoomOut.swift */; };
+		59C477451A9786A70033C6D1 /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1A94F2C1A76A36C003A6C0B /* SwiftyJSON.swift */; };
 		59D174621A8E0C2B001E87CF /* SDSponsorsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59D174611A8E0C2B001E87CF /* SDSponsorsTableViewCell.swift */; };
 		59D174641A8E0C3A001E87CF /* SDSponsorsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 59D174631A8E0C3A001E87CF /* SDSponsorsTableViewCell.xib */; };
 		59E430EF1A964BEF00185C41 /* SDGoogleAnalyticsHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59E430EE1A964BEF00185C41 /* SDGoogleAnalyticsHandler.swift */; };
@@ -92,8 +93,6 @@
 		A1FA1FEE1A7B91D100338AF0 /* SDScheduleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1CC72091A7A71F400757B65 /* SDScheduleViewController.swift */; };
 		A1FA1FEF1A7B91D100338AF0 /* SDSocialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1CC720D1A7A722C00757B65 /* SDSocialViewController.swift */; };
 		A1FA1FF11A7B920700338AF0 /* SDSlideMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1CC72131A7A727F00757B65 /* SDSlideMenuViewController.swift */; };
-		A1FA1FF21A7B927500338AF0 /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1A94F2C1A76A36C003A6C0B /* SwiftyJSON.swift */; };
-		A1FA1FF31A7B927A00338AF0 /* SwiftyJSON.h in Sources */ = {isa = PBXBuildFile; fileRef = A1A94F2B1A76A36C003A6C0B /* SwiftyJSON.h */; };
 		A1FA1FF41A7B98FE00338AF0 /* SDScheduleViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A1CC720A1A7A71F400757B65 /* SDScheduleViewController.xib */; };
 		A1FA1FF51A7B98FE00338AF0 /* SDSocialViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A1CC720E1A7A722C00757B65 /* SDSocialViewController.xib */; };
 		A1FA1FF61A7B98FE00338AF0 /* SDSlideMenuViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A1CC72141A7A727F00757B65 /* SDSlideMenuViewController.xib */; };
@@ -568,6 +567,11 @@
 					A1D795C61A68267F009CCEB3 = {
 						CreatedOnToolsVersion = 6.1.1;
 						DevelopmentTeam = P548S5LU96;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+						};
 					};
 					A1D795DB1A68267F009CCEB3 = {
 						CreatedOnToolsVersion = 6.1.1;
@@ -749,6 +753,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				59C477451A9786A70033C6D1 /* SwiftyJSON.swift in Sources */,
 				59A7DF701A938A41009F4639 /* SDAlertViewHelper.swift in Sources */,
 				59A7DF711A938A41009F4639 /* SDSocialHandler.swift in Sources */,
 				59A7DF721A938A41009F4639 /* SDMapAnnotation.swift in Sources */,
@@ -763,8 +768,6 @@
 				A171433E1A88F6880068FD33 /* SDConstants.swift in Sources */,
 				5929780D1A82310100EE3BA3 /* SDTweet.swift in Sources */,
 				5928D18D1A89096500E5049E /* SDView-NibLoading.swift in Sources */,
-				A1FA1FF31A7B927A00338AF0 /* SwiftyJSON.h in Sources */,
-				A1FA1FF21A7B927500338AF0 /* SwiftyJSON.swift in Sources */,
 				5928D17D1A88F53900E5049E /* SDString+RemoveWhiteSpaces.swift in Sources */,
 				593571ED1A77E4E9005AA332 /* Alamofire.swift in Sources */,
 				593571EA1A77E41C005AA332 /* StoringHelper.swift in Sources */,
@@ -889,8 +892,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Ana Maria Marquez Velazquez (VLT9L5DKXR)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Ana Maria Marquez Velazquez (VLT9L5DKXR)";
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -905,7 +908,7 @@
 				);
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "97cb67b7-25a3-4043-9b57-5de4878617fc";
+				PROVISIONING_PROFILE = "98fef935-cb12-49be-8c3a-8f58692cee0c";
 				SWIFT_OBJC_BRIDGING_HEADER = "ScalaDays/Bridging-Header.h";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -917,8 +920,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Ana Maria Marquez Velazquez (VLT9L5DKXR)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Ana Maria Marquez Velazquez (VLT9L5DKXR)";
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -933,7 +936,7 @@
 				);
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "97cb67b7-25a3-4043-9b57-5de4878617fc";
+				PROVISIONING_PROFILE = "98fef935-cb12-49be-8c3a-8f58692cee0c";
 				SWIFT_OBJC_BRIDGING_HEADER = "ScalaDays/Bridging-Header.h";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
