@@ -20,7 +20,7 @@
 "common_cancel" = "Cancel";
 "common_back" = "Back";
 
-//Menu
+// Menu
 "schedule" = "Schedule";
 "social" = "Social";
 "contacts" = "Contact";
@@ -36,6 +36,7 @@
 "schedule_action_sheet_filter_title" = "Filter events";
 "schedule_action_sheet_filter_message_all" = "All Events";
 "schedule_action_sheet_filter_message_favorites" = "Favorites";
+"schedule_location_title" = "Room: ";
 
 // Social
 // TODO: Error messages are yet to be reviewed

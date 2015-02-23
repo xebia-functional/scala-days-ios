@@ -70,7 +70,7 @@ class SDScheduleListTableViewCell: UITableViewCell {
         if let eventLocation = event.location {
             constraintForLblLocationHeight.constant = kDefaultHeightForLblLocation
             constraintForLblLocationBottomSpace.constant = kDefaultBottomSpaceForLblLocation
-            lblLocation.text = eventLocation.name
+            lblLocation.text = NSLocalizedString("schedule_location_title", comment: "") + eventLocation.name
         } else {
             constraintForLblLocationHeight.constant = 0
             constraintForLblLocationBottomSpace.constant = 0
