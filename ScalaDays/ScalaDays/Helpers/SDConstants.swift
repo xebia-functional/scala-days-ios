@@ -20,6 +20,7 @@ import UIKit
 let kExternalKeysPlistFilename = "SDExternalKeys"
 let kExternalKeysDKGoogleAnalytics = "GoogleAnalytics"
 let kExternalKeysDKCrashlytics = "Crashlytics"
+let kExternalKeysDKLocalytics = "Localytics"
 
 let IS_IPHONE5 = UIScreen.mainScreen().bounds.size.height == 480;
 
