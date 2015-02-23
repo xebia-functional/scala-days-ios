@@ -15,6 +15,7 @@
  */
 
 
+
 #ifndef ScalaDays_Bridging_Header_h
 #define ScalaDays_Bridging_Header_h
 
@@ -27,5 +28,6 @@
 #import "GAIDictionaryBuilder.h"
 #import "GAIFields.h"
 #import "GAILogger.h"
+#import "Localytics.h"
 
 #endif

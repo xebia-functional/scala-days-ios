@@ -561,6 +561,11 @@
 					A1D795C61A68267F009CCEB3 = {
 						CreatedOnToolsVersion = 6.1.1;
 						DevelopmentTeam = P548S5LU96;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+						};
 					};
 					A1D795DB1A68267F009CCEB3 = {
 						CreatedOnToolsVersion = 6.1.1;
@@ -879,8 +884,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Ana Maria Marquez Velazquez (VLT9L5DKXR)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Ana Maria Marquez Velazquez (VLT9L5DKXR)";
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -895,7 +900,7 @@
 				);
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "97cb67b7-25a3-4043-9b57-5de4878617fc";
+				PROVISIONING_PROFILE = "98fef935-cb12-49be-8c3a-8f58692cee0c";
 				SWIFT_OBJC_BRIDGING_HEADER = "ScalaDays/Bridging-Header.h";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -907,8 +912,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Ana Maria Marquez Velazquez (VLT9L5DKXR)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Ana Maria Marquez Velazquez (VLT9L5DKXR)";
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -923,7 +928,7 @@
 				);
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "97cb67b7-25a3-4043-9b57-5de4878617fc";
+				PROVISIONING_PROFILE = "98fef935-cb12-49be-8c3a-8f58692cee0c";
 				SWIFT_OBJC_BRIDGING_HEADER = "ScalaDays/Bridging-Header.h";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
