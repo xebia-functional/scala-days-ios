@@ -88,10 +88,11 @@ class Information: NSObject, NSCoding, Equatable {
     let utcTimezoneOffset: String
     let utcTimezoneOffsetMillis: Float
     let hashtag: String
+    let query: String?
     let pictures: Array<Picture>
 
 
-    init(id: Int, name: String, longName: String, nameAndLocation: String, firstDay: String, lastDay: String, normalSite: String, registrationSite: String, utcTimezoneOffset: String, utcTimezoneOffsetMillis: Float, hashtag: String, pictures: Array<Picture>) {
+    init(id: Int, name: String, longName: String, nameAndLocation: String, firstDay: String, lastDay: String, normalSite: String, registrationSite: String, utcTimezoneOffset: String, utcTimezoneOffsetMillis: Float, hashtag: String, query: String?, pictures: Array<Picture>) {
         self.id = id
         self.name = name
         self.longName = longName
@@ -103,6 +104,7 @@ class Information: NSObject, NSCoding, Equatable {
         self.utcTimezoneOffset = utcTimezoneOffset
         self.utcTimezoneOffsetMillis = utcTimezoneOffsetMillis
         self.hashtag = hashtag
+        self.query = query
         self.pictures = pictures
     }
 
@@ -118,6 +120,7 @@ class Information: NSObject, NSCoding, Equatable {
         self.utcTimezoneOffset = aDecoder.decodeObjectForKey("utcTimezoneOffset") as String
         self.utcTimezoneOffsetMillis = aDecoder.decodeFloatForKey("utcTimezoneOffsetMillis")
         self.hashtag = aDecoder.decodeObjectForKey("hashtag") as String
+        self.query = aDecoder.decodeObjectForKey("query") as? String
         self.pictures = aDecoder.decodeObjectForKey("pictures") as Array<Picture>
     }
 
@@ -133,6 +136,7 @@ class Information: NSObject, NSCoding, Equatable {
         aCoder.encodeObject(self.utcTimezoneOffset, forKey: "utcTimezoneOffset")
         aCoder.encodeFloat(self.utcTimezoneOffsetMillis, forKey: "utcTimezoneOffsetMillis")
         aCoder.encodeObject(self.hashtag, forKey: "hashtag")
+        aCoder.encodeObject(self.query, forKey: "query")
         aCoder.encodeObject(self.pictures, forKey: "pictures")
     }
 }
@@ -415,6 +419,7 @@ func ==(lhs: Information, rhs: Information) -> Bool {
     let equalityForId = lhs.id == rhs.id
     let equalityForTimezoneOffsetMillis = lhs.utcTimezoneOffsetMillis == rhs.utcTimezoneOffsetMillis
     let equalityForHashtag = lhs.hashtag == rhs.hashtag
+    let equalityForQuery = lhs.query == rhs.query
     let equalityForPictures = checkEqualityForArrays(lhs.pictures, rhs.pictures)
     return equalityForId &&
         lhs.name == rhs.name &&
@@ -426,6 +431,7 @@ func ==(lhs: Information, rhs: Information) -> Bool {
         lhs.registrationSite == rhs.registrationSite &&
         lhs.utcTimezoneOffset == rhs.utcTimezoneOffset &&
         equalityForHashtag &&
+        equalityForQuery &&
         equalityForTimezoneOffsetMillis &&
         equalityForPictures
 }
