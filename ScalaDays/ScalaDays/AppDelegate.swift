@@ -22,26 +22,29 @@ import Crashlytics
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-    var menuViewController : SDSlideMenuViewController!
+    var menuViewController: SDSlideMenuViewController!
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject:AnyObject]?) -> Bool {
         // Override point for customization after application launch.
 
-        Localytics.integrate("***REMOVED***")
-
+        let externalKeys = AppDelegate.loadExternalKeys()
         UIApplication.sharedApplication().registerForRemoteNotifications()
 
         let settings = UIUserNotificationSettings(forTypes: .Alert | .Sound | .Badge, categories: nil)
         UIApplication.sharedApplication().registerUserNotificationSettings(settings)
 
-        let externalKeys = AppDelegate.loadExternalKeys()
+        if let localyticsKey = externalKeys.localyticsKey {
+            println(localyticsKey)
+            Localytics.integrate(localyticsKey)
+        }
+
         if let googleAnalyticsKey = externalKeys.googleAnalyticsKey {
             GAI.sharedInstance().trackerWithTrackingId(googleAnalyticsKey)
         }
         if let crashlyticsKey = externalKeys.crashlyticsKey {
             Crashlytics.startWithAPIKey(crashlyticsKey)
         }
-        
+
         self.initAppearence()
         self.createMenuView()
         return true
@@ -82,7 +85,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     private func createMenuView() {
 
         let scheduleViewController = SDScheduleViewController(nibName: "SDScheduleViewController", bundle: nil)
-        menuViewController = SDSlideMenuViewController ( nibName:"SDSlideMenuViewController", bundle: nil)
+        menuViewController = SDSlideMenuViewController(nibName: "SDSlideMenuViewController", bundle: nil)
         let nvc: UINavigationController = UINavigationController(rootViewController: scheduleViewController)
 
         menuViewController.scheduleViewController = nvc
@@ -105,26 +108,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UIApplication.sharedApplication().setStatusBarStyle(.LightContent, animated: false)
         SVProgressHUD.setBackgroundColor(UIColor.clearColor())
     }
-    
-    class func loadExternalKeys() -> (googleAnalyticsKey: String?, crashlyticsKey: String?) {
+
+    class func loadExternalKeys() -> (googleAnalyticsKey:String?, crashlyticsKey:String?, localyticsKey:String?) {
         if let path = NSBundle.mainBundle().pathForResource(kExternalKeysPlistFilename, ofType: "plist") {
             if let keysDict = NSDictionary(contentsOfFile: path) {
-                return (keysDict[kExternalKeysDKGoogleAnalytics] as? String, keysDict[kExternalKeysDKCrashlytics] as? String)
+                return (keysDict[kExternalKeysDKGoogleAnalytics] as? String, keysDict[kExternalKeysDKCrashlytics] as? String, keysDict[kExternalKeysDKLocalytics] as? String)
             }
         }
-        return (nil, nil)
+        return (nil, nil, nil)
     }
 
-
-
-    //MARK: Remote Notifications
-
-    // Move this line somewhere where your app starts
-//    UIApplication.sharedApplication().registerForRemoteNotifications()
-
-    // Ask user for allowed notification types
-//    let settings = UIUserNotificationSettings(forTypes: .Alert | .Sound | .Badge, categories: nil)
-//    UIApplication.sharedApplication().registerUserNotificationSettings(settings)
 
     func application(application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: NSData!) {
         println("Successfully egistered for Remote Notifications with token: \(deviceToken)")
@@ -136,11 +129,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject:AnyObject]) {
+        println(userInfo)
+
+        if let jsonReload: AnyObject = userInfo["jsonReload"] {
+            println(jsonReload)
+            if let jsonReloadBool = jsonReload as? NSString {
+                if(jsonReloadBool .isEqualToString("true")) {
+                    DataManager.sharedInstance.lastConnectionAttemptDate = nil
+                    self.menuViewController.askControllersToReload()                   
+                }
+            }
+        }
         Localytics.handlePushNotificationOpened(userInfo)
-    }
-
-    func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject:AnyObject], fetchCompletionHandler completionHandler: (UIBackgroundFetchResult) -> Void) {
-
     }
 
 }
