@@ -158,9 +158,13 @@ class DataManager {
                                 println(response)
                                 callback(false, error)
                             } else {
-                                let jsonFormat = JSON(data!)
-                                self.parseJSON(jsonFormat)
-                                callback(true, error)
+                                if let _data: AnyObject = data {
+                                    let jsonFormat = JSON(_data)
+                                    self.parseJSON(jsonFormat)
+                                    callback(true, error)
+                                } else {
+                                    callback(true, error)
+                                }                                
                             }
                         }
                     } else {
