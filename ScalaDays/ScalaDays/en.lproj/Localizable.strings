@@ -20,7 +20,7 @@
 "common_cancel" = "Cancel";
 "common_back" = "Back";
 
-//Menu
+// Menu
 "schedule" = "Schedule";
 "social" = "Social";
 "contacts" = "Contacts";
@@ -34,6 +34,8 @@
 
 "schedule_action_sheet_filter_title" = "Filter Events";
 "schedule_action_sheet_filter_message_all" = "All Events";
+"schedule_action_sheet_filter_message_favorites" = "Favorites";
+"schedule_location_title" = "Room: ";
 "schedule_action_sheet_filter_message_favorites" = "My Favorites";
 
 // Social
@@ -42,7 +44,7 @@
 "social_error_message_no_twitter_account_configured" = "Scala Days needs access to a valid Twitter account to be able to retrieve the latest tweets. Please configure your Twitter account in the \"Settings\" app of your device. Then tap on this message to try again.";
 "social_error_no_valid_tweets" = "Something happened while trying to retrieve the latest Scala Days tweets. Please tap on this message to try again in a few minutes.";
 "social_error_no_tweets_for_current_hashtag" = "We haven't found any tweets about this conference yet. Please tap on this message to try again in a few minutes.";
-"social_default_message" = "#ScalaDays2015";
+"social_default_message" = "";
 
 // Contacts
 
