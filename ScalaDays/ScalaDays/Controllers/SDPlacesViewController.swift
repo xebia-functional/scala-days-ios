@@ -105,7 +105,7 @@ class SDPlacesViewController: GAITrackedViewController, MKMapViewDelegate, SDErr
             }
             annotationView.canShowCallout = true
             annotationView.image = UIImage(named: "map_pushpin")
-            //annotationView.annotation = annotation
+            annotationView.annotation = annotation
             return annotationView
         }
     }
