@@ -15,6 +15,8 @@
 		590DDD701A83BE9B00E4CC3F /* SDSpeakersTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 590DDD6F1A83BE9B00E4CC3F /* SDSpeakersTableViewCell.swift */; };
 		590DDD721A83BEA800E4CC3F /* SDSpeakersTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 590DDD711A83BEA800E4CC3F /* SDSpeakersTableViewCell.xib */; };
 		590DDD771A83C5E800E4CC3F /* SDDateHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 590DDD761A83C5E800E4CC3F /* SDDateHandler.swift */; };
+		591DAB2C1A9B7F8D000B2D7A /* SDWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 591DAB2A1A9B7F8D000B2D7A /* SDWebViewController.swift */; };
+		591DAB2D1A9B7F8D000B2D7A /* SDWebViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 591DAB2B1A9B7F8D000B2D7A /* SDWebViewController.xib */; };
 		5920EA5E1A9484A800564014 /* SDErrorPlaceholderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5920EA5D1A9484A800564014 /* SDErrorPlaceholderView.swift */; };
 		5920EA601A9484B600564014 /* SDErrorPlaceholderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5920EA5F1A9484B600564014 /* SDErrorPlaceholderView.xib */; };
 		5920EA661A94B20800564014 /* SDMenuControllerItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5920EA651A94B20800564014 /* SDMenuControllerItem.swift */; };
@@ -132,6 +134,8 @@
 		590DDD6F1A83BE9B00E4CC3F /* SDSpeakersTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SDSpeakersTableViewCell.swift; sourceTree = "<group>"; };
 		590DDD711A83BEA800E4CC3F /* SDSpeakersTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SDSpeakersTableViewCell.xib; sourceTree = "<group>"; };
 		590DDD761A83C5E800E4CC3F /* SDDateHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SDDateHandler.swift; sourceTree = "<group>"; };
+		591DAB2A1A9B7F8D000B2D7A /* SDWebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SDWebViewController.swift; sourceTree = "<group>"; };
+		591DAB2B1A9B7F8D000B2D7A /* SDWebViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SDWebViewController.xib; sourceTree = "<group>"; };
 		5920EA5D1A9484A800564014 /* SDErrorPlaceholderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SDErrorPlaceholderView.swift; sourceTree = "<group>"; };
 		5920EA5F1A9484B600564014 /* SDErrorPlaceholderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SDErrorPlaceholderView.xib; sourceTree = "<group>"; };
 		5920EA651A94B20800564014 /* SDMenuControllerItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SDMenuControllerItem.swift; sourceTree = "<group>"; };
@@ -264,6 +268,8 @@
 				590DDD6D1A83BAFD00E4CC3F /* SDSpeakersListViewController.xib */,
 				59A7DF621A936C84009F4639 /* SDScheduleDetailViewController.swift */,
 				59A7DF631A936C84009F4639 /* SDScheduleDetailViewController.xib */,
+				591DAB2A1A9B7F8D000B2D7A /* SDWebViewController.swift */,
+				591DAB2B1A9B7F8D000B2D7A /* SDWebViewController.xib */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -610,6 +616,7 @@
 				59A7DF6D1A93725E009F4639 /* SDSpeakerDetailView.xib in Resources */,
 				59A7DF651A936C84009F4639 /* SDScheduleDetailViewController.xib in Resources */,
 				590DDD6E1A83BAFD00E4CC3F /* SDSpeakersListViewController.xib in Resources */,
+				591DAB2D1A9B7F8D000B2D7A /* SDWebViewController.xib in Resources */,
 				A1FA1FE51A7AA30F00338AF0 /* SDPlacesViewController.xib in Resources */,
 				1EA75E8C1A925BFF00884EC8 /* SDConferenceTableViewCell.xib in Resources */,
 				A1FA1FD41A7A9DA200338AF0 /* Localizable.strings in Resources */,
@@ -707,6 +714,7 @@
 				592978091A82141400EE3BA3 /* SDSocialHandler.swift in Sources */,
 				A1FA1FEE1A7B91D100338AF0 /* SDScheduleViewController.swift in Sources */,
 				A1FA1FEF1A7B91D100338AF0 /* SDSocialViewController.swift in Sources */,
+				591DAB2C1A9B7F8D000B2D7A /* SDWebViewController.swift in Sources */,
 				A1FA1FED1A7B919900338AF0 /* SlideMenuController.swift in Sources */,
 				5925ADA11A897AAD000EA5E7 /* SDMapView-ZoomOut.swift in Sources */,
 				59E430EF1A964BEF00185C41 /* SDGoogleAnalyticsHandler.swift in Sources */,

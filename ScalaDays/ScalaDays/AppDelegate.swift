@@ -25,14 +25,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var menuViewController: SDSlideMenuViewController!
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject:AnyObject]?) -> Bool {
-        // Override point for customization after application launch.
-
         let externalKeys = AppDelegate.loadExternalKeys()
-        UIApplication.sharedApplication().registerForRemoteNotifications()
-
-        let settings = UIUserNotificationSettings(forTypes: .Alert | .Sound | .Badge, categories: nil)
-        UIApplication.sharedApplication().registerUserNotificationSettings(settings)
-
+        
+        if isIOS8OrLater() {
+            UIApplication.sharedApplication().registerForRemoteNotifications()
+            let settings = UIUserNotificationSettings(forTypes: .Alert | .Sound | .Badge, categories: nil)
+            UIApplication.sharedApplication().registerUserNotificationSettings(settings)
+        } else {
+            let types = UIRemoteNotificationType.Badge | UIRemoteNotificationType.Sound | UIRemoteNotificationType.Alert
+            UIApplication.sharedApplication().registerForRemoteNotificationTypes(types)
+        }
+        
         if let localyticsKey = externalKeys.localyticsKey {
             println(localyticsKey)
             Localytics.integrate(localyticsKey)
