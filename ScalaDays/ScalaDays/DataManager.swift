@@ -210,8 +210,6 @@ class DataManager {
             let hashtag = info["hashtag"].string!
             let query = info["query"].string?
             
-            println("query: \(query)")
-            
             let pictures = info["pictures"]
             var picturesParse: [Picture] = []
             for (index, picture) in pictures {
