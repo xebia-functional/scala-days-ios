@@ -62,11 +62,7 @@ class ScalaDaysTests: XCTestCase {
     }
     
     func testParsingWrongJson() {
-        if let _conferences = createConferenceDataFromJSONFile(kFilenameForWrongJson) {
-            XCTAssertEqual(_conferences.conferences.count, 0, "Parsing of invalid JSONs should return 0 conferences")
-        } else {
-            XCTFail("Invalid JSONs should return an empty conference object")
-        }
+        XCTAssertNil(createConferenceDataFromJSONFile(kFilenameForWrongJson), "Parsing of invalid JSONs should return nil")
     }
     
     func testParsingValidJsonWithNoConferences() {
