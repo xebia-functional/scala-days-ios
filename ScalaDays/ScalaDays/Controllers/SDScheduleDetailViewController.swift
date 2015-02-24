@@ -21,6 +21,7 @@ class SDScheduleDetailViewController: GAITrackedViewController {
 
     @IBOutlet weak var titleSection: UILabel!
     @IBOutlet weak var lblDateSection: UILabel!
+    @IBOutlet weak var lblTrack: UILabel!
     @IBOutlet weak var lblRoom: UILabel!
     @IBOutlet weak var lblDescription: UILabel!
 
@@ -30,6 +31,7 @@ class SDScheduleDetailViewController: GAITrackedViewController {
     @IBOutlet weak var viewSpeakerListContainer: UIView!
     
     @IBOutlet weak var constraintForLblRoomTopSpace: NSLayoutConstraint!
+    @IBOutlet weak var constraintForLblTrackTopSpace: NSLayoutConstraint!
     @IBOutlet weak var constraintForLblDescriptionTopSpace: NSLayoutConstraint!
     @IBOutlet weak var constraintForSpeakerListContainerHeight: NSLayoutConstraint!
 
@@ -41,8 +43,7 @@ class SDScheduleDetailViewController: GAITrackedViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        if let currentEvent = event {
-            
+        if let currentEvent = event {            
             let favoritesIconColor = DataManager.sharedInstance.isFavoriteEvent(event, selectedConference: selectedConference) ? UIColor.appRedColor() : UIColor.whiteColor()
             barButtonFavorites = UIBarButtonItem(image: UIImage(named: "navigation_bar_icon_favorite_default"), style: .Plain, target: self, action: "didTapFavoritesButton")
             barButtonFavorites.tintColor = favoritesIconColor
@@ -53,21 +54,32 @@ class SDScheduleDetailViewController: GAITrackedViewController {
             if let timeZoneName = DataManager.sharedInstance.conferences?.conferences[DataManager.sharedInstance.selectedConferenceIndex].info.utcTimezoneOffset {
                 if let startDate = SDDateHandler.sharedInstance.parseScheduleDate(currentEvent.startTime) {
                     if let localStartDate = SDDateHandler.convertDateToLocalTime(startDate, timeZoneName: timeZoneName) {
-                        // TODO parse detail
                         lblDateSection.text = SDDateHandler.sharedInstance.formatScheduleDetailDate(localStartDate)
-                        //lblDateSection.text = localStartDate
                     }
                 }
             }
-            
             
             if currentEvent.date == "" {
                 constraintForLblRoomTopSpace.constant = 0
             }
             
+            lblTrack.text = ""
+            if let trackName = currentEvent.track?.name {
+                lblTrack.text = trackName
+            }
+            if lblTrack.text == "" {
+                constraintForLblTrackTopSpace.constant = 0
+            }
+            
             lblRoom.text = ""
             if let room = currentEvent.location {
-                lblRoom.text = room.name
+                let roomTitle = NSLocalizedString("schedule_location_title", comment: "") + room.name
+                lblRoom.attributedText = NSAttributedString(string: roomTitle)
+                if let locationMapUrl = currentEventLocationMapUrl() {
+                    lblRoom.attributedText = NSAttributedString(string: roomTitle, attributes: [NSUnderlineStyleAttributeName : NSUnderlineStyle.StyleSingle.rawValue])
+                    lblRoom.addGestureRecognizer(UITapGestureRecognizer(target: self, action: "didTapOnLocationLabel"))
+                    lblRoom.userInteractionEnabled = true
+                }
             }
             if lblRoom == "" {
                 constraintForLblDescriptionTopSpace.constant = 0
@@ -102,7 +114,6 @@ class SDScheduleDetailViewController: GAITrackedViewController {
     }
     
     func didTapFavoritesButton() {
-        
         if DataManager.sharedInstance.isFavoriteEvent(event, selectedConference: selectedConference) {
             DataManager.sharedInstance.storeOrRemoveFavoriteEvent(true, event: event, selectedConference: selectedConference)
             barButtonFavorites.tintColor = UIColor.whiteColor()
@@ -112,7 +123,29 @@ class SDScheduleDetailViewController: GAITrackedViewController {
             barButtonFavorites.tintColor = UIColor.appRedColor()
             SDGoogleAnalyticsHandler.sendGoogleAnalyticsTrackingWithScreenName(kGAScreenNameSchedule, category: kGACategoryFavorites, action: kGAActionScheduleDetailAddToFavorite, label: event?.title)
         }
-        
     }
     
+    // MARK: - Location map stuff
+    
+    func currentEventLocationMapUrl() -> NSURL? {
+        if let currentEvent = event {
+            if let locationMapString = currentEvent.location?.mapUrl {
+                if locationMapString == "" {
+                    return nil
+                }
+                return NSURL(string: locationMapString)
+            }
+        }
+        return nil
+    }
+    
+    func didTapOnLocationLabel() {
+        let webViewController = SDWebViewController(nibName: "SDWebViewController", bundle: nil)
+        self.navigationController?.pushViewController(webViewController, animated: true)
+        self.title = ""
+        
+        if let url = currentEventLocationMapUrl() {
+            webViewController.url = url
+        }
+    }
 }
