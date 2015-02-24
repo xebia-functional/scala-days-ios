@@ -74,8 +74,8 @@
                             <constraint firstAttribute="width" constant="24" id="faT-hn-tfu"/>
                         </constraints>
                     </imageView>
-                    <view alpha="0.0" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gAd-Vu-ffH" userLabel="Selected BG View">
-                        <rect key="frame" x="0.0" y="0.0" width="640" height="108"/>
+                    <view alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gAd-Vu-ffH" userLabel="Selected BG View">
+                        <rect key="frame" x="0.0" y="0.0" width="640" height="107"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                 </subviews>
