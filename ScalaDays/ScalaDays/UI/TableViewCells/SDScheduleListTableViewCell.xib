@@ -14,15 +14,15 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iZC-Ux-GCx" userLabel="Main Background">
-                        <rect key="frame" x="69" y="0.0" width="571" height="106"/>
+                        <rect key="frame" x="81" y="0.0" width="559" height="106"/>
                         <color key="backgroundColor" red="0.33333333333333331" green="0.69803921568627447" blue="0.80784313725490198" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uOZ-dw-dqz" userLabel="Time container view">
-                        <rect key="frame" x="0.0" y="0.0" width="68" height="106"/>
+                        <rect key="frame" x="0.0" y="0.0" width="80" height="106"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" placeholderIntrinsicWidth="100" placeholderIntrinsicHeight="25" text="08:00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="60" translatesAutoresizingMaskIntoConstraints="NO" id="RdK-wi-8OD">
-                                <rect key="frame" x="-16" y="12" width="100" height="25"/>
-                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
+                                <rect key="frame" x="-10" y="12" width="100" height="25"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="12"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -31,11 +31,11 @@
                         <constraints>
                             <constraint firstAttribute="centerX" secondItem="RdK-wi-8OD" secondAttribute="centerX" id="RvP-97-oP7"/>
                             <constraint firstItem="RdK-wi-8OD" firstAttribute="top" secondItem="uOZ-dw-dqz" secondAttribute="top" constant="12" id="kmc-Go-JqM"/>
-                            <constraint firstAttribute="width" constant="68" id="y0t-cR-Kd7"/>
+                            <constraint firstAttribute="width" constant="80" id="y0t-cR-Kd7"/>
                         </constraints>
                     </view>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" placeholderIntrinsicWidth="290" placeholderIntrinsicHeight="23" text="Room: Caleta Pavilion" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="200" translatesAutoresizingMaskIntoConstraints="NO" id="Abz-WY-eRT">
-                        <rect key="frame" x="83" y="12" width="290" height="15"/>
+                        <rect key="frame" x="95" y="12" width="290" height="15"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="15" id="mRK-bW-J79"/>
                         </constraints>
@@ -44,13 +44,13 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" placeholderIntrinsicWidth="304" placeholderIntrinsicHeight="25" text="Title" lineBreakMode="clip" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="280" translatesAutoresizingMaskIntoConstraints="NO" id="78z-hW-SG4">
-                        <rect key="frame" x="83" y="33" width="517" height="39"/>
+                        <rect key="frame" x="95" y="33" width="505" height="39"/>
                         <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="15"/>
                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" placeholderIntrinsicWidth="146" placeholderIntrinsicHeight="21" text="Speaker" lineBreakMode="clip" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="200" translatesAutoresizingMaskIntoConstraints="NO" id="zrO-zq-C4M">
-                        <rect key="frame" x="83" y="78" width="146" height="17"/>
+                        <rect key="frame" x="95" y="78" width="146" height="17"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="17" id="ei1-BD-Kya"/>
                         </constraints>
@@ -59,7 +59,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" placeholderIntrinsicWidth="171" placeholderIntrinsicHeight="21" text="@twitter_name" lineBreakMode="clip" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="200" translatesAutoresizingMaskIntoConstraints="NO" id="qCh-Rh-O4u">
-                        <rect key="frame" x="237" y="78" width="171" height="17"/>
+                        <rect key="frame" x="249" y="78" width="171" height="17"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="17" id="54P-4P-RWF"/>
                         </constraints>
@@ -74,8 +74,8 @@
                             <constraint firstAttribute="width" constant="24" id="faT-hn-tfu"/>
                         </constraints>
                     </imageView>
-                    <view alpha="0.0" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gAd-Vu-ffH" userLabel="Selected BG View">
-                        <rect key="frame" x="0.0" y="0.0" width="640" height="108"/>
+                    <view alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gAd-Vu-ffH" userLabel="Selected BG View">
+                        <rect key="frame" x="0.0" y="0.0" width="640" height="107"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                 </subviews>
