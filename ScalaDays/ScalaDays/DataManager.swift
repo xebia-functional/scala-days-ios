@@ -193,7 +193,7 @@ class DataManager {
     }
 
 
-    func parseJSON(json: JSON) {
+    func parseJSON(json: JSON) -> Conferences? {
 
         let arrayConferences = json["conferences"]
         var arrayConferencesParse: [Conference] = []
@@ -323,7 +323,11 @@ class DataManager {
                 StoringHelper.sharedInstance.storeConferenceData(unWrapperJson)
                 println("Save parse")
             }
-        }       
+            
+            return self.conferences
+        } else {
+            return nil
+        }
         
     }
 

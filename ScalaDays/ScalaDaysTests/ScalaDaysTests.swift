@@ -21,6 +21,7 @@ class ScalaDaysTests: XCTestCase {
     
     let kFilenameForCompleteJsonSF = "scala_days_complete_sf"
     let kFilenameForWrongJson = "scala_days_wrong"
+    let kFilenameForEmptyJson = "scala_days_empty"
     
     override func setUp() {
         super.setUp()
@@ -62,11 +63,11 @@ class ScalaDaysTests: XCTestCase {
     }
     
     func testParsingWrongJson() {
-        XCTAssertNil(createConferenceDataFromJSONFile(kFilenameForWrongJson), "Parsing of invalid JSONs should return nil")
+        XCTAssertNil(createConferenceDataFromJSONFile(kFilenameForWrongJson), "Parsing of invalid JSONs should return a nil")
     }
     
     func testParsingValidJsonWithNoConferences() {
-        
+        XCTAssertNil(createConferenceDataFromJSONFile(kFilenameForWrongJson), "Parsing of empty JSONs should return a nil")
     }
     
     // MARK: Helper functions
@@ -96,8 +97,7 @@ class ScalaDaysTests: XCTestCase {
         if let _jsonUrl = jsonUrl {
             if let fileData = NSData(contentsOfFile: _jsonUrl) {
                 if let jsonFormat = self.parseJSONData(fileData) {
-                    DataManager.sharedInstance.parseJSON(jsonFormat)
-                    return DataManager.sharedInstance.conferences
+                    return DataManager.sharedInstance.parseJSON(jsonFormat)
                 }
             }
         }
