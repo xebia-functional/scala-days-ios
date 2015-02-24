@@ -21,7 +21,6 @@ class SDDateHandler: NSObject {
     let kTwitterDateFormat = "EEE MMM d HH:mm:ss Z y"
     let kResponseDateFormat = "EEE, dd MMM yyyy HH:mm:ss Z"
     let kScheduleDateFormat = "yyyy-MM-dd'T'HH:mm:ss'Z'"
-    let kScheduleDetailDateFormat = "EEEE '('MMMM dd')' hh:mm"
 
     class var sharedInstance: SDDateHandler {
 
