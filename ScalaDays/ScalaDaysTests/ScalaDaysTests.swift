@@ -53,6 +53,7 @@ class ScalaDaysTests: XCTestCase {
             utcTimezoneOffset: "America/Los_Angeles",
             utcTimezoneOffsetMillis: -25200000,
             hashtag: "#scaladays",
+            query: "#scaladays",
             pictures: [Picture(
                 width: 298,
                 height: 188,
