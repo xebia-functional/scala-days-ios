@@ -53,7 +53,6 @@ class SDDateHandler: NSObject {
     }
     
     func formatScheduleDetailDate(date: NSDate) -> String? {
-        //dateFormatter.dateFormat = kScheduleDetailDateFormat
         dateFormatter.dateStyle = .FullStyle
         dateFormatter.timeStyle = .ShortStyle
         dateFormatter.locale = NSLocale.currentLocale()
@@ -61,7 +60,6 @@ class SDDateHandler: NSObject {
     }
     
     func hoursAndMinutesFromDate(date: NSDate) -> String? {
-        //dateFormatter.dateFormat = "HH:mm"
         dateFormatter.locale = NSLocale.currentLocale()
         dateFormatter.dateStyle = .NoStyle
         dateFormatter.timeStyle = .ShortStyle
