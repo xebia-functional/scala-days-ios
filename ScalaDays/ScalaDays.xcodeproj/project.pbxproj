@@ -892,8 +892,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Ana Maria Marquez Velazquez (VLT9L5DKXR)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Ana Maria Marquez Velazquez (VLT9L5DKXR)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Javier Siloniz Sandino (7LZEADF535)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Javier Siloniz Sandino (7LZEADF535)";
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -908,7 +908,7 @@
 				);
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "98fef935-cb12-49be-8c3a-8f58692cee0c";
+				PROVISIONING_PROFILE = "298e87c2-74b6-4e4d-a5ee-c47bf4af5b90";
 				SWIFT_OBJC_BRIDGING_HEADER = "ScalaDays/Bridging-Header.h";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -920,8 +920,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Ana Maria Marquez Velazquez (VLT9L5DKXR)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Ana Maria Marquez Velazquez (VLT9L5DKXR)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Javier Siloniz Sandino (7LZEADF535)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Javier Siloniz Sandino (7LZEADF535)";
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -936,7 +936,7 @@
 				);
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "98fef935-cb12-49be-8c3a-8f58692cee0c";
+				PROVISIONING_PROFILE = "298e87c2-74b6-4e4d-a5ee-c47bf4af5b90";
 				SWIFT_OBJC_BRIDGING_HEADER = "ScalaDays/Bridging-Header.h";
 				TARGETED_DEVICE_FAMILY = 1;
 			};

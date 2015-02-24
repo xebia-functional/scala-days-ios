@@ -21,7 +21,7 @@ class SDDateHandler: NSObject {
     let kTwitterDateFormat = "EEE MMM d HH:mm:ss Z y"
     let kResponseDateFormat = "EEE, dd MMM yyyy HH:mm:ss Z"
     let kScheduleDateFormat = "yyyy-MM-dd'T'HH:mm:ss'Z'"
-    let kScheduleDetailDateFormat = "EEEE '('MMMM dd')' HH:mm"
+    let kScheduleDetailDateFormat = "EEEE '('MMMM dd')' hh:mm"
 
     class var sharedInstance: SDDateHandler {
 
@@ -41,22 +41,30 @@ class SDDateHandler: NSObject {
     func parseServerDate(dateString: NSString) -> NSDate? {
         dateFormatter.dateFormat = kResponseDateFormat
         dateFormatter.timeZone = NSTimeZone(abbreviation: "GMT")
+        dateFormatter.locale = NSLocale(localeIdentifier: "en_US_POSIX")
         return dateFormatter.dateFromString(dateString)
     }
 
     func parseScheduleDate(dateString: NSString) -> NSDate? {
         dateFormatter.dateFormat = kScheduleDateFormat
         dateFormatter.timeZone = NSTimeZone(abbreviation: "UTC")
+        dateFormatter.locale = NSLocale(localeIdentifier: "en_US_POSIX")
         return dateFormatter.dateFromString(dateString)
     }
     
     func formatScheduleDetailDate(date: NSDate) -> String? {
-        dateFormatter.dateFormat = kScheduleDetailDateFormat
+        //dateFormatter.dateFormat = kScheduleDetailDateFormat
+        dateFormatter.dateStyle = .FullStyle
+        dateFormatter.timeStyle = .ShortStyle
+        dateFormatter.locale = NSLocale.currentLocale()
         return dateFormatter.stringFromDate(date)
     }
     
     func hoursAndMinutesFromDate(date: NSDate) -> String? {
-        dateFormatter.dateFormat = "HH:mm"
+        //dateFormatter.dateFormat = "HH:mm"
+        dateFormatter.locale = NSLocale.currentLocale()
+        dateFormatter.dateStyle = .NoStyle
+        dateFormatter.timeStyle = .ShortStyle
         return dateFormatter.stringFromDate(date)
     }
     
