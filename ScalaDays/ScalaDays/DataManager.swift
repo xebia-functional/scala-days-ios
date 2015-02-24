@@ -139,7 +139,7 @@ class DataManager {
             }
         }
         
-        if shouldReconnect {
+        if shouldReconnect || self.conferences == nil{
             Manager.sharedInstance.request(.GET, JsonURL).responseJSON {
                 (request, response, data, error) -> Void in
                 self.lastConnectionAttemptDate = NSDate()
