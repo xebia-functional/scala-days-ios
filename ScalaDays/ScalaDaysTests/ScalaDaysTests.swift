@@ -20,6 +20,7 @@ import XCTest
 class ScalaDaysTests: XCTestCase {
     
     let kFilenameForCompleteJsonSF = "scala_days_complete_sf"
+    let kFilenameForWrongJson = "scala_days_wrong"
     
     override func setUp() {
         super.setUp()
@@ -46,7 +47,7 @@ class ScalaDaysTests: XCTestCase {
             let loadedData = StoringHelper.sharedInstance.loadConferenceData()
             if let loadedConferences = loadedData {
                 // MARK: Testing equality of both conference instances...
-                XCTAssert(conferences == loadedConferences, "Conference data should be the same after being stored")
+                XCTAssertEqual(conferences, loadedConferences, "Conference data should be the same after being stored")
             } else {
                 XCTFail("Couldn't load valid conference data from disk")
             }
@@ -60,10 +61,21 @@ class ScalaDaysTests: XCTestCase {
         performTestParsingForJsonFile(kFilenameForCompleteJsonSF)
     }
     
+    func testParsingWrongJson() {
+        if let _conferences = createConferenceDataFromJSONFile(kFilenameForWrongJson) {
+            XCTAssertEqual(_conferences.conferences.count, 0, "Parsing of invalid JSONs should return 0 conferences")
+        } else {
+            XCTFail("Invalid JSONs should return an empty conference object")
+        }
+    }
+    
+    func testParsingValidJsonWithNoConferences() {
+        
+    }
+    
     // MARK: Helper functions
     
     func performTestParsingForJsonFile(filename: String) {
-        let jsonUrl = NSBundle(forClass: ScalaDaysTests.self).pathForResource(filename, ofType: "json")
         if let _conferences = createConferenceDataFromJSONFile(filename) {
             if _conferences.conferences.count > 0 {
                 let _conference = _conferences.conferences[0]

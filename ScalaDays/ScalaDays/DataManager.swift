@@ -315,13 +315,16 @@ class DataManager {
             arrayConferencesParse.append(conferenceParse)
         }
 
-        self.conferences = Conferences(conferences: arrayConferencesParse)
-        println("End parse")
-
-        if let unWrapperJson = self.conferences {
-            StoringHelper.sharedInstance.storeConferenceData(unWrapperJson)
-            println("Save parse")
-        }
+        if arrayConferencesParse.count > 0 {
+            self.conferences = Conferences(conferences: arrayConferencesParse)
+            println("End parse")
+            
+            if let unWrapperJson = self.conferences {
+                StoringHelper.sharedInstance.storeConferenceData(unWrapperJson)
+                println("Save parse")
+            }
+        }       
+        
     }
 
 
