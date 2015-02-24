@@ -99,7 +99,6 @@
 		A1FA1FF41A7B98FE00338AF0 /* SDScheduleViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A1CC720A1A7A71F400757B65 /* SDScheduleViewController.xib */; };
 		A1FA1FF51A7B98FE00338AF0 /* SDSocialViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A1CC720E1A7A722C00757B65 /* SDSocialViewController.xib */; };
 		A1FA1FF61A7B98FE00338AF0 /* SDSlideMenuViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A1CC72141A7A727F00757B65 /* SDSlideMenuViewController.xib */; };
-		A1FA1FF71A7B991900338AF0 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = A1D795D51A68267F009CCEB3 /* LaunchScreen.xib */; };
 		A1FA1FF91A7BA95500338AF0 /* SDConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1FA1FF81A7BA95500338AF0 /* SDConstants.swift */; };
 		A1FA1FFB1A7BAE5B00338AF0 /* SDFonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1FA1FFA1A7BAE5B00338AF0 /* SDFonts.swift */; };
 /* End PBXBuildFile section */
@@ -198,7 +197,6 @@
 		A1D795CB1A68267F009CCEB3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A1D795CC1A68267F009CCEB3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A1D795D31A68267F009CCEB3 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		A1D795D61A68267F009CCEB3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		A1D795DC1A68267F009CCEB3 /* ScalaDaysTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ScalaDaysTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A1D795E11A68267F009CCEB3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A1D795E21A68267F009CCEB3 /* ScalaDaysTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScalaDaysTests.swift; sourceTree = "<group>"; };
@@ -471,7 +469,6 @@
 				A1D795D31A68267F009CCEB3 /* Images.xcassets */,
 				101B4FB1641809244D4A4CE8 /* External */,
 				593571E61A77DD73005AA332 /* Helpers */,
-				A1D795D51A68267F009CCEB3 /* LaunchScreen.xib */,
 				A1B8E6601A6D266800F21468 /* Models */,
 				A1B8E6641A6D4B8600F21468 /* Service */,
 				A1D795CA1A68267F009CCEB3 /* Supporting Files */,
@@ -571,7 +568,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastUpgradeCheck = 0610;
-				ORGANIZATIONNAME = Ana;
+				ORGANIZATIONNAME = "47 Degrees";
 				TargetAttributes = {
 					A1D795C61A68267F009CCEB3 = {
 						CreatedOnToolsVersion = 6.1.1;
@@ -613,7 +610,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A1FA1FF71A7B991900338AF0 /* LaunchScreen.xib in Resources */,
 				A1FA1FF41A7B98FE00338AF0 /* SDScheduleViewController.xib in Resources */,
 				A1FA1FF51A7B98FE00338AF0 /* SDSocialViewController.xib in Resources */,
 				A1C8B8761A8E6C77008599FF /* SDScheduleListTableViewCell.xib in Resources */,
@@ -800,14 +796,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		A1D795D51A68267F009CCEB3 /* LaunchScreen.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				A1D795D61A68267F009CCEB3 /* Base */,
-			);
-			name = LaunchScreen.xib;
-			sourceTree = "<group>";
-		};
 		A1FA1FD61A7A9DA200338AF0 /* Localizable.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -904,8 +892,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Javier Siloniz Sandino (7LZEADF535)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Javier Siloniz Sandino (7LZEADF535)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Ana Maria Marquez Velazquez (VLT9L5DKXR)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Ana Maria Marquez Velazquez (VLT9L5DKXR)";
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -932,8 +920,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Javier Siloniz Sandino (7LZEADF535)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Javier Siloniz Sandino (7LZEADF535)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Ana Maria Marquez Velazquez (VLT9L5DKXR)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Ana Maria Marquez Velazquez (VLT9L5DKXR)";
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
