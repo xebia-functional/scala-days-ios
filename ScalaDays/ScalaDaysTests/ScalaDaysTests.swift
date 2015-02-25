@@ -19,9 +19,18 @@ import XCTest
 
 class ScalaDaysTests: XCTestCase {
     
+    let kFilenameForTestConferenceData = "sdConferencesTest.data"
     let kFilenameForCompleteJsonSF = "scala_days_complete_sf"
     let kFilenameForWrongJson = "scala_days_wrong"
     let kFilenameForEmptyJson = "scala_days_empty"
+    let kTestScheduleDateString = "2015-03-16T23:00:00Z"
+    let kTestScheduleDateTimestamp = NSTimeInterval(1426546800)
+    let kTestServerDateString = "Wed, 25 Feb 2015 08:31:06 GMT"
+    let kTestServerDateTimestamp = NSTimeInterval(1424853066)
+    let kTestTwitterDateString = "Wed Feb 25 09:10:13 +0000 2015"
+    let kTestTwitterDateTimestamp = NSTimeInterval(1424855413)
+    
+    // MARK: - Setting up tests
     
     override func setUp() {
         super.setUp()
@@ -41,11 +50,12 @@ class ScalaDaysTests: XCTestCase {
         super.tearDown()
     }
     
+    // MARK: - Data parsing, loading and storing tests
+    
     func testStoringAndLoadingConference() {
-        
         if let conferences = createConferenceDataFromJSONFile(kFilenameForCompleteJsonSF) {
-            StoringHelper.sharedInstance.storeConferenceData(conferences)
-            let loadedData = StoringHelper.sharedInstance.loadConferenceData()
+            StoringHelper.sharedInstance.storeConferenceDataFromFileWithFilename(conferences, filename: kFilenameForTestConferenceData)
+            let loadedData = StoringHelper.sharedInstance.loadConferenceDataFromFileWithFilename(kFilenameForTestConferenceData)
             if let loadedConferences = loadedData {
                 // MARK: Testing equality of both conference instances...
                 XCTAssertEqual(conferences, loadedConferences, "Conference data should be the same after being stored")
@@ -55,7 +65,6 @@ class ScalaDaysTests: XCTestCase {
         } else {
             XCTFail("Couldn't load JSON test data")
         }
-        
     }
     
     func testParsingCompleteJson() {
@@ -68,6 +77,51 @@ class ScalaDaysTests: XCTestCase {
     
     func testParsingValidJsonWithNoConferences() {
         XCTAssertNil(createConferenceDataFromJSONFile(kFilenameForWrongJson), "Parsing of empty JSONs should return a nil")
+    }
+    
+    // MARK: Datetime conversion tests
+    
+    func testParsingScheduleDates() {
+        if let scheduleDate = SDDateHandler.sharedInstance.parseScheduleDate(kTestScheduleDateString) {
+            let timestamp = scheduleDate.timeIntervalSince1970
+            XCTAssertEqual(timestamp, kTestScheduleDateTimestamp, "Parsing of test schedule date should return the correct value. Returned \(timestamp), expected \(kTestScheduleDateTimestamp)")
+        } else {
+            XCTFail("Parsing of schedule dates from the server should return a valid date")
+        }
+    }
+    
+    func testParsingServerDates() {
+        if let serverDate = SDDateHandler.sharedInstance.parseServerDate(kTestServerDateString) {
+            let timestamp = serverDate.timeIntervalSince1970
+            XCTAssertEqual(timestamp, kTestServerDateTimestamp, "Parsing of test server date should return the correct value. Returned \(timestamp), expected \(kTestServerDateTimestamp)")
+        } else {
+            XCTFail("Parsing of server dates from the server should return a valid date")
+        }
+    }
+    
+    func testParsingTwitterDates() {
+        if let twitterDate = SDDateHandler.sharedInstance.parseTwitterDate(kTestTwitterDateString) {
+            let timestamp = twitterDate.timeIntervalSince1970
+            XCTAssertEqual(timestamp, kTestTwitterDateTimestamp, "Parsing of test twitter date should return the correct value. Returned \(timestamp), expected \(kTestServerDateTimestamp)")
+        } else {
+            XCTFail("Parsing of twitter dates from the server should return a valid date")
+        }
+    }
+    
+    func testFormatScheduleDates() {
+        let date = NSDate(timeIntervalSince1970: kTestScheduleDateTimestamp)
+        XCTAssertNotNil(SDDateHandler.sharedInstance.formatScheduleDetailDate(date), "Format of schedule dates from the server should return a valid date string")
+    }
+    
+    func testFormatHoursAndMinutesFromScheduleDates() {
+        let date = NSDate(timeIntervalSince1970: kTestScheduleDateTimestamp)
+        if let hoursAndMinutes = SDDateHandler.sharedInstance.hoursAndMinutesFromDate(date) {
+            let isEnabled24h = is24hTimeSettingEnabled()
+            XCTAssertTrue((hoursAndMinutes.rangeOfString(SDDateHandler.sharedInstance.dateFormatter.AMSymbol) == nil &&
+                hoursAndMinutes.rangeOfString(SDDateHandler.sharedInstance.dateFormatter.PMSymbol) == nil) == isEnabled24h, "Formatted hours and minutes from schedule date should conform to the chosen 12h/24h setting")
+        } else {
+            XCTFail("Format of hours and minutes from schedule date should return a valid string")
+        }
     }
     
     // MARK: Helper functions
@@ -115,4 +169,14 @@ class ScalaDaysTests: XCTestCase {
         }
         return nil
     }
+    
+    func is24hTimeSettingEnabled() -> Bool {
+        let dateFormatter = NSDateFormatter()
+        dateFormatter.locale = NSLocale.currentLocale()
+        dateFormatter.dateStyle = .NoStyle
+        dateFormatter.timeStyle = .ShortStyle
+        let dateString = dateFormatter.stringFromDate(NSDate())
+        return dateString.rangeOfString(dateFormatter.AMSymbol) == nil && dateString.rangeOfString(dateFormatter.PMSymbol) == nil
+    }
+    
 }

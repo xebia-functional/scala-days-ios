@@ -160,7 +160,7 @@ class DataManager {
                             } else {
                                 if let _data: AnyObject = data {
                                     let jsonFormat = JSON(_data)
-                                    self.parseJSON(jsonFormat)
+                                    self.parseAndStoreJSONData(jsonFormat)
                                     callback(true, error)
                                 } else {
                                     callback(true, error)
@@ -182,7 +182,7 @@ class DataManager {
                         callback(false, error)
                     } else {
                         let jsonFormat = JSON(data!)
-                        self.parseJSON(jsonFormat)
+                        self.parseAndStoreJSONData(jsonFormat)
                         callback(true, error)
                     }
                 }
@@ -316,21 +316,22 @@ class DataManager {
         }
 
         if arrayConferencesParse.count > 0 {
-            self.conferences = Conferences(conferences: arrayConferencesParse)
-            println("End parse")
-            
-            if let unWrapperJson = self.conferences {
-                StoringHelper.sharedInstance.storeConferenceData(unWrapperJson)
-                println("Save parse")
-            }
-            
-            return self.conferences
+            return Conferences(conferences: arrayConferencesParse)
         } else {
             return nil
         }
         
     }
-
+    
+    func parseAndStoreJSONData(jsonData: JSON) {
+        self.conferences = parseJSON(jsonData)
+        println("End parse")
+        
+        if let _conferences = self.conferences {
+            StoringHelper.sharedInstance.storeConferenceData(_conferences)
+            println("Save parse")
+        }
+    }
 
 }
 
