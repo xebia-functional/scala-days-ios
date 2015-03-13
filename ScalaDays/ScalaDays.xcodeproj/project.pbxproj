@@ -37,6 +37,7 @@
 		5929780C1A82310100EE3BA3 /* SDTweet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5929780B1A82310100EE3BA3 /* SDTweet.swift */; };
 		5929780D1A82310100EE3BA3 /* SDTweet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5929780B1A82310100EE3BA3 /* SDTweet.swift */; };
 		593223C61A837C6A009189C0 /* SDAlertViewHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 593223C51A837C6A009189C0 /* SDAlertViewHelper.swift */; };
+		5933EFC41A9B256100383C7F /* scala_days_complete_sf.json in Resources */ = {isa = PBXBuildFile; fileRef = 5933EFC31A9B256100383C7F /* scala_days_complete_sf.json */; };
 		593571E91A77DDA8005AA332 /* StoringHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 593571E81A77DDA8005AA332 /* StoringHelper.swift */; };
 		593571EA1A77E41C005AA332 /* StoringHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 593571E81A77DDA8005AA332 /* StoringHelper.swift */; };
 		593571EB1A77E41C005AA332 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B8E6651A6D4B9600F21468 /* DataManager.swift */; };
@@ -48,6 +49,8 @@
 		595003081A84DE3B00A1C24F /* SDQRScannerOverlayView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 595003071A84DE3B00A1C24F /* SDQRScannerOverlayView.xib */; };
 		5950030A1A84EDD500A1C24F /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 595003091A84EDD500A1C24F /* AddressBook.framework */; };
 		5951D0D61A76A5F5001528E8 /* Conference.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5951D0D51A76A5F5001528E8 /* Conference.swift */; };
+		595FD6C81A9CD3820033D0C6 /* scala_days_wrong.json in Resources */ = {isa = PBXBuildFile; fileRef = 595FD6C71A9CD3820033D0C6 /* scala_days_wrong.json */; };
+		595FD6CA1A9CD6900033D0C6 /* scala_days_empty.json in Resources */ = {isa = PBXBuildFile; fileRef = 595FD6C91A9CD6900033D0C6 /* scala_days_empty.json */; };
 		59A7DF641A936C84009F4639 /* SDScheduleDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59A7DF621A936C84009F4639 /* SDScheduleDetailViewController.swift */; };
 		59A7DF651A936C84009F4639 /* SDScheduleDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 59A7DF631A936C84009F4639 /* SDScheduleDetailViewController.xib */; };
 		59A7DF6B1A9371A8009F4639 /* SDSpeakerDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59A7DF6A1A9371A8009F4639 /* SDSpeakerDetailView.swift */; };
@@ -153,6 +156,7 @@
 		592978081A82141400EE3BA3 /* SDSocialHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SDSocialHandler.swift; sourceTree = "<group>"; };
 		5929780B1A82310100EE3BA3 /* SDTweet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SDTweet.swift; sourceTree = "<group>"; };
 		593223C51A837C6A009189C0 /* SDAlertViewHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SDAlertViewHelper.swift; sourceTree = "<group>"; };
+		5933EFC31A9B256100383C7F /* scala_days_complete_sf.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = scala_days_complete_sf.json; sourceTree = "<group>"; };
 		593571E81A77DDA8005AA332 /* StoringHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoringHelper.swift; sourceTree = "<group>"; };
 		595003001A84C1DA00A1C24F /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		595003021A84C43B00A1C24F /* SDZBarSymbolSet-Enumeration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SDZBarSymbolSet-Enumeration.swift"; sourceTree = "<group>"; };
@@ -160,6 +164,8 @@
 		595003071A84DE3B00A1C24F /* SDQRScannerOverlayView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SDQRScannerOverlayView.xib; sourceTree = "<group>"; };
 		595003091A84EDD500A1C24F /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
 		5951D0D51A76A5F5001528E8 /* Conference.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Conference.swift; sourceTree = "<group>"; };
+		595FD6C71A9CD3820033D0C6 /* scala_days_wrong.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = scala_days_wrong.json; sourceTree = "<group>"; };
+		595FD6C91A9CD6900033D0C6 /* scala_days_empty.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = scala_days_empty.json; sourceTree = "<group>"; };
 		59A7DF621A936C84009F4639 /* SDScheduleDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SDScheduleDetailViewController.swift; sourceTree = "<group>"; };
 		59A7DF631A936C84009F4639 /* SDScheduleDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SDScheduleDetailViewController.xib; sourceTree = "<group>"; };
 		59A7DF6A1A9371A8009F4639 /* SDSpeakerDetailView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SDSpeakerDetailView.swift; sourceTree = "<group>"; };
@@ -495,7 +501,10 @@
 		A1D795E01A68267F009CCEB3 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				595FD6C91A9CD6900033D0C6 /* scala_days_empty.json */,
+				5933EFC31A9B256100383C7F /* scala_days_complete_sf.json */,
 				A1D795E11A68267F009CCEB3 /* Info.plist */,
+				595FD6C71A9CD3820033D0C6 /* scala_days_wrong.json */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -629,6 +638,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5933EFC41A9B256100383C7F /* scala_days_complete_sf.json in Resources */,
+				595FD6C81A9CD3820033D0C6 /* scala_days_wrong.json in Resources */,
+				595FD6CA1A9CD6900033D0C6 /* scala_days_empty.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -18,8 +18,8 @@ import UIKit
 import MapKit
 
 class SDMapAnnotation: NSObject, MKAnnotation {
-    let title, subtitle : String
     let coordinate : CLLocationCoordinate2D
+    let title, subtitle : String
     
     init(title: String, subtitle: String, coordinate: CLLocationCoordinate2D) {
         self.title = title

@@ -17,6 +17,7 @@
 import Foundation
 
 class StoringHelper {
+    
     let kMainConferenceStoringFilename = "sdConferences.data"
     
     class var sharedInstance: StoringHelper {
@@ -26,14 +27,22 @@ class StoringHelper {
         return Static.instance
     }
     
-    func storeConferenceData(conferences : Conferences) {
-        let conferenceDataPath = StoringHelper.documentsFolderPath().stringByAppendingPathComponent(kMainConferenceStoringFilename)
+    func storeConferenceData(conferences: Conferences) {
+        storeConferenceDataFromFileWithFilename(conferences, filename: kMainConferenceStoringFilename)
+    }
+    
+    func storeConferenceDataFromFileWithFilename(conferences: Conferences, filename: String) {
+        let conferenceDataPath = StoringHelper.documentsFolderPath().stringByAppendingPathComponent(filename)
         NSKeyedArchiver.archiveRootObject(conferences, toFile: conferenceDataPath)
     }
     
     func loadConferenceData() -> Conferences? {
+        return loadConferenceDataFromFileWithFilename(kMainConferenceStoringFilename)
+    }
+    
+    func loadConferenceDataFromFileWithFilename(filename: String) -> Conferences? {
         let fileManager = NSFileManager.defaultManager()
-        let conferenceDataPath = StoringHelper.documentsFolderPath().stringByAppendingPathComponent(kMainConferenceStoringFilename)
+        let conferenceDataPath = StoringHelper.documentsFolderPath().stringByAppendingPathComponent(filename)
         
         if(fileManager.fileExistsAtPath(conferenceDataPath)) {
             return NSKeyedUnarchiver.unarchiveObjectWithFile(conferenceDataPath) as? Conferences
@@ -44,4 +53,5 @@ class StoringHelper {
     class func documentsFolderPath() -> String {
         return NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] as String
     }
+    
 }
