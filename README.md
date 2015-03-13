@@ -13,7 +13,18 @@ To download all of the dependencies, run 'pod install' from the terminal in the 
 
 Once the dependencies are downloaded Cocoapods will create a workspace file. Use the workspace to open the project in Xcode instead of the project file.
 
-As this project uses Crashlytics, Localytics and Google Analytics, an external plist file (*SDExternalKeys.plist*) is used to store the API keys for those services. It's not mandatory, but needed if you want to use your own keys. 
+## External Keys
+
+As this project uses Crashlytics, Localytics and Google Analytics, an external plist file (**SDExternalKeys.plist**) (located in the *ExternalKeys* folder) is used to store the API keys for those services. It's not mandatory, but needed if you want to use your own keys. The content should be:
+
+	<dict>
+		<key>GoogleAnalytics</key>
+		<string>***********</string>
+		<key>Crashlytics</key>
+		<string>***********</string>
+		<key>Localytics</key>
+		<string>***********</string>
+	</dict>
 
 ## Push Notifications
 
