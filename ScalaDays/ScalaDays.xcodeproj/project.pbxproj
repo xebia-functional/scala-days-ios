@@ -52,8 +52,6 @@
 		597E3B0D1AB2E58A00F41F17 /* SDTweet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 597E3B071AB2E58A00F41F17 /* SDTweet.swift */; };
 		597E3B101AB2E5FD00F41F17 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 597E3B0F1AB2E5FD00F41F17 /* DataManager.swift */; };
 		597E3B111AB2E5FD00F41F17 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 597E3B0F1AB2E5FD00F41F17 /* DataManager.swift */; };
-		597E3B171AB2E97200F41F17 /* SDExternalKeys.plist in Resources */ = {isa = PBXBuildFile; fileRef = 597E3B161AB2E97200F41F17 /* SDExternalKeys.plist */; };
-		597E3B181AB2E97200F41F17 /* SDExternalKeys.plist in Resources */ = {isa = PBXBuildFile; fileRef = 597E3B161AB2E97200F41F17 /* SDExternalKeys.plist */; };
 		59A7DF641A936C84009F4639 /* SDScheduleDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59A7DF621A936C84009F4639 /* SDScheduleDetailViewController.swift */; };
 		59A7DF651A936C84009F4639 /* SDScheduleDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 59A7DF631A936C84009F4639 /* SDScheduleDetailViewController.xib */; };
 		59A7DF6B1A9371A8009F4639 /* SDSpeakerDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59A7DF6A1A9371A8009F4639 /* SDSpeakerDetailView.swift */; };
@@ -67,6 +65,8 @@
 		59A7DF841A938A41009F4639 /* SDFonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1FA1FFA1A7BAE5B00338AF0 /* SDFonts.swift */; };
 		59A7DF851A938A41009F4639 /* SDColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1FA1FEA1A7AA6AF00338AF0 /* SDColor.swift */; };
 		59A7DF881A938A41009F4639 /* SDMapView-ZoomOut.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5925ADA01A897AAD000EA5E7 /* SDMapView-ZoomOut.swift */; };
+		59ACF91D1AB2FFF2005914E1 /* SDExternalKeys.plist in Resources */ = {isa = PBXBuildFile; fileRef = 59ACF91C1AB2FFF2005914E1 /* SDExternalKeys.plist */; };
+		59ACF91E1AB2FFF2005914E1 /* SDExternalKeys.plist in Resources */ = {isa = PBXBuildFile; fileRef = 59ACF91C1AB2FFF2005914E1 /* SDExternalKeys.plist */; };
 		59C477451A9786A70033C6D1 /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1A94F2C1A76A36C003A6C0B /* SwiftyJSON.swift */; };
 		59D174621A8E0C2B001E87CF /* SDSponsorsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59D174611A8E0C2B001E87CF /* SDSponsorsTableViewCell.swift */; };
 		59D174641A8E0C3A001E87CF /* SDSponsorsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 59D174631A8E0C3A001E87CF /* SDSponsorsTableViewCell.xib */; };
@@ -167,11 +167,11 @@
 		597E3B061AB2E58A00F41F17 /* SDMapAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SDMapAnnotation.swift; sourceTree = "<group>"; };
 		597E3B071AB2E58A00F41F17 /* SDTweet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SDTweet.swift; sourceTree = "<group>"; };
 		597E3B0F1AB2E5FD00F41F17 /* DataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
-		597E3B161AB2E97200F41F17 /* SDExternalKeys.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = SDExternalKeys.plist; sourceTree = "<group>"; };
 		59A7DF621A936C84009F4639 /* SDScheduleDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SDScheduleDetailViewController.swift; sourceTree = "<group>"; };
 		59A7DF631A936C84009F4639 /* SDScheduleDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SDScheduleDetailViewController.xib; sourceTree = "<group>"; };
 		59A7DF6A1A9371A8009F4639 /* SDSpeakerDetailView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SDSpeakerDetailView.swift; sourceTree = "<group>"; };
 		59A7DF6C1A93725E009F4639 /* SDSpeakerDetailView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SDSpeakerDetailView.xib; sourceTree = "<group>"; };
+		59ACF91C1AB2FFF2005914E1 /* SDExternalKeys.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = SDExternalKeys.plist; sourceTree = "<group>"; };
 		59D174611A8E0C2B001E87CF /* SDSponsorsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SDSponsorsTableViewCell.swift; sourceTree = "<group>"; };
 		59D174631A8E0C3A001E87CF /* SDSponsorsTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SDSponsorsTableViewCell.xib; sourceTree = "<group>"; };
 		59E430EE1A964BEF00185C41 /* SDGoogleAnalyticsHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SDGoogleAnalyticsHandler.swift; sourceTree = "<group>"; };
@@ -282,6 +282,7 @@
 		101B4FB1641809244D4A4CE8 /* External */ = {
 			isa = PBXGroup;
 			children = (
+				59ACF91B1AB2FFF2005914E1 /* Keys */,
 				A1CC71E11A7930D100757B65 /* SlideMenuController.swift */,
 				A1A94F2B1A76A36C003A6C0B /* SwiftyJSON.h */,
 				A1A94F2C1A76A36C003A6C0B /* SwiftyJSON.swift */,
@@ -421,12 +422,12 @@
 			path = Service;
 			sourceTree = "<group>";
 		};
-		597E3B151AB2E97200F41F17 /* ExternalKeys */ = {
+		59ACF91B1AB2FFF2005914E1 /* Keys */ = {
 			isa = PBXGroup;
 			children = (
-				597E3B161AB2E97200F41F17 /* SDExternalKeys.plist */,
+				59ACF91C1AB2FFF2005914E1 /* SDExternalKeys.plist */,
 			);
-			path = ExternalKeys;
+			path = Keys;
 			sourceTree = "<group>";
 		};
 		59E430ED1A964BDE00185C41 /* Analytics */ = {
@@ -484,7 +485,6 @@
 				592977FF1A82106D00EE3BA3 /* UI */,
 				101B48707F372BB83194FA90 /* Controllers */,
 				101B47CF1AFFD32B49F7BB46 /* Extension */,
-				597E3B151AB2E97200F41F17 /* ExternalKeys */,
 			);
 			path = ScalaDays;
 			sourceTree = "<group>";
@@ -638,7 +638,7 @@
 				59D174641A8E0C3A001E87CF /* SDSponsorsTableViewCell.xib in Resources */,
 				A1D795D41A68267F009CCEB3 /* Images.xcassets in Resources */,
 				5920EA601A9484B600564014 /* SDErrorPlaceholderView.xib in Resources */,
-				597E3B171AB2E97200F41F17 /* SDExternalKeys.plist in Resources */,
+				59ACF91D1AB2FFF2005914E1 /* SDExternalKeys.plist in Resources */,
 				592978041A82106D00EE3BA3 /* SDSocialTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -647,7 +647,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				597E3B181AB2E97200F41F17 /* SDExternalKeys.plist in Resources */,
+				59ACF91E1AB2FFF2005914E1 /* SDExternalKeys.plist in Resources */,
 				5933EFC41A9B256100383C7F /* scala_days_complete_sf.json in Resources */,
 				595FD6C81A9CD3820033D0C6 /* scala_days_wrong.json in Resources */,
 				595FD6CA1A9CD6900033D0C6 /* scala_days_empty.json in Resources */,
@@ -683,7 +683,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "./Crashlytics.framework/run ***REMOVED*** 2c56ab5ccb4f21cd496c8f733a95205cb91e19601dadd81a60e13f963f31c19c";
+			shellScript = "./Crashlytics.framework/run 650c56fa5bc6a759a4802ae63f430cfaf6c8158a 2c56ab5ccb4f21cd496c8f733a95205cb91e19601dadd81a60e13f963f31c19c";
 		};
 		6B34A8DE02A83B2AC5E25535 /* Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -711,7 +711,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "./Crashlytics.framework/run ***REMOVED*** 2c56ab5ccb4f21cd496c8f733a95205cb91e19601dadd81a60e13f963f31c19c";
+			shellScript = "./Crashlytics.framework/run 650c56fa5bc6a759a4802ae63f430cfaf6c8158a 2c56ab5ccb4f21cd496c8f733a95205cb91e19601dadd81a60e13f963f31c19c";
 		};
 /* End PBXShellScriptBuildPhase section */
 
