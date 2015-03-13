@@ -1,4 +1,5 @@
 # ScalaDays for iOS
+The official [Scala Days](http://www.scaladays.org) App for Android handcrafted by 47 Degrees. You can download Scala Days from the [App Store](https://itunes.apple.com/us/app/scaladays/id883566471?mt=8 ). If you enjoy the application, please take a moment and rate it in the App Store  :-)
 
 ## Setup
 
@@ -12,7 +13,7 @@ To download all of the dependencies, run 'pod install' from the terminal in the 
 
 Once the dependencies are downloaded Cocoapods will create a workspace file. Use the workspace to open the project in Xcode instead of the project file.
 
-As this project uses Crashlytics, Localytics and Google Analytics, an external plist file (*SDExternalKeys.plist*) is used to contain the API keys for those services. It's not mandatory, but needed if you want to use your own keys. 
+As this project uses Crashlytics, Localytics and Google Analytics, an external plist file (*SDExternalKeys.plist*) is used to store the API keys for those services. It's not mandatory, but needed if you want to use your own keys. 
 
 ## Push Notifications
 
@@ -32,9 +33,6 @@ For example, in our case :
 ## Crash Reporting
 
 Crash reporting is handled through Crashlytics. All uncaught exceptions are sent to Crashlytics.
-
-## Download
-You can download Scala Days from App Store at this [URL](https://itunes.apple.com/us/app/scaladays/id883566471?mt=8 ). If you enjoy the application, please take a moment and rate it in the App Store  :-)
 
 ## License
 Copyright (C) 2015 47 Degrees, LLC http://47deg.com hello@47deg.com
