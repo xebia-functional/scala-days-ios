@@ -158,9 +158,13 @@ class DataManager {
                                 println(response)
                                 callback(false, error)
                             } else {
-                                let jsonFormat = JSON(data!)
-                                self.parseJSON(jsonFormat)
-                                callback(true, error)
+                                if let _data: AnyObject = data {
+                                    let jsonFormat = JSON(_data)
+                                    self.parseAndStoreJSONData(jsonFormat)
+                                    callback(true, error)
+                                } else {
+                                    callback(true, error)
+                                }                                
                             }
                         }
                     } else {
@@ -178,7 +182,7 @@ class DataManager {
                         callback(false, error)
                     } else {
                         let jsonFormat = JSON(data!)
-                        self.parseJSON(jsonFormat)
+                        self.parseAndStoreJSONData(jsonFormat)
                         callback(true, error)
                     }
                 }
@@ -189,7 +193,7 @@ class DataManager {
     }
 
 
-    func parseJSON(json: JSON) {
+    func parseJSON(json: JSON) -> Conferences? {
 
         let arrayConferences = json["conferences"]
         var arrayConferencesParse: [Conference] = []
@@ -311,15 +315,23 @@ class DataManager {
             arrayConferencesParse.append(conferenceParse)
         }
 
-        self.conferences = Conferences(conferences: arrayConferencesParse)
+        if arrayConferencesParse.count > 0 {
+            return Conferences(conferences: arrayConferencesParse)
+        } else {
+            return nil
+        }
+        
+    }
+    
+    func parseAndStoreJSONData(jsonData: JSON) {
+        self.conferences = parseJSON(jsonData)
         println("End parse")
-
-        if let unWrapperJson = self.conferences {
-            StoringHelper.sharedInstance.storeConferenceData(unWrapperJson)
+        
+        if let _conferences = self.conferences {
+            StoringHelper.sharedInstance.storeConferenceData(_conferences)
             println("Save parse")
         }
     }
-
 
 }
 
