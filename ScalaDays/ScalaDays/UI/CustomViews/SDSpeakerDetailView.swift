@@ -19,6 +19,7 @@ import UIKit
 class SDSpeakerDetailView: UIView {
 
     let customConstraints : NSMutableArray = NSMutableArray()
+    let tapTwitter = UITapGestureRecognizer()
 
     var containerView: UIView!
     @IBOutlet weak var imgView: UIImageView!
