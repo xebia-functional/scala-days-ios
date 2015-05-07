@@ -18,7 +18,7 @@ import UIKit
 
 class SDSpeakerDetailView: UIView {
 
-    let customConstraints : NSMutableArray = NSMutableArray()
+    let customConstraints: NSMutableArray = NSMutableArray()
     let tapTwitter = UITapGestureRecognizer()
 
     var containerView: UIView!
@@ -28,36 +28,37 @@ class SDSpeakerDetailView: UIView {
     @IBOutlet weak var lblUsername: UILabel!
     @IBOutlet weak var lblDescription: UILabel!
 
-    let kSeparatorHeight : CGFloat = 1.0
-    let kBottomPadding : CGFloat = 30.0
-    let kHorizontalPadding : CGFloat = 18.0
-    let kPaddingForSeparator : CGFloat = 15.0
-    
+    let kSeparatorHeight: CGFloat = 1.0
+    let kBottomPadding: CGFloat = 30.0
+    let kHorizontalPadding: CGFloat = 18.0
+    let kPaddingForSeparator: CGFloat = 15.0
+
     required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         commonInit()
     }
-    
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         commonInit()
     }
-    
+
     func commonInit() {
         // This init function loads our custom view from the nib:
         if let container = loadNibSubviewsFromNib("SDSpeakerDetailView") {
             containerView = container
             imgView.circularImage()
+            imgView.userInteractionEnabled = true
             lblDescription.preferredMaxLayoutWidth = self.frame.size.width - imgView.frame.size.width - (kHorizontalPadding * 2)
             lblCompany.preferredMaxLayoutWidth = lblDescription.preferredMaxLayoutWidth
         }
     }
-    
+
     override func updateConstraints() {
         self.updateCustomConstraints(customConstraints, containerView: containerView)
         super.updateConstraints()
     }
-    
+
     func drawSpeakerData(speaker: Speaker) {
         lblName.text = speaker.name
         if let twitterUsername = speaker.twitter {
@@ -66,13 +67,15 @@ class SDSpeakerDetailView: UIView {
             } else {
                 lblUsername.text = "@\(twitterUsername)"
             }
+            tapTwitter.addTarget(self, action: "onTwitter")
+            imgView.addGestureRecognizer(tapTwitter)
         } else {
             lblUsername.text = ""
         }
         lblCompany.text = speaker.company
-        
+
         lblDescription.text = speaker.bio.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
-        
+
         if let pictureUrlString = speaker.picture {
             if let pictureUrl = NSURL(string: pictureUrlString) {
                 imgView.sd_setImageWithURL(pictureUrl, placeholderImage: UIImage(named: "avatar")!)
@@ -84,12 +87,21 @@ class SDSpeakerDetailView: UIView {
     func contentHeight() -> CGFloat {
         return lblDescription.frame.origin.y + lblDescription.systemLayoutSizeFittingSize(UILayoutFittingCompressedSize).height + kBottomPadding
     }
-    
+
     func drawSeparator() {
         let separatorLayer = CALayer()
         let contentHeight = self.contentHeight()
         separatorLayer.frame = CGRectMake(kPaddingForSeparator, contentHeight - kSeparatorHeight, self.frame.size.width, kSeparatorHeight)
         separatorLayer.backgroundColor = UIColor.appSeparatorLineColor().CGColor
         self.layer.addSublayer(separatorLayer)
+    }
+
+    func onTwitter () {
+        if let twitterAccount = lblUsername.text {
+            if let url = SDSocialHandler.urlForTwitterAccount(twitterAccount) {
+                SDGoogleAnalyticsHandler.sendGoogleAnalyticsTrackingWithScreenName(kGAScreenNameSpeakers, category: kGACategoryNavigate, action: kGAActionSpeakersGoToUser, label: nil)
+                launchSafariToUrl(url)
+            }
+        }
     }
 }
