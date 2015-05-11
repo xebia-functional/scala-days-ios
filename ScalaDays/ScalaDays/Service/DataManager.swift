@@ -18,9 +18,7 @@ import Foundation
 import UIKit
 
 
-//let JsonURL = "http://scala-days-2015.s3.amazonaws.com/conferences.json"
-let JsonURL = "http://www.47deg.com/scaladays/develop.php"
-
+let JsonURL = "http://scala-days-2015.s3.amazonaws.com/conferences.json"
 
 private let _DataManagerSharedInstance = DataManager()
 
