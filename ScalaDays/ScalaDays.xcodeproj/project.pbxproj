@@ -179,6 +179,7 @@
 		A18E3ADB1AFB80E700D531D4 /* SDExternalKeys.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = SDExternalKeys.plist; path = ScalaDays/SDExternalKeys.plist; sourceTree = SOURCE_ROOT; };
 		A19C65C51A7FC30A00A206FC /* SDContactViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SDContactViewController.swift; sourceTree = "<group>"; };
 		A19C65C61A7FC30A00A206FC /* SDContactViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SDContactViewController.xib; sourceTree = "<group>"; };
+		A1A8AA591AFBA23F00D2679B /* SDExternalKeys.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = SDExternalKeys.plist; path = ScalaDays/SDExternalKeys.plist; sourceTree = SOURCE_ROOT; };
 		A1A94F2B1A76A36C003A6C0B /* SwiftyJSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SwiftyJSON.h; sourceTree = "<group>"; };
 		A1A94F2C1A76A36C003A6C0B /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyJSON.swift; sourceTree = "<group>"; };
 		A1C8B8751A8E6C77008599FF /* SDScheduleListTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SDScheduleListTableViewCell.xib; sourceTree = "<group>"; };
@@ -424,7 +425,7 @@
 		59ACF91B1AB2FFF2005914E1 /* Keys */ = {
 			isa = PBXGroup;
 			children = (
-				A18E3ADB1AFB80E700D531D4 /* SDExternalKeys.plist */,
+				A1A8AA591AFBA23F00D2679B /* SDExternalKeys.plist */,
 			);
 			path = Keys;
 			sourceTree = "<group>";
@@ -637,7 +638,7 @@
 				59D174641A8E0C3A001E87CF /* SDSponsorsTableViewCell.xib in Resources */,
 				A1D795D41A68267F009CCEB3 /* Images.xcassets in Resources */,
 				5920EA601A9484B600564014 /* SDErrorPlaceholderView.xib in Resources */,
-				A18E3ADC1AFB80E700D531D4 /* SDExternalKeys.plist in Resources */,
+				59ACF91D1AB2FFF2005914E1 /* SDExternalKeys.plist in Resources */,
 				592978041A82106D00EE3BA3 /* SDSocialTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

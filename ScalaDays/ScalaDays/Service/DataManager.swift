@@ -194,11 +194,12 @@ class DataManager {
 
 
     func parseJSON(json: JSON) -> Conferences? {
-
+        
         let arrayConferences = json["conferences"]
         var arrayConferencesParse: [Conference] = []
 
         for (index, confe) in arrayConferences {
+            
 
             let info = confe["info"]
             let id = info["id"].intValue

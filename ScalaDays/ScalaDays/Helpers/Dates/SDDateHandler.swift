@@ -16,6 +16,22 @@
 
 import UIKit
 
+func <=(lhs: NSDate, rhs: NSDate) -> Bool {
+    return lhs.timeIntervalSince1970 <= rhs.timeIntervalSince1970
+}
+func >=(lhs: NSDate, rhs: NSDate) -> Bool {
+    return lhs.timeIntervalSince1970 >= rhs.timeIntervalSince1970
+}
+func >(lhs: NSDate, rhs: NSDate) -> Bool {
+    return lhs.timeIntervalSince1970 > rhs.timeIntervalSince1970
+}
+func <(lhs: NSDate, rhs: NSDate) -> Bool {
+    return lhs.timeIntervalSince1970 < rhs.timeIntervalSince1970
+}
+func ==(lhs: NSDate, rhs: NSDate) -> Bool {
+    return lhs.timeIntervalSince1970 == rhs.timeIntervalSince1970
+}
+
 class SDDateHandler: NSObject {
     lazy var dateFormatter: NSDateFormatter = NSDateFormatter()
     let kTwitterDateFormat = "EEE MMM d HH:mm:ss Z y"
@@ -72,4 +88,27 @@ class SDDateHandler: NSObject {
         }
         return nil
     }
+    
+    func isCurrentDateActive(startTime: NSString , endTime: NSString) -> (Bool){
+        var result = false
+        let currentDate = NSDate()
+        if let timeZoneName = DataManager.sharedInstance.conferences?.conferences[DataManager.sharedInstance.selectedConferenceIndex].info.utcTimezoneOffset {
+            if let startDate = SDDateHandler.sharedInstance.parseScheduleDate(startTime) {
+                if let localStartDate = SDDateHandler.convertDateToLocalTime(startDate, timeZoneName: timeZoneName) {
+                    if let endDate = SDDateHandler.sharedInstance.parseScheduleDate(endTime) {
+                        if let localEndDate = SDDateHandler.convertDateToLocalTime(endDate, timeZoneName: timeZoneName) {
+                            if let localCurrentDate = SDDateHandler.convertDateToLocalTime(currentDate, timeZoneName: timeZoneName) {
+                                if localCurrentDate < localEndDate && localCurrentDate >= localStartDate{
+                                    result = true
+                                    return result
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        return result
+    }
+   
 }

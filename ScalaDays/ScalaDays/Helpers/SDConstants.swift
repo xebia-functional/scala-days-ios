@@ -66,3 +66,5 @@ let launchSafariToUrl = {(url: NSURL) -> Bool in
 }
 
 let screenBounds = UIScreen.mainScreen().bounds
+let colorScheduleTime = UIColor(red: 70/255, green: 149/255, blue: 174/255, alpha: 1)
+let colorScheduleTimeActive = UIColor(red: 51/255, green: 116/255, blue: 136/255, alpha: 1)

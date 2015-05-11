@@ -77,9 +77,6 @@ class SDScheduleViewController: GAITrackedViewController, UITableViewDelegate, U
         super.viewDidLoad()
         
         self.setNavigationBarItem()
-        let barButtonOptions = UIBarButtonItem(image: UIImage(named: "navigation_bar_icon_options"), style: .Plain, target: self, action: "didTapOptionsButton")
-        self.navigationItem.rightBarButtonItem = barButtonOptions
-
         tblSchedule?.registerNib(UINib(nibName: "SDScheduleListTableViewCell", bundle: nil), forCellReuseIdentifier: kReuseIdentifier)
         tblSchedule?.separatorStyle = .None
         if isIOS8OrLater() {
@@ -91,6 +88,17 @@ class SDScheduleViewController: GAITrackedViewController, UITableViewDelegate, U
         self.view.addSubview(errorPlaceholderView)
         
         self.screenName = kGAScreenNameSchedule
+    }
+    
+    func loadNavigationBar() {
+        let barButtonOptions = UIBarButtonItem(image: UIImage(named: "navigation_bar_icon_filter"), style: .Plain, target: self, action: "didTapOptionsButton")
+        let barButtonClock = UIBarButtonItem(image: UIImage(named: "navigation_bar_icon_clock"), style: .Plain, target: self, action: "didTapOptionsButtonClock")
+        
+        if viewClock().result {
+            self.navigationItem.rightBarButtonItems = [barButtonOptions,barButtonClock]
+        } else {
+            self.navigationItem.rightBarButtonItem = barButtonOptions
+        }
     }
 
 
@@ -128,6 +136,7 @@ class SDScheduleViewController: GAITrackedViewController, UITableViewDelegate, U
                 }
                 
                 self.tblSchedule.reloadData()
+                self.loadNavigationBar()
             }
         }
     }
@@ -393,6 +402,33 @@ class SDScheduleViewController: GAITrackedViewController, UITableViewDelegate, U
             SDAnimationHelper.showViewWithFadeInAnimation(tblSchedule)
         }
     }
+    
+    //MARK: -Clock
+    
+    func viewClock() -> (result :Bool, indexRow : Int, indexSection: Int){
+        var result = false
+        let currentDate = NSDate()
+        if let events = eventsToShow {
+            for (indexSection, eventSection) in enumerate(events){
+                for (indexRow, event) in enumerate(eventSection){
+                    if SDDateHandler.sharedInstance.isCurrentDateActive(event.startTime, endTime: event.endTime){
+                        result = true
+                        return (result, indexRow, indexSection)
+                   }
+                }
+            }
+        }
+        return (result, 0, 0)
+    }
+    
+    func didTapOptionsButtonClock() {
+        let clock = viewClock()
+        if clock.result {
+            let indexPath = NSIndexPath(forRow: clock.indexRow, inSection: clock.indexSection)
+            tblSchedule.scrollToRowAtIndexPath(indexPath, atScrollPosition: UITableViewScrollPosition.Top, animated: true)
+        }
+    }
+    
     
 }
 
