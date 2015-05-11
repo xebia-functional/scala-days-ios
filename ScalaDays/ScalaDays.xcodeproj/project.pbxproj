@@ -72,9 +72,9 @@
 		84EFC40AF74037F095B5FD60 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2FB6FED00626F7CA4FD64E9E /* libPods.a */; };
 		A171433E1A88F6880068FD33 /* SDConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1FA1FF81A7BA95500338AF0 /* SDConstants.swift */; };
 		A171433F1A88F7730068FD33 /* SDDateHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 590DDD761A83C5E800E4CC3F /* SDDateHandler.swift */; };
+		A18E3ADC1AFB80E700D531D4 /* SDExternalKeys.plist in Resources */ = {isa = PBXBuildFile; fileRef = A18E3ADB1AFB80E700D531D4 /* SDExternalKeys.plist */; };
 		A19C65C71A7FC30A00A206FC /* SDContactViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A19C65C51A7FC30A00A206FC /* SDContactViewController.swift */; };
 		A19C65C81A7FC30A00A206FC /* SDContactViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A19C65C61A7FC30A00A206FC /* SDContactViewController.xib */; };
-		A1A8AA5A1AFBA23F00D2679B /* SDExternalKeys.plist in Resources */ = {isa = PBXBuildFile; fileRef = A1A8AA591AFBA23F00D2679B /* SDExternalKeys.plist */; };
 		A1A94F2D1A76A36C003A6C0B /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1A94F2C1A76A36C003A6C0B /* SwiftyJSON.swift */; };
 		A1C8B8761A8E6C77008599FF /* SDScheduleListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A1C8B8751A8E6C77008599FF /* SDScheduleListTableViewCell.xib */; };
 		A1C8B8781A8E6CE7008599FF /* SDScheduleListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1C8B8771A8E6CE7008599FF /* SDScheduleListTableViewCell.swift */; };
@@ -176,6 +176,7 @@
 		9AA114FE335624986EFB5A1D /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		A163DC2E1A6E595B00A21B8E /* libPods-SwiftyJSON.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPods-SwiftyJSON.a"; path = "Pods/build/Debug-iphoneos/libPods-SwiftyJSON.a"; sourceTree = "<group>"; };
 		A17D3AC71A690E3A00024062 /* Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Bridging-Header.h"; sourceTree = "<group>"; };
+		A18E3ADB1AFB80E700D531D4 /* SDExternalKeys.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = SDExternalKeys.plist; path = ScalaDays/SDExternalKeys.plist; sourceTree = SOURCE_ROOT; };
 		A19C65C51A7FC30A00A206FC /* SDContactViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SDContactViewController.swift; sourceTree = "<group>"; };
 		A19C65C61A7FC30A00A206FC /* SDContactViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SDContactViewController.xib; sourceTree = "<group>"; };
 		A1A8AA591AFBA23F00D2679B /* SDExternalKeys.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = SDExternalKeys.plist; path = ScalaDays/SDExternalKeys.plist; sourceTree = SOURCE_ROOT; };
@@ -637,7 +638,7 @@
 				59D174641A8E0C3A001E87CF /* SDSponsorsTableViewCell.xib in Resources */,
 				A1D795D41A68267F009CCEB3 /* Images.xcassets in Resources */,
 				5920EA601A9484B600564014 /* SDErrorPlaceholderView.xib in Resources */,
-				A1A8AA5A1AFBA23F00D2679B /* SDExternalKeys.plist in Resources */,
+				59ACF91D1AB2FFF2005914E1 /* SDExternalKeys.plist in Resources */,
 				592978041A82106D00EE3BA3 /* SDSocialTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
