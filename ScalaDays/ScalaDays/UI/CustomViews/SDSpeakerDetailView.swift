@@ -32,6 +32,7 @@ class SDSpeakerDetailView: UIView {
     let kBottomPadding: CGFloat = 30.0
     let kHorizontalPadding: CGFloat = 18.0
     let kPaddingForSeparator: CGFloat = 15.0
+    let selectorTwitter : Selector = "onTwitter"
 
     required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -67,7 +68,7 @@ class SDSpeakerDetailView: UIView {
             } else {
                 lblUsername.text = "@\(twitterUsername)"
             }
-            tapTwitter.addTarget(self, action: "onTwitter")
+            tapTwitter.addTarget(self, action: selectorTwitter)
             imgView.addGestureRecognizer(tapTwitter)
         } else {
             lblUsername.text = ""
