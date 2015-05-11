@@ -33,6 +33,7 @@ class SDScheduleListTableViewCell: UITableViewCell {
     @IBOutlet weak var lblSpeaker: UILabel!
     @IBOutlet weak var lblTwitter: UILabel!
     @IBOutlet weak var lblTime: UILabel!
+    @IBOutlet weak var viewTime: UIView!
     @IBOutlet weak var selectedBGView: UIView!
     @IBOutlet weak var imgFavoriteIcon: UIImageView!
     
@@ -62,9 +63,15 @@ class SDScheduleListTableViewCell: UITableViewCell {
             if let startDate = SDDateHandler.sharedInstance.parseScheduleDate(event.startTime) {
                 if let localStartDate = SDDateHandler.convertDateToLocalTime(startDate, timeZoneName: timeZoneName) {
                     lblTime.text = SDDateHandler.sharedInstance.hoursAndMinutesFromDate(localStartDate)
+                     if SDDateHandler.sharedInstance.isCurrentDateActive(event.startTime, endTime: event.endTime){
+                        viewTime.backgroundColor = colorScheduleTimeActive
+                     } else{
+                        viewTime.backgroundColor = colorScheduleTime
+                    }
                 }
             }
         }
+        
         
         lblTitle.text = event.title        
         if let eventLocation = event.location {
