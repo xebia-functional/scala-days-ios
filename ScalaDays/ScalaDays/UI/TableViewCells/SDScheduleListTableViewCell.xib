@@ -73,8 +73,16 @@
                         </constraints>
                     </view>
                     <view alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gAd-Vu-ffH" userLabel="Selected BG View">
-                        <rect key="frame" x="-8" y="-8" width="656" height="140"/>
+                        <rect key="frame" x="0.0" y="0.0" width="640" height="131"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="640" id="Ovl-JX-5ha"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="Ovl-JX-5ha"/>
+                            </mask>
+                        </variation>
                     </view>
                 </subviews>
                 <color key="backgroundColor" red="0.41960784313725491" green="0.81176470588235294" blue="0.9137254901960784" alpha="1" colorSpace="calibratedRGB"/>
@@ -84,27 +92,27 @@
                     <constraint firstItem="uOZ-dw-dqz" firstAttribute="leading" secondItem="WYi-j6-dN4" secondAttribute="leading" id="2lz-sm-cXp"/>
                     <constraint firstItem="Abz-WY-eRT" firstAttribute="top" secondItem="WYi-j6-dN4" secondAttribute="top" constant="12" id="2tV-WT-dkF"/>
                     <constraint firstAttribute="trailingMargin" secondItem="Abz-WY-eRT" secondAttribute="trailing" constant="15" id="9Lq-AE-N6c"/>
-                    <constraint firstItem="gAd-Vu-ffH" firstAttribute="leading" secondItem="WYi-j6-dN4" secondAttribute="leadingMargin" constant="-16" id="AUA-8N-N42"/>
                     <constraint firstItem="78z-hW-SG4" firstAttribute="top" secondItem="ZyD-ur-VrS" secondAttribute="bottom" constant="6" id="CZp-Zz-wkB"/>
                     <constraint firstItem="dIV-zd-tWR" firstAttribute="leading" secondItem="78z-hW-SG4" secondAttribute="leading" id="Djs-fG-aru"/>
+                    <constraint firstItem="gAd-Vu-ffH" firstAttribute="top" secondItem="iZC-Ux-GCx" secondAttribute="top" id="ILI-Pw-lVT"/>
                     <constraint firstItem="iZC-Ux-GCx" firstAttribute="leading" secondItem="uOZ-dw-dqz" secondAttribute="trailing" constant="1" id="Jmg-dR-tCj"/>
-                    <constraint firstAttribute="bottomMargin" secondItem="gAd-Vu-ffH" secondAttribute="bottom" constant="-8" id="LRe-4g-BtN"/>
-                    <constraint firstAttribute="trailingMargin" secondItem="gAd-Vu-ffH" secondAttribute="trailing" constant="-16" id="Oeg-9c-gt0"/>
                     <constraint firstItem="iZC-Ux-GCx" firstAttribute="top" secondItem="WYi-j6-dN4" secondAttribute="top" id="QnM-w5-Hsl"/>
                     <constraint firstAttribute="bottomMargin" secondItem="dIV-zd-tWR" secondAttribute="bottom" constant="3" id="RmC-H5-TUt"/>
                     <constraint firstItem="78z-hW-SG4" firstAttribute="leading" secondItem="uOZ-dw-dqz" secondAttribute="trailing" constant="15" id="Srh-Uk-eWc"/>
                     <constraint firstItem="ZyD-ur-VrS" firstAttribute="top" secondItem="Abz-WY-eRT" secondAttribute="bottom" constant="4" id="SwX-uL-14y"/>
+                    <constraint firstItem="uOZ-dw-dqz" firstAttribute="leading" secondItem="gAd-Vu-ffH" secondAttribute="leading" id="UxU-Dt-H3P"/>
                     <constraint firstItem="uOZ-dw-dqz" firstAttribute="top" secondItem="WYi-j6-dN4" secondAttribute="top" id="Ywm-FI-NDn"/>
                     <constraint firstItem="Abz-WY-eRT" firstAttribute="leading" secondItem="uOZ-dw-dqz" secondAttribute="trailing" constant="15" id="c3V-JN-NNH"/>
                     <constraint firstItem="dIV-zd-tWR" firstAttribute="top" secondItem="78z-hW-SG4" secondAttribute="bottom" constant="6" id="cdY-X7-N2J"/>
                     <constraint firstItem="ZyD-ur-VrS" firstAttribute="leading" secondItem="Abz-WY-eRT" secondAttribute="leading" id="dvt-SR-mfu"/>
+                    <constraint firstItem="gAd-Vu-ffH" firstAttribute="trailing" secondItem="iZC-Ux-GCx" secondAttribute="trailing" id="eNC-nk-nnW"/>
                     <constraint firstAttribute="trailingMargin" secondItem="dIV-zd-tWR" secondAttribute="trailing" constant="15" id="kYQ-sU-ImE"/>
                     <constraint firstAttribute="trailing" secondItem="78z-hW-SG4" secondAttribute="trailing" constant="40" id="nCN-dq-1kr"/>
                     <constraint firstItem="dIV-zd-tWR" firstAttribute="leading" secondItem="uOZ-dw-dqz" secondAttribute="trailing" constant="15" id="rWd-lv-zjE"/>
                     <constraint firstItem="kZw-1b-gKd" firstAttribute="top" secondItem="WYi-j6-dN4" secondAttribute="top" id="riG-kL-m4E"/>
+                    <constraint firstItem="gAd-Vu-ffH" firstAttribute="bottom" secondItem="iZC-Ux-GCx" secondAttribute="bottom" id="sBG-pp-mW0"/>
                     <constraint firstAttribute="trailing" secondItem="iZC-Ux-GCx" secondAttribute="trailing" id="sBj-Qv-Gfd"/>
                     <constraint firstAttribute="trailing" secondItem="kZw-1b-gKd" secondAttribute="trailing" constant="10" id="ul2-dp-mB3"/>
-                    <constraint firstItem="gAd-Vu-ffH" firstAttribute="top" secondItem="WYi-j6-dN4" secondAttribute="topMargin" constant="-16" id="vPb-2v-rOX"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
@@ -113,7 +121,6 @@
                 <outlet property="constraintForLblTitleBottomSpace" destination="cdY-X7-N2J" id="T97-1n-BUP"/>
                 <outlet property="constraintForLblTrackBottomSpace" destination="SwX-uL-14y" id="qBp-GU-ajz"/>
                 <outlet property="constraintForLblTrackHeight" destination="mRK-bW-J79" id="NSD-Eb-yBZ"/>
-                <outlet property="constraintForViewSpeakerBottomSpace" destination="RmC-H5-TUt" id="3lx-7d-Rax"/>
                 <outlet property="constraintForViewSpeakerHeight" destination="YXE-du-dG3" id="ZzU-D5-ON8"/>
                 <outlet property="imgFavoriteIcon" destination="kZw-1b-gKd" id="ZgF-hh-nBK"/>
                 <outlet property="lblLocation" destination="ZyD-ur-VrS" id="6jn-kp-fwU"/>
