@@ -26,7 +26,7 @@ class SDScheduleListTableViewCell: UITableViewCell {
     let kDefaultBottomSpaceForLbl: CGFloat = 4.0
     let kDefaultTopSpaceForLblTwitter: CGFloat = 2.0
     let kDefaultTopSpaceForTitle: CGFloat = 6.0
-    let kWidthOfTimeContainer: CGFloat = 68.0
+    let kWidthOfTimeContainer: CGFloat = 80.0
     let kDefaultHorizontalLeading: CGFloat = 15.0
     let kDefaultHorizontalTrailing: CGFloat = 40.0
     let kDefaultMaxAlphaForSelectionBG: CGFloat = 0.3

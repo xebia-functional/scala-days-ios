@@ -34,7 +34,7 @@
                     <color key="textColor" red="0.21176470589999999" green="0.27058823529999998" blue="0.31372549020000001" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Xs1-9a-l2R">
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="avatar" translatesAutoresizingMaskIntoConstraints="NO" id="Xs1-9a-l2R">
                     <rect key="frame" x="0.0" y="3" width="30" height="30"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="30" id="R2O-6p-Te9"/>
@@ -53,4 +53,7 @@
             </constraints>
         </view>
     </objects>
+    <resources>
+        <image name="avatar" width="40" height="40"/>
+    </resources>
 </document>

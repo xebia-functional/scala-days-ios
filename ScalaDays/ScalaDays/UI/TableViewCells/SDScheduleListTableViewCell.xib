@@ -36,25 +36,25 @@
                         </constraints>
                     </view>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" placeholderIntrinsicWidth="290" placeholderIntrinsicHeight="23" text="Track" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="200" translatesAutoresizingMaskIntoConstraints="NO" id="Abz-WY-eRT">
-                        <rect key="frame" x="95" y="12" width="522" height="15"/>
+                        <rect key="frame" x="95" y="12" width="522" height="23"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="15" id="mRK-bW-J79"/>
+                            <constraint firstAttribute="height" priority="750" constant="15" id="mRK-bW-J79"/>
                         </constraints>
                         <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="12"/>
                         <color key="textColor" red="0.25882352941176467" green="0.49411764705882355" blue="0.56862745098039214" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" placeholderIntrinsicWidth="290" placeholderIntrinsicHeight="23" text="Room: Caleta Pavilion" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="200" translatesAutoresizingMaskIntoConstraints="NO" id="ZyD-ur-VrS">
-                        <rect key="frame" x="95" y="31" width="290" height="15"/>
+                        <rect key="frame" x="95" y="39" width="290" height="23"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="15" id="Hqa-4c-DTu"/>
+                            <constraint firstAttribute="height" priority="750" constant="15" id="Hqa-4c-DTu"/>
                         </constraints>
                         <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="12"/>
                         <color key="textColor" red="0.25882352939999997" green="0.4941176471" blue="0.56862745100000001" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" placeholderIntrinsicWidth="304" placeholderIntrinsicHeight="25" text="Title" lineBreakMode="clip" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="280" translatesAutoresizingMaskIntoConstraints="NO" id="78z-hW-SG4">
-                        <rect key="frame" x="95" y="52" width="505" height="27"/>
+                        <rect key="frame" x="95" y="68" width="505" height="25"/>
                         <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="15"/>
                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
@@ -67,9 +67,9 @@
                         </constraints>
                     </imageView>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dIV-zd-tWR" userLabel="View-Speakers">
-                        <rect key="frame" x="95" y="85" width="522" height="36"/>
+                        <rect key="frame" x="95" y="99" width="522" height="22"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="36" id="YXE-du-dG3"/>
+                            <constraint firstAttribute="height" priority="750" constant="36" id="YXE-du-dG3"/>
                         </constraints>
                     </view>
                     <view alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gAd-Vu-ffH" userLabel="Selected BG View">
