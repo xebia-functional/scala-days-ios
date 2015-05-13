@@ -27,6 +27,9 @@ class SDSpeakerScheduleView: UIView {
     @IBOutlet weak var lblName: UILabel!
     @IBOutlet weak var lblUsername: UILabel!
 
+    let kCellHeight: CGFloat = 36.0
+    let kborderWidth: CGFloat = 1.0
+
 
     required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -44,7 +47,7 @@ class SDSpeakerScheduleView: UIView {
             containerView = container
             imgView.circularImage()
             imgView.layer.borderColor = UIColor.whiteColor().CGColor
-            imgView.layer.borderWidth = 1.0
+            imgView.layer.borderWidth = kborderWidth
         }
     }
 
@@ -73,6 +76,6 @@ class SDSpeakerScheduleView: UIView {
     }
 
     func contentHeight() -> CGFloat {
-        return 36
+        return kCellHeight
     }
 }
