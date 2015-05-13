@@ -36,7 +36,7 @@ let icon_menu_speakers = "menu_icon_speakers"
 let Height_Row_Menu: CGFloat = 50
 let Height_Header_Menu: CGFloat = 130
 let kEstimatedDynamicCellsRowHeightHigh : CGFloat = 160.0
-let kEstimatedDynamicCellsRowHeightLow : CGFloat = 80.0
+let kEstimatedDynamicCellsRowHeightLow : CGFloat = 132.0
 
 let kAnimationShowHideTimeInterval : NSTimeInterval = 0.3
 let kTweetCount = 100
