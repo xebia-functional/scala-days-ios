@@ -185,7 +185,11 @@ class SDSocialViewController: GAITrackedViewController, SDErrorPlaceholderViewDe
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
         if(listOfTweets.count > indexPath.row) {
             let tweet = listOfTweets[indexPath.row] as SDTweet
-            if let url = SDSocialHandler.urlForTweetDetail(tweet) {
+            
+            if let url = SDSocialHandler.urlAppForTweetDetail(tweet) {
+                SDGoogleAnalyticsHandler.sendGoogleAnalyticsTrackingWithScreenName(kGAScreenNameSocial, category: kGACategoryNavigate, action: kGAActionSocialGoToTweet, label: nil)
+                launchSafariToUrl(url)
+            } else if let url = SDSocialHandler.urlForTweetDetail(tweet) {
                 SDGoogleAnalyticsHandler.sendGoogleAnalyticsTrackingWithScreenName(kGAScreenNameSocial, category: kGACategoryNavigate, action: kGAActionSocialGoToTweet, label: nil)
                 launchSafariToUrl(url)
             }
