@@ -99,12 +99,14 @@ class SDSpeakerDetailView: UIView {
 
     func onTwitter() {
         if let twitterAccount = lblUsername.text {
-            if let url = SDSocialHandler.urlAppForTwitterAccount(twitterAccount) {
+            if let urlApp = SDSocialHandler.urlAppForTwitterAccount(twitterAccount) {
+                let result = launchSafariToUrl(urlApp)
+                if !result {
+                    if let url = SDSocialHandler.urlForTwitterAccount(twitterAccount) {
+                        launchSafariToUrl(url)
+                    }
+                }
                 SDGoogleAnalyticsHandler.sendGoogleAnalyticsTrackingWithScreenName(kGAScreenNameSpeakers, category: kGACategoryNavigate, action: kGAActionSpeakersGoToUser, label: nil)
-                launchSafariToUrl(url)
-            } else if let url = SDSocialHandler.urlForTwitterAccount(twitterAccount) {
-                SDGoogleAnalyticsHandler.sendGoogleAnalyticsTrackingWithScreenName(kGAScreenNameSpeakers, category: kGACategoryNavigate, action: kGAActionSpeakersGoToUser, label: nil)
-                launchSafariToUrl(url)
             }
         }
     }
