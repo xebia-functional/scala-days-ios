@@ -92,9 +92,14 @@ class SDSpeakersListViewController: GAITrackedViewController, SDErrorPlaceholder
             if listOfSpeakers.count > indexPath.row {
                 let currentSpeaker = listOfSpeakers[indexPath.row]
                 if let twitterAccount = currentSpeaker.twitter {
-                    if let url = SDSocialHandler.urlForTwitterAccount(twitterAccount) {
+                    if let urlApp = SDSocialHandler.urlAppForTwitterAccount(twitterAccount) {
+                        let result = launchSafariToUrl(urlApp)
+                        if !result {
+                            if let url = SDSocialHandler.urlForTwitterAccount(twitterAccount) {
+                                launchSafariToUrl(url)
+                            }
+                        }
                         SDGoogleAnalyticsHandler.sendGoogleAnalyticsTrackingWithScreenName(kGAScreenNameSpeakers, category: kGACategoryNavigate, action: kGAActionSpeakersGoToUser, label: nil)
-                        launchSafariToUrl(url)
                     }
                 }
             }

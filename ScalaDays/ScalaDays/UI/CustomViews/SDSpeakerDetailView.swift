@@ -32,7 +32,7 @@ class SDSpeakerDetailView: UIView {
     let kBottomPadding: CGFloat = 30.0
     let kHorizontalPadding: CGFloat = 18.0
     let kPaddingForSeparator: CGFloat = 15.0
-    let selectorTwitter : Selector = "onTwitter"
+    let selectorTwitter: Selector = "onTwitter"
 
     required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -97,11 +97,16 @@ class SDSpeakerDetailView: UIView {
         self.layer.addSublayer(separatorLayer)
     }
 
-    func onTwitter () {
+    func onTwitter() {
         if let twitterAccount = lblUsername.text {
-            if let url = SDSocialHandler.urlForTwitterAccount(twitterAccount) {
+            if let urlApp = SDSocialHandler.urlAppForTwitterAccount(twitterAccount) {
+                let result = launchSafariToUrl(urlApp)
+                if !result {
+                    if let url = SDSocialHandler.urlForTwitterAccount(twitterAccount) {
+                        launchSafariToUrl(url)
+                    }
+                }
                 SDGoogleAnalyticsHandler.sendGoogleAnalyticsTrackingWithScreenName(kGAScreenNameSpeakers, category: kGACategoryNavigate, action: kGAActionSpeakersGoToUser, label: nil)
-                launchSafariToUrl(url)
             }
         }
     }
