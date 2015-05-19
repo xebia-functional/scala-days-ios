@@ -75,6 +75,7 @@
 		A19C65C81A7FC30A00A206FC /* SDContactViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A19C65C61A7FC30A00A206FC /* SDContactViewController.xib */; };
 		A1A47E7C1B035FA600C6CC58 /* SDSpeakerScheduleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1A47E7B1B035FA600C6CC58 /* SDSpeakerScheduleView.swift */; };
 		A1A47E7E1B035FC400C6CC58 /* SDSpeakerScheduleView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A1A47E7D1B035FC400C6CC58 /* SDSpeakerScheduleView.xib */; };
+		A1A47E801B0A308E00C6CC58 /* SDExternalKeys.plist in Resources */ = {isa = PBXBuildFile; fileRef = A1A8AA591AFBA23F00D2679B /* SDExternalKeys.plist */; };
 		A1A94F2D1A76A36C003A6C0B /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1A94F2C1A76A36C003A6C0B /* SwiftyJSON.swift */; };
 		A1C8B8761A8E6C77008599FF /* SDScheduleListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A1C8B8751A8E6C77008599FF /* SDScheduleListTableViewCell.xib */; };
 		A1C8B8781A8E6CE7008599FF /* SDScheduleListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1C8B8771A8E6CE7008599FF /* SDScheduleListTableViewCell.swift */; };
@@ -622,6 +623,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A1A47E801B0A308E00C6CC58 /* SDExternalKeys.plist in Resources */,
 				A1FA1FF41A7B98FE00338AF0 /* SDScheduleViewController.xib in Resources */,
 				A1FA1FF51A7B98FE00338AF0 /* SDSocialViewController.xib in Resources */,
 				A1C8B8761A8E6C77008599FF /* SDScheduleListTableViewCell.xib in Resources */,
@@ -836,7 +838,7 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: 47 Degrees, LLC";
 				COPY_PHASE_STRIP = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -856,6 +858,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				PROVISIONING_PROFILE = "daa87f0f-0299-4445-b061-ebab2b3381df";
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -879,7 +882,7 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: 47 Degrees, LLC";
 				COPY_PHASE_STRIP = YES;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -892,6 +895,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				MTL_ENABLE_DEBUG_INFO = NO;
+				PROVISIONING_PROFILE = "daa87f0f-0299-4445-b061-ebab2b3381df";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
@@ -904,8 +908,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Ana Maria Marquez Velazquez (VLT9L5DKXR)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Ana Maria Marquez Velazquez (VLT9L5DKXR)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: 47 Degrees, LLC";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: 47 Degrees, LLC";
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -920,7 +924,7 @@
 				);
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "298e87c2-74b6-4e4d-a5ee-c47bf4af5b90";
+				PROVISIONING_PROFILE = "daa87f0f-0299-4445-b061-ebab2b3381df";
 				SWIFT_OBJC_BRIDGING_HEADER = "ScalaDays/Bridging-Header.h";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -932,8 +936,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Ana Maria Marquez Velazquez (VLT9L5DKXR)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Ana Maria Marquez Velazquez (VLT9L5DKXR)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: 47 Degrees, LLC";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: 47 Degrees, LLC";
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -948,7 +952,7 @@
 				);
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "298e87c2-74b6-4e4d-a5ee-c47bf4af5b90";
+				PROVISIONING_PROFILE = "daa87f0f-0299-4445-b061-ebab2b3381df";
 				SWIFT_OBJC_BRIDGING_HEADER = "ScalaDays/Bridging-Header.h";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
