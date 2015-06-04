@@ -146,7 +146,7 @@ class DataManager {
                 
                 if let conferencesData = StoringHelper.sharedInstance.loadConferenceData() {
                     self.conferences = conferencesData
-                    if let date = response?.allHeaderFields[lastModifiedDate] as NSString? {
+                    if let date = response?.allHeaderFields[lastModifiedDate] as! NSString? {
                         let dateJson = SDDateHandler.sharedInstance.parseServerDate(date)
                         if (dateJson == self.lastDate) {
                             println("Json no modified")
@@ -172,7 +172,7 @@ class DataManager {
                         callback(false, nil)
                     }
                 } else {
-                    if let date = response?.allHeaderFields[lastModifiedDate] as NSString? {
+                    if let date = response?.allHeaderFields[lastModifiedDate]as! NSString? {
                         self.lastDate = SDDateHandler.sharedInstance.parseServerDate(date)
                     }
                     if (error != nil) {
@@ -213,7 +213,7 @@ class DataManager {
             let utcTimezoneOffset = info["utcTimezoneOffset"].string!
             let utcTimezoneOffsetMillis = info["utcTimezoneOffsetMillis"].floatValue
             let hashtag = info["hashtag"].string!
-            let query = info["query"].string?
+            let query = info["query"].string
             
             let pictures = info["pictures"]
             var picturesParse: [Picture] = []
@@ -235,8 +235,8 @@ class DataManager {
                 let name = speaker["name"].string!
                 let title = speaker["title"].string!
                 let id = speaker["id"].intValue
-                let picture = speaker["picture"].string?
-                let twitter = speaker["twitter"].string?
+                let picture = speaker["picture"].string
+                let twitter = speaker["twitter"].string
                 let speakerParse = Speaker(bio: bio, company: company, id: id, name: name, picture: picture, title: title, twitter: twitter)
                 arraySpeakerParse.append(speakerParse)
             }
@@ -303,13 +303,13 @@ class DataManager {
                     let name = speaker["name"].string!
                     let title = speaker["title"].string!
                     let id = speaker["id"].intValue
-                    let picture = speaker["picture"].string?
-                    let twitter = speaker["twitter"].string?
+                    let picture = speaker["picture"].string
+                    let twitter = speaker["twitter"].string
                     let speakerParseEvent = Speaker(bio: bio, company: company, id: id, name: name, picture: picture, title: title, twitter: twitter)
                     arraySpeakerParseEvent.append(speakerParseEvent)
                 }
 
-                let eventParse = Event(id: id, title: title, apiDescription: description, type: type, startTime: startTime, endTime: endTime, date: date, track: trackParse?, location: locationParse?, speakers: arraySpeakerParseEvent)
+                let eventParse = Event(id: id, title: title, apiDescription: description, type: type, startTime: startTime, endTime: endTime, date: date, track: trackParse, location: locationParse, speakers: arraySpeakerParseEvent)
                 arrayScheduleParse.append(eventParse)
             }
             let conferenceParse = Conference(info: infoParse, schedule: arrayScheduleParse, sponsors: arraySponsorParse, speakers: arraySpeakerParse, venues: arrayVenueParse, codeOfConduct: codeOfConductParse!)

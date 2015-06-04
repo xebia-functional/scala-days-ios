@@ -122,7 +122,7 @@ class SDSlideMenuViewController: UIViewController, UITableViewDelegate, UITableV
     }
     
     func componeConferenceTable(){
-        if let conferences = DataManager.sharedInstance.conferences?{
+        if let conferences = DataManager.sharedInstance.conferences {
             self.currentConferences = conferences
             self.tblConferences.reloadData()
         }
@@ -187,7 +187,7 @@ class SDSlideMenuViewController: UIViewController, UITableViewDelegate, UITableV
                 bgColorView.backgroundColor = UIColor.selectedCellMenu()
                 cell.selectedBackgroundView = bgColorView
                 cell.textLabel?.text = menus[indexPath.row]
-                cell.imageView?.image = UIImage(named: menusImage[indexPath.row] as NSString)
+                cell.imageView?.image = UIImage(named: menusImage[indexPath.row] as String)
                 cell.layoutIfNeeded()
                 return cell
         }
@@ -284,7 +284,7 @@ class SDSlideMenuViewController: UIViewController, UITableViewDelegate, UITableV
         // We need to notify our main controllers that their data need to be updated, also our visible controller needs to reload ASAP:
         for controller in controllers {
             if controller is SDMenuControllerItem {
-                let controllerItem = controller as SDMenuControllerItem
+                let controllerItem = controller as! SDMenuControllerItem
                 controllerItem.isDataLoaded = false
             }
         }

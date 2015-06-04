@@ -57,14 +57,14 @@ class SDDateHandler: NSObject {
         dateFormatter.dateFormat = kResponseDateFormat
         dateFormatter.timeZone = NSTimeZone(abbreviation: "GMT")
         dateFormatter.locale = NSLocale(localeIdentifier: "en_US_POSIX")
-        return dateFormatter.dateFromString(dateString)
+        return dateFormatter.dateFromString(dateString as String)
     }
 
     func parseScheduleDate(dateString: NSString) -> NSDate? {
         dateFormatter.dateFormat = kScheduleDateFormat
         dateFormatter.timeZone = NSTimeZone(abbreviation: "UTC")
         dateFormatter.locale = NSLocale(localeIdentifier: "en_US_POSIX")
-        return dateFormatter.dateFromString(dateString)
+        return dateFormatter.dateFromString(dateString as String)
     }
     
     func formatScheduleDetailDate(date: NSDate) -> String? {

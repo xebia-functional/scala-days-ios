@@ -128,7 +128,7 @@ class SDSocialViewController: GAITrackedViewController, SDErrorPlaceholderViewDe
 
                     switch (tweets, error) {
                     case let (.Some(tweets), nil):
-                        self.listOfTweets = tweets as Array<SDTweet>
+                        self.listOfTweets = tweets as! Array<SDTweet>
                         dispatch_async(dispatch_get_main_queue()) {
                             if self.listOfTweets.count > 0 {
                                 self.tblView.reloadData()
@@ -202,7 +202,7 @@ class SDSocialViewController: GAITrackedViewController, SDErrorPlaceholderViewDe
         if (isIOS8OrLater()) {
             return UITableViewAutomaticDimension
         }
-        let cell = self.tableView(tableView, cellForRowAtIndexPath: indexPath) as SDSocialTableViewCell
+        let cell = self.tableView(tableView, cellForRowAtIndexPath: indexPath) as! SDSocialTableViewCell
         return cell.contentView.systemLayoutSizeFittingSize(UILayoutFittingCompressedSize).height
     }
 

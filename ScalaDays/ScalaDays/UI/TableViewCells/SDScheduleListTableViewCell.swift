@@ -99,7 +99,7 @@ class SDScheduleListTableViewCell: UITableViewCell {
             lblLocation.text = ""
         }
 
-        if let speakers = event.speakers? {
+        if let speakers = event.speakers {
             for view in viewSpeaker.subviews {
                 view.removeFromSuperview()
             }

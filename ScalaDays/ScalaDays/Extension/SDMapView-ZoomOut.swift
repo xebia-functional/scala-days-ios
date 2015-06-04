@@ -33,7 +33,7 @@ extension MKMapView {
         }
         var topLeftCoord = CLLocationCoordinate2D(latitude: -90, longitude: 180)
         var bottomRightCoord = CLLocationCoordinate2D(latitude: 90, longitude: -180)
-        for annotation in self.annotations as [MKAnnotation] {
+        for annotation in self.annotations as! [MKAnnotation] {
             topLeftCoord.longitude = fmin(topLeftCoord.longitude, annotation.coordinate.longitude);
             topLeftCoord.latitude = fmax(topLeftCoord.latitude, annotation.coordinate.latitude);
             bottomRightCoord.longitude = fmax(bottomRightCoord.longitude, annotation.coordinate.longitude);

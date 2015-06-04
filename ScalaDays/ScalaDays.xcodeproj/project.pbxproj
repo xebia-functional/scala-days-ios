@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		101B49986EFC463363D4784C /* Alamofire.swift in Sources */ = {isa = PBXBuildFile; fileRef = 101B45045AF560B28ED066DB /* Alamofire.swift */; };
 		1EA75E8B1A925BFF00884EC8 /* SDConferenceTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EA75E891A925BFF00884EC8 /* SDConferenceTableViewCell.swift */; };
 		1EA75E8C1A925BFF00884EC8 /* SDConferenceTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1EA75E8A1A925BFF00884EC8 /* SDConferenceTableViewCell.xib */; };
 		590DDD6A1A83BAC100E4CC3F /* SDSpeakersListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 590DDD691A83BAC100E4CC3F /* SDSpeakersListViewController.swift */; };
@@ -36,7 +35,6 @@
 		5933EFC41A9B256100383C7F /* scala_days_complete_sf.json in Resources */ = {isa = PBXBuildFile; fileRef = 5933EFC31A9B256100383C7F /* scala_days_complete_sf.json */; };
 		593571E91A77DDA8005AA332 /* StoringHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 593571E81A77DDA8005AA332 /* StoringHelper.swift */; };
 		593571EA1A77E41C005AA332 /* StoringHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 593571E81A77DDA8005AA332 /* StoringHelper.swift */; };
-		593571ED1A77E4E9005AA332 /* Alamofire.swift in Sources */ = {isa = PBXBuildFile; fileRef = 101B45045AF560B28ED066DB /* Alamofire.swift */; };
 		595003011A84C1DA00A1C24F /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 595003001A84C1DA00A1C24F /* MobileCoreServices.framework */; };
 		595003031A84C43B00A1C24F /* SDZBarSymbolSet-Enumeration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 595003021A84C43B00A1C24F /* SDZBarSymbolSet-Enumeration.swift */; };
 		595003061A84DE2600A1C24F /* SDQRScannerOverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 595003051A84DE2600A1C24F /* SDQRScannerOverlayView.swift */; };
@@ -52,6 +50,24 @@
 		597E3B0D1AB2E58A00F41F17 /* SDTweet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 597E3B071AB2E58A00F41F17 /* SDTweet.swift */; };
 		597E3B101AB2E5FD00F41F17 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 597E3B0F1AB2E5FD00F41F17 /* DataManager.swift */; };
 		597E3B111AB2E5FD00F41F17 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 597E3B0F1AB2E5FD00F41F17 /* DataManager.swift */; };
+		598BC32F1B20A39000CF943A /* Alamofire.swift in Sources */ = {isa = PBXBuildFile; fileRef = 598BC3261B20A39000CF943A /* Alamofire.swift */; };
+		598BC3301B20A39000CF943A /* Download.swift in Sources */ = {isa = PBXBuildFile; fileRef = 598BC3271B20A39000CF943A /* Download.swift */; };
+		598BC3311B20A39000CF943A /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 598BC3281B20A39000CF943A /* Info.plist */; };
+		598BC3321B20A39000CF943A /* Manager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 598BC3291B20A39000CF943A /* Manager.swift */; };
+		598BC3331B20A39000CF943A /* ParameterEncoding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 598BC32A1B20A39000CF943A /* ParameterEncoding.swift */; };
+		598BC3341B20A39000CF943A /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = 598BC32B1B20A39000CF943A /* Request.swift */; };
+		598BC3351B20A39000CF943A /* ResponseSerialization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 598BC32C1B20A39000CF943A /* ResponseSerialization.swift */; };
+		598BC3361B20A39000CF943A /* Upload.swift in Sources */ = {isa = PBXBuildFile; fileRef = 598BC32D1B20A39000CF943A /* Upload.swift */; };
+		598BC3371B20A39000CF943A /* Validation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 598BC32E1B20A39000CF943A /* Validation.swift */; };
+		598BC3381B20A52500CF943A /* Alamofire.swift in Sources */ = {isa = PBXBuildFile; fileRef = 598BC3261B20A39000CF943A /* Alamofire.swift */; };
+		598BC3391B20A52700CF943A /* Download.swift in Sources */ = {isa = PBXBuildFile; fileRef = 598BC3271B20A39000CF943A /* Download.swift */; };
+		598BC33A1B20A52900CF943A /* Manager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 598BC3291B20A39000CF943A /* Manager.swift */; };
+		598BC33B1B20A52B00CF943A /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 598BC3281B20A39000CF943A /* Info.plist */; };
+		598BC33C1B20A52F00CF943A /* ParameterEncoding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 598BC32A1B20A39000CF943A /* ParameterEncoding.swift */; };
+		598BC33D1B20A53100CF943A /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = 598BC32B1B20A39000CF943A /* Request.swift */; };
+		598BC33E1B20A53400CF943A /* ResponseSerialization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 598BC32C1B20A39000CF943A /* ResponseSerialization.swift */; };
+		598BC33F1B20A53600CF943A /* Upload.swift in Sources */ = {isa = PBXBuildFile; fileRef = 598BC32D1B20A39000CF943A /* Upload.swift */; };
+		598BC3401B20A53900CF943A /* Validation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 598BC32E1B20A39000CF943A /* Validation.swift */; };
 		59A7DF641A936C84009F4639 /* SDScheduleDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59A7DF621A936C84009F4639 /* SDScheduleDetailViewController.swift */; };
 		59A7DF651A936C84009F4639 /* SDScheduleDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 59A7DF631A936C84009F4639 /* SDScheduleDetailViewController.xib */; };
 		59A7DF6B1A9371A8009F4639 /* SDSpeakerDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59A7DF6A1A9371A8009F4639 /* SDSpeakerDetailView.swift */; };
@@ -128,7 +144,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		101B45045AF560B28ED066DB /* Alamofire.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Alamofire.swift; sourceTree = "<group>"; };
 		1EA75E891A925BFF00884EC8 /* SDConferenceTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SDConferenceTableViewCell.swift; sourceTree = "<group>"; };
 		1EA75E8A1A925BFF00884EC8 /* SDConferenceTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SDConferenceTableViewCell.xib; sourceTree = "<group>"; };
 		2FB6FED00626F7CA4FD64E9E /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -167,6 +182,16 @@
 		597E3B061AB2E58A00F41F17 /* SDMapAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SDMapAnnotation.swift; sourceTree = "<group>"; };
 		597E3B071AB2E58A00F41F17 /* SDTweet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SDTweet.swift; sourceTree = "<group>"; };
 		597E3B0F1AB2E5FD00F41F17 /* DataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
+		598BC3251B20A39000CF943A /* Alamofire.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Alamofire.h; sourceTree = "<group>"; };
+		598BC3261B20A39000CF943A /* Alamofire.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Alamofire.swift; sourceTree = "<group>"; };
+		598BC3271B20A39000CF943A /* Download.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Download.swift; sourceTree = "<group>"; };
+		598BC3281B20A39000CF943A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		598BC3291B20A39000CF943A /* Manager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Manager.swift; sourceTree = "<group>"; };
+		598BC32A1B20A39000CF943A /* ParameterEncoding.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParameterEncoding.swift; sourceTree = "<group>"; };
+		598BC32B1B20A39000CF943A /* Request.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Request.swift; sourceTree = "<group>"; };
+		598BC32C1B20A39000CF943A /* ResponseSerialization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResponseSerialization.swift; sourceTree = "<group>"; };
+		598BC32D1B20A39000CF943A /* Upload.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Upload.swift; sourceTree = "<group>"; };
+		598BC32E1B20A39000CF943A /* Validation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Validation.swift; sourceTree = "<group>"; };
 		59A7DF621A936C84009F4639 /* SDScheduleDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SDScheduleDetailViewController.swift; sourceTree = "<group>"; };
 		59A7DF631A936C84009F4639 /* SDScheduleDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SDScheduleDetailViewController.xib; sourceTree = "<group>"; };
 		59A7DF6A1A9371A8009F4639 /* SDSpeakerDetailView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SDSpeakerDetailView.swift; sourceTree = "<group>"; };
@@ -284,11 +309,11 @@
 		101B4FB1641809244D4A4CE8 /* External */ = {
 			isa = PBXGroup;
 			children = (
+				598BC3241B20A39000CF943A /* Alamofire */,
 				59ACF91B1AB2FFF2005914E1 /* Keys */,
 				A1CC71E11A7930D100757B65 /* SlideMenuController.swift */,
 				A1A94F2B1A76A36C003A6C0B /* SwiftyJSON.h */,
 				A1A94F2C1A76A36C003A6C0B /* SwiftyJSON.swift */,
-				101B45045AF560B28ED066DB /* Alamofire.swift */,
 			);
 			path = External;
 			sourceTree = "<group>";
@@ -424,6 +449,23 @@
 				597E3B0F1AB2E5FD00F41F17 /* DataManager.swift */,
 			);
 			path = Service;
+			sourceTree = "<group>";
+		};
+		598BC3241B20A39000CF943A /* Alamofire */ = {
+			isa = PBXGroup;
+			children = (
+				598BC3251B20A39000CF943A /* Alamofire.h */,
+				598BC3261B20A39000CF943A /* Alamofire.swift */,
+				598BC3271B20A39000CF943A /* Download.swift */,
+				598BC3281B20A39000CF943A /* Info.plist */,
+				598BC3291B20A39000CF943A /* Manager.swift */,
+				598BC32A1B20A39000CF943A /* ParameterEncoding.swift */,
+				598BC32B1B20A39000CF943A /* Request.swift */,
+				598BC32C1B20A39000CF943A /* ResponseSerialization.swift */,
+				598BC32D1B20A39000CF943A /* Upload.swift */,
+				598BC32E1B20A39000CF943A /* Validation.swift */,
+			);
+			path = Alamofire;
 			sourceTree = "<group>";
 		};
 		59ACF91B1AB2FFF2005914E1 /* Keys */ = {
@@ -633,6 +675,7 @@
 				A19C65C81A7FC30A00A206FC /* SDContactViewController.xib in Resources */,
 				A1FA1FE91A7AA33F00338AF0 /* SDAboutViewController.xib in Resources */,
 				590DDD721A83BEA800E4CC3F /* SDSpeakersTableViewCell.xib in Resources */,
+				598BC3311B20A39000CF943A /* Info.plist in Resources */,
 				59A7DF6D1A93725E009F4639 /* SDSpeakerDetailView.xib in Resources */,
 				59A7DF651A936C84009F4639 /* SDScheduleDetailViewController.xib in Resources */,
 				590DDD6E1A83BAFD00E4CC3F /* SDSpeakersListViewController.xib in Resources */,
@@ -652,6 +695,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				598BC33B1B20A52B00CF943A /* Info.plist in Resources */,
 				5933EFC41A9B256100383C7F /* scala_days_complete_sf.json in Resources */,
 				595FD6C81A9CD3820033D0C6 /* scala_days_wrong.json in Resources */,
 				595FD6CA1A9CD6900033D0C6 /* scala_days_empty.json in Resources */,
@@ -730,13 +774,17 @@
 				597E3B081AB2E58A00F41F17 /* Conference.swift in Sources */,
 				590DDD771A83C5E800E4CC3F /* SDDateHandler.swift in Sources */,
 				592609921A973C610055A3D4 /* SDAnimationHelper.swift in Sources */,
+				598BC32F1B20A39000CF943A /* Alamofire.swift in Sources */,
 				595003031A84C43B00A1C24F /* SDZBarSymbolSet-Enumeration.swift in Sources */,
 				A1C8B8781A8E6CE7008599FF /* SDScheduleListTableViewCell.swift in Sources */,
 				597E3B0C1AB2E58A00F41F17 /* SDTweet.swift in Sources */,
 				A1A47E7C1B035FA600C6CC58 /* SDSpeakerScheduleView.swift in Sources */,
 				597E3B0A1AB2E58A00F41F17 /* SDMapAnnotation.swift in Sources */,
+				598BC3361B20A39000CF943A /* Upload.swift in Sources */,
 				A1FA1FF91A7BA95500338AF0 /* SDConstants.swift in Sources */,
+				598BC3351B20A39000CF943A /* ResponseSerialization.swift in Sources */,
 				A1FA1FF11A7B920700338AF0 /* SDSlideMenuViewController.swift in Sources */,
+				598BC3321B20A39000CF943A /* Manager.swift in Sources */,
 				592978091A82141400EE3BA3 /* SDSocialHandler.swift in Sources */,
 				A1FA1FEE1A7B91D100338AF0 /* SDScheduleViewController.swift in Sources */,
 				A1FA1FEF1A7B91D100338AF0 /* SDSocialViewController.swift in Sources */,
@@ -744,10 +792,13 @@
 				A1FA1FED1A7B919900338AF0 /* SlideMenuController.swift in Sources */,
 				5925ADA11A897AAD000EA5E7 /* SDMapView-ZoomOut.swift in Sources */,
 				59E430EF1A964BEF00185C41 /* SDGoogleAnalyticsHandler.swift in Sources */,
+				598BC3301B20A39000CF943A /* Download.swift in Sources */,
 				A1C8B87A1A8E6F56008599FF /* SDTableHeaderView.swift in Sources */,
 				5920EA5E1A9484A800564014 /* SDErrorPlaceholderView.swift in Sources */,
+				598BC3341B20A39000CF943A /* Request.swift in Sources */,
 				1EA75E8B1A925BFF00884EC8 /* SDConferenceTableViewCell.swift in Sources */,
 				A1FA1FEC1A7B90DD00338AF0 /* SDUIViewControllerExtension.swift in Sources */,
+				598BC3371B20A39000CF943A /* Validation.swift in Sources */,
 				5928D18C1A89096500E5049E /* SDView-NibLoading.swift in Sources */,
 				595003061A84DE2600A1C24F /* SDQRScannerOverlayView.swift in Sources */,
 				5920EA661A94B20800564014 /* SDMenuControllerItem.swift in Sources */,
@@ -763,12 +814,12 @@
 				592978061A8210B800EE3BA3 /* SDImageView-Circular.swift in Sources */,
 				59A7DF641A936C84009F4639 /* SDScheduleDetailViewController.swift in Sources */,
 				A1A94F2D1A76A36C003A6C0B /* SwiftyJSON.swift in Sources */,
+				598BC3331B20A39000CF943A /* ParameterEncoding.swift in Sources */,
 				A1D795CD1A68267F009CCEB3 /* AppDelegate.swift in Sources */,
 				A1FA1FE41A7AA30F00338AF0 /* SDPlacesViewController.swift in Sources */,
 				592978031A82106D00EE3BA3 /* SDSocialTableViewCell.swift in Sources */,
 				597E3B101AB2E5FD00F41F17 /* DataManager.swift in Sources */,
 				A19C65C71A7FC30A00A206FC /* SDContactViewController.swift in Sources */,
-				101B49986EFC463363D4784C /* Alamofire.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -776,24 +827,31 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				598BC33C1B20A52F00CF943A /* ParameterEncoding.swift in Sources */,
+				598BC33D1B20A53100CF943A /* Request.swift in Sources */,
 				59C477451A9786A70033C6D1 /* SwiftyJSON.swift in Sources */,
 				59A7DF701A938A41009F4639 /* SDAlertViewHelper.swift in Sources */,
+				598BC3401B20A53900CF943A /* Validation.swift in Sources */,
 				59A7DF711A938A41009F4639 /* SDSocialHandler.swift in Sources */,
 				597E3B0D1AB2E58A00F41F17 /* SDTweet.swift in Sources */,
+				598BC33F1B20A53600CF943A /* Upload.swift in Sources */,
 				59A7DF731A938A41009F4639 /* SDQRScannerOverlayView.swift in Sources */,
 				59A7DF751A938A41009F4639 /* SDTableHeaderView.swift in Sources */,
+				598BC3381B20A52500CF943A /* Alamofire.swift in Sources */,
 				59A7DF831A938A41009F4639 /* SDImageView-Circular.swift in Sources */,
 				59A7DF841A938A41009F4639 /* SDFonts.swift in Sources */,
 				597E3B0B1AB2E58A00F41F17 /* SDMapAnnotation.swift in Sources */,
 				597E3B111AB2E5FD00F41F17 /* DataManager.swift in Sources */,
+				598BC33E1B20A53400CF943A /* ResponseSerialization.swift in Sources */,
 				59A7DF851A938A41009F4639 /* SDColor.swift in Sources */,
+				598BC3391B20A52700CF943A /* Download.swift in Sources */,
 				59A7DF881A938A41009F4639 /* SDMapView-ZoomOut.swift in Sources */,
 				A171433F1A88F7730068FD33 /* SDDateHandler.swift in Sources */,
 				597E3B091AB2E58A00F41F17 /* Conference.swift in Sources */,
 				A171433E1A88F6880068FD33 /* SDConstants.swift in Sources */,
 				5928D18D1A89096500E5049E /* SDView-NibLoading.swift in Sources */,
 				5928D17D1A88F53900E5049E /* SDString+RemoveWhiteSpaces.swift in Sources */,
-				593571ED1A77E4E9005AA332 /* Alamofire.swift in Sources */,
+				598BC33A1B20A52900CF943A /* Manager.swift in Sources */,
 				593571EA1A77E41C005AA332 /* StoringHelper.swift in Sources */,
 				A1D795E31A68267F009CCEB3 /* ScalaDaysTests.swift in Sources */,
 			);
@@ -924,7 +982,7 @@
 				);
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "daa87f0f-0299-4445-b061-ebab2b3381df";
+				PROVISIONING_PROFILE = "9f95290f-e277-4d24-8aff-c28919511ab4";
 				SWIFT_OBJC_BRIDGING_HEADER = "ScalaDays/Bridging-Header.h";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -952,7 +1010,7 @@
 				);
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "daa87f0f-0299-4445-b061-ebab2b3381df";
+				PROVISIONING_PROFILE = "9f95290f-e277-4d24-8aff-c28919511ab4";
 				SWIFT_OBJC_BRIDGING_HEADER = "ScalaDays/Bridging-Header.h";
 				TARGETED_DEVICE_FAMILY = 1;
 			};

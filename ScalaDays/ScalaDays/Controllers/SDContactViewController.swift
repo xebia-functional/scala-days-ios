@@ -66,10 +66,10 @@ class SDContactViewController: GAITrackedViewController,
     
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [NSObject : AnyObject]) {
         scannerVC.dismissViewControllerAnimated(true, completion: nil)
-        let results = info[ZBarReaderControllerResults] as ZBarSymbolSet
+        let results = info[ZBarReaderControllerResults] as! ZBarSymbolSet
         if results.count > 0 {
             for symbol in results {
-                if (symbol as ZBarSymbol).data != nil {
+                if (symbol as! ZBarSymbol).data != nil {
                     processQRScan(symbol.data)
                     return
                 }
@@ -146,7 +146,7 @@ class SDContactViewController: GAITrackedViewController,
     func showAlertToRequestContactAddWithContactName(contactName: String?, vCardString: String) {
         var message : String
         if let properName = contactName {
-            message = NSString(format: NSLocalizedString("contacts_add_contact_request", comment: ""), properName)
+            message = NSString(format: NSLocalizedString("contacts_add_contact_request", comment: ""), properName as String) as String
         } else {
             message = NSLocalizedString("contacts_add_contact_request_no_name", comment: "")
         }

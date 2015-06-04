@@ -22,7 +22,7 @@ class SDTableHeaderView: UIView {
     let kHeaderTextInitialWidth : CGFloat = 300.0
     let kHeaderTextInitialHeight : CGFloat = 15.0
     
-    let lblDate: UILabel!
+    var lblDate: UILabel!
     
     override init(frame: CGRect) {
         super.init(frame: frame)

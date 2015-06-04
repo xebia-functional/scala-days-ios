@@ -228,7 +228,7 @@ class SDScheduleViewController: GAITrackedViewController, UITableViewDelegate, U
         if (isIOS8OrLater()) {
             return UITableViewAutomaticDimension
         }
-        let cell = self.tableView(tableView, cellForRowAtIndexPath: indexPath) as SDScheduleListTableViewCell
+        let cell = self.tableView(tableView, cellForRowAtIndexPath: indexPath) as! SDScheduleListTableViewCell
         return cell.contentView.systemLayoutSizeFittingSize(UILayoutFittingCompressedSize).height
     }
 
@@ -261,7 +261,7 @@ class SDScheduleViewController: GAITrackedViewController, UITableViewDelegate, U
 
     func scheduledDates() -> [String]? {
         if let schedule = selectedConference?.schedule {
-            let result = schedule.reduce([String](), {
+            let result = schedule.reduce([String](), combine: {
                 var temp = $0
 
                 if $0.count == 0 {
@@ -313,7 +313,7 @@ class SDScheduleViewController: GAITrackedViewController, UITableViewDelegate, U
                         if let favoritesDict = DataManager.sharedInstance.favoritedEvents {
                             if let favoritedEvents = favoritesDict[_conference.info.id] {
                                 let event = $0
-                                return favoritedEvents.reduce(false, {
+                                return favoritedEvents.reduce(false, combine: {
                                     return $0 ? $0 : event.id == $1
                                 })
                             }
