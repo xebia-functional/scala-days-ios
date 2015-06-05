@@ -122,12 +122,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
 
-    func application(application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: NSData!) {
+    func application(application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: NSData) {
         println("Successfully egistered for Remote Notifications with token: \(deviceToken)")
         Localytics.setPushToken(deviceToken)
     }
 
-    func application(application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: NSError!) {
+    func application(application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: NSError) {
         println("Registration for Remote Notifications failed with error: \(error)")
     }
 

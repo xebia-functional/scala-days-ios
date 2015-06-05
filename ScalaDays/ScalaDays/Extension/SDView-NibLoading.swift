@@ -23,7 +23,7 @@ extension UIView {
         
         objects.filter({$0 is UIView})
         if objects.count > 0 {
-            let containerView = objects[0] as UIView
+            let containerView = objects[0] as! UIView
             containerView.setTranslatesAutoresizingMaskIntoConstraints(false)
             addSubview(containerView)
             needsUpdateConstraints()
@@ -34,7 +34,7 @@ extension UIView {
     }
     
     func updateCustomConstraints(customConstraints : NSMutableArray, containerView: UIView!) {
-        removeConstraints(customConstraints)
+        removeConstraints(customConstraints as [AnyObject])
         customConstraints.removeAllObjects()
         
         if containerView != nil {
@@ -42,7 +42,7 @@ extension UIView {
             customConstraints.addObjectsFromArray(NSLayoutConstraint.constraintsWithVisualFormat("H:|[view]|", options: NSLayoutFormatOptions(0), metrics: nil, views: viewDictionary as [NSObject:AnyObject]))
             customConstraints.addObjectsFromArray(NSLayoutConstraint.constraintsWithVisualFormat("V:|[view]|", options: NSLayoutFormatOptions(0), metrics: nil, views: viewDictionary as [NSObject:AnyObject]))
             
-            addConstraints(customConstraints)
+            addConstraints(customConstraints as [AnyObject])
         }
     }
     

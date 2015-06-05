@@ -115,9 +115,9 @@ class SDPlacesViewController: GAITrackedViewController, MKMapViewDelegate, SDErr
     }
     
     func didTapCallout(sender: UITapGestureRecognizer) {
-        let annotationView = sender.view as MKAnnotationView
+        let annotationView = sender.view as! MKAnnotationView
         if annotationView.selected {
-            let annotation = annotationView.annotation as SDMapAnnotation
+            let annotation = annotationView.annotation as! SDMapAnnotation
             
             // It seems there's a bug in Swift that provokes EXC_BAD_ACCESS exceptions while trying to access properties of the annotation,
             // it matches this situation: http://stackoverflow.com/questions/25194944/why-accessing-a-class-instance-member-gives-an-exc-bad-access-xcode-beta-5

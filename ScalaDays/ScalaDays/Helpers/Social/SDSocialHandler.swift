@@ -140,12 +140,12 @@ class SDSocialHandler: NSObject {
                           .Some(tweetText),
                           .Some(tweetDate),
                           .Some(tweetId)):
-                    results.append(SDTweet(username: (screenName as String),
-                            fullName: (name as String),
-                            tweetText: (tweetText as String),
-                            profileImage: (profileImage as String),
-                            dateString: (tweetDate as String),
-                            id: (tweetId as String)))
+                    results.append(SDTweet(username: (screenName as! String),
+                            fullName: (name as! String),
+                            tweetText: (tweetText as! String),
+                            profileImage: (profileImage as! String),
+                            dateString: (tweetDate as! String),
+                            id: (tweetId as! String)))
                 default:
                     break
                 }

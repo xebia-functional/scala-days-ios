@@ -110,7 +110,7 @@ class SDSpeakersListViewController: GAITrackedViewController, SDErrorPlaceholder
         if (isIOS8OrLater()) {
             return UITableViewAutomaticDimension
         }
-        let cell = self.tableView(tableView, cellForRowAtIndexPath: indexPath) as SDSpeakersTableViewCell
+        let cell = self.tableView(tableView, cellForRowAtIndexPath: indexPath) as! SDSpeakersTableViewCell
         return cell.contentView.systemLayoutSizeFittingSize(UILayoutFittingCompressedSize).height
     }
     

@@ -55,7 +55,7 @@ class SDGoogleAnalyticsHandler: NSObject {
             }
             
             let parameters = GAIDictionaryBuilder.createEventWithCategory(category, action: action, label: label, value: nil).build()
-            tracker.send(parameters)
+            tracker.send(parameters as [NSObject : AnyObject])
         }        
     }
 }
