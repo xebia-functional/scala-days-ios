@@ -17,6 +17,7 @@
 import UIKit
 import MobileCoreServices
 import AddressBook
+import ZBarSDK
 
 class SDContactViewController: GAITrackedViewController,
                                 ZBarReaderDelegate,
@@ -64,7 +65,7 @@ class SDContactViewController: GAITrackedViewController,
         self.handleResultsFromAddressBookWithErrorMessage(.InvalidVCardData)
     }
     
-    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [NSObject : AnyObject]) {
+    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
         scannerVC.dismissViewControllerAnimated(true, completion: nil)
         let results = info[ZBarReaderControllerResults] as! ZBarSymbolSet
         if results.count > 0 {

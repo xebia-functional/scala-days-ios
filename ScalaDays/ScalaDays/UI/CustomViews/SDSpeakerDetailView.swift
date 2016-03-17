@@ -34,7 +34,7 @@ class SDSpeakerDetailView: UIView {
     let kPaddingForSeparator: CGFloat = 15.0
     let selectorTwitter: Selector = "onTwitter"
 
-    required init(coder aDecoder: NSCoder) {
+    required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         commonInit()
     }
@@ -63,7 +63,7 @@ class SDSpeakerDetailView: UIView {
     func drawSpeakerData(speaker: Speaker) {
         lblName.text = speaker.name
         if let twitterUsername = speaker.twitter {
-            if contains(twitterUsername, "@") {
+            if twitterUsername.characters.contains("@") {
                 lblUsername.text = twitterUsername
             } else {
                 lblUsername.text = "@\(twitterUsername)"

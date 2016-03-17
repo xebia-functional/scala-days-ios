@@ -16,6 +16,7 @@
 
 import UIKit
 import MapKit
+import SVProgressHUD
 
 class SDPlacesViewController: GAITrackedViewController, MKMapViewDelegate, SDErrorPlaceholderViewDelegate, SDMenuControllerItem {
 
@@ -95,7 +96,7 @@ class SDPlacesViewController: GAITrackedViewController, MKMapViewDelegate, SDErr
     
     // MARK: - MKMapViewDelegate protocol implementation
     
-    func mapView(mapView: MKMapView!, viewForAnnotation annotation: MKAnnotation!) -> MKAnnotationView! {
+    func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView! {
         if annotation is MKUserLocation {
             return nil
         } else {
@@ -103,14 +104,14 @@ class SDPlacesViewController: GAITrackedViewController, MKMapViewDelegate, SDErr
             if annotationView == nil {
                 annotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: kMapReuseIdentifier)
             }
-            annotationView.canShowCallout = true
-            annotationView.image = UIImage(named: "map_pushpin")
-            annotationView.annotation = annotation
+            annotationView!.canShowCallout = true
+            annotationView!.image = UIImage(named: "map_pushpin")
+            annotationView!.annotation = annotation
             return annotationView
         }
     }
     
-    func mapView(mapView: MKMapView!, didSelectAnnotationView view: MKAnnotationView!) {
+    func mapView(mapView: MKMapView, didSelectAnnotationView view: MKAnnotationView) {
         view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: "didTapCallout:"))
     }
     
@@ -123,7 +124,7 @@ class SDPlacesViewController: GAITrackedViewController, MKMapViewDelegate, SDErr
             // it matches this situation: http://stackoverflow.com/questions/25194944/why-accessing-a-class-instance-member-gives-an-exc-bad-access-xcode-beta-5
             // So while this is fixed in a future XCode version, we have to access the venue's location and address from the conference object in a more cumbersome way:
             if let annotations = self.mapPlaces.annotations as? [SDMapAnnotation] {
-                if let indexOfVenue = find(annotations, annotation) {
+                if let indexOfVenue = annotations.indexOf(annotation) {
                     if let conference = selectedConference {
                         if conference.venues.count > indexOfVenue {
                             let venue = conference.venues[indexOfVenue]

@@ -15,6 +15,7 @@
 */
 
 import UIKit
+import SVProgressHUD
 
 class SDAboutViewController: GAITrackedViewController, SDErrorPlaceholderViewDelegate, SDMenuControllerItem {
 
@@ -66,7 +67,7 @@ class SDAboutViewController: GAITrackedViewController, SDErrorPlaceholderViewDel
         DataManager.sharedInstance.loadDataJson() {
             (bool, error) -> () in
             
-            if let badError = error {
+            if let _ = error {
                 self.errorPlaceholderView.show(NSLocalizedString("error_message_no_data_available", comment: ""))
                 SVProgressHUD.dismiss()
             } else {

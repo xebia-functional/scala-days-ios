@@ -18,7 +18,7 @@ import Foundation
 
 // MARK: - Model root object class
 
-class Conferences: NSObject, NSCoding, Equatable {
+class Conferences: NSObject, NSCoding{
 
     let conferences: Array<Conference>
     
@@ -26,7 +26,7 @@ class Conferences: NSObject, NSCoding, Equatable {
         self.conferences = conferences
     }
 
-    required init(coder aDecoder: NSCoder) {
+    required init?(coder aDecoder: NSCoder) {
         self.conferences = aDecoder.decodeObjectForKey("conferences") as! Array<Conference>
     }
 
@@ -37,7 +37,7 @@ class Conferences: NSObject, NSCoding, Equatable {
 }
 
 
-class Conference: NSObject, NSCoding, Equatable {
+class Conference: NSObject, NSCoding {
     
     let info: Information
     let schedule: Array<Event>
@@ -55,7 +55,7 @@ class Conference: NSObject, NSCoding, Equatable {
         self.codeOfConduct = codeOfConduct
     }
 
-    required init(coder aDecoder: NSCoder) {
+    required init?(coder aDecoder: NSCoder) {
         self.info = aDecoder.decodeObjectForKey("info") as! Information
         self.schedule = aDecoder.decodeObjectForKey("schedule") as! Array<Event>
         self.sponsors = aDecoder.decodeObjectForKey("sponsors") as! Array<SponsorType>
@@ -76,7 +76,7 @@ class Conference: NSObject, NSCoding, Equatable {
 
 // MARK: - Model object classes
 
-class Information: NSObject, NSCoding, Equatable {
+class Information: NSObject, NSCoding {
     let id: Int
     let name: String
     let longName: String
@@ -108,7 +108,7 @@ class Information: NSObject, NSCoding, Equatable {
         self.pictures = pictures
     }
 
-    required init(coder aDecoder: NSCoder) {
+    required init?(coder aDecoder: NSCoder) {
         self.id = aDecoder.decodeIntegerForKey("id")
         self.name = aDecoder.decodeObjectForKey("name") as! String
         self.longName = aDecoder.decodeObjectForKey("longName") as! String
@@ -141,7 +141,7 @@ class Information: NSObject, NSCoding, Equatable {
     }
 }
 
-class Picture: NSObject, Equatable, NSCoding {
+class Picture: NSObject,  NSCoding {
     let width: Int
     let height: Int
     let url: String
@@ -152,7 +152,7 @@ class Picture: NSObject, Equatable, NSCoding {
         self.url = url
     }
 
-    required init(coder aDecoder: NSCoder) {
+    required init?(coder aDecoder: NSCoder) {
         self.width = aDecoder.decodeIntegerForKey("width")
         self.height = aDecoder.decodeIntegerForKey("height")
         self.url = aDecoder.decodeObjectForKey("url") as! String
@@ -165,7 +165,7 @@ class Picture: NSObject, Equatable, NSCoding {
     }
 }
 
-class Event: NSObject, Equatable, NSCoding {
+class Event: NSObject,  NSCoding {
     let id: Int
     let title: String
     let apiDescription: String
@@ -190,7 +190,7 @@ class Event: NSObject, Equatable, NSCoding {
         self.speakers = speakers
     }
 
-    required init(coder aDecoder: NSCoder) {
+    required init?(coder aDecoder: NSCoder) {
         self.id = aDecoder.decodeIntegerForKey("id")
         self.title = aDecoder.decodeObjectForKey("title") as! String
         self.apiDescription = aDecoder.decodeObjectForKey("apiDescription") as! String
@@ -217,7 +217,7 @@ class Event: NSObject, Equatable, NSCoding {
     }
 }
 
-class Speaker: NSObject, Equatable, NSCoding {
+class Speaker: NSObject, NSCoding {
     let bio: String
     let company: String
     let id: Int
@@ -236,7 +236,7 @@ class Speaker: NSObject, Equatable, NSCoding {
         self.twitter = twitter
     }
 
-    required init(coder aDecoder: NSCoder) {
+    required init?(coder aDecoder: NSCoder) {
         self.bio = aDecoder.decodeObjectForKey("bio") as! String
         self.company = aDecoder.decodeObjectForKey("company") as! String
         self.id = aDecoder.decodeIntegerForKey("id")
@@ -257,7 +257,7 @@ class Speaker: NSObject, Equatable, NSCoding {
     }
 }
 
-class Venue: NSObject, Equatable, NSCoding {
+class Venue: NSObject,  NSCoding {
     let name: String
     let address: String
     let website: String
@@ -272,7 +272,7 @@ class Venue: NSObject, Equatable, NSCoding {
         self.longitude = longitude
     }
 
-    required init(coder aDecoder: NSCoder) {
+    required init?(coder aDecoder: NSCoder) {
         self.name = aDecoder.decodeObjectForKey("name") as! String
         self.address = aDecoder.decodeObjectForKey("address") as! String
         self.website = aDecoder.decodeObjectForKey("website") as! String
@@ -289,7 +289,7 @@ class Venue: NSObject, Equatable, NSCoding {
     }
 }
 
-class SponsorType: NSObject, Equatable, NSCoding {
+class SponsorType: NSObject,  NSCoding {
     let type: String
     let items: Array<Sponsor>
 
@@ -298,7 +298,7 @@ class SponsorType: NSObject, Equatable, NSCoding {
         self.items = items
     }
 
-    required init(coder aDecoder: NSCoder) {
+    required init?(coder aDecoder: NSCoder) {
         self.type = aDecoder.decodeObjectForKey("type") as! String
         self.items = aDecoder.decodeObjectForKey("items") as! Array<Sponsor>
     }
@@ -311,7 +311,7 @@ class SponsorType: NSObject, Equatable, NSCoding {
 
 // MARK: - Model object components classes
 
-class Track: NSObject, Equatable, NSCoding {
+class Track: NSObject,  NSCoding {
     let id: Int
     let name: String
     let host: String
@@ -326,7 +326,7 @@ class Track: NSObject, Equatable, NSCoding {
         self.apiDescription = apiDescription
     }
 
-    required init(coder aDecoder: NSCoder) {
+    required init?(coder aDecoder: NSCoder) {
         self.id = aDecoder.decodeIntegerForKey("id")
         self.name = aDecoder.decodeObjectForKey("name") as! String
         self.host = aDecoder.decodeObjectForKey("host") as! String
@@ -343,7 +343,7 @@ class Track: NSObject, Equatable, NSCoding {
     }
 }
 
-class Location: NSObject, Equatable, NSCoding {
+class Location: NSObject, NSCoding {
     let id: Int
     let name: String
     let mapUrl: String
@@ -354,7 +354,7 @@ class Location: NSObject, Equatable, NSCoding {
         self.mapUrl = mapUrl
     }
 
-    required init(coder aDecoder: NSCoder) {
+    required init?(coder aDecoder: NSCoder) {
         self.id = aDecoder.decodeIntegerForKey("id")
         self.name = aDecoder.decodeObjectForKey("name") as! String
         self.mapUrl = aDecoder.decodeObjectForKey("mapUrl") as! String
@@ -367,7 +367,7 @@ class Location: NSObject, Equatable, NSCoding {
     }
 }
 
-class Sponsor: NSObject, Equatable, NSCoding {
+class Sponsor: NSObject, NSCoding {
     let logo: String
     let url: String
 
@@ -376,7 +376,7 @@ class Sponsor: NSObject, Equatable, NSCoding {
         self.url = url
     }
 
-    required init(coder aDecoder: NSCoder) {
+    required init?(coder aDecoder: NSCoder) {
         self.logo = aDecoder.decodeObjectForKey("logo") as! String
         self.url = aDecoder.decodeObjectForKey("url") as! String
     }
@@ -392,7 +392,7 @@ class Sponsor: NSObject, Equatable, NSCoding {
 // MARK: Equatable implementation for class Conferences
 
 func ==(lhs: Conferences, rhs: Conferences) -> Bool {
-    return checkEqualityForArrays(lhs.conferences, rhs.conferences)
+    return checkEqualityForArrays(lhs.conferences, rhs: rhs.conferences)
 }
 
 // MARK: Equatable implementation for class Conference
@@ -400,10 +400,10 @@ func ==(lhs: Conferences, rhs: Conferences) -> Bool {
 func ==(lhs: Conference, rhs: Conference) -> Bool {
     // Expressions need to be split to not mess with Swift compiler
     let equalityForInfo = lhs.info == rhs.info
-    let equalityForSchedule = checkEqualityForArrays(lhs.schedule, rhs.schedule)
-    let equalityForSponsors = checkEqualityForArrays(lhs.sponsors, rhs.sponsors)
-    let equalityForSpeakers = checkEqualityForArrays(lhs.speakers, rhs.speakers)
-    let equalityForVenues = checkEqualityForArrays(lhs.venues, rhs.venues)
+    let equalityForSchedule = checkEqualityForArrays(lhs.schedule, rhs: rhs.schedule)
+    let equalityForSponsors = checkEqualityForArrays(lhs.sponsors, rhs: rhs.sponsors)
+    let equalityForSpeakers = checkEqualityForArrays(lhs.speakers, rhs: rhs.speakers)
+    let equalityForVenues = checkEqualityForArrays(lhs.venues, rhs: rhs.venues)
     let equalityForCodeOfConduct = lhs.codeOfConduct == rhs.codeOfConduct
     return equalityForInfo &&
             equalityForSchedule &&
@@ -420,7 +420,7 @@ func ==(lhs: Information, rhs: Information) -> Bool {
     let equalityForTimezoneOffsetMillis = lhs.utcTimezoneOffsetMillis == rhs.utcTimezoneOffsetMillis
     let equalityForHashtag = lhs.hashtag == rhs.hashtag
     let equalityForQuery = lhs.query == rhs.query
-    let equalityForPictures = checkEqualityForArrays(lhs.pictures, rhs.pictures)
+    let equalityForPictures = checkEqualityForArrays(lhs.pictures, rhs: rhs.pictures)
     return equalityForId &&
         lhs.name == rhs.name &&
         lhs.longName == rhs.longName &&
@@ -460,7 +460,7 @@ func ==(lhs: Event, rhs: Event) -> Bool {
     // Unwrapping our two speaker arrays is easier using pattern matching:
     switch (lhs.speakers, rhs.speakers) {
     case let (.Some(unwrappedLhsSpeakers), .Some(unwrappedRhsSpeakers)):
-        return equalityForSimpleValues && checkEqualityForArrays(unwrappedLhsSpeakers, unwrappedRhsSpeakers)
+        return equalityForSimpleValues && checkEqualityForArrays(unwrappedLhsSpeakers, rhs: unwrappedRhsSpeakers)
     case (nil, nil):
         return equalityForSimpleValues
     default:
@@ -501,7 +501,7 @@ func ==(lhs: Sponsor, rhs: Sponsor) -> Bool {
 
 func ==(lhs: SponsorType, rhs: SponsorType) -> Bool {
     return lhs.type == rhs.type &&
-            checkEqualityForArrays(lhs.items, rhs.items)
+            checkEqualityForArrays(lhs.items, rhs: rhs.items)
 }
 
 // MARK: Equatable implementation for class Track
@@ -529,7 +529,7 @@ func checkEqualityForArrays<T:Equatable>(lhs: Array<T>, rhs: Array<T>) -> Bool {
         return false
     }
 
-    for (index, element) in enumerate(lhs) {
+    for (index, element) in lhs.enumerate() {
         if (element != rhs[index]) {
             return false
         }

@@ -15,6 +15,7 @@
 */
 
 import UIKit
+import SVProgressHUD
 
 enum SDScheduleActionSheetButtons: Int {
     case Cancel = 0
@@ -191,7 +192,7 @@ class SDScheduleViewController: GAITrackedViewController, UITableViewDelegate, U
             let event = events[indexPath.section][indexPath.row]
             cell.drawEventData(event)
             if let currentConferenceFavorites = listOfCurrentConferenceFavoritesIDs() {
-                if contains(currentConferenceFavorites, event.id) {
+                if currentConferenceFavorites.contains(event.id) {
                     cell.imgFavoriteIcon.hidden = false
                 }
             }
@@ -407,10 +408,10 @@ class SDScheduleViewController: GAITrackedViewController, UITableViewDelegate, U
     
     func viewClock() -> (result :Bool, indexRow : Int, indexSection: Int){
         var result = false
-        let currentDate = NSDate()
+        _ = NSDate()
         if let events = eventsToShow {
-            for (indexSection, eventSection) in enumerate(events){
-                for (indexRow, event) in enumerate(eventSection){
+            for (indexSection, eventSection) in events.enumerate(){
+                for (indexRow, event) in eventSection.enumerate(){
                     if SDDateHandler.sharedInstance.isCurrentDateActive(event.startTime, endTime: event.endTime){
                         result = true
                         return (result, indexRow, indexSection)

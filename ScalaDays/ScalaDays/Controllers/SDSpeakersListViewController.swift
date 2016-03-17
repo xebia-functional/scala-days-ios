@@ -15,6 +15,7 @@
 */
 
 import UIKit
+import SVProgressHUD
 
 class SDSpeakersListViewController: GAITrackedViewController, SDErrorPlaceholderViewDelegate, SDMenuControllerItem {
     
@@ -57,7 +58,7 @@ class SDSpeakersListViewController: GAITrackedViewController, SDErrorPlaceholder
         DataManager.sharedInstance.loadDataJson() {
             (bool, error) -> () in
             
-            if let badError = error {
+            if let _ = error {
                 self.errorPlaceholderView.show(NSLocalizedString("error_message_no_data_available", comment: ""))
                 SVProgressHUD.dismiss()
             } else {
@@ -122,7 +123,7 @@ class SDSpeakersListViewController: GAITrackedViewController, SDErrorPlaceholder
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        var cell : SDSpeakersTableViewCell? = tableView.dequeueReusableCellWithIdentifier(kReuseIdentifier) as? SDSpeakersTableViewCell
+        let cell : SDSpeakersTableViewCell? = tableView.dequeueReusableCellWithIdentifier(kReuseIdentifier) as? SDSpeakersTableViewCell
         switch cell {
         case let(.Some(cell)):
             return configureCell(cell, indexPath: indexPath)

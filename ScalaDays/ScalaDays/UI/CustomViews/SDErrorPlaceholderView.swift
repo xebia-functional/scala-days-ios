@@ -35,7 +35,7 @@ class SDErrorPlaceholderView: UIView {
     let customConstraints : NSMutableArray = NSMutableArray()
     var containerView: UIView!
     
-    required init(coder aDecoder: NSCoder) {
+    required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         commonInit()
     }

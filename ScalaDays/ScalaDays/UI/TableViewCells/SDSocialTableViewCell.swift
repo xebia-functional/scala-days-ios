@@ -15,6 +15,7 @@
 */
 
 import UIKit
+import NSDate_TimeAgo
 
 class SDSocialTableViewCell: UITableViewCell {
     @IBOutlet weak var imgView : UIImageView!

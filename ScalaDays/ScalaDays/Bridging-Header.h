@@ -20,9 +20,9 @@
 #define ScalaDays_Bridging_Header_h
 
 #import <SVProgressHUD/SVProgressHUD.h>
-#import "UIImageView+WebCache.h"
-#import "NSDate+TimeAgo.h"
-#import "ZBarSDK.h"
+#import <SDWebImage/UIImageView+WebCache.h>
+//#import "NSDate+TimeAgo.h"
+//#import "ZBarSDK.h"
 #import "SDContactCreationHelper.h"
 #import "GAI.h"
 #import "GAIDictionaryBuilder.h"

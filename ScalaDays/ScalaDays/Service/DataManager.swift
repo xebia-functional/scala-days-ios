@@ -16,9 +16,12 @@
 
 import Foundation
 import UIKit
+import SwiftyJSON
+import Alamofire
 
 
-let JsonURL = "http://scala-days-2015.s3.amazonaws.com/conferences.json"
+//let JsonURL = "http://scala-days-2015.s3.amazonaws.com/conferences.json"
+let JsonURL = "http://scala-days-2015.s3.amazonaws.com/conferences_2016.json"
 
 private let _DataManagerSharedInstance = DataManager()
 
@@ -65,7 +68,7 @@ class DataManager {
         switch (selectedConference, DataManager.sharedInstance.favoritedEvents, event) {
         case let (.Some(conference), .Some(favoritesDict), .Some(currentEvent)):
             if let favoritedEvents = favoritesDict[conference.info.id] {
-                return contains(favoritedEvents, currentEvent.id)
+                return favoritedEvents.contains(currentEvent.id)
             }
             break
         default:
@@ -78,10 +81,10 @@ class DataManager {
         switch (selectedConference, DataManager.sharedInstance.favoritedEvents, event) {
         case let (.Some(conference), .Some(favoritesDict), .Some(currentEvent)):
             if let favoritedEvents = favoritesDict[conference.info.id] {
-                if contains(favoritedEvents, currentEvent.id) {
+                if favoritedEvents.contains(currentEvent.id) {
                     if shouldRemove {
                         var temp = favoritedEvents
-                        temp.removeAtIndex(find(favoritedEvents, currentEvent.id)!)
+                        temp.removeAtIndex(favoritedEvents.indexOf(currentEvent.id)!)
                         DataManager.sharedInstance.favoritedEvents![conference.info.id] = temp
                     }
                 } else {
@@ -141,29 +144,30 @@ class DataManager {
         
         if shouldReconnect || self.conferences == nil{
             Manager.sharedInstance.request(.GET, JsonURL).responseJSON {
-                (request, response, data, error) -> Void in
+                response in
+                
                 self.lastConnectionAttemptDate = NSDate()
                 
                 if let conferencesData = StoringHelper.sharedInstance.loadConferenceData() {
                     self.conferences = conferencesData
-                    if let date = response?.allHeaderFields[lastModifiedDate] as! NSString? {
+                    if let date = response.response?.allHeaderFields[lastModifiedDate] as! NSString? {
                         let dateJson = SDDateHandler.sharedInstance.parseServerDate(date)
                         if (dateJson == self.lastDate) {
-                            println("Json no modified")
-                            callback(false, error)
+                            print("Json no modified")
+                            callback(false, response.result.error)
                         } else {
-                            if (error != nil) {
-                                NSLog("Error: \(error)")
-                                println(request)
-                                println(response)
-                                callback(false, error)
+                            if (response.result.error != nil) {
+                                NSLog("Error: \(response.result.error)")
+                                print(response.request)
+                                print(response.response)
+                                callback(false, response.result.error)
                             } else {
-                                if let _data: AnyObject = data {
+                                if let _data: AnyObject = response.data {
                                     let jsonFormat = JSON(_data)
                                     self.parseAndStoreJSONData(jsonFormat)
-                                    callback(true, error)
+                                    callback(true, response.result.error)
                                 } else {
-                                    callback(true, error)
+                                    callback(true, response.result.error)
                                 }                                
                             }
                         }
@@ -172,18 +176,18 @@ class DataManager {
                         callback(false, nil)
                     }
                 } else {
-                    if let date = response?.allHeaderFields[lastModifiedDate]as! NSString? {
+                    if let date = response.response?.allHeaderFields[lastModifiedDate]as! NSString? {
                         self.lastDate = SDDateHandler.sharedInstance.parseServerDate(date)
                     }
-                    if (error != nil) {
-                        NSLog("Error: \(error)")
-                        println(request)
-                        println(response)
-                        callback(false, error)
+                    if (response.result.error != nil) {
+                        NSLog("Error: \(response.result.error)")
+                        print(response.request)
+                        print(response.response)
+                        callback(false, response.result.error)
                     } else {
-                        let jsonFormat = JSON(data!)
+                        let jsonFormat = JSON(response.result.value!)
                         self.parseAndStoreJSONData(jsonFormat)
-                        callback(true, error)
+                        callback(true, response.result.error)
                     }
                 }
             }
@@ -326,11 +330,11 @@ class DataManager {
     
     func parseAndStoreJSONData(jsonData: JSON) {
         self.conferences = parseJSON(jsonData)
-        println("End parse")
+        print("End parse")
         
         if let _conferences = self.conferences {
             StoringHelper.sharedInstance.storeConferenceData(_conferences)
-            println("Save parse")
+            print("Save parse")
         }
     }
 

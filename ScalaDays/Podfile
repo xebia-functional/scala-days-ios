@@ -1,11 +1,17 @@
+source 'https://github.com/CocoaPods/Specs.git'
 # Target OS Version
-platform :ios, '7.0'
+platform :ios, '8.0'
 
 # Inhibit warnings from dependencies
 inhibit_all_warnings!
+use_frameworks!
+
+# Alamofire
+pod 'Alamofire', '~> 3.0'
+pod 'SwiftyJSON'
 
 # Google Analytics
-pod 'GoogleAnalytics-iOS-SDK', '~> 3.10'
+pod  'GoogleAnalytics'
 
 # UI
 pod 'SDWebImage', '~> 3.5'

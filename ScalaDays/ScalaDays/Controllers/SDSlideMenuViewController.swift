@@ -112,7 +112,7 @@ class SDSlideMenuViewController: UIViewController, UITableViewDelegate, UITableV
         let speakersViewController = SDSpeakersListViewController(nibName: "SDSpeakersListViewController", bundle: nil)
         self.speakersViewController = UINavigationController(rootViewController: speakersViewController)
         
-        controllers = [scheduleViewController.visibleViewController, socialViewController, contactViewController, sponsorsViewController, placesViewController, aboutViewController, speakersViewController]
+        controllers = [scheduleViewController.visibleViewController!, socialViewController, contactViewController, sponsorsViewController, placesViewController, aboutViewController, speakersViewController]
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -171,7 +171,7 @@ class SDSlideMenuViewController: UIViewController, UITableViewDelegate, UITableV
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         switch (tableView, self.currentConferences) {
             case (self.tblConferences, .Some(let x)):
-                var cell : SDConferenceTableViewCell? = tableView.dequeueReusableCellWithIdentifier(kConferenceReuseIdentifier) as? SDConferenceTableViewCell
+                let cell : SDConferenceTableViewCell? = tableView.dequeueReusableCellWithIdentifier(kConferenceReuseIdentifier) as? SDConferenceTableViewCell
                 
                 switch cell {
                     case let(.Some(cell)): return configureConferenceCell(cell, indexPath: indexPath)
@@ -183,7 +183,7 @@ class SDSlideMenuViewController: UIViewController, UITableViewDelegate, UITableV
                 let cell: UITableViewCell = UITableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: "CellMenu")
                 cell.textLabel?.setCustomFont(UIFont.fontHelveticaNeue(15), colorFont: UIColor(white: 1, alpha: 0.8))
                 cell.backgroundColor = UIColor.appColor()
-                var bgColorView = UIView()
+                let bgColorView = UIView()
                 bgColorView.backgroundColor = UIColor.selectedCellMenu()
                 cell.selectedBackgroundView = bgColorView
                 cell.textLabel?.text = menus[indexPath.row]

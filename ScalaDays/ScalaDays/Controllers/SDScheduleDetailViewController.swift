@@ -93,7 +93,7 @@ class SDScheduleDetailViewController: GAITrackedViewController {
                     viewSpeaker.hidden = true
                 } else {
                     var lastSpeakerBottomPos : CGFloat = 0
-                    for (index, speaker) in enumerate(speakers) {
+                    for (index, speaker) in speakers.enumerate() {
                         let speakerView = SDSpeakerDetailView(frame: CGRectMake(0, lastSpeakerBottomPos, screenBounds.width, 0))
                         speakerView.drawSpeakerData(speaker)
                         viewSpeakerListContainer.addSubview(speakerView)
