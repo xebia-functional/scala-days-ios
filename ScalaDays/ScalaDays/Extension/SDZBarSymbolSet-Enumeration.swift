@@ -15,6 +15,7 @@
 */
 
 import Foundation
+import ZBarSDK
 
 extension ZBarSymbolSet: SequenceType {
     public func generate() -> NSFastGenerator {

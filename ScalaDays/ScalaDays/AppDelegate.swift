@@ -16,6 +16,7 @@
 
 import UIKit
 import Crashlytics
+import SVProgressHUD
 
 
 @UIApplicationMain
@@ -29,15 +30,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         if isIOS8OrLater() {
             UIApplication.sharedApplication().registerForRemoteNotifications()
-            let settings = UIUserNotificationSettings(forTypes: .Alert | .Sound | .Badge, categories: nil)
+            let settings = UIUserNotificationSettings(forTypes: [.Alert, .Sound, .Badge], categories: nil)
             UIApplication.sharedApplication().registerUserNotificationSettings(settings)
         } else {
-            let types = UIRemoteNotificationType.Badge | UIRemoteNotificationType.Sound | UIRemoteNotificationType.Alert
+            let types: UIRemoteNotificationType = [UIRemoteNotificationType.Badge, UIRemoteNotificationType.Sound, UIRemoteNotificationType.Alert]
             UIApplication.sharedApplication().registerForRemoteNotificationTypes(types)
         }
         
         if let localyticsKey = externalKeys.localyticsKey {
-            println(localyticsKey)
+            print(localyticsKey)
             Localytics.integrate(localyticsKey)
         }
 
@@ -123,19 +124,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: NSData) {
-        println("Successfully egistered for Remote Notifications with token: \(deviceToken)")
+        print("Successfully egistered for Remote Notifications with token: \(deviceToken)")
         Localytics.setPushToken(deviceToken)
     }
 
     func application(application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: NSError) {
-        println("Registration for Remote Notifications failed with error: \(error)")
+        print("Registration for Remote Notifications failed with error: \(error)")
     }
 
     func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject:AnyObject]) {
-        println(userInfo)
+        print(userInfo)
 
         if let jsonReload: AnyObject = userInfo["jsonReload"] {
-            println(jsonReload)
+            print(jsonReload)
             if let jsonReloadBool = jsonReload as? NSString {
                 if(jsonReloadBool .isEqualToString("true")) {
                     DataManager.sharedInstance.lastConnectionAttemptDate = nil

@@ -27,7 +27,7 @@ class SDConferenceTableViewCell: UITableViewCell {
         self.lblConferenceName.numberOfLines = 0
         self.lblConferenceName.setCustomFont(UIFont.fontHelveticaNeue(15), colorFont: UIColor(white: 1, alpha: 0.8))
         self.backgroundColor = UIColor.appColor()
-        var bgColorView = UIView()
+        let bgColorView = UIView()
         bgColorView.backgroundColor = UIColor.selectedCellMenu()
         self.selectedBackgroundView = bgColorView
     }

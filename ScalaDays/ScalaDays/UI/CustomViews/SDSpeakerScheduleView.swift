@@ -31,8 +31,8 @@ class SDSpeakerScheduleView: UIView {
     let kborderWidth: CGFloat = 1.0
 
 
-    required init(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)!
         commonInit()
     }
 
@@ -59,7 +59,7 @@ class SDSpeakerScheduleView: UIView {
     func drawSpeakerData(speaker: Speaker) {
         lblName.text = speaker.name
         if let twitterUsername = speaker.twitter {
-            if contains(twitterUsername, "@") {
+            if twitterUsername.containsString("@") {
                 lblUsername.text = twitterUsername
             } else {
                 lblUsername.text = "@\(twitterUsername)"

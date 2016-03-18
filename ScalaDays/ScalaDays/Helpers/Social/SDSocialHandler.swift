@@ -87,14 +87,15 @@ class SDSocialHandler: NSObject {
                 let twitterAccount = self.defaultTwitterAccount()
                 switch (twitterAccount, queryUrl) {
                 case let (account, url):
-                    var postRequest: SLRequest = SLRequest(forServiceType: SLServiceTypeTwitter, requestMethod: SLRequestMethod.GET, URL: url, parameters: nil)
+                    let postRequest: SLRequest = SLRequest(forServiceType: SLServiceTypeTwitter, requestMethod: SLRequestMethod.GET, URL: url, parameters: nil)
                     postRequest.account = account
                     postRequest.performRequestWithHandler({
                         (responseData, urlResponse, error) -> Void in
-                        var parseError: NSError? = NSError()
+                        var parseError: NSError? = NSError(domain: NSURLErrorDomain, code: NSURLErrorCannotOpenFile, userInfo: nil)
                         if let data = responseData {
-                            let tweetsData: Dictionary<String, AnyObject>? = NSJSONSerialization.JSONObjectWithData(responseData, options: NSJSONReadingOptions.AllowFragments, error: &parseError) as? Dictionary
-
+                            
+                            let tweetsData: Dictionary<String, AnyObject>? = try! NSJSONSerialization.JSONObjectWithData(responseData, options: NSJSONReadingOptions.AllowFragments) as? Dictionary
+                            
                             if let tweets = tweetsData {
                                 let statuses = tweets[kTweetDKStatuses] as? Array<Dictionary<String, AnyObject>>
                                 if let unwrappedTweets = statuses {
@@ -109,7 +110,7 @@ class SDSocialHandler: NSObject {
                             completionHandler(nil, NSError(domain: self.errorDomain, code: SDSocialErrors.NoValidDataFromAPI.rawValue, userInfo: nil))
                         }
                     })
-                case let (nil, url):
+                case let (nil, _):
                     completionHandler(nil, NSError(domain: self.errorDomain, code: SDSocialErrors.NoTwitterAccountAvailable.rawValue, userInfo: nil))
                 default:
                     completionHandler(nil, NSError(domain: self.errorDomain, code: SDSocialErrors.InvalidRequest.rawValue, userInfo: nil))
@@ -157,8 +158,8 @@ class SDSocialHandler: NSObject {
     // MARK: - Tweet detail URL creation
 
     class func urlForTweetDetail(tweet: SDTweet) -> NSURL? {
-        return NSURL(string: kTwitterBaseURL.stringByAppendingPathComponent(tweet.username)
-        .stringByAppendingPathComponent(kTweetDKStatus)
+        return NSURL(string: (((kTwitterBaseURL as NSString).stringByAppendingPathComponent(tweet.username) as NSString)
+        .stringByAppendingPathComponent(kTweetDKStatus) as NSString)
         .stringByAppendingPathComponent(tweet.id))
     }
 
@@ -167,10 +168,10 @@ class SDSocialHandler: NSObject {
     }
 
     class func urlForTwitterAccount(twitterAccount: String) -> NSURL? {
-        return NSURL(string: kTwitterBaseURL.stringByAppendingPathComponent(twitterAccount))
+        return NSURL(string: (kTwitterBaseURL as NSString).stringByAppendingPathComponent(twitterAccount))
     }
 
     class func urlAppForTwitterAccount(twitterAccount: String) -> NSURL? {
-        return NSURL(string: kTwitterBaseAppURLUser.stringByAppendingPathComponent(twitterAccount))
+        return NSURL(string: (kTwitterBaseAppURLUser as NSString).stringByAppendingPathComponent(twitterAccount))
     }
 }

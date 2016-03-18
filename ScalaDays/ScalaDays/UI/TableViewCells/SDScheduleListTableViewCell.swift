@@ -107,7 +107,7 @@ class SDScheduleListTableViewCell: UITableViewCell {
                 constraintForViewSpeakerHeight.constant = 0
             } else {
                 var lastSpeakerBottomPos: CGFloat = 0
-                for (index, speaker) in enumerate(speakers) {
+                for (_, speaker) in speakers.enumerate() {
                     let speakerView = SDSpeakerScheduleView(frame: CGRectMake(0, lastSpeakerBottomPos, screenBounds.width, 0))
                     speakerView.drawSpeakerData(speaker)
                     viewSpeaker.addSubview(speakerView)

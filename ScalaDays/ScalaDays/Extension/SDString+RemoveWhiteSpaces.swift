@@ -18,7 +18,7 @@ import Foundation
 
 extension String {
     func removeWhitespace() -> String {
-        let components = self.componentsSeparatedByCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet()).filter({!Swift.isEmpty($0)})
-        return " ".join(components)
+        let components = self.componentsSeparatedByCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet()).filter({!$0.characters.isEmpty})
+        return components.joinWithSeparator(" ")
     }
 }

@@ -32,7 +32,7 @@ class StoringHelper {
     }
     
     func storeConferenceDataFromFileWithFilename(conferences: Conferences, filename: String) {
-        let conferenceDataPath = StoringHelper.documentsFolderPath().stringByAppendingPathComponent(filename)
+        let conferenceDataPath = (StoringHelper.documentsFolderPath() as NSString).stringByAppendingPathComponent(filename)
         NSKeyedArchiver.archiveRootObject(conferences, toFile: conferenceDataPath)
     }
     
@@ -42,7 +42,7 @@ class StoringHelper {
     
     func loadConferenceDataFromFileWithFilename(filename: String) -> Conferences? {
         let fileManager = NSFileManager.defaultManager()
-        let conferenceDataPath = StoringHelper.documentsFolderPath().stringByAppendingPathComponent(filename)
+        let conferenceDataPath = (StoringHelper.documentsFolderPath() as NSString).stringByAppendingPathComponent(filename)
         
         if(fileManager.fileExistsAtPath(conferenceDataPath)) {
             return NSKeyedUnarchiver.unarchiveObjectWithFile(conferenceDataPath) as? Conferences
@@ -51,7 +51,7 @@ class StoringHelper {
     }
     
     class func documentsFolderPath() -> String {
-        return NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] as! String
+        return NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] 
     }
     
 }

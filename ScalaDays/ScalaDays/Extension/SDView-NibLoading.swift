@@ -24,7 +24,7 @@ extension UIView {
         objects.filter({$0 is UIView})
         if objects.count > 0 {
             let containerView = objects[0] as! UIView
-            containerView.setTranslatesAutoresizingMaskIntoConstraints(false)
+            containerView.translatesAutoresizingMaskIntoConstraints = false
             addSubview(containerView)
             needsUpdateConstraints()
             
@@ -34,15 +34,24 @@ extension UIView {
     }
     
     func updateCustomConstraints(customConstraints : NSMutableArray, containerView: UIView!) {
-        removeConstraints(customConstraints as [AnyObject])
+       
+        for object in customConstraints {
+            if let const = object as? NSLayoutConstraint {
+                removeConstraint(const)
+            }
+        }
         customConstraints.removeAllObjects()
-        
+
         if containerView != nil {
-            let viewDictionary : [NSObject : AnyObject] = ["view" : containerView]
-            customConstraints.addObjectsFromArray(NSLayoutConstraint.constraintsWithVisualFormat("H:|[view]|", options: NSLayoutFormatOptions(0), metrics: nil, views: viewDictionary as [NSObject:AnyObject]))
-            customConstraints.addObjectsFromArray(NSLayoutConstraint.constraintsWithVisualFormat("V:|[view]|", options: NSLayoutFormatOptions(0), metrics: nil, views: viewDictionary as [NSObject:AnyObject]))
-            
-            addConstraints(customConstraints as [AnyObject])
+            let viewDictionary : NSDictionary = ["view" : containerView]
+            customConstraints.addObjectsFromArray(NSLayoutConstraint.constraintsWithVisualFormat("H:|[view]|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: viewDictionary as! [String : AnyObject]))
+            customConstraints.addObjectsFromArray(NSLayoutConstraint.constraintsWithVisualFormat("V:|[view]|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: viewDictionary as! [String:AnyObject]))
+
+            for object in customConstraints {
+                if let const = object as? NSLayoutConstraint {
+                    addConstraint(const)
+                }
+            }
         }
     }
     

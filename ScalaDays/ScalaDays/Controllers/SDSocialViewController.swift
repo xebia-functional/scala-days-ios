@@ -15,6 +15,7 @@
 */
 
 import UIKit
+import SVProgressHUD
 
 class SDSocialViewController: GAITrackedViewController, SDErrorPlaceholderViewDelegate, SDMenuControllerItem {
 
@@ -213,7 +214,7 @@ class SDSocialViewController: GAITrackedViewController, SDErrorPlaceholderViewDe
     }
 
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        var cell: SDSocialTableViewCell? = tableView.dequeueReusableCellWithIdentifier(kReuseIdentifier) as? SDSocialTableViewCell
+        let cell: SDSocialTableViewCell? = tableView.dequeueReusableCellWithIdentifier(kReuseIdentifier) as? SDSocialTableViewCell
         switch cell {
         case let (.Some(cell)):
             return configureCell(cell, indexPath: indexPath)

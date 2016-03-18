@@ -50,24 +50,6 @@
 		597E3B0D1AB2E58A00F41F17 /* SDTweet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 597E3B071AB2E58A00F41F17 /* SDTweet.swift */; };
 		597E3B101AB2E5FD00F41F17 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 597E3B0F1AB2E5FD00F41F17 /* DataManager.swift */; };
 		597E3B111AB2E5FD00F41F17 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 597E3B0F1AB2E5FD00F41F17 /* DataManager.swift */; };
-		598BC32F1B20A39000CF943A /* Alamofire.swift in Sources */ = {isa = PBXBuildFile; fileRef = 598BC3261B20A39000CF943A /* Alamofire.swift */; };
-		598BC3301B20A39000CF943A /* Download.swift in Sources */ = {isa = PBXBuildFile; fileRef = 598BC3271B20A39000CF943A /* Download.swift */; };
-		598BC3311B20A39000CF943A /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 598BC3281B20A39000CF943A /* Info.plist */; };
-		598BC3321B20A39000CF943A /* Manager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 598BC3291B20A39000CF943A /* Manager.swift */; };
-		598BC3331B20A39000CF943A /* ParameterEncoding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 598BC32A1B20A39000CF943A /* ParameterEncoding.swift */; };
-		598BC3341B20A39000CF943A /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = 598BC32B1B20A39000CF943A /* Request.swift */; };
-		598BC3351B20A39000CF943A /* ResponseSerialization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 598BC32C1B20A39000CF943A /* ResponseSerialization.swift */; };
-		598BC3361B20A39000CF943A /* Upload.swift in Sources */ = {isa = PBXBuildFile; fileRef = 598BC32D1B20A39000CF943A /* Upload.swift */; };
-		598BC3371B20A39000CF943A /* Validation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 598BC32E1B20A39000CF943A /* Validation.swift */; };
-		598BC3381B20A52500CF943A /* Alamofire.swift in Sources */ = {isa = PBXBuildFile; fileRef = 598BC3261B20A39000CF943A /* Alamofire.swift */; };
-		598BC3391B20A52700CF943A /* Download.swift in Sources */ = {isa = PBXBuildFile; fileRef = 598BC3271B20A39000CF943A /* Download.swift */; };
-		598BC33A1B20A52900CF943A /* Manager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 598BC3291B20A39000CF943A /* Manager.swift */; };
-		598BC33B1B20A52B00CF943A /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 598BC3281B20A39000CF943A /* Info.plist */; };
-		598BC33C1B20A52F00CF943A /* ParameterEncoding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 598BC32A1B20A39000CF943A /* ParameterEncoding.swift */; };
-		598BC33D1B20A53100CF943A /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = 598BC32B1B20A39000CF943A /* Request.swift */; };
-		598BC33E1B20A53400CF943A /* ResponseSerialization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 598BC32C1B20A39000CF943A /* ResponseSerialization.swift */; };
-		598BC33F1B20A53600CF943A /* Upload.swift in Sources */ = {isa = PBXBuildFile; fileRef = 598BC32D1B20A39000CF943A /* Upload.swift */; };
-		598BC3401B20A53900CF943A /* Validation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 598BC32E1B20A39000CF943A /* Validation.swift */; };
 		59A7DF641A936C84009F4639 /* SDScheduleDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59A7DF621A936C84009F4639 /* SDScheduleDetailViewController.swift */; };
 		59A7DF651A936C84009F4639 /* SDScheduleDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 59A7DF631A936C84009F4639 /* SDScheduleDetailViewController.xib */; };
 		59A7DF6B1A9371A8009F4639 /* SDSpeakerDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59A7DF6A1A9371A8009F4639 /* SDSpeakerDetailView.swift */; };
@@ -80,19 +62,16 @@
 		59A7DF841A938A41009F4639 /* SDFonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1FA1FFA1A7BAE5B00338AF0 /* SDFonts.swift */; };
 		59A7DF851A938A41009F4639 /* SDColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1FA1FEA1A7AA6AF00338AF0 /* SDColor.swift */; };
 		59A7DF881A938A41009F4639 /* SDMapView-ZoomOut.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5925ADA01A897AAD000EA5E7 /* SDMapView-ZoomOut.swift */; };
-		59C477451A9786A70033C6D1 /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1A94F2C1A76A36C003A6C0B /* SwiftyJSON.swift */; };
 		59D174621A8E0C2B001E87CF /* SDSponsorsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59D174611A8E0C2B001E87CF /* SDSponsorsTableViewCell.swift */; };
 		59D174641A8E0C3A001E87CF /* SDSponsorsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 59D174631A8E0C3A001E87CF /* SDSponsorsTableViewCell.xib */; };
 		59E430EF1A964BEF00185C41 /* SDGoogleAnalyticsHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59E430EE1A964BEF00185C41 /* SDGoogleAnalyticsHandler.swift */; };
-		84EFC40AF74037F095B5FD60 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2FB6FED00626F7CA4FD64E9E /* libPods.a */; };
+		A158176B1C8ED3D10013AFBB /* SDExternalKeys.plist in Resources */ = {isa = PBXBuildFile; fileRef = A158176A1C8ED3D10013AFBB /* SDExternalKeys.plist */; };
 		A171433E1A88F6880068FD33 /* SDConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1FA1FF81A7BA95500338AF0 /* SDConstants.swift */; };
 		A171433F1A88F7730068FD33 /* SDDateHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 590DDD761A83C5E800E4CC3F /* SDDateHandler.swift */; };
 		A19C65C71A7FC30A00A206FC /* SDContactViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A19C65C51A7FC30A00A206FC /* SDContactViewController.swift */; };
 		A19C65C81A7FC30A00A206FC /* SDContactViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A19C65C61A7FC30A00A206FC /* SDContactViewController.xib */; };
 		A1A47E7C1B035FA600C6CC58 /* SDSpeakerScheduleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1A47E7B1B035FA600C6CC58 /* SDSpeakerScheduleView.swift */; };
 		A1A47E7E1B035FC400C6CC58 /* SDSpeakerScheduleView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A1A47E7D1B035FC400C6CC58 /* SDSpeakerScheduleView.xib */; };
-		A1A47E801B0A308E00C6CC58 /* SDExternalKeys.plist in Resources */ = {isa = PBXBuildFile; fileRef = A1A8AA591AFBA23F00D2679B /* SDExternalKeys.plist */; };
-		A1A94F2D1A76A36C003A6C0B /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1A94F2C1A76A36C003A6C0B /* SwiftyJSON.swift */; };
 		A1C8B8761A8E6C77008599FF /* SDScheduleListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A1C8B8751A8E6C77008599FF /* SDScheduleListTableViewCell.xib */; };
 		A1C8B8781A8E6CE7008599FF /* SDScheduleListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1C8B8771A8E6CE7008599FF /* SDScheduleListTableViewCell.swift */; };
 		A1C8B87A1A8E6F56008599FF /* SDTableHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1C8B8791A8E6F56008599FF /* SDTableHeaderView.swift */; };
@@ -118,6 +97,7 @@
 		A1FA1FF61A7B98FE00338AF0 /* SDSlideMenuViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A1CC72141A7A727F00757B65 /* SDSlideMenuViewController.xib */; };
 		A1FA1FF91A7BA95500338AF0 /* SDConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1FA1FF81A7BA95500338AF0 /* SDConstants.swift */; };
 		A1FA1FFB1A7BAE5B00338AF0 /* SDFonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1FA1FFA1A7BAE5B00338AF0 /* SDFonts.swift */; };
+		C177864156C1BA62E4079E0F /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ABF9038973313EDBBD18EB45 /* Pods.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -146,7 +126,6 @@
 /* Begin PBXFileReference section */
 		1EA75E891A925BFF00884EC8 /* SDConferenceTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SDConferenceTableViewCell.swift; sourceTree = "<group>"; };
 		1EA75E8A1A925BFF00884EC8 /* SDConferenceTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SDConferenceTableViewCell.xib; sourceTree = "<group>"; };
-		2FB6FED00626F7CA4FD64E9E /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		590DDD691A83BAC100E4CC3F /* SDSpeakersListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SDSpeakersListViewController.swift; sourceTree = "<group>"; };
 		590DDD6D1A83BAFD00E4CC3F /* SDSpeakersListViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SDSpeakersListViewController.xib; sourceTree = "<group>"; };
 		590DDD6F1A83BE9B00E4CC3F /* SDSpeakersTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SDSpeakersTableViewCell.swift; sourceTree = "<group>"; };
@@ -182,16 +161,6 @@
 		597E3B061AB2E58A00F41F17 /* SDMapAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SDMapAnnotation.swift; sourceTree = "<group>"; };
 		597E3B071AB2E58A00F41F17 /* SDTweet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SDTweet.swift; sourceTree = "<group>"; };
 		597E3B0F1AB2E5FD00F41F17 /* DataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
-		598BC3251B20A39000CF943A /* Alamofire.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Alamofire.h; sourceTree = "<group>"; };
-		598BC3261B20A39000CF943A /* Alamofire.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Alamofire.swift; sourceTree = "<group>"; };
-		598BC3271B20A39000CF943A /* Download.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Download.swift; sourceTree = "<group>"; };
-		598BC3281B20A39000CF943A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		598BC3291B20A39000CF943A /* Manager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Manager.swift; sourceTree = "<group>"; };
-		598BC32A1B20A39000CF943A /* ParameterEncoding.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParameterEncoding.swift; sourceTree = "<group>"; };
-		598BC32B1B20A39000CF943A /* Request.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Request.swift; sourceTree = "<group>"; };
-		598BC32C1B20A39000CF943A /* ResponseSerialization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResponseSerialization.swift; sourceTree = "<group>"; };
-		598BC32D1B20A39000CF943A /* Upload.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Upload.swift; sourceTree = "<group>"; };
-		598BC32E1B20A39000CF943A /* Validation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Validation.swift; sourceTree = "<group>"; };
 		59A7DF621A936C84009F4639 /* SDScheduleDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SDScheduleDetailViewController.swift; sourceTree = "<group>"; };
 		59A7DF631A936C84009F4639 /* SDScheduleDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SDScheduleDetailViewController.xib; sourceTree = "<group>"; };
 		59A7DF6A1A9371A8009F4639 /* SDSpeakerDetailView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SDSpeakerDetailView.swift; sourceTree = "<group>"; };
@@ -200,15 +169,13 @@
 		59D174631A8E0C3A001E87CF /* SDSponsorsTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SDSponsorsTableViewCell.xib; sourceTree = "<group>"; };
 		59E430EE1A964BEF00185C41 /* SDGoogleAnalyticsHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SDGoogleAnalyticsHandler.swift; sourceTree = "<group>"; };
 		9AA114FE335624986EFB5A1D /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		A158176A1C8ED3D10013AFBB /* SDExternalKeys.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = SDExternalKeys.plist; path = ScalaDays/External/SDExternalKeys.plist; sourceTree = SOURCE_ROOT; };
 		A163DC2E1A6E595B00A21B8E /* libPods-SwiftyJSON.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPods-SwiftyJSON.a"; path = "Pods/build/Debug-iphoneos/libPods-SwiftyJSON.a"; sourceTree = "<group>"; };
 		A17D3AC71A690E3A00024062 /* Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Bridging-Header.h"; sourceTree = "<group>"; };
 		A19C65C51A7FC30A00A206FC /* SDContactViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SDContactViewController.swift; sourceTree = "<group>"; };
 		A19C65C61A7FC30A00A206FC /* SDContactViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SDContactViewController.xib; sourceTree = "<group>"; };
 		A1A47E7B1B035FA600C6CC58 /* SDSpeakerScheduleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SDSpeakerScheduleView.swift; sourceTree = "<group>"; };
 		A1A47E7D1B035FC400C6CC58 /* SDSpeakerScheduleView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SDSpeakerScheduleView.xib; sourceTree = "<group>"; };
-		A1A8AA591AFBA23F00D2679B /* SDExternalKeys.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = SDExternalKeys.plist; path = ScalaDays/SDExternalKeys.plist; sourceTree = SOURCE_ROOT; };
-		A1A94F2B1A76A36C003A6C0B /* SwiftyJSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SwiftyJSON.h; sourceTree = "<group>"; };
-		A1A94F2C1A76A36C003A6C0B /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyJSON.swift; sourceTree = "<group>"; };
 		A1C8B8751A8E6C77008599FF /* SDScheduleListTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SDScheduleListTableViewCell.xib; sourceTree = "<group>"; };
 		A1C8B8771A8E6CE7008599FF /* SDScheduleListTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SDScheduleListTableViewCell.swift; sourceTree = "<group>"; };
 		A1C8B8791A8E6F56008599FF /* SDTableHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SDTableHeaderView.swift; sourceTree = "<group>"; };
@@ -239,6 +206,7 @@
 		A1FA1FF81A7BA95500338AF0 /* SDConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SDConstants.swift; sourceTree = "<group>"; };
 		A1FA1FFA1A7BAE5B00338AF0 /* SDFonts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SDFonts.swift; sourceTree = "<group>"; };
 		A90C18A2EE06F6072C2A6091 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		ABF9038973313EDBBD18EB45 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -250,7 +218,7 @@
 				A1C8B87D1A8E75B6008599FF /* Crashlytics.framework in Frameworks */,
 				5950030A1A84EDD500A1C24F /* AddressBook.framework in Frameworks */,
 				595003011A84C1DA00A1C24F /* MobileCoreServices.framework in Frameworks */,
-				84EFC40AF74037F095B5FD60 /* libPods.a in Frameworks */,
+				C177864156C1BA62E4079E0F /* Pods.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -309,11 +277,8 @@
 		101B4FB1641809244D4A4CE8 /* External */ = {
 			isa = PBXGroup;
 			children = (
-				598BC3241B20A39000CF943A /* Alamofire */,
 				59ACF91B1AB2FFF2005914E1 /* Keys */,
 				A1CC71E11A7930D100757B65 /* SlideMenuController.swift */,
-				A1A94F2B1A76A36C003A6C0B /* SwiftyJSON.h */,
-				A1A94F2C1A76A36C003A6C0B /* SwiftyJSON.swift */,
 			);
 			path = External;
 			sourceTree = "<group>";
@@ -451,27 +416,10 @@
 			path = Service;
 			sourceTree = "<group>";
 		};
-		598BC3241B20A39000CF943A /* Alamofire */ = {
-			isa = PBXGroup;
-			children = (
-				598BC3251B20A39000CF943A /* Alamofire.h */,
-				598BC3261B20A39000CF943A /* Alamofire.swift */,
-				598BC3271B20A39000CF943A /* Download.swift */,
-				598BC3281B20A39000CF943A /* Info.plist */,
-				598BC3291B20A39000CF943A /* Manager.swift */,
-				598BC32A1B20A39000CF943A /* ParameterEncoding.swift */,
-				598BC32B1B20A39000CF943A /* Request.swift */,
-				598BC32C1B20A39000CF943A /* ResponseSerialization.swift */,
-				598BC32D1B20A39000CF943A /* Upload.swift */,
-				598BC32E1B20A39000CF943A /* Validation.swift */,
-			);
-			path = Alamofire;
-			sourceTree = "<group>";
-		};
 		59ACF91B1AB2FFF2005914E1 /* Keys */ = {
 			isa = PBXGroup;
 			children = (
-				A1A8AA591AFBA23F00D2679B /* SDExternalKeys.plist */,
+				A158176A1C8ED3D10013AFBB /* SDExternalKeys.plist */,
 			);
 			path = Keys;
 			sourceTree = "<group>";
@@ -491,7 +439,7 @@
 				595003091A84EDD500A1C24F /* AddressBook.framework */,
 				595003001A84C1DA00A1C24F /* MobileCoreServices.framework */,
 				A163DC2E1A6E595B00A21B8E /* libPods-SwiftyJSON.a */,
-				2FB6FED00626F7CA4FD64E9E /* libPods.a */,
+				ABF9038973313EDBBD18EB45 /* Pods.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -587,6 +535,7 @@
 				6B34A8DE02A83B2AC5E25535 /* Copy Pods Resources */,
 				A163DC141A6D6C7C00A21B8E /* Embed Frameworks */,
 				A1C8B87B1A8E7597008599FF /* ShellScript */,
+				191320A905B1A0A2A3291C5B /* Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -622,7 +571,9 @@
 		A1D795BF1A68267F009CCEB3 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0610;
+				LastSwiftMigration = 0720;
+				LastSwiftUpdateCheck = 0720;
+				LastUpgradeCheck = 0720;
 				ORGANIZATIONNAME = "47 Degrees";
 				TargetAttributes = {
 					A1D795C61A68267F009CCEB3 = {
@@ -665,7 +616,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A1A47E801B0A308E00C6CC58 /* SDExternalKeys.plist in Resources */,
+				A158176B1C8ED3D10013AFBB /* SDExternalKeys.plist in Resources */,
 				A1FA1FF41A7B98FE00338AF0 /* SDScheduleViewController.xib in Resources */,
 				A1FA1FF51A7B98FE00338AF0 /* SDSocialViewController.xib in Resources */,
 				A1C8B8761A8E6C77008599FF /* SDScheduleListTableViewCell.xib in Resources */,
@@ -675,7 +626,6 @@
 				A19C65C81A7FC30A00A206FC /* SDContactViewController.xib in Resources */,
 				A1FA1FE91A7AA33F00338AF0 /* SDAboutViewController.xib in Resources */,
 				590DDD721A83BEA800E4CC3F /* SDSpeakersTableViewCell.xib in Resources */,
-				598BC3311B20A39000CF943A /* Info.plist in Resources */,
 				59A7DF6D1A93725E009F4639 /* SDSpeakerDetailView.xib in Resources */,
 				59A7DF651A936C84009F4639 /* SDScheduleDetailViewController.xib in Resources */,
 				590DDD6E1A83BAFD00E4CC3F /* SDSpeakersListViewController.xib in Resources */,
@@ -695,7 +645,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				598BC33B1B20A52B00CF943A /* Info.plist in Resources */,
 				5933EFC41A9B256100383C7F /* scala_days_complete_sf.json in Resources */,
 				595FD6C81A9CD3820033D0C6 /* scala_days_wrong.json in Resources */,
 				595FD6CA1A9CD6900033D0C6 /* scala_days_empty.json in Resources */,
@@ -718,6 +667,21 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		191320A905B1A0A2A3291C5B /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		1EA75E881A92445700884EC8 /* ShellScript */ = {
@@ -774,17 +738,13 @@
 				597E3B081AB2E58A00F41F17 /* Conference.swift in Sources */,
 				590DDD771A83C5E800E4CC3F /* SDDateHandler.swift in Sources */,
 				592609921A973C610055A3D4 /* SDAnimationHelper.swift in Sources */,
-				598BC32F1B20A39000CF943A /* Alamofire.swift in Sources */,
 				595003031A84C43B00A1C24F /* SDZBarSymbolSet-Enumeration.swift in Sources */,
 				A1C8B8781A8E6CE7008599FF /* SDScheduleListTableViewCell.swift in Sources */,
 				597E3B0C1AB2E58A00F41F17 /* SDTweet.swift in Sources */,
 				A1A47E7C1B035FA600C6CC58 /* SDSpeakerScheduleView.swift in Sources */,
 				597E3B0A1AB2E58A00F41F17 /* SDMapAnnotation.swift in Sources */,
-				598BC3361B20A39000CF943A /* Upload.swift in Sources */,
 				A1FA1FF91A7BA95500338AF0 /* SDConstants.swift in Sources */,
-				598BC3351B20A39000CF943A /* ResponseSerialization.swift in Sources */,
 				A1FA1FF11A7B920700338AF0 /* SDSlideMenuViewController.swift in Sources */,
-				598BC3321B20A39000CF943A /* Manager.swift in Sources */,
 				592978091A82141400EE3BA3 /* SDSocialHandler.swift in Sources */,
 				A1FA1FEE1A7B91D100338AF0 /* SDScheduleViewController.swift in Sources */,
 				A1FA1FEF1A7B91D100338AF0 /* SDSocialViewController.swift in Sources */,
@@ -792,13 +752,10 @@
 				A1FA1FED1A7B919900338AF0 /* SlideMenuController.swift in Sources */,
 				5925ADA11A897AAD000EA5E7 /* SDMapView-ZoomOut.swift in Sources */,
 				59E430EF1A964BEF00185C41 /* SDGoogleAnalyticsHandler.swift in Sources */,
-				598BC3301B20A39000CF943A /* Download.swift in Sources */,
 				A1C8B87A1A8E6F56008599FF /* SDTableHeaderView.swift in Sources */,
 				5920EA5E1A9484A800564014 /* SDErrorPlaceholderView.swift in Sources */,
-				598BC3341B20A39000CF943A /* Request.swift in Sources */,
 				1EA75E8B1A925BFF00884EC8 /* SDConferenceTableViewCell.swift in Sources */,
 				A1FA1FEC1A7B90DD00338AF0 /* SDUIViewControllerExtension.swift in Sources */,
-				598BC3371B20A39000CF943A /* Validation.swift in Sources */,
 				5928D18C1A89096500E5049E /* SDView-NibLoading.swift in Sources */,
 				595003061A84DE2600A1C24F /* SDQRScannerOverlayView.swift in Sources */,
 				5920EA661A94B20800564014 /* SDMenuControllerItem.swift in Sources */,
@@ -813,8 +770,6 @@
 				593571E91A77DDA8005AA332 /* StoringHelper.swift in Sources */,
 				592978061A8210B800EE3BA3 /* SDImageView-Circular.swift in Sources */,
 				59A7DF641A936C84009F4639 /* SDScheduleDetailViewController.swift in Sources */,
-				A1A94F2D1A76A36C003A6C0B /* SwiftyJSON.swift in Sources */,
-				598BC3331B20A39000CF943A /* ParameterEncoding.swift in Sources */,
 				A1D795CD1A68267F009CCEB3 /* AppDelegate.swift in Sources */,
 				A1FA1FE41A7AA30F00338AF0 /* SDPlacesViewController.swift in Sources */,
 				592978031A82106D00EE3BA3 /* SDSocialTableViewCell.swift in Sources */,
@@ -827,31 +782,22 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				598BC33C1B20A52F00CF943A /* ParameterEncoding.swift in Sources */,
-				598BC33D1B20A53100CF943A /* Request.swift in Sources */,
-				59C477451A9786A70033C6D1 /* SwiftyJSON.swift in Sources */,
 				59A7DF701A938A41009F4639 /* SDAlertViewHelper.swift in Sources */,
-				598BC3401B20A53900CF943A /* Validation.swift in Sources */,
 				59A7DF711A938A41009F4639 /* SDSocialHandler.swift in Sources */,
 				597E3B0D1AB2E58A00F41F17 /* SDTweet.swift in Sources */,
-				598BC33F1B20A53600CF943A /* Upload.swift in Sources */,
 				59A7DF731A938A41009F4639 /* SDQRScannerOverlayView.swift in Sources */,
 				59A7DF751A938A41009F4639 /* SDTableHeaderView.swift in Sources */,
-				598BC3381B20A52500CF943A /* Alamofire.swift in Sources */,
 				59A7DF831A938A41009F4639 /* SDImageView-Circular.swift in Sources */,
 				59A7DF841A938A41009F4639 /* SDFonts.swift in Sources */,
 				597E3B0B1AB2E58A00F41F17 /* SDMapAnnotation.swift in Sources */,
 				597E3B111AB2E5FD00F41F17 /* DataManager.swift in Sources */,
-				598BC33E1B20A53400CF943A /* ResponseSerialization.swift in Sources */,
 				59A7DF851A938A41009F4639 /* SDColor.swift in Sources */,
-				598BC3391B20A52700CF943A /* Download.swift in Sources */,
 				59A7DF881A938A41009F4639 /* SDMapView-ZoomOut.swift in Sources */,
 				A171433F1A88F7730068FD33 /* SDDateHandler.swift in Sources */,
 				597E3B091AB2E58A00F41F17 /* Conference.swift in Sources */,
 				A171433E1A88F6880068FD33 /* SDConstants.swift in Sources */,
 				5928D18D1A89096500E5049E /* SDView-NibLoading.swift in Sources */,
 				5928D17D1A88F53900E5049E /* SDString+RemoveWhiteSpaces.swift in Sources */,
-				598BC33A1B20A52900CF943A /* Manager.swift in Sources */,
 				593571EA1A77E41C005AA332 /* StoringHelper.swift in Sources */,
 				A1D795E31A68267F009CCEB3 /* ScalaDaysTests.swift in Sources */,
 			);
@@ -896,9 +842,12 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: 47 Degrees, LLC";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Ana Maria Marquez Velazquez (VLT9L5DKXR)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Ana Maria Marquez Velazquez (VLT9L5DKXR)";
 				COPY_PHASE_STRIP = NO;
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -913,10 +862,11 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				PROVISIONING_PROFILE = "daa87f0f-0299-4445-b061-ebab2b3381df";
+				OTHER_SWIFT_FLAGS = "";
+				PROVISIONING_PROFILE = "4db45c87-2a0e-4c1e-b506-15cc4eaae65e";
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -940,8 +890,10 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: 47 Degrees, LLC";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Ana Maria Marquez Velazquez (VLT9L5DKXR)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Ana Maria Marquez Velazquez (VLT9L5DKXR)";
 				COPY_PHASE_STRIP = YES;
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -951,9 +903,10 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PROVISIONING_PROFILE = "daa87f0f-0299-4445-b061-ebab2b3381df";
+				OTHER_SWIFT_FLAGS = "";
+				PROVISIONING_PROFILE = "4db45c87-2a0e-4c1e-b506-15cc4eaae65e";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
@@ -966,23 +919,24 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: 47 Degrees, LLC";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: 47 Degrees, LLC";
-				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer: Ana Maria Marquez Velazquez (VLT9L5DKXR)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Ana Maria Marquez Velazquez (VLT9L5DKXR)";
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = "$(inherited)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/ScalaDays",
 				);
 				INFOPLIST_FILE = ScalaDays/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Pods/build/Debug-iphoneos",
 				);
 				OTHER_LDFLAGS = "$(inherited)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.fortysevendeg.scaladays;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "9f95290f-e277-4d24-8aff-c28919511ab4";
+				PROVISIONING_PROFILE = "4db45c87-2a0e-4c1e-b506-15cc4eaae65e";
 				SWIFT_OBJC_BRIDGING_HEADER = "ScalaDays/Bridging-Header.h";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -994,23 +948,24 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: 47 Degrees, LLC";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: 47 Degrees, LLC";
-				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer: Ana Maria Marquez Velazquez (VLT9L5DKXR)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Ana Maria Marquez Velazquez (VLT9L5DKXR)";
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = "$(inherited)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/ScalaDays",
 				);
 				INFOPLIST_FILE = ScalaDays/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Pods/build/Debug-iphoneos",
 				);
 				OTHER_LDFLAGS = "$(inherited)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.fortysevendeg.scaladays;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "9f95290f-e277-4d24-8aff-c28919511ab4";
+				PROVISIONING_PROFILE = "4db45c87-2a0e-4c1e-b506-15cc4eaae65e";
 				SWIFT_OBJC_BRIDGING_HEADER = "ScalaDays/Bridging-Header.h";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -1030,6 +985,8 @@
 				);
 				INFOPLIST_FILE = ScalaDaysTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				OTHER_SWIFT_FLAGS = "$(inherited)";
+				PRODUCT_BUNDLE_IDENTIFIER = "fortysevendeg.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ScalaDays.app/ScalaDays";
 			};
@@ -1045,6 +1002,8 @@
 				);
 				INFOPLIST_FILE = ScalaDaysTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				OTHER_SWIFT_FLAGS = "$(inherited)";
+				PRODUCT_BUNDLE_IDENTIFIER = "fortysevendeg.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ScalaDays.app/ScalaDays";
 			};

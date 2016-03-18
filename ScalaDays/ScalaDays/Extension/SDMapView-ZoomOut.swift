@@ -33,13 +33,13 @@ extension MKMapView {
         }
         var topLeftCoord = CLLocationCoordinate2D(latitude: -90, longitude: 180)
         var bottomRightCoord = CLLocationCoordinate2D(latitude: 90, longitude: -180)
-        for annotation in self.annotations as! [MKAnnotation] {
+        for annotation in self.annotations {
             topLeftCoord.longitude = fmin(topLeftCoord.longitude, annotation.coordinate.longitude);
             topLeftCoord.latitude = fmax(topLeftCoord.latitude, annotation.coordinate.latitude);
             bottomRightCoord.longitude = fmax(bottomRightCoord.longitude, annotation.coordinate.longitude);
             bottomRightCoord.latitude = fmin(bottomRightCoord.latitude, annotation.coordinate.latitude);
         }
-        var region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: topLeftCoord.latitude - (topLeftCoord.latitude - bottomRightCoord.latitude) * 0.5,
+        let region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: topLeftCoord.latitude - (topLeftCoord.latitude - bottomRightCoord.latitude) * 0.5,
             longitude: topLeftCoord.longitude + (bottomRightCoord.longitude - topLeftCoord.longitude) * 0.5),
             span: MKCoordinateSpan(latitudeDelta: fabs(topLeftCoord.latitude - bottomRightCoord.latitude) * kZoomOutRatio, longitudeDelta: fabs(topLeftCoord.latitude - bottomRightCoord.latitude) * kZoomOutRatio))
         self.setRegion(region, animated: true)
