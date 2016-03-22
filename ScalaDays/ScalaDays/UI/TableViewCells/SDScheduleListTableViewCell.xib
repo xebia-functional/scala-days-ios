@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6751" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9532" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <objects>
@@ -12,6 +12,7 @@
             <rect key="frame" x="0.0" y="0.0" width="640" height="133"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="uQB-Ol-iqi" id="WYi-j6-dN4">
+                <rect key="frame" x="0.0" y="0.0" width="640" height="132"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iZC-Ux-GCx" userLabel="Main Background">
@@ -22,16 +23,31 @@
                         <rect key="frame" x="0.0" y="0.0" width="80" height="131"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" placeholderIntrinsicWidth="100" placeholderIntrinsicHeight="25" text="08:00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="60" translatesAutoresizingMaskIntoConstraints="NO" id="RdK-wi-8OD">
-                                <rect key="frame" x="-10" y="12" width="100" height="25"/>
+                                <rect key="frame" x="-10" y="14" width="100" height="25"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="12"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PbI-e3-2yJ">
+                                <rect key="frame" x="13" y="49" width="55" height="30"/>
+                                <color key="backgroundColor" red="0.18431372549019609" green="0.23921568627450981" blue="0.28235294117647058" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="55" id="8TL-Bg-9af"/>
+                                    <constraint firstAttribute="height" constant="30" id="f48-9l-iMr"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="15"/>
+                                <state key="normal" title="VOTE">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.27450980392156865" green="0.58431372549019611" blue="0.68235294117647061" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
+                            <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="PbI-e3-2yJ" secondAttribute="bottom" constant="10" id="D3h-NT-M2J"/>
+                            <constraint firstItem="PbI-e3-2yJ" firstAttribute="centerX" secondItem="uOZ-dw-dqz" secondAttribute="centerX" id="G5J-Xy-n7T"/>
+                            <constraint firstItem="PbI-e3-2yJ" firstAttribute="top" secondItem="RdK-wi-8OD" secondAttribute="bottom" constant="10" id="Jrn-XC-YEw"/>
                             <constraint firstAttribute="centerX" secondItem="RdK-wi-8OD" secondAttribute="centerX" id="RvP-97-oP7"/>
-                            <constraint firstItem="RdK-wi-8OD" firstAttribute="top" secondItem="uOZ-dw-dqz" secondAttribute="top" constant="12" id="kmc-Go-JqM"/>
+                            <constraint firstItem="RdK-wi-8OD" firstAttribute="top" secondItem="uOZ-dw-dqz" secondAttribute="top" constant="14" id="kmc-Go-JqM"/>
                             <constraint firstAttribute="width" constant="80" id="y0t-cR-Kd7"/>
                         </constraints>
                     </view>
@@ -116,6 +132,8 @@
                 </constraints>
             </tableViewCellContentView>
             <connections>
+                <outlet property="btnVote" destination="PbI-e3-2yJ" id="BN8-pR-cZN"/>
+                <outlet property="constraintForBtnVoteHeight" destination="f48-9l-iMr" id="mD5-PX-Y9i"/>
                 <outlet property="constraintForLblLocationBottomSpace" destination="CZp-Zz-wkB" id="4dI-kb-Et9"/>
                 <outlet property="constraintForLblLocationHeight" destination="Hqa-4c-DTu" id="LXb-h3-RJn"/>
                 <outlet property="constraintForLblTitleBottomSpace" destination="cdY-X7-N2J" id="T97-1n-BUP"/>

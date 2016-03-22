@@ -58,8 +58,6 @@ class SDScheduleViewController: GAITrackedViewController, UITableViewDelegate, U
                     return _favoritesIndexes.count == 0 ? [[Event]]() : favorites
                 }
                 return [[Event]]()
-            default:
-                return nil
             }
         }
     }
@@ -110,7 +108,7 @@ class SDScheduleViewController: GAITrackedViewController, UITableViewDelegate, U
         DataManager.sharedInstance.loadDataJson() {
             (bool, error) -> () in
             
-            if let badError = error {
+            if let _ = error {
                 self.errorPlaceholderView.show(NSLocalizedString("error_message_no_data_available", comment: ""))
                 SVProgressHUD.dismiss()
             } else {

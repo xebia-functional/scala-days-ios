@@ -16,6 +16,7 @@
 
 import UIKit
 import XCTest
+import SwiftyJSON
 
 class ScalaDaysTests: XCTestCase {
     
@@ -39,8 +40,9 @@ class ScalaDaysTests: XCTestCase {
         let fileManager = NSFileManager.defaultManager()
         
         if(!fileManager.fileExistsAtPath(documentsFolderPath)) {
-            var error : NSErrorPointer = nil
-            if !fileManager.createDirectoryAtPath(documentsFolderPath, withIntermediateDirectories: true, attributes: nil, error: error) {
+            do {
+                try fileManager.createDirectoryAtPath(documentsFolderPath, withIntermediateDirectories: true, attributes: nil)
+            } catch {
                 XCTFail("Couldn't create fake documents directory for testing...")
             }
         }        
@@ -57,8 +59,7 @@ class ScalaDaysTests: XCTestCase {
             StoringHelper.sharedInstance.storeConferenceDataFromFileWithFilename(conferences, filename: kFilenameForTestConferenceData)
             let loadedData = StoringHelper.sharedInstance.loadConferenceDataFromFileWithFilename(kFilenameForTestConferenceData)
             if let loadedConferences = loadedData {
-                // MARK: Testing equality of both conference instances...
-                XCTAssertEqual(conferences, loadedConferences, "Conference data should be the same after being stored")
+                XCTAssertEqual(conferences.conferences.count, loadedConferences.conferences.count, "Conference data should be the same after being stored")
             } else {
                 XCTFail("Couldn't load valid conference data from disk")
             }
@@ -124,6 +125,48 @@ class ScalaDaysTests: XCTestCase {
         }
     }
     
+    // MARK: Voting limitations tests
+    
+    func testVotingThresholds() {
+        let calendar = NSCalendar.currentCalendar()
+        let usTimeZone = "America/New_York"
+        let euTimeZone = "Europe/Copenhagen"
+        let usTimeDateString = "2016-05-10T14:00:00Z"
+        let usTimeDateEndOfDayString = "2016-05-11T04:00:00Z"
+        let euTimeDateString = "2016-06-14T07:00:00Z"
+        let euTimeDateEndOfDayString = "2016-06-14T22:00:00Z"
+        
+        if let usTimeDate = SDDateHandler.convertDateToLocalTime(SDDateHandler.sharedInstance.parseScheduleDate(usTimeDateString)!, timeZoneName: usTimeZone),
+            usTimeDateEndOfDayDate = SDDateHandler.convertDateToLocalTime(SDDateHandler.sharedInstance.parseScheduleDate(usTimeDateEndOfDayString)!, timeZoneName: usTimeZone),
+            euTimeDate = SDDateHandler.convertDateToLocalTime(SDDateHandler.sharedInstance.parseScheduleDate(euTimeDateString)!, timeZoneName: euTimeZone),
+            euTimeDateEndOfDayDate = SDDateHandler.convertDateToLocalTime(SDDateHandler.sharedInstance.parseScheduleDate(euTimeDateEndOfDayString)!, timeZoneName: euTimeZone),
+            oneDayBeforeUSTimeDate = calendar.dateByAddingUnit(NSCalendarUnit.Day, value: -1, toDate: usTimeDate, options: NSCalendarOptions()),
+            oneHourBeforeUSTimeDate = calendar.dateByAddingUnit(NSCalendarUnit.Hour, value: -1, toDate: usTimeDate, options: NSCalendarOptions()),
+            oneMinuteAfterUSTimeDate = calendar.dateByAddingUnit(NSCalendarUnit.Minute, value: 1, toDate: usTimeDate, options: NSCalendarOptions()),
+            oneHourAfterUSTimeDate = calendar.dateByAddingUnit(NSCalendarUnit.Minute, value: 1, toDate: usTimeDate, options: NSCalendarOptions()),
+            oneDayBeforeEUTimeDate = calendar.dateByAddingUnit(NSCalendarUnit.Day, value: -1, toDate: euTimeDate, options: NSCalendarOptions()),
+            oneHourBeforeEUTimeDate = calendar.dateByAddingUnit(NSCalendarUnit.Hour, value: -1, toDate: euTimeDate, options: NSCalendarOptions()),
+            oneMinuteAfterEUTimeDate = calendar.dateByAddingUnit(NSCalendarUnit.Minute, value: 1, toDate: euTimeDate, options: NSCalendarOptions()),
+            oneHourAfterEUTimeDate = calendar.dateByAddingUnit(NSCalendarUnit.Minute, value: 1, toDate: euTimeDate, options: NSCalendarOptions()),
+            oneDayAfterUSEndOfDayDate = calendar.dateByAddingUnit(NSCalendarUnit.Day, value: 1, toDate: usTimeDateEndOfDayDate, options: NSCalendarOptions()),
+            oneDayAfterEUEndOfDayDate = calendar.dateByAddingUnit(NSCalendarUnit.Day, value: 1, toDate: euTimeDateEndOfDayDate, options: NSCalendarOptions()) {
+                XCTAssertFalse(SDDateHandler.isSafeToVoteForConferenceWithDate(usTimeDate, fromReferenceDate: oneDayBeforeUSTimeDate), "It's only safe to vote for a conference after its start date")
+                XCTAssertFalse(SDDateHandler.isSafeToVoteForConferenceWithDate(usTimeDate, fromReferenceDate: oneHourBeforeUSTimeDate), "It's only safe to vote for a conference after its start date")
+                XCTAssertFalse(SDDateHandler.isSafeToVoteForConferenceWithDate(euTimeDate, fromReferenceDate: oneDayBeforeEUTimeDate), "It's only safe to vote for a conference after its start date")
+                XCTAssertFalse(SDDateHandler.isSafeToVoteForConferenceWithDate(euTimeDate, fromReferenceDate: oneHourBeforeEUTimeDate), "It's only safe to vote for a conference after its start date")
+                XCTAssertFalse(SDDateHandler.isSafeToVoteForConferenceWithDate(usTimeDate, fromReferenceDate: usTimeDateEndOfDayDate), "It's only safe to vote for a conference before its day is over")
+                XCTAssertFalse(SDDateHandler.isSafeToVoteForConferenceWithDate(euTimeDate, fromReferenceDate: euTimeDateEndOfDayDate), "It's only safe to vote for a conference before its day is over")
+                XCTAssertFalse(SDDateHandler.isSafeToVoteForConferenceWithDate(usTimeDate, fromReferenceDate: oneDayAfterUSEndOfDayDate), "It's only safe to vote for a conference before its day is over")
+                XCTAssertFalse(SDDateHandler.isSafeToVoteForConferenceWithDate(euTimeDate, fromReferenceDate: oneDayAfterEUEndOfDayDate), "It's only safe to vote for a conference before its day is over")
+                XCTAssertTrue(SDDateHandler.isSafeToVoteForConferenceWithDate(usTimeDate, fromReferenceDate:oneMinuteAfterUSTimeDate), "It's only safe to vote for a conference after its start date, and before its day is over")
+                XCTAssertTrue(SDDateHandler.isSafeToVoteForConferenceWithDate(usTimeDate, fromReferenceDate:oneHourAfterUSTimeDate), "It's only safe to vote for a conference after its start date, and before its day is over")
+                XCTAssertTrue(SDDateHandler.isSafeToVoteForConferenceWithDate(euTimeDate, fromReferenceDate:oneMinuteAfterEUTimeDate), "It's only safe to vote for a conference after its start date, and before its day is over")
+                XCTAssertTrue(SDDateHandler.isSafeToVoteForConferenceWithDate(euTimeDate, fromReferenceDate: oneHourAfterEUTimeDate), "It's only safe to vote for a conference after its start date, and before its day is over")                
+        }
+        
+        
+    }
+    
     // MARK: Helper functions
     
     func performTestParsingForJsonFile(filename: String) {
@@ -159,15 +202,11 @@ class ScalaDaysTests: XCTestCase {
     }
     
     func parseJSONData(data: NSData) -> JSON? {
-        var serializationError: NSError?
-        if let jsonObject: AnyObject = NSJSONSerialization.JSONObjectWithData(data, options: .AllowFragments, error: &serializationError) {
-            if let error = serializationError {
-                return nil
-            } else {
-                return JSON(jsonObject)
-            }
+        do {
+            return try JSON(NSJSONSerialization.JSONObjectWithData(data, options: .AllowFragments))
+        } catch {
+            return nil
         }
-        return nil
     }
     
     func is24hTimeSettingEnabled() -> Bool {
