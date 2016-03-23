@@ -15,6 +15,18 @@
                 <rect key="frame" x="0.0" y="0.0" width="640" height="132"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
+                    <view alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gAd-Vu-ffH" userLabel="Selected BG View">
+                        <rect key="frame" x="0.0" y="0.0" width="640" height="131"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="640" id="Ovl-JX-5ha"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="Ovl-JX-5ha"/>
+                            </mask>
+                        </variation>
+                    </view>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iZC-Ux-GCx" userLabel="Main Background">
                         <rect key="frame" x="81" y="0.0" width="559" height="131"/>
                         <color key="backgroundColor" red="0.33333333333333331" green="0.69803921568627447" blue="0.80784313725490198" alpha="1" colorSpace="calibratedRGB"/>
@@ -39,14 +51,30 @@
                                 <state key="normal" title="VOTE">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
+                                <connections>
+                                    <action selector="didTapBtnVote:" destination="uQB-Ol-iqi" eventType="touchUpInside" id="OkV-yg-oyK"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lrn-Ij-JGz" userLabel="BtnEditVote">
+                                <rect key="frame" x="27" y="51" width="26" height="26"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="26" id="3f9-bs-tos"/>
+                                    <constraint firstAttribute="width" constant="26" id="GRh-UG-eXm"/>
+                                </constraints>
+                                <state key="normal" image="list_icon_vote_like"/>
+                                <connections>
+                                    <action selector="didTapBtnVote:" destination="uQB-Ol-iqi" eventType="touchUpInside" id="gbd-S4-lDZ"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="0.27450980392156865" green="0.58431372549019611" blue="0.68235294117647061" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="PbI-e3-2yJ" secondAttribute="bottom" constant="10" id="D3h-NT-M2J"/>
+                            <constraint firstItem="Lrn-Ij-JGz" firstAttribute="centerX" secondItem="uOZ-dw-dqz" secondAttribute="centerX" id="FUQ-rT-SQR"/>
                             <constraint firstItem="PbI-e3-2yJ" firstAttribute="centerX" secondItem="uOZ-dw-dqz" secondAttribute="centerX" id="G5J-Xy-n7T"/>
                             <constraint firstItem="PbI-e3-2yJ" firstAttribute="top" secondItem="RdK-wi-8OD" secondAttribute="bottom" constant="10" id="Jrn-XC-YEw"/>
                             <constraint firstAttribute="centerX" secondItem="RdK-wi-8OD" secondAttribute="centerX" id="RvP-97-oP7"/>
+                            <constraint firstItem="Lrn-Ij-JGz" firstAttribute="top" secondItem="RdK-wi-8OD" secondAttribute="bottom" constant="12" id="WPv-Cd-hlm"/>
                             <constraint firstItem="RdK-wi-8OD" firstAttribute="top" secondItem="uOZ-dw-dqz" secondAttribute="top" constant="14" id="kmc-Go-JqM"/>
                             <constraint firstAttribute="width" constant="80" id="y0t-cR-Kd7"/>
                         </constraints>
@@ -88,18 +116,6 @@
                             <constraint firstAttribute="height" priority="750" constant="36" id="YXE-du-dG3"/>
                         </constraints>
                     </view>
-                    <view alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gAd-Vu-ffH" userLabel="Selected BG View">
-                        <rect key="frame" x="0.0" y="0.0" width="640" height="131"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstAttribute="width" constant="640" id="Ovl-JX-5ha"/>
-                        </constraints>
-                        <variation key="default">
-                            <mask key="constraints">
-                                <exclude reference="Ovl-JX-5ha"/>
-                            </mask>
-                        </variation>
-                    </view>
                 </subviews>
                 <color key="backgroundColor" red="0.41960784313725491" green="0.81176470588235294" blue="0.9137254901960784" alpha="1" colorSpace="calibratedRGB"/>
                 <constraints>
@@ -132,7 +148,9 @@
                 </constraints>
             </tableViewCellContentView>
             <connections>
+                <outlet property="btnEditVote" destination="Lrn-Ij-JGz" id="7nH-fl-G6C"/>
                 <outlet property="btnVote" destination="PbI-e3-2yJ" id="BN8-pR-cZN"/>
+                <outlet property="constraintForBtnEditVoteHeight" destination="3f9-bs-tos" id="G8S-3B-nCx"/>
                 <outlet property="constraintForBtnVoteHeight" destination="f48-9l-iMr" id="mD5-PX-Y9i"/>
                 <outlet property="constraintForLblLocationBottomSpace" destination="CZp-Zz-wkB" id="4dI-kb-Et9"/>
                 <outlet property="constraintForLblLocationHeight" destination="Hqa-4c-DTu" id="LXb-h3-RJn"/>
@@ -153,6 +171,7 @@
         </tableViewCell>
     </objects>
     <resources>
+        <image name="list_icon_vote_like" width="26" height="26"/>
         <image name="schedule_tag_favorite" width="48" height="50"/>
     </resources>
 </document>

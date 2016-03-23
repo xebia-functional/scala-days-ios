@@ -62,9 +62,13 @@
 		59A7DF841A938A41009F4639 /* SDFonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1FA1FFA1A7BAE5B00338AF0 /* SDFonts.swift */; };
 		59A7DF851A938A41009F4639 /* SDColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1FA1FEA1A7AA6AF00338AF0 /* SDColor.swift */; };
 		59A7DF881A938A41009F4639 /* SDMapView-ZoomOut.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5925ADA01A897AAD000EA5E7 /* SDMapView-ZoomOut.swift */; };
+		59ACD78D1CA28E4800863C52 /* SDVotesPopoverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59ACD78B1CA28E4800863C52 /* SDVotesPopoverViewController.swift */; };
+		59ACD78E1CA28E4800863C52 /* SDVotesPopoverViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 59ACD78C1CA28E4800863C52 /* SDVotesPopoverViewController.xib */; };
 		59D174621A8E0C2B001E87CF /* SDSponsorsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59D174611A8E0C2B001E87CF /* SDSponsorsTableViewCell.swift */; };
 		59D174641A8E0C3A001E87CF /* SDSponsorsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 59D174631A8E0C3A001E87CF /* SDSponsorsTableViewCell.xib */; };
 		59E430EF1A964BEF00185C41 /* SDGoogleAnalyticsHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59E430EE1A964BEF00185C41 /* SDGoogleAnalyticsHandler.swift */; };
+		59F0E2E61CA1518700BDD40E /* Vote.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59F0E2E51CA1518700BDD40E /* Vote.swift */; };
+		59F0E2E71CA15B7600BDD40E /* Vote.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59F0E2E51CA1518700BDD40E /* Vote.swift */; };
 		A158176B1C8ED3D10013AFBB /* SDExternalKeys.plist in Resources */ = {isa = PBXBuildFile; fileRef = A158176A1C8ED3D10013AFBB /* SDExternalKeys.plist */; };
 		A171433E1A88F6880068FD33 /* SDConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1FA1FF81A7BA95500338AF0 /* SDConstants.swift */; };
 		A171433F1A88F7730068FD33 /* SDDateHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 590DDD761A83C5E800E4CC3F /* SDDateHandler.swift */; };
@@ -165,9 +169,12 @@
 		59A7DF631A936C84009F4639 /* SDScheduleDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SDScheduleDetailViewController.xib; sourceTree = "<group>"; };
 		59A7DF6A1A9371A8009F4639 /* SDSpeakerDetailView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SDSpeakerDetailView.swift; sourceTree = "<group>"; };
 		59A7DF6C1A93725E009F4639 /* SDSpeakerDetailView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SDSpeakerDetailView.xib; sourceTree = "<group>"; };
+		59ACD78B1CA28E4800863C52 /* SDVotesPopoverViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SDVotesPopoverViewController.swift; sourceTree = "<group>"; };
+		59ACD78C1CA28E4800863C52 /* SDVotesPopoverViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SDVotesPopoverViewController.xib; sourceTree = "<group>"; };
 		59D174611A8E0C2B001E87CF /* SDSponsorsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SDSponsorsTableViewCell.swift; sourceTree = "<group>"; };
 		59D174631A8E0C3A001E87CF /* SDSponsorsTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SDSponsorsTableViewCell.xib; sourceTree = "<group>"; };
 		59E430EE1A964BEF00185C41 /* SDGoogleAnalyticsHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SDGoogleAnalyticsHandler.swift; sourceTree = "<group>"; };
+		59F0E2E51CA1518700BDD40E /* Vote.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Vote.swift; sourceTree = "<group>"; };
 		9AA114FE335624986EFB5A1D /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		A158176A1C8ED3D10013AFBB /* SDExternalKeys.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = SDExternalKeys.plist; path = ScalaDays/External/SDExternalKeys.plist; sourceTree = SOURCE_ROOT; };
 		A163DC2E1A6E595B00A21B8E /* libPods-SwiftyJSON.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPods-SwiftyJSON.a"; path = "Pods/build/Debug-iphoneos/libPods-SwiftyJSON.a"; sourceTree = "<group>"; };
@@ -270,6 +277,8 @@
 				59A7DF631A936C84009F4639 /* SDScheduleDetailViewController.xib */,
 				591DAB2A1A9B7F8D000B2D7A /* SDWebViewController.swift */,
 				591DAB2B1A9B7F8D000B2D7A /* SDWebViewController.xib */,
+				59ACD78B1CA28E4800863C52 /* SDVotesPopoverViewController.swift */,
+				59ACD78C1CA28E4800863C52 /* SDVotesPopoverViewController.xib */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -404,6 +413,7 @@
 				597E3B051AB2E58A00F41F17 /* Conference.swift */,
 				597E3B061AB2E58A00F41F17 /* SDMapAnnotation.swift */,
 				597E3B071AB2E58A00F41F17 /* SDTweet.swift */,
+				59F0E2E51CA1518700BDD40E /* Vote.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -625,6 +635,7 @@
 				595003081A84DE3B00A1C24F /* SDQRScannerOverlayView.xib in Resources */,
 				A19C65C81A7FC30A00A206FC /* SDContactViewController.xib in Resources */,
 				A1FA1FE91A7AA33F00338AF0 /* SDAboutViewController.xib in Resources */,
+				59ACD78E1CA28E4800863C52 /* SDVotesPopoverViewController.xib in Resources */,
 				590DDD721A83BEA800E4CC3F /* SDSpeakersTableViewCell.xib in Resources */,
 				59A7DF6D1A93725E009F4639 /* SDSpeakerDetailView.xib in Resources */,
 				59A7DF651A936C84009F4639 /* SDScheduleDetailViewController.xib in Resources */,
@@ -745,6 +756,7 @@
 				597E3B0A1AB2E58A00F41F17 /* SDMapAnnotation.swift in Sources */,
 				A1FA1FF91A7BA95500338AF0 /* SDConstants.swift in Sources */,
 				A1FA1FF11A7B920700338AF0 /* SDSlideMenuViewController.swift in Sources */,
+				59ACD78D1CA28E4800863C52 /* SDVotesPopoverViewController.swift in Sources */,
 				592978091A82141400EE3BA3 /* SDSocialHandler.swift in Sources */,
 				A1FA1FEE1A7B91D100338AF0 /* SDScheduleViewController.swift in Sources */,
 				A1FA1FEF1A7B91D100338AF0 /* SDSocialViewController.swift in Sources */,
@@ -775,6 +787,7 @@
 				592978031A82106D00EE3BA3 /* SDSocialTableViewCell.swift in Sources */,
 				597E3B101AB2E5FD00F41F17 /* DataManager.swift in Sources */,
 				A19C65C71A7FC30A00A206FC /* SDContactViewController.swift in Sources */,
+				59F0E2E61CA1518700BDD40E /* Vote.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -798,6 +811,7 @@
 				A171433E1A88F6880068FD33 /* SDConstants.swift in Sources */,
 				5928D18D1A89096500E5049E /* SDView-NibLoading.swift in Sources */,
 				5928D17D1A88F53900E5049E /* SDString+RemoveWhiteSpaces.swift in Sources */,
+				59F0E2E71CA15B7600BDD40E /* Vote.swift in Sources */,
 				593571EA1A77E41C005AA332 /* StoringHelper.swift in Sources */,
 				A1D795E31A68267F009CCEB3 /* ScalaDaysTests.swift in Sources */,
 			);

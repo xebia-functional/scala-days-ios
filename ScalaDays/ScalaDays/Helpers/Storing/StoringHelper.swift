@@ -19,6 +19,7 @@ import Foundation
 class StoringHelper {
     
     let kMainConferenceStoringFilename = "sdConferences.data"
+    let kVotesFilename = "sdVotes.data"
     
     class var sharedInstance: StoringHelper {
         struct Static {
@@ -27,20 +28,33 @@ class StoringHelper {
         return Static.instance
     }
     
-    func storeConferenceData(conferences: Conferences) {
-        storeConferenceDataFromFileWithFilename(conferences, filename: kMainConferenceStoringFilename)
-    }
+    // MARK: - Conference storing
     
-    func storeConferenceDataFromFileWithFilename(conferences: Conferences, filename: String) {
-        let conferenceDataPath = (StoringHelper.documentsFolderPath() as NSString).stringByAppendingPathComponent(filename)
-        NSKeyedArchiver.archiveRootObject(conferences, toFile: conferenceDataPath)
+    func storeConferenceData(conferences: Conferences) {
+        storeDataFromFileWithFilename(conferences, filename: kMainConferenceStoringFilename)
     }
     
     func loadConferenceData() -> Conferences? {
-        return loadConferenceDataFromFileWithFilename(kMainConferenceStoringFilename)
+        return loadDataFromFileWithFilename(kMainConferenceStoringFilename) as? Conferences
     }
     
-    func loadConferenceDataFromFileWithFilename(filename: String) -> Conferences? {
+    // MARK: - Votes storing
+    
+    func storeVotesData(conferences: [Vote]) {
+        storeDataFromFileWithFilename(conferences, filename: kVotesFilename)
+    }
+    
+    func loadVotesData() -> [Vote]? {
+        return loadDataFromFileWithFilename(kVotesFilename) as? [Vote]
+    }
+    
+    // MARK: - Utility functions
+    
+    class func documentsFolderPath() -> String {
+        return NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] 
+    }
+    
+    func loadDataFromFileWithFilename(filename: String) -> NSCoding? {
         let fileManager = NSFileManager.defaultManager()
         let conferenceDataPath = (StoringHelper.documentsFolderPath() as NSString).stringByAppendingPathComponent(filename)
         
@@ -50,8 +64,8 @@ class StoringHelper {
         return nil
     }
     
-    class func documentsFolderPath() -> String {
-        return NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] 
+    func storeDataFromFileWithFilename(conferences: NSCoding, filename: String) {
+        let conferenceDataPath = (StoringHelper.documentsFolderPath() as NSString).stringByAppendingPathComponent(filename)
+        NSKeyedArchiver.archiveRootObject(conferences, toFile: conferenceDataPath)
     }
-    
 }

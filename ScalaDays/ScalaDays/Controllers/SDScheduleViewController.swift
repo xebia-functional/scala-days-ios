@@ -34,12 +34,23 @@ enum SDScheduleEventType: Int {
     case Others = 3
 }
 
-class SDScheduleViewController: GAITrackedViewController, UITableViewDelegate, UITableViewDataSource, UIActionSheetDelegate, SDErrorPlaceholderViewDelegate, SDMenuControllerItem {
+class SDScheduleViewController: GAITrackedViewController,
+    UITableViewDelegate,
+    UITableViewDataSource,
+    UIActionSheetDelegate,
+    SDErrorPlaceholderViewDelegate,
+    SDMenuControllerItem,
+    SDScheduleListTableViewCellDelegate,
+    UIPopoverPresentationControllerDelegate,
+    SDVotesPopoverViewControllerDelegate {
 
     @IBOutlet weak var tblSchedule: UITableView!
 
     let kReuseIdentifier = "SDScheduleViewControllerCell"
     let kHeaderHeight: CGFloat = 40.0
+    let kVotePopoverSize = CGSize(width: 300, height: 160)
+    let kBackgroundDarkenAnimationDuration = 0.30
+    let kBackgroundDarknessValue: CGFloat = 0.25
 
     var selectedConference: Conference?
     var errorPlaceholderView : SDErrorPlaceholderView!
@@ -188,13 +199,15 @@ class SDScheduleViewController: GAITrackedViewController, UITableViewDelegate, U
     func configureCell(cell: SDScheduleListTableViewCell, indexPath: NSIndexPath) -> SDScheduleListTableViewCell {
         if let events = eventsToShow {
             let event = events[indexPath.section][indexPath.row]
-            cell.drawEventData(event)
+            let conferenceId = selectedConference?.info.id ?? -1
+            cell.drawEventData(event, conferenceId: conferenceId)
             if let currentConferenceFavorites = listOfCurrentConferenceFavoritesIDs() {
                 if currentConferenceFavorites.contains(event.id) {
                     cell.imgFavoriteIcon.hidden = false
                 }
             }
         }
+        cell.delegate = self
         cell.frame = CGRectMake(0, 0, screenBounds.width, cell.frame.size.height);
         cell.layoutIfNeeded()
         return cell
@@ -428,6 +441,41 @@ class SDScheduleViewController: GAITrackedViewController, UITableViewDelegate, U
         }
     }
     
+    // MARK: - Voting
     
+    func didSelectVoteButton() {
+        let votingVC = SDVotesPopoverViewController(delegate: self)
+        let votingNavC = UINavigationController(rootViewController: votingVC)
+        votingVC.preferredContentSize = kVotePopoverSize
+        votingNavC.modalPresentationStyle = UIModalPresentationStyle.Popover
+        votingNavC.navigationBarHidden = true
+        if let popover = votingNavC.popoverPresentationController {
+            popover.delegate = self
+            popover.sourceView = self.view
+            popover.permittedArrowDirections = UIPopoverArrowDirection(rawValue: 0)
+            popover.sourceRect = CGRectMake(CGRectGetMidX(self.view.bounds), CGRectGetMidY(self.view.bounds),0,0)
+            self.presentViewController(votingNavC, animated: true, completion: nil)
+            self.adjustBackgroundAlpha(kBackgroundDarknessValue)
+        }
+    }
+    
+    func didSelectVoteValue(voteType: VoteType) {
+        print("Voted \(voteType.rawValue)")
+        self.adjustBackgroundAlpha(1.0)
+    }
+    
+    func adjustBackgroundAlpha(alphaValue: CGFloat) {
+        UIView.animateWithDuration(kBackgroundDarkenAnimationDuration) { () -> Void in
+            self.view.alpha = alphaValue
+        }
+    }
+    
+    func popoverPresentationControllerDidDismissPopover(popoverPresentationController: UIPopoverPresentationController) {
+        self.adjustBackgroundAlpha(1.0)
+    }
+    
+    func adaptivePresentationStyleForPresentationController(controller: UIPresentationController) -> UIModalPresentationStyle {
+        return UIModalPresentationStyle.None
+    }
 }
 

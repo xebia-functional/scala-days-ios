@@ -16,6 +16,9 @@
 
 import UIKit
 
+@objc protocol SDScheduleListTableViewCellDelegate {
+    optional func didSelectVoteButton()
+}
 
 class SDScheduleListTableViewCell: UITableViewCell {
 
@@ -31,6 +34,7 @@ class SDScheduleListTableViewCell: UITableViewCell {
     let kDefaultHorizontalTrailing: CGFloat = 40.0
     let kDefaultMaxAlphaForSelectionBG: CGFloat = 0.3
     let kBtnVoteHeight: CGFloat = 30.0
+    let kBtnEditVoteHeight: CGFloat = 26.0
 
     @IBOutlet weak var lblTrack: UILabel!
     @IBOutlet weak var lblLocation: UILabel!
@@ -41,15 +45,19 @@ class SDScheduleListTableViewCell: UITableViewCell {
     @IBOutlet weak var imgFavoriteIcon: UIImageView!
     @IBOutlet weak var viewSpeaker: UIView!
     @IBOutlet weak var btnVote: UIButton!
+    @IBOutlet weak var btnEditVote: UIButton!
 
     @IBOutlet weak var constraintForLblTrackHeight: NSLayoutConstraint!
     @IBOutlet weak var constraintForLblTrackBottomSpace: NSLayoutConstraint!
     @IBOutlet weak var constraintForLblLocationHeight: NSLayoutConstraint!
     @IBOutlet weak var constraintForLblLocationBottomSpace: NSLayoutConstraint!
     @IBOutlet weak var constraintForBtnVoteHeight: NSLayoutConstraint!
+    @IBOutlet weak var constraintForBtnEditVoteHeight: NSLayoutConstraint!
     @IBOutlet weak var constraintForLblTitleBottomSpace: NSLayoutConstraint!
     @IBOutlet weak var constraintForViewSpeakerHeight: NSLayoutConstraint!
-
+    
+    var delegate: SDScheduleListTableViewCellDelegate?
+    
     override func setHighlighted(highlighted: Bool, animated: Bool) {
         self.selectedBGView.alpha = highlighted ? kDefaultMaxAlphaForSelectionBG : 0
     }
@@ -63,19 +71,30 @@ class SDScheduleListTableViewCell: UITableViewCell {
         lblTitle?.preferredMaxLayoutWidth = self.frame.size.width - kWidthOfTimeContainer - kDefaultHorizontalLeading - kDefaultHorizontalTrailing
     }
 
-    func drawEventData(event: Event) {
+    func drawEventData(event: Event, conferenceId: Int) {
         if let timeZoneName = DataManager.sharedInstance.conferences?.conferences[DataManager.sharedInstance.selectedConferenceIndex].info.utcTimezoneOffset,
             startDate = SDDateHandler.sharedInstance.parseScheduleDate(event.startTime),
-            localStartDate = SDDateHandler.convertDateToLocalTime(startDate, timeZoneName: timeZoneName),
-            localTodayDate = SDDateHandler.convertDateToLocalTime(NSDate(), timeZoneName: timeZoneName) {
+            localStartDate = SDDateHandler.convertDateToLocalTime(startDate, timeZoneName: timeZoneName) {
                 lblTime.text = SDDateHandler.sharedInstance.hoursAndMinutesFromDate(localStartDate)
                 viewTime.backgroundColor = SDDateHandler.sharedInstance.isCurrentDateActive(event.startTime, endTime: event.endTime) ? colorScheduleTimeActive : colorScheduleTime
                 let btnVoteParams : (hidden: Bool, height: CGFloat) =
-                    SDDateHandler.isSafeToVoteForConferenceWithDate(startDate, fromReferenceDate: localTodayDate) ?
+                    SDDateHandler.isSafeToVoteForConferenceWithDate(startDate, fromReferenceDate: NSDate()) ?
                         (false, kBtnVoteHeight) :
                         (true, 0)
                 btnVote.hidden = btnVoteParams.hidden
                 constraintForBtnVoteHeight.constant = btnVoteParams.height
+        }
+        
+        if let votes = StoringHelper.sharedInstance.loadVotesData(),
+            vote = votes.filter({$0.conferenceId == conferenceId && $0.talkId == event.id}).first {
+            btnEditVote.hidden = false
+            constraintForBtnEditVoteHeight.constant = kBtnEditVoteHeight
+            if let voteValue = VoteType(rawValue: vote.voteValue) {
+               btnEditVote.setImage(UIImage(named: voteValue.iconNameForVoteType()), forState: .Normal)
+            }
+        } else {
+            btnEditVote.hidden = true
+            constraintForBtnEditVoteHeight.constant = 0
         }
 
         lblTitle.text = event.title
@@ -100,7 +119,7 @@ class SDScheduleListTableViewCell: UITableViewCell {
         }
 
         let spaceAboveTitleLabel = constraintForLblLocationBottomSpace.constant + constraintForLblLocationHeight.constant + constraintForLblTrackBottomSpace.constant + constraintForLblTrackHeight.constant
-        let spaceBelowTitleLabelIfVoteAvailable = (btnVote.hidden) ? 0 : btnVote.bounds.height - spaceAboveTitleLabel
+        let spaceBelowTitleLabelIfVoteAvailable = (btnVote.hidden && btnEditVote.hidden) ? 0 : btnVote.bounds.height - spaceAboveTitleLabel
         
         if let speakers = event.speakers {
             for view in viewSpeaker.subviews {
@@ -131,5 +150,9 @@ class SDScheduleListTableViewCell: UITableViewCell {
         btnVote.layer.masksToBounds = true
         imgFavoriteIcon.hidden = true
         layoutSubviews()
+    }
+    
+    @IBAction func didTapBtnVote(sender: AnyObject) {
+        delegate?.didSelectVoteButton?()
     }
 }
