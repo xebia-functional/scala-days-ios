@@ -451,22 +451,21 @@ class SDScheduleViewController: GAITrackedViewController,
     
     // MARK: - Voting
     
-    func didSelectVoteButtonWithEventId(eventId: Int?, conferenceId: Int?) {
+    func didSelectVoteButtonWithEvent(event: Event, conferenceId: Int) {
         let votingVC = SDVotesPopoverViewController(delegate: self)
         let votingNavC = UINavigationController(rootViewController: votingVC)
         votingVC.preferredContentSize = kVotePopoverSize
         votingNavC.modalPresentationStyle = UIModalPresentationStyle.Popover
         votingNavC.navigationBarHidden = true
-        if let popover = votingNavC.popoverPresentationController,
-            event = eventId,
-            conference = conferenceId {
-                self.selectedEventToVote = (event, conference)
-                
+        if let popover = votingNavC.popoverPresentationController {
+            self.selectedEventToVote = (event.id, conferenceId)
             popover.delegate = self
             popover.sourceView = self.view
             popover.permittedArrowDirections = UIPopoverArrowDirection(rawValue: 0)
             popover.sourceRect = CGRectMake(CGRectGetMidX(self.view.bounds), CGRectGetMidY(self.view.bounds),0,0)
-            self.presentViewController(votingNavC, animated: true, completion: nil)
+            self.presentViewController(votingNavC, animated: true, completion: { () -> Void in
+                votingVC.lblTalkTitle.text = "\"\(event.title)\""
+            })
             self.adjustBackgroundAlpha(kBackgroundDarknessValue)
         }
     }
@@ -490,10 +489,16 @@ class SDScheduleViewController: GAITrackedViewController,
                 encoding: .URL,
                 headers: ["Content-Type": votingParamUrlEncodeHeader])
                 .response { response in
-                    debugPrint(response)
                     let code = response.1?.statusCode ?? 0
                     if code >= 400 || code == 0 {
-                        // TODO: show popup in case of error
+                        SDAlertViewHelper.showSimpleAlertViewOnViewController(self,
+                            title: NSLocalizedString("schedule_error_vote_title", comment: ""),
+                            message: NSLocalizedString("schedule_error_vote_message", comment: ""),
+                            cancelButtonTitle: NSLocalizedString("OK", comment: ""),
+                            otherButtonTitle: nil,
+                            tag: nil,
+                            delegate: nil,
+                            handler: nil)
                     } else {
                         // Storing/updating vote
                         let key = "\(conference)\(event)"
@@ -505,8 +510,7 @@ class SDScheduleViewController: GAITrackedViewController,
                         } else {
                             StoringHelper.sharedInstance.storeVotesData([key: vote])
                         }
-                    }
-                    
+                    }                    
                     dispatch_async(dispatch_get_main_queue(), { () -> Void in
                         self.tblSchedule.reloadData()
                     })

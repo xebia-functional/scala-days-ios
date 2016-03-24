@@ -23,16 +23,11 @@ protocol SDVotesPopoverViewControllerDelegate {
 class SDVotesPopoverViewController: UIViewController, UIPopoverPresentationControllerDelegate {
 
     var delegate: SDVotesPopoverViewControllerDelegate?
+    @IBOutlet weak var lblTalkTitle: UILabel!
     
     convenience init(delegate d: SDVotesPopoverViewControllerDelegate) {
         self.init()
-        delegate = d        
-    }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        delegate = d
     }
 
     @IBAction func didVoteLike(sender: AnyObject) {

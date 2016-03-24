@@ -17,7 +17,7 @@
 import UIKit
 
 protocol SDScheduleListTableViewCellDelegate {
-    func didSelectVoteButtonWithEventId(eventId: Int?, conferenceId: Int?)
+    func didSelectVoteButtonWithEvent(event: Event, conferenceId: Int)
 }
 
 class SDScheduleListTableViewCell: UITableViewCell {
@@ -59,7 +59,7 @@ class SDScheduleListTableViewCell: UITableViewCell {
     @IBOutlet weak var constraintForViewSpeakerHeight: NSLayoutConstraint!
     
     var delegate: SDScheduleListTableViewCellDelegate?
-    var eventIds: (eventId: Int, conferenceId: Int)?
+    var eventData: (event: Event, conferenceId: Int)?
     
     override func setHighlighted(highlighted: Bool, animated: Bool) {
         self.selectedBGView.alpha = highlighted ? kDefaultMaxAlphaForSelectionBG : 0
@@ -159,7 +159,7 @@ class SDScheduleListTableViewCell: UITableViewCell {
             }
         }
         
-        eventIds = (event.id, conferenceId)
+        eventData = (event, conferenceId)
         btnVote.layer.cornerRadius = 3.0
         btnVote.layer.masksToBounds = true
         imgFavoriteIcon.hidden = true
@@ -167,6 +167,9 @@ class SDScheduleListTableViewCell: UITableViewCell {
     }
     
     @IBAction func didTapBtnVote(sender: AnyObject) {
-        delegate?.didSelectVoteButtonWithEventId(eventIds?.eventId, conferenceId: eventIds?.conferenceId)
+        if let event = eventData?.event,
+            let conferenceId = eventData?.conferenceId {
+            delegate?.didSelectVoteButtonWithEvent(event, conferenceId: conferenceId)
+        }
     }
 }
