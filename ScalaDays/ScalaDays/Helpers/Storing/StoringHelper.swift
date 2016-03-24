@@ -40,12 +40,12 @@ class StoringHelper {
     
     // MARK: - Votes storing
     
-    func storeVotesData(conferences: [Vote]) {
-        storeDataFromFileWithFilename(conferences, filename: kVotesFilename)
+    func storeVotesData(votes: [String: Vote]) {
+        storeDataFromFileWithFilename(votes, filename: kVotesFilename)
     }
     
-    func loadVotesData() -> [Vote]? {
-        return loadDataFromFileWithFilename(kVotesFilename) as? [Vote]
+    func loadVotesData() -> [String: Vote]? {
+        return loadDataFromFileWithFilename(kVotesFilename) as? [String: Vote]
     }
     
     // MARK: - Utility functions
@@ -54,12 +54,12 @@ class StoringHelper {
         return NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] 
     }
     
-    func loadDataFromFileWithFilename(filename: String) -> NSCoding? {
+    func loadDataFromFileWithFilename(filename: String) -> AnyObject? {
         let fileManager = NSFileManager.defaultManager()
-        let conferenceDataPath = (StoringHelper.documentsFolderPath() as NSString).stringByAppendingPathComponent(filename)
+        let dataPath = (StoringHelper.documentsFolderPath() as NSString).stringByAppendingPathComponent(filename)
         
-        if(fileManager.fileExistsAtPath(conferenceDataPath)) {
-            return NSKeyedUnarchiver.unarchiveObjectWithFile(conferenceDataPath) as? Conferences
+        if(fileManager.fileExistsAtPath(dataPath)) {
+            return NSKeyedUnarchiver.unarchiveObjectWithFile(dataPath)
         }
         return nil
     }

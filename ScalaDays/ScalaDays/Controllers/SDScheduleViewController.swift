@@ -16,6 +16,7 @@
 
 import UIKit
 import SVProgressHUD
+import Alamofire
 
 enum SDScheduleActionSheetButtons: Int {
     case Cancel = 0
@@ -51,6 +52,12 @@ class SDScheduleViewController: GAITrackedViewController,
     let kVotePopoverSize = CGSize(width: 300, height: 160)
     let kBackgroundDarkenAnimationDuration = 0.30
     let kBackgroundDarknessValue: CGFloat = 0.25
+    let votingUrl = "http://www.47deg.com/scaladays/votes/add.php"
+    let votingParamVote = "vote"
+    let votingParamUID = "deviceUID"
+    let votingParamTalkId = "talkId"
+    let votingParamConferenceId = "conference"
+    let votingParamUrlEncodeHeader = "application/x-www-form-urlencoded"
 
     var selectedConference: Conference?
     var errorPlaceholderView : SDErrorPlaceholderView!
@@ -73,6 +80,7 @@ class SDScheduleViewController: GAITrackedViewController,
         }
     }
     var isDataLoaded : Bool = false
+    var selectedEventToVote: (eventId: Int, conferenceId: Int)?
 
     override func viewWillAppear(animated: Bool) {
         self.title = NSLocalizedString("schedule", comment: "Schedule")
@@ -443,13 +451,17 @@ class SDScheduleViewController: GAITrackedViewController,
     
     // MARK: - Voting
     
-    func didSelectVoteButton() {
+    func didSelectVoteButtonWithEventId(eventId: Int?, conferenceId: Int?) {
         let votingVC = SDVotesPopoverViewController(delegate: self)
         let votingNavC = UINavigationController(rootViewController: votingVC)
         votingVC.preferredContentSize = kVotePopoverSize
         votingNavC.modalPresentationStyle = UIModalPresentationStyle.Popover
         votingNavC.navigationBarHidden = true
-        if let popover = votingNavC.popoverPresentationController {
+        if let popover = votingNavC.popoverPresentationController,
+            event = eventId,
+            conference = conferenceId {
+                self.selectedEventToVote = (event, conference)
+                
             popover.delegate = self
             popover.sourceView = self.view
             popover.permittedArrowDirections = UIPopoverArrowDirection(rawValue: 0)
@@ -460,8 +472,47 @@ class SDScheduleViewController: GAITrackedViewController,
     }
     
     func didSelectVoteValue(voteType: VoteType) {
-        print("Voted \(voteType.rawValue)")
+        print("Voted \(voteType.rawValue) for event \(selectedEventToVote?.eventId ?? -1) and conference: \(selectedEventToVote?.conferenceId ?? -1)")
         self.adjustBackgroundAlpha(1.0)
+        sendVote(voteType)
+    }
+    
+    func sendVote(voteType: VoteType) {
+        if let (event, conference) = selectedEventToVote,
+            uid = UIDevice.currentDevice().identifierForVendor?.UUIDString {
+            Alamofire.request(.POST,
+                votingUrl,
+                parameters: [
+                    votingParamVote: voteType.rawValue,
+                    votingParamUID: uid,
+                    votingParamTalkId: event,
+                    votingParamConferenceId: conference],
+                encoding: .URL,
+                headers: ["Content-Type": votingParamUrlEncodeHeader])
+                .response { response in
+                    debugPrint(response)
+                    let code = response.1?.statusCode ?? 0
+                    if code >= 400 || code == 0 {
+                        // TODO: show popup in case of error
+                    } else {
+                        // Storing/updating vote
+                        let key = "\(conference)\(event)"
+                        let vote = Vote(_voteValue: voteType.rawValue, _talkId: event, _conferenceId: conference)
+                        if let currentlyStoredVotes = StoringHelper.sharedInstance.loadVotesData() {
+                            var tmp = currentlyStoredVotes
+                            tmp[key] = vote
+                            StoringHelper.sharedInstance.storeVotesData(tmp)
+                        } else {
+                            StoringHelper.sharedInstance.storeVotesData([key: vote])
+                        }
+                    }
+                    
+                    dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                        self.tblSchedule.reloadData()
+                    })
+            }
+            selectedEventToVote = nil
+        }
     }
     
     func adjustBackgroundAlpha(alphaValue: CGFloat) {
