@@ -17,9 +17,9 @@
 import Foundation
 
 enum VoteType: Int {
-    case Unlike = 1
-    case Neutral = 2
-    case Like = 3
+    case Unlike = 0
+    case Neutral = 1
+    case Like = 2
     
     func iconNameForVoteType() -> String {
         switch self {

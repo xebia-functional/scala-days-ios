@@ -56,7 +56,7 @@ class SDScheduleViewController: GAITrackedViewController,
     let votingParamVote = "vote"
     let votingParamUID = "deviceUID"
     let votingParamTalkId = "talkId"
-    let votingParamConferenceId = "conference"
+    let votingParamConferenceId = "conferenceId"
     let votingParamUrlEncodeHeader = "application/x-www-form-urlencoded"
 
     var selectedConference: Conference?
