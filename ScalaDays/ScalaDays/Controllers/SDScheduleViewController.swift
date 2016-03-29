@@ -81,6 +81,7 @@ class SDScheduleViewController: GAITrackedViewController,
     }
     var isDataLoaded : Bool = false
     var selectedEventToVote: (eventId: Int, conferenceId: Int)?
+    let refreshControl = UIRefreshControl()
 
     override func viewWillAppear(animated: Bool) {
         self.title = NSLocalizedString("schedule", comment: "Schedule")
@@ -105,6 +106,9 @@ class SDScheduleViewController: GAITrackedViewController,
         errorPlaceholderView.delegate = self
         self.view.addSubview(errorPlaceholderView)
         
+        refreshControl.addTarget(self, action: "didPullToRefresh", forControlEvents: UIControlEvents.ValueChanged)
+        tblSchedule.addSubview(refreshControl)
+        
         self.screenName = kGAScreenNameSchedule
     }
     
@@ -123,8 +127,12 @@ class SDScheduleViewController: GAITrackedViewController,
     // MARK: - Data loading / SDMenuControllerItem protocol implementation
 
     func loadData() {
+        loadData(false)
+    }
+    
+    func loadData(forceConnection: Bool) {
         SVProgressHUD.show()
-        DataManager.sharedInstance.loadDataJson() {
+        DataManager.sharedInstance.loadDataJson(forceConnection) {
             (bool, error) -> () in
             
             if let _ = error {
@@ -155,6 +163,9 @@ class SDScheduleViewController: GAITrackedViewController,
                 
                 self.tblSchedule.reloadData()
                 self.loadNavigationBar()
+                UIView.animateWithDuration(kAnimationShowHideTimeInterval, animations: { () -> Void in
+                    self.refreshControl.endRefreshing()
+                })
             }
         }
     }
@@ -175,6 +186,10 @@ class SDScheduleViewController: GAITrackedViewController,
         default: break
         }
         return nil
+    }
+    
+    func didPullToRefresh() {
+        loadData(true)
     }
     
     // MARK: UITableViewDataSource implementation

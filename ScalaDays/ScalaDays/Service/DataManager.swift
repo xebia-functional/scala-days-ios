@@ -134,7 +134,7 @@ class DataManager {
         }
     }
 
-    func loadDataJson(callback: (Bool, NSError?) -> ()) {
+    func loadDataJson(forceConnection: Bool = false, callback: (Bool, NSError?) -> ()) {
         var shouldReconnect = true
         if let lastConnectionDate = self.lastConnectionAttemptDate {
             if NSDate().timeIntervalSinceDate(lastConnectionDate) < kMinimumTimeToDownloadDataFromApiInSeconds {
@@ -142,7 +142,7 @@ class DataManager {
             }
         }
         
-        if shouldReconnect || self.conferences == nil{
+        if forceConnection || shouldReconnect || self.conferences == nil {
             Manager.sharedInstance.request(.GET, JsonURL).responseJSON {
                 response in
                 
@@ -152,8 +152,7 @@ class DataManager {
                     self.conferences = conferencesData
                     if let date = response.response?.allHeaderFields[lastModifiedDate] as! NSString? {
                         let dateJson = SDDateHandler.sharedInstance.parseServerDate(date)
-                        if (dateJson == self.lastDate) {
-                            print("Json no modified")
+                        if (dateJson == self.lastDate && !forceConnection) {
                             callback(false, response.result.error)
                         } else {
                             if (response.result.error != nil) {
@@ -162,8 +161,8 @@ class DataManager {
                                 print(response.response)
                                 callback(false, response.result.error)
                             } else {
-                                if let _data: AnyObject = response.data {
-                                    let jsonFormat = JSON(_data)
+                                if let _data = response.data {
+                                    let jsonFormat = JSON(data: _data)
                                     self.parseAndStoreJSONData(jsonFormat)
                                     callback(true, response.result.error)
                                 } else {
