@@ -16,6 +16,7 @@
 
 import UIKit
 import SVProgressHUD
+import Alamofire
 
 enum SDScheduleActionSheetButtons: Int {
     case Cancel = 0
@@ -34,12 +35,30 @@ enum SDScheduleEventType: Int {
     case Others = 3
 }
 
-class SDScheduleViewController: GAITrackedViewController, UITableViewDelegate, UITableViewDataSource, UIActionSheetDelegate, SDErrorPlaceholderViewDelegate, SDMenuControllerItem {
+class SDScheduleViewController: GAITrackedViewController,
+    UITableViewDelegate,
+    UITableViewDataSource,
+    UIActionSheetDelegate,
+    SDErrorPlaceholderViewDelegate,
+    SDMenuControllerItem,
+    SDScheduleListTableViewCellDelegate,
+    UIPopoverPresentationControllerDelegate,
+    SDVotesPopoverViewControllerDelegate {
 
     @IBOutlet weak var tblSchedule: UITableView!
 
     let kReuseIdentifier = "SDScheduleViewControllerCell"
     let kHeaderHeight: CGFloat = 40.0
+    let kVotePopoverSize = CGSize(width: 300, height: 160)
+    let kBackgroundDarkenAnimationDuration = 0.30
+    let kBackgroundDarknessValue: CGFloat = 0.25
+    let votingUrl = "http://www.47deg.com/scaladays/votes/add.php"
+    let votingParamVote = "vote"
+    let votingParamUID = "deviceUID"
+    let votingParamTalkId = "talkId"
+    let votingParamConferenceId = "conferenceId"
+    let votingParamUrlEncodeHeader = "application/x-www-form-urlencoded"
+    let kConnectionErrorCode400 = 400
 
     var selectedConference: Conference?
     var errorPlaceholderView : SDErrorPlaceholderView!
@@ -58,12 +77,12 @@ class SDScheduleViewController: GAITrackedViewController, UITableViewDelegate, U
                     return _favoritesIndexes.count == 0 ? [[Event]]() : favorites
                 }
                 return [[Event]]()
-            default:
-                return nil
             }
         }
     }
     var isDataLoaded : Bool = false
+    var selectedEventToVote: (eventId: Int, conferenceId: Int)?
+    let refreshControl = UIRefreshControl()
 
     override func viewWillAppear(animated: Bool) {
         self.title = NSLocalizedString("schedule", comment: "Schedule")
@@ -88,6 +107,9 @@ class SDScheduleViewController: GAITrackedViewController, UITableViewDelegate, U
         errorPlaceholderView.delegate = self
         self.view.addSubview(errorPlaceholderView)
         
+        refreshControl.addTarget(self, action: "didPullToRefresh", forControlEvents: UIControlEvents.ValueChanged)
+        tblSchedule.addSubview(refreshControl)
+        
         self.screenName = kGAScreenNameSchedule
     }
     
@@ -106,19 +128,28 @@ class SDScheduleViewController: GAITrackedViewController, UITableViewDelegate, U
     // MARK: - Data loading / SDMenuControllerItem protocol implementation
 
     func loadData() {
-        SVProgressHUD.show()
-        DataManager.sharedInstance.loadDataJson() {
+        loadData(false)
+    }
+    
+    func loadData(forceConnection: Bool) {
+        if !forceConnection {
+            SVProgressHUD.show()
+        }
+        
+        DataManager.sharedInstance.loadDataJson(forceConnection) {
             (bool, error) -> () in
             
-            if let badError = error {
-                self.errorPlaceholderView.show(NSLocalizedString("error_message_no_data_available", comment: ""))
+            dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                self.refreshControl.endRefreshing()
                 SVProgressHUD.dismiss()
+            })
+            
+            if let _ = error {
+                self.errorPlaceholderView.show(NSLocalizedString("error_message_no_data_available", comment: ""))
             } else {
                 self.selectedConference = DataManager.sharedInstance.currentlySelectedConference
                 self.selectedDataSource = .All
                 self.isDataLoaded = true
-                
-                SVProgressHUD.dismiss()
                 
                 self.dates = self.scheduledDates()
                 self.events = self.listOfEventsSortedByDates()
@@ -160,6 +191,10 @@ class SDScheduleViewController: GAITrackedViewController, UITableViewDelegate, U
         return nil
     }
     
+    func didPullToRefresh() {
+        loadData(true)
+    }
+    
     // MARK: UITableViewDataSource implementation
 
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
@@ -188,15 +223,17 @@ class SDScheduleViewController: GAITrackedViewController, UITableViewDelegate, U
     }
 
     func configureCell(cell: SDScheduleListTableViewCell, indexPath: NSIndexPath) -> SDScheduleListTableViewCell {
-        if let events = eventsToShow {
+        if let events = eventsToShow,
+            conferenceId = selectedConference?.info.id {
             let event = events[indexPath.section][indexPath.row]
-            cell.drawEventData(event)
+            cell.drawEventData(event, conferenceId: conferenceId)
             if let currentConferenceFavorites = listOfCurrentConferenceFavoritesIDs() {
                 if currentConferenceFavorites.contains(event.id) {
                     cell.imgFavoriteIcon.hidden = false
                 }
             }
         }
+        cell.delegate = self
         cell.frame = CGRectMake(0, 0, screenBounds.width, cell.frame.size.height);
         cell.layoutIfNeeded()
         return cell
@@ -430,6 +467,88 @@ class SDScheduleViewController: GAITrackedViewController, UITableViewDelegate, U
         }
     }
     
+    // MARK: - Voting
     
+    func didSelectVoteButtonWithEvent(event: Event, conferenceId: Int) {
+        let votingVC = SDVotesPopoverViewController(delegate: self)
+        let votingNavC = UINavigationController(rootViewController: votingVC)
+        votingVC.preferredContentSize = kVotePopoverSize
+        votingNavC.modalPresentationStyle = UIModalPresentationStyle.Popover
+        votingNavC.navigationBarHidden = true
+        if let popover = votingNavC.popoverPresentationController {
+            self.selectedEventToVote = (event.id, conferenceId)
+            popover.delegate = self
+            popover.sourceView = self.view
+            popover.permittedArrowDirections = UIPopoverArrowDirection(rawValue: 0)
+            popover.sourceRect = CGRectMake(CGRectGetMidX(self.view.bounds), CGRectGetMidY(self.view.bounds),0,0)
+            self.presentViewController(votingNavC, animated: true, completion: { () -> Void in
+                votingVC.lblTalkTitle.text = "\"\(event.title)\""
+            })
+            self.adjustBackgroundAlpha(kBackgroundDarknessValue)
+        }
+    }
+    
+    func didSelectVoteValue(voteType: VoteType) {
+        print("Voted \(voteType.rawValue) for event \(selectedEventToVote?.eventId ?? -1) and conference: \(selectedEventToVote?.conferenceId ?? -1)")
+        self.adjustBackgroundAlpha(kAlphaValueFull)
+        sendVote(voteType)
+    }
+    
+    func sendVote(voteType: VoteType) {
+        if let (event, conference) = selectedEventToVote,
+            uid = UIDevice.currentDevice().identifierForVendor?.UUIDString {
+            Alamofire.request(.POST,
+                votingUrl,
+                parameters: [
+                    votingParamVote: voteType.rawValue,
+                    votingParamUID: uid,
+                    votingParamTalkId: event,
+                    votingParamConferenceId: conference],
+                encoding: .URL,
+                headers: ["Content-Type": votingParamUrlEncodeHeader])
+                .response { response in
+                    let code = response.1?.statusCode ?? 0
+                    if code >= self.kConnectionErrorCode400 || code == 0 {
+                        SDAlertViewHelper.showSimpleAlertViewOnViewController(self,
+                            title: NSLocalizedString("schedule_error_vote_title", comment: ""),
+                            message: NSLocalizedString("schedule_error_vote_message", comment: ""),
+                            cancelButtonTitle: NSLocalizedString("OK", comment: ""),
+                            otherButtonTitle: nil,
+                            tag: nil,
+                            delegate: nil,
+                            handler: nil)
+                    } else {
+                        // Storing/updating vote
+                        let key = "\(conference)\(event)"
+                        let vote = Vote(_voteValue: voteType.rawValue, _talkId: event, _conferenceId: conference)
+                        if let currentlyStoredVotes = StoringHelper.sharedInstance.loadVotesData() {
+                            var tmp = currentlyStoredVotes
+                            tmp[key] = vote
+                            StoringHelper.sharedInstance.storeVotesData(tmp)
+                        } else {
+                            StoringHelper.sharedInstance.storeVotesData([key: vote])
+                        }
+                    }                    
+                    dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                        self.tblSchedule.reloadData()
+                    })
+            }
+            selectedEventToVote = nil
+        }
+    }
+    
+    func adjustBackgroundAlpha(alphaValue: CGFloat) {
+        UIView.animateWithDuration(kBackgroundDarkenAnimationDuration) { () -> Void in
+            self.view.alpha = alphaValue
+        }
+    }
+    
+    func popoverPresentationControllerDidDismissPopover(popoverPresentationController: UIPopoverPresentationController) {
+        self.adjustBackgroundAlpha(kAlphaValueFull)
+    }
+    
+    func adaptivePresentationStyleForPresentationController(controller: UIPresentationController) -> UIModalPresentationStyle {
+        return UIModalPresentationStyle.None
+    }
 }
 

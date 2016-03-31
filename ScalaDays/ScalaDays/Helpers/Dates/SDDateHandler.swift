@@ -125,24 +125,26 @@ class SDDateHandler: NSObject {
         return nil
     }
     
-    func isCurrentDateActive(startTime: NSString , endTime: NSString) -> (Bool){
+    class func isSafeToVoteForConferenceWithDate(confDate: NSDate, fromReferenceDate refDate: NSDate) -> Bool {
+        let calendar = NSCalendar.currentCalendar()
+        let confDateDay = calendar.component(NSCalendarUnit.Day, fromDate: confDate)
+        let refDateDay = calendar.component(NSCalendarUnit.Day, fromDate: refDate)
+        return confDate.compare(refDate) == NSComparisonResult.OrderedAscending && confDateDay == refDateDay
+    }
+    
+    func isCurrentDateActive(startTime: NSString , endTime: NSString) -> (Bool) {
         var result = false
         let currentDate = NSDate()
-        if let timeZoneName = DataManager.sharedInstance.conferences?.conferences[DataManager.sharedInstance.selectedConferenceIndex].info.utcTimezoneOffset {
-            if let startDate = SDDateHandler.sharedInstance.parseScheduleDate(startTime) {
-                if let localStartDate = SDDateHandler.convertDateToLocalTime(startDate, timeZoneName: timeZoneName) {
-                    if let endDate = SDDateHandler.sharedInstance.parseScheduleDate(endTime) {
-                        if let localEndDate = SDDateHandler.convertDateToLocalTime(endDate, timeZoneName: timeZoneName) {
-                            if let localCurrentDate = SDDateHandler.convertDateToLocalTime(currentDate, timeZoneName: timeZoneName) {
-                                if localCurrentDate < localEndDate && localCurrentDate >= localStartDate{
-                                    result = true
-                                    return result
-                                }
-                            }
-                        }
-                    }
+        if let timeZoneName = DataManager.sharedInstance.conferences?.conferences[DataManager.sharedInstance.selectedConferenceIndex].info.utcTimezoneOffset,
+            startDate = SDDateHandler.sharedInstance.parseScheduleDate(startTime),
+            localStartDate = SDDateHandler.convertDateToLocalTime(startDate, timeZoneName: timeZoneName),
+            endDate = SDDateHandler.sharedInstance.parseScheduleDate(endTime),
+            localEndDate = SDDateHandler.convertDateToLocalTime(endDate, timeZoneName: timeZoneName),
+            localCurrentDate = SDDateHandler.convertDateToLocalTime(currentDate, timeZoneName: timeZoneName) {
+                if localCurrentDate < localEndDate && localCurrentDate >= localStartDate{
+                    result = true
+                    return result
                 }
-            }
         }
         return result
     }

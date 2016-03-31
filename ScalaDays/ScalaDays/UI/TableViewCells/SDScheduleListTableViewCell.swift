@@ -16,6 +16,9 @@
 
 import UIKit
 
+protocol SDScheduleListTableViewCellDelegate {
+    func didSelectVoteButtonWithEvent(event: Event, conferenceId: Int)
+}
 
 class SDScheduleListTableViewCell: UITableViewCell {
 
@@ -30,6 +33,11 @@ class SDScheduleListTableViewCell: UITableViewCell {
     let kDefaultHorizontalLeading: CGFloat = 15.0
     let kDefaultHorizontalTrailing: CGFloat = 40.0
     let kDefaultMaxAlphaForSelectionBG: CGFloat = 0.3
+    let kBtnVoteHeight: CGFloat = 30.0
+    let kBtnEditVoteHeight: CGFloat = 26.0
+    let kBtnEditVoteDisabledAlpha: CGFloat = 0.5
+    let kEventTypeConference = 2
+    let kBntVoteCornerRadius: CGFloat = 3.0
 
     @IBOutlet weak var lblTrack: UILabel!
     @IBOutlet weak var lblLocation: UILabel!
@@ -39,17 +47,21 @@ class SDScheduleListTableViewCell: UITableViewCell {
     @IBOutlet weak var selectedBGView: UIView!
     @IBOutlet weak var imgFavoriteIcon: UIImageView!
     @IBOutlet weak var viewSpeaker: UIView!
+    @IBOutlet weak var btnVote: UIButton!
+    @IBOutlet weak var btnEditVote: UIButton!
 
     @IBOutlet weak var constraintForLblTrackHeight: NSLayoutConstraint!
     @IBOutlet weak var constraintForLblTrackBottomSpace: NSLayoutConstraint!
     @IBOutlet weak var constraintForLblLocationHeight: NSLayoutConstraint!
     @IBOutlet weak var constraintForLblLocationBottomSpace: NSLayoutConstraint!
-
-
+    @IBOutlet weak var constraintForBtnVoteHeight: NSLayoutConstraint!
+    @IBOutlet weak var constraintForBtnEditVoteHeight: NSLayoutConstraint!
     @IBOutlet weak var constraintForLblTitleBottomSpace: NSLayoutConstraint!
-
     @IBOutlet weak var constraintForViewSpeakerHeight: NSLayoutConstraint!
-
+    
+    var delegate: SDScheduleListTableViewCellDelegate?
+    var eventData: (event: Event, conferenceId: Int)?
+    
     override func setHighlighted(highlighted: Bool, animated: Bool) {
         self.selectedBGView.alpha = highlighted ? kDefaultMaxAlphaForSelectionBG : 0
     }
@@ -63,20 +75,41 @@ class SDScheduleListTableViewCell: UITableViewCell {
         lblTitle?.preferredMaxLayoutWidth = self.frame.size.width - kWidthOfTimeContainer - kDefaultHorizontalLeading - kDefaultHorizontalTrailing
     }
 
-    func drawEventData(event: Event) {
-
-        if let timeZoneName = DataManager.sharedInstance.conferences?.conferences[DataManager.sharedInstance.selectedConferenceIndex].info.utcTimezoneOffset {
-            if let startDate = SDDateHandler.sharedInstance.parseScheduleDate(event.startTime) {
-                if let localStartDate = SDDateHandler.convertDateToLocalTime(startDate, timeZoneName: timeZoneName) {
-                    lblTime.text = SDDateHandler.sharedInstance.hoursAndMinutesFromDate(localStartDate)
-                    if SDDateHandler.sharedInstance.isCurrentDateActive(event.startTime, endTime: event.endTime) {
-                        viewTime.backgroundColor = colorScheduleTimeActive
-                    } else {
-                        viewTime.backgroundColor = colorScheduleTime
-                    }
+    func drawEventData(event: Event, conferenceId: Int) {
+        if let timeZoneName = DataManager.sharedInstance.conferences?.conferences[DataManager.sharedInstance.selectedConferenceIndex].info.utcTimezoneOffset,
+            startDate = SDDateHandler.sharedInstance.parseScheduleDate(event.startTime),
+            localStartDate = SDDateHandler.convertDateToLocalTime(startDate, timeZoneName: timeZoneName) {
+                let isSafeToVote = SDDateHandler.isSafeToVoteForConferenceWithDate(startDate, fromReferenceDate: NSDate()) && event.type == kEventTypeConference
+                // Vote button configuration:
+                lblTime.text = SDDateHandler.sharedInstance.hoursAndMinutesFromDate(localStartDate)
+                viewTime.backgroundColor = SDDateHandler.sharedInstance.isCurrentDateActive(event.startTime, endTime: event.endTime) ? colorScheduleTimeActive : colorScheduleTime
+                let btnVoteParams : (hidden: Bool, height: CGFloat) =
+                    isSafeToVote ?
+                        (false, kBtnVoteHeight) :
+                        (true, 0)
+                btnVote.hidden = btnVoteParams.hidden
+                constraintForBtnVoteHeight.constant = btnVoteParams.height
+                
+                // Edit vote button configuration:
+                if let votes = StoringHelper.sharedInstance.loadVotesData(),
+                    voteDict = votes.filter({(vote: (key: String, v: Vote)) in vote.v.conferenceId == conferenceId && vote.v.talkId == event.id}).first {
+                        let (_, vote) = voteDict
+                        btnEditVote.hidden = false
+                        btnVote.hidden = true
+                        constraintForBtnEditVoteHeight.constant = kBtnEditVoteHeight
+                        if let voteValue = VoteType(rawValue: vote.voteValue) {
+                            btnEditVote.setImage(UIImage(named: voteValue.iconNameForVoteType()), forState: .Normal)
+                        }
+                        let (enabled, alpha) = isSafeToVote ? (true, kAlphaValueFull) : (false, kBtnEditVoteDisabledAlpha)
+                        btnEditVote.enabled = enabled
+                        btnEditVote.alpha = alpha
+                        
+                } else {
+                    btnEditVote.hidden = true
+                    constraintForBtnEditVoteHeight.constant = 0
                 }
-            }
-        }
+        }      
+        
 
         lblTitle.text = event.title
         if let eventTrack = event.track {
@@ -99,33 +132,45 @@ class SDScheduleListTableViewCell: UITableViewCell {
             lblLocation.text = ""
         }
 
+        let spaceAboveTitleLabel = constraintForLblLocationBottomSpace.constant + constraintForLblLocationHeight.constant + constraintForLblTrackBottomSpace.constant + constraintForLblTrackHeight.constant
+        let spaceBelowTitleLabelIfVoteAvailable = (btnVote.hidden && btnEditVote.hidden) ? 0 : btnVote.bounds.height - spaceAboveTitleLabel
+        
         if let speakers = event.speakers {
             for view in viewSpeaker.subviews {
                 view.removeFromSuperview()
             }
             if (speakers.count < 1) {
-                constraintForViewSpeakerHeight.constant = 0
+                constraintForViewSpeakerHeight.constant = spaceBelowTitleLabelIfVoteAvailable
             } else {
-                var lastSpeakerBottomPos: CGFloat = 0
-                for (_, speaker) in speakers.enumerate() {
-                    let speakerView = SDSpeakerScheduleView(frame: CGRectMake(0, lastSpeakerBottomPos, screenBounds.width, 0))
-                    speakerView.drawSpeakerData(speaker)
+                let lastSpeakerBottomPos = speakers.enumerate().reduce(0, combine: { (speakerBottomPos: CGFloat, currentIterator: (index: Int, speaker: Speaker)) -> CGFloat in
+                    let speakerView = SDSpeakerScheduleView(frame: CGRectMake(0, speakerBottomPos, screenBounds.width, 0))
+                    speakerView.drawSpeakerData(currentIterator.speaker)
                     viewSpeaker.addSubview(speakerView)
-
+                    
                     let height = speakerView.contentHeight()
-                    speakerView.frame = CGRectMake(0, lastSpeakerBottomPos, screenBounds.width, height)
-                    lastSpeakerBottomPos += height
-                }
+                    speakerView.frame = CGRectMake(0, speakerBottomPos, screenBounds.width, height)
+                    return speakerBottomPos + height
+                })
                 constraintForViewSpeakerHeight.constant = lastSpeakerBottomPos
             }
         } else {
-            constraintForViewSpeakerHeight.constant = 0
+            constraintForViewSpeakerHeight.constant = spaceBelowTitleLabelIfVoteAvailable
             for view in viewSpeaker.subviews {
                 view.removeFromSuperview()
             }
         }
-
+        
+        eventData = (event, conferenceId)
+        btnVote.layer.cornerRadius = kBntVoteCornerRadius
+        btnVote.layer.masksToBounds = true
         imgFavoriteIcon.hidden = true
         layoutSubviews()
+    }
+    
+    @IBAction func didTapBtnVote(sender: AnyObject) {
+        if let event = eventData?.event,
+            let conferenceId = eventData?.conferenceId {
+            delegate?.didSelectVoteButtonWithEvent(event, conferenceId: conferenceId)
+        }
     }
 }
