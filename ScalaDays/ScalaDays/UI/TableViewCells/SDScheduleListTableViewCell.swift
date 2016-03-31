@@ -37,6 +37,7 @@ class SDScheduleListTableViewCell: UITableViewCell {
     let kBtnEditVoteHeight: CGFloat = 26.0
     let kBtnEditVoteDisabledAlpha: CGFloat = 0.5
     let kEventTypeConference = 2
+    let kBntVoteCornerRadius: CGFloat = 3.0
 
     @IBOutlet weak var lblTrack: UILabel!
     @IBOutlet weak var lblLocation: UILabel!
@@ -99,7 +100,7 @@ class SDScheduleListTableViewCell: UITableViewCell {
                         if let voteValue = VoteType(rawValue: vote.voteValue) {
                             btnEditVote.setImage(UIImage(named: voteValue.iconNameForVoteType()), forState: .Normal)
                         }
-                        let (enabled, alpha) = isSafeToVote ? (true, 1.0) : (false, kBtnEditVoteDisabledAlpha)
+                        let (enabled, alpha) = isSafeToVote ? (true, kAlphaValueFull) : (false, kBtnEditVoteDisabledAlpha)
                         btnEditVote.enabled = enabled
                         btnEditVote.alpha = alpha
                         
@@ -160,7 +161,7 @@ class SDScheduleListTableViewCell: UITableViewCell {
         }
         
         eventData = (event, conferenceId)
-        btnVote.layer.cornerRadius = 3.0
+        btnVote.layer.cornerRadius = kBntVoteCornerRadius
         btnVote.layer.masksToBounds = true
         imgFavoriteIcon.hidden = true
         layoutSubviews()

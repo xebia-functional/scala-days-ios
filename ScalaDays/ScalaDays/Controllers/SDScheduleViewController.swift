@@ -58,6 +58,7 @@ class SDScheduleViewController: GAITrackedViewController,
     let votingParamTalkId = "talkId"
     let votingParamConferenceId = "conferenceId"
     let votingParamUrlEncodeHeader = "application/x-www-form-urlencoded"
+    let kConnectionErrorCode400 = 400
 
     var selectedConference: Conference?
     var errorPlaceholderView : SDErrorPlaceholderView!
@@ -222,9 +223,9 @@ class SDScheduleViewController: GAITrackedViewController,
     }
 
     func configureCell(cell: SDScheduleListTableViewCell, indexPath: NSIndexPath) -> SDScheduleListTableViewCell {
-        if let events = eventsToShow {
+        if let events = eventsToShow,
+            conferenceId = selectedConference?.info.id {
             let event = events[indexPath.section][indexPath.row]
-            let conferenceId = selectedConference?.info.id ?? -1
             cell.drawEventData(event, conferenceId: conferenceId)
             if let currentConferenceFavorites = listOfCurrentConferenceFavoritesIDs() {
                 if currentConferenceFavorites.contains(event.id) {
@@ -489,7 +490,7 @@ class SDScheduleViewController: GAITrackedViewController,
     
     func didSelectVoteValue(voteType: VoteType) {
         print("Voted \(voteType.rawValue) for event \(selectedEventToVote?.eventId ?? -1) and conference: \(selectedEventToVote?.conferenceId ?? -1)")
-        self.adjustBackgroundAlpha(1.0)
+        self.adjustBackgroundAlpha(kAlphaValueFull)
         sendVote(voteType)
     }
     
@@ -507,7 +508,7 @@ class SDScheduleViewController: GAITrackedViewController,
                 headers: ["Content-Type": votingParamUrlEncodeHeader])
                 .response { response in
                     let code = response.1?.statusCode ?? 0
-                    if code >= 400 || code == 0 {
+                    if code >= self.kConnectionErrorCode400 || code == 0 {
                         SDAlertViewHelper.showSimpleAlertViewOnViewController(self,
                             title: NSLocalizedString("schedule_error_vote_title", comment: ""),
                             message: NSLocalizedString("schedule_error_vote_message", comment: ""),
@@ -543,7 +544,7 @@ class SDScheduleViewController: GAITrackedViewController,
     }
     
     func popoverPresentationControllerDidDismissPopover(popoverPresentationController: UIPopoverPresentationController) {
-        self.adjustBackgroundAlpha(1.0)
+        self.adjustBackgroundAlpha(kAlphaValueFull)
     }
     
     func adaptivePresentationStyleForPresentationController(controller: UIPresentationController) -> UIModalPresentationStyle {
