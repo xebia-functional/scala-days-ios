@@ -156,7 +156,7 @@ class DataManager {
                             callback(false, response.result.error)
                         } else {
                             if (response.result.error != nil) {
-                                NSLog("Error: \(response.result.error)")
+                                print("Error: \(response.result.error)")
                                 print(response.request)
                                 print(response.response)
                                 callback(false, response.result.error)
@@ -329,11 +329,9 @@ class DataManager {
     
     func parseAndStoreJSONData(jsonData: JSON) {
         self.conferences = parseJSON(jsonData)
-        print("End parse")
         
         if let _conferences = self.conferences {
             StoringHelper.sharedInstance.storeConferenceData(_conferences)
-            print("Save parse")
         }
     }
 

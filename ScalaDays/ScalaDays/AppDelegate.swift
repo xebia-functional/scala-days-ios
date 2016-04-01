@@ -38,7 +38,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         
         if let localyticsKey = externalKeys.localyticsKey {
-            print(localyticsKey)
             Localytics.integrate(localyticsKey)
         }
 
@@ -124,7 +123,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: NSData) {
-        print("Successfully egistered for Remote Notifications with token: \(deviceToken)")
         Localytics.setPushToken(deviceToken)
     }
 
@@ -133,10 +131,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject:AnyObject]) {
-        print(userInfo)
-
         if let jsonReload: AnyObject = userInfo["jsonReload"] {
-            print(jsonReload)
             if let jsonReloadBool = jsonReload as? NSString {
                 if(jsonReloadBool .isEqualToString("true")) {
                     DataManager.sharedInstance.lastConnectionAttemptDate = nil

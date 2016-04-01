@@ -489,7 +489,6 @@ class SDScheduleViewController: GAITrackedViewController,
     }
     
     func didSelectVoteValue(voteType: VoteType) {
-        print("Voted \(voteType.rawValue) for event \(selectedEventToVote?.eventId ?? -1) and conference: \(selectedEventToVote?.conferenceId ?? -1)")
         self.adjustBackgroundAlpha(kAlphaValueFull)
         sendVote(voteType)
     }

@@ -75,7 +75,7 @@ class SDScheduleDetailViewController: GAITrackedViewController {
             if let room = currentEvent.location {
                 let roomTitle = NSLocalizedString("schedule_location_title", comment: "") + room.name
                 lblRoom.attributedText = NSAttributedString(string: roomTitle)
-                if let locationMapUrl = currentEventLocationMapUrl() {
+                if let _ = currentEventLocationMapUrl() {
                     lblRoom.attributedText = NSAttributedString(string: roomTitle, attributes: [NSUnderlineStyleAttributeName : NSUnderlineStyle.StyleSingle.rawValue])
                     lblRoom.addGestureRecognizer(UITapGestureRecognizer(target: self, action: "didTapOnLocationLabel"))
                     lblRoom.userInteractionEnabled = true
@@ -93,7 +93,7 @@ class SDScheduleDetailViewController: GAITrackedViewController {
                     viewSpeaker.hidden = true
                 } else {
                     var lastSpeakerBottomPos : CGFloat = 0
-                    for (index, speaker) in speakers.enumerate() {
+                    for (_, speaker) in speakers.enumerate() {
                         let speakerView = SDSpeakerDetailView(frame: CGRectMake(0, lastSpeakerBottomPos, screenBounds.width, 0))
                         speakerView.drawSpeakerData(speaker)
                         viewSpeakerListContainer.addSubview(speakerView)

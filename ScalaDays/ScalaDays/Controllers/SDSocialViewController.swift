@@ -83,7 +83,7 @@ class SDSocialViewController: GAITrackedViewController, SDErrorPlaceholderViewDe
         DataManager.sharedInstance.loadDataJson() {
             (bool, error) -> () in
 
-            if let badError = error {
+            if let _ = error {
                 self.errorPlaceholderView.show(NSLocalizedString("error_message_no_data_available", comment: ""))
                 SVProgressHUD.dismiss()
             } else {
@@ -249,12 +249,7 @@ class SDSocialViewController: GAITrackedViewController, SDErrorPlaceholderViewDe
     // MARK: - Composing tweet
 
     func didTapCreateTweetButton() {
-        var defaultTweetText = ""
-        if let hashtag = self.selectedConference?.info.hashtag {
-            defaultTweetText = hashtag
-        }
-
-        let error = self.socialHandler.showTweetComposerWithTweetText(hashtag, onViewController: self)
+        let error = self.socialHandler.showTweetComposerWithTweetText(hashtag ?? "", onViewController: self)
         if (error != .NoError) {
             SDAlertViewHelper.showSimpleAlertViewOnViewController(self, title: nil, message: NSLocalizedString("social_error_message_no_twitter_account_configured", comment: ""), cancelButtonTitle: NSLocalizedString("common_ok", comment: ""), otherButtonTitle: nil, tag: nil, delegate: nil, handler: nil)
             SDGoogleAnalyticsHandler.sendGoogleAnalyticsTrackingWithScreenName(kGAScreenNameSocial, category: kGACategoryNavigate, action: kGAActionSocialPostTweet, label: nil)
