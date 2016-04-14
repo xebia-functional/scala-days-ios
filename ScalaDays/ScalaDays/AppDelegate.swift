@@ -39,8 +39,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         if let localyticsKey = externalKeys.localyticsKey {
             Localytics.integrate(localyticsKey)
+            Localytics.setLoggingEnabled(true)
+            if application.applicationState != UIApplicationState.Background {
+                Localytics.openSession()
+            }
         }
-
+        
         if let googleAnalyticsKey = externalKeys.googleAnalyticsKey {
             GAI.sharedInstance().trackerWithTrackingId(googleAnalyticsKey)
         }
@@ -51,13 +55,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.initAppearence()
         self.createMenuView()
         return true
-    }
-
-    func applicationWillResignActive(application: UIApplication) {
-        // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
-        // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
-        Localytics.closeSession()
-        Localytics.upload()
     }
 
     func applicationDidEnterBackground(application: UIApplication) {
@@ -81,6 +78,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationWillTerminate(application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+        Localytics.dismissCurrentInAppMessage()
         Localytics.closeSession()
         Localytics.upload()
     }
@@ -123,24 +121,29 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: NSData) {
+        //SDAlertViewHelper.showSimpleAlertViewOnViewController(menuViewController, title: "", message: deviceToken.description, cancelButtonTitle: "OK", otherButtonTitle: "Cancel", tag: nil, delegate: nil, handler: nil)
         Localytics.setPushToken(deviceToken)
     }
 
     func application(application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: NSError) {
         print("Registration for Remote Notifications failed with error: \(error)")
     }
-
-    func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject:AnyObject]) {
-        if let jsonReload: AnyObject = userInfo["jsonReload"] {
-            if let jsonReloadBool = jsonReload as? NSString {
-                if(jsonReloadBool .isEqualToString("true")) {
-                    DataManager.sharedInstance.lastConnectionAttemptDate = nil
-                    self.menuViewController.askControllersToReload()                   
+    
+    func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject], fetchCompletionHandler completionHandler: (UIBackgroundFetchResult) -> Void) {
+        func handleReload() {
+            if let jsonReload: AnyObject = userInfo["jsonReload"] {
+                if let jsonReloadBool = jsonReload as? NSString {
+                    if(jsonReloadBool .isEqualToString("true")) {
+                        DataManager.sharedInstance.lastConnectionAttemptDate = nil
+                        self.menuViewController.askControllersToReload()
+                    }
                 }
             }
+            Localytics.handlePushNotificationOpened(userInfo)
         }
-        Localytics.handlePushNotificationOpened(userInfo)
+        
+        handleReload()        
+        completionHandler(.NoData)
     }
-
 }
 
