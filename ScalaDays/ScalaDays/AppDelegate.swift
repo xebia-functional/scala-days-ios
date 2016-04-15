@@ -121,7 +121,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: NSData) {
-        //SDAlertViewHelper.showSimpleAlertViewOnViewController(menuViewController, title: "", message: deviceToken.description, cancelButtonTitle: "OK", otherButtonTitle: "Cancel", tag: nil, delegate: nil, handler: nil)
         Localytics.setPushToken(deviceToken)
     }
 
