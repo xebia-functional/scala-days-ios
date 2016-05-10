@@ -19,11 +19,23 @@ import UIKit
 class SDAnimationHelper: NSObject {
 
     class func showViewWithFadeInAnimation(view: UIView) {
+        SDAnimationHelper.showViewWithFadeInAnimation(view, maxAlphaValue: 1.0)
+    }
+    
+    class func showViewWithFadeInAnimation(view: UIView, maxAlphaValue: CGFloat) {
         view.alpha = 0
         view.hidden = false
         UIView.animateWithDuration(kAnimationShowHideTimeInterval, animations: { () -> Void in
-            view.alpha = 1
+            view.alpha = maxAlphaValue
         })
+    }
+    
+    class func hideViewWithFadeOutAnimation(view: UIView) {        
+        UIView.animateWithDuration(kAnimationShowHideTimeInterval, animations: { () -> Void in
+            view.alpha = 0
+            }) { (animated) -> Void in
+                view.hidden = true
+        }
     }
     
 }
