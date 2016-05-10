@@ -482,8 +482,10 @@ class SDScheduleViewController: GAITrackedViewController,
             popover.permittedArrowDirections = UIPopoverArrowDirection(rawValue: 0)
             popover.sourceRect = CGRectMake(CGRectGetMidX(self.view.bounds), CGRectGetMidY(self.view.bounds),0,0)
             self.presentViewController(votingNavC, animated: true, completion: { () -> Void in
-                votingVC.lblTalkTitle.text = "\"\(event.title)\""
-            })
+                if let voteLabel = votingVC.lblTalkTitle {
+                    voteLabel.text = "\"\(event.title)\""
+                }
+            })            
             self.adjustBackgroundAlpha(kBackgroundDarknessValue)
         }
     }
