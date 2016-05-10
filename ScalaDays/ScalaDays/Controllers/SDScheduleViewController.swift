@@ -51,7 +51,6 @@ class SDScheduleViewController: GAITrackedViewController,
     let kReuseIdentifier = "SDScheduleViewControllerCell"
     let kHeaderHeight: CGFloat = 40.0
     let kVotePopoverSize = CGSize(width: 300, height: 160)
-    let kBackgroundDarkenAnimationDuration = 0.30
     let kBackgroundDarknessValue: CGFloat = 0.25
     let votingUrl = "http://www.47deg.com/scaladays/votes/add.php"
     let votingParamVote = "vote"
