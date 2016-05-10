@@ -131,19 +131,24 @@ class SDScheduleViewController: GAITrackedViewController,
     }
     
     func loadData(forceConnection: Bool) {
-        SVProgressHUD.show()
+        if !forceConnection {
+            SVProgressHUD.show()
+        }
+        
         DataManager.sharedInstance.loadDataJson(forceConnection) {
             (bool, error) -> () in
             
+            dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                self.refreshControl.endRefreshing()
+                SVProgressHUD.dismiss()
+            })
+            
             if let _ = error {
                 self.errorPlaceholderView.show(NSLocalizedString("error_message_no_data_available", comment: ""))
-                SVProgressHUD.dismiss()
             } else {
                 self.selectedConference = DataManager.sharedInstance.currentlySelectedConference
                 self.selectedDataSource = .All
                 self.isDataLoaded = true
-                
-                SVProgressHUD.dismiss()
                 
                 self.dates = self.scheduledDates()
                 self.events = self.listOfEventsSortedByDates()
@@ -163,9 +168,6 @@ class SDScheduleViewController: GAITrackedViewController,
                 
                 self.tblSchedule.reloadData()
                 self.loadNavigationBar()
-                UIView.animateWithDuration(kAnimationShowHideTimeInterval, animations: { () -> Void in
-                    self.refreshControl.endRefreshing()
-                })
             }
         }
     }
