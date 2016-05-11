@@ -46,11 +46,11 @@ class SDScheduleViewController: GAITrackedViewController,
     SDVotesPopoverViewControllerDelegate {
 
     @IBOutlet weak var tblSchedule: UITableView!
-
+    @IBOutlet weak var alphaBackgroundView: UIView!
+    
     let kReuseIdentifier = "SDScheduleViewControllerCell"
     let kHeaderHeight: CGFloat = 40.0
     let kVotePopoverSize = CGSize(width: 300, height: 160)
-    let kBackgroundDarkenAnimationDuration = 0.30
     let kBackgroundDarknessValue: CGFloat = 0.25
     let votingUrl = "http://www.47deg.com/scaladays/votes/add.php"
     let votingParamVote = "vote"
@@ -485,13 +485,13 @@ class SDScheduleViewController: GAITrackedViewController,
                 if let voteLabel = votingVC.lblTalkTitle {
                     voteLabel.text = "\"\(event.title)\""
                 }
-            })            
-            self.adjustBackgroundAlpha(kBackgroundDarknessValue)
+            })
+            SDAnimationHelper.showViewWithFadeInAnimation(alphaBackgroundView, maxAlphaValue: kBackgroundDarknessValue)
         }
     }
     
     func didSelectVoteValue(voteType: VoteType) {
-        self.adjustBackgroundAlpha(kAlphaValueFull)
+        SDAnimationHelper.hideViewWithFadeOutAnimation(alphaBackgroundView)
         sendVote(voteType)
     }
     
@@ -538,14 +538,8 @@ class SDScheduleViewController: GAITrackedViewController,
         }
     }
     
-    func adjustBackgroundAlpha(alphaValue: CGFloat) {
-        UIView.animateWithDuration(kBackgroundDarkenAnimationDuration) { () -> Void in
-            self.view.alpha = alphaValue
-        }
-    }
-    
     func popoverPresentationControllerDidDismissPopover(popoverPresentationController: UIPopoverPresentationController) {
-        self.adjustBackgroundAlpha(kAlphaValueFull)
+        SDAnimationHelper.hideViewWithFadeOutAnimation(alphaBackgroundView)
     }
     
     func adaptivePresentationStyleForPresentationController(controller: UIPresentationController) -> UIModalPresentationStyle {

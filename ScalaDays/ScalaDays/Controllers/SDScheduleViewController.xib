@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9532" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SDScheduleViewController" customModule="ScalaDays" customModuleProvider="target">
             <connections>
+                <outlet property="alphaBackgroundView" destination="OwU-ml-xUj" id="skc-AF-qOE"/>
                 <outlet property="tblSchedule" destination="DpH-YU-HSH" id="qLf-EV-QW3"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -24,10 +25,18 @@
                         <outlet property="delegate" destination="-1" id="Uet-lv-if1"/>
                     </connections>
                 </tableView>
+                <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OwU-ml-xUj" userLabel="Background View">
+                    <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                    <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                </view>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
+                <constraint firstAttribute="bottom" secondItem="OwU-ml-xUj" secondAttribute="bottom" id="AFL-B3-oAk"/>
+                <constraint firstItem="OwU-ml-xUj" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="AKV-5W-Rge"/>
                 <constraint firstAttribute="trailing" secondItem="DpH-YU-HSH" secondAttribute="trailing" id="JYX-yR-a5y"/>
+                <constraint firstAttribute="trailing" secondItem="OwU-ml-xUj" secondAttribute="trailing" id="LDD-Xf-csS"/>
+                <constraint firstItem="OwU-ml-xUj" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="dit-FN-HMb"/>
                 <constraint firstAttribute="bottom" secondItem="DpH-YU-HSH" secondAttribute="bottom" id="huZ-sJ-Ipx"/>
                 <constraint firstItem="DpH-YU-HSH" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="j14-9k-d6c"/>
                 <constraint firstItem="DpH-YU-HSH" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="yLe-ld-VsT"/>
