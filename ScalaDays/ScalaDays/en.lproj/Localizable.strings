@@ -39,6 +39,7 @@
 "schedule_action_sheet_filter_message_favorites" = "My Favorites";
 "schedule_error_vote_title" = "Error";
 "schedule_error_vote_message" = "There was a problem while trying to send your vote. Please try again in a few moments.";
+"schedule_vote_comments_placeholder" = "Your comments can be useful to the speaker of this talk.";
 
 // Social
 

@@ -45,6 +45,10 @@ extension UIColor {
     class func appSeparatorLineColor() -> UIColor {
         return UIColor(red: 54/255, green: 69/255, blue: 80/255, alpha: 0.3)
     }
+    
+    class func disabledButtonColor() -> UIColor {
+        return grayScaleColor(190.0)
+    }
 
 }
 

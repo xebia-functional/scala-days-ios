@@ -42,15 +42,17 @@ class SDScheduleViewController: GAITrackedViewController,
     SDErrorPlaceholderViewDelegate,
     SDMenuControllerItem,
     SDScheduleListTableViewCellDelegate,
-    UIPopoverPresentationControllerDelegate,
-    SDVotesPopoverViewControllerDelegate {
+    UIGestureRecognizerDelegate {
 
     @IBOutlet weak var tblSchedule: UITableView!
     @IBOutlet weak var alphaBackgroundView: UIView!
     
     let kReuseIdentifier = "SDScheduleViewControllerCell"
     let kHeaderHeight: CGFloat = 40.0
-    let kVotePopoverSize = CGSize(width: 300, height: 160)
+    let kVotePopoverSize = CGSize(width: 300, height: 300)
+    let kVotePopoverCornerRadius = 10.0
+    let kVotePopoverDefaultTopPosition = 100.0
+    let kVotePopoverKeyboardOverlapThreshold = 20.0
     let kBackgroundDarknessValue: CGFloat = 0.25
     let votingUrl = "http://www.47deg.com/scaladays/votes/add.php"
     let votingParamVote = "vote"
@@ -62,6 +64,14 @@ class SDScheduleViewController: GAITrackedViewController,
 
     var selectedConference: Conference?
     var errorPlaceholderView : SDErrorPlaceholderView!
+    @IBOutlet weak var votingPopoverContainer: UIView!
+    @IBOutlet weak var btnVoteHappy: UIButton!
+    @IBOutlet weak var btnVoteNeutral: UIButton!
+    @IBOutlet weak var btnVoteSad: UIButton!
+    @IBOutlet weak var txtViewVoteComments: UITextView!
+    @IBOutlet weak var btnSendVote: UIButton!
+    @IBOutlet weak var lblVoteTalkTitle: UILabel!
+    @IBOutlet weak var constraintForVotingPopoverTopSpace: NSLayoutConstraint!
 
     var dates: [String]?
     var events: [[Event]]?
@@ -78,6 +88,13 @@ class SDScheduleViewController: GAITrackedViewController,
                 }
                 return [[Event]]()
             }
+        }
+    }
+    var currentSelectedVote: VoteType? {
+        didSet {
+            let (color, enabled) = currentSelectedVote == nil ? (UIColor.disabledButtonColor(), false) : (UIColor.appRedColor(), true)
+            btnSendVote.enabled = enabled
+            btnSendVote.backgroundColor = color
         }
     }
     var isDataLoaded : Bool = false
@@ -111,6 +128,16 @@ class SDScheduleViewController: GAITrackedViewController,
         tblSchedule.addSubview(refreshControl)
         
         self.screenName = kGAScreenNameSchedule
+        
+        NSNotificationCenter.defaultCenter().addObserver(self,
+            selector: "keyboardWillShow:",
+            name: UIKeyboardWillShowNotification,
+            object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self,
+            selector: "keyboardWillHide:",
+            name: UIKeyboardWillHideNotification,
+            object: nil)
+
     }
     
     func loadNavigationBar() {
@@ -122,6 +149,12 @@ class SDScheduleViewController: GAITrackedViewController,
         } else {
             self.navigationItem.rightBarButtonItem = barButtonOptions
         }
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        votingPopoverContainer.layer.masksToBounds = true
+        votingPopoverContainer.layer.cornerRadius = CGFloat(kVotePopoverCornerRadius)
     }
 
 
@@ -441,7 +474,7 @@ class SDScheduleViewController: GAITrackedViewController,
         }
     }
     
-    //MARK: -Clock
+    //MARK: - Clock
     
     func viewClock() -> (result :Bool, indexRow : Int, indexSection: Int){
         var result = false
@@ -469,30 +502,45 @@ class SDScheduleViewController: GAITrackedViewController,
     
     // MARK: - Voting
     
-    func didSelectVoteButtonWithEvent(event: Event, conferenceId: Int) {
-        let votingVC = SDVotesPopoverViewController(delegate: self)
-        let votingNavC = UINavigationController(rootViewController: votingVC)
-        votingVC.preferredContentSize = kVotePopoverSize
-        votingNavC.modalPresentationStyle = UIModalPresentationStyle.Popover
-        votingNavC.navigationBarHidden = true
-        if let popover = votingNavC.popoverPresentationController {
-            self.selectedEventToVote = (event.id, conferenceId)
-            popover.delegate = self
-            popover.sourceView = self.view
-            popover.permittedArrowDirections = UIPopoverArrowDirection(rawValue: 0)
-            popover.sourceRect = CGRectMake(CGRectGetMidX(self.view.bounds), CGRectGetMidY(self.view.bounds),0,0)
-            self.presentViewController(votingNavC, animated: true, completion: { () -> Void in
-                if let voteLabel = votingVC.lblTalkTitle {
-                    voteLabel.text = "\"\(event.title)\""
-                }
-            })
-            SDAnimationHelper.showViewWithFadeInAnimation(alphaBackgroundView, maxAlphaValue: kBackgroundDarknessValue)
+    @IBAction func didTapOnBtnVoteFace(sender: UIButton) {
+        switch sender {
+        case _ where sender === btnVoteHappy: didSelectVoteValue(.Like)
+        case _ where sender === btnVoteNeutral: didSelectVoteValue(.Neutral)
+        case _ where sender === btnVoteSad: didSelectVoteValue(.Unlike)
+        default: break
         }
     }
     
-    func didSelectVoteValue(voteType: VoteType) {
+    @IBAction func didTapOnBtnVoteCancel(sender: UIButton) {
+        hideVotingPopover()
+    }
+    
+    @IBAction func didTapOnBtnSendVote(sender: UIButton) {
+        // TODO: implement new voting post
+    }
+    
+    func hideVotingPopover() {
+        SDAnimationHelper.hideViewWithFadeOutAnimation(votingPopoverContainer)
         SDAnimationHelper.hideViewWithFadeOutAnimation(alphaBackgroundView)
-        sendVote(voteType)
+    }
+    
+    func showVotingPopover() {
+        SDAnimationHelper.showViewWithFadeInAnimation(alphaBackgroundView, maxAlphaValue: kBackgroundDarknessValue)
+        SDAnimationHelper.showViewWithFadeInAnimation(votingPopoverContainer)
+        txtViewVoteComments.text = NSLocalizedString("schedule_vote_comments_placeholder", comment: "")
+    }
+    
+    func didSelectVoteButtonWithEvent(event: Event, conferenceId: Int) {
+        showVotingPopover()
+        currentSelectedVote = nil
+        selectedEventToVote = (event.id, conferenceId)
+        
+        lblVoteTalkTitle.text = "\"\(event.title)\""
+    }
+    
+    func didSelectVoteValue(voteType: VoteType) {
+        currentSelectedVote = voteType
+        // TODO: change icon on the voting buttons
     }
     
     func sendVote(voteType: VoteType) {
@@ -538,12 +586,43 @@ class SDScheduleViewController: GAITrackedViewController,
         }
     }
     
-    func popoverPresentationControllerDidDismissPopover(popoverPresentationController: UIPopoverPresentationController) {
-        SDAnimationHelper.hideViewWithFadeOutAnimation(alphaBackgroundView)
+    // MARK: - Keyboard handling
+    
+    func keyboardWillShow(notification: NSNotification) {
+        if let notificationInfo = notification.userInfo,
+            keyboardFrame = (notificationInfo[UIKeyboardFrameEndUserInfoKey] as? NSValue)?.CGRectValue(),
+            animationDuration = (notificationInfo[UIKeyboardAnimationDurationUserInfoKey] as? NSTimeInterval) {
+            setVerticalPositionForVotingPopoverWithKeyboardHeight(keyboardFrame.size.height,
+                kbAnimationDuration: animationDuration)
+        }
     }
     
-    func adaptivePresentationStyleForPresentationController(controller: UIPresentationController) -> UIModalPresentationStyle {
-        return UIModalPresentationStyle.None
+    func keyboardWillHide(notification: NSNotification) {
+        if let notificationInfo = notification.userInfo,
+            animationDuration = (notificationInfo[UIKeyboardAnimationDurationUserInfoKey] as? NSTimeInterval) {
+                UIView.animateWithDuration(animationDuration, animations: { () -> Void in
+                    self.constraintForVotingPopoverTopSpace.constant = CGFloat(self.kVotePopoverDefaultTopPosition)
+                })
+        }
+        
     }
+    
+    func setVerticalPositionForVotingPopoverWithKeyboardHeight(kbHeight: CGFloat, kbAnimationDuration: NSTimeInterval) {
+        if kbHeight + votingPopoverContainer.bounds.size.height + CGFloat(kVotePopoverDefaultTopPosition) >
+            self.view.bounds.height + CGFloat(kVotePopoverKeyboardOverlapThreshold) {
+                UIView.animateWithDuration(kbAnimationDuration, animations: { () -> Void in
+                    self.constraintForVotingPopoverTopSpace.constant = 0
+                })
+        }
+    }
+    
+    @IBAction func didTapOutsideOfKeyboard(gestureRecognizer: UITapGestureRecognizer) {
+        self.view.endEditing(true)
+    }
+    
+    func gestureRecognizer(gestureRecognizer: UIGestureRecognizer, shouldReceiveTouch touch: UITouch) -> Bool {
+        return true
+    }
+    
 }
 
