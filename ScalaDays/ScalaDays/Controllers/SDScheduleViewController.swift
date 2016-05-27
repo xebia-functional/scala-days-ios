@@ -42,7 +42,8 @@ class SDScheduleViewController: GAITrackedViewController,
     SDErrorPlaceholderViewDelegate,
     SDMenuControllerItem,
     SDScheduleListTableViewCellDelegate,
-    UIGestureRecognizerDelegate {
+    UIGestureRecognizerDelegate,
+    UITextViewDelegate {
 
     @IBOutlet weak var tblSchedule: UITableView!
     @IBOutlet weak var alphaBackgroundView: UIView!
@@ -50,9 +51,9 @@ class SDScheduleViewController: GAITrackedViewController,
     let kReuseIdentifier = "SDScheduleViewControllerCell"
     let kHeaderHeight: CGFloat = 40.0
     let kVotePopoverSize = CGSize(width: 300, height: 300)
-    let kVotePopoverCornerRadius = 10.0
     let kVotePopoverDefaultTopPosition = 100.0
     let kVotePopoverKeyboardOverlapThreshold = 20.0
+    let kVotePlaceholderFontSize = CGFloat(14.0)
     let kBackgroundDarknessValue: CGFloat = 0.25
     let votingUrl = "http://www.47deg.com/scaladays/votes/add.php"
     let votingParamVote = "vote"
@@ -61,6 +62,11 @@ class SDScheduleViewController: GAITrackedViewController,
     let votingParamConferenceId = "conferenceId"
     let votingParamUrlEncodeHeader = "application/x-www-form-urlencoded"
     let kConnectionErrorCode400 = 400
+    let kVotingButtonsBorderWidth = 0.5
+    let kVotingLikeIconName = "popup_icon_vote_like"
+    let kVotingNeutralIconName = "popup_icon_vote_neutral"
+    let kVotingDontLikeIconName = "popup_icon_vote_unlike"
+    let kVotingDisableIconSuffix = "_disabled"
 
     var selectedConference: Conference?
     var errorPlaceholderView : SDErrorPlaceholderView!
@@ -72,6 +78,7 @@ class SDScheduleViewController: GAITrackedViewController,
     @IBOutlet weak var btnSendVote: UIButton!
     @IBOutlet weak var lblVoteTalkTitle: UILabel!
     @IBOutlet weak var constraintForVotingPopoverTopSpace: NSLayoutConstraint!
+    @IBOutlet weak var btnCancelVote: UIButton!
 
     var dates: [String]?
     var events: [[Event]]?
@@ -92,9 +99,7 @@ class SDScheduleViewController: GAITrackedViewController,
     }
     var currentSelectedVote: VoteType? {
         didSet {
-            let (color, enabled) = currentSelectedVote == nil ? (UIColor.disabledButtonColor(), false) : (UIColor.appRedColor(), true)
-            btnSendVote.enabled = enabled
-            btnSendVote.backgroundColor = color
+            btnSendVote.enabled = currentSelectedVote == nil
         }
     }
     var isDataLoaded : Bool = false
@@ -129,6 +134,12 @@ class SDScheduleViewController: GAITrackedViewController,
         
         self.screenName = kGAScreenNameSchedule
         
+        self.btnSendVote.layer.borderWidth = CGFloat(kVotingButtonsBorderWidth)
+        self.btnSendVote.layer.borderColor = UIColor.grayButtonBorder().CGColor
+        self.btnCancelVote.layer.borderWidth = CGFloat(kVotingButtonsBorderWidth)
+        self.btnCancelVote.layer.borderColor = UIColor.grayButtonBorder().CGColor
+        self.txtViewVoteComments.attributedText = placeholderTextForComments()
+        
         NSNotificationCenter.defaultCenter().addObserver(self,
             selector: "keyboardWillShow:",
             name: UIKeyboardWillShowNotification,
@@ -153,8 +164,6 @@ class SDScheduleViewController: GAITrackedViewController,
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        votingPopoverContainer.layer.masksToBounds = true
-        votingPopoverContainer.layer.cornerRadius = CGFloat(kVotePopoverCornerRadius)
     }
 
 
@@ -539,8 +548,21 @@ class SDScheduleViewController: GAITrackedViewController,
     }
     
     func didSelectVoteValue(voteType: VoteType) {
+        func setVotingIconToButton(btn: UIButton, iconName: String) {
+            btn.setImage(UIImage(named: iconName), forState: .Normal)
+        }
+        
         currentSelectedVote = voteType
-        // TODO: change icon on the voting buttons
+        
+        setVotingIconToButton(btnVoteHappy, iconName: kVotingLikeIconName + kVotingDisableIconSuffix)
+        setVotingIconToButton(btnVoteNeutral, iconName: kVotingNeutralIconName + kVotingDisableIconSuffix)
+        setVotingIconToButton(btnVoteSad, iconName: kVotingDontLikeIconName + kVotingDisableIconSuffix)
+        
+        switch voteType {
+        case .Like: setVotingIconToButton(btnVoteHappy, iconName: kVotingLikeIconName)
+        case .Neutral: setVotingIconToButton(btnVoteNeutral, iconName: kVotingNeutralIconName)
+        case .Unlike: setVotingIconToButton(btnVoteSad, iconName: kVotingDontLikeIconName)
+        }
     }
     
     func sendVote(voteType: VoteType) {
@@ -624,5 +646,35 @@ class SDScheduleViewController: GAITrackedViewController,
         return true
     }
     
+    func textViewDidBeginEditing(textView: UITextView) {
+        if textView.attributedText.string == placeholderTextForComments().string {
+            textView.attributedText = nil
+        }
+        textView.becomeFirstResponder()
+    }
+    
+    func textViewDidEndEditing(textView: UITextView) {
+        if textView.text == "" {
+            textView.attributedText = placeholderTextForComments()
+        }
+        textView.resignFirstResponder()
+    }
+    
+    func placeholderTextForComments() -> NSAttributedString {
+        let partOne = NSLocalizedString("schedule_vote_comments_placeholder_1", comment: "")
+        let partTwo = NSLocalizedString("schedule_vote_comments_placeholder_2", comment: "")
+        let partThree = NSLocalizedString("schedule_vote_comments_placeholder_3", comment: "")
+        let wholeText = partOne + partTwo + partThree
+        let result = NSMutableAttributedString(string: wholeText)
+        result.addAttribute(NSFontAttributeName, value: UIFont.fontHelveticaNeueItalic(kVotePlaceholderFontSize),
+            range: NSRange(location: 0, length: partOne.characters.count))
+        result.addAttribute(NSFontAttributeName, value: UIFont.fontHelveticaNeueBold(kVotePlaceholderFontSize),
+            range: NSRange(location: partOne.characters.count, length: partTwo.characters.count))
+        result.addAttribute(NSFontAttributeName, value: UIFont.fontHelveticaNeueItalic(kVotePlaceholderFontSize),
+            range: NSRange(location: partOne.characters.count + partTwo.characters.count, length: partThree.characters.count))
+        result.addAttribute(NSForegroundColorAttributeName, value: UIColor.grayCommentsPlaceholder(),
+            range: NSRange(location: 0, length: wholeText.characters.count))
+        return NSAttributedString(attributedString: result)
+    }
 }
 

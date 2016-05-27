@@ -8,10 +8,11 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SDScheduleViewController" customModule="ScalaDays" customModuleProvider="target">
             <connections>
                 <outlet property="alphaBackgroundView" destination="OwU-ml-xUj" id="skc-AF-qOE"/>
+                <outlet property="btnCancelVote" destination="71T-qm-6ij" id="zI3-QL-qFt"/>
                 <outlet property="btnSendVote" destination="Tyb-P5-eqX" id="wYq-5W-xLA"/>
-                <outlet property="btnVoteHappy" destination="dqv-jy-8O4" id="xee-kf-NZN"/>
+                <outlet property="btnVoteHappy" destination="tSm-ui-ljY" id="1DJ-0q-P7n"/>
                 <outlet property="btnVoteNeutral" destination="tYf-Sl-BgF" id="wTz-QX-Y0e"/>
-                <outlet property="btnVoteSad" destination="tSm-ui-ljY" id="0HQ-g9-wnZ"/>
+                <outlet property="btnVoteSad" destination="dqv-jy-8O4" id="2t2-Sx-awh"/>
                 <outlet property="constraintForVotingPopoverTopSpace" destination="urT-gs-pWt" id="26S-Go-eEj"/>
                 <outlet property="lblVoteTalkTitle" destination="b42-Mq-OUI" id="hqH-xR-wF4"/>
                 <outlet property="tblSchedule" destination="DpH-YU-HSH" id="qLf-EV-QW3"/>
@@ -25,7 +26,7 @@
             <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <tableView hidden="YES" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="DpH-YU-HSH">
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="DpH-YU-HSH">
                     <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                     <color key="backgroundColor" red="0.42352941176470588" green="0.81176470588235294" blue="0.9137254901960784" alpha="1" colorSpace="calibratedRGB"/>
                     <connections>
@@ -37,123 +38,121 @@
                     <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                     <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                 </view>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="d7s-e2-AcG" userLabel="Votes View">
+                <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="d7s-e2-AcG" userLabel="Votes View">
                     <rect key="frame" x="150" y="100" width="300" height="250"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dqv-jy-8O4">
-                            <rect key="frame" x="45" y="71" width="40" height="40"/>
+                            <rect key="frame" x="45" y="84" width="40" height="40"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="40" id="4yS-So-74Y"/>
                                 <constraint firstAttribute="width" constant="40" id="wxA-Ur-iXV"/>
                             </constraints>
-                            <state key="normal" image="popup_icon_vote_like"/>
+                            <state key="normal" image="popup_icon_vote_unlike_disabled"/>
                             <connections>
                                 <action selector="didTapOnBtnVoteFace:" destination="-1" eventType="touchUpInside" id="1k2-g3-dXm"/>
                             </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tYf-Sl-BgF">
-                            <rect key="frame" x="130" y="71" width="40" height="40"/>
+                            <rect key="frame" x="130" y="84" width="40" height="40"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="40" id="9sF-k7-kDo"/>
                                 <constraint firstAttribute="width" constant="40" id="GxP-ND-0cu"/>
                             </constraints>
-                            <state key="normal" image="popup_icon_vote_neutral"/>
+                            <state key="normal" image="popup_icon_vote_neutral_disabled"/>
                             <connections>
                                 <action selector="didTapOnBtnVoteFace:" destination="-1" eventType="touchUpInside" id="7aM-cW-Btl"/>
                             </connections>
                         </button>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="What did you think about this talk?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2As-m9-SPe">
-                            <rect key="frame" x="22" y="20" width="257" height="20"/>
+                            <rect key="frame" x="8" y="20" width="284" height="20"/>
                             <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="16"/>
                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" placeholderIntrinsicWidth="284" placeholderIntrinsicHeight="21" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b42-Mq-OUI">
-                            <rect key="frame" x="8" y="45" width="284" height="21"/>
+                            <rect key="frame" x="8" y="43" width="284" height="21"/>
                             <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="14"/>
                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Mba-s1-M3i">
-                            <rect key="frame" x="22" y="126" width="257" height="40"/>
+                            <rect key="frame" x="8" y="139" width="284" height="60"/>
                             <color key="backgroundColor" red="0.96862745098039216" green="0.96862745098039216" blue="0.96862745098039216" alpha="1" colorSpace="calibratedRGB"/>
                             <constraints>
-                                <constraint firstAttribute="height" constant="40" id="foP-TI-Vj0"/>
+                                <constraint firstAttribute="height" constant="60" id="foP-TI-Vj0"/>
                             </constraints>
-                            <string key="text">sdsaddsasaddsadsafsafsasafdsfdadsffdsdfsfds sdsaddsasaddsadsafsafsasafdsfdadsffdsdfsfds sdsaddsasaddsadsafsafsasafdsfdadsffdsdfsfds sdsaddsasaddsadsafsafsasafdsfdadsffdsdfsfds sdsaddsasaddsadsafsafsasafdsfdadsffdsdfsfds sdsaddsasaddsadsafsafsasafdsfdadsffdsdfsfds</string>
-                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
                             <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            <connections>
+                                <outlet property="delegate" destination="-1" id="8wD-dQ-x8o"/>
+                            </connections>
                         </textView>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="71T-qm-6ij">
-                            <rect key="frame" x="22" y="186" width="122" height="44"/>
-                            <color key="backgroundColor" red="0.87843137250000003" green="0.37254901959999998" blue="0.36862745099999999" alpha="1" colorSpace="calibratedRGB"/>
+                            <rect key="frame" x="0.0" y="207" width="151" height="44"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="44" id="5SK-9C-vhI"/>
-                                <constraint firstAttribute="width" constant="122" id="HuY-vY-gMY"/>
+                                <constraint firstAttribute="width" constant="151" id="HuY-vY-gMY"/>
                             </constraints>
-                            <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="14"/>
-                            <state key="normal" title="CANCEL">
-                                <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="16"/>
+                            <state key="normal" title="Cancel">
+                                <color key="titleColor" red="0.047058823529411764" green="0.047058823529411764" blue="0.047058823529411764" alpha="1" colorSpace="calibratedRGB"/>
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
                             <connections>
                                 <action selector="didTapOnBtnVoteCancel:" destination="-1" eventType="touchUpInside" id="832-WD-k5d"/>
                             </connections>
                         </button>
-                        <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Tyb-P5-eqX">
-                            <rect key="frame" x="157" y="186" width="122" height="44"/>
-                            <color key="backgroundColor" red="0.74509803921568629" green="0.74509803921568629" blue="0.74509803921568629" alpha="1" colorSpace="calibratedRGB"/>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tSm-ui-ljY">
+                            <rect key="frame" x="215" y="84" width="40" height="40"/>
                             <constraints>
-                                <constraint firstAttribute="width" constant="122" id="JT3-zc-KYB"/>
+                                <constraint firstAttribute="height" constant="40" id="axJ-ze-Erk"/>
+                                <constraint firstAttribute="width" constant="40" id="fEU-7U-ttF"/>
+                            </constraints>
+                            <state key="normal" image="popup_icon_vote_like_disabled"/>
+                            <connections>
+                                <action selector="didTapOnBtnVoteFace:" destination="-1" eventType="touchUpInside" id="g9S-kd-Vnt"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Tyb-P5-eqX">
+                            <rect key="frame" x="150" y="207" width="150" height="44"/>
+                            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="150" id="JT3-zc-KYB"/>
                                 <constraint firstAttribute="height" constant="44" id="bn0-Fp-Ms1"/>
                             </constraints>
-                            <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="14"/>
-                            <state key="normal" title="SEND VOTE">
-                                <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="16"/>
+                            <state key="normal" title="Send">
+                                <color key="titleColor" red="0.047058823529411764" green="0.047058823529411764" blue="0.047058823529411764" alpha="1" colorSpace="calibratedRGB"/>
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
                             <connections>
                                 <action selector="didTapOnBtnSendVote:" destination="-1" eventType="touchUpInside" id="20M-Ik-zcx"/>
                             </connections>
                         </button>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tSm-ui-ljY">
-                            <rect key="frame" x="215" y="71" width="40" height="40"/>
-                            <constraints>
-                                <constraint firstAttribute="height" constant="40" id="axJ-ze-Erk"/>
-                                <constraint firstAttribute="width" constant="40" id="fEU-7U-ttF"/>
-                            </constraints>
-                            <state key="normal" image="popup_icon_vote_unlike"/>
-                            <connections>
-                                <action selector="didTapOnBtnVoteFace:" destination="-1" eventType="touchUpInside" id="g9S-kd-Vnt"/>
-                            </connections>
-                        </button>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
-                        <constraint firstItem="Mba-s1-M3i" firstAttribute="top" secondItem="dqv-jy-8O4" secondAttribute="bottom" constant="15" id="3h6-Gt-DXw"/>
-                        <constraint firstItem="Mba-s1-M3i" firstAttribute="top" secondItem="tYf-Sl-BgF" secondAttribute="bottom" constant="15" id="4jq-2l-BVS"/>
                         <constraint firstItem="2As-m9-SPe" firstAttribute="top" secondItem="d7s-e2-AcG" secondAttribute="top" constant="20" id="5HM-Ix-Jfc"/>
+                        <constraint firstItem="b42-Mq-OUI" firstAttribute="trailing" secondItem="2As-m9-SPe" secondAttribute="trailing" id="6TI-hf-zqP"/>
                         <constraint firstAttribute="height" constant="250" id="6rb-Rv-b7U"/>
-                        <constraint firstItem="dqv-jy-8O4" firstAttribute="top" secondItem="b42-Mq-OUI" secondAttribute="bottom" constant="5" id="ENM-IK-HhF"/>
                         <constraint firstItem="Mba-s1-M3i" firstAttribute="leading" secondItem="2As-m9-SPe" secondAttribute="leading" id="GJg-59-E5F"/>
-                        <constraint firstItem="b42-Mq-OUI" firstAttribute="leading" secondItem="d7s-e2-AcG" secondAttribute="leading" constant="8" id="GLA-Mf-5Ns"/>
+                        <constraint firstAttribute="trailing" secondItem="Tyb-P5-eqX" secondAttribute="trailing" id="JDq-xi-qSE"/>
                         <constraint firstItem="Mba-s1-M3i" firstAttribute="trailing" secondItem="2As-m9-SPe" secondAttribute="trailing" id="Ja1-bK-hrc"/>
                         <constraint firstAttribute="width" constant="300" id="L51-Bf-hEb"/>
-                        <constraint firstItem="b42-Mq-OUI" firstAttribute="top" secondItem="2As-m9-SPe" secondAttribute="bottom" constant="5" id="MNR-cg-4Z7"/>
-                        <constraint firstAttribute="bottom" secondItem="71T-qm-6ij" secondAttribute="bottom" constant="20" id="Txb-fT-dS6"/>
+                        <constraint firstItem="b42-Mq-OUI" firstAttribute="top" secondItem="2As-m9-SPe" secondAttribute="bottom" constant="3" id="MNR-cg-4Z7"/>
+                        <constraint firstAttribute="bottom" secondItem="71T-qm-6ij" secondAttribute="bottom" constant="-1" id="Txb-fT-dS6"/>
+                        <constraint firstItem="tSm-ui-ljY" firstAttribute="top" secondItem="tYf-Sl-BgF" secondAttribute="top" id="W94-xk-8i1"/>
                         <constraint firstItem="2As-m9-SPe" firstAttribute="centerX" secondItem="d7s-e2-AcG" secondAttribute="centerX" id="WxA-Vd-NJu"/>
-                        <constraint firstItem="71T-qm-6ij" firstAttribute="leading" secondItem="2As-m9-SPe" secondAttribute="leading" id="ZJv-6p-VlS"/>
+                        <constraint firstItem="b42-Mq-OUI" firstAttribute="leading" secondItem="2As-m9-SPe" secondAttribute="leading" id="XKX-yA-zYH"/>
+                        <constraint firstItem="tSm-ui-ljY" firstAttribute="top" secondItem="dqv-jy-8O4" secondAttribute="top" id="YRu-Oc-6Ae"/>
                         <constraint firstItem="tYf-Sl-BgF" firstAttribute="centerX" secondItem="d7s-e2-AcG" secondAttribute="centerX" id="aX9-zO-alF"/>
-                        <constraint firstItem="tSm-ui-ljY" firstAttribute="top" secondItem="b42-Mq-OUI" secondAttribute="bottom" constant="5" id="e4Q-LZ-mOG"/>
-                        <constraint firstItem="b42-Mq-OUI" firstAttribute="centerX" secondItem="d7s-e2-AcG" secondAttribute="centerX" id="eHh-vz-BLZ"/>
-                        <constraint firstAttribute="trailing" secondItem="b42-Mq-OUI" secondAttribute="trailing" constant="8" id="j0l-ek-unt"/>
+                        <constraint firstItem="tSm-ui-ljY" firstAttribute="top" secondItem="b42-Mq-OUI" secondAttribute="bottom" constant="20" id="e4Q-LZ-mOG"/>
                         <constraint firstItem="Mba-s1-M3i" firstAttribute="top" secondItem="tSm-ui-ljY" secondAttribute="bottom" constant="15" id="mKB-nx-JgF"/>
-                        <constraint firstItem="tYf-Sl-BgF" firstAttribute="top" secondItem="b42-Mq-OUI" secondAttribute="bottom" constant="5" id="nNK-Zw-NWc"/>
                         <constraint firstItem="tSm-ui-ljY" firstAttribute="leading" secondItem="tYf-Sl-BgF" secondAttribute="trailing" constant="45" id="oTd-ah-X0s"/>
+                        <constraint firstItem="71T-qm-6ij" firstAttribute="leading" secondItem="d7s-e2-AcG" secondAttribute="leading" id="ppf-IF-DYd"/>
                         <constraint firstItem="tYf-Sl-BgF" firstAttribute="leading" secondItem="dqv-jy-8O4" secondAttribute="trailing" constant="45" id="tBF-fC-Lt2"/>
-                        <constraint firstItem="Tyb-P5-eqX" firstAttribute="trailing" secondItem="2As-m9-SPe" secondAttribute="trailing" id="ua5-x6-vad"/>
-                        <constraint firstAttribute="bottom" secondItem="Tyb-P5-eqX" secondAttribute="bottom" constant="20" id="vpm-M6-CYs"/>
-                        <constraint firstItem="Tyb-P5-eqX" firstAttribute="top" secondItem="Mba-s1-M3i" secondAttribute="bottom" constant="20" id="x7n-ST-ouq"/>
+                        <constraint firstAttribute="bottom" secondItem="Tyb-P5-eqX" secondAttribute="bottom" constant="-1" id="vpm-M6-CYs"/>
                     </constraints>
                     <connections>
                         <outletCollection property="gestureRecognizers" destination="DVM-6W-4gR" appends="YES" id="1JM-69-d8c"/>
@@ -184,8 +183,8 @@
         </tapGestureRecognizer>
     </objects>
     <resources>
-        <image name="popup_icon_vote_like" width="40" height="40"/>
-        <image name="popup_icon_vote_neutral" width="40" height="40"/>
-        <image name="popup_icon_vote_unlike" width="40" height="40"/>
+        <image name="popup_icon_vote_like_disabled" width="40" height="40"/>
+        <image name="popup_icon_vote_neutral_disabled" width="40" height="40"/>
+        <image name="popup_icon_vote_unlike_disabled" width="40" height="40"/>
     </resources>
 </document>

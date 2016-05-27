@@ -21,6 +21,14 @@ extension UIFont {
     class func fontHelveticaNeue(fontSize: CGFloat) -> UIFont {
         return UIFont(name: "HelveticaNeue", size: fontSize)!
     }
+    
+    class func fontHelveticaNeueItalic(fontSize: CGFloat) -> UIFont {
+        return UIFont(name: "HelveticaNeue-Italic", size: fontSize)!
+    }
+    
+    class func fontHelveticaNeueBold(fontSize: CGFloat) -> UIFont {
+        return UIFont(name: "HelveticaNeue-Bold", size: fontSize)!
+    }
 
     class func fontHelveticaNeueMedium(fontSize: CGFloat) -> UIFont {
         return UIFont(name: "HelveticaNeue-Medium", size: fontSize)!

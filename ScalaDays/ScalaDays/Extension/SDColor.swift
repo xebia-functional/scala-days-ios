@@ -49,6 +49,14 @@ extension UIColor {
     class func disabledButtonColor() -> UIColor {
         return grayScaleColor(190.0)
     }
+    
+    class func grayButtonBorder() -> UIColor {
+        return grayScaleColor(218.0)
+    }
+    
+    class func grayCommentsPlaceholder() -> UIColor {
+        return grayScaleColor(185.0)
+    }
 
 }
 
