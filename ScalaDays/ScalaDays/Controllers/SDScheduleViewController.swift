@@ -99,7 +99,7 @@ class SDScheduleViewController: GAITrackedViewController,
     }
     var currentSelectedVote: VoteType? {
         didSet {
-            btnSendVote.enabled = currentSelectedVote == nil
+            btnSendVote.enabled = currentSelectedVote != nil
         }
     }
     var isDataLoaded : Bool = false
@@ -534,9 +534,10 @@ class SDScheduleViewController: GAITrackedViewController,
     }
     
     func showVotingPopover() {
+        disableVoteIcons()
         SDAnimationHelper.showViewWithFadeInAnimation(alphaBackgroundView, maxAlphaValue: kBackgroundDarknessValue)
         SDAnimationHelper.showViewWithFadeInAnimation(votingPopoverContainer)
-        txtViewVoteComments.text = NSLocalizedString("schedule_vote_comments_placeholder", comment: "")
+        txtViewVoteComments.attributedText = placeholderTextForComments()
     }
     
     func didSelectVoteButtonWithEvent(event: Event, conferenceId: Int) {
@@ -547,16 +548,20 @@ class SDScheduleViewController: GAITrackedViewController,
         lblVoteTalkTitle.text = "\"\(event.title)\""
     }
     
-    func didSelectVoteValue(voteType: VoteType) {
-        func setVotingIconToButton(btn: UIButton, iconName: String) {
-            btn.setImage(UIImage(named: iconName), forState: .Normal)
-        }
-        
-        currentSelectedVote = voteType
-        
+    func setVotingIconToButton(btn: UIButton, iconName: String) {
+        btn.setImage(UIImage(named: iconName), forState: .Normal)
+    }
+    
+    func disableVoteIcons() {
         setVotingIconToButton(btnVoteHappy, iconName: kVotingLikeIconName + kVotingDisableIconSuffix)
         setVotingIconToButton(btnVoteNeutral, iconName: kVotingNeutralIconName + kVotingDisableIconSuffix)
         setVotingIconToButton(btnVoteSad, iconName: kVotingDontLikeIconName + kVotingDisableIconSuffix)
+    }
+    
+    func didSelectVoteValue(voteType: VoteType) {
+        currentSelectedVote = voteType
+        
+        disableVoteIcons()
         
         switch voteType {
         case .Like: setVotingIconToButton(btnVoteHappy, iconName: kVotingLikeIconName)
@@ -639,7 +644,13 @@ class SDScheduleViewController: GAITrackedViewController,
     }
     
     @IBAction func didTapOutsideOfKeyboard(gestureRecognizer: UITapGestureRecognizer) {
-        self.view.endEditing(true)
+        let location = gestureRecognizer.locationInView(self.view)
+        if txtViewVoteComments.isFirstResponder() {
+            self.view.endEditing(true)
+        } else if !votingPopoverContainer.hidden && !CGRectContainsPoint(votingPopoverContainer.frame, location) {
+            hideVotingPopover()
+        }
+        
     }
     
     func gestureRecognizer(gestureRecognizer: UIGestureRecognizer, shouldReceiveTouch touch: UITouch) -> Bool {
