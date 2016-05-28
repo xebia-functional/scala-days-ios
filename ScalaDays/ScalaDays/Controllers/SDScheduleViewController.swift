@@ -43,7 +43,8 @@ class SDScheduleViewController: GAITrackedViewController,
     SDMenuControllerItem,
     SDScheduleListTableViewCellDelegate,
     UIGestureRecognizerDelegate,
-    UITextViewDelegate {
+    UITextViewDelegate,
+    SlideMenuControllerDelegate {
 
     @IBOutlet weak var tblSchedule: UITableView!
     @IBOutlet weak var alphaBackgroundView: UIView!
@@ -114,6 +115,10 @@ class SDScheduleViewController: GAITrackedViewController,
             self.loadData()
         }
     }
+    
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -166,6 +171,10 @@ class SDScheduleViewController: GAITrackedViewController,
         super.viewDidLayoutSubviews()
     }
 
+    func willBeHiddenFromMenu() {
+        txtViewVoteComments.resignFirstResponder()
+        votingPopoverContainer.endEditing(true)
+    }
 
     // MARK: - Data loading / SDMenuControllerItem protocol implementation
 
@@ -660,12 +669,15 @@ class SDScheduleViewController: GAITrackedViewController,
     func textViewDidBeginEditing(textView: UITextView) {
         if textView.attributedText.string == placeholderTextForComments().string {
             textView.attributedText = nil
+            textView.text = ""
+            textView.font = UIFont.fontHelveticaNeueLight(kVotePlaceholderFontSize)
+            textView.textColor = UIColor.blackForCommentsNormalText()
         }
         textView.becomeFirstResponder()
     }
     
     func textViewDidEndEditing(textView: UITextView) {
-        if textView.text == "" {
+        if textView.attributedText.string == "" {
             textView.attributedText = placeholderTextForComments()
         }
         textView.resignFirstResponder()

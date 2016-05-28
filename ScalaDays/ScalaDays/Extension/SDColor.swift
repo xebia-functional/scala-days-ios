@@ -57,6 +57,10 @@ extension UIColor {
     class func grayCommentsPlaceholder() -> UIColor {
         return grayScaleColor(185.0)
     }
+    
+    class func blackForCommentsNormalText() -> UIColor {
+        return UIColor(red: 41.0/255.0, green: 53.0/255.0, blue: 63.0/255.0, alpha: 1.0)
+    }
 
 }
 
