@@ -536,6 +536,8 @@ class SDScheduleViewController: GAITrackedViewController,
                 previousVote = StoringHelper.sharedInstance.storedVoteForConferenceId(eventToVote.conferenceId, talkId: eventToVote.eventId) {
                     if comments != previousVote.comments {
                         launchVotingCancelAlert()
+                    } else {
+                        hideVotingPopover()
                     }
             } else {
                 launchVotingCancelAlert()
@@ -621,6 +623,7 @@ class SDScheduleViewController: GAITrackedViewController,
     }
     
     func sendVote(voteType: VoteType, comments: String?) {
+        SVProgressHUD.show()
         func votingRequestParametersForVote(vote: VoteType, event: Int, conference: Int, uid: String, comments: String?) -> [String: AnyObject] {
             if let actualComments = comments {
                 return [votingParamVote: voteType.rawValue,
@@ -675,6 +678,7 @@ class SDScheduleViewController: GAITrackedViewController,
                     dispatch_async(dispatch_get_main_queue(), { () -> Void in
                         self.tblSchedule.reloadData()
                         self.hideVotingPopover()
+                        SVProgressHUD.dismiss()
                     })
             }
             selectedEventToVote = nil
