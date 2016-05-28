@@ -40,6 +40,9 @@
 "schedule_error_vote_title" = "Error";
 "schedule_error_vote_message" = "There was a problem while trying to send your vote. Please try again in a few moments.";
 "schedule_vote_comments_placeholder" = "Leave a comment on your opinion of this talk to help out the speaker.";
+"schedule_vote_comments_cancel_warning_title" = "Cancel vote";
+"schedule_vote_comments_cancel_warning_message" = "Your vote and comments will be lost. Are you sure you want to exit?";
+"schedule_vote_comments_cancel_warning_btn_exit" = "Exit";
 
 // Social
 

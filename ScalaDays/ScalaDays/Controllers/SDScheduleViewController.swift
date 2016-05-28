@@ -531,7 +531,18 @@ class SDScheduleViewController: GAITrackedViewController,
     }
     
     @IBAction func didTapOnBtnVoteCancel(sender: UIButton) {
-        hideVotingPopover()
+        if let comments = currentVotingComments() {
+            if let eventToVote = selectedEventToVote,
+                previousVote = StoringHelper.sharedInstance.storedVoteForConferenceId(eventToVote.conferenceId, talkId: eventToVote.eventId) {
+                    if comments != previousVote.comments {
+                        launchVotingCancelAlert()
+                    }
+            } else {
+                launchVotingCancelAlert()
+            }
+        } else {
+            hideVotingPopover()
+        }
     }
     
     @IBAction func didTapOnBtnSendVote(sender: UIButton) {
@@ -552,7 +563,10 @@ class SDScheduleViewController: GAITrackedViewController,
         
         if let eventToVote = selectedEventToVote,
             previousVote = StoringHelper.sharedInstance.storedVoteForConferenceId(eventToVote.conferenceId, talkId: eventToVote.eventId) {
-                txtViewVoteComments.attributedText = attributedStringForComment(previousVote.comments ?? "")
+                txtViewVoteComments.attributedText = previousVote.comments != nil ?
+                    attributedStringForComment(previousVote.comments ?? "") :
+                    placeholderTextForComments()
+                
                 if let voteType = VoteType(rawValue: previousVote.voteValue) {
                     currentSelectedVote = voteType
                     enableVotingIconForVoteType(voteType)
@@ -591,6 +605,19 @@ class SDScheduleViewController: GAITrackedViewController,
         currentSelectedVote = voteType
         disableVoteIcons()
         enableVotingIconForVoteType(voteType)
+    }
+    
+    func launchVotingCancelAlert() {
+        SDAlertViewHelper.showSimpleAlertViewOnViewController(self,
+            title: NSLocalizedString("schedule_vote_comments_cancel_warning_title", comment: ""),
+            message: NSLocalizedString("schedule_vote_comments_cancel_warning_message", comment: ""),
+            cancelButtonTitle: NSLocalizedString("common_cancel", comment: ""), otherButtonTitle: NSLocalizedString("schedule_vote_comments_cancel_warning_btn_exit", comment: ""),
+            tag: nil,
+            delegate: nil) { (alert) -> Void in
+                if alert.title == NSLocalizedString("schedule_vote_comments_cancel_warning_btn_exit", comment: "") {
+                    self.hideVotingPopover()
+                }
+        }
     }
     
     func sendVote(voteType: VoteType, comments: String?) {
