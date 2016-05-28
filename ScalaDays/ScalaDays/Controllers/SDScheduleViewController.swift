@@ -61,6 +61,7 @@ class SDScheduleViewController: GAITrackedViewController,
     let votingParamUID = "deviceUID"
     let votingParamTalkId = "talkId"
     let votingParamConferenceId = "conferenceId"
+    let votingParamCommentsMessage = "message"
     let votingParamUrlEncodeHeader = "application/x-www-form-urlencoded"
     let kConnectionErrorCode400 = 400
     let kVotingButtonsBorderWidth = 0.5
@@ -534,7 +535,9 @@ class SDScheduleViewController: GAITrackedViewController,
     }
     
     @IBAction func didTapOnBtnSendVote(sender: UIButton) {
-        // TODO: implement new voting post
+        if let vote = currentSelectedVote {
+            sendVote(vote, comments: currentVotingComments())
+        }
     }
     
     func hideVotingPopover() {
@@ -546,14 +549,31 @@ class SDScheduleViewController: GAITrackedViewController,
         disableVoteIcons()
         SDAnimationHelper.showViewWithFadeInAnimation(alphaBackgroundView, maxAlphaValue: kBackgroundDarknessValue)
         SDAnimationHelper.showViewWithFadeInAnimation(votingPopoverContainer)
-        txtViewVoteComments.attributedText = placeholderTextForComments()
+        
+        if let eventToVote = selectedEventToVote,
+            previousVote = StoringHelper.sharedInstance.storedVoteForConferenceId(eventToVote.conferenceId, talkId: eventToVote.eventId) {
+                txtViewVoteComments.attributedText = attributedStringForComment(previousVote.comments ?? "")
+                if let voteType = VoteType(rawValue: previousVote.voteValue) {
+                    currentSelectedVote = voteType
+                    enableVotingIconForVoteType(voteType)
+                }
+        } else {
+            txtViewVoteComments.attributedText = placeholderTextForComments()
+        }
+    }
+    
+    func enableVotingIconForVoteType(voteType: VoteType) {
+        switch voteType {
+        case .Like: setVotingIconToButton(btnVoteHappy, iconName: kVotingLikeIconName)
+        case .Neutral: setVotingIconToButton(btnVoteNeutral, iconName: kVotingNeutralIconName)
+        case .Unlike: setVotingIconToButton(btnVoteSad, iconName: kVotingDontLikeIconName)
+        }
     }
     
     func didSelectVoteButtonWithEvent(event: Event, conferenceId: Int) {
-        showVotingPopover()
-        currentSelectedVote = nil
         selectedEventToVote = (event.id, conferenceId)
-        
+        currentSelectedVote = nil
+        showVotingPopover()
         lblVoteTalkTitle.text = "\"\(event.title)\""
     }
     
@@ -569,26 +589,34 @@ class SDScheduleViewController: GAITrackedViewController,
     
     func didSelectVoteValue(voteType: VoteType) {
         currentSelectedVote = voteType
-        
         disableVoteIcons()
-        
-        switch voteType {
-        case .Like: setVotingIconToButton(btnVoteHappy, iconName: kVotingLikeIconName)
-        case .Neutral: setVotingIconToButton(btnVoteNeutral, iconName: kVotingNeutralIconName)
-        case .Unlike: setVotingIconToButton(btnVoteSad, iconName: kVotingDontLikeIconName)
-        }
+        enableVotingIconForVoteType(voteType)
     }
     
-    func sendVote(voteType: VoteType) {
+    func sendVote(voteType: VoteType, comments: String?) {
+        func votingRequestParametersForVote(vote: VoteType, event: Int, conference: Int, uid: String, comments: String?) -> [String: AnyObject] {
+            if let actualComments = comments {
+                return [votingParamVote: voteType.rawValue,
+                        votingParamUID: uid,
+                        votingParamTalkId: event,
+                        votingParamConferenceId: conference,
+                        votingParamCommentsMessage: actualComments]
+            }
+            return [votingParamVote: voteType.rawValue,
+                votingParamUID: uid,
+                votingParamTalkId: event,
+                votingParamConferenceId: conference]
+        }
+        
         if let (event, conference) = selectedEventToVote,
             uid = UIDevice.currentDevice().identifierForVendor?.UUIDString {
             Alamofire.request(.POST,
                 votingUrl,
-                parameters: [
-                    votingParamVote: voteType.rawValue,
-                    votingParamUID: uid,
-                    votingParamTalkId: event,
-                    votingParamConferenceId: conference],
+                parameters: votingRequestParametersForVote(voteType,
+                    event: event,
+                    conference: conference,
+                    uid: uid,
+                    comments: comments),
                 encoding: .URL,
                 headers: ["Content-Type": votingParamUrlEncodeHeader])
                 .response { response in
@@ -605,7 +633,10 @@ class SDScheduleViewController: GAITrackedViewController,
                     } else {
                         // Storing/updating vote
                         let key = "\(conference)\(event)"
-                        let vote = Vote(_voteValue: voteType.rawValue, _talkId: event, _conferenceId: conference)
+                        let vote = Vote(_voteValue: voteType.rawValue,
+                            _talkId: event,
+                            _conferenceId: conference,
+                            _comments: comments)
                         if let currentlyStoredVotes = StoringHelper.sharedInstance.loadVotesData() {
                             var tmp = currentlyStoredVotes
                             tmp[key] = vote
@@ -616,6 +647,7 @@ class SDScheduleViewController: GAITrackedViewController,
                     }                    
                     dispatch_async(dispatch_get_main_queue(), { () -> Void in
                         self.tblSchedule.reloadData()
+                        self.hideVotingPopover()
                     })
             }
             selectedEventToVote = nil
@@ -687,5 +719,18 @@ class SDScheduleViewController: GAITrackedViewController,
         let placeholderString = NSLocalizedString("schedule_vote_comments_placeholder", comment: "")
         return NSAttributedString(string: placeholderString, attributes: [NSFontAttributeName: UIFont.fontHelveticaNeueItalic(kVotePlaceholderFontSize), NSForegroundColorAttributeName: UIColor.grayCommentsPlaceholder()])
     }
+    
+    func attributedStringForComment(comment: String) -> NSAttributedString {
+        return NSAttributedString(string: comment, attributes: [NSFontAttributeName: UIFont.fontHelveticaNeueLight(kVotePlaceholderFontSize),
+            NSForegroundColorAttributeName: UIColor.blackForCommentsNormalText()])
+    }
+    
+    func currentVotingComments() -> String? {
+        if txtViewVoteComments.attributedText.string != placeholderTextForComments().string {
+            return txtViewVoteComments.attributedText.string
+        }
+        return nil
+    }
+    
 }
 

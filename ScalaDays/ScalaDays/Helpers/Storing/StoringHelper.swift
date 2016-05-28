@@ -48,6 +48,14 @@ class StoringHelper {
         return loadDataFromFileWithFilename(kVotesFilename) as? [String: Vote]
     }
     
+    func storedVoteForConferenceId(conferenceId: Int, talkId: Int) -> Vote? {
+        if let votes = loadVotesData() {
+            let key = "\(conferenceId)\(talkId)"
+            return votes[key]
+        }
+        return nil
+    }
+    
     // MARK: - Utility functions
     
     class func documentsFolderPath() -> String {

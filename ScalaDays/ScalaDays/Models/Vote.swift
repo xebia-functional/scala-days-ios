@@ -34,22 +34,26 @@ class Vote : NSObject, NSCoding {
     let voteValue: Int
     let talkId: Int
     let conferenceId: Int
+    let comments: String?
     
-    init(_voteValue: Int, _talkId: Int, _conferenceId: Int) {
+    init(_voteValue: Int, _talkId: Int, _conferenceId: Int, _comments: String?) {
         voteValue = _voteValue
         talkId = _talkId
         conferenceId = _conferenceId
+        comments = _comments
     }
     
     required init?(coder aDecoder: NSCoder) {
         self.voteValue = aDecoder.decodeObjectForKey("voteValue") as! Int
         self.talkId = aDecoder.decodeObjectForKey("talkId") as! Int
         self.conferenceId = aDecoder.decodeObjectForKey("conferenceId") as! Int
+        self.comments = aDecoder.decodeObjectForKey("comments") as? String
     }
     
     func encodeWithCoder(aCoder: NSCoder) {
         aCoder.encodeObject(self.voteValue, forKey: "voteValue")
         aCoder.encodeObject(self.talkId, forKey: "talkId")
         aCoder.encodeObject(self.conferenceId, forKey: "conferenceId")
+        aCoder.encodeObject(self.comments, forKey: "comments")
     }
 }
