@@ -684,20 +684,8 @@ class SDScheduleViewController: GAITrackedViewController,
     }
     
     func placeholderTextForComments() -> NSAttributedString {
-        let partOne = NSLocalizedString("schedule_vote_comments_placeholder_1", comment: "")
-        let partTwo = NSLocalizedString("schedule_vote_comments_placeholder_2", comment: "")
-        let partThree = NSLocalizedString("schedule_vote_comments_placeholder_3", comment: "")
-        let wholeText = partOne + partTwo + partThree
-        let result = NSMutableAttributedString(string: wholeText)
-        result.addAttribute(NSFontAttributeName, value: UIFont.fontHelveticaNeueItalic(kVotePlaceholderFontSize),
-            range: NSRange(location: 0, length: partOne.characters.count))
-        result.addAttribute(NSFontAttributeName, value: UIFont.fontHelveticaNeueBold(kVotePlaceholderFontSize),
-            range: NSRange(location: partOne.characters.count, length: partTwo.characters.count))
-        result.addAttribute(NSFontAttributeName, value: UIFont.fontHelveticaNeueItalic(kVotePlaceholderFontSize),
-            range: NSRange(location: partOne.characters.count + partTwo.characters.count, length: partThree.characters.count))
-        result.addAttribute(NSForegroundColorAttributeName, value: UIColor.grayCommentsPlaceholder(),
-            range: NSRange(location: 0, length: wholeText.characters.count))
-        return NSAttributedString(attributedString: result)
+        let placeholderString = NSLocalizedString("schedule_vote_comments_placeholder", comment: "")
+        return NSAttributedString(string: placeholderString, attributes: [NSFontAttributeName: UIFont.fontHelveticaNeueItalic(kVotePlaceholderFontSize), NSForegroundColorAttributeName: UIColor.grayCommentsPlaceholder()])
     }
 }
 
