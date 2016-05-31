@@ -69,6 +69,7 @@ class SDScheduleViewController: GAITrackedViewController,
     let kVotingNeutralIconName = "popup_icon_vote_neutral"
     let kVotingDontLikeIconName = "popup_icon_vote_unlike"
     let kVotingDisableIconSuffix = "_disabled"
+    let kMaxNumberOfCharactersForVotingComment = 500
 
     var selectedConference: Conference?
     var errorPlaceholderView : SDErrorPlaceholderView!
@@ -750,6 +751,12 @@ class SDScheduleViewController: GAITrackedViewController,
             textView.textColor = UIColor.blackForCommentsNormalText()
         }
         textView.becomeFirstResponder()
+    }
+    
+    func textView(textView: UITextView, shouldChangeTextInRange range: NSRange, replacementText text: String) -> Bool {
+        let newText = (textView.text as NSString).stringByReplacingCharactersInRange(range, withString: text)
+        let numberOfChars = newText.characters.count
+        return numberOfChars < kMaxNumberOfCharactersForVotingComment;
     }
     
     func textViewDidEndEditing(textView: UITextView) {
