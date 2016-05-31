@@ -24,6 +24,10 @@ struct SlideMenuOptions {
     static var pointOfNoReturnWidth: CGFloat = 44.0
 }
 
+@objc protocol SlideMenuControllerDelegate {
+    optional func willBeHiddenFromMenu()
+}
+
 class SlideMenuController: UIViewController, UIGestureRecognizerDelegate {
 
     enum SlideAction {
@@ -544,6 +548,12 @@ class SlideMenuController: UIViewController, UIGestureRecognizerDelegate {
     }
     
     func changeMainViewController(mainViewController: UIViewController,  close: Bool) {
+        // Let know the current mainViewController that it's going to be swapped out:
+        if let _vc = (self.mainViewController as? UINavigationController)?.topViewController
+            as? SlideMenuControllerDelegate {
+                _vc.willBeHiddenFromMenu?()
+        }
+        
         
         removeViewController(mainViewController)
         self.mainViewController = mainViewController

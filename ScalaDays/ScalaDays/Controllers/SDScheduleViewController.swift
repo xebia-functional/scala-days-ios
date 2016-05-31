@@ -42,26 +42,45 @@ class SDScheduleViewController: GAITrackedViewController,
     SDErrorPlaceholderViewDelegate,
     SDMenuControllerItem,
     SDScheduleListTableViewCellDelegate,
-    UIPopoverPresentationControllerDelegate,
-    SDVotesPopoverViewControllerDelegate {
+    UIGestureRecognizerDelegate,
+    UITextViewDelegate,
+    SlideMenuControllerDelegate {
 
     @IBOutlet weak var tblSchedule: UITableView!
     @IBOutlet weak var alphaBackgroundView: UIView!
     
     let kReuseIdentifier = "SDScheduleViewControllerCell"
     let kHeaderHeight: CGFloat = 40.0
-    let kVotePopoverSize = CGSize(width: 300, height: 160)
+    let kVotePopoverSize = CGSize(width: 300, height: 300)
+    let kVotePopoverDefaultTopPosition = 100.0
+    let kVotePopoverKeyboardOverlapThreshold = 20.0
+    let kVotePlaceholderFontSize = CGFloat(14.0)
     let kBackgroundDarknessValue: CGFloat = 0.25
     let votingUrl = "http://www.47deg.com/scaladays/votes/add.php"
     let votingParamVote = "vote"
     let votingParamUID = "deviceUID"
     let votingParamTalkId = "talkId"
     let votingParamConferenceId = "conferenceId"
+    let votingParamCommentsMessage = "message"
     let votingParamUrlEncodeHeader = "application/x-www-form-urlencoded"
     let kConnectionErrorCode400 = 400
+    let kVotingButtonsBorderWidth = 0.5
+    let kVotingLikeIconName = "popup_icon_vote_like"
+    let kVotingNeutralIconName = "popup_icon_vote_neutral"
+    let kVotingDontLikeIconName = "popup_icon_vote_unlike"
+    let kVotingDisableIconSuffix = "_disabled"
 
     var selectedConference: Conference?
     var errorPlaceholderView : SDErrorPlaceholderView!
+    @IBOutlet weak var votingPopoverContainer: UIView!
+    @IBOutlet weak var btnVoteHappy: UIButton!
+    @IBOutlet weak var btnVoteNeutral: UIButton!
+    @IBOutlet weak var btnVoteSad: UIButton!
+    @IBOutlet weak var txtViewVoteComments: UITextView!
+    @IBOutlet weak var btnSendVote: UIButton!
+    @IBOutlet weak var lblVoteTalkTitle: UILabel!
+    @IBOutlet weak var constraintForVotingPopoverTopSpace: NSLayoutConstraint!
+    @IBOutlet weak var btnCancelVote: UIButton!
 
     var dates: [String]?
     var events: [[Event]]?
@@ -80,6 +99,15 @@ class SDScheduleViewController: GAITrackedViewController,
             }
         }
     }
+    var currentSelectedVote: VoteType? {
+        didSet {
+            let (color, enabled) = currentSelectedVote != nil ?
+                (UIColor.enabledSendVoteButtonColor(), true) :
+                (UIColor.disabledButtonColor(), false)
+            btnSendVote.enabled = enabled
+            btnSendVote.setTitleColor(color, forState: .Normal)
+        }
+    }
     var isDataLoaded : Bool = false
     var selectedEventToVote: (eventId: Int, conferenceId: Int)?
     let refreshControl = UIRefreshControl()
@@ -91,6 +119,10 @@ class SDScheduleViewController: GAITrackedViewController,
         } else {
             self.loadData()
         }
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
     }
 
     override func viewDidLoad() {
@@ -111,6 +143,22 @@ class SDScheduleViewController: GAITrackedViewController,
         tblSchedule.addSubview(refreshControl)
         
         self.screenName = kGAScreenNameSchedule
+        
+        self.btnSendVote.layer.borderWidth = CGFloat(kVotingButtonsBorderWidth)
+        self.btnSendVote.layer.borderColor = UIColor.grayButtonBorder().CGColor
+        self.btnCancelVote.layer.borderWidth = CGFloat(kVotingButtonsBorderWidth)
+        self.btnCancelVote.layer.borderColor = UIColor.grayButtonBorder().CGColor
+        self.txtViewVoteComments.attributedText = placeholderTextForComments()
+        
+        NSNotificationCenter.defaultCenter().addObserver(self,
+            selector: "keyboardWillShow:",
+            name: UIKeyboardWillShowNotification,
+            object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self,
+            selector: "keyboardWillHide:",
+            name: UIKeyboardWillHideNotification,
+            object: nil)
+
     }
     
     func loadNavigationBar() {
@@ -123,7 +171,15 @@ class SDScheduleViewController: GAITrackedViewController,
             self.navigationItem.rightBarButtonItem = barButtonOptions
         }
     }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+    }
 
+    func willBeHiddenFromMenu() {
+        txtViewVoteComments.resignFirstResponder()
+        votingPopoverContainer.endEditing(true)
+    }
 
     // MARK: - Data loading / SDMenuControllerItem protocol implementation
 
@@ -441,7 +497,7 @@ class SDScheduleViewController: GAITrackedViewController,
         }
     }
     
-    //MARK: -Clock
+    //MARK: - Clock
     
     func viewClock() -> (result :Bool, indexRow : Int, indexSection: Int){
         var result = false
@@ -469,42 +525,137 @@ class SDScheduleViewController: GAITrackedViewController,
     
     // MARK: - Voting
     
-    func didSelectVoteButtonWithEvent(event: Event, conferenceId: Int) {
-        let votingVC = SDVotesPopoverViewController(delegate: self)
-        let votingNavC = UINavigationController(rootViewController: votingVC)
-        votingVC.preferredContentSize = kVotePopoverSize
-        votingNavC.modalPresentationStyle = UIModalPresentationStyle.Popover
-        votingNavC.navigationBarHidden = true
-        if let popover = votingNavC.popoverPresentationController {
-            self.selectedEventToVote = (event.id, conferenceId)
-            popover.delegate = self
-            popover.sourceView = self.view
-            popover.permittedArrowDirections = UIPopoverArrowDirection(rawValue: 0)
-            popover.sourceRect = CGRectMake(CGRectGetMidX(self.view.bounds), CGRectGetMidY(self.view.bounds),0,0)
-            self.presentViewController(votingNavC, animated: true, completion: { () -> Void in
-                if let voteLabel = votingVC.lblTalkTitle {
-                    voteLabel.text = "\"\(event.title)\""
-                }
-            })
-            SDAnimationHelper.showViewWithFadeInAnimation(alphaBackgroundView, maxAlphaValue: kBackgroundDarknessValue)
+    @IBAction func didTapOnBtnVoteFace(sender: UIButton) {
+        switch sender {
+        case _ where sender === btnVoteHappy: didSelectVoteValue(.Like)
+        case _ where sender === btnVoteNeutral: didSelectVoteValue(.Neutral)
+        case _ where sender === btnVoteSad: didSelectVoteValue(.Unlike)
+        default: break
         }
     }
     
-    func didSelectVoteValue(voteType: VoteType) {
-        SDAnimationHelper.hideViewWithFadeOutAnimation(alphaBackgroundView)
-        sendVote(voteType)
+    @IBAction func didTapOnBtnVoteCancel(sender: UIButton) {
+        if let comments = currentVotingComments() {
+            if let eventToVote = selectedEventToVote,
+                previousVote = StoringHelper.sharedInstance.storedVoteForConferenceId(eventToVote.conferenceId, talkId: eventToVote.eventId) {
+                    if comments != previousVote.comments {
+                        launchVotingCancelAlert()
+                    } else {
+                        hideVotingPopover()
+                    }
+            } else {
+                launchVotingCancelAlert()
+            }
+        } else {
+            hideVotingPopover()
+        }
     }
     
-    func sendVote(voteType: VoteType) {
+    @IBAction func didTapOnBtnSendVote(sender: UIButton) {
+        if let vote = currentSelectedVote {
+            sendVote(vote, comments: currentVotingComments())
+        }
+    }
+    
+    func hideVotingPopover() {
+        SDAnimationHelper.hideViewWithFadeOutAnimation(votingPopoverContainer)
+        SDAnimationHelper.hideViewWithFadeOutAnimation(alphaBackgroundView)
+    }
+    
+    func showVotingPopover() {
+        disableVoteIcons()
+        SDAnimationHelper.showViewWithFadeInAnimation(alphaBackgroundView, maxAlphaValue: kBackgroundDarknessValue)
+        SDAnimationHelper.showViewWithFadeInAnimation(votingPopoverContainer)
+        
+        if let eventToVote = selectedEventToVote,
+            previousVote = StoringHelper.sharedInstance.storedVoteForConferenceId(eventToVote.conferenceId, talkId: eventToVote.eventId) {
+                txtViewVoteComments.attributedText = previousVote.comments != nil ?
+                    attributedStringForComment(previousVote.comments ?? "") :
+                    placeholderTextForComments()
+                
+                if let voteType = VoteType(rawValue: previousVote.voteValue) {
+                    currentSelectedVote = voteType
+                    enableVotingIconForVoteType(voteType)
+                }
+        } else {
+            txtViewVoteComments.attributedText = placeholderTextForComments()
+        }
+        
+        SDGoogleAnalyticsHandler.sendGoogleAnalyticsTrackingWithScreenName(kGAScreenNameSchedule,
+            category: kGACategoryVote,
+            action: kGAActionShowVotingDialog,
+            label: nil)
+    }
+    
+    func enableVotingIconForVoteType(voteType: VoteType) {
+        switch voteType {
+        case .Like: setVotingIconToButton(btnVoteHappy, iconName: kVotingLikeIconName)
+        case .Neutral: setVotingIconToButton(btnVoteNeutral, iconName: kVotingNeutralIconName)
+        case .Unlike: setVotingIconToButton(btnVoteSad, iconName: kVotingDontLikeIconName)
+        }
+    }
+    
+    func didSelectVoteButtonWithEvent(event: Event, conferenceId: Int) {
+        selectedEventToVote = (event.id, conferenceId)
+        currentSelectedVote = nil
+        showVotingPopover()
+        lblVoteTalkTitle.text = "\"\(event.title)\""
+    }
+    
+    func setVotingIconToButton(btn: UIButton, iconName: String) {
+        btn.setImage(UIImage(named: iconName), forState: .Normal)
+    }
+    
+    func disableVoteIcons() {
+        setVotingIconToButton(btnVoteHappy, iconName: kVotingLikeIconName + kVotingDisableIconSuffix)
+        setVotingIconToButton(btnVoteNeutral, iconName: kVotingNeutralIconName + kVotingDisableIconSuffix)
+        setVotingIconToButton(btnVoteSad, iconName: kVotingDontLikeIconName + kVotingDisableIconSuffix)
+    }
+    
+    func didSelectVoteValue(voteType: VoteType) {
+        currentSelectedVote = voteType
+        disableVoteIcons()
+        enableVotingIconForVoteType(voteType)
+    }
+    
+    func launchVotingCancelAlert() {
+        SDAlertViewHelper.showSimpleAlertViewOnViewController(self,
+            title: NSLocalizedString("schedule_vote_comments_cancel_warning_title", comment: ""),
+            message: NSLocalizedString("schedule_vote_comments_cancel_warning_message", comment: ""),
+            cancelButtonTitle: NSLocalizedString("common_cancel", comment: ""), otherButtonTitle: NSLocalizedString("schedule_vote_comments_cancel_warning_btn_exit", comment: ""),
+            tag: nil,
+            delegate: nil) { (alert) -> Void in
+                if alert.title == NSLocalizedString("schedule_vote_comments_cancel_warning_btn_exit", comment: "") {
+                    self.hideVotingPopover()
+                }
+        }
+    }
+    
+    func sendVote(voteType: VoteType, comments: String?) {
+        SVProgressHUD.show()
+        func votingRequestParametersForVote(vote: VoteType, event: Int, conference: Int, uid: String, comments: String?) -> [String: AnyObject] {
+            if let actualComments = comments {
+                return [votingParamVote: voteType.rawValue,
+                        votingParamUID: uid,
+                        votingParamTalkId: event,
+                        votingParamConferenceId: conference,
+                        votingParamCommentsMessage: actualComments]
+            }
+            return [votingParamVote: voteType.rawValue,
+                votingParamUID: uid,
+                votingParamTalkId: event,
+                votingParamConferenceId: conference]
+        }
+        
         if let (event, conference) = selectedEventToVote,
             uid = UIDevice.currentDevice().identifierForVendor?.UUIDString {
             Alamofire.request(.POST,
                 votingUrl,
-                parameters: [
-                    votingParamVote: voteType.rawValue,
-                    votingParamUID: uid,
-                    votingParamTalkId: event,
-                    votingParamConferenceId: conference],
+                parameters: votingRequestParametersForVote(voteType,
+                    event: event,
+                    conference: conference,
+                    uid: uid,
+                    comments: comments),
                 encoding: .URL,
                 headers: ["Content-Type": votingParamUrlEncodeHeader])
                 .response { response in
@@ -521,7 +672,10 @@ class SDScheduleViewController: GAITrackedViewController,
                     } else {
                         // Storing/updating vote
                         let key = "\(conference)\(event)"
-                        let vote = Vote(_voteValue: voteType.rawValue, _talkId: event, _conferenceId: conference)
+                        let vote = Vote(_voteValue: voteType.rawValue,
+                            _talkId: event,
+                            _conferenceId: conference,
+                            _comments: comments)
                         if let currentlyStoredVotes = StoringHelper.sharedInstance.loadVotesData() {
                             var tmp = currentlyStoredVotes
                             tmp[key] = vote
@@ -532,18 +686,95 @@ class SDScheduleViewController: GAITrackedViewController,
                     }                    
                     dispatch_async(dispatch_get_main_queue(), { () -> Void in
                         self.tblSchedule.reloadData()
+                        self.hideVotingPopover()
+                        SVProgressHUD.dismiss()
                     })
             }
             selectedEventToVote = nil
+            SDGoogleAnalyticsHandler.sendGoogleAnalyticsTrackingWithScreenName(kGAScreenNameSchedule,
+                category: kGACategoryVote,
+                action: kGAActionSendVote,
+                label: nil)
         }
     }
     
-    func popoverPresentationControllerDidDismissPopover(popoverPresentationController: UIPopoverPresentationController) {
-        SDAnimationHelper.hideViewWithFadeOutAnimation(alphaBackgroundView)
+    // MARK: - Keyboard handling
+    
+    func keyboardWillShow(notification: NSNotification) {
+        if let notificationInfo = notification.userInfo,
+            keyboardFrame = (notificationInfo[UIKeyboardFrameEndUserInfoKey] as? NSValue)?.CGRectValue(),
+            animationDuration = (notificationInfo[UIKeyboardAnimationDurationUserInfoKey] as? NSTimeInterval) {
+            setVerticalPositionForVotingPopoverWithKeyboardHeight(keyboardFrame.size.height,
+                kbAnimationDuration: animationDuration)
+        }
     }
     
-    func adaptivePresentationStyleForPresentationController(controller: UIPresentationController) -> UIModalPresentationStyle {
-        return UIModalPresentationStyle.None
+    func keyboardWillHide(notification: NSNotification) {
+        if let notificationInfo = notification.userInfo,
+            animationDuration = (notificationInfo[UIKeyboardAnimationDurationUserInfoKey] as? NSTimeInterval) {
+                UIView.animateWithDuration(animationDuration, animations: { () -> Void in
+                    self.constraintForVotingPopoverTopSpace.constant = CGFloat(self.kVotePopoverDefaultTopPosition)
+                })
+        }
+        
     }
+    
+    func setVerticalPositionForVotingPopoverWithKeyboardHeight(kbHeight: CGFloat, kbAnimationDuration: NSTimeInterval) {
+        if kbHeight + votingPopoverContainer.bounds.size.height + CGFloat(kVotePopoverDefaultTopPosition) >
+            self.view.bounds.height + CGFloat(kVotePopoverKeyboardOverlapThreshold) {
+                UIView.animateWithDuration(kbAnimationDuration, animations: { () -> Void in
+                    self.constraintForVotingPopoverTopSpace.constant = 0
+                })
+        }
+    }
+    
+    @IBAction func didTapOutsideOfKeyboard(gestureRecognizer: UITapGestureRecognizer) {
+        let location = gestureRecognizer.locationInView(self.view)
+        if txtViewVoteComments.isFirstResponder() {
+            self.view.endEditing(true)
+        } else if !votingPopoverContainer.hidden && !CGRectContainsPoint(votingPopoverContainer.frame, location) {
+            hideVotingPopover()
+        }
+        
+    }
+    
+    func gestureRecognizer(gestureRecognizer: UIGestureRecognizer, shouldReceiveTouch touch: UITouch) -> Bool {
+        return true
+    }
+    
+    func textViewDidBeginEditing(textView: UITextView) {
+        if textView.attributedText.string == placeholderTextForComments().string {
+            textView.attributedText = nil
+            textView.text = ""
+            textView.font = UIFont.fontHelveticaNeueLight(kVotePlaceholderFontSize)
+            textView.textColor = UIColor.blackForCommentsNormalText()
+        }
+        textView.becomeFirstResponder()
+    }
+    
+    func textViewDidEndEditing(textView: UITextView) {
+        if textView.attributedText.string == "" {
+            textView.attributedText = placeholderTextForComments()
+        }
+        textView.resignFirstResponder()
+    }
+    
+    func placeholderTextForComments() -> NSAttributedString {
+        let placeholderString = NSLocalizedString("schedule_vote_comments_placeholder", comment: "")
+        return NSAttributedString(string: placeholderString, attributes: [NSFontAttributeName: UIFont.fontHelveticaNeueItalic(kVotePlaceholderFontSize), NSForegroundColorAttributeName: UIColor.grayCommentsPlaceholder()])
+    }
+    
+    func attributedStringForComment(comment: String) -> NSAttributedString {
+        return NSAttributedString(string: comment, attributes: [NSFontAttributeName: UIFont.fontHelveticaNeueLight(kVotePlaceholderFontSize),
+            NSForegroundColorAttributeName: UIColor.blackForCommentsNormalText()])
+    }
+    
+    func currentVotingComments() -> String? {
+        if txtViewVoteComments.attributedText.string != placeholderTextForComments().string {
+            return txtViewVoteComments.attributedText.string
+        }
+        return nil
+    }
+    
 }
 

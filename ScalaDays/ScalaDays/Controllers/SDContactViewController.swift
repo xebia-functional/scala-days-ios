@@ -96,22 +96,23 @@ class SDContactViewController: GAITrackedViewController,
     // MARK: - VCard handling
     
     func saveContactFromVCardString(vCardString: String) {
-        let book: ABAddressBook = ABAddressBookCreateWithOptions(nil, nil).takeRetainedValue()
-        switch(ABAddressBookGetAuthorizationStatus()) {
-        case .NotDetermined:
-            ABAddressBookRequestAccessWithCompletion(book) {
-                (granted:Bool, err:CFError!) in
-                if granted {
-                    self.showAlertToRequestContactAddWithContactName(SDContactCreationHelper.contactNameFromVCardString(vCardString), vCardString: vCardString)
-                } else {
-                    self.drawErrorWithMessage(NSLocalizedString("contacts_regular_feedback_error_no_access", comment: ""))
+        if let book: ABAddressBook = ABAddressBookCreateWithOptions(nil, nil).takeRetainedValue() {
+            switch(ABAddressBookGetAuthorizationStatus()) {
+            case .NotDetermined:
+                ABAddressBookRequestAccessWithCompletion(book) {
+                    (granted:Bool, err:CFError!) in
+                    if granted {
+                        self.showAlertToRequestContactAddWithContactName(SDContactCreationHelper.contactNameFromVCardString(vCardString), vCardString: vCardString)
+                    } else {
+                        self.drawErrorWithMessage(NSLocalizedString("contacts_regular_feedback_error_no_access", comment: ""))
+                    }
                 }
+            case .Authorized:
+                self.showAlertToRequestContactAddWithContactName(SDContactCreationHelper.contactNameFromVCardString(vCardString), vCardString: vCardString)
+            default:
+                self.drawErrorWithMessage(NSLocalizedString("contacts_regular_feedback_error_no_access", comment: ""))
             }
-        case .Authorized:
-            self.showAlertToRequestContactAddWithContactName(SDContactCreationHelper.contactNameFromVCardString(vCardString), vCardString: vCardString)
-        default:
-            self.drawErrorWithMessage(NSLocalizedString("contacts_regular_feedback_error_no_access", comment: ""))
-        }
+        }        
     }
     
     // MARK: - UI changes for feedback

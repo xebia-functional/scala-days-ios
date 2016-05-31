@@ -45,6 +45,26 @@ extension UIColor {
     class func appSeparatorLineColor() -> UIColor {
         return UIColor(red: 54/255, green: 69/255, blue: 80/255, alpha: 0.3)
     }
+    
+    class func disabledButtonColor() -> UIColor {
+        return grayScaleColor(190.0)
+    }
+    
+    class func enabledSendVoteButtonColor() -> UIColor {
+        return grayScaleColor(12.0)
+    }
+    
+    class func grayButtonBorder() -> UIColor {
+        return grayScaleColor(218.0)
+    }
+    
+    class func grayCommentsPlaceholder() -> UIColor {
+        return grayScaleColor(185.0)
+    }
+    
+    class func blackForCommentsNormalText() -> UIColor {
+        return UIColor(red: 41.0/255.0, green: 53.0/255.0, blue: 63.0/255.0, alpha: 1.0)
+    }
 
 }
 
