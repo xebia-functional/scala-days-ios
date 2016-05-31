@@ -50,6 +50,10 @@ extension UIColor {
         return grayScaleColor(190.0)
     }
     
+    class func enabledSendVoteButtonColor() -> UIColor {
+        return grayScaleColor(12.0)
+    }
+    
     class func grayButtonBorder() -> UIColor {
         return grayScaleColor(218.0)
     }

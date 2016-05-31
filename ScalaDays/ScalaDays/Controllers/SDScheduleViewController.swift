@@ -101,7 +101,11 @@ class SDScheduleViewController: GAITrackedViewController,
     }
     var currentSelectedVote: VoteType? {
         didSet {
-            btnSendVote.enabled = currentSelectedVote != nil
+            let (color, enabled) = currentSelectedVote != nil ?
+                (UIColor.enabledSendVoteButtonColor(), true) :
+                (UIColor.disabledButtonColor(), false)
+            btnSendVote.enabled = enabled
+            btnSendVote.setTitleColor(color, forState: .Normal)
         }
     }
     var isDataLoaded : Bool = false
