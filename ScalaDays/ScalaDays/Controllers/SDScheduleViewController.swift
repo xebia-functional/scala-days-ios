@@ -576,6 +576,11 @@ class SDScheduleViewController: GAITrackedViewController,
         } else {
             txtViewVoteComments.attributedText = placeholderTextForComments()
         }
+        
+        SDGoogleAnalyticsHandler.sendGoogleAnalyticsTrackingWithScreenName(kGAScreenNameSchedule,
+            category: kGACategoryVote,
+            action: kGAActionShowVotingDialog,
+            label: nil)
     }
     
     func enableVotingIconForVoteType(voteType: VoteType) {
@@ -682,6 +687,10 @@ class SDScheduleViewController: GAITrackedViewController,
                     })
             }
             selectedEventToVote = nil
+            SDGoogleAnalyticsHandler.sendGoogleAnalyticsTrackingWithScreenName(kGAScreenNameSchedule,
+                category: kGACategoryVote,
+                action: kGAActionSendVote,
+                label: nil)
         }
     }
     

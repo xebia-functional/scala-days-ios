@@ -29,6 +29,7 @@ let kGAScreenNameMenu = "Menu"
 let kGACategoryFilter = "Filter"
 let kGACategoryFavorites = "Favorites"
 let kGACategoryNavigate = "Navigate"
+let kGACategoryVote = "Vote"
 
 let kGAActionScheduleFilterAll = "All"
 let kGAActionScheduleFilterFavorites = "Favorites"
@@ -44,11 +45,13 @@ let kGAActionSponsorsGoToSponsor = "Go to Sponsor"
 let kGAActionPlacesGoToMap = "Go to Map"
 let kGAActionAboutGoToSite = "Go to 47Deg Website"
 let kGAActionMenuChangeConference = "Change Conference"
+let kGAActionShowVotingDialog = "Show Voting Dialog"
+let kGAActionSendVote = "Send Vote"
 
 class SDGoogleAnalyticsHandler: NSObject {
     
     class func sendGoogleAnalyticsTrackingWithScreenName(screenName: String?, category: String?, action: String?, label: String?) {
-        if let googleKey = AppDelegate.loadExternalKeys().googleAnalyticsKey {
+        if let _ = AppDelegate.loadExternalKeys().googleAnalyticsKey {
             let tracker = GAI.sharedInstance().defaultTracker
             if let _screenName = screenName {
                 tracker.set(kGAIScreenName, value: _screenName)
