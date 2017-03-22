@@ -6,9 +6,11 @@ platform :ios, '8.0'
 inhibit_all_warnings!
 use_frameworks!
 
+target "ScalaDays" do
+
 # Alamofire
-pod 'Alamofire', '~> 3.2.1'
-pod 'SwiftyJSON'
+pod 'Alamofire', '~> 3.5.0'
+pod 'SwiftyJSON', '~> 2.4.0'
 
 # Google Analytics
 pod  'GoogleAnalytics'
@@ -26,3 +28,5 @@ pod 'NSDate+TimeAgo', '~> 1.0.2'
 
 # Push notifications
 pod 'Localytics', '~> 3.8'
+
+end

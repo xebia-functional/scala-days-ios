@@ -112,7 +112,7 @@ class SDPlacesViewController: GAITrackedViewController, MKMapViewDelegate, SDErr
     }
     
     func mapView(mapView: MKMapView, didSelectAnnotationView view: MKAnnotationView) {
-        view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: "didTapCallout:"))
+        view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(SDPlacesViewController.didTapCallout(_:))))
     }
     
     func didTapCallout(sender: UITapGestureRecognizer) {

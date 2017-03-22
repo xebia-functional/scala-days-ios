@@ -32,7 +32,7 @@ class SDSpeakerDetailView: UIView {
     let kBottomPadding: CGFloat = 30.0
     let kHorizontalPadding: CGFloat = 18.0
     let kPaddingForSeparator: CGFloat = 15.0
-    let selectorTwitter: Selector = "onTwitter"
+    let selectorTwitter: Selector = #selector(SDSpeakerDetailView.onTwitter)
 
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)

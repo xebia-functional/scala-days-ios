@@ -45,7 +45,7 @@ class SDScheduleDetailViewController: GAITrackedViewController {
 
         if let currentEvent = event {            
             let favoritesIconColor = DataManager.sharedInstance.isFavoriteEvent(event, selectedConference: selectedConference) ? UIColor.appRedColor() : UIColor.whiteColor()
-            barButtonFavorites = UIBarButtonItem(image: UIImage(named: "navigation_bar_icon_favorite_default"), style: .Plain, target: self, action: "didTapFavoritesButton")
+            barButtonFavorites = UIBarButtonItem(image: UIImage(named: "navigation_bar_icon_favorite_default"), style: .Plain, target: self, action: #selector(SDScheduleDetailViewController.didTapFavoritesButton))
             barButtonFavorites.tintColor = favoritesIconColor
             self.navigationItem.rightBarButtonItem = barButtonFavorites
             
@@ -77,7 +77,7 @@ class SDScheduleDetailViewController: GAITrackedViewController {
                 lblRoom.attributedText = NSAttributedString(string: roomTitle)
                 if let _ = currentEventLocationMapUrl() {
                     lblRoom.attributedText = NSAttributedString(string: roomTitle, attributes: [NSUnderlineStyleAttributeName : NSUnderlineStyle.StyleSingle.rawValue])
-                    lblRoom.addGestureRecognizer(UITapGestureRecognizer(target: self, action: "didTapOnLocationLabel"))
+                    lblRoom.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(SDScheduleDetailViewController.didTapOnLocationLabel)))
                     lblRoom.userInteractionEnabled = true
                 }
             }

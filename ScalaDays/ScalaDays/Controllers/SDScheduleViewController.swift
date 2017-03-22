@@ -56,7 +56,7 @@ class SDScheduleViewController: GAITrackedViewController,
     let kVotePopoverKeyboardOverlapThreshold = 20.0
     let kVotePlaceholderFontSize = CGFloat(14.0)
     let kBackgroundDarknessValue: CGFloat = 0.25
-    let votingUrl = "http://www.47deg.com/scaladays/votes/add.php"
+    let votingUrl = "https://scaladays-backend.herokuapp.com/votes/add.php"
     let votingParamVote = "vote"
     let votingParamUID = "deviceUID"
     let votingParamTalkId = "talkId"
@@ -140,7 +140,7 @@ class SDScheduleViewController: GAITrackedViewController,
         errorPlaceholderView.delegate = self
         self.view.addSubview(errorPlaceholderView)
         
-        refreshControl.addTarget(self, action: "didPullToRefresh", forControlEvents: UIControlEvents.ValueChanged)
+        refreshControl.addTarget(self, action: #selector(SDScheduleViewController.didPullToRefresh), forControlEvents: UIControlEvents.ValueChanged)
         tblSchedule.addSubview(refreshControl)
         
         self.screenName = kGAScreenNameSchedule
@@ -152,19 +152,19 @@ class SDScheduleViewController: GAITrackedViewController,
         self.txtViewVoteComments.attributedText = placeholderTextForComments()
         
         NSNotificationCenter.defaultCenter().addObserver(self,
-            selector: "keyboardWillShow:",
+            selector: #selector(SDScheduleViewController.keyboardWillShow(_:)),
             name: UIKeyboardWillShowNotification,
             object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self,
-            selector: "keyboardWillHide:",
+            selector: #selector(SDScheduleViewController.keyboardWillHide(_:)),
             name: UIKeyboardWillHideNotification,
             object: nil)
 
     }
     
     func loadNavigationBar() {
-        let barButtonOptions = UIBarButtonItem(image: UIImage(named: "navigation_bar_icon_filter"), style: .Plain, target: self, action: "didTapOptionsButton")
-        let barButtonClock = UIBarButtonItem(image: UIImage(named: "navigation_bar_icon_clock"), style: .Plain, target: self, action: "didTapOptionsButtonClock")
+        let barButtonOptions = UIBarButtonItem(image: UIImage(named: "navigation_bar_icon_filter"), style: .Plain, target: self, action: #selector(SDScheduleViewController.didTapOptionsButton))
+        let barButtonClock = UIBarButtonItem(image: UIImage(named: "navigation_bar_icon_clock"), style: .Plain, target: self, action: #selector(SDScheduleViewController.didTapOptionsButtonClock))
         
         if viewClock().result {
             self.navigationItem.rightBarButtonItems = [barButtonOptions,barButtonClock]
@@ -281,7 +281,7 @@ class SDScheduleViewController: GAITrackedViewController,
 
     func configureCell(cell: SDScheduleListTableViewCell, indexPath: NSIndexPath) -> SDScheduleListTableViewCell {
         if let events = eventsToShow,
-            conferenceId = selectedConference?.info.id {
+            let conferenceId = selectedConference?.info.id {
             let event = events[indexPath.section][indexPath.row]
             cell.drawEventData(event, conferenceId: conferenceId)
             if let currentConferenceFavorites = listOfCurrentConferenceFavoritesIDs() {
@@ -538,7 +538,7 @@ class SDScheduleViewController: GAITrackedViewController,
     @IBAction func didTapOnBtnVoteCancel(sender: UIButton) {
         if let comments = currentVotingComments() {
             if let eventToVote = selectedEventToVote,
-                previousVote = StoringHelper.sharedInstance.storedVoteForConferenceId(eventToVote.conferenceId, talkId: eventToVote.eventId) {
+                let previousVote = StoringHelper.sharedInstance.storedVoteForConferenceId(eventToVote.conferenceId, talkId: eventToVote.eventId) {
                     if comments != previousVote.comments {
                         launchVotingCancelAlert()
                     } else {
@@ -569,7 +569,7 @@ class SDScheduleViewController: GAITrackedViewController,
         SDAnimationHelper.showViewWithFadeInAnimation(votingPopoverContainer)
         
         if let eventToVote = selectedEventToVote,
-            previousVote = StoringHelper.sharedInstance.storedVoteForConferenceId(eventToVote.conferenceId, talkId: eventToVote.eventId) {
+            let previousVote = StoringHelper.sharedInstance.storedVoteForConferenceId(eventToVote.conferenceId, talkId: eventToVote.eventId) {
                 txtViewVoteComments.attributedText = previousVote.comments != nil ?
                     attributedStringForComment(previousVote.comments ?? "") :
                     placeholderTextForComments()
@@ -649,7 +649,7 @@ class SDScheduleViewController: GAITrackedViewController,
         }
         
         if let (event, conference) = selectedEventToVote,
-            uid = UIDevice.currentDevice().identifierForVendor?.UUIDString {
+            let uid = UIDevice.currentDevice().identifierForVendor?.UUIDString {
             Alamofire.request(.POST,
                 votingUrl,
                 parameters: votingRequestParametersForVote(voteType,
@@ -703,8 +703,8 @@ class SDScheduleViewController: GAITrackedViewController,
     
     func keyboardWillShow(notification: NSNotification) {
         if let notificationInfo = notification.userInfo,
-            keyboardFrame = (notificationInfo[UIKeyboardFrameEndUserInfoKey] as? NSValue)?.CGRectValue(),
-            animationDuration = (notificationInfo[UIKeyboardAnimationDurationUserInfoKey] as? NSTimeInterval) {
+            let keyboardFrame = (notificationInfo[UIKeyboardFrameEndUserInfoKey] as? NSValue)?.CGRectValue(),
+            let animationDuration = (notificationInfo[UIKeyboardAnimationDurationUserInfoKey] as? NSTimeInterval) {
             setVerticalPositionForVotingPopoverWithKeyboardHeight(keyboardFrame.size.height,
                 kbAnimationDuration: animationDuration)
         }
@@ -712,7 +712,7 @@ class SDScheduleViewController: GAITrackedViewController,
     
     func keyboardWillHide(notification: NSNotification) {
         if let notificationInfo = notification.userInfo,
-            animationDuration = (notificationInfo[UIKeyboardAnimationDurationUserInfoKey] as? NSTimeInterval) {
+            let animationDuration = (notificationInfo[UIKeyboardAnimationDurationUserInfoKey] as? NSTimeInterval) {
                 UIView.animateWithDuration(animationDuration, animations: { () -> Void in
                     self.constraintForVotingPopoverTopSpace.constant = CGFloat(self.kVotePopoverDefaultTopPosition)
                 })
