@@ -86,8 +86,7 @@ class SDPlacesViewController: GAITrackedViewController, MKMapViewDelegate, SDErr
     func drawMapPushPinsForVenues(venues: Array<Venue>) {
         let geocoder = CLGeocoder()
         
-        let allAnnotations = self.mapPlaces.annotations
-        self.mapPlaces.removeAnnotations(allAnnotations)
+        self.mapPlaces.removeAnnotations(self.mapPlaces.annotations)
         for venue in venues {
             let coordinate = CLLocationCoordinate2D(latitude: venue.latitude, longitude: venue.longitude)
             let annotation = SDMapAnnotation(title: venue.name, subtitle: venue.address, coordinate: coordinate)
