@@ -41,7 +41,7 @@ class SDSocialViewController: GAITrackedViewController, SDErrorPlaceholderViewDe
         self.setNavigationBarItem()
         self.title = NSLocalizedString("social", comment: "social")
 
-        let barButtonCreateTweet = UIBarButtonItem(image: UIImage(named: "navigation_bar_icon_create"), style: .Plain, target: self, action: "didTapCreateTweetButton")
+        let barButtonCreateTweet = UIBarButtonItem(image: UIImage(named: "navigation_bar_icon_create"), style: .Plain, target: self, action: #selector(SDSocialViewController.didTapCreateTweetButton))
         self.navigationItem.rightBarButtonItem = barButtonCreateTweet
 
         tblView?.registerNib(UINib(nibName: "SDSocialTableViewCell", bundle: nil), forCellReuseIdentifier: kReuseIdentifier)
@@ -49,7 +49,7 @@ class SDSocialViewController: GAITrackedViewController, SDErrorPlaceholderViewDe
         if isIOS8OrLater() {
             tblView?.estimatedRowHeight = kEstimatedDynamicCellsRowHeightHigh
         }
-        refreshControl.addTarget(self, action: "didActivateRefresh", forControlEvents: UIControlEvents.ValueChanged)
+        refreshControl.addTarget(self, action: #selector(SDSocialViewController.didActivateRefresh), forControlEvents: UIControlEvents.ValueChanged)
 
         errorPlaceholderView = SDErrorPlaceholderView(frame: screenBounds)
         errorPlaceholderView.delegate = self

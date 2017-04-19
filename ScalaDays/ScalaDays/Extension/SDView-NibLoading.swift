@@ -21,9 +21,9 @@ extension UIView {
     func loadNibSubviewsFromNib(nibName: String) -> UIView? {
         let objects = NSBundle.mainBundle().loadNibNamed(nibName, owner: self, options: nil)
         
-        objects.filter({$0 is UIView})
-        if objects.count > 0 {
-            let containerView = objects[0] as! UIView
+        objects?.filter({$0 is UIView})
+        if objects?.count > 0 {
+            let containerView = objects![0] as! UIView
             containerView.translatesAutoresizingMaskIntoConstraints = false
             addSubview(containerView)
             needsUpdateConstraints()

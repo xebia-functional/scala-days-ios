@@ -47,7 +47,7 @@ class SDQRScannerOverlayView: UIView {
         }
         btnCancel.title = NSLocalizedString("common_cancel", comment: "Cancel")
         btnCancel.target = self
-        btnCancel.action = "didTapCancelButton"
+        btnCancel.action = #selector(SDQRScannerOverlayView.didTapCancelButton)
     }
     
     override func updateConstraints() {
