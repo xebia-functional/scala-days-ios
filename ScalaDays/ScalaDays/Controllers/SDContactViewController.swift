@@ -56,59 +56,59 @@ class SDContactViewController: GAITrackedViewController,
         scannerVCOverlayView.delegate = self
         scannerVC.cameraOverlayView = scannerVCOverlayView
         
-        self.presentViewController(scannerVC, animated: true, completion: nil)
+        self.present(scannerVC, animated: true, completion: nil)
         
         SDGoogleAnalyticsHandler.sendGoogleAnalyticsTrackingWithScreenName(kGAScreenNameContact, category: nil, action: kGAActionContactScanContact, label: nil)
     }
     
-    func readerControllerDidFailToRead(reader: ZBarReaderController!, withRetry retry: Bool) {
-        self.handleResultsFromAddressBookWithErrorMessage(.InvalidVCardData)
+    func readerControllerDidFail(toRead reader: ZBarReaderController!, withRetry retry: Bool) {
+        self.handleResultsFromAddressBookWithErrorMessage(.invalidVCardData)
     }
     
-    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
-        scannerVC.dismissViewControllerAnimated(true, completion: nil)
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        scannerVC.dismiss(animated: true, completion: nil)
         let results = info[ZBarReaderControllerResults] as! ZBarSymbolSet
         if results.count > 0 {
             for symbol in results {
                 if (symbol as! ZBarSymbol).data != nil {
-                    processQRScan(symbol.data)
+                    processQRScan((symbol as AnyObject).data)
                     return
                 }
             }
         } else {
-            self.handleResultsFromAddressBookWithErrorMessage(.InvalidVCardData)
+            self.handleResultsFromAddressBookWithErrorMessage(.invalidVCardData)
             return
         }
     }
     
     func didTapCancelButtonInQRScanner() {
-        scannerVC.dismissViewControllerAnimated(true, completion: nil)
+        scannerVC.dismiss(animated: true, completion: nil)
     }
     
-    func processQRScan(result: String?) {
+    func processQRScan(_ result: String?) {
         if let successfulResult = result {
             saveContactFromVCardString(successfulResult)
         } else {
-            self.handleResultsFromAddressBookWithErrorMessage(.InvalidVCardData)
+            self.handleResultsFromAddressBookWithErrorMessage(.invalidVCardData)
         }
     }
     
     // MARK: - VCard handling
     
-    func saveContactFromVCardString(vCardString: String) {
+    func saveContactFromVCardString(_ vCardString: String) {
         if let book: ABAddressBook = ABAddressBookCreateWithOptions(nil, nil).takeRetainedValue() {
             switch(ABAddressBookGetAuthorizationStatus()) {
-            case .NotDetermined:
+            case .notDetermined:
                 ABAddressBookRequestAccessWithCompletion(book) {
                     (granted:Bool, err:CFError!) in
                     if granted {
-                        self.showAlertToRequestContactAddWithContactName(SDContactCreationHelper.contactNameFromVCardString(vCardString), vCardString: vCardString)
+                        self.showAlertToRequestContactAddWithContactName(SDContactCreationHelper.contactName(fromVCardString: vCardString), vCardString: vCardString)
                     } else {
                         self.drawErrorWithMessage(NSLocalizedString("contacts_regular_feedback_error_no_access", comment: ""))
                     }
                 }
-            case .Authorized:
-                self.showAlertToRequestContactAddWithContactName(SDContactCreationHelper.contactNameFromVCardString(vCardString), vCardString: vCardString)
+            case .authorized:
+                self.showAlertToRequestContactAddWithContactName(SDContactCreationHelper.contactName(fromVCardString: vCardString), vCardString: vCardString)
             default:
                 self.drawErrorWithMessage(NSLocalizedString("contacts_regular_feedback_error_no_access", comment: ""))
             }
@@ -117,12 +117,12 @@ class SDContactViewController: GAITrackedViewController,
     
     // MARK: - UI changes for feedback
         
-    func handleResultsFromAddressBookWithErrorMessage(error: SDContactCreationHelperError) {
+    func handleResultsFromAddressBookWithErrorMessage(_ error: SDContactCreationHelperError) {
         switch(error) {
-        case .NoError:
+        case .noError:
             drawRegularFeedback()
             showAlertForContactAddSuccess()
-        case .InvalidVCardData:
+        case .invalidVCardData:
             drawErrorWithMessage(NSLocalizedString("contacts_regular_feedback_error_invalid_qr_code", comment: ""))
         default:
             drawErrorWithMessage(NSLocalizedString("contacts_regular_feedback_error_unknown", comment: ""))
@@ -130,7 +130,7 @@ class SDContactViewController: GAITrackedViewController,
         currentVCardString = ""
     }
     
-    func drawErrorWithMessage(message: String) {
+    func drawErrorWithMessage(_ message: String) {
         imgIcon?.image = UIImage(named: "placeholder_error")
         lblScanResult?.text = message
     }
@@ -145,18 +145,18 @@ class SDContactViewController: GAITrackedViewController,
     
     // MARK: - Alert views
     
-    func showAlertToRequestContactAddWithContactName(contactName: String?, vCardString: String) {
+    func showAlertToRequestContactAddWithContactName(_ contactName: String?, vCardString: String) {
         var message : String
         if let properName = contactName {
-            message = NSString(format: NSLocalizedString("contacts_add_contact_request", comment: ""), properName as String) as String
+            message = NSString(format: NSLocalizedString("contacts_add_contact_request", comment: "") as NSString, properName as String) as String
         } else {
             message = NSLocalizedString("contacts_add_contact_request_no_name", comment: "")
         }
         currentVCardString = vCardString
         
         SDAlertViewHelper.showSimpleAlertViewOnViewController(self, title: "", message: message, cancelButtonTitle: NSLocalizedString("common_cancel", comment: ""), otherButtonTitle: NSLocalizedString("common_ok", comment: ""), tag: kTagForRequestAlertView, delegate: self) { (alertAction) -> Void in
-            if alertAction.style != .Cancel {
-                SDContactCreationHelper.createContactInAddressBookFromVCardString(vCardString, completion: { (error) -> Void in
+            if alertAction?.style != .cancel {
+                SDContactCreationHelper.createContactInAddressBook(fromVCardString: vCardString, completion: { (error) -> Void in
                     self.handleResultsFromAddressBookWithErrorMessage(error)
                 })
             }
@@ -169,9 +169,9 @@ class SDContactViewController: GAITrackedViewController,
     
     // MARK: - Alert view delegate
     
-    func alertView(alertView: UIAlertView, clickedButtonAtIndex buttonIndex: Int) {
+    func alertView(_ alertView: UIAlertView, clickedButtonAt buttonIndex: Int) {
         if alertView.tag == kTagForRequestAlertView && buttonIndex != alertView.cancelButtonIndex {
-            SDContactCreationHelper.createContactInAddressBookFromVCardString(currentVCardString, completion: { (error) -> Void in
+            SDContactCreationHelper.createContactInAddressBook(fromVCardString: currentVCardString, completion: { (error) -> Void in
                 self.handleResultsFromAddressBookWithErrorMessage(error)
             })
         }

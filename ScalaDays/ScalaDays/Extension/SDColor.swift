@@ -18,7 +18,7 @@ import UIKit
 
 extension UIColor {
    
-    class func grayScaleColor(grayScale: CGFloat) -> UIColor {
+    class func grayScaleColor(_ grayScale: CGFloat) -> UIColor {
         return UIColor(red: grayScale / 255.0, green: grayScale / 255.0, blue: grayScale / 255.0, alpha: 1.0)
     }
 

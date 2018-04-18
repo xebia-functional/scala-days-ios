@@ -9,8 +9,8 @@ use_frameworks!
 target "ScalaDays" do
 
 # Alamofire
-pod 'Alamofire', '~> 3.5.0'
-pod 'SwiftyJSON', '~> 2.4.0'
+pod 'Alamofire', :git => 'https://github.com/Alamofire/Alamofire.git', :tag => '4.5.1'
+pod 'SwiftyJSON', '3.1.4'
 
 # Google Analytics
 pod  'GoogleAnalytics'

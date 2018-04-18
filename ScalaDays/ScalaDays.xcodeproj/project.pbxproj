@@ -69,7 +69,8 @@
 		59E430EF1A964BEF00185C41 /* SDGoogleAnalyticsHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59E430EE1A964BEF00185C41 /* SDGoogleAnalyticsHandler.swift */; };
 		59F0E2E61CA1518700BDD40E /* Vote.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59F0E2E51CA1518700BDD40E /* Vote.swift */; };
 		59F0E2E71CA15B7600BDD40E /* Vote.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59F0E2E51CA1518700BDD40E /* Vote.swift */; };
-		A158176B1C8ED3D10013AFBB /* SDExternalKeys.plist in Resources */ = {isa = PBXBuildFile; fileRef = A158176A1C8ED3D10013AFBB /* SDExternalKeys.plist */; };
+		A1551FB1207ACE9C006BCE7A /* SDExternalKeys.plist in Resources */ = {isa = PBXBuildFile; fileRef = A1551FB0207ACE9C006BCE7A /* SDExternalKeys.plist */; };
+		A1551FB3207AD44A006BCE7A /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A1551FB2207AD44A006BCE7A /* SwiftyJSON.framework */; };
 		A171433E1A88F6880068FD33 /* SDConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1FA1FF81A7BA95500338AF0 /* SDConstants.swift */; };
 		A171433F1A88F7730068FD33 /* SDDateHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 590DDD761A83C5E800E4CC3F /* SDDateHandler.swift */; };
 		A19C65C71A7FC30A00A206FC /* SDContactViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A19C65C51A7FC30A00A206FC /* SDContactViewController.swift */; };
@@ -178,7 +179,8 @@
 		59F0E2E51CA1518700BDD40E /* Vote.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Vote.swift; sourceTree = "<group>"; };
 		7D64DB64908BDE7D3B24AD00 /* Pods-ScalaDays.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ScalaDays.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ScalaDays/Pods-ScalaDays.debug.xcconfig"; sourceTree = "<group>"; };
 		9AA114FE335624986EFB5A1D /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
-		A158176A1C8ED3D10013AFBB /* SDExternalKeys.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = SDExternalKeys.plist; path = ScalaDays/External/SDExternalKeys.plist; sourceTree = SOURCE_ROOT; };
+		A1551FB0207ACE9C006BCE7A /* SDExternalKeys.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = SDExternalKeys.plist; path = "../../../../../../47deg/ScalaDays - App/SDExternalKeys.plist"; sourceTree = "<group>"; };
+		A1551FB2207AD44A006BCE7A /* SwiftyJSON.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftyJSON.framework; path = "../../../../Library/Developer/Xcode/DerivedData/ScalaDays-cyovomhipwvxwdfjkdvbgvnlrjym/Build/Products/Debug-iphonesimulator/SwiftyJSON/SwiftyJSON.framework"; sourceTree = "<group>"; };
 		A163DC2E1A6E595B00A21B8E /* libPods-SwiftyJSON.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPods-SwiftyJSON.a"; path = "Pods/build/Debug-iphoneos/libPods-SwiftyJSON.a"; sourceTree = "<group>"; };
 		A17D3AC71A690E3A00024062 /* Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Bridging-Header.h"; sourceTree = "<group>"; };
 		A19C65C51A7FC30A00A206FC /* SDContactViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SDContactViewController.swift; sourceTree = "<group>"; };
@@ -225,6 +227,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A1551FB3207AD44A006BCE7A /* SwiftyJSON.framework in Frameworks */,
 				5928D1781A88E5C800E5049E /* MapKit.framework in Frameworks */,
 				A1C8B87D1A8E75B6008599FF /* Crashlytics.framework in Frameworks */,
 				5950030A1A84EDD500A1C24F /* AddressBook.framework in Frameworks */,
@@ -433,7 +436,7 @@
 		59ACF91B1AB2FFF2005914E1 /* Keys */ = {
 			isa = PBXGroup;
 			children = (
-				A158176A1C8ED3D10013AFBB /* SDExternalKeys.plist */,
+				A1551FB0207ACE9C006BCE7A /* SDExternalKeys.plist */,
 			);
 			path = Keys;
 			sourceTree = "<group>";
@@ -449,6 +452,7 @@
 		6DBA1EBEE9CFF41D967A4DF1 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				A1551FB2207AD44A006BCE7A /* SwiftyJSON.framework */,
 				5928D1761A88E5AB00E5049E /* MapKit.framework */,
 				595003091A84EDD500A1C24F /* AddressBook.framework */,
 				595003001A84C1DA00A1C24F /* MobileCoreServices.framework */,
@@ -550,7 +554,6 @@
 				A1D795C31A68267F009CCEB3 /* Sources */,
 				A1D795C41A68267F009CCEB3 /* Frameworks */,
 				A1D795C51A68267F009CCEB3 /* Resources */,
-				6B34A8DE02A83B2AC5E25535 /* [CP] Copy Pods Resources */,
 				A163DC141A6D6C7C00A21B8E /* Embed Frameworks */,
 				A1C8B87B1A8E7597008599FF /* ShellScript */,
 				191320A905B1A0A2A3291C5B /* [CP] Embed Pods Frameworks */,
@@ -591,14 +594,14 @@
 			attributes = {
 				LastSwiftMigration = 0720;
 				LastSwiftUpdateCheck = 0720;
-				LastUpgradeCheck = 0800;
+				LastUpgradeCheck = 0920;
 				ORGANIZATIONNAME = "47 Degrees";
 				TargetAttributes = {
 					A1D795C61A68267F009CCEB3 = {
 						CreatedOnToolsVersion = 6.1.1;
 						DevelopmentTeam = P548S5LU96;
-						LastSwiftMigration = 0800;
-						ProvisioningStyle = Manual;
+						LastSwiftMigration = 0830;
+						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 1;
@@ -611,7 +614,7 @@
 					A1D795DB1A68267F009CCEB3 = {
 						CreatedOnToolsVersion = 6.1.1;
 						DevelopmentTeam = 985FQDQUFA;
-						LastSwiftMigration = 0800;
+						LastSwiftMigration = 0830;
 						TestTargetID = A1D795C61A68267F009CCEB3;
 					};
 				};
@@ -640,7 +643,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A158176B1C8ED3D10013AFBB /* SDExternalKeys.plist in Resources */,
 				A1FA1FF41A7B98FE00338AF0 /* SDScheduleViewController.xib in Resources */,
 				A1FA1FF51A7B98FE00338AF0 /* SDSocialViewController.xib in Resources */,
 				A1C8B8761A8E6C77008599FF /* SDScheduleListTableViewCell.xib in Resources */,
@@ -656,6 +658,7 @@
 				590DDD6E1A83BAFD00E4CC3F /* SDSpeakersListViewController.xib in Resources */,
 				591DAB2D1A9B7F8D000B2D7A /* SDWebViewController.xib in Resources */,
 				A1FA1FE51A7AA30F00338AF0 /* SDPlacesViewController.xib in Resources */,
+				A1551FB1207ACE9C006BCE7A /* SDExternalKeys.plist in Resources */,
 				1EA75E8C1A925BFF00884EC8 /* SDConferenceTableViewCell.xib in Resources */,
 				A1FA1FD41A7A9DA200338AF0 /* Localizable.strings in Resources */,
 				A1FA1FE11A7AA2FA00338AF0 /* SDSponsorViewController.xib in Resources */,
@@ -685,13 +688,16 @@
 			files = (
 			);
 			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-ScalaDays-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 		191320A905B1A0A2A3291C5B /* [CP] Embed Pods Frameworks */ = {
@@ -700,9 +706,24 @@
 			files = (
 			);
 			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-ScalaDays/Pods-ScalaDays-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/NSDate+TimeAgo/NSDate_TimeAgo.framework",
+				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
+				"${BUILT_PRODUCTS_DIR}/SVProgressHUD/SVProgressHUD.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
+				"${BUILT_PRODUCTS_DIR}/UIView+AutoLayout/UIView_AutoLayout.framework",
+				"${BUILT_PRODUCTS_DIR}/ZBarSDK/ZBarSDK.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/NSDate_TimeAgo.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SVProgressHUD.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/UIView_AutoLayout.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ZBarSDK.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -721,21 +742,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "./Crashlytics.framework/run 650c56fa5bc6a759a4802ae63f430cfaf6c8158a 2c56ab5ccb4f21cd496c8f733a95205cb91e19601dadd81a60e13f963f31c19c";
-		};
-		6B34A8DE02A83B2AC5E25535 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ScalaDays/Pods-ScalaDays-resources.sh\"\n";
-			showEnvVarsInLog = 0;
 		};
 		A1C8B87B1A8E7597008599FF /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -862,14 +868,20 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -913,14 +925,20 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -957,7 +975,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = ScalaDays/ScalaDays.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = P548S5LU96;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -974,10 +992,10 @@
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.fortysevendeg.scaladays;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "904f56dc-2cdc-4f03-bf06-4f518a169e24";
-				PROVISIONING_PROFILE_SPECIFIER = TestScalaDaysJavi;
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "ScalaDays/Bridging-Header.h";
-				SWIFT_VERSION = 2.3;
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -991,7 +1009,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = ScalaDays/ScalaDays.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = P548S5LU96;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1008,10 +1026,10 @@
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.fortysevendeg.scaladays;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "904f56dc-2cdc-4f03-bf06-4f518a169e24";
-				PROVISIONING_PROFILE_SPECIFIER = TestScalaDaysJavi;
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "ScalaDays/Bridging-Header.h";
-				SWIFT_VERSION = 2.3;
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
@@ -1035,7 +1053,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "fortysevendeg.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				SWIFT_VERSION = 2.3;
+				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ScalaDays.app/ScalaDays";
 			};
 			name = Debug;
@@ -1055,7 +1073,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "fortysevendeg.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				SWIFT_VERSION = 2.3;
+				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ScalaDays.app/ScalaDays";
 			};
 			name = Release;

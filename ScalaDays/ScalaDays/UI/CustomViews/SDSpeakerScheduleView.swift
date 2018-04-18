@@ -46,7 +46,7 @@ class SDSpeakerScheduleView: UIView {
         if let container = loadNibSubviewsFromNib("SDSpeakerScheduleView") {
             containerView = container
             imgView.circularImage()
-            imgView.layer.borderColor = UIColor.whiteColor().CGColor
+            imgView.layer.borderColor = UIColor.white.cgColor
             imgView.layer.borderWidth = kborderWidth
         }
     }
@@ -56,10 +56,10 @@ class SDSpeakerScheduleView: UIView {
         super.updateConstraints()
     }
 
-    func drawSpeakerData(speaker: Speaker) {
+    func drawSpeakerData(_ speaker: Speaker) {
         lblName.text = speaker.name
         if let twitterUsername = speaker.twitter {
-            if twitterUsername.containsString("@") {
+            if twitterUsername.contains("@") {
                 lblUsername.text = twitterUsername
             } else {
                 lblUsername.text = "@\(twitterUsername)"
@@ -68,8 +68,8 @@ class SDSpeakerScheduleView: UIView {
             lblUsername.text = ""
         }
         if let pictureUrlString = speaker.picture {
-            if let pictureUrl = NSURL(string: pictureUrlString) {
-                imgView.sd_setImageWithURL(pictureUrl, placeholderImage: UIImage(named: "avatar")!)
+            if let pictureUrl = URL(string: pictureUrlString) {
+                imgView.sd_setImage(with: pictureUrl, placeholderImage: UIImage(named: "avatar")!)
             }
         }
         layoutSubviews()

@@ -20,7 +20,6 @@ import SwiftyJSON
 import Alamofire
 
 
-//let JsonURL = "http://scala-days-2015.s3.amazonaws.com/conferences.json"
 let JsonURL = "http://scala-days-2015.s3.amazonaws.com/conferences_2016.json"
 
 private let _DataManagerSharedInstance = DataManager()
@@ -29,44 +28,44 @@ class DataManager {
 
     var conferences: Conferences?
 
-    var lastDate: NSDate? {
+    var lastDate: Date? {
         get {
-            return NSUserDefaults.standardUserDefaults().objectForKey("date") as? NSDate
+            return UserDefaults.standard.object(forKey: "date") as? Date
         }
         set(newValue) {
-            NSUserDefaults.standardUserDefaults().setObject(newValue, forKey: "date")
-            NSUserDefaults.standardUserDefaults().synchronize()
+            UserDefaults.standard.set(newValue, forKey: "date")
+            UserDefaults.standard.synchronize()
         }
     }
     
-    var lastConnectionAttemptDate: NSDate? {
+    var lastConnectionAttemptDate: Date? {
         get {
-            return NSUserDefaults.standardUserDefaults().objectForKey("lastConnectionAttemptDate") as? NSDate
+            return UserDefaults.standard.object(forKey: "lastConnectionAttemptDate") as? Date
         }
         set(newValue) {
-            NSUserDefaults.standardUserDefaults().setObject(newValue, forKey: "lastConnectionAttemptDate")
-            NSUserDefaults.standardUserDefaults().synchronize()
+            UserDefaults.standard.set(newValue, forKey: "lastConnectionAttemptDate")
+            UserDefaults.standard.synchronize()
         }
     }
     
     var favoritedEvents: Dictionary<Int, Array<Int>>? {
         get {
-            if let data = NSUserDefaults.standardUserDefaults().objectForKey("favoritedEvents") as? NSData {
-                return NSKeyedUnarchiver.unarchiveObjectWithData(data) as? Dictionary<Int, Array<Int>>
+            if let data = UserDefaults.standard.object(forKey: "favoritedEvents") as? Data {
+                return NSKeyedUnarchiver.unarchiveObject(with: data) as? Dictionary<Int, Array<Int>>
             }
             return Dictionary<Int, Array<Int>>()
         }
         set(newValue) {
             if let favoritesDict = newValue {
-                NSUserDefaults.standardUserDefaults().setObject(NSKeyedArchiver.archivedDataWithRootObject(favoritesDict), forKey: "favoritedEvents")
-                NSUserDefaults.standardUserDefaults().synchronize()
+                UserDefaults.standard.set(NSKeyedArchiver.archivedData(withRootObject: favoritesDict), forKey: "favoritedEvents")
+                UserDefaults.standard.synchronize()
             }
         }
     }
     
-    func isFavoriteEvent(event: Event?, selectedConference: Conference?) -> Bool {
+    func isFavoriteEvent(_ event: Event?, selectedConference: Conference?) -> Bool {
         switch (selectedConference, DataManager.sharedInstance.favoritedEvents, event) {
-        case let (.Some(conference), .Some(favoritesDict), .Some(currentEvent)):
+        case let (.some(conference), .some(favoritesDict), .some(currentEvent)):
             if let favoritedEvents = favoritesDict[conference.info.id] {
                 return favoritedEvents.contains(currentEvent.id)
             }
@@ -77,14 +76,14 @@ class DataManager {
         return false
     }
     
-    func storeOrRemoveFavoriteEvent(shouldRemove: Bool, event: Event?, selectedConference: Conference?) {
+    func storeOrRemoveFavoriteEvent(_ shouldRemove: Bool, event: Event?, selectedConference: Conference?) {
         switch (selectedConference, DataManager.sharedInstance.favoritedEvents, event) {
-        case let (.Some(conference), .Some(favoritesDict), .Some(currentEvent)):
+        case let (.some(conference), .some(favoritesDict), .some(currentEvent)):
             if let favoritedEvents = favoritesDict[conference.info.id] {
                 if favoritedEvents.contains(currentEvent.id) {
                     if shouldRemove {
                         var temp = favoritedEvents
-                        temp.removeAtIndex(favoritedEvents.indexOf(currentEvent.id)!)
+                        temp.remove(at: favoritedEvents.index(of: currentEvent.id)!)
                         DataManager.sharedInstance.favoritedEvents![conference.info.id] = temp
                     }
                 } else {
@@ -134,39 +133,39 @@ class DataManager {
         }
     }
 
-    func loadDataJson(forceConnection: Bool = false, callback: (Bool, NSError?) -> ()) {
+    func loadDataJson(_ forceConnection: Bool = false, callback: @escaping (Bool, NSError?) -> ()) {
         var shouldReconnect = true
         if let lastConnectionDate = self.lastConnectionAttemptDate {
-            if NSDate().timeIntervalSinceDate(lastConnectionDate) < kMinimumTimeToDownloadDataFromApiInSeconds {
+            if Date().timeIntervalSince(lastConnectionDate) < kMinimumTimeToDownloadDataFromApiInSeconds {
                 shouldReconnect = false
             }
         }
         
         if forceConnection || shouldReconnect || self.conferences == nil {
-            Manager.sharedInstance.request(.GET, JsonURL).responseJSON {
+            Alamofire.request(JsonURL).responseJSON {
                 response in
                 
-                self.lastConnectionAttemptDate = NSDate()
+                self.lastConnectionAttemptDate = NSDate() as Date
                 
                 if let conferencesData = StoringHelper.sharedInstance.loadConferenceData() {
                     self.conferences = conferencesData
                     if let date = response.response?.allHeaderFields[lastModifiedDate] as! NSString? {
                         let dateJson = SDDateHandler.sharedInstance.parseServerDate(date)
                         if (dateJson == self.lastDate && !forceConnection) {
-                            callback(false, response.result.error)
+                            callback(false, (response.result.error! as NSError))
                         } else {
                             if (response.result.error != nil) {
                                 print("Error: \(response.result.error)")
                                 print(response.request)
                                 print(response.response)
-                                callback(false, response.result.error)
+                                callback(false, response.result.error as! NSError)
                             } else {
                                 if let _data = response.data {
                                     let jsonFormat = JSON(data: _data)
                                     self.parseAndStoreJSONData(jsonFormat)
-                                    callback(true, response.result.error)
+                                    callback(true, response.result.error as! NSError)
                                 } else {
-                                    callback(true, response.result.error)
+                                    callback(true, response.result.error as! NSError)
                                 }                                
                             }
                         }
@@ -182,11 +181,11 @@ class DataManager {
                         NSLog("Error: \(response.result.error)")
                         print(response.request)
                         print(response.response)
-                        callback(false, response.result.error)
+                        callback(false, response.result.error! as NSError)
                     } else {
                         let jsonFormat = JSON(response.result.value!)
                         self.parseAndStoreJSONData(jsonFormat)
-                        callback(true, response.result.error)
+                        callback(true, response.result.error as! NSError)
                     }
                 }
             }
@@ -196,7 +195,7 @@ class DataManager {
     }
 
 
-    func parseJSON(json: JSON) -> Conferences? {
+    func parseJSON(_ json: JSON) -> Conferences? {
         
         let arrayConferences = json["conferences"]
         var arrayConferencesParse: [Conference] = []
@@ -327,7 +326,7 @@ class DataManager {
         
     }
     
-    func parseAndStoreJSONData(jsonData: JSON) {
+    func parseAndStoreJSONData(_ jsonData: JSON) {
         self.conferences = parseJSON(jsonData)
         
         if let _conferences = self.conferences {

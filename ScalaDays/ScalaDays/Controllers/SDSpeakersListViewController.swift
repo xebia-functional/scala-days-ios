@@ -32,7 +32,7 @@ class SDSpeakersListViewController: GAITrackedViewController, SDErrorPlaceholder
         self.setNavigationBarItem()
         self.title = NSLocalizedString("speakers",comment: "speakers")
         
-        tblView.registerNib(UINib(nibName: "SDSpeakersTableViewCell", bundle: nil), forCellReuseIdentifier: kReuseIdentifier)
+        tblView.register(UINib(nibName: "SDSpeakersTableViewCell", bundle: nil), forCellReuseIdentifier: kReuseIdentifier)
         
         if isIOS8OrLater() {
             tblView.estimatedRowHeight = kEstimatedDynamicCellsRowHeightHigh
@@ -45,7 +45,7 @@ class SDSpeakersListViewController: GAITrackedViewController, SDErrorPlaceholder
         self.screenName = kGAScreenNameSpeakers
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         if !isDataLoaded {
             loadData()
         }
@@ -80,15 +80,15 @@ class SDSpeakersListViewController: GAITrackedViewController, SDErrorPlaceholder
                 }
                 
                 self.tblView.reloadData()
-                self.tblView.setContentOffset(CGPointZero, animated: true)
+                self.tblView.setContentOffset(CGPoint.zero, animated: true)
             }
         }
     }
     
     // MARK: - UITableViewDelegate & UITableViewDataSource implementation
    
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+    func tableView(_ tableView: UITableView, didSelectRowAtIndexPath indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
         if let listOfSpeakers = speakers {
             if listOfSpeakers.count > indexPath.row {
                 let currentSpeaker = listOfSpeakers[indexPath.row]
@@ -107,33 +107,33 @@ class SDSpeakersListViewController: GAITrackedViewController, SDErrorPlaceholder
         }
     }
     
-    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    func tableView(_ tableView: UITableView, heightForRowAtIndexPath indexPath: IndexPath) -> CGFloat {
         if (isIOS8OrLater()) {
             return UITableViewAutomaticDimension
         }
         let cell = self.tableView(tableView, cellForRowAtIndexPath: indexPath) as! SDSpeakersTableViewCell
-        return cell.contentView.systemLayoutSizeFittingSize(UILayoutFittingCompressedSize).height
+        return cell.contentView.systemLayoutSizeFitting(UILayoutFittingCompressedSize).height
     }
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if let listOfSpeakers = speakers {
             return listOfSpeakers.count
         }
         return 0
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell : SDSpeakersTableViewCell? = tableView.dequeueReusableCellWithIdentifier(kReuseIdentifier) as? SDSpeakersTableViewCell
+    func tableView(_ tableView: UITableView, cellForRowAtIndexPath indexPath: IndexPath) -> UITableViewCell {
+        let cell : SDSpeakersTableViewCell? = tableView.dequeueReusableCell(withIdentifier: kReuseIdentifier) as? SDSpeakersTableViewCell
         switch cell {
-        case let(.Some(cell)):
+        case let(.some(cell)):
             return configureCell(cell, indexPath: indexPath)
         default:
-            let cell = SDSpeakersTableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: kReuseIdentifier)
+            let cell = SDSpeakersTableViewCell(style: UITableViewCellStyle.default, reuseIdentifier: kReuseIdentifier)
             return configureCell(cell, indexPath: indexPath)
         }
     }
     
-    func configureCell(cell: SDSpeakersTableViewCell, indexPath: NSIndexPath) -> SDSpeakersTableViewCell {
+    func configureCell(_ cell: SDSpeakersTableViewCell, indexPath: IndexPath) -> SDSpeakersTableViewCell {
         if let listOfSpeakers = speakers {
             if(listOfSpeakers.count > indexPath.row) {
                 let speakerCell = cell as SDSpeakersTableViewCell
@@ -141,7 +141,7 @@ class SDSpeakersListViewController: GAITrackedViewController, SDErrorPlaceholder
                 speakerCell.layoutSubviews()
             }
         }
-        cell.frame = CGRectMake(0, 0, tblView.bounds.size.width, cell.frame.size.height);
+        cell.frame = CGRect(x: 0, y: 0, width: tblView.bounds.size.width, height: cell.frame.size.height);
         cell.layoutIfNeeded()
         return cell
     }
@@ -155,7 +155,7 @@ class SDSpeakersListViewController: GAITrackedViewController, SDErrorPlaceholder
     // Animations
     
     func showTableView() {
-        if self.tblView.hidden {
+        if self.tblView.isHidden {
             SDAnimationHelper.showViewWithFadeInAnimation(self.tblView)
         }
     }

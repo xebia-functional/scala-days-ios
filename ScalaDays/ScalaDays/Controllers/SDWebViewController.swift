@@ -19,7 +19,7 @@ import UIKit
 class SDWebViewController: UIViewController {
 
     @IBOutlet weak var webView: UIWebView!
-    var url: NSURL?
+    var url: URL?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,8 +29,8 @@ class SDWebViewController: UIViewController {
         }
     }
 
-    func loadUrl(url: NSURL) {
-        webView.loadRequest(NSURLRequest(URL: url))
+    func loadUrl(_ url: URL) {
+        webView.loadRequest(URLRequest(url: url))
     }
 
 }

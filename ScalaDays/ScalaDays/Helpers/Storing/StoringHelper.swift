@@ -30,7 +30,7 @@ class StoringHelper {
     
     // MARK: - Conference storing
     
-    func storeConferenceData(conferences: Conferences) {
+    func storeConferenceData(_ conferences: Conferences) {
         storeDataFromFileWithFilename(conferences, filename: kMainConferenceStoringFilename)
     }
     
@@ -40,15 +40,15 @@ class StoringHelper {
     
     // MARK: - Votes storing
     
-    func storeVotesData(votes: [String: Vote]) {
-        storeDataFromFileWithFilename(votes, filename: kVotesFilename)
+    func storeVotesData(_ votes: [String: Vote]) {
+        storeDataFromFileWithFilename(votes as NSCoding, filename: kVotesFilename)
     }
     
     func loadVotesData() -> [String: Vote]? {
         return loadDataFromFileWithFilename(kVotesFilename) as? [String: Vote]
     }
     
-    func storedVoteForConferenceId(conferenceId: Int, talkId: Int) -> Vote? {
+    func storedVoteForConferenceId(_ conferenceId: Int, talkId: Int) -> Vote? {
         if let votes = loadVotesData() {
             let key = "\(conferenceId)\(talkId)"
             return votes[key]
@@ -59,21 +59,21 @@ class StoringHelper {
     // MARK: - Utility functions
     
     class func documentsFolderPath() -> String {
-        return NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] 
+        return NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] 
     }
     
-    func loadDataFromFileWithFilename(filename: String) -> AnyObject? {
-        let fileManager = NSFileManager.defaultManager()
-        let dataPath = (StoringHelper.documentsFolderPath() as NSString).stringByAppendingPathComponent(filename)
+    func loadDataFromFileWithFilename(_ filename: String) -> AnyObject? {
+        let fileManager = FileManager.default
+        let dataPath = (StoringHelper.documentsFolderPath() as NSString).appendingPathComponent(filename)
         
-        if(fileManager.fileExistsAtPath(dataPath)) {
-            return NSKeyedUnarchiver.unarchiveObjectWithFile(dataPath)
+        if(fileManager.fileExists(atPath: dataPath)) {
+            return NSKeyedUnarchiver.unarchiveObject(withFile: dataPath) as AnyObject
         }
         return nil
     }
     
-    func storeDataFromFileWithFilename(conferences: NSCoding, filename: String) {
-        let conferenceDataPath = (StoringHelper.documentsFolderPath() as NSString).stringByAppendingPathComponent(filename)
+    func storeDataFromFileWithFilename(_ conferences: NSCoding, filename: String) {
+        let conferenceDataPath = (StoringHelper.documentsFolderPath() as NSString).appendingPathComponent(filename)
         NSKeyedArchiver.archiveRootObject(conferences, toFile: conferenceDataPath)
     }
 }

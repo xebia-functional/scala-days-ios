@@ -19,20 +19,20 @@ import SVProgressHUD
 import Alamofire
 
 enum SDScheduleActionSheetButtons: Int {
-    case Cancel = 0
-    case All = 1
-    case Favorites = 2
+    case cancel = 0
+    case all = 1
+    case favorites = 2
 }
 
 enum SDScheduleSelectedDataSource {
-    case All
-    case Favorites
+    case all
+    case favorites
 }
 
 enum SDScheduleEventType: Int {
-    case Courses = 1
-    case Keynotes = 2
-    case Others = 3
+    case courses = 1
+    case keynotes = 2
+    case others = 3
 }
 
 class SDScheduleViewController: GAITrackedViewController,
@@ -86,13 +86,13 @@ class SDScheduleViewController: GAITrackedViewController,
     var dates: [String]?
     var events: [[Event]]?
     var favorites: [[Event]]?
-    var selectedDataSource: SDScheduleSelectedDataSource = .All
+    var selectedDataSource: SDScheduleSelectedDataSource = .all
     var eventsToShow: [[Event]]? {
         get {
             switch (selectedDataSource) {
-            case .All:
+            case .all:
                 return events
-            case .Favorites:
+            case .favorites:
                 if let _favoritesIndexes = DataManager.sharedInstance.favoritedEvents {
                     return _favoritesIndexes.count == 0 ? [[Event]]() : favorites
                 }
@@ -105,15 +105,15 @@ class SDScheduleViewController: GAITrackedViewController,
             let (color, enabled) = currentSelectedVote != nil ?
                 (UIColor.enabledSendVoteButtonColor(), true) :
                 (UIColor.disabledButtonColor(), false)
-            btnSendVote.enabled = enabled
-            btnSendVote.setTitleColor(color, forState: .Normal)
+            btnSendVote.isEnabled = enabled
+            btnSendVote.setTitleColor(color, for: UIControlState())
         }
     }
     var isDataLoaded : Bool = false
     var selectedEventToVote: (eventId: Int, conferenceId: Int)?
     let refreshControl = UIRefreshControl()
 
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         self.title = NSLocalizedString("schedule", comment: "Schedule")
         if isDataLoaded {
             self.loadFavorites()
@@ -122,7 +122,7 @@ class SDScheduleViewController: GAITrackedViewController,
         }
     }
     
-    override func viewWillDisappear(animated: Bool) {
+    override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
     }
 
@@ -130,8 +130,8 @@ class SDScheduleViewController: GAITrackedViewController,
         super.viewDidLoad()
         
         self.setNavigationBarItem()
-        tblSchedule?.registerNib(UINib(nibName: "SDScheduleListTableViewCell", bundle: nil), forCellReuseIdentifier: kReuseIdentifier)
-        tblSchedule?.separatorStyle = .None
+        tblSchedule?.register(UINib(nibName: "SDScheduleListTableViewCell", bundle: nil), forCellReuseIdentifier: kReuseIdentifier)
+        tblSchedule?.separatorStyle = .none
         if isIOS8OrLater() {
             tblSchedule?.estimatedRowHeight = kEstimatedDynamicCellsRowHeightLow
         }
@@ -140,31 +140,31 @@ class SDScheduleViewController: GAITrackedViewController,
         errorPlaceholderView.delegate = self
         self.view.addSubview(errorPlaceholderView)
         
-        refreshControl.addTarget(self, action: #selector(SDScheduleViewController.didPullToRefresh), forControlEvents: UIControlEvents.ValueChanged)
+        refreshControl.addTarget(self, action: #selector(SDScheduleViewController.didPullToRefresh), for: UIControlEvents.valueChanged)
         tblSchedule.addSubview(refreshControl)
         
         self.screenName = kGAScreenNameSchedule
         
         self.btnSendVote.layer.borderWidth = CGFloat(kVotingButtonsBorderWidth)
-        self.btnSendVote.layer.borderColor = UIColor.grayButtonBorder().CGColor
+        self.btnSendVote.layer.borderColor = UIColor.grayButtonBorder().cgColor
         self.btnCancelVote.layer.borderWidth = CGFloat(kVotingButtonsBorderWidth)
-        self.btnCancelVote.layer.borderColor = UIColor.grayButtonBorder().CGColor
+        self.btnCancelVote.layer.borderColor = UIColor.grayButtonBorder().cgColor
         self.txtViewVoteComments.attributedText = placeholderTextForComments()
         
-        NSNotificationCenter.defaultCenter().addObserver(self,
+        NotificationCenter.default.addObserver(self,
             selector: #selector(SDScheduleViewController.keyboardWillShow(_:)),
-            name: UIKeyboardWillShowNotification,
+            name: NSNotification.Name.UIKeyboardWillShow,
             object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self,
+        NotificationCenter.default.addObserver(self,
             selector: #selector(SDScheduleViewController.keyboardWillHide(_:)),
-            name: UIKeyboardWillHideNotification,
+            name: NSNotification.Name.UIKeyboardWillHide,
             object: nil)
 
     }
     
     func loadNavigationBar() {
-        let barButtonOptions = UIBarButtonItem(image: UIImage(named: "navigation_bar_icon_filter"), style: .Plain, target: self, action: #selector(SDScheduleViewController.didTapOptionsButton))
-        let barButtonClock = UIBarButtonItem(image: UIImage(named: "navigation_bar_icon_clock"), style: .Plain, target: self, action: #selector(SDScheduleViewController.didTapOptionsButtonClock))
+        let barButtonOptions = UIBarButtonItem(image: UIImage(named: "navigation_bar_icon_filter"), style: .plain, target: self, action: #selector(SDScheduleViewController.didTapOptionsButton))
+        let barButtonClock = UIBarButtonItem(image: UIImage(named: "navigation_bar_icon_clock"), style: .plain, target: self, action: #selector(SDScheduleViewController.didTapOptionsButtonClock))
         
         if viewClock().result {
             self.navigationItem.rightBarButtonItems = [barButtonOptions,barButtonClock]
@@ -188,7 +188,7 @@ class SDScheduleViewController: GAITrackedViewController,
         loadData(false)
     }
     
-    func loadData(forceConnection: Bool) {
+    func loadData(_ forceConnection: Bool) {
         if !forceConnection {
             SVProgressHUD.show()
         }
@@ -196,7 +196,7 @@ class SDScheduleViewController: GAITrackedViewController,
         DataManager.sharedInstance.loadDataJson(forceConnection) {
             (bool, error) -> () in
             
-            dispatch_async(dispatch_get_main_queue(), { () -> Void in
+            DispatchQueue.main.async(execute: { () -> Void in
                 self.refreshControl.endRefreshing()
                 SVProgressHUD.dismiss()
             })
@@ -205,7 +205,7 @@ class SDScheduleViewController: GAITrackedViewController,
                 self.errorPlaceholderView.show(NSLocalizedString("error_message_no_data_available", comment: ""))
             } else {
                 self.selectedConference = DataManager.sharedInstance.currentlySelectedConference
-                self.selectedDataSource = .All
+                self.selectedDataSource = .all
                 self.isDataLoaded = true
                 
                 self.dates = self.scheduledDates()
@@ -239,7 +239,7 @@ class SDScheduleViewController: GAITrackedViewController,
     
     func listOfCurrentConferenceFavoritesIDs() -> [Int]? {
         switch (selectedConference, DataManager.sharedInstance.favoritedEvents) {
-        case let (.Some(conference), .Some(favoritedEvents)):
+        case let (.some(conference), .some(favoritedEvents)):
             if let currentConferenceFavorites = favoritedEvents[conference.info.id] {
                 return currentConferenceFavorites
             }
@@ -254,49 +254,49 @@ class SDScheduleViewController: GAITrackedViewController,
     
     // MARK: UITableViewDataSource implementation
 
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         if let scheduledDates = dates {
             return scheduledDates.count
         }
         return 0
     }
 
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if let events = eventsToShow {
             return events[section].count
         }
         return 0
     }
 
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell: SDScheduleListTableViewCell? = tableView.dequeueReusableCellWithIdentifier(kReuseIdentifier) as? SDScheduleListTableViewCell
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell: SDScheduleListTableViewCell? = tableView.dequeueReusableCell(withIdentifier: kReuseIdentifier) as? SDScheduleListTableViewCell
         switch cell {
-        case let (.Some(cell)):
+        case let (.some(cell)):
             return configureCell(cell, indexPath: indexPath)
         default:
-            let cell = SDScheduleListTableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: kReuseIdentifier)
+            let cell = SDScheduleListTableViewCell(style: UITableViewCellStyle.default, reuseIdentifier: kReuseIdentifier)
             return configureCell(cell, indexPath: indexPath)
         }
     }
 
-    func configureCell(cell: SDScheduleListTableViewCell, indexPath: NSIndexPath) -> SDScheduleListTableViewCell {
+    func configureCell(_ cell: SDScheduleListTableViewCell, indexPath: IndexPath) -> SDScheduleListTableViewCell {
         if let events = eventsToShow,
             let conferenceId = selectedConference?.info.id {
             let event = events[indexPath.section][indexPath.row]
             cell.drawEventData(event, conferenceId: conferenceId)
             if let currentConferenceFavorites = listOfCurrentConferenceFavoritesIDs() {
                 if currentConferenceFavorites.contains(event.id) {
-                    cell.imgFavoriteIcon.hidden = false
+                    cell.imgFavoriteIcon.isHidden = false
                 }
             }
         }
         cell.delegate = self
-        cell.frame = CGRectMake(0, 0, screenBounds.width, cell.frame.size.height);
+        cell.frame = CGRect(x: 0, y: 0, width: screenBounds.width, height: cell.frame.size.height);
         cell.layoutIfNeeded()
         return cell
     }
 
-    func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         if let dates = dates {
             return dates[section]
         }
@@ -305,30 +305,30 @@ class SDScheduleViewController: GAITrackedViewController,
 
     // MARK: - UITableViewDelegate
 
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let scheduleDetailViewController = SDScheduleDetailViewController(nibName: "SDScheduleDetailViewController", bundle: nil)
         if let events = eventsToShow {
             let event: Event = events[indexPath.section][indexPath.row]
-            if (event.type == SDScheduleEventType.Keynotes.rawValue || event.type == SDScheduleEventType.Courses.rawValue) {
+            if (event.type == SDScheduleEventType.keynotes.rawValue || event.type == SDScheduleEventType.courses.rawValue) {
                 self.title = ""
                 scheduleDetailViewController.event = event
                 self.navigationController?.pushViewController(scheduleDetailViewController, animated: true)
                 SDGoogleAnalyticsHandler.sendGoogleAnalyticsTrackingWithScreenName(kGAScreenNameSchedule, category: kGACategoryNavigate, action: kGAActionScheduleGoToDetail, label: event.title)
             }
         }
-        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        tableView.deselectRow(at: indexPath, animated: true)
     }
 
-    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if (isIOS8OrLater()) {
             return UITableViewAutomaticDimension
         }
-        let cell = self.tableView(tableView, cellForRowAtIndexPath: indexPath) as! SDScheduleListTableViewCell
-        return cell.contentView.systemLayoutSizeFittingSize(UILayoutFittingCompressedSize).height
+        let cell = self.tableView(tableView, cellForRowAt: indexPath) as! SDScheduleListTableViewCell
+        return cell.contentView.systemLayoutSizeFitting(UILayoutFittingCompressedSize).height
     }
 
-    func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        if selectedDataSource == .Favorites {
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        if selectedDataSource == .favorites {
             if let favs = self.favorites {
                 if favs[section].count > 0 {
                     return kHeaderHeight
@@ -339,12 +339,12 @@ class SDScheduleViewController: GAITrackedViewController,
         return kHeaderHeight        
     }
 
-    func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         // It seems that there are problems trying to use NIB files to instantiate table view headers in iOS7
         // (the run-time asks for a call to super.layoutSubviews() even if it's specifically overriden in the header subclass).
         // We need to do it by hand in this case...
         if let _dates = dates {
-            let headerView = SDTableHeaderView(frame: CGRectMake(0, 0, tblSchedule.frame.size.width, kHeaderHeight))
+            let headerView = SDTableHeaderView(frame: CGRect(x: 0, y: 0, width: tblSchedule.frame.size.width, height: kHeaderHeight))
             headerView.lblDate.text = _dates[section]
             headerView.lblDate.sizeToFit()
             return headerView
@@ -356,7 +356,7 @@ class SDScheduleViewController: GAITrackedViewController,
 
     func scheduledDates() -> [String]? {
         if let schedule = selectedConference?.schedule {
-            let result = schedule.reduce([String](), combine: {
+            let result = schedule.reduce([String](), {
                 var temp = $0
 
                 if $0.count == 0 {
@@ -375,7 +375,7 @@ class SDScheduleViewController: GAITrackedViewController,
         var temp = [[Event]]()
 
         switch (dates, selectedConference?.schedule) {
-        case let (.Some(_dates), .Some(_schedule)):
+        case let (.some(_dates), .some(_schedule)):
             for date in _dates {
                 let filteredEvents = _schedule.filter {
                     $0.date == date
@@ -393,7 +393,7 @@ class SDScheduleViewController: GAITrackedViewController,
 // MARK: - Button handling
 
     func didTapOptionsButton() {
-        if isDataLoaded && errorPlaceholderView.hidden {
+        if isDataLoaded && errorPlaceholderView.isHidden {
             launchFilterSheet()
         }
     }
@@ -408,7 +408,7 @@ class SDScheduleViewController: GAITrackedViewController,
                         if let favoritesDict = DataManager.sharedInstance.favoritedEvents {
                             if let favoritedEvents = favoritesDict[_conference.info.id] {
                                 let event = $0
-                                return favoritedEvents.reduce(false, combine: {
+                                return favoritedEvents.reduce(false, {
                                     return $0 ? $0 : event.id == $1
                                 })
                             }
@@ -428,41 +428,41 @@ class SDScheduleViewController: GAITrackedViewController,
         let actionTitleCancel = NSLocalizedString("common_cancel", comment: "")
 
         if (isIOS8OrLater()) {
-            let actionSheet = UIAlertController(title: title, message: nil, preferredStyle: .ActionSheet)
-            actionSheet.addAction(UIAlertAction(title: actionTitleAll, style: .Default, handler: {
+            let actionSheet = UIAlertController(title: title, message: nil, preferredStyle: .actionSheet)
+            actionSheet.addAction(UIAlertAction(title: actionTitleAll, style: .default, handler: {
                 (alertAction) -> Void in
-                self.reloadTableDataWithFilter(.All)
+                self.reloadTableDataWithFilter(.all)
             }))
-            actionSheet.addAction(UIAlertAction(title: actionTitleFavorites, style: .Default, handler: {
+            actionSheet.addAction(UIAlertAction(title: actionTitleFavorites, style: .default, handler: {
                 (alertAction) -> Void in
-                self.reloadTableDataWithFilter(.Favorites)
+                self.reloadTableDataWithFilter(.favorites)
             }))
-            actionSheet.addAction(UIAlertAction(title: actionTitleCancel, style: .Cancel, handler: {
+            actionSheet.addAction(UIAlertAction(title: actionTitleCancel, style: .cancel, handler: {
                 (alertAction) -> Void in
 
             }))
-            self.presentViewController(actionSheet, animated: true, completion: nil)
+            self.present(actionSheet, animated: true, completion: nil)
         } else {
             let actionSheet = UIActionSheet(title: title, delegate: self, cancelButtonTitle: actionTitleCancel, destructiveButtonTitle: nil, otherButtonTitles: actionTitleAll, actionTitleFavorites)
-            actionSheet.showInView(self.view)
+            actionSheet.show(in: self.view)
         }
     }
 
-    func actionSheet(actionSheet: UIActionSheet, clickedButtonAtIndex buttonIndex: Int) {
+    func actionSheet(_ actionSheet: UIActionSheet, clickedButtonAt buttonIndex: Int) {
         switch (buttonIndex) {
         case actionSheet.cancelButtonIndex:
             return
-        case SDScheduleActionSheetButtons.All.rawValue:
-            self.reloadTableDataWithFilter(.All)
-        case SDScheduleActionSheetButtons.Favorites.rawValue:
-            self.reloadTableDataWithFilter(.Favorites)
+        case SDScheduleActionSheetButtons.all.rawValue:
+            self.reloadTableDataWithFilter(.all)
+        case SDScheduleActionSheetButtons.favorites.rawValue:
+            self.reloadTableDataWithFilter(.favorites)
         default:
             break
         }
     }
 
-    func reloadTableDataWithFilter(filter: SDScheduleSelectedDataSource) {
-        if filter == .Favorites {
+    func reloadTableDataWithFilter(_ filter: SDScheduleSelectedDataSource) {
+        if filter == .favorites {
             var favoritesCount = 0
             
             if let currentConferenceFavorites = listOfCurrentConferenceFavoritesIDs() {
@@ -470,7 +470,7 @@ class SDScheduleViewController: GAITrackedViewController,
             }
             
             if favoritesCount == 0 {
-                errorPlaceholderView.show(NSLocalizedString("error_no_favorites", comment: ""), isGeneralMessage: true, buttonTitle: NSLocalizedString("common_back", comment: "").uppercaseString)
+                errorPlaceholderView.show(NSLocalizedString("error_no_favorites", comment: ""), isGeneralMessage: true, buttonTitle: NSLocalizedString("common_back", comment: "").uppercased())
             } else {
                 selectedDataSource = filter
                 tblSchedule.reloadData()
@@ -493,7 +493,7 @@ class SDScheduleViewController: GAITrackedViewController,
     // MARK: - Animations
     
     func showTableView() {
-        if(tblSchedule.hidden) {
+        if(tblSchedule.isHidden) {
             SDAnimationHelper.showViewWithFadeInAnimation(tblSchedule)
         }
     }
@@ -502,11 +502,11 @@ class SDScheduleViewController: GAITrackedViewController,
     
     func viewClock() -> (result :Bool, indexRow : Int, indexSection: Int){
         var result = false
-        _ = NSDate()
+        _ = Date()
         if let events = eventsToShow {
-            for (indexSection, eventSection) in events.enumerate(){
-                for (indexRow, event) in eventSection.enumerate(){
-                    if SDDateHandler.sharedInstance.isCurrentDateActive(event.startTime, endTime: event.endTime){
+            for (indexSection, eventSection) in events.enumerated(){
+                for (indexRow, event) in eventSection.enumerated(){
+                    if SDDateHandler.sharedInstance.isCurrentDateActive(event.startTime as NSString, endTime: event.endTime as NSString){
                         result = true
                         return (result, indexRow, indexSection)
                    }
@@ -519,23 +519,23 @@ class SDScheduleViewController: GAITrackedViewController,
     func didTapOptionsButtonClock() {
         let clock = viewClock()
         if clock.result {
-            let indexPath = NSIndexPath(forRow: clock.indexRow, inSection: clock.indexSection)
-            tblSchedule.scrollToRowAtIndexPath(indexPath, atScrollPosition: UITableViewScrollPosition.Top, animated: true)
+            let indexPath = IndexPath(row: clock.indexRow, section: clock.indexSection)
+            tblSchedule.scrollToRow(at: indexPath, at: UITableViewScrollPosition.top, animated: true)
         }
     }
     
     // MARK: - Voting
     
-    @IBAction func didTapOnBtnVoteFace(sender: UIButton) {
+    @IBAction func didTapOnBtnVoteFace(_ sender: UIButton) {
         switch sender {
-        case _ where sender === btnVoteHappy: didSelectVoteValue(.Like)
-        case _ where sender === btnVoteNeutral: didSelectVoteValue(.Neutral)
-        case _ where sender === btnVoteSad: didSelectVoteValue(.Unlike)
+        case _ where sender === btnVoteHappy: didSelectVoteValue(.like)
+        case _ where sender === btnVoteNeutral: didSelectVoteValue(.neutral)
+        case _ where sender === btnVoteSad: didSelectVoteValue(.unlike)
         default: break
         }
     }
     
-    @IBAction func didTapOnBtnVoteCancel(sender: UIButton) {
+    @IBAction func didTapOnBtnVoteCancel(_ sender: UIButton) {
         if let comments = currentVotingComments() {
             if let eventToVote = selectedEventToVote,
                 let previousVote = StoringHelper.sharedInstance.storedVoteForConferenceId(eventToVote.conferenceId, talkId: eventToVote.eventId) {
@@ -552,7 +552,7 @@ class SDScheduleViewController: GAITrackedViewController,
         }
     }
     
-    @IBAction func didTapOnBtnSendVote(sender: UIButton) {
+    @IBAction func didTapOnBtnSendVote(_ sender: UIButton) {
         if let vote = currentSelectedVote {
             sendVote(vote, comments: currentVotingComments())
         }
@@ -588,23 +588,23 @@ class SDScheduleViewController: GAITrackedViewController,
             label: nil)
     }
     
-    func enableVotingIconForVoteType(voteType: VoteType) {
+    func enableVotingIconForVoteType(_ voteType: VoteType) {
         switch voteType {
-        case .Like: setVotingIconToButton(btnVoteHappy, iconName: kVotingLikeIconName)
-        case .Neutral: setVotingIconToButton(btnVoteNeutral, iconName: kVotingNeutralIconName)
-        case .Unlike: setVotingIconToButton(btnVoteSad, iconName: kVotingDontLikeIconName)
+        case .like: setVotingIconToButton(btnVoteHappy, iconName: kVotingLikeIconName)
+        case .neutral: setVotingIconToButton(btnVoteNeutral, iconName: kVotingNeutralIconName)
+        case .unlike: setVotingIconToButton(btnVoteSad, iconName: kVotingDontLikeIconName)
         }
     }
     
-    func didSelectVoteButtonWithEvent(event: Event, conferenceId: Int) {
+    func didSelectVoteButtonWithEvent(_ event: Event, conferenceId: Int) {
         selectedEventToVote = (event.id, conferenceId)
         currentSelectedVote = nil
         showVotingPopover()
         lblVoteTalkTitle.text = "\"\(event.title)\""
     }
     
-    func setVotingIconToButton(btn: UIButton, iconName: String) {
-        btn.setImage(UIImage(named: iconName), forState: .Normal)
+    func setVotingIconToButton(_ btn: UIButton, iconName: String) {
+        btn.setImage(UIImage(named: iconName), for: UIControlState())
     }
     
     func disableVoteIcons() {
@@ -613,7 +613,7 @@ class SDScheduleViewController: GAITrackedViewController,
         setVotingIconToButton(btnVoteSad, iconName: kVotingDontLikeIconName + kVotingDisableIconSuffix)
     }
     
-    func didSelectVoteValue(voteType: VoteType) {
+    func didSelectVoteValue(_ voteType: VoteType) {
         currentSelectedVote = voteType
         disableVoteIcons()
         enableVotingIconForVoteType(voteType)
@@ -626,41 +626,40 @@ class SDScheduleViewController: GAITrackedViewController,
             cancelButtonTitle: NSLocalizedString("common_cancel", comment: ""), otherButtonTitle: NSLocalizedString("schedule_vote_comments_cancel_warning_btn_exit", comment: ""),
             tag: nil,
             delegate: nil) { (alert) -> Void in
-                if alert.title == NSLocalizedString("schedule_vote_comments_cancel_warning_btn_exit", comment: "") {
+                if alert?.title == NSLocalizedString("schedule_vote_comments_cancel_warning_btn_exit", comment: "") {
                     self.hideVotingPopover()
                 }
         }
     }
     
-    func sendVote(voteType: VoteType, comments: String?) {
+    func sendVote(_ voteType: VoteType, comments: String?) {
         SVProgressHUD.show()
-        func votingRequestParametersForVote(vote: VoteType, event: Int, conference: Int, uid: String, comments: String?) -> [String: AnyObject] {
+        func votingRequestParametersForVote(_ vote: VoteType, event: Int, conference: Int, uid: String, comments: String?) -> [String: AnyObject] {
             if let actualComments = comments {
-                return [votingParamVote: voteType.rawValue,
-                        votingParamUID: uid,
-                        votingParamTalkId: event,
-                        votingParamConferenceId: conference,
-                        votingParamCommentsMessage: actualComments]
+                return [votingParamVote: voteType.rawValue as AnyObject,
+                        votingParamUID: uid as AnyObject,
+                        votingParamTalkId: event as AnyObject,
+                        votingParamConferenceId: conference as AnyObject,
+                        votingParamCommentsMessage: actualComments as AnyObject]
             }
-            return [votingParamVote: voteType.rawValue,
-                votingParamUID: uid,
-                votingParamTalkId: event,
-                votingParamConferenceId: conference]
+            return [votingParamVote: voteType.rawValue as AnyObject,
+                votingParamUID: uid as AnyObject,
+                votingParamTalkId: event as AnyObject,
+                votingParamConferenceId: conference as AnyObject]
         }
         
         if let (event, conference) = selectedEventToVote,
-            let uid = UIDevice.currentDevice().identifierForVendor?.UUIDString {
-            Alamofire.request(.POST,
-                votingUrl,
+            let uid = UIDevice.current.identifierForVendor?.uuidString {
+            Alamofire.request(votingUrl, method:HTTPMethod.post,
                 parameters: votingRequestParametersForVote(voteType,
                     event: event,
                     conference: conference,
                     uid: uid,
                     comments: comments),
-                encoding: .URL,
+                encoding: JSONEncoding.default,
                 headers: ["Content-Type": votingParamUrlEncodeHeader])
                 .response { response in
-                    let code = response.1?.statusCode ?? 0
+                    let code = response.response?.statusCode ?? 0
                     if code >= self.kConnectionErrorCode400 || code == 0 {
                         SDAlertViewHelper.showSimpleAlertViewOnViewController(self,
                             title: NSLocalizedString("schedule_error_vote_title", comment: ""),
@@ -685,7 +684,7 @@ class SDScheduleViewController: GAITrackedViewController,
                             StoringHelper.sharedInstance.storeVotesData([key: vote])
                         }
                     }                    
-                    dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                    DispatchQueue.main.async(execute: { () -> Void in
                         self.tblSchedule.reloadData()
                         self.hideVotingPopover()
                         SVProgressHUD.dismiss()
@@ -701,49 +700,49 @@ class SDScheduleViewController: GAITrackedViewController,
     
     // MARK: - Keyboard handling
     
-    func keyboardWillShow(notification: NSNotification) {
+    func keyboardWillShow(_ notification: Notification) {
         if let notificationInfo = notification.userInfo,
-            let keyboardFrame = (notificationInfo[UIKeyboardFrameEndUserInfoKey] as? NSValue)?.CGRectValue(),
-            let animationDuration = (notificationInfo[UIKeyboardAnimationDurationUserInfoKey] as? NSTimeInterval) {
+            let keyboardFrame = (notificationInfo[UIKeyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue,
+            let animationDuration = (notificationInfo[UIKeyboardAnimationDurationUserInfoKey] as? TimeInterval) {
             setVerticalPositionForVotingPopoverWithKeyboardHeight(keyboardFrame.size.height,
                 kbAnimationDuration: animationDuration)
         }
     }
     
-    func keyboardWillHide(notification: NSNotification) {
+    func keyboardWillHide(_ notification: Notification) {
         if let notificationInfo = notification.userInfo,
-            let animationDuration = (notificationInfo[UIKeyboardAnimationDurationUserInfoKey] as? NSTimeInterval) {
-                UIView.animateWithDuration(animationDuration, animations: { () -> Void in
+            let animationDuration = (notificationInfo[UIKeyboardAnimationDurationUserInfoKey] as? TimeInterval) {
+                UIView.animate(withDuration: animationDuration, animations: { () -> Void in
                     self.constraintForVotingPopoverTopSpace.constant = CGFloat(self.kVotePopoverDefaultTopPosition)
                 })
         }
         
     }
     
-    func setVerticalPositionForVotingPopoverWithKeyboardHeight(kbHeight: CGFloat, kbAnimationDuration: NSTimeInterval) {
+    func setVerticalPositionForVotingPopoverWithKeyboardHeight(_ kbHeight: CGFloat, kbAnimationDuration: TimeInterval) {
         if kbHeight + votingPopoverContainer.bounds.size.height + CGFloat(kVotePopoverDefaultTopPosition) >
             self.view.bounds.height + CGFloat(kVotePopoverKeyboardOverlapThreshold) {
-                UIView.animateWithDuration(kbAnimationDuration, animations: { () -> Void in
+                UIView.animate(withDuration: kbAnimationDuration, animations: { () -> Void in
                     self.constraintForVotingPopoverTopSpace.constant = 0
                 })
         }
     }
     
-    @IBAction func didTapOutsideOfKeyboard(gestureRecognizer: UITapGestureRecognizer) {
-        let location = gestureRecognizer.locationInView(self.view)
-        if txtViewVoteComments.isFirstResponder() {
+    @IBAction func didTapOutsideOfKeyboard(_ gestureRecognizer: UITapGestureRecognizer) {
+        let location = gestureRecognizer.location(in: self.view)
+        if txtViewVoteComments.isFirstResponder {
             self.view.endEditing(true)
-        } else if !votingPopoverContainer.hidden && !CGRectContainsPoint(votingPopoverContainer.frame, location) {
+        } else if !votingPopoverContainer.isHidden && !votingPopoverContainer.frame.contains(location) {
             hideVotingPopover()
         }
         
     }
     
-    func gestureRecognizer(gestureRecognizer: UIGestureRecognizer, shouldReceiveTouch touch: UITouch) -> Bool {
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
         return true
     }
     
-    func textViewDidBeginEditing(textView: UITextView) {
+    func textViewDidBeginEditing(_ textView: UITextView) {
         if textView.attributedText.string == placeholderTextForComments().string {
             textView.attributedText = nil
             textView.text = ""
@@ -753,13 +752,13 @@ class SDScheduleViewController: GAITrackedViewController,
         textView.becomeFirstResponder()
     }
     
-    func textView(textView: UITextView, shouldChangeTextInRange range: NSRange, replacementText text: String) -> Bool {
-        let newText = (textView.text as NSString).stringByReplacingCharactersInRange(range, withString: text)
+    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+        let newText = (textView.text as NSString).replacingCharacters(in: range, with: text)
         let numberOfChars = newText.characters.count
         return numberOfChars < kMaxNumberOfCharactersForVotingComment;
     }
     
-    func textViewDidEndEditing(textView: UITextView) {
+    func textViewDidEndEditing(_ textView: UITextView) {
         if textView.attributedText.string == "" {
             textView.attributedText = placeholderTextForComments()
         }
@@ -771,7 +770,7 @@ class SDScheduleViewController: GAITrackedViewController,
         return NSAttributedString(string: placeholderString, attributes: [NSFontAttributeName: UIFont.fontHelveticaNeueItalic(kVotePlaceholderFontSize), NSForegroundColorAttributeName: UIColor.grayCommentsPlaceholder()])
     }
     
-    func attributedStringForComment(comment: String) -> NSAttributedString {
+    func attributedStringForComment(_ comment: String) -> NSAttributedString {
         return NSAttributedString(string: comment, attributes: [NSFontAttributeName: UIFont.fontHelveticaNeueLight(kVotePlaceholderFontSize),
             NSForegroundColorAttributeName: UIColor.blackForCommentsNormalText()])
     }

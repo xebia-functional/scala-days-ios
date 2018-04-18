@@ -41,15 +41,15 @@ class SDSocialViewController: GAITrackedViewController, SDErrorPlaceholderViewDe
         self.setNavigationBarItem()
         self.title = NSLocalizedString("social", comment: "social")
 
-        let barButtonCreateTweet = UIBarButtonItem(image: UIImage(named: "navigation_bar_icon_create"), style: .Plain, target: self, action: #selector(SDSocialViewController.didTapCreateTweetButton))
+        let barButtonCreateTweet = UIBarButtonItem(image: UIImage(named: "navigation_bar_icon_create"), style: .plain, target: self, action: #selector(SDSocialViewController.didTapCreateTweetButton))
         self.navigationItem.rightBarButtonItem = barButtonCreateTweet
 
-        tblView?.registerNib(UINib(nibName: "SDSocialTableViewCell", bundle: nil), forCellReuseIdentifier: kReuseIdentifier)
+        tblView?.register(UINib(nibName: "SDSocialTableViewCell", bundle: nil), forCellReuseIdentifier: kReuseIdentifier)
         tblView?.addSubview(refreshControl)
         if isIOS8OrLater() {
             tblView?.estimatedRowHeight = kEstimatedDynamicCellsRowHeightHigh
         }
-        refreshControl.addTarget(self, action: #selector(SDSocialViewController.didActivateRefresh), forControlEvents: UIControlEvents.ValueChanged)
+        refreshControl.addTarget(self, action: #selector(SDSocialViewController.didActivateRefresh), for: UIControlEvents.valueChanged)
 
         errorPlaceholderView = SDErrorPlaceholderView(frame: screenBounds)
         errorPlaceholderView.delegate = self
@@ -58,11 +58,11 @@ class SDSocialViewController: GAITrackedViewController, SDErrorPlaceholderViewDe
         self.screenName = kGAScreenNameSocial
     }
 
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         self.tblView.reloadData()
     }
 
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         if isDataLoaded {
             if let conference = selectedConference {
                 query = conference.info.query
@@ -112,7 +112,7 @@ class SDSocialViewController: GAITrackedViewController, SDErrorPlaceholderViewDe
         loadTweetData(kTweetCount, isRefreshing: true)
     }
 
-    func loadTweetData(count: Int, isRefreshing: Bool) {
+    func loadTweetData(_ count: Int, isRefreshing: Bool) {
         if isFirstLoad {
             isFirstLoad = false
         }
@@ -128,12 +128,12 @@ class SDSocialViewController: GAITrackedViewController, SDErrorPlaceholderViewDe
                     self.hideProgressHUD()
 
                     switch (tweets, error) {
-                    case let (.Some(tweets), nil):
+                    case let (.some(tweets), nil):
                         self.listOfTweets = tweets as! Array<SDTweet>
-                        dispatch_async(dispatch_get_main_queue()) {
+                        DispatchQueue.main.async {
                             if self.listOfTweets.count > 0 {
                                 self.tblView.reloadData()
-                                self.tblView.setContentOffset(CGPointZero, animated: true)
+                                self.tblView.setContentOffset(CGPoint.zero, animated: true)
                                 self.errorPlaceholderView.hide()
                                 self.showTableView()
                             } else {
@@ -145,11 +145,11 @@ class SDSocialViewController: GAITrackedViewController, SDErrorPlaceholderViewDe
                             var errorMessage: String = ""
 
                             switch (error.code) {
-                            case SDSocialErrors.AccountAccessNotGranted.rawValue:
+                            case SDSocialErrors.accountAccessNotGranted.rawValue:
                                 errorMessage = NSLocalizedString("social_error_message_not_granted_access", comment: "")
-                            case SDSocialErrors.NoTwitterAccountAvailable.rawValue:
+                            case SDSocialErrors.noTwitterAccountAvailable.rawValue:
                                 errorMessage = NSLocalizedString("social_error_message_no_twitter_account_configured", comment: "")
-                            case SDSocialErrors.NoValidDataFromAPI.rawValue, SDSocialErrors.InvalidRequest.rawValue:
+                            case SDSocialErrors.noValidDataFromAPI.rawValue, SDSocialErrors.invalidRequest.rawValue:
                                 if (self.listOfTweets.count == 0) {
                                     errorMessage = NSLocalizedString("social_error_no_valid_tweets", comment: "")
                                 }
@@ -158,7 +158,7 @@ class SDSocialViewController: GAITrackedViewController, SDErrorPlaceholderViewDe
                             }
 
                             if (errorMessage != "") {
-                                dispatch_async(dispatch_get_main_queue()) {
+                                DispatchQueue.main.async {
                                     self.errorPlaceholderView.show(errorMessage)
                                 }
                             }
@@ -183,8 +183,8 @@ class SDSocialViewController: GAITrackedViewController, SDErrorPlaceholderViewDe
 
     // MARK: - UITableViewDelegate protocol implementation
 
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+    func tableView(_ tableView: UITableView, didSelectRowAtIndexPath indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
         if (listOfTweets.count > indexPath.row) {
             let tweet = listOfTweets[indexPath.row] as SDTweet
             if let urlApp = SDSocialHandler.urlAppForTweetDetail(tweet) {
@@ -199,43 +199,43 @@ class SDSocialViewController: GAITrackedViewController, SDErrorPlaceholderViewDe
         }
     }
 
-    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    func tableView(_ tableView: UITableView, heightForRowAtIndexPath indexPath: IndexPath) -> CGFloat {
         if (isIOS8OrLater()) {
             return UITableViewAutomaticDimension
         }
         let cell = self.tableView(tableView, cellForRowAtIndexPath: indexPath) as! SDSocialTableViewCell
-        return cell.contentView.systemLayoutSizeFittingSize(UILayoutFittingCompressedSize).height
+        return cell.contentView.systemLayoutSizeFitting(UILayoutFittingCompressedSize).height
     }
 
     // MARK: UITableViewDataSource protocol implementation
 
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return listOfTweets.count
     }
 
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell: SDSocialTableViewCell? = tableView.dequeueReusableCellWithIdentifier(kReuseIdentifier) as? SDSocialTableViewCell
+    func tableView(_ tableView: UITableView, cellForRowAtIndexPath indexPath: IndexPath) -> UITableViewCell {
+        let cell: SDSocialTableViewCell? = tableView.dequeueReusableCell(withIdentifier: kReuseIdentifier) as? SDSocialTableViewCell
         switch cell {
-        case let (.Some(cell)):
+        case let (.some(cell)):
             return configureCell(cell, indexPath: indexPath)
         default:
-            let cell = SDSocialTableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: kReuseIdentifier)
+            let cell = SDSocialTableViewCell(style: UITableViewCellStyle.default, reuseIdentifier: kReuseIdentifier)
             return configureCell(cell, indexPath: indexPath)
         }
     }
 
-    func configureCell(cell: SDSocialTableViewCell, indexPath: NSIndexPath) -> SDSocialTableViewCell {
+    func configureCell(_ cell: SDSocialTableViewCell, indexPath: IndexPath) -> SDSocialTableViewCell {
         if (listOfTweets.count > indexPath.row) {
             let currentTweet: SDTweet = listOfTweets[indexPath.row]
             cell.drawTweetData(currentTweet)
         }
-        cell.frame = CGRectMake(0, 0, tblView.bounds.size.width, cell.frame.size.height);
+        cell.frame = CGRect(x: 0, y: 0, width: tblView.bounds.size.width, height: cell.frame.size.height);
         cell.layoutIfNeeded()
         return cell
     }
 
     func showTableView() {
-        if (tblView.hidden) {
+        if (tblView.isHidden) {
             SDAnimationHelper.showViewWithFadeInAnimation(tblView)
         }
     }
@@ -250,7 +250,7 @@ class SDSocialViewController: GAITrackedViewController, SDErrorPlaceholderViewDe
 
     func didTapCreateTweetButton() {
         let error = self.socialHandler.showTweetComposerWithTweetText(hashtag ?? "", onViewController: self)
-        if (error != .NoError) {
+        if (error != .noError) {
             SDAlertViewHelper.showSimpleAlertViewOnViewController(self, title: nil, message: NSLocalizedString("social_error_message_no_twitter_account_configured", comment: ""), cancelButtonTitle: NSLocalizedString("common_ok", comment: ""), otherButtonTitle: nil, tag: nil, delegate: nil, handler: nil)
             SDGoogleAnalyticsHandler.sendGoogleAnalyticsTrackingWithScreenName(kGAScreenNameSocial, category: kGACategoryNavigate, action: kGAActionSocialPostTweet, label: nil)
         }
@@ -259,13 +259,13 @@ class SDSocialViewController: GAITrackedViewController, SDErrorPlaceholderViewDe
     // MARK: - Progress HUD
 
     func showProgressHUD() {
-        dispatch_async(dispatch_get_main_queue(), {
+        DispatchQueue.main.async(execute: {
             SVProgressHUD.show()
         })
     }
 
     func hideProgressHUD() {
-        dispatch_async(dispatch_get_main_queue()) {
+        DispatchQueue.main.async {
             SVProgressHUD.dismiss()
             self.refreshControl.endRefreshing()
         }

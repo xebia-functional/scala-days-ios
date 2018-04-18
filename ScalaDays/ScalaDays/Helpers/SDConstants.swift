@@ -22,7 +22,7 @@ let kExternalKeysDKGoogleAnalytics = "GoogleAnalytics"
 let kExternalKeysDKCrashlytics = "Crashlytics"
 let kExternalKeysDKLocalytics = "Localytics"
 
-let IS_IPHONE5 = UIScreen.mainScreen().bounds.size.height == 480;
+let IS_IPHONE5 = UIScreen.main.bounds.size.height == 480;
 
 let icon_menu_schedule = "menu_icon_schedule"
 let icon_menu_social = "menu_icon_social"
@@ -38,33 +38,33 @@ let Height_Header_Menu: CGFloat = 130
 let kEstimatedDynamicCellsRowHeightHigh : CGFloat = 160.0
 let kEstimatedDynamicCellsRowHeightLow : CGFloat = 132.0
 
-let kAnimationShowHideTimeInterval : NSTimeInterval = 0.3
+let kAnimationShowHideTimeInterval : TimeInterval = 0.3
 let kTweetCount = 100
 let kGlobalPadding : CGFloat = 15.0
 
-let kMinimumTimeToDownloadDataFromApiInSeconds : NSTimeInterval = 14400
+let kMinimumTimeToDownloadDataFromApiInSeconds : TimeInterval = 14400
 
 let lastModifiedDate = "Last-Modified"
 let url47Website = "http://www.47deg.com"
 let kAlphaValueFull: CGFloat = 1.0
 
 let isIOS8OrLater = {() -> Bool in
-    switch UIDevice.currentDevice().systemVersion.compare("8.0.0", options: NSStringCompareOptions.NumericSearch) {
-    case .OrderedSame, .OrderedDescending:
+    switch UIDevice.current.systemVersion.compare("8.0.0", options: NSString.CompareOptions.numeric) {
+    case .orderedSame, .orderedDescending:
         return true
-    case .OrderedAscending:
+    case .orderedAscending:
         return false
     }
 }
 
-let launchSafariToUrl = {(url: NSURL) -> Bool in
-    if UIApplication.sharedApplication().canOpenURL(url) {
-        UIApplication.sharedApplication().openURL(url)
+let launchSafariToUrl = {(url: URL) -> Bool in
+    if UIApplication.shared.canOpenURL(url) {
+        UIApplication.shared.openURL(url)
         return true
     }
     return false
 }
 
-let screenBounds = UIScreen.mainScreen().bounds
+let screenBounds = UIScreen.main.bounds
 let colorScheduleTime = UIColor(red: 70/255, green: 149/255, blue: 174/255, alpha: 1)
 let colorScheduleTimeActive = UIColor(red: 51/255, green: 116/255, blue: 136/255, alpha: 1)

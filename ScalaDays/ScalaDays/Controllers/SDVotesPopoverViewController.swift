@@ -17,7 +17,7 @@
 import UIKit
 
 protocol SDVotesPopoverViewControllerDelegate {
-    func didSelectVoteValue(voteType: VoteType)
+    func didSelectVoteValue(_ voteType: VoteType)
 }
 
 class SDVotesPopoverViewController: UIViewController, UIPopoverPresentationControllerDelegate {
@@ -30,20 +30,20 @@ class SDVotesPopoverViewController: UIViewController, UIPopoverPresentationContr
         delegate = d
     }
 
-    @IBAction func didVoteLike(sender: AnyObject) {
-        self.sendVoteElection(VoteType.Like)
+    @IBAction func didVoteLike(_ sender: AnyObject) {
+        self.sendVoteElection(VoteType.like)
     }
     
-    @IBAction func didVoteNeutral(sender: AnyObject) {
-        self.sendVoteElection(VoteType.Neutral)
+    @IBAction func didVoteNeutral(_ sender: AnyObject) {
+        self.sendVoteElection(VoteType.neutral)
     }
     
-    @IBAction func didVoteDontLike(sender: AnyObject) {
-        self.sendVoteElection(VoteType.Unlike)
+    @IBAction func didVoteDontLike(_ sender: AnyObject) {
+        self.sendVoteElection(VoteType.unlike)
     }
     
-    func sendVoteElection(vote: VoteType) {
+    func sendVoteElection(_ vote: VoteType) {
         delegate?.didSelectVoteValue(vote)
-        self.dismissViewControllerAnimated(true, completion: nil)
+        self.dismiss(animated: true, completion: nil)
     }
 }

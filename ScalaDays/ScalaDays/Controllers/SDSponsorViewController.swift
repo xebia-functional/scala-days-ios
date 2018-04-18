@@ -39,7 +39,7 @@ class SDSponsorViewController: GAITrackedViewController, SDErrorPlaceholderViewD
         self.setNavigationBarItem()
         self.title = NSLocalizedString("sponsors", comment: "Sponsors")
         
-        tblSponsors?.registerNib(UINib(nibName: "SDSponsorsTableViewCell", bundle: nil), forCellReuseIdentifier: kReuseIdentifier)
+        tblSponsors?.register(UINib(nibName: "SDSponsorsTableViewCell", bundle: nil), forCellReuseIdentifier: kReuseIdentifier)
         
         errorPlaceholderView = SDErrorPlaceholderView(frame: screenBounds)
         errorPlaceholderView.delegate = self
@@ -48,7 +48,7 @@ class SDSponsorViewController: GAITrackedViewController, SDErrorPlaceholderViewD
         self.screenName = kGAScreenNameSponsors
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         if !isDataLoaded {
             loadData()
         }
@@ -91,67 +91,67 @@ class SDSponsorViewController: GAITrackedViewController, SDErrorPlaceholderViewD
     
     // MARK: UITableViewDataSource implementation
     
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    func numberOfSectionsInTableView(_ tableView: UITableView) -> Int {
         if let types = filteredSponsorTypes {
             return types.count
         }
         return 0
     }
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if let sponsors = filteredSponsors {
             return sponsors[section].count
         }
         return 0
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell : SDSponsorsTableViewCell? = tableView.dequeueReusableCellWithIdentifier(kReuseIdentifier) as? SDSponsorsTableViewCell
+    func tableView(_ tableView: UITableView, cellForRowAtIndexPath indexPath: IndexPath) -> UITableViewCell {
+        let cell : SDSponsorsTableViewCell? = tableView.dequeueReusableCell(withIdentifier: kReuseIdentifier) as? SDSponsorsTableViewCell
         switch cell {
-        case let(.Some(cell)):
+        case let(.some(cell)):
             configureCell(cell, indexPath: indexPath)
             return cell
         default:
-            let cell = SDSponsorsTableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: kReuseIdentifier)
+            let cell = SDSponsorsTableViewCell(style: UITableViewCellStyle.default, reuseIdentifier: kReuseIdentifier)
             configureCell(cell, indexPath: indexPath)
             return cell
         }
     }
     
-    func configureCell(cell: SDSponsorsTableViewCell, indexPath: NSIndexPath) {
+    func configureCell(_ cell: SDSponsorsTableViewCell, indexPath: IndexPath) {
         if let sponsors = filteredSponsors?[indexPath.section] {
             cell.drawSponsorData(sponsors[indexPath.row])
         }
-        cell.frame = CGRectMake(0, 0, tblSponsors.bounds.size.width, cell.frame.size.height);
+        cell.frame = CGRect(x: 0, y: 0, width: tblSponsors.bounds.size.width, height: cell.frame.size.height);
         cell.layoutIfNeeded()
     }
     
     // MARK: - UITableViewDelegate
     
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+    func tableView(_ tableView: UITableView, didSelectRowAtIndexPath indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
         if let sponsors = filteredSponsors?[indexPath.section] {
-            if let url = NSURL(string: sponsors[indexPath.row].url) {
+            if let url = URL(string: sponsors[indexPath.row].url) {
                 SDGoogleAnalyticsHandler.sendGoogleAnalyticsTrackingWithScreenName(kGAScreenNameSponsors, category: kGACategoryNavigate, action: kGAActionSponsorsGoToSponsor, label: nil)
                 launchSafariToUrl(url)
             }
         }        
     }
     
-    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    func tableView(_ tableView: UITableView, heightForRowAtIndexPath indexPath: IndexPath) -> CGFloat {
         return kRowHeight
     }
     
-    func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return kHeaderHeight
     }
     
-    func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         // It seems that there are problems trying to use NIB files to instantiate table view headers in iOS7
         // (the run-time asks for a call to super.layoutSubviews() even if it's specifically overriden in the header subclass).
         // We need to do it by hand in this case...
         if let types = filteredSponsorTypes {
-            let headerView = SDTableHeaderView(frame: CGRectMake(0, 0, tblSponsors.frame.size.width, kHeaderHeight))
+            let headerView = SDTableHeaderView(frame: CGRect(x: 0, y: 0, width: tblSponsors.frame.size.width, height: kHeaderHeight))
             headerView.lblDate.text = types[section]
             headerView.lblDate.sizeToFit()
             return headerView
@@ -163,7 +163,7 @@ class SDSponsorViewController: GAITrackedViewController, SDErrorPlaceholderViewD
     
     func filterSponsors() -> (types: [String], sponsors: [[Sponsor]])? {
         if let _sponsors = sponsors {
-            return _sponsors.reduce((types: [String](), sponsors: [[Sponsor]]()), combine: {
+            return _sponsors.reduce((types: [String](), sponsors: [[Sponsor]]()), {
                 var tempTypes = $0.types
                 var tempSponsors = $0.sponsors
                 tempTypes.append($1.type)
@@ -184,7 +184,7 @@ class SDSponsorViewController: GAITrackedViewController, SDErrorPlaceholderViewD
     // Animations
     
     func showTableView() {
-        if self.tblSponsors.hidden {
+        if self.tblSponsors.isHidden {
             SDAnimationHelper.showViewWithFadeInAnimation(self.tblSponsors)
         }
     }

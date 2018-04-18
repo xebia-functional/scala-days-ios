@@ -17,17 +17,17 @@
 import UIKit
 
 class SDAlertViewHelper: NSObject {
-    class func showSimpleAlertViewOnViewController(viewController: UIViewController!, title: String?, message: String?, cancelButtonTitle: String!, otherButtonTitle: String?, tag: Int?, delegate: UIAlertViewDelegate?, handler: ((UIAlertAction!) -> Void)?) {
+    class func showSimpleAlertViewOnViewController(_ viewController: UIViewController!, title: String?, message: String?, cancelButtonTitle: String!, otherButtonTitle: String?, tag: Int?, delegate: UIAlertViewDelegate?, handler: ((UIAlertAction?) -> Void)?) {
         if isIOS8OrLater() {
-            let alertController = UIAlertController(title: title, message: message, preferredStyle: .Alert)
-            let actionCancel = UIAlertAction(title: cancelButtonTitle, style: .Cancel, handler: handler)
+            let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+            let actionCancel = UIAlertAction(title: cancelButtonTitle, style: .cancel, handler: handler)
             if let otherButton = otherButtonTitle {
-                let actionOther = UIAlertAction(title: otherButton, style: .Default, handler: handler)
+                let actionOther = UIAlertAction(title: otherButton, style: .default, handler: handler)
                 alertController.addAction(actionOther)
             }
             
             alertController.addAction(actionCancel)
-            viewController.presentViewController(alertController, animated: true, completion: nil)
+            viewController.present(alertController, animated: true, completion: nil)
         } else {
             let alertView = UIAlertView()
             if let unwrappedTitle = title {
@@ -35,10 +35,10 @@ class SDAlertViewHelper: NSObject {
             }
             alertView.message = message
             alertView.delegate = delegate
-            alertView.addButtonWithTitle(cancelButtonTitle)
+            alertView.addButton(withTitle: cancelButtonTitle)
             alertView.cancelButtonIndex = 0
             if let unwrappedOtherButton = otherButtonTitle {
-                alertView.addButtonWithTitle(unwrappedOtherButton)
+                alertView.addButton(withTitle: unwrappedOtherButton)
             }
             if let unwrappedTag = tag {
                 alertView.tag = unwrappedTag

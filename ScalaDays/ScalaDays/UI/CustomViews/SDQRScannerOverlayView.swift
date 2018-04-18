@@ -18,7 +18,7 @@ import UIKit
 
 @objc protocol SDQRScannerOverlayViewDelegate {
     
-    optional func didTapCancelButtonInQRScanner()
+    @objc optional func didTapCancelButtonInQRScanner()
     
 }
 

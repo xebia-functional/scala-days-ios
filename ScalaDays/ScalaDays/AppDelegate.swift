@@ -25,31 +25,31 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     var menuViewController: SDSlideMenuViewController!
 
-    func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject:AnyObject]?) -> Bool {
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         let externalKeys = AppDelegate.loadExternalKeys()
         
         if isIOS8OrLater() {
-            UIApplication.sharedApplication().registerForRemoteNotifications()
-            let settings = UIUserNotificationSettings(forTypes: [.Alert, .Sound, .Badge], categories: nil)
-            UIApplication.sharedApplication().registerUserNotificationSettings(settings)
+            UIApplication.shared.registerForRemoteNotifications()
+            let settings = UIUserNotificationSettings(types: [.alert, .sound, .badge], categories: nil)
+            UIApplication.shared.registerUserNotificationSettings(settings)
         } else {
-            let types: UIRemoteNotificationType = [UIRemoteNotificationType.Badge, UIRemoteNotificationType.Sound, UIRemoteNotificationType.Alert]
-            UIApplication.sharedApplication().registerForRemoteNotificationTypes(types)
+            let types: UIRemoteNotificationType = [UIRemoteNotificationType.badge, UIRemoteNotificationType.sound, UIRemoteNotificationType.alert]
+            UIApplication.shared.registerForRemoteNotifications(matching: types)
         }
         
         if let localyticsKey = externalKeys.localyticsKey {
             Localytics.integrate(localyticsKey)
             Localytics.setLoggingEnabled(true)
-            if application.applicationState != UIApplicationState.Background {
+            if application.applicationState != UIApplicationState.background {
                 Localytics.openSession()
             }
         }
         
         if let googleAnalyticsKey = externalKeys.googleAnalyticsKey {
-            GAI.sharedInstance().trackerWithTrackingId(googleAnalyticsKey)
+            GAI.sharedInstance().tracker(withTrackingId: googleAnalyticsKey)
         }
         if let crashlyticsKey = externalKeys.crashlyticsKey {
-            Crashlytics.startWithAPIKey(crashlyticsKey)
+            Crashlytics.start(withAPIKey: crashlyticsKey)
         }
 
         self.initAppearence()
@@ -57,33 +57,33 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return true
     }
 
-    func applicationDidEnterBackground(application: UIApplication) {
+    func applicationDidEnterBackground(_ application: UIApplication) {
         // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
         // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
         Localytics.closeSession()
         Localytics.upload()
     }
 
-    func applicationWillEnterForeground(application: UIApplication) {
+    func applicationWillEnterForeground(_ application: UIApplication) {
         // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
         Localytics.openSession()
         Localytics.upload()
     }
 
-    func applicationDidBecomeActive(application: UIApplication) {
+    func applicationDidBecomeActive(_ application: UIApplication) {
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
         Localytics.openSession()
         Localytics.upload()
     }
 
-    func applicationWillTerminate(application: UIApplication) {
+    func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
         Localytics.dismissCurrentInAppMessage()
         Localytics.closeSession()
         Localytics.upload()
     }
 
-    private func createMenuView() {
+    fileprivate func createMenuView() {
 
         let scheduleViewController = SDScheduleViewController(nibName: "SDScheduleViewController", bundle: nil)
         menuViewController = SDSlideMenuViewController(nibName: "SDSlideMenuViewController", bundle: nil)
@@ -92,7 +92,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         menuViewController.scheduleViewController = nvc
         let slideMenuController = SlideMenuController(mainViewController: nvc, leftMenuViewController: menuViewController)
 
-        window = UIWindow(frame: UIScreen.mainScreen().bounds)
+        window = UIWindow(frame: UIScreen.main.bounds)
         if let window = window {
             window.backgroundColor = UIColor.appColor()
             window.rootViewController = slideMenuController
@@ -102,16 +102,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func initAppearence() {
         UINavigationBar.appearance().barTintColor = UIColor.appColor()
-        UINavigationBar.appearance().tintColor = UIColor.whiteColor()
-        UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor()]
+        UINavigationBar.appearance().tintColor = UIColor.white
+        UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
         UINavigationBar.appearance().backIndicatorImage = UIImage(named: "navigation_bar_icon_arrow")
         UINavigationBar.appearance().backIndicatorTransitionMaskImage = UIImage(named: "navigation_bar_icon_arrow")
-        UIApplication.sharedApplication().setStatusBarStyle(.LightContent, animated: false)
-        SVProgressHUD.setBackgroundColor(UIColor.clearColor())
+        UIApplication.shared.setStatusBarStyle(.lightContent, animated: false)
+        SVProgressHUD.setBackgroundColor(UIColor.clear)
     }
 
     class func loadExternalKeys() -> (googleAnalyticsKey:String?, crashlyticsKey:String?, localyticsKey:String?) {
-        if let path = NSBundle.mainBundle().pathForResource(kExternalKeysPlistFilename, ofType: "plist") {
+        if let path = Bundle.main.path(forResource: kExternalKeysPlistFilename, ofType: "plist") {
             if let keysDict = NSDictionary(contentsOfFile: path) {
                 return (keysDict[kExternalKeysDKGoogleAnalytics] as? String, keysDict[kExternalKeysDKCrashlytics] as? String, keysDict[kExternalKeysDKLocalytics] as? String)
             }
@@ -120,19 +120,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
 
-    func application(application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: NSData) {
+    func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
         Localytics.setPushToken(deviceToken)
     }
 
-    func application(application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: NSError) {
+    func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
         print("Registration for Remote Notifications failed with error: \(error)")
     }
     
-    func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject], fetchCompletionHandler completionHandler: (UIBackgroundFetchResult) -> Void) {
+    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable: Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
         func handleReload() {
-            if let jsonReload: AnyObject = userInfo["jsonReload"] {
+            if let jsonReload: AnyObject = userInfo["jsonReload"] as AnyObject {
                 if let jsonReloadBool = jsonReload as? NSString {
-                    if(jsonReloadBool .isEqualToString("true")) {
+                    if(jsonReloadBool .isEqual(to: "true")) {
                         DataManager.sharedInstance.lastConnectionAttemptDate = nil
                         self.menuViewController.askControllersToReload()
                     }
@@ -142,7 +142,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         
         handleReload()        
-        completionHandler(.NoData)
+        completionHandler(.noData)
     }
 }
 

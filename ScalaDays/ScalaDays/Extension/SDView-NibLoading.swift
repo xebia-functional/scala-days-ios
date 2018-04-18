@@ -15,11 +15,35 @@
 */
 
 import UIKit
+// FIXME: comparison operators with optionals were removed from the Swift Standard Libary.
+// Consider refactoring the code to use the non-optional operators.
+fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l < r
+  case (nil, _?):
+    return true
+  default:
+    return false
+  }
+}
+
+// FIXME: comparison operators with optionals were removed from the Swift Standard Libary.
+// Consider refactoring the code to use the non-optional operators.
+fileprivate func > <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l > r
+  default:
+    return rhs < lhs
+  }
+}
+
 
 extension UIView {
    
-    func loadNibSubviewsFromNib(nibName: String) -> UIView? {
-        let objects = NSBundle.mainBundle().loadNibNamed(nibName, owner: self, options: nil)
+    func loadNibSubviewsFromNib(_ nibName: String) -> UIView? {
+        let objects = Bundle.main.loadNibNamed(nibName, owner: self, options: nil)
         
         objects?.filter({$0 is UIView})
         if objects?.count > 0 {
@@ -33,7 +57,7 @@ extension UIView {
         return nil
     }
     
-    func updateCustomConstraints(customConstraints : NSMutableArray, containerView: UIView!) {
+    func updateCustomConstraints(_ customConstraints : NSMutableArray, containerView: UIView!) {
        
         for object in customConstraints {
             if let const = object as? NSLayoutConstraint {
@@ -44,8 +68,8 @@ extension UIView {
 
         if containerView != nil {
             let viewDictionary : NSDictionary = ["view" : containerView]
-            customConstraints.addObjectsFromArray(NSLayoutConstraint.constraintsWithVisualFormat("H:|[view]|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: viewDictionary as! [String : AnyObject]))
-            customConstraints.addObjectsFromArray(NSLayoutConstraint.constraintsWithVisualFormat("V:|[view]|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: viewDictionary as! [String:AnyObject]))
+            customConstraints.addObjects(from: NSLayoutConstraint.constraints(withVisualFormat: "H:|[view]|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: viewDictionary as! [String : AnyObject]))
+            customConstraints.addObjects(from: NSLayoutConstraint.constraints(withVisualFormat: "V:|[view]|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: viewDictionary as! [String:AnyObject]))
 
             for object in customConstraints {
                 if let const = object as? NSLayoutConstraint {

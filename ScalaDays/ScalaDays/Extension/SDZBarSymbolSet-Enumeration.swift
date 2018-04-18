@@ -17,8 +17,8 @@
 import Foundation
 import ZBarSDK
 
-extension ZBarSymbolSet: SequenceType {
-    public func generate() -> NSFastGenerator {
-        return NSFastGenerator(self)
+extension ZBarSymbolSet: Sequence {
+    public func makeIterator() -> NSFastEnumerationIterator {
+        return NSFastEnumerationIterator(self)
     }
 }

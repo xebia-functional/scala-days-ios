@@ -17,15 +17,15 @@
 import Foundation
 
 enum VoteType: Int {
-    case Unlike = 0
-    case Neutral = 1
-    case Like = 2
+    case unlike = 0
+    case neutral = 1
+    case like = 2
     
     func iconNameForVoteType() -> String {
         switch self {
-        case Unlike: return "list_icon_vote_unlike.png"
-        case Neutral: return "list_icon_vote_neutral.png"
-        case Like: return "list_icon_vote_like.png"
+        case .unlike: return "list_icon_vote_unlike.png"
+        case .neutral: return "list_icon_vote_neutral.png"
+        case .like: return "list_icon_vote_like.png"
         }
     }
 }
@@ -44,16 +44,16 @@ class Vote : NSObject, NSCoding {
     }
     
     required init?(coder aDecoder: NSCoder) {
-        self.voteValue = aDecoder.decodeObjectForKey("voteValue") as! Int
-        self.talkId = aDecoder.decodeObjectForKey("talkId") as! Int
-        self.conferenceId = aDecoder.decodeObjectForKey("conferenceId") as! Int
-        self.comments = aDecoder.decodeObjectForKey("comments") as? String
+        self.voteValue = aDecoder.decodeObject(forKey: "voteValue") as! Int
+        self.talkId = aDecoder.decodeObject(forKey: "talkId") as! Int
+        self.conferenceId = aDecoder.decodeObject(forKey: "conferenceId") as! Int
+        self.comments = aDecoder.decodeObject(forKey: "comments") as? String
     }
     
-    func encodeWithCoder(aCoder: NSCoder) {
-        aCoder.encodeObject(self.voteValue, forKey: "voteValue")
-        aCoder.encodeObject(self.talkId, forKey: "talkId")
-        aCoder.encodeObject(self.conferenceId, forKey: "conferenceId")
-        aCoder.encodeObject(self.comments, forKey: "comments")
+    func encode(with aCoder: NSCoder) {
+        aCoder.encode(self.voteValue, forKey: "voteValue")
+        aCoder.encode(self.talkId, forKey: "talkId")
+        aCoder.encode(self.conferenceId, forKey: "conferenceId")
+        aCoder.encode(self.comments, forKey: "comments")
     }
 }
