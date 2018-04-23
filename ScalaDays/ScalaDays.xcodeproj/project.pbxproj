@@ -83,7 +83,6 @@
 		A1C8B8761A8E6C77008599FF /* SDScheduleListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A1C8B8751A8E6C77008599FF /* SDScheduleListTableViewCell.xib */; };
 		A1C8B8781A8E6CE7008599FF /* SDScheduleListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1C8B8771A8E6CE7008599FF /* SDScheduleListTableViewCell.swift */; };
 		A1C8B87A1A8E6F56008599FF /* SDTableHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1C8B8791A8E6F56008599FF /* SDTableHeaderView.swift */; };
-		A1C8B87D1A8E75B6008599FF /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A1C8B87C1A8E75B6008599FF /* Crashlytics.framework */; };
 		A1D795CD1A68267F009CCEB3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1D795CC1A68267F009CCEB3 /* AppDelegate.swift */; };
 		A1D795D41A68267F009CCEB3 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A1D795D31A68267F009CCEB3 /* Images.xcassets */; };
 		A1D795E31A68267F009CCEB3 /* ScalaDaysTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1D795E21A68267F009CCEB3 /* ScalaDaysTests.swift */; };
@@ -198,7 +197,6 @@
 		A1C8B8751A8E6C77008599FF /* SDScheduleListTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SDScheduleListTableViewCell.xib; sourceTree = "<group>"; };
 		A1C8B8771A8E6CE7008599FF /* SDScheduleListTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SDScheduleListTableViewCell.swift; sourceTree = "<group>"; };
 		A1C8B8791A8E6F56008599FF /* SDTableHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SDTableHeaderView.swift; sourceTree = "<group>"; };
-		A1C8B87C1A8E75B6008599FF /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
 		A1CC71E11A7930D100757B65 /* SlideMenuController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SlideMenuController.swift; sourceTree = "<group>"; };
 		A1CC71FF1A7A452E00757B65 /* SDUIViewControllerExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SDUIViewControllerExtension.swift; sourceTree = "<group>"; };
 		A1CC72091A7A71F400757B65 /* SDScheduleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SDScheduleViewController.swift; sourceTree = "<group>"; };
@@ -241,7 +239,6 @@
 			files = (
 				A1551FB3207AD44A006BCE7A /* SwiftyJSON.framework in Frameworks */,
 				5928D1781A88E5C800E5049E /* MapKit.framework in Frameworks */,
-				A1C8B87D1A8E75B6008599FF /* Crashlytics.framework in Frameworks */,
 				5950030A1A84EDD500A1C24F /* AddressBook.framework in Frameworks */,
 				595003011A84C1DA00A1C24F /* MobileCoreServices.framework in Frameworks */,
 				C9E2A50DD27897A1C34CFCA0 /* Pods_ScalaDays.framework in Frameworks */,
@@ -505,7 +502,6 @@
 			isa = PBXGroup;
 			children = (
 				A1AB2E9A1E893C4E00CFE768 /* ScalaDays.entitlements */,
-				A1C8B87C1A8E75B6008599FF /* Crashlytics.framework */,
 				A17D3AC71A690E3A00024062 /* Bridging-Header.h */,
 				A1D795CC1A68267F009CCEB3 /* AppDelegate.swift */,
 				A1D795D31A68267F009CCEB3 /* Images.xcassets */,
@@ -581,7 +577,6 @@
 				A163DC141A6D6C7C00A21B8E /* Embed Frameworks */,
 				A1C8B87B1A8E7597008599FF /* ShellScript */,
 				191320A905B1A0A2A3291C5B /* [CP] Embed Pods Frameworks */,
-				235F44C485C2C1A1BEEF4477 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -601,7 +596,6 @@
 				A1D795D91A68267F009CCEB3 /* Frameworks */,
 				A1D795DA1A68267F009CCEB3 /* Resources */,
 				9086147203C2B69DF14A2A82 /* [CP] Embed Pods Frameworks */,
-				A0A5C8FEC3D0DE512C11A323 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -759,21 +753,6 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ScalaDaysPods-ScalaDays/Pods-ScalaDaysPods-ScalaDays-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		235F44C485C2C1A1BEEF4477 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ScalaDaysPods-ScalaDays/Pods-ScalaDaysPods-ScalaDays-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		9086147203C2B69DF14A2A82 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -792,21 +771,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ScalaDaysPods-ScalaDaysTests/Pods-ScalaDaysPods-ScalaDaysTests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		A0A5C8FEC3D0DE512C11A323 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ScalaDaysPods-ScalaDaysTests/Pods-ScalaDaysPods-ScalaDaysTests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		A1C8B87B1A8E7597008599FF /* ShellScript */ = {

@@ -14,6 +14,9 @@ abstract_target 'ScalaDaysPods' do
   target 'ScalaDays' do
     # Google Analytics
     pod 'GoogleAnalytics'
+    
+    # Crashlytics
+    pod 'Crashlytics', '3.10.1'
           
     # UI
     pod 'SDWebImage', '~> 3.5'
