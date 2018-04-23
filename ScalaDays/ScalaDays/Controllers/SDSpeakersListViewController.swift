@@ -17,7 +17,7 @@
 import UIKit
 import SVProgressHUD
 
-class SDSpeakersListViewController: GAITrackedViewController, SDErrorPlaceholderViewDelegate, SDMenuControllerItem {
+class SDSpeakersListViewController: GAITrackedViewController, UITableViewDelegate, UITableViewDataSource, SDErrorPlaceholderViewDelegate, SDMenuControllerItem {
     
     @IBOutlet weak var tblView: UITableView!
     var errorPlaceholderView : SDErrorPlaceholderView!
@@ -87,7 +87,7 @@ class SDSpeakersListViewController: GAITrackedViewController, SDErrorPlaceholder
     
     // MARK: - UITableViewDelegate & UITableViewDataSource implementation
    
-    func tableView(_ tableView: UITableView, didSelectRowAtIndexPath indexPath: IndexPath) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         if let listOfSpeakers = speakers {
             if listOfSpeakers.count > indexPath.row {
@@ -107,11 +107,11 @@ class SDSpeakersListViewController: GAITrackedViewController, SDErrorPlaceholder
         }
     }
     
-    func tableView(_ tableView: UITableView, heightForRowAtIndexPath indexPath: IndexPath) -> CGFloat {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if (isIOS8OrLater()) {
             return UITableViewAutomaticDimension
         }
-        let cell = self.tableView(tableView, cellForRowAtIndexPath: indexPath) as! SDSpeakersTableViewCell
+        let cell = self.tableView(tableView, cellForRowAt: indexPath) as! SDSpeakersTableViewCell
         return cell.contentView.systemLayoutSizeFitting(UILayoutFittingCompressedSize).height
     }
     
@@ -122,7 +122,7 @@ class SDSpeakersListViewController: GAITrackedViewController, SDErrorPlaceholder
         return 0
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAtIndexPath indexPath: IndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell : SDSpeakersTableViewCell? = tableView.dequeueReusableCell(withIdentifier: kReuseIdentifier) as? SDSpeakersTableViewCell
         switch cell {
         case let(.some(cell)):
