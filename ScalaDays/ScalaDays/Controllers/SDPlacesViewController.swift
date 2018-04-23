@@ -58,7 +58,7 @@ class SDPlacesViewController: GAITrackedViewController, MKMapViewDelegate, SDErr
         DataManager.sharedInstance.loadDataJson() {
             (bool, error) -> () in
             
-           if let badError = error {
+            if let badError = error {
                 self.errorPlaceholderView.show(NSLocalizedString("error_message_no_data_available", comment: ""))
                 SVProgressHUD.dismiss()
             } else {
@@ -116,7 +116,7 @@ class SDPlacesViewController: GAITrackedViewController, MKMapViewDelegate, SDErr
         view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(SDPlacesViewController.didTapCallout(_:))))
     }
     
-    func didTapCallout(_ sender: UITapGestureRecognizer) {
+    @objc func didTapCallout(_ sender: UITapGestureRecognizer) {
         let annotationView = sender.view as! MKAnnotationView
         if annotationView.isSelected {
             let annotation = annotationView.annotation as! SDMapAnnotation
@@ -129,7 +129,7 @@ class SDPlacesViewController: GAITrackedViewController, MKMapViewDelegate, SDErr
                     if let conference = selectedConference {
                         if conference.venues.count > indexOfVenue {
                             let venue = conference.venues[indexOfVenue]
-                            let urlString = "http://maps.apple.com/?ll=\(venue.latitude),\(venue.longitude)&daddr=\(venue.address.removeWhitespace().addingPercentEscapes(using: String.Encoding.utf8)!)"
+                            let urlString = "http://maps.apple.com/?ll=\(venue.latitude),\(venue.longitude)&daddr=\(venue.address.removeWhitespace().addingPercentEncoding(withAllowedCharacters: .urlHostAllowed))"
                             if let mapUrl = URL(string: urlString) {
                                 SDGoogleAnalyticsHandler.sendGoogleAnalyticsTrackingWithScreenName(kGAScreenNamePlaces, category: kGACategoryNavigate, action: kGAActionPlacesGoToMap, label: venue.name)
                                 launchSafariToUrl(mapUrl)

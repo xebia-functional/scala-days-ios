@@ -97,7 +97,7 @@ class SDSpeakerDetailView: UIView {
         self.layer.addSublayer(separatorLayer)
     }
 
-    func onTwitter() {
+    @objc func onTwitter() {
         if let twitterAccount = lblUsername.text {
             if let urlApp = SDSocialHandler.urlAppForTwitterAccount(twitterAccount) {
                 let result = launchSafariToUrl(urlApp)

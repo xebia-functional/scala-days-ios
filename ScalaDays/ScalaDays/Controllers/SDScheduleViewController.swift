@@ -248,7 +248,7 @@ class SDScheduleViewController: GAITrackedViewController,
         return nil
     }
     
-    func didPullToRefresh() {
+    @objc func didPullToRefresh() {
         loadData(true)
     }
     
@@ -392,7 +392,7 @@ class SDScheduleViewController: GAITrackedViewController,
 
 // MARK: - Button handling
 
-    func didTapOptionsButton() {
+    @objc func didTapOptionsButton() {
         if isDataLoaded && errorPlaceholderView.isHidden {
             launchFilterSheet()
         }
@@ -516,7 +516,7 @@ class SDScheduleViewController: GAITrackedViewController,
         return (result, 0, 0)
     }
     
-    func didTapOptionsButtonClock() {
+    @objc func didTapOptionsButtonClock() {
         let clock = viewClock()
         if clock.result {
             let indexPath = IndexPath(row: clock.indexRow, section: clock.indexSection)
@@ -700,7 +700,7 @@ class SDScheduleViewController: GAITrackedViewController,
     
     // MARK: - Keyboard handling
     
-    func keyboardWillShow(_ notification: Notification) {
+    @objc func keyboardWillShow(_ notification: Notification) {
         if let notificationInfo = notification.userInfo,
             let keyboardFrame = (notificationInfo[UIKeyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue,
             let animationDuration = (notificationInfo[UIKeyboardAnimationDurationUserInfoKey] as? TimeInterval) {
@@ -709,7 +709,7 @@ class SDScheduleViewController: GAITrackedViewController,
         }
     }
     
-    func keyboardWillHide(_ notification: Notification) {
+    @objc func keyboardWillHide(_ notification: Notification) {
         if let notificationInfo = notification.userInfo,
             let animationDuration = (notificationInfo[UIKeyboardAnimationDurationUserInfoKey] as? TimeInterval) {
                 UIView.animate(withDuration: animationDuration, animations: { () -> Void in
@@ -767,12 +767,12 @@ class SDScheduleViewController: GAITrackedViewController,
     
     func placeholderTextForComments() -> NSAttributedString {
         let placeholderString = NSLocalizedString("schedule_vote_comments_placeholder", comment: "")
-        return NSAttributedString(string: placeholderString, attributes: [NSFontAttributeName: UIFont.fontHelveticaNeueItalic(kVotePlaceholderFontSize), NSForegroundColorAttributeName: UIColor.grayCommentsPlaceholder()])
+        return NSAttributedString(string: placeholderString, attributes: [NSAttributedStringKey.font: UIFont.fontHelveticaNeueItalic(kVotePlaceholderFontSize), NSAttributedStringKey.foregroundColor: UIColor.grayCommentsPlaceholder()])
     }
     
     func attributedStringForComment(_ comment: String) -> NSAttributedString {
-        return NSAttributedString(string: comment, attributes: [NSFontAttributeName: UIFont.fontHelveticaNeueLight(kVotePlaceholderFontSize),
-            NSForegroundColorAttributeName: UIColor.blackForCommentsNormalText()])
+        return NSAttributedString(string: comment, attributes: [NSAttributedStringKey.font: UIFont.fontHelveticaNeueLight(kVotePlaceholderFontSize),
+            NSAttributedStringKey.foregroundColor: UIColor.blackForCommentsNormalText()])
     }
     
     func currentVotingComments() -> String? {

@@ -17,6 +17,7 @@
 import UIKit
 import Crashlytics
 import SVProgressHUD
+import Localytics
 
 
 @UIApplicationMain
@@ -103,7 +104,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func initAppearence() {
         UINavigationBar.appearance().barTintColor = UIColor.appColor()
         UINavigationBar.appearance().tintColor = UIColor.white
-        UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
+        UINavigationBar.appearance().titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.white]
         UINavigationBar.appearance().backIndicatorImage = UIImage(named: "navigation_bar_icon_arrow")
         UINavigationBar.appearance().backIndicatorTransitionMaskImage = UIImage(named: "navigation_bar_icon_arrow")
         UIApplication.shared.setStatusBarStyle(.lightContent, animated: false)
@@ -138,7 +139,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                     }
                 }
             }
-            Localytics.handlePushNotificationOpened(userInfo)
+            Localytics.handleNotification(userInfo)
         }
         
         handleReload()        

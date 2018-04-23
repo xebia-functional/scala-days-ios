@@ -152,20 +152,20 @@ class DataManager {
                     if let date = response.response?.allHeaderFields[lastModifiedDate] as! NSString? {
                         let dateJson = SDDateHandler.sharedInstance.parseServerDate(date)
                         if (dateJson == self.lastDate && !forceConnection) {
-                            callback(false, (response.result.error! as NSError))
+                            callback(false, (response.result.error as NSError?))
                         } else {
-                            if (response.result.error != nil) {
-                                print("Error: \(response.result.error)")
+                            if let error = response.result.error {
+                                print("Error: \(error)")
                                 print(response.request)
                                 print(response.response)
-                                callback(false, response.result.error as! NSError)
+                                callback(false, error as NSError)
                             } else {
                                 if let _data = response.data {
                                     let jsonFormat = JSON(data: _data)
                                     self.parseAndStoreJSONData(jsonFormat)
-                                    callback(true, response.result.error as! NSError)
+                                    callback(true, response.result.error as NSError?)
                                 } else {
-                                    callback(true, response.result.error as! NSError)
+                                    callback(true, response.result.error as NSError?)
                                 }                                
                             }
                         }
@@ -177,15 +177,15 @@ class DataManager {
                     if let date = response.response?.allHeaderFields[lastModifiedDate]as! NSString? {
                         self.lastDate = SDDateHandler.sharedInstance.parseServerDate(date)
                     }
-                    if (response.result.error != nil) {
-                        NSLog("Error: \(response.result.error)")
+                    if let error = response.result.error {
+                        NSLog("Error: \(error)")
                         print(response.request)
                         print(response.response)
-                        callback(false, response.result.error! as NSError)
+                        callback(false, error as NSError)
                     } else {
                         let jsonFormat = JSON(response.result.value!)
                         self.parseAndStoreJSONData(jsonFormat)
-                        callback(true, response.result.error as! NSError)
+                        callback(true, nil)
                     }
                 }
             }

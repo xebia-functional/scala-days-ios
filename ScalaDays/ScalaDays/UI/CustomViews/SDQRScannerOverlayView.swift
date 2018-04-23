@@ -57,7 +57,7 @@ class SDQRScannerOverlayView: UIView {
     
     // MARK: - Cancel scanning handling
     
-    func didTapCancelButton() {
+    @objc func didTapCancelButton() {
         delegate?.didTapCancelButtonInQRScanner?()
     }
 }

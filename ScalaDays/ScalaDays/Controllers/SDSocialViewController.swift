@@ -177,7 +177,7 @@ class SDSocialViewController: GAITrackedViewController, SDErrorPlaceholderViewDe
 
     // MARK: - Tableview's refresh control
 
-    func didActivateRefresh() {
+    @objc func didActivateRefresh() {
         refreshTweets()
     }
 
@@ -248,7 +248,7 @@ class SDSocialViewController: GAITrackedViewController, SDErrorPlaceholderViewDe
 
     // MARK: - Composing tweet
 
-    func didTapCreateTweetButton() {
+    @objc func didTapCreateTweetButton() {
         let error = self.socialHandler.showTweetComposerWithTweetText(hashtag ?? "", onViewController: self)
         if (error != .noError) {
             SDAlertViewHelper.showSimpleAlertViewOnViewController(self, title: nil, message: NSLocalizedString("social_error_message_no_twitter_account_configured", comment: ""), cancelButtonTitle: NSLocalizedString("common_ok", comment: ""), otherButtonTitle: nil, tag: nil, delegate: nil, handler: nil)

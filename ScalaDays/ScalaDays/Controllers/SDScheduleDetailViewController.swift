@@ -76,7 +76,7 @@ class SDScheduleDetailViewController: GAITrackedViewController {
                 let roomTitle = NSLocalizedString("schedule_location_title", comment: "") + room.name
                 lblRoom.attributedText = NSAttributedString(string: roomTitle)
                 if let _ = currentEventLocationMapUrl() {
-                    lblRoom.attributedText = NSAttributedString(string: roomTitle, attributes: [NSUnderlineStyleAttributeName : NSUnderlineStyle.styleSingle.rawValue])
+                    lblRoom.attributedText = NSAttributedString(string: roomTitle, attributes: [NSAttributedStringKey.underlineStyle : NSUnderlineStyle.styleSingle.rawValue])
                     lblRoom.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(SDScheduleDetailViewController.didTapOnLocationLabel)))
                     lblRoom.isUserInteractionEnabled = true
                 }
@@ -113,7 +113,7 @@ class SDScheduleDetailViewController: GAITrackedViewController {
         }
     }
     
-    func didTapFavoritesButton() {
+    @objc func didTapFavoritesButton() {
         if DataManager.sharedInstance.isFavoriteEvent(event, selectedConference: selectedConference) {
             DataManager.sharedInstance.storeOrRemoveFavoriteEvent(true, event: event, selectedConference: selectedConference)
             barButtonFavorites.tintColor = UIColor.white
@@ -139,7 +139,7 @@ class SDScheduleDetailViewController: GAITrackedViewController {
         return nil
     }
     
-    func didTapOnLocationLabel() {
+    @objc func didTapOnLocationLabel() {
         let webViewController = SDWebViewController(nibName: "SDWebViewController", bundle: nil)
         self.navigationController?.pushViewController(webViewController, animated: true)
         self.title = ""
