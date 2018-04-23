@@ -17,7 +17,7 @@
 import UIKit
 import SVProgressHUD
 
-class SDSponsorViewController: GAITrackedViewController, SDErrorPlaceholderViewDelegate, SDMenuControllerItem {
+class SDSponsorViewController: GAITrackedViewController, UITableViewDelegate, UITableViewDataSource, SDErrorPlaceholderViewDelegate, SDMenuControllerItem {
 
     @IBOutlet weak var tblSponsors: UITableView!
     
@@ -91,7 +91,7 @@ class SDSponsorViewController: GAITrackedViewController, SDErrorPlaceholderViewD
     
     // MARK: UITableViewDataSource implementation
     
-    func numberOfSectionsInTableView(_ tableView: UITableView) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         if let types = filteredSponsorTypes {
             return types.count
         }
@@ -105,7 +105,7 @@ class SDSponsorViewController: GAITrackedViewController, SDErrorPlaceholderViewD
         return 0
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAtIndexPath indexPath: IndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell : SDSponsorsTableViewCell? = tableView.dequeueReusableCell(withIdentifier: kReuseIdentifier) as? SDSponsorsTableViewCell
         switch cell {
         case let(.some(cell)):
@@ -128,7 +128,7 @@ class SDSponsorViewController: GAITrackedViewController, SDErrorPlaceholderViewD
     
     // MARK: - UITableViewDelegate
     
-    func tableView(_ tableView: UITableView, didSelectRowAtIndexPath indexPath: IndexPath) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         if let sponsors = filteredSponsors?[indexPath.section] {
             if let url = URL(string: sponsors[indexPath.row].url) {
@@ -138,7 +138,7 @@ class SDSponsorViewController: GAITrackedViewController, SDErrorPlaceholderViewD
         }        
     }
     
-    func tableView(_ tableView: UITableView, heightForRowAtIndexPath indexPath: IndexPath) -> CGFloat {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return kRowHeight
     }
     

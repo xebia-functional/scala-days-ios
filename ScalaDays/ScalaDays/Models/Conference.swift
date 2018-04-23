@@ -20,9 +20,9 @@ import Foundation
 
 class Conferences: NSObject, NSCoding{
 
-    let conferences: Array<Conference>
+    @objc let conferences: Array<Conference>
     
-    init(conferences : Array<Conference>) {
+    init(conferences: Array<Conference>) {
         self.conferences = conferences
     }
 

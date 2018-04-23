@@ -56,8 +56,8 @@ class ScalaDaysTests: XCTestCase {
     
     func testStoringAndLoadingConference() {
         if let conferences = createConferenceDataFromJSONFile(kFilenameForCompleteJsonSF) {
-            StoringHelper.sharedInstance.storeConferenceDataFromFileWithFilename(conferences, filename: kFilenameForTestConferenceData)
-            let loadedData = StoringHelper.sharedInstance.loadConferenceDataFromFileWithFilename(kFilenameForTestConferenceData)
+            StoringHelper.sharedInstance.storeDataFromFileWithFilename(conferences, filename: kFilenameForTestConferenceData)
+            let loadedData = StoringHelper.sharedInstance.loadDataFromFileWithFilename(kFilenameForTestConferenceData)
             if let loadedConferences = loadedData {
                 XCTAssertEqual(conferences.conferences.count, loadedConferences.conferences.count, "Conference data should be the same after being stored")
             } else {
@@ -201,9 +201,9 @@ class ScalaDaysTests: XCTestCase {
         return nil
     }
     
-    func parseJSONData(_ data: NSData) -> JSON? {
+    func parseJSONData(_ data: Data) -> JSON? {
         do {
-            return try JSON(NSJSONSerialization.JSONObjectWithData(data, options: .AllowFragments))
+            return try JSON(JSONSerialization.jsonObject(with: data, options: .allowFragments))
         } catch {
             return nil
         }

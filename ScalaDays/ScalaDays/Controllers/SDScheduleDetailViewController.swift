@@ -52,7 +52,7 @@ class SDScheduleDetailViewController: GAITrackedViewController {
             titleSection.text = currentEvent.title
             
             if let timeZoneName = DataManager.sharedInstance.conferences?.conferences[DataManager.sharedInstance.selectedConferenceIndex].info.utcTimezoneOffset {
-                if let startDate = SDDateHandler.sharedInstance.parseScheduleDate(currentEvent.startTime as NSString) {
+                if let startDate = SDDateHandler.sharedInstance.parseScheduleDate(currentEvent.startTime) {
                     if let localStartDate = SDDateHandler.convertDateToLocalTime(startDate, timeZoneName: timeZoneName) {
                         lblDateSection.text = SDDateHandler.sharedInstance.formatScheduleDetailDate(localStartDate)
                     }

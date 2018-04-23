@@ -58,18 +58,18 @@ class SDDateHandler: NSObject {
         return dateFormatter.date(from: twitterDate)
     }
 
-    func parseServerDate(_ dateString: NSString) -> Date? {
+    func parseServerDate(_ dateString: String) -> Date? {
         dateFormatter.dateFormat = kResponseDateFormat
         dateFormatter.timeZone = TimeZone(abbreviation: "GMT")
         dateFormatter.locale = Locale(identifier: "en_US_POSIX")
-        return dateFormatter.date(from: dateString as String)
+        return dateFormatter.date(from: dateString)
     }
 
-    func parseScheduleDate(_ dateString: NSString) -> Date? {
+    func parseScheduleDate(_ dateString: String) -> Date? {
         dateFormatter.dateFormat = kScheduleDateFormat
         dateFormatter.timeZone = TimeZone(abbreviation: "UTC")
         dateFormatter.locale = Locale(identifier: "en_US_POSIX")
-        return dateFormatter.date(from: dateString as String)
+        return dateFormatter.date(from: dateString)
     }
     
     func formatScheduleDetailDate(_ date: Date) -> String? {
@@ -132,7 +132,7 @@ class SDDateHandler: NSObject {
         return confDate.compare(refDate) == ComparisonResult.orderedAscending && confDateDay == refDateDay
     }
     
-    func isCurrentDateActive(_ startTime: NSString , endTime: NSString) -> (Bool) {
+    func isCurrentDateActive(_ startTime: String , endTime: String) -> (Bool) {
         var result = false
         let currentDate = Date()
         if let timeZoneName = DataManager.sharedInstance.conferences?.conferences[DataManager.sharedInstance.selectedConferenceIndex].info.utcTimezoneOffset,

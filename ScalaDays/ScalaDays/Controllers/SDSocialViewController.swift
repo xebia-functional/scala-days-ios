@@ -17,7 +17,7 @@
 import UIKit
 import SVProgressHUD
 
-class SDSocialViewController: GAITrackedViewController, SDErrorPlaceholderViewDelegate, SDMenuControllerItem {
+class SDSocialViewController: GAITrackedViewController, UITableViewDelegate, UITableViewDataSource, SDErrorPlaceholderViewDelegate, SDMenuControllerItem {
 
     @IBOutlet weak var tblView: UITableView!
     @IBOutlet weak var viewError: UIView!
@@ -183,7 +183,7 @@ class SDSocialViewController: GAITrackedViewController, SDErrorPlaceholderViewDe
 
     // MARK: - UITableViewDelegate protocol implementation
 
-    func tableView(_ tableView: UITableView, didSelectRowAtIndexPath indexPath: IndexPath) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         if (listOfTweets.count > indexPath.row) {
             let tweet = listOfTweets[indexPath.row] as SDTweet
@@ -199,11 +199,11 @@ class SDSocialViewController: GAITrackedViewController, SDErrorPlaceholderViewDe
         }
     }
 
-    func tableView(_ tableView: UITableView, heightForRowAtIndexPath indexPath: IndexPath) -> CGFloat {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if (isIOS8OrLater()) {
             return UITableViewAutomaticDimension
         }
-        let cell = self.tableView(tableView, cellForRowAtIndexPath: indexPath) as! SDSocialTableViewCell
+        let cell = self.tableView(tableView, cellForRowAt: indexPath) as! SDSocialTableViewCell
         return cell.contentView.systemLayoutSizeFitting(UILayoutFittingCompressedSize).height
     }
 
@@ -213,7 +213,7 @@ class SDSocialViewController: GAITrackedViewController, SDErrorPlaceholderViewDe
         return listOfTweets.count
     }
 
-    func tableView(_ tableView: UITableView, cellForRowAtIndexPath indexPath: IndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: SDSocialTableViewCell? = tableView.dequeueReusableCell(withIdentifier: kReuseIdentifier) as? SDSocialTableViewCell
         switch cell {
         case let (.some(cell)):

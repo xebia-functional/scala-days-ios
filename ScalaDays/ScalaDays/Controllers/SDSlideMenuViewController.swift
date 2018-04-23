@@ -18,7 +18,7 @@
 import UIKit
 
 class SDSlideMenuViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, SDSliderMenuBar {
-
+    
     @IBOutlet weak var tblMenu: UITableView!
     @IBOutlet weak var titleConference: UILabel!
     @IBOutlet weak var heigthTable: NSLayoutConstraint!
@@ -28,8 +28,8 @@ class SDSlideMenuViewController: UIViewController, UITableViewDelegate, UITableV
     @IBOutlet weak var tblConferences: UITableView!
     let kConferenceReuseIdentifier = "ConferencesListCell"
     var controllers : [UIViewController]!
-
-
+    
+    
     enum Menu: Int {
         case schedule = 0
         case social
@@ -40,7 +40,7 @@ class SDSlideMenuViewController: UIViewController, UITableViewDelegate, UITableV
         case speakers
         case about
     }
-
+    
     var menus = [NSLocalizedString("schedule", comment: "Schedule"),
                  NSLocalizedString("social", comment: "Social"),
                  NSLocalizedString("contacts", comment: "Contacts"),
@@ -49,7 +49,7 @@ class SDSlideMenuViewController: UIViewController, UITableViewDelegate, UITableV
                  NSLocalizedString("places", comment: "Places"),
                  NSLocalizedString("speakers", comment: "Speakers"),
                  NSLocalizedString("about", comment: "About")]
-
+    
     var menusImage = [icon_menu_schedule,
                       icon_menu_social,
                       icon_menu_contact,
@@ -58,7 +58,7 @@ class SDSlideMenuViewController: UIViewController, UITableViewDelegate, UITableV
                       icon_menu_places,
                       icon_menu_speakers,
                       icon_menu_about]
-
+    
     var scheduleViewController: UINavigationController!
     var socialViewController: UIViewController!
     var contactViewController: UIViewController!
@@ -70,10 +70,10 @@ class SDSlideMenuViewController: UIViewController, UITableViewDelegate, UITableV
     var infoSelected: Information?
     
     var currentConferences: Conferences?
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         if (IS_IPHONE5) {
             heigthHeader.constant = Height_Header_Menu
         }
@@ -90,22 +90,22 @@ class SDSlideMenuViewController: UIViewController, UITableViewDelegate, UITableV
         self.tblMenu.separatorColor = UIColor(white: 1, alpha: 0.1)
         
         self.tblMenu.scrollsToTop = false
-        self.tblConferences.scrollsToTop = false        
+        self.tblConferences.scrollsToTop = false
         
         self.titleConference.setCustomFont(UIFont.fontHelveticaNeue(17), colorFont: UIColor.white)
-
+        
         let socialViewController = SDSocialViewController(nibName: "SDSocialViewController", bundle: nil)
         self.socialViewController = UINavigationController(rootViewController: socialViewController)
-
+        
         let contactViewController = SDContactViewController(nibName: "SDContactViewController", bundle: nil)
         self.contactViewController = UINavigationController(rootViewController: contactViewController)
-
+        
         let sponsorsViewController = SDSponsorViewController(nibName: "SDSponsorViewController", bundle: nil)
         self.sponsorsViewController = UINavigationController(rootViewController: sponsorsViewController)
-
+        
         let placesViewController = SDPlacesViewController(nibName: "SDPlacesViewController", bundle: nil)
         self.placesViewController = UINavigationController(rootViewController: placesViewController)
-
+        
         let aboutViewController = SDAboutViewController(nibName: "SDAboutViewController", bundle: nil)
         self.aboutViewController = UINavigationController(rootViewController: aboutViewController)
         
@@ -139,63 +139,63 @@ class SDSlideMenuViewController: UIViewController, UITableViewDelegate, UITableV
             }
         }
     }
-
+    
     // MARK: - UITableViewDataSource implementation
-
+    
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
-
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch (tableView, self.currentConferences) {
-            case (self.tblConferences, .some(let x)):
-                if IS_IPHONE5 {
-                    self.heightConferenceTable.constant = CGFloat(screenBounds.height - Height_Header_Menu)
-                    return x.conferences.count
-                } else {
-                    self.heightConferenceTable.constant = CGFloat(x.conferences.count * Int(Height_Row_Menu))
-                    return x.conferences.count
-                }
-            case (self.tblConferences, .none): return 0
-            default:
-                if IS_IPHONE5 {
-                    self.heigthTable.constant = CGFloat(screenBounds.height - Height_Header_Menu)
-                } else {
-                    self.heigthTable.constant = CGFloat(menus.count * Int(Height_Row_Menu))
-                }
-                return menus.count
+        case (self.tblConferences, .some(let x)):
+            if IS_IPHONE5 {
+                self.heightConferenceTable.constant = CGFloat(screenBounds.height - Height_Header_Menu)
+                return x.conferences.count
+            } else {
+                self.heightConferenceTable.constant = CGFloat(x.conferences.count * Int(Height_Row_Menu))
+                return x.conferences.count
+            }
+        case (self.tblConferences, .none): return 0
+        default:
+            if IS_IPHONE5 {
+                self.heigthTable.constant = CGFloat(screenBounds.height - Height_Header_Menu)
+            } else {
+                self.heigthTable.constant = CGFloat(menus.count * Int(Height_Row_Menu))
+            }
+            return menus.count
         }
-
+        
     }
-
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         switch (tableView, self.currentConferences) {
-            case (self.tblConferences, .some(let x)):
-                let cell : SDConferenceTableViewCell? = tableView.dequeueReusableCell(withIdentifier: kConferenceReuseIdentifier) as? SDConferenceTableViewCell
-                
-                switch cell {
-                    case let(.some(cell)): return configureConferenceCell(cell, indexPath: indexPath)
-                    default:
-                        let cell = SDConferenceTableViewCell(style: UITableViewCellStyle.default, reuseIdentifier: kConferenceReuseIdentifier)
-                        return configureConferenceCell(cell, indexPath: indexPath)
-                }
-            default :
-                let cell: UITableViewCell = UITableViewCell(style: UITableViewCellStyle.default, reuseIdentifier: "CellMenu")
-                cell.textLabel?.setCustomFont(UIFont.fontHelveticaNeue(15), colorFont: UIColor(white: 1, alpha: 0.8))
-                cell.backgroundColor = UIColor.appColor()
-                let bgColorView = UIView()
-                bgColorView.backgroundColor = UIColor.selectedCellMenu()
-                cell.selectedBackgroundView = bgColorView
-                cell.textLabel?.text = menus[indexPath.row]
-                cell.imageView?.image = UIImage(named: menusImage[indexPath.row] as String)
-                cell.layoutIfNeeded()
-                return cell
+        case (self.tblConferences, .some(_)):
+            let cell : SDConferenceTableViewCell? = tableView.dequeueReusableCell(withIdentifier: kConferenceReuseIdentifier) as? SDConferenceTableViewCell
+            
+            switch cell {
+            case let(.some(cell)): return configureConferenceCell(cell, indexPath: indexPath)
+            default:
+                let cell = SDConferenceTableViewCell(style: UITableViewCellStyle.default, reuseIdentifier: kConferenceReuseIdentifier)
+                return configureConferenceCell(cell, indexPath: indexPath)
+            }
+        default :
+            let cell: UITableViewCell = UITableViewCell(style: UITableViewCellStyle.default, reuseIdentifier: "CellMenu")
+            cell.textLabel?.setCustomFont(UIFont.fontHelveticaNeue(15), colorFont: UIColor(white: 1, alpha: 0.8))
+            cell.backgroundColor = UIColor.appColor()
+            let bgColorView = UIView()
+            bgColorView.backgroundColor = UIColor.selectedCellMenu()
+            cell.selectedBackgroundView = bgColorView
+            cell.textLabel?.text = menus[indexPath.row]
+            cell.imageView?.image = UIImage(named: menusImage[indexPath.row] as String)
+            cell.layoutIfNeeded()
+            return cell
         }
         
     }
     
     func configureConferenceCell(_ cell: SDConferenceTableViewCell, indexPath: IndexPath) -> SDConferenceTableViewCell {
-       if let listOfConferences = self.currentConferences {
+        if let listOfConferences = self.currentConferences {
             if(listOfConferences.conferences.count > indexPath.row) {
                 let conferenceCell = cell as SDConferenceTableViewCell
                 conferenceCell.drawConferenceData(listOfConferences.conferences[indexPath.row])
@@ -206,12 +206,11 @@ class SDSlideMenuViewController: UIViewController, UITableViewDelegate, UITableV
         cell.layoutIfNeeded()
         return cell
     }
-
-
+    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return Height_Row_Menu
     }
-
+    
     // MARK: - UITableViewDelegate implementation
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -242,7 +241,7 @@ class SDSlideMenuViewController: UIViewController, UITableViewDelegate, UITableV
         default: break
         }
     }
-
+    
     @IBAction func selectedConference(_ sender: AnyObject) {
         toggleTblConference()
     }
@@ -268,7 +267,7 @@ class SDSlideMenuViewController: UIViewController, UITableViewDelegate, UITableV
             })
         }
     }
-
+    
     // MARK: - Notify controllers of conference swapping
     
     func currentVisibleController() -> SDMenuControllerItem? {
@@ -299,5 +298,4 @@ class SDSlideMenuViewController: UIViewController, UITableViewDelegate, UITableV
     func didCloseMenu() {
         hideTblConference()
     }
-
 }

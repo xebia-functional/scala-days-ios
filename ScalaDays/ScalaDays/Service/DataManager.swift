@@ -26,7 +26,7 @@ private let _DataManagerSharedInstance = DataManager()
 
 class DataManager {
 
-    var conferences: Conferences?
+    @objc var conferences: Conferences?
 
     var lastDate: Date? {
         get {
@@ -149,7 +149,7 @@ class DataManager {
                 
                 if let conferencesData = StoringHelper.sharedInstance.loadConferenceData() {
                     self.conferences = conferencesData
-                    if let date = response.response?.allHeaderFields[lastModifiedDate] as! NSString? {
+                    if let date = response.response?.allHeaderFields[lastModifiedDate] as! String? {
                         let dateJson = SDDateHandler.sharedInstance.parseServerDate(date)
                         if (dateJson == self.lastDate && !forceConnection) {
                             callback(false, (response.result.error as NSError?))
@@ -174,7 +174,7 @@ class DataManager {
                         callback(false, nil)
                     }
                 } else {
-                    if let date = response.response?.allHeaderFields[lastModifiedDate]as! NSString? {
+                    if let date = response.response?.allHeaderFields[lastModifiedDate]as! String? {
                         self.lastDate = SDDateHandler.sharedInstance.parseServerDate(date)
                     }
                     if let error = response.result.error {

@@ -506,7 +506,7 @@ class SDScheduleViewController: GAITrackedViewController,
         if let events = eventsToShow {
             for (indexSection, eventSection) in events.enumerated(){
                 for (indexRow, event) in eventSection.enumerated(){
-                    if SDDateHandler.sharedInstance.isCurrentDateActive(event.startTime as NSString, endTime: event.endTime as NSString){
+                    if SDDateHandler.sharedInstance.isCurrentDateActive(event.startTime, endTime: event.endTime){
                         result = true
                         return (result, indexRow, indexSection)
                    }
