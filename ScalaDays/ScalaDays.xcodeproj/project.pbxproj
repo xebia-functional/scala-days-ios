@@ -7,10 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0A430AF1BD313B8CEE2FE169 /* Pods_ScalaDaysTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F4E32041E0A4D340DF1DD08F /* Pods_ScalaDaysTests.framework */; };
+		12E3C2517E2B2D10F7D9FEA8 /* Pods_ScalaDaysPods_ScalaDays.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 857E5518A29D51062F9155B4 /* Pods_ScalaDaysPods_ScalaDays.framework */; };
+		18DAE816976C232E95E125FE /* Pods_ScalaDaysPods_ScalaDaysTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7DE3E72A5ED11E640A8CD7A9 /* Pods_ScalaDaysPods_ScalaDaysTests.framework */; };
 		1EA75E8B1A925BFF00884EC8 /* SDConferenceTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EA75E891A925BFF00884EC8 /* SDConferenceTableViewCell.swift */; };
 		1EA75E8C1A925BFF00884EC8 /* SDConferenceTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1EA75E8A1A925BFF00884EC8 /* SDConferenceTableViewCell.xib */; };
-		37EFE2300350A977BB6017F3 /* Pods_ScalaDaysPods_ScalaDaysTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C528A90755B7176AA531509D /* Pods_ScalaDaysPods_ScalaDaysTests.framework */; };
 		590DDD6A1A83BAC100E4CC3F /* SDSpeakersListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 590DDD691A83BAC100E4CC3F /* SDSpeakersListViewController.swift */; };
 		590DDD6E1A83BAFD00E4CC3F /* SDSpeakersListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 590DDD6D1A83BAFD00E4CC3F /* SDSpeakersListViewController.xib */; };
 		590DDD701A83BE9B00E4CC3F /* SDSpeakersTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 590DDD6F1A83BE9B00E4CC3F /* SDSpeakersTableViewCell.swift */; };
@@ -66,7 +66,6 @@
 		59A7DF881A938A41009F4639 /* SDMapView-ZoomOut.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5925ADA01A897AAD000EA5E7 /* SDMapView-ZoomOut.swift */; };
 		59ACD78D1CA28E4800863C52 /* SDVotesPopoverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59ACD78B1CA28E4800863C52 /* SDVotesPopoverViewController.swift */; };
 		59ACD78E1CA28E4800863C52 /* SDVotesPopoverViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 59ACD78C1CA28E4800863C52 /* SDVotesPopoverViewController.xib */; };
-		59AD9F0684274FE6AD4E29A1 /* Pods_ScalaDaysPods_ScalaDays.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 476817DBAE7126B9F4362D31 /* Pods_ScalaDaysPods_ScalaDays.framework */; };
 		59D174621A8E0C2B001E87CF /* SDSponsorsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59D174611A8E0C2B001E87CF /* SDSponsorsTableViewCell.swift */; };
 		59D174641A8E0C3A001E87CF /* SDSponsorsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 59D174631A8E0C3A001E87CF /* SDSponsorsTableViewCell.xib */; };
 		59E430EF1A964BEF00185C41 /* SDGoogleAnalyticsHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59E430EE1A964BEF00185C41 /* SDGoogleAnalyticsHandler.swift */; };
@@ -104,7 +103,6 @@
 		A1FA1FF61A7B98FE00338AF0 /* SDSlideMenuViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A1CC72141A7A727F00757B65 /* SDSlideMenuViewController.xib */; };
 		A1FA1FF91A7BA95500338AF0 /* SDConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1FA1FF81A7BA95500338AF0 /* SDConstants.swift */; };
 		A1FA1FFB1A7BAE5B00338AF0 /* SDFonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1FA1FFA1A7BAE5B00338AF0 /* SDFonts.swift */; };
-		C9E2A50DD27897A1C34CFCA0 /* Pods_ScalaDays.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FFB4706539099E676CEA370F /* Pods_ScalaDays.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -131,11 +129,11 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		0256E37AB85427EDF899EF98 /* Pods-ScalaDaysPods-ScalaDaysTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ScalaDaysPods-ScalaDaysTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ScalaDaysPods-ScalaDaysTests/Pods-ScalaDaysPods-ScalaDaysTests.debug.xcconfig"; sourceTree = "<group>"; };
+		02C3CA31C911ADCA6C7CA1B8 /* Pods-ScalaDaysPods-ScalaDays.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ScalaDaysPods-ScalaDays.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ScalaDaysPods-ScalaDays/Pods-ScalaDaysPods-ScalaDays.debug.xcconfig"; sourceTree = "<group>"; };
 		1EA75E891A925BFF00884EC8 /* SDConferenceTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SDConferenceTableViewCell.swift; sourceTree = "<group>"; };
 		1EA75E8A1A925BFF00884EC8 /* SDConferenceTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SDConferenceTableViewCell.xib; sourceTree = "<group>"; };
-		31716A07DAC369DE1D07ED8F /* Pods-ScalaDays.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ScalaDays.release.xcconfig"; path = "Pods/Target Support Files/Pods-ScalaDays/Pods-ScalaDays.release.xcconfig"; sourceTree = "<group>"; };
-		476817DBAE7126B9F4362D31 /* Pods_ScalaDaysPods_ScalaDays.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ScalaDaysPods_ScalaDays.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		52E3C28FB62B7DE46B84C88A /* Pods-ScalaDaysTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ScalaDaysTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ScalaDaysTests/Pods-ScalaDaysTests.debug.xcconfig"; sourceTree = "<group>"; };
+		27CC132DAC4EB8C5D5F3EC28 /* Pods-ScalaDaysPods-ScalaDaysTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ScalaDaysPods-ScalaDaysTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ScalaDaysPods-ScalaDaysTests/Pods-ScalaDaysPods-ScalaDaysTests.release.xcconfig"; sourceTree = "<group>"; };
 		590DDD691A83BAC100E4CC3F /* SDSpeakersListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SDSpeakersListViewController.swift; sourceTree = "<group>"; };
 		590DDD6D1A83BAFD00E4CC3F /* SDSpeakersListViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SDSpeakersListViewController.xib; sourceTree = "<group>"; };
 		590DDD6F1A83BE9B00E4CC3F /* SDSpeakersTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SDSpeakersTableViewCell.swift; sourceTree = "<group>"; };
@@ -181,10 +179,9 @@
 		59D174631A8E0C3A001E87CF /* SDSponsorsTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SDSponsorsTableViewCell.xib; sourceTree = "<group>"; };
 		59E430EE1A964BEF00185C41 /* SDGoogleAnalyticsHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SDGoogleAnalyticsHandler.swift; sourceTree = "<group>"; };
 		59F0E2E51CA1518700BDD40E /* Vote.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Vote.swift; sourceTree = "<group>"; };
-		7C218DCFD579E12C55763CAF /* Pods-ScalaDaysPods-ScalaDaysTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ScalaDaysPods-ScalaDaysTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ScalaDaysPods-ScalaDaysTests/Pods-ScalaDaysPods-ScalaDaysTests.debug.xcconfig"; sourceTree = "<group>"; };
-		7D64DB64908BDE7D3B24AD00 /* Pods-ScalaDays.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ScalaDays.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ScalaDays/Pods-ScalaDays.debug.xcconfig"; sourceTree = "<group>"; };
-		9343E345855789AFD1141620 /* Pods-ScalaDaysPods-ScalaDaysTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ScalaDaysPods-ScalaDaysTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ScalaDaysPods-ScalaDaysTests/Pods-ScalaDaysPods-ScalaDaysTests.release.xcconfig"; sourceTree = "<group>"; };
-		9AA114FE335624986EFB5A1D /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		7DE3E72A5ED11E640A8CD7A9 /* Pods_ScalaDaysPods_ScalaDaysTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ScalaDaysPods_ScalaDaysTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		857E5518A29D51062F9155B4 /* Pods_ScalaDaysPods_ScalaDays.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ScalaDaysPods_ScalaDays.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		9A5C79BA0AC4A59C8B4E657E /* Pods-ScalaDaysPods-ScalaDays.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ScalaDaysPods-ScalaDays.release.xcconfig"; path = "Pods/Target Support Files/Pods-ScalaDaysPods-ScalaDays/Pods-ScalaDaysPods-ScalaDays.release.xcconfig"; sourceTree = "<group>"; };
 		A1551FB0207ACE9C006BCE7A /* SDExternalKeys.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = SDExternalKeys.plist; sourceTree = "<group>"; };
 		A1551FB2207AD44A006BCE7A /* SwiftyJSON.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftyJSON.framework; path = "../../../../Library/Developer/Xcode/DerivedData/ScalaDays-cyovomhipwvxwdfjkdvbgvnlrjym/Build/Products/Debug-iphonesimulator/SwiftyJSON/SwiftyJSON.framework"; sourceTree = "<group>"; };
 		A163DC2E1A6E595B00A21B8E /* libPods-SwiftyJSON.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPods-SwiftyJSON.a"; path = "Pods/build/Debug-iphoneos/libPods-SwiftyJSON.a"; sourceTree = "<group>"; };
@@ -222,14 +219,7 @@
 		A1FA1FEA1A7AA6AF00338AF0 /* SDColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SDColor.swift; sourceTree = "<group>"; };
 		A1FA1FF81A7BA95500338AF0 /* SDConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SDConstants.swift; sourceTree = "<group>"; };
 		A1FA1FFA1A7BAE5B00338AF0 /* SDFonts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SDFonts.swift; sourceTree = "<group>"; };
-		A90C18A2EE06F6072C2A6091 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		ABF9038973313EDBBD18EB45 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		AC2222018D7EA7953D312F29 /* Pods-ScalaDaysPods-ScalaDays.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ScalaDaysPods-ScalaDays.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ScalaDaysPods-ScalaDays/Pods-ScalaDaysPods-ScalaDays.debug.xcconfig"; sourceTree = "<group>"; };
-		C4EBF41C0FC64DFF1FFF4C48 /* Pods-ScalaDaysPods-ScalaDays.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ScalaDaysPods-ScalaDays.release.xcconfig"; path = "Pods/Target Support Files/Pods-ScalaDaysPods-ScalaDays/Pods-ScalaDaysPods-ScalaDays.release.xcconfig"; sourceTree = "<group>"; };
-		C528A90755B7176AA531509D /* Pods_ScalaDaysPods_ScalaDaysTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ScalaDaysPods_ScalaDaysTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		E5B30C8D8EE18C0251709C06 /* Pods-ScalaDaysTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ScalaDaysTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ScalaDaysTests/Pods-ScalaDaysTests.release.xcconfig"; sourceTree = "<group>"; };
-		F4E32041E0A4D340DF1DD08F /* Pods_ScalaDaysTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ScalaDaysTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		FFB4706539099E676CEA370F /* Pods_ScalaDays.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ScalaDays.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -241,8 +231,7 @@
 				5928D1781A88E5C800E5049E /* MapKit.framework in Frameworks */,
 				5950030A1A84EDD500A1C24F /* AddressBook.framework in Frameworks */,
 				595003011A84C1DA00A1C24F /* MobileCoreServices.framework in Frameworks */,
-				C9E2A50DD27897A1C34CFCA0 /* Pods_ScalaDays.framework in Frameworks */,
-				59AD9F0684274FE6AD4E29A1 /* Pods_ScalaDaysPods_ScalaDays.framework in Frameworks */,
+				12E3C2517E2B2D10F7D9FEA8 /* Pods_ScalaDaysPods_ScalaDays.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -250,8 +239,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				37EFE2300350A977BB6017F3 /* Pods_ScalaDaysPods_ScalaDaysTests.framework in Frameworks */,
-				0A430AF1BD313B8CEE2FE169 /* Pods_ScalaDaysTests.framework in Frameworks */,
+				18DAE816976C232E95E125FE /* Pods_ScalaDaysPods_ScalaDaysTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -470,10 +458,8 @@
 				595003001A84C1DA00A1C24F /* MobileCoreServices.framework */,
 				A163DC2E1A6E595B00A21B8E /* libPods-SwiftyJSON.a */,
 				ABF9038973313EDBBD18EB45 /* Pods.framework */,
-				FFB4706539099E676CEA370F /* Pods_ScalaDays.framework */,
-				476817DBAE7126B9F4362D31 /* Pods_ScalaDaysPods_ScalaDays.framework */,
-				C528A90755B7176AA531509D /* Pods_ScalaDaysPods_ScalaDaysTests.framework */,
-				F4E32041E0A4D340DF1DD08F /* Pods_ScalaDaysTests.framework */,
+				857E5518A29D51062F9155B4 /* Pods_ScalaDaysPods_ScalaDays.framework */,
+				7DE3E72A5ED11E640A8CD7A9 /* Pods_ScalaDaysPods_ScalaDaysTests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -484,8 +470,8 @@
 				A1D795C91A68267F009CCEB3 /* ScalaDays */,
 				A1D795DF1A68267F009CCEB3 /* ScalaDaysTests */,
 				A1D795C81A68267F009CCEB3 /* Products */,
-				AB2226C103C1EB4CA6DADC78 /* Pods */,
 				6DBA1EBEE9CFF41D967A4DF1 /* Frameworks */,
+				D06138476345BCEDEC247207 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -546,19 +532,13 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		AB2226C103C1EB4CA6DADC78 /* Pods */ = {
+		D06138476345BCEDEC247207 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				9AA114FE335624986EFB5A1D /* Pods.debug.xcconfig */,
-				A90C18A2EE06F6072C2A6091 /* Pods.release.xcconfig */,
-				7D64DB64908BDE7D3B24AD00 /* Pods-ScalaDays.debug.xcconfig */,
-				31716A07DAC369DE1D07ED8F /* Pods-ScalaDays.release.xcconfig */,
-				AC2222018D7EA7953D312F29 /* Pods-ScalaDaysPods-ScalaDays.debug.xcconfig */,
-				C4EBF41C0FC64DFF1FFF4C48 /* Pods-ScalaDaysPods-ScalaDays.release.xcconfig */,
-				7C218DCFD579E12C55763CAF /* Pods-ScalaDaysPods-ScalaDaysTests.debug.xcconfig */,
-				9343E345855789AFD1141620 /* Pods-ScalaDaysPods-ScalaDaysTests.release.xcconfig */,
-				52E3C28FB62B7DE46B84C88A /* Pods-ScalaDaysTests.debug.xcconfig */,
-				E5B30C8D8EE18C0251709C06 /* Pods-ScalaDaysTests.release.xcconfig */,
+				02C3CA31C911ADCA6C7CA1B8 /* Pods-ScalaDaysPods-ScalaDays.debug.xcconfig */,
+				9A5C79BA0AC4A59C8B4E657E /* Pods-ScalaDaysPods-ScalaDays.release.xcconfig */,
+				0256E37AB85427EDF899EF98 /* Pods-ScalaDaysPods-ScalaDaysTests.debug.xcconfig */,
+				27CC132DAC4EB8C5D5F3EC28 /* Pods-ScalaDaysPods-ScalaDaysTests.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -570,13 +550,13 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = A1D795E61A68267F009CCEB3 /* Build configuration list for PBXNativeTarget "ScalaDays" */;
 			buildPhases = (
-				121F3DD622E61AA4DBE35816 /* [CP] Check Pods Manifest.lock */,
+				F8B581528B7986FBD4884AF5 /* [CP] Check Pods Manifest.lock */,
 				A1D795C31A68267F009CCEB3 /* Sources */,
 				A1D795C41A68267F009CCEB3 /* Frameworks */,
 				A1D795C51A68267F009CCEB3 /* Resources */,
 				A163DC141A6D6C7C00A21B8E /* Embed Frameworks */,
 				A1C8B87B1A8E7597008599FF /* ShellScript */,
-				191320A905B1A0A2A3291C5B /* [CP] Embed Pods Frameworks */,
+				4ABA015E8B8A751D0D8829A2 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -591,11 +571,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = A1D795E91A68267F009CCEB3 /* Build configuration list for PBXNativeTarget "ScalaDaysTests" */;
 			buildPhases = (
-				BA883164A3B1F3932B4FB65E /* [CP] Check Pods Manifest.lock */,
+				335B04AA5CFE12E35FEF219F /* [CP] Check Pods Manifest.lock */,
 				A1D795D81A68267F009CCEB3 /* Sources */,
 				A1D795D91A68267F009CCEB3 /* Frameworks */,
 				A1D795DA1A68267F009CCEB3 /* Resources */,
-				9086147203C2B69DF14A2A82 /* [CP] Embed Pods Frameworks */,
+				F08C9BFD17F15CD0A11F13FD /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -703,7 +683,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		121F3DD622E61AA4DBE35816 /* [CP] Check Pods Manifest.lock */ = {
+		335B04AA5CFE12E35FEF219F /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -714,14 +694,14 @@
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-ScalaDaysPods-ScalaDays-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-ScalaDaysPods-ScalaDaysTests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		191320A905B1A0A2A3291C5B /* [CP] Embed Pods Frameworks */ = {
+		4ABA015E8B8A751D0D8829A2 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -753,7 +733,20 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ScalaDaysPods-ScalaDays/Pods-ScalaDaysPods-ScalaDays-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		9086147203C2B69DF14A2A82 /* [CP] Embed Pods Frameworks */ = {
+		A1C8B87B1A8E7597008599FF /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "./Crashlytics.framework/run 650c56fa5bc6a759a4802ae63f430cfaf6c8158a 2c56ab5ccb4f21cd496c8f733a95205cb91e19601dadd81a60e13f963f31c19c";
+		};
+		F08C9BFD17F15CD0A11F13FD /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -773,20 +766,7 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ScalaDaysPods-ScalaDaysTests/Pods-ScalaDaysPods-ScalaDaysTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		A1C8B87B1A8E7597008599FF /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "./Crashlytics.framework/run 650c56fa5bc6a759a4802ae63f430cfaf6c8158a 2c56ab5ccb4f21cd496c8f733a95205cb91e19601dadd81a60e13f963f31c19c";
-		};
-		BA883164A3B1F3932B4FB65E /* [CP] Check Pods Manifest.lock */ = {
+		F8B581528B7986FBD4884AF5 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -797,7 +777,7 @@
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-ScalaDaysPods-ScalaDaysTests-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-ScalaDaysPods-ScalaDays-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1020,7 +1000,7 @@
 		};
 		A1D795E71A68267F009CCEB3 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = AC2222018D7EA7953D312F29 /* Pods-ScalaDaysPods-ScalaDays.debug.xcconfig */;
+			baseConfigurationReference = 02C3CA31C911ADCA6C7CA1B8 /* Pods-ScalaDaysPods-ScalaDays.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -1055,7 +1035,7 @@
 		};
 		A1D795E81A68267F009CCEB3 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = C4EBF41C0FC64DFF1FFF4C48 /* Pods-ScalaDaysPods-ScalaDays.release.xcconfig */;
+			baseConfigurationReference = 9A5C79BA0AC4A59C8B4E657E /* Pods-ScalaDaysPods-ScalaDays.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -1090,7 +1070,7 @@
 		};
 		A1D795EA1A68267F009CCEB3 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 7C218DCFD579E12C55763CAF /* Pods-ScalaDaysPods-ScalaDaysTests.debug.xcconfig */;
+			baseConfigurationReference = 0256E37AB85427EDF899EF98 /* Pods-ScalaDaysPods-ScalaDaysTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -1117,7 +1097,7 @@
 		};
 		A1D795EB1A68267F009CCEB3 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 9343E345855789AFD1141620 /* Pods-ScalaDaysPods-ScalaDaysTests.release.xcconfig */;
+			baseConfigurationReference = 27CC132DAC4EB8C5D5F3EC28 /* Pods-ScalaDaysPods-ScalaDaysTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
