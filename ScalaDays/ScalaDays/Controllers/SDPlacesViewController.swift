@@ -45,7 +45,7 @@ class SDPlacesViewController: GAITrackedViewController, MKMapViewDelegate, SDErr
         self.screenName = kGAScreenNamePlaces
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         if !isDataLoaded {
             loadData()
         }
@@ -58,7 +58,7 @@ class SDPlacesViewController: GAITrackedViewController, MKMapViewDelegate, SDErr
         DataManager.sharedInstance.loadDataJson() {
             (bool, error) -> () in
             
-           if let badError = error {
+            if let badError = error {
                 self.errorPlaceholderView.show(NSLocalizedString("error_message_no_data_available", comment: ""))
                 SVProgressHUD.dismiss()
             } else {
@@ -83,12 +83,12 @@ class SDPlacesViewController: GAITrackedViewController, MKMapViewDelegate, SDErr
     
     // MARK: - Map handling
     
-    func drawMapPushPinsForVenues(venues: Array<Venue>) {
+    func drawMapPushPinsForVenues(_ venues: Array<Venue>) {
         let geocoder = CLGeocoder()
         
         self.mapPlaces.removeAnnotations(self.mapPlaces.annotations)
         for venue in venues {
-            let coordinate = CLLocationCoordinate2D(latitude: venue.latitude, longitude: venue.longitude)
+            let coordinate = CLLocationCoordinate2D(latitude: venue.latitude!, longitude: venue.longitude!)
             let annotation = SDMapAnnotation(title: venue.name, subtitle: venue.address, coordinate: coordinate)
             self.mapPlaces.addAnnotation(annotation)
         }
@@ -97,11 +97,11 @@ class SDPlacesViewController: GAITrackedViewController, MKMapViewDelegate, SDErr
     
     // MARK: - MKMapViewDelegate protocol implementation
     
-    func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView! {
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView! {
         if annotation is MKUserLocation {
             return nil
         } else {
-            var annotationView = mapView.dequeueReusableAnnotationViewWithIdentifier(kMapReuseIdentifier)
+            var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: kMapReuseIdentifier)
             if annotationView == nil {
                 annotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: kMapReuseIdentifier)
             }
@@ -112,25 +112,25 @@ class SDPlacesViewController: GAITrackedViewController, MKMapViewDelegate, SDErr
         }
     }
     
-    func mapView(mapView: MKMapView, didSelectAnnotationView view: MKAnnotationView) {
+    func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
         view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(SDPlacesViewController.didTapCallout(_:))))
     }
     
-    func didTapCallout(sender: UITapGestureRecognizer) {
+    @objc func didTapCallout(_ sender: UITapGestureRecognizer) {
         let annotationView = sender.view as! MKAnnotationView
-        if annotationView.selected {
+        if annotationView.isSelected {
             let annotation = annotationView.annotation as! SDMapAnnotation
             
             // It seems there's a bug in Swift that provokes EXC_BAD_ACCESS exceptions while trying to access properties of the annotation,
             // it matches this situation: http://stackoverflow.com/questions/25194944/why-accessing-a-class-instance-member-gives-an-exc-bad-access-xcode-beta-5
             // So while this is fixed in a future XCode version, we have to access the venue's location and address from the conference object in a more cumbersome way:
             if let annotations = self.mapPlaces.annotations as? [SDMapAnnotation] {
-                if let indexOfVenue = annotations.indexOf(annotation) {
+                if let indexOfVenue = annotations.index(of: annotation) {
                     if let conference = selectedConference {
                         if conference.venues.count > indexOfVenue {
                             let venue = conference.venues[indexOfVenue]
-                            let urlString = "http://maps.apple.com/?ll=\(venue.latitude),\(venue.longitude)&daddr=\(venue.address.removeWhitespace().stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)!)"
-                            if let mapUrl = NSURL(string: urlString) {
+                            let urlString = "http://maps.apple.com/?ll=\(venue.latitude),\(venue.longitude)&daddr=\(venue.address.removeWhitespace().addingPercentEncoding(withAllowedCharacters: .urlHostAllowed))"
+                            if let mapUrl = URL(string: urlString) {
                                 SDGoogleAnalyticsHandler.sendGoogleAnalyticsTrackingWithScreenName(kGAScreenNamePlaces, category: kGACategoryNavigate, action: kGAActionPlacesGoToMap, label: venue.name)
                                 launchSafariToUrl(mapUrl)
                             }

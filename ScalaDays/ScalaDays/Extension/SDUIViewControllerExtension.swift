@@ -20,8 +20,8 @@ extension UIViewController {
     
     func setNavigationBarItem() {
         self.addLeftBarButtonWithImage(UIImage(named: "navigation_bar_icon_menu")!)
-        self.navigationController?.navigationBar.translucent = false        
+        self.navigationController?.navigationBar.isTranslucent = false        
         self.navigationController?.navigationBar.shadowImage = UIImage()
-        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), forBarMetrics: .Default)
+        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
     }
 }

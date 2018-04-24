@@ -18,7 +18,7 @@ import UIKit
 
 @objc protocol SDErrorPlaceholderViewDelegate {
     
-    optional func didTapRefreshButtonInErrorPlaceholder()
+    @objc optional func didTapRefreshButtonInErrorPlaceholder()
     
 }
 
@@ -50,7 +50,7 @@ class SDErrorPlaceholderView: UIView {
         if let container = loadNibSubviewsFromNib("SDErrorPlaceholderView") {
             containerView = container
         }
-        self.hidden = true
+        self.isHidden = true
         
         if IS_IPHONE5 {
             constraintForImgIconTopSpace.constant = kTopSpaceForImgIconInSmallerIphones
@@ -66,35 +66,35 @@ class SDErrorPlaceholderView: UIView {
         delegate?.didTapRefreshButtonInErrorPlaceholder?()
     }
     
-    func show(message: String) {
+    func show(_ message: String) {
         show(message, isGeneralMessage: false)
     }
     
-    func show(message: String, isGeneralMessage: Bool) {
+    func show(_ message: String, isGeneralMessage: Bool) {
         show(message, isGeneralMessage: isGeneralMessage, buttonTitle: NSLocalizedString("error_placeholder_button_refresh", comment: ""))
     }
     
-    func show(message: String, isGeneralMessage: Bool, buttonTitle: String) {
-        if self.hidden {
+    func show(_ message: String, isGeneralMessage: Bool, buttonTitle: String) {
+        if self.isHidden {
             self.alpha = 0
-            self.hidden = false
-            self.btnRefresh.setTitle(buttonTitle, forState: .Normal)
+            self.isHidden = false
+            self.btnRefresh.setTitle(buttonTitle, for: UIControlState())
             self.lblErrorMessage.text = message
             self.imgIcon.image = isGeneralMessage ? UIImage(named: "placeholder_general") : UIImage(named: "placeholder_error")
-            UIView.animateWithDuration(kAnimationShowHideTimeInterval, animations: { () -> Void in
+            UIView.animate(withDuration: kAnimationShowHideTimeInterval, animations: { () -> Void in
                 self.alpha = 1
             })
         }
     }
     
     func hide() {
-        if !self.hidden {
-            UIView.animateWithDuration(kAnimationShowHideTimeInterval, animations: { () -> Void in
+        if !self.isHidden {
+            UIView.animate(withDuration: kAnimationShowHideTimeInterval, animations: { () -> Void in
                 self.alpha = 0
-                }) { (completed) -> Void in
-                    self.hidden = true
+                }, completion: { (completed) -> Void in
+                    self.isHidden = true
                     self.alpha = 1
-            }
+            }) 
         }
     }
 }

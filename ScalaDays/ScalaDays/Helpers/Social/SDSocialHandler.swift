@@ -34,11 +34,11 @@ let kTwitterBaseAppURL = "twitter://status?id="
 let kTwitterBaseAppURLUser = "twitter://user?screen_name="
 
 enum SDSocialErrors: Int {
-    case NoError
-    case AccountAccessNotGranted
-    case NoTwitterAccountAvailable
-    case NoValidDataFromAPI
-    case InvalidRequest
+    case noError
+    case accountAccessNotGranted
+    case noTwitterAccountAvailable
+    case noValidDataFromAPI
+    case invalidRequest
 }
 
 class SDSocialHandler: NSObject {
@@ -49,81 +49,81 @@ class SDSocialHandler: NSObject {
 
     // MARK: - Composing tweets
 
-    func showTweetComposerWithTweetText(tweetText: String!, onViewController: UIViewController!) -> SDSocialErrors {
-        if SLComposeViewController.isAvailableForServiceType(SLServiceTypeTwitter) {
+    func showTweetComposerWithTweetText(_ tweetText: String!, onViewController: UIViewController!) -> SDSocialErrors {
+        if SLComposeViewController.isAvailable(forServiceType: SLServiceTypeTwitter) {
             let twitterSheet = SLComposeViewController(forServiceType: SLServiceTypeTwitter)
-            twitterSheet.setInitialText(tweetText)
-            onViewController.presentViewController(twitterSheet, animated: true, completion: nil)
+            twitterSheet?.setInitialText(tweetText)
+            onViewController.present(twitterSheet!, animated: true, completion: nil)
         } else {
-            return .NoTwitterAccountAvailable
+            return .noTwitterAccountAvailable
         }
-        return .NoError
+        return .noError
     }
 
     // MARK: - Retrieving tweets
 
-    private func defaultTwitterAccount() -> ACAccount? {
-        let accounts = accountStore.accountsWithAccountType(accountStore.accountTypeWithAccountTypeIdentifier(ACAccountTypeIdentifierTwitter))
-        if (accounts.count > 0) {
-            return accounts[0] as? ACAccount
+    fileprivate func defaultTwitterAccount() -> ACAccount? {
+        let accounts = accountStore.accounts(with: accountStore.accountType(withAccountTypeIdentifier: ACAccountTypeIdentifierTwitter))
+        if ((accounts?.count)! > 0) {
+            return accounts?[0] as? ACAccount
         }
         return nil
     }
 
-    func requestTweetListWithHashtag(hashtag: String, count: Int, completionHandler: SDGetTweetsHandler!) {
-        let encodedHashtag = hashtag.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLQueryAllowedCharacterSet())
+    func requestTweetListWithHashtag(_ hashtag: String, count: Int, completionHandler: SDGetTweetsHandler!) {
+        let encodedHashtag = hashtag.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)
         if let hashtag = encodedHashtag {
             let urlString = "https://api.twitter.com/1.1/search/tweets.json?q=\(hashtag)&count=\(count)"
-            let queryUrl = NSURL(string: urlString)
-            let accountType = accountStore.accountTypeWithAccountTypeIdentifier(ACAccountTypeIdentifierTwitter)
+            let queryUrl = URL(string: urlString)
+            let accountType = accountStore.accountType(withAccountTypeIdentifier: ACAccountTypeIdentifierTwitter)
 
-            accountStore.requestAccessToAccountsWithType(accountType, options: nil) {
+            accountStore.requestAccessToAccounts(with: accountType, options: nil) {
                 granted, error in
                 if (!granted) {
-                    completionHandler(nil, NSError(domain: self.errorDomain, code: SDSocialErrors.AccountAccessNotGranted.rawValue, userInfo: nil))
+                    completionHandler(nil, NSError(domain: self.errorDomain, code: SDSocialErrors.accountAccessNotGranted.rawValue, userInfo: nil))
                     return
                 }
 
                 let twitterAccount = self.defaultTwitterAccount()
                 switch (twitterAccount, queryUrl) {
                 case let (account, url):
-                    let postRequest: SLRequest = SLRequest(forServiceType: SLServiceTypeTwitter, requestMethod: SLRequestMethod.GET, URL: url, parameters: nil)
+                    let postRequest: SLRequest = SLRequest(forServiceType: SLServiceTypeTwitter, requestMethod: SLRequestMethod.GET, url: url, parameters: nil)
                     postRequest.account = account
-                    postRequest.performRequestWithHandler({
+                    postRequest.perform(handler: {
                         (responseData, urlResponse, error) -> Void in
                         var parseError: NSError? = NSError(domain: NSURLErrorDomain, code: NSURLErrorCannotOpenFile, userInfo: nil)
                         if let data = responseData {
                             
-                            let tweetsData: Dictionary<String, AnyObject>? = try! NSJSONSerialization.JSONObjectWithData(responseData, options: NSJSONReadingOptions.AllowFragments) as? Dictionary
+                            let tweetsData: Dictionary<String, AnyObject>? = try! JSONSerialization.jsonObject(with: responseData!, options: JSONSerialization.ReadingOptions.allowFragments) as? Dictionary
                             
                             if let tweets = tweetsData {
                                 let statuses = tweets[kTweetDKStatuses] as? Array<Dictionary<String, AnyObject>>
                                 if let unwrappedTweets = statuses {
                                     completionHandler(self.processedListOfTweets(unwrappedTweets), nil)
                                 } else {
-                                    completionHandler(nil, NSError(domain: self.errorDomain, code: SDSocialErrors.NoValidDataFromAPI.rawValue, userInfo: nil))
+                                    completionHandler(nil, NSError(domain: self.errorDomain, code: SDSocialErrors.noValidDataFromAPI.rawValue, userInfo: nil))
                                 }
                             } else {
-                                completionHandler(nil, NSError(domain: self.errorDomain, code: SDSocialErrors.NoValidDataFromAPI.rawValue, userInfo: nil))
+                                completionHandler(nil, NSError(domain: self.errorDomain, code: SDSocialErrors.noValidDataFromAPI.rawValue, userInfo: nil))
                             }
                         } else {
-                            completionHandler(nil, NSError(domain: self.errorDomain, code: SDSocialErrors.NoValidDataFromAPI.rawValue, userInfo: nil))
+                            completionHandler(nil, NSError(domain: self.errorDomain, code: SDSocialErrors.noValidDataFromAPI.rawValue, userInfo: nil))
                         }
                     })
                 case let (nil, _):
-                    completionHandler(nil, NSError(domain: self.errorDomain, code: SDSocialErrors.NoTwitterAccountAvailable.rawValue, userInfo: nil))
+                    completionHandler(nil, NSError(domain: self.errorDomain, code: SDSocialErrors.noTwitterAccountAvailable.rawValue, userInfo: nil))
                 default:
-                    completionHandler(nil, NSError(domain: self.errorDomain, code: SDSocialErrors.InvalidRequest.rawValue, userInfo: nil))
+                    completionHandler(nil, NSError(domain: self.errorDomain, code: SDSocialErrors.invalidRequest.rawValue, userInfo: nil))
                 }
             }
         } else {
-            completionHandler(nil, NSError(domain: self.errorDomain, code: SDSocialErrors.InvalidRequest.rawValue, userInfo: nil))
+            completionHandler(nil, NSError(domain: self.errorDomain, code: SDSocialErrors.invalidRequest.rawValue, userInfo: nil))
         }
     }
 
     // MARK: - Modelling tweets
 
-    func processedListOfTweets(tweetData: Array<Dictionary<String, AnyObject>>) -> Array<SDTweet> {
+    func processedListOfTweets(_ tweetData: Array<Dictionary<String, AnyObject>>) -> Array<SDTweet> {
         var results: Array<SDTweet> = []
 
         for unprocessedTweet in tweetData {
@@ -135,12 +135,12 @@ class SDSocialHandler: NSObject {
                         unprocessedTweet[kTweetDKText],
                         unprocessedTweet[kTweetDKCreatedAt],
                         unprocessedTweet[kTweetDKID]) {
-                case let (.Some(name),
-                          .Some(profileImage),
-                          .Some(screenName),
-                          .Some(tweetText),
-                          .Some(tweetDate),
-                          .Some(tweetId)):
+                case let (.some(name),
+                          .some(profileImage),
+                          .some(screenName),
+                          .some(tweetText),
+                          .some(tweetDate),
+                          .some(tweetId)):
                     results.append(SDTweet(username: (screenName as! String),
                             fullName: (name as! String),
                             tweetText: (tweetText as! String),
@@ -157,21 +157,21 @@ class SDSocialHandler: NSObject {
 
     // MARK: - Tweet detail URL creation
 
-    class func urlForTweetDetail(tweet: SDTweet) -> NSURL? {
-        return NSURL(string: (((kTwitterBaseURL as NSString).stringByAppendingPathComponent(tweet.username) as NSString)
-        .stringByAppendingPathComponent(kTweetDKStatus) as NSString)
-        .stringByAppendingPathComponent(tweet.id))
+    class func urlForTweetDetail(_ tweet: SDTweet) -> URL? {
+        return URL(string: (((kTwitterBaseURL as NSString).appendingPathComponent(tweet.username) as NSString)
+        .appendingPathComponent(kTweetDKStatus) as NSString)
+        .appendingPathComponent(tweet.id))
     }
 
-    class func urlAppForTweetDetail(tweet: SDTweet) -> NSURL? {
-        return NSURL(string: kTwitterBaseAppURL.stringByAppendingString(tweet.id))
+    class func urlAppForTweetDetail(_ tweet: SDTweet) -> URL? {
+        return URL(string: kTwitterBaseAppURL + tweet.id)
     }
 
-    class func urlForTwitterAccount(twitterAccount: String) -> NSURL? {
-        return NSURL(string: (kTwitterBaseURL as NSString).stringByAppendingPathComponent(twitterAccount))
+    class func urlForTwitterAccount(_ twitterAccount: String) -> URL? {
+        return URL(string: (kTwitterBaseURL as NSString).appendingPathComponent(twitterAccount))
     }
 
-    class func urlAppForTwitterAccount(twitterAccount: String) -> NSURL? {
-        return NSURL(string: (kTwitterBaseAppURLUser as NSString).stringByAppendingPathComponent(twitterAccount))
+    class func urlAppForTwitterAccount(_ twitterAccount: String) -> URL? {
+        return URL(string: (kTwitterBaseAppURLUser as NSString).appendingPathComponent(twitterAccount))
     }
 }

@@ -18,7 +18,7 @@ import UIKit
 
 class SDTableHeaderView: UIView {
 
-    let kHeaderTextPadding : CGPoint = CGPointMake(15, 13)
+    let kHeaderTextPadding : CGPoint = CGPoint(x: 15, y: 13)
     let kHeaderTextInitialWidth : CGFloat = 300.0
     let kHeaderTextInitialHeight : CGFloat = 15.0
     
@@ -28,9 +28,9 @@ class SDTableHeaderView: UIView {
         super.init(frame: frame)
         
         self.backgroundColor = UIColor.appScheduleTimeBlueBackgroundColor()
-        lblDate = UILabel(frame: CGRectMake(kHeaderTextPadding.x, kHeaderTextPadding.y, kHeaderTextInitialWidth, kHeaderTextInitialHeight))
-        lblDate.backgroundColor = UIColor.clearColor()
-        lblDate.setCustomFont(UIFont.fontHelveticaNeue(13), colorFont: UIColor.whiteColor())
+        lblDate = UILabel(frame: CGRect(x: kHeaderTextPadding.x, y: kHeaderTextPadding.y, width: kHeaderTextInitialWidth, height: kHeaderTextInitialHeight))
+        lblDate.backgroundColor = UIColor.clear
+        lblDate.setCustomFont(UIFont.fontHelveticaNeue(13), colorFont: UIColor.white)
         self.addSubview(lblDate)
     }
 

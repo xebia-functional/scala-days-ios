@@ -18,23 +18,23 @@ import UIKit
 
 extension UIFont {
 
-    class func fontHelveticaNeue(fontSize: CGFloat) -> UIFont {
+    class func fontHelveticaNeue(_ fontSize: CGFloat) -> UIFont {
         return UIFont(name: "HelveticaNeue", size: fontSize)!
     }
     
-    class func fontHelveticaNeueItalic(fontSize: CGFloat) -> UIFont {
+    class func fontHelveticaNeueItalic(_ fontSize: CGFloat) -> UIFont {
         return UIFont(name: "HelveticaNeue-Italic", size: fontSize)!
     }
     
-    class func fontHelveticaNeueBold(fontSize: CGFloat) -> UIFont {
+    class func fontHelveticaNeueBold(_ fontSize: CGFloat) -> UIFont {
         return UIFont(name: "HelveticaNeue-Bold", size: fontSize)!
     }
 
-    class func fontHelveticaNeueMedium(fontSize: CGFloat) -> UIFont {
+    class func fontHelveticaNeueMedium(_ fontSize: CGFloat) -> UIFont {
         return UIFont(name: "HelveticaNeue-Medium", size: fontSize)!
     }
 
-    class func fontHelveticaNeueLight(fontSize: CGFloat) -> UIFont {
+    class func fontHelveticaNeueLight(_ fontSize: CGFloat) -> UIFont {
         return UIFont(name: "HelveticaNeue-Light", size: fontSize)!
     }
 
@@ -42,7 +42,7 @@ extension UIFont {
 
 extension UILabel {
 
-    func setCustomFont(typeFont: UIFont, colorFont: UIColor) -> UILabel {
+    func setCustomFont(_ typeFont: UIFont, colorFont: UIColor) -> UILabel {
         self.font = typeFont
         self.textColor = colorFont
         self.sizeToFit()

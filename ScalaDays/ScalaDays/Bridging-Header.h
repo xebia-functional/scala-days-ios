@@ -28,6 +28,5 @@
 #import "GAIDictionaryBuilder.h"
 #import "GAIFields.h"
 #import "GAILogger.h"
-#import "Localytics.h"
 
 #endif

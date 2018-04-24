@@ -50,15 +50,15 @@ let kGAActionSendVote = "Send Vote"
 
 class SDGoogleAnalyticsHandler: NSObject {
     
-    class func sendGoogleAnalyticsTrackingWithScreenName(screenName: String?, category: String?, action: String?, label: String?) {
+    class func sendGoogleAnalyticsTrackingWithScreenName(_ screenName: String?, category: String?, action: String?, label: String?) {
         if let _ = AppDelegate.loadExternalKeys().googleAnalyticsKey {
             let tracker = GAI.sharedInstance().defaultTracker
             if let _screenName = screenName {
-                tracker.set(kGAIScreenName, value: _screenName)
+                tracker?.set(kGAIScreenName, value: _screenName)
             }
             
-            let parameters = GAIDictionaryBuilder.createEventWithCategory(category, action: action, label: label, value: nil).build()
-            tracker.send(parameters as [NSObject : AnyObject])
+            let parameters = GAIDictionaryBuilder.createEvent(withCategory: category, action: action, label: label, value: nil).build()
+            tracker?.send(parameters as! [AnyHashable: Any])
         }        
     }
 }

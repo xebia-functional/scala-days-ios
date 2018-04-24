@@ -46,7 +46,7 @@ class SDAboutViewController: GAITrackedViewController, SDErrorPlaceholderViewDel
         self.screenName = kGAScreenNameAbout
     }
 
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         if !isDataLoaded {
             loadData()
         }
@@ -54,7 +54,7 @@ class SDAboutViewController: GAITrackedViewController, SDErrorPlaceholderViewDel
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        self.lblDescription.preferredMaxLayoutWidth = UIScreen.mainScreen().bounds.width
+        self.lblDescription.preferredMaxLayoutWidth = UIScreen.main.bounds.width
             - self.cnsLeftLabel.constant
             - self.cnsRightLabel.constant
         self.view.layoutIfNeeded()
@@ -90,9 +90,9 @@ class SDAboutViewController: GAITrackedViewController, SDErrorPlaceholderViewDel
         }
     }
 
-    @IBAction func didTapOn47Logo(sender: AnyObject) {
+    @IBAction func didTapOn47Logo(_ sender: AnyObject) {
         SDGoogleAnalyticsHandler.sendGoogleAnalyticsTrackingWithScreenName(kGAScreenNameAbout, category: nil, action: kGAActionAboutGoToSite, label: nil)
-        launchSafariToUrl(NSURL(string: url47Website)!)
+        launchSafariToUrl(URL(string: url47Website)!)
     }
     
     // MARK: SDErrorPlaceholderViewDelegate protocol implementation

@@ -49,7 +49,7 @@ class SDSpeakerDetailView: UIView {
         if let container = loadNibSubviewsFromNib("SDSpeakerDetailView") {
             containerView = container
             imgView.circularImage()
-            imgView.userInteractionEnabled = true
+            imgView.isUserInteractionEnabled = true
             lblDescription.preferredMaxLayoutWidth = self.frame.size.width - imgView.frame.size.width - (kHorizontalPadding * 2)
             lblCompany.preferredMaxLayoutWidth = lblDescription.preferredMaxLayoutWidth
         }
@@ -60,7 +60,7 @@ class SDSpeakerDetailView: UIView {
         super.updateConstraints()
     }
 
-    func drawSpeakerData(speaker: Speaker) {
+    func drawSpeakerData(_ speaker: Speaker) {
         lblName.text = speaker.name
         if let twitterUsername = speaker.twitter {
             if twitterUsername.characters.contains("@") {
@@ -75,29 +75,29 @@ class SDSpeakerDetailView: UIView {
         }
         lblCompany.text = speaker.company
 
-        lblDescription.text = speaker.bio.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
+        lblDescription.text = speaker.bio.trimmingCharacters(in: CharacterSet.whitespaces)
 
         if let pictureUrlString = speaker.picture {
-            if let pictureUrl = NSURL(string: pictureUrlString) {
-                imgView.sd_setImageWithURL(pictureUrl, placeholderImage: UIImage(named: "avatar")!)
+            if let pictureUrl = URL(string: pictureUrlString) {
+                imgView.sd_setImage(with: pictureUrl, placeholderImage: UIImage(named: "avatar")!)
             }
         }
         layoutSubviews()
     }
 
     func contentHeight() -> CGFloat {
-        return lblDescription.frame.origin.y + lblDescription.systemLayoutSizeFittingSize(UILayoutFittingCompressedSize).height + kBottomPadding
+        return lblDescription.frame.origin.y + lblDescription.systemLayoutSizeFitting(UILayoutFittingCompressedSize).height + kBottomPadding
     }
 
     func drawSeparator() {
         let separatorLayer = CALayer()
         let contentHeight = self.contentHeight()
-        separatorLayer.frame = CGRectMake(kPaddingForSeparator, contentHeight - kSeparatorHeight, self.frame.size.width, kSeparatorHeight)
-        separatorLayer.backgroundColor = UIColor.appSeparatorLineColor().CGColor
+        separatorLayer.frame = CGRect(x: kPaddingForSeparator, y: contentHeight - kSeparatorHeight, width: self.frame.size.width, height: kSeparatorHeight)
+        separatorLayer.backgroundColor = UIColor.appSeparatorLineColor().cgColor
         self.layer.addSublayer(separatorLayer)
     }
 
-    func onTwitter() {
+    @objc func onTwitter() {
         if let twitterAccount = lblUsername.text {
             if let urlApp = SDSocialHandler.urlAppForTwitterAccount(twitterAccount) {
                 let result = launchSafariToUrl(urlApp)

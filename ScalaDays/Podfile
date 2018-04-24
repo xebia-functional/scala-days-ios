@@ -6,27 +6,33 @@ platform :ios, '8.0'
 inhibit_all_warnings!
 use_frameworks!
 
-target "ScalaDays" do
+abstract_target 'ScalaDaysPods' do
+  # Alamofire
+  pod 'Alamofire', :git => 'https://github.com/Alamofire/Alamofire.git', :tag => '4.5.1'
+  pod 'SwiftyJSON', '3.1.4'
+  
+  target 'ScalaDays' do
+    # Google Analytics
+    pod 'GoogleAnalytics'
+    
+    # Crashlytics
+    pod 'Crashlytics', '3.10.1'
+          
+    # UI
+    pod 'SDWebImage', '~> 3.5'
+    pod 'SVProgressHUD', '~> 1.0'
+    pod 'UIView+AutoLayout', '~> 1.3'
+    
+    # QR code library
+    pod 'ZBarSDK', '~> 1.3.1'
+    
+    # Miscellaneous Utils
+    pod 'NSDate+TimeAgo', '~> 1.0.2'
+    
+    # Push notifications
+    pod 'Localytics', '~> 5.1.0'
+  end
 
-# Alamofire
-pod 'Alamofire', '~> 3.5.0'
-pod 'SwiftyJSON', '~> 2.4.0'
-
-# Google Analytics
-pod  'GoogleAnalytics'
-
-# UI
-pod 'SDWebImage', '~> 3.5'
-pod 'SVProgressHUD', '~> 1.0'
-pod 'UIView+AutoLayout', '~> 1.3'
-
-# QR code library
-pod 'ZBarSDK', '~> 1.3.1'
-
-# Miscellaneous Utils
-pod 'NSDate+TimeAgo', '~> 1.0.2'
-
-# Push notifications
-pod 'Localytics', '~> 3.8'
-
+  target 'ScalaDaysTests' do
+  end
 end

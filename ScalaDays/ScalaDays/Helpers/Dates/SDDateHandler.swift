@@ -16,24 +16,24 @@
 
 import UIKit
 
-func <=(lhs: NSDate, rhs: NSDate) -> Bool {
+func <=(lhs: Date, rhs: Date) -> Bool {
     return lhs.timeIntervalSince1970 <= rhs.timeIntervalSince1970
 }
-func >=(lhs: NSDate, rhs: NSDate) -> Bool {
+func >=(lhs: Date, rhs: Date) -> Bool {
     return lhs.timeIntervalSince1970 >= rhs.timeIntervalSince1970
 }
-func >(lhs: NSDate, rhs: NSDate) -> Bool {
+func >(lhs: Date, rhs: Date) -> Bool {
     return lhs.timeIntervalSince1970 > rhs.timeIntervalSince1970
 }
-func <(lhs: NSDate, rhs: NSDate) -> Bool {
+func <(lhs: Date, rhs: Date) -> Bool {
     return lhs.timeIntervalSince1970 < rhs.timeIntervalSince1970
 }
-func ==(lhs: NSDate, rhs: NSDate) -> Bool {
+func ==(lhs: Date, rhs: Date) -> Bool {
     return lhs.timeIntervalSince1970 == rhs.timeIntervalSince1970
 }
 
 class SDDateHandler: NSObject {
-    lazy var dateFormatter: NSDateFormatter = NSDateFormatter()
+    lazy var dateFormatter: DateFormatter = DateFormatter()
     let kTwitterDateFormat = "EEE MMM d HH:mm:ss Z y"
     let kResponseDateFormat = "EEE, dd MMM yyyy HH:mm:ss Z"
     let kScheduleDateFormat = "yyyy-MM-dd'T'HH:mm:ss'Z'"
@@ -52,61 +52,61 @@ class SDDateHandler: NSObject {
         return Static.instance
     }
 
-    func parseTwitterDate(twitterDate: String) -> NSDate? {
-        dateFormatter.locale = NSLocale(localeIdentifier: "en_US_POSIX")
+    func parseTwitterDate(_ twitterDate: String) -> Date? {
+        dateFormatter.locale = Locale(identifier: "en_US_POSIX")
         dateFormatter.dateFormat = kTwitterDateFormat
-        return dateFormatter.dateFromString(twitterDate)
+        return dateFormatter.date(from: twitterDate)
     }
 
-    func parseServerDate(dateString: NSString) -> NSDate? {
+    func parseServerDate(_ dateString: String) -> Date? {
         dateFormatter.dateFormat = kResponseDateFormat
-        dateFormatter.timeZone = NSTimeZone(abbreviation: "GMT")
-        dateFormatter.locale = NSLocale(localeIdentifier: "en_US_POSIX")
-        return dateFormatter.dateFromString(dateString as String)
+        dateFormatter.timeZone = TimeZone(abbreviation: "GMT")
+        dateFormatter.locale = Locale(identifier: "en_US_POSIX")
+        return dateFormatter.date(from: dateString)
     }
 
-    func parseScheduleDate(dateString: NSString) -> NSDate? {
+    func parseScheduleDate(_ dateString: String) -> Date? {
         dateFormatter.dateFormat = kScheduleDateFormat
-        dateFormatter.timeZone = NSTimeZone(abbreviation: "UTC")
-        dateFormatter.locale = NSLocale(localeIdentifier: "en_US_POSIX")
-        return dateFormatter.dateFromString(dateString as String)
+        dateFormatter.timeZone = TimeZone(abbreviation: "UTC")
+        dateFormatter.locale = Locale(identifier: "en_US_POSIX")
+        return dateFormatter.date(from: dateString)
     }
     
-    func formatScheduleDetailDate(date: NSDate) -> String? {
+    func formatScheduleDetailDate(_ date: Date) -> String? {
         
         
         dateFormatter.dateFormat = kScheduleOutputWeekDay
-        let weekDay = dateFormatter.stringFromDate(date)
+        let weekDay = dateFormatter.string(from: date)
         dateFormatter.dateFormat = kScheduleOutputMonthDay
-        let monthDayNumber = dateFormatter.stringFromDate(date)
+        let monthDayNumber = dateFormatter.string(from: date)
         dateFormatter.dateFormat = kScheduleOutputMonthName
-        let monthName = dateFormatter.stringFromDate(date)
+        let monthName = dateFormatter.string(from: date)
         dateFormatter.dateFormat = kScheduleOutputHours
-        let hours = dateFormatter.stringFromDate(date)
+        let hours = dateFormatter.string(from: date)
         dateFormatter.dateFormat = kScheduleOutputMinutes
-        let minutes = dateFormatter.stringFromDate(date)
+        let minutes = dateFormatter.string(from: date)
         
         if let monNumber = Int(monthDayNumber){
             return "\(weekDay) (\(monNumber)\(SDDateHandler.ordinalSuffixFromDayNumber(monNumber)) \(monthName).) \(hours):\(minutes)"
         } else {
-            dateFormatter.dateStyle = .FullStyle
-            dateFormatter.timeStyle = .ShortStyle
-            dateFormatter.locale = NSLocale.currentLocale()
+            dateFormatter.dateStyle = .full
+            dateFormatter.timeStyle = .short
+            dateFormatter.locale = Locale.current
             
-            return dateFormatter.stringFromDate(date)
+            return dateFormatter.string(from: date)
         }
     }
 
     
-    func hoursAndMinutesFromDate(date: NSDate) -> String? {
-        dateFormatter.locale = NSLocale.currentLocale()
-        dateFormatter.dateStyle = .NoStyle
-        dateFormatter.timeStyle = .ShortStyle
-        return dateFormatter.stringFromDate(date)
+    func hoursAndMinutesFromDate(_ date: Date) -> String? {
+        dateFormatter.locale = Locale.current
+        dateFormatter.dateStyle = .none
+        dateFormatter.timeStyle = .short
+        return dateFormatter.string(from: date)
     }
     
     
-    class func ordinalSuffixFromDayNumber(day: Int) -> String {
+    class func ordinalSuffixFromDayNumber(_ day: Int) -> String {
         let suffixes = ["th", "st", "nd", "rd", "th", "th", "th", "th", "th", "th"]
         var suffix = "th"
         
@@ -117,31 +117,31 @@ class SDDateHandler: NSObject {
         return suffix
     }
     
-    class func convertDateToLocalTime(date: NSDate, timeZoneName: String) -> NSDate? {
-        if let tz = NSTimeZone(name: timeZoneName) {
-            let seconds : NSTimeInterval = NSTimeInterval(tz.secondsFromGMTForDate(date))
-            return NSDate(timeInterval: seconds, sinceDate: date)
+    class func convertDateToLocalTime(_ date: Date, timeZoneName: String) -> Date? {
+        if let tz = TimeZone(identifier: timeZoneName) {
+            let seconds : TimeInterval = TimeInterval(tz.secondsFromGMT(for: date))
+            return Date(timeInterval: seconds, since: date)
         }
         return nil
     }
     
-    class func isSafeToVoteForConferenceWithDate(confDate: NSDate, fromReferenceDate refDate: NSDate) -> Bool {
-        let calendar = NSCalendar.currentCalendar()
-        let confDateDay = calendar.component(NSCalendarUnit.Day, fromDate: confDate)
-        let refDateDay = calendar.component(NSCalendarUnit.Day, fromDate: refDate)
-        return confDate.compare(refDate) == NSComparisonResult.OrderedAscending && confDateDay == refDateDay
+    class func isSafeToVoteForConferenceWithDate(_ confDate: Date, fromReferenceDate refDate: Date) -> Bool {
+        let calendar = Calendar.current
+        let confDateDay = (calendar as NSCalendar).component(NSCalendar.Unit.day, from: confDate)
+        let refDateDay = (calendar as NSCalendar).component(NSCalendar.Unit.day, from: refDate)
+        return confDate.compare(refDate) == ComparisonResult.orderedAscending && confDateDay == refDateDay
     }
     
-    func isCurrentDateActive(startTime: NSString , endTime: NSString) -> (Bool) {
+    func isCurrentDateActive(_ startTime: String , endTime: String) -> (Bool) {
         var result = false
-        let currentDate = NSDate()
+        let currentDate = Date()
         if let timeZoneName = DataManager.sharedInstance.conferences?.conferences[DataManager.sharedInstance.selectedConferenceIndex].info.utcTimezoneOffset,
-            startDate = SDDateHandler.sharedInstance.parseScheduleDate(startTime),
-            localStartDate = SDDateHandler.convertDateToLocalTime(startDate, timeZoneName: timeZoneName),
-            endDate = SDDateHandler.sharedInstance.parseScheduleDate(endTime),
-            localEndDate = SDDateHandler.convertDateToLocalTime(endDate, timeZoneName: timeZoneName),
-            localCurrentDate = SDDateHandler.convertDateToLocalTime(currentDate, timeZoneName: timeZoneName) {
-                if localCurrentDate < localEndDate && localCurrentDate >= localStartDate{
+            let startDate = SDDateHandler.sharedInstance.parseScheduleDate(startTime),
+            let localStartDate = SDDateHandler.convertDateToLocalTime(startDate, timeZoneName: timeZoneName),
+            let endDate = SDDateHandler.sharedInstance.parseScheduleDate(endTime),
+            let localEndDate = SDDateHandler.convertDateToLocalTime(endDate, timeZoneName: timeZoneName),
+            let localCurrentDate = SDDateHandler.convertDateToLocalTime(currentDate, timeZoneName: timeZoneName) {
+                if (localCurrentDate.timeIntervalSince1970 < localEndDate.timeIntervalSince1970) && localCurrentDate >= localStartDate{
                     result = true
                     return result
                 }

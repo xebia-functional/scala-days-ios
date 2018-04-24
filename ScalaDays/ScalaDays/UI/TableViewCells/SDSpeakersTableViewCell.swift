@@ -25,10 +25,10 @@ class SDSpeakersTableViewCell: SDSocialTableViewCell {
         self.lblUsername.setCustomFont(UIFont.fontHelveticaNeue(15), colorFont: UIColor.appRedColor())
     }
     
-    func drawSpeakerData(speaker: Speaker) {
+    func drawSpeakerData(_ speaker: Speaker) {
         lblFullName.text = speaker.name
         if let twitterUsername = speaker.twitter {
-            if twitterUsername.containsString("@") {
+            if twitterUsername.contains("@") {
                 lblUsername.text = twitterUsername
             } else {
                 lblUsername.text = "@\(twitterUsername)"
@@ -36,11 +36,11 @@ class SDSpeakersTableViewCell: SDSocialTableViewCell {
         } else {
             lblUsername.text = ""
         }
-        lblContent.text = speaker.bio.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
+        lblContent.text = speaker.bio.trimmingCharacters(in: CharacterSet.whitespaces)
         
         if let pictureUrlString = speaker.picture {
-            if let pictureUrl = NSURL(string: pictureUrlString) {
-                imgView.sd_setImageWithURL(pictureUrl, placeholderImage: UIImage(named: "avatar")!)
+            if let pictureUrl = URL(string: pictureUrlString) {
+                imgView.sd_setImage(with: pictureUrl, placeholderImage: UIImage(named: "avatar")!)
             }
         }
         layoutSubviews()

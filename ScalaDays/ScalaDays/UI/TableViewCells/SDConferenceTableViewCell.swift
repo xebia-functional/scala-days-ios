@@ -32,10 +32,10 @@ class SDConferenceTableViewCell: UITableViewCell {
         self.selectedBackgroundView = bgColorView
     }
 
-    func drawConferenceData(conference: Conference) {
+    func drawConferenceData(_ conference: Conference) {
         self.lblConferenceName.text = conference.info.longName
-        if let pictureUrl = NSURL(string: conference.info.pictures[0].url) {
-            conferenceImageView.sd_setImageWithURL(pictureUrl, placeholderImage: UIImage(named: "menu_icon_places"))
+        if let pictureUrl = URL(string: conference.info.pictures[0].url) {
+            conferenceImageView.sd_setImage(with: pictureUrl, placeholderImage: UIImage(named: "menu_icon_places"))
         }
         layoutSubviews()
     }

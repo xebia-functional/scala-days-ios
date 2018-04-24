@@ -44,8 +44,8 @@ class SDScheduleDetailViewController: GAITrackedViewController {
         super.viewDidLoad()
 
         if let currentEvent = event {            
-            let favoritesIconColor = DataManager.sharedInstance.isFavoriteEvent(event, selectedConference: selectedConference) ? UIColor.appRedColor() : UIColor.whiteColor()
-            barButtonFavorites = UIBarButtonItem(image: UIImage(named: "navigation_bar_icon_favorite_default"), style: .Plain, target: self, action: #selector(SDScheduleDetailViewController.didTapFavoritesButton))
+            let favoritesIconColor = DataManager.sharedInstance.isFavoriteEvent(event, selectedConference: selectedConference) ? UIColor.appRedColor() : UIColor.white
+            barButtonFavorites = UIBarButtonItem(image: UIImage(named: "navigation_bar_icon_favorite_default"), style: .plain, target: self, action: #selector(SDScheduleDetailViewController.didTapFavoritesButton))
             barButtonFavorites.tintColor = favoritesIconColor
             self.navigationItem.rightBarButtonItem = barButtonFavorites
             
@@ -76,12 +76,12 @@ class SDScheduleDetailViewController: GAITrackedViewController {
                 let roomTitle = NSLocalizedString("schedule_location_title", comment: "") + room.name
                 lblRoom.attributedText = NSAttributedString(string: roomTitle)
                 if let _ = currentEventLocationMapUrl() {
-                    lblRoom.attributedText = NSAttributedString(string: roomTitle, attributes: [NSUnderlineStyleAttributeName : NSUnderlineStyle.StyleSingle.rawValue])
+                    lblRoom.attributedText = NSAttributedString(string: roomTitle, attributes: [NSAttributedStringKey.underlineStyle : NSUnderlineStyle.styleSingle.rawValue])
                     lblRoom.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(SDScheduleDetailViewController.didTapOnLocationLabel)))
-                    lblRoom.userInteractionEnabled = true
+                    lblRoom.isUserInteractionEnabled = true
                 }
             }
-            if lblRoom == "" {
+            if lblRoom.text == "" {
                 constraintForLblDescriptionTopSpace.constant = 0
             }
             
@@ -90,11 +90,11 @@ class SDScheduleDetailViewController: GAITrackedViewController {
             
             if let speakers = currentEvent.speakers {
                 if (speakers.count < 1) {
-                    viewSpeaker.hidden = true
+                    viewSpeaker.isHidden = true
                 } else {
                     var lastSpeakerBottomPos : CGFloat = 0
-                    for (_, speaker) in speakers.enumerate() {
-                        let speakerView = SDSpeakerDetailView(frame: CGRectMake(0, lastSpeakerBottomPos, screenBounds.width, 0))
+                    for (_, speaker) in speakers.enumerated() {
+                        let speakerView = SDSpeakerDetailView(frame: CGRect(x: 0, y: lastSpeakerBottomPos, width: screenBounds.width, height: 0))
                         speakerView.drawSpeakerData(speaker)
                         viewSpeakerListContainer.addSubview(speakerView)
                         
@@ -103,7 +103,7 @@ class SDScheduleDetailViewController: GAITrackedViewController {
                         }
                         
                         let height = speakerView.contentHeight()
-                        speakerView.frame = CGRectMake(0, lastSpeakerBottomPos, screenBounds.width, height)
+                        speakerView.frame = CGRect(x: 0, y: lastSpeakerBottomPos, width: screenBounds.width, height: height)
                         lastSpeakerBottomPos += height
                     }
                     constraintForSpeakerListContainerHeight.constant = lastSpeakerBottomPos
@@ -113,10 +113,10 @@ class SDScheduleDetailViewController: GAITrackedViewController {
         }
     }
     
-    func didTapFavoritesButton() {
+    @objc func didTapFavoritesButton() {
         if DataManager.sharedInstance.isFavoriteEvent(event, selectedConference: selectedConference) {
             DataManager.sharedInstance.storeOrRemoveFavoriteEvent(true, event: event, selectedConference: selectedConference)
-            barButtonFavorites.tintColor = UIColor.whiteColor()
+            barButtonFavorites.tintColor = UIColor.white
             SDGoogleAnalyticsHandler.sendGoogleAnalyticsTrackingWithScreenName(kGAScreenNameSchedule, category: kGACategoryFavorites, action: kGAActionScheduleDetailRemoveToFavorite, label: event?.title)
         } else {
             DataManager.sharedInstance.storeOrRemoveFavoriteEvent(false, event: event, selectedConference: selectedConference)
@@ -127,19 +127,19 @@ class SDScheduleDetailViewController: GAITrackedViewController {
     
     // MARK: - Location map stuff
     
-    func currentEventLocationMapUrl() -> NSURL? {
+    func currentEventLocationMapUrl() -> URL? {
         if let currentEvent = event {
             if let locationMapString = currentEvent.location?.mapUrl {
                 if locationMapString == "" {
                     return nil
                 }
-                return NSURL(string: locationMapString)
+                return URL(string: locationMapString)
             }
         }
         return nil
     }
     
-    func didTapOnLocationLabel() {
+    @objc func didTapOnLocationLabel() {
         let webViewController = SDWebViewController(nibName: "SDWebViewController", bundle: nil)
         self.navigationController?.pushViewController(webViewController, animated: true)
         self.title = ""

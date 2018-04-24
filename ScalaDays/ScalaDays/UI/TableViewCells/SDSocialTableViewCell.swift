@@ -41,16 +41,16 @@ class SDSocialTableViewCell: UITableViewCell {
         lblContent?.preferredMaxLayoutWidth = self.frame.size.width - kWidthForImgView - (kGlobalPadding * 3)
     }
     
-    internal func drawTweetData(tweet: SDTweet) {
+    internal func drawTweetData(_ tweet: SDTweet) {
         lblFullName.text = tweet.fullName
         lblUsername.text = "@\(tweet.username)"
         lblContent.text = tweet.tweetText
         if let date = SDDateHandler.sharedInstance.parseTwitterDate(tweet.dateString) {
-            lblDate.text = date.timeAgoSimple()
+            lblDate.text = (date as NSDate).timeAgoSimple()
         }
-        let imageUrl = NSURL(string: tweet.profileImage)
+        let imageUrl = URL(string: tweet.profileImage)
         if let profileImageUrl = imageUrl {
-            imgView.sd_setImageWithURL(profileImageUrl)
+            imgView.sd_setImage(with: profileImageUrl)
         }
         layoutSubviews()
     }
