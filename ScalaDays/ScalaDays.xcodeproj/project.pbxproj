@@ -744,7 +744,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "./Crashlytics.framework/run 650c56fa5bc6a759a4802ae63f430cfaf6c8158a 2c56ab5ccb4f21cd496c8f733a95205cb91e19601dadd81a60e13f963f31c19c";
+			shellScript = "\"${PODS_ROOT}/Fabric/run\" 650c56fa5bc6a759a4802ae63f430cfaf6c8158a 2c56ab5ccb4f21cd496c8f733a95205cb91e19601dadd81a60e13f963f31c19c";
 		};
 		F08C9BFD17F15CD0A11F13FD /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
