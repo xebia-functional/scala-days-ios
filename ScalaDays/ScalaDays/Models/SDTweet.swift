@@ -17,19 +17,19 @@
 import Foundation
 
 class SDTweet: NSObject {
-    let username : String
-    let fullName : String
-    let tweetText : String
-    let profileImage : String
-    let dateString : String
-    let id : String
+    let username: String
+    let fullName: String
+    let tweetText: String
+    let profileImage: String
+    let date: Date
+    let id: String
     
-    init(username : String, fullName : String, tweetText : String, profileImage : String, dateString : String, id: String) {
+    init(username: String, fullName: String, tweetText: String, profileImage: String, date: Date, id: String) {
         self.username = username
         self.fullName = fullName
         self.tweetText = tweetText
         self.profileImage = profileImage
-        self.dateString = dateString
+        self.date = date
         self.id = id
     }
 }

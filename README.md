@@ -15,7 +15,7 @@ Once the dependencies are downloaded Cocoapods will create a workspace file. Use
 
 ## External Keys
 
-As this project uses Crashlytics, Localytics and Google Analytics, an external plist file (**SDExternalKeys.plist**) (located in the *External/Keys* folder) is used to store the API keys for those services. You need to create this file (it's not included in the repository), but you only need to fill the fields if you want to use your own keys for each service. The content is expected to be as follows:
+As this project uses Crashlytics, Localytics, Google Analytics and TwitterKit, an external plist file (**SDExternalKeys.plist**) (located in the *External/Keys* folder) is used to store the API keys for those services. You need to create this file (it's not included in the repository), but you only need to fill the fields if you want to use your own keys for each service. The content is expected to be as follows:
 
 	<dict>
 		<key>GoogleAnalytics</key>
@@ -23,6 +23,10 @@ As this project uses Crashlytics, Localytics and Google Analytics, an external p
 		<key>Crashlytics</key>
 		<string>***********</string>
 		<key>Localytics</key>
+		<string>***********</string>
+		<key>TwitterConsumerKey</key>
+		<string>***********</string>
+		<key>TwitterConsumerSecret</key>
 		<string>***********</string>
 	</dict>
 

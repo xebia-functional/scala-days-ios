@@ -21,8 +21,6 @@
 
 #import <SVProgressHUD/SVProgressHUD.h>
 #import <SDWebImage/UIImageView+WebCache.h>
-//#import "NSDate+TimeAgo.h"
-//#import "ZBarSDK.h"
 #import "SDContactCreationHelper.h"
 #import "GAI.h"
 #import "GAIDictionaryBuilder.h"

@@ -118,56 +118,30 @@ class SDSocialViewController: GAITrackedViewController, UITableViewDelegate, UIT
         }
 
         if !isRefreshing {
-            self.showProgressHUD()
+            showProgressHUD()
         }
-
-        if let _query = query {
-            if _query != "" {
-                socialHandler.requestTweetListWithHashtag(_query, count: count) {
-                    (tweets, error) -> Void in
-                    self.hideProgressHUD()
-
-                    switch (tweets, error) {
-                    case let (.some(tweets), nil):
-                        self.listOfTweets = tweets as! Array<SDTweet>
-                        DispatchQueue.main.async {
-                            if self.listOfTweets.count > 0 {
-                                self.tblView.reloadData()
-                                self.tblView.setContentOffset(CGPoint.zero, animated: true)
-                                self.errorPlaceholderView.hide()
-                                self.showTableView()
-                            } else {
-                                self.errorPlaceholderView.show(NSLocalizedString("social_error_no_tweets_for_current_hashtag", comment: ""))
-                            }
-                        }
-                    default:
-                        if let error = error {
-                            var errorMessage: String = ""
-
-                            switch (error.code) {
-                            case SDSocialErrors.accountAccessNotGranted.rawValue:
-                                errorMessage = NSLocalizedString("social_error_message_not_granted_access", comment: "")
-                            case SDSocialErrors.noTwitterAccountAvailable.rawValue:
-                                errorMessage = NSLocalizedString("social_error_message_no_twitter_account_configured", comment: "")
-                            case SDSocialErrors.noValidDataFromAPI.rawValue, SDSocialErrors.invalidRequest.rawValue:
-                                if (self.listOfTweets.count == 0) {
-                                    errorMessage = NSLocalizedString("social_error_no_valid_tweets", comment: "")
-                                }
-                            default:
-                                break
-                            }
-
-                            if (errorMessage != "") {
-                                DispatchQueue.main.async {
-                                    self.errorPlaceholderView.show(errorMessage)
-                                }
-                            }
-                        }
-                    }
-                }
-            } else {
+        
+        if let query = query, !query.isEmpty {
+            socialHandler.requestTweetList(withHashtag: query, count: count) { [weak self] getTweetsResult in
+                guard let `self` = self else { return }
+                
                 self.hideProgressHUD()
-                self.errorPlaceholderView.show(NSLocalizedString("social_error_no_valid_tweets", comment: ""))
+                
+                switch (getTweetsResult) {
+                case .success(let tweets):
+                    self.listOfTweets = tweets
+                    if self.listOfTweets.count > 0 {
+                        self.tblView.reloadData()
+                        self.tblView.setContentOffset(CGPoint.zero, animated: true)
+                        self.errorPlaceholderView.hide()
+                        self.showTableView()
+                    } else {
+                        self.errorPlaceholderView.show(NSLocalizedString("social_error_no_tweets_for_current_hashtag", comment: ""))
+                    }
+                    
+                case .failure(_):
+                    self.errorPlaceholderView.show(NSLocalizedString("social_error_no_valid_tweets", comment: ""))
+                }
             }
         } else {
             self.hideProgressHUD()
@@ -249,19 +223,21 @@ class SDSocialViewController: GAITrackedViewController, UITableViewDelegate, UIT
     // MARK: - Composing tweet
 
     @objc func didTapCreateTweetButton() {
-        let error = self.socialHandler.showTweetComposerWithTweetText(hashtag ?? "", onViewController: self)
-        if (error != .noError) {
-            SDAlertViewHelper.showSimpleAlertViewOnViewController(self, title: nil, message: NSLocalizedString("social_error_message_no_twitter_account_configured", comment: ""), cancelButtonTitle: NSLocalizedString("common_ok", comment: ""), otherButtonTitle: nil, tag: nil, delegate: nil, handler: nil)
-            SDGoogleAnalyticsHandler.sendGoogleAnalyticsTrackingWithScreenName(kGAScreenNameSocial, category: kGACategoryNavigate, action: kGAActionSocialPostTweet, label: nil)
+        socialHandler.showTweetComposer(withTweetText: hashtag, on: self) { composerResult in
+            switch(composerResult) {
+            case .cancelled: break
+            case .done:
+                SDGoogleAnalyticsHandler.sendGoogleAnalyticsTrackingWithScreenName(kGAScreenNameSocial, category: kGACategoryNavigate, action: kGAActionSocialPostTweet, label: nil)
+            }
         }
     }
 
     // MARK: - Progress HUD
 
     func showProgressHUD() {
-        DispatchQueue.main.async(execute: {
+        DispatchQueue.main.async {
             SVProgressHUD.show()
-        })
+        }
     }
 
     func hideProgressHUD() {

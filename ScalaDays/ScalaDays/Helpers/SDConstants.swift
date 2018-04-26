@@ -21,6 +21,8 @@ let kExternalKeysPlistFilename = "SDExternalKeys"
 let kExternalKeysDKGoogleAnalytics = "GoogleAnalytics"
 let kExternalKeysDKCrashlytics = "Crashlytics"
 let kExternalKeysDKLocalytics = "Localytics"
+let kExternalKeysDKTwitterConsumerKey = "TwitterConsumerKey"
+let kExternalKeysDKTwitterConsumerSecret = "TwitterConsumerSecret"
 
 let IS_IPHONE5 = UIScreen.main.bounds.size.height == 480;
 

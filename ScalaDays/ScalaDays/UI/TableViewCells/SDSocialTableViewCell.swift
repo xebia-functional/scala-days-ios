@@ -45,9 +45,7 @@ class SDSocialTableViewCell: UITableViewCell {
         lblFullName.text = tweet.fullName
         lblUsername.text = "@\(tweet.username)"
         lblContent.text = tweet.tweetText
-        if let date = SDDateHandler.sharedInstance.parseTwitterDate(tweet.dateString) {
-            lblDate.text = (date as NSDate).timeAgoSimple()
-        }
+        lblDate.text = (tweet.date as NSDate).timeAgoSimple()
         let imageUrl = URL(string: tweet.profileImage)
         if let profileImageUrl = imageUrl {
             imgView.sd_setImage(with: profileImageUrl)
