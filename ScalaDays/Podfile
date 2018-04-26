@@ -1,6 +1,6 @@
 source 'https://github.com/CocoaPods/Specs.git'
 # Target OS Version
-platform :ios, '8.0'
+platform :ios, '9.0'
 
 # Inhibit warnings from dependencies
 inhibit_all_warnings!
@@ -10,6 +10,9 @@ abstract_target 'ScalaDaysPods' do
   # Alamofire
   pod 'Alamofire', :git => 'https://github.com/Alamofire/Alamofire.git', :tag => '4.5.1'
   pod 'SwiftyJSON', '3.1.4'
+  
+  # Twitter
+  pod 'TwitterKit', '3.3.0'
   
   target 'ScalaDays' do
     # Google Analytics

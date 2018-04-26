@@ -34,7 +34,6 @@ func ==(lhs: Date, rhs: Date) -> Bool {
 
 class SDDateHandler: NSObject {
     lazy var dateFormatter: DateFormatter = DateFormatter()
-    let kTwitterDateFormat = "EEE MMM d HH:mm:ss Z y"
     let kResponseDateFormat = "EEE, dd MMM yyyy HH:mm:ss Z"
     let kScheduleDateFormat = "yyyy-MM-dd'T'HH:mm:ss'Z'"
     let kScheduleOutputWeekDay = "EEEE"
@@ -50,12 +49,6 @@ class SDDateHandler: NSObject {
         }
 
         return Static.instance
-    }
-
-    func parseTwitterDate(_ twitterDate: String) -> Date? {
-        dateFormatter.locale = Locale(identifier: "en_US_POSIX")
-        dateFormatter.dateFormat = kTwitterDateFormat
-        return dateFormatter.date(from: twitterDate)
     }
 
     func parseServerDate(_ dateString: String) -> Date? {

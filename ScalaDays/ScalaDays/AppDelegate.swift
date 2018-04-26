@@ -18,6 +18,7 @@ import UIKit
 import Crashlytics
 import SVProgressHUD
 import Localytics
+import TwitterKit
 
 
 @UIApplicationMain
@@ -52,9 +53,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if let crashlyticsKey = externalKeys.crashlyticsKey {
             Crashlytics.start(withAPIKey: crashlyticsKey)
         }
+        
+        if let twitterConsumerKey = externalKeys.twitterConsumerKey,
+            let twitterConsumerSecret = externalKeys.twitterConsumerSecret {
+            TWTRTwitter.sharedInstance().start(withConsumerKey: twitterConsumerKey, consumerSecret: twitterConsumerSecret)
+        }
 
-        self.initAppearence()
-        self.createMenuView()
+        initAppearence()
+        createMenuView()
         return true
     }
 
@@ -84,7 +90,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         Localytics.upload()
     }
 
-    fileprivate func createMenuView() {
+    private func createMenuView() {
 
         let scheduleViewController = SDScheduleViewController(nibName: "SDScheduleViewController", bundle: nil)
         menuViewController = SDSlideMenuViewController(nibName: "SDSlideMenuViewController", bundle: nil)
@@ -101,7 +107,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
     }
 
-    func initAppearence() {
+    private func initAppearence() {
         UINavigationBar.appearance().barTintColor = UIColor.appColor()
         UINavigationBar.appearance().tintColor = UIColor.white
         UINavigationBar.appearance().titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.white]
@@ -111,15 +117,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         SVProgressHUD.setBackgroundColor(UIColor.clear)
     }
 
-    class func loadExternalKeys() -> (googleAnalyticsKey:String?, crashlyticsKey:String?, localyticsKey:String?) {
+    class func loadExternalKeys() -> (googleAnalyticsKey: String?, crashlyticsKey: String?, localyticsKey: String?, twitterConsumerKey: String?, twitterConsumerSecret: String?) {
         if let path = Bundle.main.path(forResource: kExternalKeysPlistFilename, ofType: "plist") {
             if let keysDict = NSDictionary(contentsOfFile: path) {
-                return (keysDict[kExternalKeysDKGoogleAnalytics] as? String, keysDict[kExternalKeysDKCrashlytics] as? String, keysDict[kExternalKeysDKLocalytics] as? String)
+                return (keysDict[kExternalKeysDKGoogleAnalytics] as? String,
+                        keysDict[kExternalKeysDKCrashlytics] as? String,
+                        keysDict[kExternalKeysDKLocalytics] as? String,
+                        keysDict[kExternalKeysDKTwitterConsumerKey] as? String,
+                        keysDict[kExternalKeysDKTwitterConsumerSecret] as? String)
             }
         }
-        return (nil, nil, nil)
+        return (nil, nil, nil, nil, nil)
     }
 
+    func application(_ application: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey:Any] = [:]) -> Bool {
+        return TWTRTwitter.sharedInstance().application(application, open: url, options: options)
+    }
 
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
         Localytics.setPushToken(deviceToken)

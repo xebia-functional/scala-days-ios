@@ -28,8 +28,6 @@ class ScalaDaysTests: XCTestCase {
     let kTestScheduleDateTimestamp = TimeInterval(1426546800)
     let kTestServerDateString = "Wed, 25 Feb 2015 08:31:06 GMT"
     let kTestServerDateTimestamp = TimeInterval(1424853066)
-    let kTestTwitterDateString = "Wed Feb 25 09:10:13 +0000 2015"
-    let kTestTwitterDateTimestamp = TimeInterval(1424855413)
     
     // MARK: - Setting up tests
     
@@ -97,15 +95,6 @@ class ScalaDaysTests: XCTestCase {
             XCTAssertEqual(timestamp, kTestServerDateTimestamp, "Parsing of test server date should return the correct value. Returned \(timestamp), expected \(kTestServerDateTimestamp)")
         } else {
             XCTFail("Parsing of server dates from the server should return a valid date")
-        }
-    }
-    
-    func testParsingTwitterDates() {
-        if let twitterDate = SDDateHandler.sharedInstance.parseTwitterDate(kTestTwitterDateString) {
-            let timestamp = twitterDate.timeIntervalSince1970
-            XCTAssertEqual(timestamp, kTestTwitterDateTimestamp, "Parsing of test twitter date should return the correct value. Returned \(timestamp), expected \(kTestServerDateTimestamp)")
-        } else {
-            XCTFail("Parsing of twitter dates from the server should return a valid date")
         }
     }
     

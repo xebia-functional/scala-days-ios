@@ -63,7 +63,7 @@ class SDSpeakerDetailView: UIView {
     func drawSpeakerData(_ speaker: Speaker) {
         lblName.text = speaker.name
         if let twitterUsername = speaker.twitter {
-            if twitterUsername.characters.contains("@") {
+            if twitterUsername.contains("@") {
                 lblUsername.text = twitterUsername
             } else {
                 lblUsername.text = "@\(twitterUsername)"

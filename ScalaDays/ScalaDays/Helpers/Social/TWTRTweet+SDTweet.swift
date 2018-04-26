@@ -14,17 +14,16 @@
  * limitations under the License.
  */
 
+import Foundation
+import TwitterKit
 
-
-#ifndef ScalaDays_Bridging_Header_h
-#define ScalaDays_Bridging_Header_h
-
-#import <SVProgressHUD/SVProgressHUD.h>
-#import <SDWebImage/UIImageView+WebCache.h>
-#import "SDContactCreationHelper.h"
-#import "GAI.h"
-#import "GAIDictionaryBuilder.h"
-#import "GAIFields.h"
-#import "GAILogger.h"
-
-#endif
+extension TWTRTweet {
+    func sdTweet() -> SDTweet {
+        return SDTweet(username: author.name,
+                       fullName: author.screenName,
+                       tweetText: text,
+                       profileImage: author.profileImageURL,
+                       date: createdAt,
+                       id: tweetID)
+    }
+}
