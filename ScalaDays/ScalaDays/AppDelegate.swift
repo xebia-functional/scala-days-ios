@@ -131,9 +131,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func application(_ application: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey:Any] = [:]) -> Bool {
-        TWTRTwitter.sharedInstance().application(application, open: url, options: options)
-        
-        return true
+        return TWTRTwitter.sharedInstance().application(application, open: url, options: options)
     }
 
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
