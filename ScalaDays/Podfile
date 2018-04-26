@@ -11,15 +11,15 @@ abstract_target 'ScalaDaysPods' do
   pod 'Alamofire', :git => 'https://github.com/Alamofire/Alamofire.git', :tag => '4.5.1'
   pod 'SwiftyJSON', '3.1.4'
   
+  # Twitter
+  pod 'TwitterKit', '3.3.0'
+  
   target 'ScalaDays' do
     # Google Analytics
     pod 'GoogleAnalytics'
     
     # Crashlytics
     pod 'Crashlytics', '3.10.1'
-    
-    # Twitter
-    pod 'TwitterKit', '3.3.0'
           
     # UI
     pod 'SDWebImage', '~> 3.5'

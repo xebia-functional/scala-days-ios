@@ -19,9 +19,6 @@ import TwitterKit
 
 extension TWTRTweet {
     func sdTweet() -> SDTweet {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateStyle = .short
-        dateFormatter.timeStyle = .short
         return SDTweet(username: author.name,
                        fullName: author.screenName,
                        tweetText: text,

@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0D21FB302090ED1200441767 /* TWTRTweet+SDTweet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D21FB2F2090ED1200441767 /* TWTRTweet+SDTweet.swift */; };
+		0D21FB312091F84900441767 /* TWTRTweet+SDTweet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D21FB2F2090ED1200441767 /* TWTRTweet+SDTweet.swift */; };
 		12E3C2517E2B2D10F7D9FEA8 /* Pods_ScalaDaysPods_ScalaDays.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 857E5518A29D51062F9155B4 /* Pods_ScalaDaysPods_ScalaDays.framework */; };
 		18DAE816976C232E95E125FE /* Pods_ScalaDaysPods_ScalaDaysTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7DE3E72A5ED11E640A8CD7A9 /* Pods_ScalaDaysPods_ScalaDaysTests.framework */; };
 		1EA75E8B1A925BFF00884EC8 /* SDConferenceTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EA75E891A925BFF00884EC8 /* SDConferenceTableViewCell.swift */; };
@@ -580,6 +581,7 @@
 				A1D795D91A68267F009CCEB3 /* Frameworks */,
 				A1D795DA1A68267F009CCEB3 /* Resources */,
 				F08C9BFD17F15CD0A11F13FD /* [CP] Embed Pods Frameworks */,
+				5917D74B01E4D29CAD47F4D5 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -761,6 +763,26 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ScalaDaysPods-ScalaDays/Pods-ScalaDaysPods-ScalaDays-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		5917D74B01E4D29CAD47F4D5 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-ScalaDaysPods-ScalaDaysTests/Pods-ScalaDaysPods-ScalaDaysTests-resources.sh",
+				"${PODS_ROOT}/TwitterKit/iOS/TwitterKit.framework/TwitterKitResources.bundle",
+				"${PODS_ROOT}/TwitterKit/iOS/TwitterKit.framework/TwitterShareExtensionUIResources.bundle",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/TwitterKitResources.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/TwitterShareExtensionUIResources.bundle",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ScalaDaysPods-ScalaDaysTests/Pods-ScalaDaysPods-ScalaDaysTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		A1C8B87B1A8E7597008599FF /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -783,11 +805,15 @@
 				"${SRCROOT}/Pods/Target Support Files/Pods-ScalaDaysPods-ScalaDaysTests/Pods-ScalaDaysPods-ScalaDaysTests-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
+				"${PODS_ROOT}/TwitterCore/iOS/TwitterCore.framework",
+				"${PODS_ROOT}/TwitterKit/iOS/TwitterKit.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TwitterCore.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TwitterKit.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -875,6 +901,7 @@
 				59A7DF701A938A41009F4639 /* SDAlertViewHelper.swift in Sources */,
 				59A7DF711A938A41009F4639 /* SDSocialHandler.swift in Sources */,
 				597E3B0D1AB2E58A00F41F17 /* SDTweet.swift in Sources */,
+				0D21FB312091F84900441767 /* TWTRTweet+SDTweet.swift in Sources */,
 				59A7DF731A938A41009F4639 /* SDQRScannerOverlayView.swift in Sources */,
 				59A7DF751A938A41009F4639 /* SDTableHeaderView.swift in Sources */,
 				59A7DF831A938A41009F4639 /* SDImageView-Circular.swift in Sources */,
