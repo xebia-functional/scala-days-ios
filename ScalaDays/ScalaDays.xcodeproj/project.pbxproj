@@ -74,7 +74,6 @@
 		59F0E2E61CA1518700BDD40E /* Vote.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59F0E2E51CA1518700BDD40E /* Vote.swift */; };
 		59F0E2E71CA15B7600BDD40E /* Vote.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59F0E2E51CA1518700BDD40E /* Vote.swift */; };
 		A1551FB1207ACE9C006BCE7A /* SDExternalKeys.plist in Resources */ = {isa = PBXBuildFile; fileRef = A1551FB0207ACE9C006BCE7A /* SDExternalKeys.plist */; };
-		A1551FB3207AD44A006BCE7A /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A1551FB2207AD44A006BCE7A /* SwiftyJSON.framework */; };
 		A171433E1A88F6880068FD33 /* SDConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1FA1FF81A7BA95500338AF0 /* SDConstants.swift */; };
 		A171433F1A88F7730068FD33 /* SDDateHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 590DDD761A83C5E800E4CC3F /* SDDateHandler.swift */; };
 		A19C65C71A7FC30A00A206FC /* SDContactViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A19C65C51A7FC30A00A206FC /* SDContactViewController.swift */; };
@@ -230,7 +229,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A1551FB3207AD44A006BCE7A /* SwiftyJSON.framework in Frameworks */,
 				5928D1781A88E5C800E5049E /* MapKit.framework in Frameworks */,
 				5950030A1A84EDD500A1C24F /* AddressBook.framework in Frameworks */,
 				595003011A84C1DA00A1C24F /* MobileCoreServices.framework in Frameworks */,

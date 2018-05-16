@@ -16,7 +16,6 @@
 
 import UIKit
 import XCTest
-import SwiftyJSON
 
 class ScalaDaysTests: XCTestCase {
     
@@ -186,14 +185,6 @@ class ScalaDaysTests: XCTestCase {
             }
         }
         return nil
-    }
-    
-    func parseJSONData(_ data: Data) -> JSON? {
-        do {
-            return try JSON(JSONSerialization.jsonObject(with: data, options: .allowFragments))
-        } catch {
-            return nil
-        }
     }
     
     func is24hTimeSettingEnabled() -> Bool {
