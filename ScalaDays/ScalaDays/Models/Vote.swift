@@ -30,7 +30,7 @@ enum VoteType: Int {
     }
 }
 
-class Vote : NSObject, NSCoding {
+class Vote: NSObject, Codable {
     let voteValue: Int
     let talkId: Int
     let conferenceId: Int
@@ -41,19 +41,5 @@ class Vote : NSObject, NSCoding {
         talkId = _talkId
         conferenceId = _conferenceId
         comments = _comments
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        self.voteValue = aDecoder.decodeObject(forKey: "voteValue") as! Int
-        self.talkId = aDecoder.decodeObject(forKey: "talkId") as! Int
-        self.conferenceId = aDecoder.decodeObject(forKey: "conferenceId") as! Int
-        self.comments = aDecoder.decodeObject(forKey: "comments") as? String
-    }
-    
-    func encode(with aCoder: NSCoder) {
-        aCoder.encode(self.voteValue, forKey: "voteValue")
-        aCoder.encode(self.talkId, forKey: "talkId")
-        aCoder.encode(self.conferenceId, forKey: "conferenceId")
-        aCoder.encode(self.comments, forKey: "comments")
     }
 }

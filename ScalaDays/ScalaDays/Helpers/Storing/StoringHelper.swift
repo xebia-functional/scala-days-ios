@@ -31,21 +31,21 @@ class StoringHelper {
     // MARK: - Conference storing
     
     func storeConferenceData(_ conferences: Conferences) {
-        storeDataFromFileWithFilename(conferences, filename: kMainConferenceStoringFilename)
+        storeDataToFileWithFilename(conferences, filename: kMainConferenceStoringFilename)
     }
     
     func loadConferenceData() -> Conferences? {
-        return loadDataFromFileWithFilename(kMainConferenceStoringFilename) as? Conferences
+        return loadDataFromFileWithFilename(kMainConferenceStoringFilename)
     }
     
     // MARK: - Votes storing
     
     func storeVotesData(_ votes: [String: Vote]) {
-        storeDataFromFileWithFilename(votes as NSCoding, filename: kVotesFilename)
+        storeDataToFileWithFilename(votes, filename: kVotesFilename)
     }
     
     func loadVotesData() -> [String: Vote]? {
-        return loadDataFromFileWithFilename(kVotesFilename) as? [String: Vote]
+        return loadDataFromFileWithFilename(kVotesFilename)
     }
     
     func storedVoteForConferenceId(_ conferenceId: Int, talkId: Int) -> Vote? {
@@ -62,18 +62,22 @@ class StoringHelper {
         return NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] 
     }
     
-    func loadDataFromFileWithFilename(_ filename: String) -> AnyObject? {
+    func loadDataFromFileWithFilename<T: Codable>(_ filename: String) -> T? {
         let fileManager = FileManager.default
         let dataPath = (StoringHelper.documentsFolderPath() as NSString).appendingPathComponent(filename)
         
-        if(fileManager.fileExists(atPath: dataPath)) {
-            return NSKeyedUnarchiver.unarchiveObject(withFile: dataPath) as AnyObject
+        guard fileManager.fileExists(atPath: dataPath),
+            let data = NSKeyedUnarchiver.unarchiveObject(withFile: dataPath) as? Data else {
+                return nil
         }
-        return nil
+        
+        return try? JSONDecoder().decode(T.self, from: data)
     }
     
-    func storeDataFromFileWithFilename(_ conferences: NSCoding, filename: String) {
+    func storeDataToFileWithFilename<T: Codable>(_ value: T, filename: String) {
         let conferenceDataPath = (StoringHelper.documentsFolderPath() as NSString).appendingPathComponent(filename)
-        NSKeyedArchiver.archiveRootObject(conferences, toFile: conferenceDataPath)
+        guard let data = try? JSONEncoder().encode(value) else { return }
+        
+        NSKeyedArchiver.archiveRootObject(data, toFile: conferenceDataPath)
     }
 }
