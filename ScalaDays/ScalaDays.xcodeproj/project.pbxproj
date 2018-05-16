@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		0D21FB302090ED1200441767 /* TWTRTweet+SDTweet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D21FB2F2090ED1200441767 /* TWTRTweet+SDTweet.swift */; };
 		0D21FB312091F84900441767 /* TWTRTweet+SDTweet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D21FB2F2090ED1200441767 /* TWTRTweet+SDTweet.swift */; };
+		0DEDC40E20AC7197004C7643 /* VoteTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DEDC40D20AC7197004C7643 /* VoteTests.swift */; };
 		12E3C2517E2B2D10F7D9FEA8 /* Pods_ScalaDaysPods_ScalaDays.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 857E5518A29D51062F9155B4 /* Pods_ScalaDaysPods_ScalaDays.framework */; };
 		18DAE816976C232E95E125FE /* Pods_ScalaDaysPods_ScalaDaysTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7DE3E72A5ED11E640A8CD7A9 /* Pods_ScalaDaysPods_ScalaDaysTests.framework */; };
 		1EA75E8B1A925BFF00884EC8 /* SDConferenceTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EA75E891A925BFF00884EC8 /* SDConferenceTableViewCell.swift */; };
@@ -133,6 +134,7 @@
 		0256E37AB85427EDF899EF98 /* Pods-ScalaDaysPods-ScalaDaysTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ScalaDaysPods-ScalaDaysTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ScalaDaysPods-ScalaDaysTests/Pods-ScalaDaysPods-ScalaDaysTests.debug.xcconfig"; sourceTree = "<group>"; };
 		02C3CA31C911ADCA6C7CA1B8 /* Pods-ScalaDaysPods-ScalaDays.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ScalaDaysPods-ScalaDays.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ScalaDaysPods-ScalaDays/Pods-ScalaDaysPods-ScalaDays.debug.xcconfig"; sourceTree = "<group>"; };
 		0D21FB2F2090ED1200441767 /* TWTRTweet+SDTweet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TWTRTweet+SDTweet.swift"; sourceTree = "<group>"; };
+		0DEDC40D20AC7197004C7643 /* VoteTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoteTests.swift; sourceTree = "<group>"; };
 		1EA75E891A925BFF00884EC8 /* SDConferenceTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SDConferenceTableViewCell.swift; sourceTree = "<group>"; };
 		1EA75E8A1A925BFF00884EC8 /* SDConferenceTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SDConferenceTableViewCell.xib; sourceTree = "<group>"; };
 		27CC132DAC4EB8C5D5F3EC28 /* Pods-ScalaDaysPods-ScalaDaysTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ScalaDaysPods-ScalaDaysTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ScalaDaysPods-ScalaDaysTests/Pods-ScalaDaysPods-ScalaDaysTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -518,6 +520,7 @@
 			isa = PBXGroup;
 			children = (
 				A1D795E21A68267F009CCEB3 /* ScalaDaysTests.swift */,
+				0DEDC40D20AC7197004C7643 /* VoteTests.swift */,
 				A1D795E01A68267F009CCEB3 /* Supporting Files */,
 			);
 			path = ScalaDaysTests;
@@ -904,6 +907,7 @@
 				597E3B111AB2E5FD00F41F17 /* DataManager.swift in Sources */,
 				59A7DF851A938A41009F4639 /* SDColor.swift in Sources */,
 				59A7DF881A938A41009F4639 /* SDMapView-ZoomOut.swift in Sources */,
+				0DEDC40E20AC7197004C7643 /* VoteTests.swift in Sources */,
 				A171433F1A88F7730068FD33 /* SDDateHandler.swift in Sources */,
 				597E3B091AB2E58A00F41F17 /* Conference.swift in Sources */,
 				A171433E1A88F6880068FD33 /* SDConstants.swift in Sources */,
