@@ -634,31 +634,30 @@ class SDScheduleViewController: GAITrackedViewController,
     
     func sendVote(_ voteType: VoteType, comments: String?) {
         SVProgressHUD.show()
-        func votingRequestParametersForVote(_ vote: VoteType, event: Int, conference: Int, uid: String, comments: String?) -> [String: AnyObject] {
+        func votingRequestParametersForVote(_ vote: VoteType, event: Int, conference: Int, uid: String, comments: String?) -> Parameters {
             if let actualComments = comments {
-                return [votingParamVote: voteType.rawValue as AnyObject,
-                        votingParamUID: uid as AnyObject,
-                        votingParamTalkId: event as AnyObject,
-                        votingParamConferenceId: conference as AnyObject,
-                        votingParamCommentsMessage: actualComments as AnyObject]
+                return [votingParamVote: voteType.rawValue,
+                        votingParamUID: uid  ,
+                        votingParamTalkId: event  ,
+                        votingParamConferenceId: conference ,
+                        votingParamCommentsMessage: actualComments ]
             }
-            return [votingParamVote: voteType.rawValue as AnyObject,
-                votingParamUID: uid as AnyObject,
-                votingParamTalkId: event as AnyObject,
-                votingParamConferenceId: conference as AnyObject]
+            return [votingParamVote: voteType.rawValue ,
+                votingParamUID: uid ,
+                votingParamTalkId: event ,
+                votingParamConferenceId: conference]
         }
         
         if let (event, conference) = selectedEventToVote,
             let uid = UIDevice.current.identifierForVendor?.uuidString {
-            Alamofire.request(votingUrl, method:HTTPMethod.post,
+           Alamofire.request(votingUrl, method:HTTPMethod.post,
                 parameters: votingRequestParametersForVote(voteType,
                     event: event,
                     conference: conference,
                     uid: uid,
                     comments: comments),
-                encoding: JSONEncoding.default,
-                headers: ["Content-Type": votingParamUrlEncodeHeader])
-                .response { response in
+                encoding: URLEncoding.default,
+                headers: ["Content-Type": votingParamUrlEncodeHeader]).response { response in
                     let code = response.response?.statusCode ?? 0
                     if code >= self.kConnectionErrorCode400 || code == 0 {
                         SDAlertViewHelper.showSimpleAlertViewOnViewController(self,

@@ -18,8 +18,9 @@ import Foundation
 
 class StoringHelper {
     
-    let kMainConferenceStoringFilename = "sdConferences.data"
-    let kVotesFilename = "sdVotes.data"
+    let kMainConferenceStoringFilename = "sdConferencesNew.data"
+    let kVotesFilename = "sdVotesNew.data"
+    let kVotesFilenameOld = "sdVotes.data"
     
     class var sharedInstance: StoringHelper {
         struct Static {
@@ -45,7 +46,8 @@ class StoringHelper {
     }
     
     func loadVotesData() -> [String: Vote]? {
-        return loadDataFromFileWithFilename(kVotesFilename)
+    return loadDataFromFileWithFilename(kVotesFilename)
+     
     }
     
     func storedVoteForConferenceId(_ conferenceId: Int, talkId: Int) -> Vote? {
@@ -63,6 +65,7 @@ class StoringHelper {
     }
     
     func loadDataFromFileWithFilename<T: Codable>(_ filename: String) -> T? {
+       
         let fileManager = FileManager.default
         let dataPath = (StoringHelper.documentsFolderPath() as NSString).appendingPathComponent(filename)
         
