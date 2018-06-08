@@ -15,13 +15,9 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>5.0</string>
+	<string>3.0.3</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
-	<key>CFBundleVersion</key>
-	<string>1</string>
-	<key>LSApplicationCategoryType</key>
-	<string></string>
 	<key>CFBundleURLTypes</key>
 	<array>
 		<dict>
@@ -31,6 +27,10 @@
 			</array>
 		</dict>
 	</array>
+	<key>CFBundleVersion</key>
+	<string>2</string>
+	<key>LSApplicationCategoryType</key>
+	<string></string>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
 		<string>twitter</string>
@@ -57,9 +57,9 @@
 		</dict>
 	</dict>
 	<key>NSCameraUsageDescription</key>
-	<string>Would like to access the camera</string>
+	<string>for scanning QR codes.</string>
 	<key>NSContactsUsageDescription</key>
-	<string>Would like to access the contact</string>
+	<string>for saving new scanned contacts.</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>This app needs access to your Photo Library.</string>
 	<key>UIBackgroundModes</key>

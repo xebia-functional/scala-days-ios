@@ -16,7 +16,6 @@
 
 import Foundation
 import UIKit
-import SwiftyJSON
 import Alamofire
 
 
@@ -161,8 +160,7 @@ class DataManager {
                                 callback(false, error as NSError)
                             } else {
                                 if let _data = response.data {
-                                    let jsonFormat = JSON(data: _data)
-                                    self.parseAndStoreJSONData(jsonFormat)
+                                    self.parseAndStoreData(_data)
                                     callback(true, response.result.error as NSError?)
                                 } else {
                                     callback(true, response.result.error as NSError?)
@@ -174,7 +172,7 @@ class DataManager {
                         callback(false, nil)
                     }
                 } else {
-                    if let date = response.response?.allHeaderFields[lastModifiedDate]as! String? {
+                    if let date = response.response?.allHeaderFields[lastModifiedDate] as! String? {
                         self.lastDate = SDDateHandler.sharedInstance.parseServerDate(date)
                     }
                     if let error = response.result.error {
@@ -183,8 +181,8 @@ class DataManager {
                         print(response.response)
                         callback(false, error as NSError)
                     } else {
-                        let jsonFormat = JSON(response.result.value!)
-                        self.parseAndStoreJSONData(jsonFormat)
+                        let jsonData = try? JSONSerialization.data(withJSONObject: response.result.value!)
+                        self.parseAndStoreData(jsonData)
                         callback(true, nil)
                     }
                 }
@@ -193,141 +191,11 @@ class DataManager {
             callback(false, nil)
         }
     }
-
-
-    func parseJSON(_ json: JSON) -> Conferences? {
-        
-        let arrayConferences = json["conferences"]
-        var arrayConferencesParse: [Conference] = []
-
-        for (index, confe) in arrayConferences {
-            
-
-            let info = confe["info"]
-            let id = info["id"].intValue
-            let name = info["name"].string!
-            let longName = info["longName"].string!
-            let nameAndLocation = info["nameAndLocation"].string!
-            let firstDay = info["firstDay"].string!
-            let lastDay = info["lastDay"].string!
-            let normalSite = info["normalSite"].string!
-            let registrationSite = info["registrationSite"].string!
-            let utcTimezoneOffset = info["utcTimezoneOffset"].string!
-            let utcTimezoneOffsetMillis = info["utcTimezoneOffsetMillis"].floatValue
-            let hashtag = info["hashtag"].string!
-            let query = info["query"].string
-            
-            let pictures = info["pictures"]
-            var picturesParse: [Picture] = []
-            for (index, picture) in pictures {
-                let width = picture["width"].intValue
-                let height = picture["height"].intValue
-                let url = picture["url"].string!
-                let pictureParse = Picture(width: width, height: height, url: url)
-                picturesParse.append(pictureParse)
-            }
-
-            let infoParse = Information(id: id, name: name, longName: longName, nameAndLocation: nameAndLocation, firstDay: firstDay, lastDay: lastDay, normalSite: normalSite, registrationSite: registrationSite, utcTimezoneOffset: utcTimezoneOffset, utcTimezoneOffsetMillis: utcTimezoneOffsetMillis, hashtag: hashtag, query: query, pictures: picturesParse)
-
-            let arraySpeaker = confe["speakers"]
-            var arraySpeakerParse: [Speaker] = []
-            for (index, speaker) in arraySpeaker {
-                let bio = speaker["bio"].string!
-                let company = speaker["company"].string!
-                let name = speaker["name"].string!
-                let title = speaker["title"].string!
-                let id = speaker["id"].intValue
-                let picture = speaker["picture"].string
-                let twitter = speaker["twitter"].string
-                let speakerParse = Speaker(bio: bio, company: company, id: id, name: name, picture: picture, title: title, twitter: twitter)
-                arraySpeakerParse.append(speakerParse)
-            }
-
-            let arraySponsor = confe["sponsors"]
-            var arraySponsorParse: [SponsorType] = []
-            for (index, sponsorType) in arraySponsor {
-                let type = sponsorType["type"].string!
-                var arrayItemsParse: [Sponsor] = []
-                let items = sponsorType["items"]
-                for (index, item) in items {
-                    let url = item["url"].string!
-                    let logo = item["logo"].string!
-                    let sponsor = Sponsor(logo: logo, url: url)
-                    arrayItemsParse.append(sponsor)
-
-                }
-                let sponsorType = SponsorType(type: type, items: arrayItemsParse)
-                arraySponsorParse.append(sponsorType)
-            }
-
-            let arrayVenue = confe["venues"]
-            var arrayVenueParse: [Venue] = []
-            for (index, venue) in arrayVenue {
-                let name = venue["name"].string!
-                let address = venue["address"].string!
-                let website = venue["website"].string!
-                let latitude = venue["latitude"].double!
-                let longitude = venue["longitude"].double!
-                let venueParse = Venue(name: name, address: address, website: website, latitude: latitude, longitude: longitude)
-                arrayVenueParse.append(venueParse)
-            }
-
-            let codeOfConductParse = confe["codeOfConduct"].string
-
-            let arraySchedule = confe["schedule"]
-            var arrayScheduleParse: [Event] = []
-            for (index, event) in arraySchedule {
-                let id = event["id"].intValue
-                let title = event["title"].string!
-                let description = event["description"].string!
-                let type = event["type"].intValue
-                let startTime = event["startTime"].string!
-                let endTime = event["endTime"].string!
-                let date = event["date"].string!
-
-                let track = event["track"]
-                var trackParse: Track?
-                if (track != nil) {
-                    trackParse = Track(id: track["id"].intValue, name: track["name"].string!, host: track["host"].string!, shortdescription: track["shortdescription"].string!, apiDescription: track["description"].string!)
-                }
-
-                let location = event["location"]
-                var locationParse: Location?
-                if (location != nil) {
-                    locationParse = Location(id: location["id"].intValue, name: location["name"].string!, mapUrl: location["mapUrl"].string!)
-                }
-
-                let arraySpeakerEvent = event["speakers"]
-                var arraySpeakerParseEvent: [Speaker] = []
-                for (index, speaker) in arraySpeakerEvent {
-                    let bio = speaker["bio"].string!
-                    let company = speaker["company"].string!
-                    let name = speaker["name"].string!
-                    let title = speaker["title"].string!
-                    let id = speaker["id"].intValue
-                    let picture = speaker["picture"].string
-                    let twitter = speaker["twitter"].string
-                    let speakerParseEvent = Speaker(bio: bio, company: company, id: id, name: name, picture: picture, title: title, twitter: twitter)
-                    arraySpeakerParseEvent.append(speakerParseEvent)
-                }
-
-                let eventParse = Event(id: id, title: title, apiDescription: description, type: type, startTime: startTime, endTime: endTime, date: date, track: trackParse, location: locationParse, speakers: arraySpeakerParseEvent)
-                arrayScheduleParse.append(eventParse)
-            }
-            let conferenceParse = Conference(info: infoParse, schedule: arrayScheduleParse, sponsors: arraySponsorParse, speakers: arraySpeakerParse, venues: arrayVenueParse, codeOfConduct: codeOfConductParse!)
-            arrayConferencesParse.append(conferenceParse)
-        }
-
-        if arrayConferencesParse.count > 0 {
-            return Conferences(conferences: arrayConferencesParse)
-        } else {
-            return nil
-        }
-        
-    }
     
-    func parseAndStoreJSONData(_ jsonData: JSON) {
-        self.conferences = parseJSON(jsonData)
+    func parseAndStoreData(_ data: Data?) {
+        guard let data = data else { return }
+        
+        self.conferences = try! JSONDecoder().decode(Conferences.self, from: data)
         
         if let _conferences = self.conferences {
             StoringHelper.sharedInstance.storeConferenceData(_conferences)
