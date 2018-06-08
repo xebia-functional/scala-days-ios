@@ -351,9 +351,9 @@ class SDScheduleViewController: GAITrackedViewController,
         }
         return nil
     }
-
-// MARK: - Data handling
-
+    
+    // MARK: - Data handling
+    
     func scheduledDates() -> [String]? {
         if let schedule = selectedConference?.schedule {
             let result = schedule.reduce([String](), {
@@ -389,17 +389,17 @@ class SDScheduleViewController: GAITrackedViewController,
 
         return nil
     }
-
-// MARK: - Button handling
-
+    
+    // MARK: - Button handling
+    
     @objc func didTapOptionsButton() {
         if isDataLoaded && errorPlaceholderView.isHidden {
             launchFilterSheet()
         }
     }
-
-// MARK: - Favorites handling
-
+    
+    // MARK: - Favorites handling
+    
     func favoritedEvents() -> [[Event]]? {
         if let _conference = selectedConference {
             if let _events = events {
@@ -637,20 +637,21 @@ class SDScheduleViewController: GAITrackedViewController,
         func votingRequestParametersForVote(_ vote: VoteType, event: Int, conference: Int, uid: String, comments: String?) -> Parameters {
             if let actualComments = comments {
                 return [votingParamVote: voteType.rawValue,
-                        votingParamUID: uid  ,
-                        votingParamTalkId: event  ,
-                        votingParamConferenceId: conference ,
-                        votingParamCommentsMessage: actualComments ]
+                        votingParamUID: uid,
+                        votingParamTalkId: event,
+                        votingParamConferenceId: conference,
+                        votingParamCommentsMessage: actualComments]
             }
-            return [votingParamVote: voteType.rawValue ,
-                votingParamUID: uid ,
-                votingParamTalkId: event ,
-                votingParamConferenceId: conference]
+            
+            return [votingParamVote: voteType.rawValue,
+                    votingParamUID: uid,
+                    votingParamTalkId: event,
+                    votingParamConferenceId: conference]
         }
         
         if let (event, conference) = selectedEventToVote,
             let uid = UIDevice.current.identifierForVendor?.uuidString {
-           Alamofire.request(votingUrl, method:HTTPMethod.post,
+            Alamofire.request(votingUrl, method:HTTPMethod.post,
                 parameters: votingRequestParametersForVote(voteType,
                     event: event,
                     conference: conference,
@@ -753,7 +754,7 @@ class SDScheduleViewController: GAITrackedViewController,
     
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
         let newText = (textView.text as NSString).replacingCharacters(in: range, with: text)
-        let numberOfChars = newText.characters.count
+        let numberOfChars = newText.count
         return numberOfChars < kMaxNumberOfCharactersForVotingComment;
     }
     
