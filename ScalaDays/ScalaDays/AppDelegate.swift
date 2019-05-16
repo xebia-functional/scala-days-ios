@@ -29,7 +29,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var menuViewController: SDSlideMenuViewController!
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        setupThirdParties(application: application, options: launchOptions)
+        setupThirdParties(application: application, launchOptions: launchOptions)
         initAppearence()
         createMenuView()
 
@@ -137,16 +137,16 @@ extension AppDelegate {
 extension AppDelegate {
     private static var externalKeys = AppDelegate.loadExternalKeys()
 
-    private func setupThirdParties(application: UIApplication, options: [UIApplicationLaunchOptionsKey: Any]?) {
-        localyticsPushNotifications(application: application, options: options)
-        localytics(application: application, options: options)
+    private func setupThirdParties(application: UIApplication, launchOptions: [UIApplicationLaunchOptionsKey: Any]?) {
+        localyticsPushNotifications(application: application, launchOptions: launchOptions)
+        localytics(application: application, launchOptions: launchOptions)
         googleAnalytics(application: application)
         crashlytics(application: application)
         twitter(application: application)
     }
 
     // MARK: third parties
-    private func localyticsPushNotifications(application: UIApplication, options: [UIApplicationLaunchOptionsKey: Any]?) {
+    private func localyticsPushNotifications(application: UIApplication, launchOptions: [UIApplicationLaunchOptionsKey: Any]?) {
         if #available(iOS 12.0, *), objc_getClass("UNUserNotificationCenter") != nil {
             let options: UNAuthorizationOptions = [.provisional]
             UNUserNotificationCenter.current().requestAuthorization(options: options) { (granted, error) in
@@ -165,12 +165,12 @@ extension AppDelegate {
             application.registerUserNotificationSettings(settings)
         }
 
-        if let notificationInfo = options?[UIApplicationLaunchOptionsKey.localNotification] as? [AnyHashable: Any] {
+        if let notificationInfo = launchOptions?[UIApplicationLaunchOptionsKey.localNotification] as? [AnyHashable: Any] {
             Localytics.handleNotification(notificationInfo)
         }
     }
 
-    private func localytics(application: UIApplication, options: [UIApplicationLaunchOptionsKey: Any]?) {
+    private func localytics(application: UIApplication, launchOptions: [UIApplicationLaunchOptionsKey: Any]?) {
         guard let localyticsKey = AppDelegate.externalKeys.localyticsKey else { return }
 
         Localytics.autoIntegrate(localyticsKey, withLocalyticsOptions:[
@@ -178,7 +178,7 @@ extension AppDelegate {
             LOCALYTICS_GREAT_NETWORK_UPLOAD_INTERVAL_SECONDS: 10,
             LOCALYTICS_DECENT_NETWORK_UPLOAD_INTERVAL_SECONDS: 30,
             LOCALYTICS_BAD_NETWORK_UPLOAD_INTERVAL_SECONDS: 90
-            ], launchOptions: options)
+            ], launchOptions: launchOptions)
 
         Localytics.setLoggingEnabled(true)
 
