@@ -145,7 +145,6 @@ extension AppDelegate {
         twitter(application: application)
     }
 
-    // MARK: third parties
     private func localyticsPushNotifications(application: UIApplication, launchOptions: [UIApplicationLaunchOptionsKey: Any]?) {
         if #available(iOS 12.0, *), objc_getClass("UNUserNotificationCenter") != nil {
             let options: UNAuthorizationOptions = [.provisional]
