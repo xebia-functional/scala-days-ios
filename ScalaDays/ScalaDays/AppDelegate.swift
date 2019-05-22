@@ -97,9 +97,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 }
 
 // MARK: Localytics - Push Notifications
+fileprivate let DEBUG_PUSH_NOTIFICATIONS = false
+
 extension AppDelegate {
+    
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
         Localytics.setPushToken(deviceToken)
+        if DEBUG_PUSH_NOTIFICATIONS {
+            print("@@@@@@@@@@@ TOKEN: \(deviceToken.hexString)")
+        }
     }
 
     func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
@@ -117,7 +123,7 @@ extension AppDelegate {
         }
 
         guard let jsonReload = userInfo["jsonReload"] as? String,
-            jsonReload.lowercased() == "true" else { return }
+              jsonReload.lowercased() == "true" else { return }
 
         DataManager.sharedInstance.lastConnectionAttemptDate = nil
         self.menuViewController.askControllersToReload()
@@ -125,7 +131,12 @@ extension AppDelegate {
 
     func application(_ application: UIApplication, didReceive notification: UILocalNotification) {
         guard let userInfo = notification.userInfo else { return }
-        Localytics.handleNotification(userInfo)
+        
+        if #available(iOS 10.0, *) {
+            Localytics.handleNotificationReceived(userInfo)
+        } else {
+            Localytics.handleNotification(userInfo)
+        }
     }
 
     func application(_ application: UIApplication, didRegister notificationSettings: UIUserNotificationSettings) {
@@ -151,12 +162,14 @@ extension AppDelegate {
             UNUserNotificationCenter.current().requestAuthorization(options: options) { (granted, error) in
                 Localytics.didRequestUserNotificationAuthorization(withOptions: options.rawValue, granted: granted)
             }
+            application.registerForRemoteNotifications()
         }
         else if #available(iOS 10.0, *), objc_getClass("UNUserNotificationCenter") != nil {
             let options: UNAuthorizationOptions = [.alert, .badge, .sound]
             UNUserNotificationCenter.current().requestAuthorization(options: options) { (granted, error) in
                 Localytics.didRequestUserNotificationAuthorization(withOptions: options.rawValue, granted: granted)
             }
+            application.registerForRemoteNotifications()
         }
         else {
             let types: UIUserNotificationType = [.alert, .badge, .sound]
@@ -179,7 +192,7 @@ extension AppDelegate {
             LOCALYTICS_BAD_NETWORK_UPLOAD_INTERVAL_SECONDS: 90
             ], launchOptions: launchOptions)
 
-        Localytics.setLoggingEnabled(true)
+        Localytics.setLoggingEnabled(DEBUG_PUSH_NOTIFICATIONS)
 
         if application.applicationState != .background {
             Localytics.openSession()
@@ -205,6 +218,7 @@ extension AppDelegate {
 }
 
 // MARK: helpers
+// <configuration>
 extension AppDelegate {
     class func loadExternalKeys() -> (googleAnalyticsKey: String?, crashlyticsKey: String?, localyticsKey: String?, twitterConsumerKey: String?, twitterConsumerSecret: String?) {
         guard let path = Bundle.main.path(forResource: kExternalKeysPlistFilename, ofType: "plist"),
@@ -215,5 +229,13 @@ extension AppDelegate {
                 keysDict[kExternalKeysDKLocalytics] as? String,
                 keysDict[kExternalKeysDKTwitterConsumerKey] as? String,
                 keysDict[kExternalKeysDKTwitterConsumerSecret] as? String)
+    }
+}
+
+// <notifications>
+private extension Data {
+    var hexString: String {
+        let hexString = map { String(format: "%02.2hhx", $0) }.joined()
+        return hexString
     }
 }
