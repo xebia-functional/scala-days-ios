@@ -17,7 +17,7 @@
 import UIKit
 import SVProgressHUD
 
-class SDSponsorViewController: GAITrackedViewController, UITableViewDelegate, UITableViewDataSource, SDErrorPlaceholderViewDelegate, SDMenuControllerItem {
+class SDSponsorViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, SDErrorPlaceholderViewDelegate, SDMenuControllerItem {
 
     @IBOutlet weak var tblSponsors: UITableView!
     
@@ -33,6 +33,17 @@ class SDSponsorViewController: GAITrackedViewController, UITableViewDelegate, UI
     
     var isDataLoaded : Bool = false
     
+    private let analytics: Analytics
+    
+    init(analytics: Analytics) {
+        self.analytics = analytics
+        super.init(nibName: String(describing: SDSponsorViewController.self), bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -45,7 +56,8 @@ class SDSponsorViewController: GAITrackedViewController, UITableViewDelegate, UI
         errorPlaceholderView.delegate = self
         self.view.addSubview(errorPlaceholderView)
         
-        self.screenName = kGAScreenNameSponsors
+        #warning("send analytics")
+//        self.screenName = kGAScreenNameSponsors
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -132,7 +144,8 @@ class SDSponsorViewController: GAITrackedViewController, UITableViewDelegate, UI
         tableView.deselectRow(at: indexPath, animated: true)
         if let sponsors = filteredSponsors?[indexPath.section] {
             if let url = URL(string: sponsors[indexPath.row].url) {
-                SDGoogleAnalyticsHandler.sendGoogleAnalyticsTrackingWithScreenName(kGAScreenNameSponsors, category: kGACategoryNavigate, action: kGAActionSponsorsGoToSponsor, label: nil)
+                #warning("send analytics")
+//                SDGoogleAnalyticsHandler.sendGoogleAnalyticsTrackingWithScreenName(kGAScreenNameSponsors, category: kGACategoryNavigate, action: kGAActionSponsorsGoToSponsor, label: nil)
                 launchSafariToUrl(url)
             }
         }        

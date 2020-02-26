@@ -35,7 +35,7 @@ enum SDScheduleEventType: Int {
     case others = 3
 }
 
-class SDScheduleViewController: GAITrackedViewController,
+class SDScheduleViewController: UIViewController,
     UITableViewDelegate,
     UITableViewDataSource,
     UIActionSheetDelegate,
@@ -113,6 +113,17 @@ class SDScheduleViewController: GAITrackedViewController,
     var selectedEventToVote: (eventId: Int, conferenceId: Int)?
     let refreshControl = UIRefreshControl()
 
+    private let analytics: Analytics
+    
+    init(analytics: Analytics) {
+        self.analytics = analytics
+        super.init(nibName: String(describing: SDScheduleViewController.self), bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         self.title = NSLocalizedString("schedule", comment: "Schedule")
         if isDataLoaded {
@@ -143,7 +154,8 @@ class SDScheduleViewController: GAITrackedViewController,
         refreshControl.addTarget(self, action: #selector(SDScheduleViewController.didPullToRefresh), for: UIControlEvents.valueChanged)
         tblSchedule.addSubview(refreshControl)
         
-        self.screenName = kGAScreenNameSchedule
+        #warning("send analytics")
+//        self.screenName = kGAScreenNameSchedule
         
         self.btnSendVote.layer.borderWidth = CGFloat(kVotingButtonsBorderWidth)
         self.btnSendVote.layer.borderColor = UIColor.grayButtonBorder().cgColor
@@ -306,14 +318,15 @@ class SDScheduleViewController: GAITrackedViewController,
     // MARK: - UITableViewDelegate
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let scheduleDetailViewController = SDScheduleDetailViewController(nibName: "SDScheduleDetailViewController", bundle: nil)
+        let scheduleDetailViewController = SDScheduleDetailViewController(analytics: self.analytics)
         if let events = eventsToShow {
             let event: Event = events[indexPath.section][indexPath.row]
             if (event.type == SDScheduleEventType.keynotes.rawValue || event.type == SDScheduleEventType.courses.rawValue) {
                 self.title = ""
                 scheduleDetailViewController.event = event
                 self.navigationController?.pushViewController(scheduleDetailViewController, animated: true)
-                SDGoogleAnalyticsHandler.sendGoogleAnalyticsTrackingWithScreenName(kGAScreenNameSchedule, category: kGACategoryNavigate, action: kGAActionScheduleGoToDetail, label: event.title)
+                #warning("send analytics")
+//                SDGoogleAnalyticsHandler.sendGoogleAnalyticsTrackingWithScreenName(kGAScreenNameSchedule, category: kGACategoryNavigate, action: kGAActionScheduleGoToDetail, label: event.title)
             }
         }
         tableView.deselectRow(at: indexPath, animated: true)
@@ -474,12 +487,14 @@ class SDScheduleViewController: GAITrackedViewController,
             } else {
                 selectedDataSource = filter
                 tblSchedule.reloadData()
-                SDGoogleAnalyticsHandler.sendGoogleAnalyticsTrackingWithScreenName(kGAScreenNameSchedule, category: kGACategoryFilter, action: kGAActionScheduleFilterFavorites, label: nil)
+                #warning("send analytics")
+//                SDGoogleAnalyticsHandler.sendGoogleAnalyticsTrackingWithScreenName(kGAScreenNameSchedule, category: kGACategoryFilter, action: kGAActionScheduleFilterFavorites, label: nil)
             }
         } else {
             selectedDataSource = filter
             tblSchedule.reloadData()
-            SDGoogleAnalyticsHandler.sendGoogleAnalyticsTrackingWithScreenName(kGAScreenNameSchedule, category: kGACategoryFilter, action: kGAActionScheduleFilterAll, label: nil)
+            #warning("send analytics")
+//            SDGoogleAnalyticsHandler.sendGoogleAnalyticsTrackingWithScreenName(kGAScreenNameSchedule, category: kGACategoryFilter, action: kGAActionScheduleFilterAll, label: nil)
         }
     }
 
@@ -582,10 +597,11 @@ class SDScheduleViewController: GAITrackedViewController,
             txtViewVoteComments.attributedText = placeholderTextForComments()
         }
         
-        SDGoogleAnalyticsHandler.sendGoogleAnalyticsTrackingWithScreenName(kGAScreenNameSchedule,
-            category: kGACategoryVote,
-            action: kGAActionShowVotingDialog,
-            label: nil)
+        #warning("send analytics")
+//        SDGoogleAnalyticsHandler.sendGoogleAnalyticsTrackingWithScreenName(kGAScreenNameSchedule,
+//            category: kGACategoryVote,
+//            action: kGAActionShowVotingDialog,
+//            label: nil)
     }
     
     func enableVotingIconForVoteType(_ voteType: VoteType) {
@@ -691,10 +707,12 @@ class SDScheduleViewController: GAITrackedViewController,
                     })
             }
             selectedEventToVote = nil
-            SDGoogleAnalyticsHandler.sendGoogleAnalyticsTrackingWithScreenName(kGAScreenNameSchedule,
-                category: kGACategoryVote,
-                action: kGAActionSendVote,
-                label: nil)
+            
+            #warning("send analytics")
+//            SDGoogleAnalyticsHandler.sendGoogleAnalyticsTrackingWithScreenName(kGAScreenNameSchedule,
+//                category: kGACategoryVote,
+//                action: kGAActionSendVote,
+//                label: nil)
         }
     }
     

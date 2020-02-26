@@ -17,7 +17,7 @@
 import UIKit
 import SVProgressHUD
 
-class SDSpeakersListViewController: GAITrackedViewController, UITableViewDelegate, UITableViewDataSource, SDErrorPlaceholderViewDelegate, SDMenuControllerItem {
+class SDSpeakersListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, SDErrorPlaceholderViewDelegate, SDMenuControllerItem {
     
     @IBOutlet weak var tblView: UITableView!
     var errorPlaceholderView : SDErrorPlaceholderView!
@@ -25,6 +25,16 @@ class SDSpeakersListViewController: GAITrackedViewController, UITableViewDelegat
     
     var speakers : Array<Speaker>?
     let kReuseIdentifier = "SpeakersListCell"
+    private let analytics: Analytics
+    
+    init(analytics: Analytics) {
+        self.analytics = analytics
+        super.init(nibName: String(describing: SDSpeakersListViewController.self), bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,7 +52,8 @@ class SDSpeakersListViewController: GAITrackedViewController, UITableViewDelegat
         errorPlaceholderView.delegate = self
         self.view.addSubview(errorPlaceholderView)
         
-        self.screenName = kGAScreenNameSpeakers
+        #warning("send analytics")
+//        self.screenName = kGAScreenNameSpeakers
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -100,7 +111,9 @@ class SDSpeakersListViewController: GAITrackedViewController, UITableViewDelegat
                                 launchSafariToUrl(url)
                             }
                         }
-                        SDGoogleAnalyticsHandler.sendGoogleAnalyticsTrackingWithScreenName(kGAScreenNameSpeakers, category: kGACategoryNavigate, action: kGAActionSpeakersGoToUser, label: nil)
+                        
+                        #warning("send analytics")
+//                        SDGoogleAnalyticsHandler.sendGoogleAnalyticsTrackingWithScreenName(kGAScreenNameSpeakers, category: kGACategoryNavigate, action: kGAActionSpeakersGoToUser, label: nil)
                     }
                 }
             }

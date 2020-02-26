@@ -19,7 +19,6 @@ import SVProgressHUD
 
 import UserNotifications
 import Localytics
-import Crashlytics
 import TwitterKit
 
 @UIApplicationMain
@@ -27,7 +26,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
     var menuViewController: SDSlideMenuViewController!
-
+    private var analytics: FirebaseScalaDays!
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         setupThirdParties(application: application, launchOptions: launchOptions)
         initAppearence()
@@ -38,8 +38,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     // MARK: setup
     private func createMenuView() {
-        let scheduleViewController = SDScheduleViewController(nibName: "SDScheduleViewController", bundle: nil)
-        menuViewController = SDSlideMenuViewController(nibName: "SDSlideMenuViewController", bundle: nil)
+        let scheduleViewController = SDScheduleViewController(analytics: self.analytics)
+        menuViewController = SDSlideMenuViewController(analytics: analytics)
         let nvc: UINavigationController = UINavigationController(rootViewController: scheduleViewController)
 
         menuViewController.scheduleViewController = nvc
@@ -151,8 +151,7 @@ extension AppDelegate {
     private func setupThirdParties(application: UIApplication, launchOptions: [UIApplicationLaunchOptionsKey: Any]?) {
         localyticsPushNotifications(application: application, launchOptions: launchOptions)
         localytics(application: application, launchOptions: launchOptions)
-        googleAnalytics(application: application)
-        crashlytics(application: application)
+        firebase(application: application)
         twitter(application: application)
     }
 
@@ -199,14 +198,8 @@ extension AppDelegate {
         }
     }
 
-    private func googleAnalytics(application: UIApplication) {
-        guard let googleAnalyticsKey = AppDelegate.externalKeys.googleAnalyticsKey else { return }
-        GAI.sharedInstance().tracker(withTrackingId: googleAnalyticsKey)
-    }
-
-    private func crashlytics(application: UIApplication) {
-        guard let crashlyticsKey = AppDelegate.externalKeys.crashlyticsKey else { return }
-        Crashlytics.start(withAPIKey: crashlyticsKey)
+    private func firebase(application: UIApplication) {
+        self.analytics = FirebaseScalaDays()
     }
 
     private func twitter(application: UIApplication) {
@@ -220,13 +213,11 @@ extension AppDelegate {
 // MARK: helpers
 // <configuration>
 extension AppDelegate {
-    class func loadExternalKeys() -> (googleAnalyticsKey: String?, crashlyticsKey: String?, localyticsKey: String?, twitterConsumerKey: String?, twitterConsumerSecret: String?) {
+    class func loadExternalKeys() -> (localyticsKey: String?, twitterConsumerKey: String?, twitterConsumerSecret: String?) {
         guard let path = Bundle.main.path(forResource: kExternalKeysPlistFilename, ofType: "plist"),
-              let keysDict = NSDictionary(contentsOfFile: path) else { return (nil, nil, nil, nil, nil) }
+              let keysDict = NSDictionary(contentsOfFile: path) else { return (nil, nil, nil) }
 
-        return (keysDict[kExternalKeysDKGoogleAnalytics] as? String,
-                keysDict[kExternalKeysDKCrashlytics] as? String,
-                keysDict[kExternalKeysDKLocalytics] as? String,
+        return (keysDict[kExternalKeysDKLocalytics] as? String,
                 keysDict[kExternalKeysDKTwitterConsumerKey] as? String,
                 keysDict[kExternalKeysDKTwitterConsumerSecret] as? String)
     }

@@ -17,7 +17,7 @@
 import UIKit
 import SVProgressHUD
 
-class SDSocialViewController: GAITrackedViewController, UITableViewDelegate, UITableViewDataSource, SDErrorPlaceholderViewDelegate, SDMenuControllerItem {
+class SDSocialViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, SDErrorPlaceholderViewDelegate, SDMenuControllerItem {
 
     @IBOutlet weak var tblView: UITableView!
     @IBOutlet weak var viewError: UIView!
@@ -35,6 +35,17 @@ class SDSocialViewController: GAITrackedViewController, UITableViewDelegate, UIT
     var query: String?
     var isDataLoaded: Bool = false
 
+    private let analytics: Analytics
+    
+    init(analytics: Analytics) {
+        self.analytics = analytics
+        super.init(nibName: String(describing: SDSocialViewController.self), bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -55,7 +66,8 @@ class SDSocialViewController: GAITrackedViewController, UITableViewDelegate, UIT
         errorPlaceholderView.delegate = self
         self.view.addSubview(errorPlaceholderView)
 
-        self.screenName = kGAScreenNameSocial
+        #warning("send analytics")
+//        self.screenName = kGAScreenNameSocial
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -168,7 +180,8 @@ class SDSocialViewController: GAITrackedViewController, UITableViewDelegate, UIT
                         launchSafariToUrl(url)
                     }
                 }
-                SDGoogleAnalyticsHandler.sendGoogleAnalyticsTrackingWithScreenName(kGAScreenNameSpeakers, category: kGACategoryNavigate, action: kGAActionSpeakersGoToUser, label: nil)
+                #warning("send analytics")
+//                SDGoogleAnalyticsHandler.sendGoogleAnalyticsTrackingWithScreenName(kGAScreenNameSpeakers, category: kGACategoryNavigate, action: kGAActionSpeakersGoToUser, label: nil)
             }
         }
     }
@@ -227,7 +240,8 @@ class SDSocialViewController: GAITrackedViewController, UITableViewDelegate, UIT
             switch(composerResult) {
             case .cancelled: break
             case .done:
-                SDGoogleAnalyticsHandler.sendGoogleAnalyticsTrackingWithScreenName(kGAScreenNameSocial, category: kGACategoryNavigate, action: kGAActionSocialPostTweet, label: nil)
+                #warning("send analytics")
+//                SDGoogleAnalyticsHandler.sendGoogleAnalyticsTrackingWithScreenName(kGAScreenNameSocial, category: kGACategoryNavigate, action: kGAActionSocialPostTweet, label: nil)
             }
         }
     }

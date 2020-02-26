@@ -16,9 +16,7 @@
 
 import UIKit
 
-class SDScheduleDetailViewController: GAITrackedViewController {
-
-
+class SDScheduleDetailViewController: UIViewController {
     @IBOutlet weak var titleSection: UILabel!
     @IBOutlet weak var lblDateSection: UILabel!
     @IBOutlet weak var lblTrack: UILabel!
@@ -35,10 +33,20 @@ class SDScheduleDetailViewController: GAITrackedViewController {
     @IBOutlet weak var constraintForLblDescriptionTopSpace: NSLayoutConstraint!
     @IBOutlet weak var constraintForSpeakerListContainerHeight: NSLayoutConstraint!
 
+    private let analytics: Analytics
     var event: Event?
     let kPadding : CGFloat = 15.0
     var barButtonFavorites : UIBarButtonItem!
     lazy var selectedConference: Conference? = DataManager.sharedInstance.currentlySelectedConference
+    
+    init(analytics: Analytics) {
+        self.analytics = analytics
+        super.init(nibName: String(describing: SDScheduleDetailViewController.self), bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -94,7 +102,8 @@ class SDScheduleDetailViewController: GAITrackedViewController {
                 } else {
                     var lastSpeakerBottomPos : CGFloat = 0
                     for (_, speaker) in speakers.enumerated() {
-                        let speakerView = SDSpeakerDetailView(frame: CGRect(x: 0, y: lastSpeakerBottomPos, width: screenBounds.width, height: 0))
+                        let speakerView = SDSpeakerDetailView(frame: CGRect(x: 0, y: lastSpeakerBottomPos, width: screenBounds.width, height: 0),
+                                                              analytics: self.analytics)
                         speakerView.drawSpeakerData(speaker)
                         viewSpeakerListContainer.addSubview(speakerView)
                         
@@ -109,19 +118,23 @@ class SDScheduleDetailViewController: GAITrackedViewController {
                     constraintForSpeakerListContainerHeight.constant = lastSpeakerBottomPos
                 }
             }
-            self.screenName = kGAScreenNameSchedule
+            
+            #warning("send analytics")
+//            self.screenName = kGAScreenNameSchedule
         }
     }
     
     @objc func didTapFavoritesButton() {
+        #warning("send analytics")
+        
         if DataManager.sharedInstance.isFavoriteEvent(event, selectedConference: selectedConference) {
             DataManager.sharedInstance.storeOrRemoveFavoriteEvent(true, event: event, selectedConference: selectedConference)
             barButtonFavorites.tintColor = UIColor.white
-            SDGoogleAnalyticsHandler.sendGoogleAnalyticsTrackingWithScreenName(kGAScreenNameSchedule, category: kGACategoryFavorites, action: kGAActionScheduleDetailRemoveToFavorite, label: event?.title)
+//            SDGoogleAnalyticsHandler.sendGoogleAnalyticsTrackingWithScreenName(kGAScreenNameSchedule, category: kGACategoryFavorites, action: kGAActionScheduleDetailRemoveToFavorite, label: event?.title)
         } else {
             DataManager.sharedInstance.storeOrRemoveFavoriteEvent(false, event: event, selectedConference: selectedConference)
             barButtonFavorites.tintColor = UIColor.appRedColor()
-            SDGoogleAnalyticsHandler.sendGoogleAnalyticsTrackingWithScreenName(kGAScreenNameSchedule, category: kGACategoryFavorites, action: kGAActionScheduleDetailAddToFavorite, label: event?.title)
+//            SDGoogleAnalyticsHandler.sendGoogleAnalyticsTrackingWithScreenName(kGAScreenNameSchedule, category: kGACategoryFavorites, action: kGAActionScheduleDetailAddToFavorite, label: event?.title)
         }
     }
     

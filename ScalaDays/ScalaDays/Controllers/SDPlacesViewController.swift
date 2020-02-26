@@ -18,7 +18,7 @@ import UIKit
 import MapKit
 import SVProgressHUD
 
-class SDPlacesViewController: GAITrackedViewController, MKMapViewDelegate, SDErrorPlaceholderViewDelegate, SDMenuControllerItem {
+class SDPlacesViewController: UIViewController, MKMapViewDelegate, SDErrorPlaceholderViewDelegate, SDMenuControllerItem {
 
     @IBOutlet weak var mapPlaces: MKMapView!
     var selectedConference : Conference?
@@ -29,6 +29,16 @@ class SDPlacesViewController: GAITrackedViewController, MKMapViewDelegate, SDErr
     
     var errorPlaceholderView : SDErrorPlaceholderView!
     var isDataLoaded = false
+    private let analytics: Analytics
+    
+    init(analytics: Analytics) {
+        self.analytics = analytics
+        super.init(nibName: String(describing: SDPlacesViewController.self), bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,7 +52,8 @@ class SDPlacesViewController: GAITrackedViewController, MKMapViewDelegate, SDErr
         
         mapPlaces.delegate = self
         
-        self.screenName = kGAScreenNamePlaces
+        #warning("send analytics")
+//        self.screenName = kGAScreenNamePlaces
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -131,7 +142,8 @@ class SDPlacesViewController: GAITrackedViewController, MKMapViewDelegate, SDErr
                             let venue = conference.venues[indexOfVenue]
                             let urlString = "http://maps.apple.com/?ll=\(venue.latitude),\(venue.longitude)&daddr=\(venue.address.removeWhitespace().addingPercentEncoding(withAllowedCharacters: .urlHostAllowed))"
                             if let mapUrl = URL(string: urlString) {
-                                SDGoogleAnalyticsHandler.sendGoogleAnalyticsTrackingWithScreenName(kGAScreenNamePlaces, category: kGACategoryNavigate, action: kGAActionPlacesGoToMap, label: venue.name)
+                                #warning("send analytics")
+//                                SDGoogleAnalyticsHandler.sendGoogleAnalyticsTrackingWithScreenName(kGAScreenNamePlaces, category: kGACategoryNavigate, action: kGAActionPlacesGoToMap, label: venue.name)
                                 launchSafariToUrl(mapUrl)
                             }
                         }

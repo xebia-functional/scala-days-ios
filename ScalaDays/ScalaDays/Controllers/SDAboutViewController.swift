@@ -17,7 +17,7 @@
 import UIKit
 import SVProgressHUD
 
-class SDAboutViewController: GAITrackedViewController, SDErrorPlaceholderViewDelegate, SDMenuControllerItem {
+class SDAboutViewController: UIViewController, SDErrorPlaceholderViewDelegate, SDMenuControllerItem {
 
     @IBOutlet weak var cnsLeftLabel: NSLayoutConstraint!
     @IBOutlet weak var cnsRightLabel: NSLayoutConstraint!
@@ -28,6 +28,16 @@ class SDAboutViewController: GAITrackedViewController, SDErrorPlaceholderViewDel
     var isDataLoaded = false
     
     var selectedConference : Conference?
+    private let analytics: Analytics
+    
+    init(analytics: Analytics) {
+        self.analytics = analytics
+        super.init(nibName: String(describing: SDAboutViewController.self), bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,7 +53,8 @@ class SDAboutViewController: GAITrackedViewController, SDErrorPlaceholderViewDel
         
         loadData()
         
-        self.screenName = kGAScreenNameAbout
+        #warning("send screen name")
+//        self.screenName = kGAScreenNameAbout
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -91,7 +102,8 @@ class SDAboutViewController: GAITrackedViewController, SDErrorPlaceholderViewDel
     }
 
     @IBAction func didTapOn47Logo(_ sender: AnyObject) {
-        SDGoogleAnalyticsHandler.sendGoogleAnalyticsTrackingWithScreenName(kGAScreenNameAbout, category: nil, action: kGAActionAboutGoToSite, label: nil)
+        #warning("send analytics")
+//        SDGoogleAnalyticsHandler.sendGoogleAnalyticsTrackingWithScreenName(kGAScreenNameAbout, category: nil, action: kGAActionAboutGoToSite, label: nil)
         launchSafariToUrl(URL(string: url47Website)!)
     }
     

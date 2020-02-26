@@ -18,8 +18,6 @@ import Foundation
 import UIKit
 
 let kExternalKeysPlistFilename = "SDExternalKeys"
-let kExternalKeysDKGoogleAnalytics = "GoogleAnalytics"
-let kExternalKeysDKCrashlytics = "Crashlytics"
 let kExternalKeysDKLocalytics = "Localytics"
 let kExternalKeysDKTwitterConsumerKey = "TwitterConsumerKey"
 let kExternalKeysDKTwitterConsumerSecret = "TwitterConsumerSecret"
