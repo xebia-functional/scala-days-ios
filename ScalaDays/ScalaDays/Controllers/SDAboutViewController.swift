@@ -53,8 +53,7 @@ class SDAboutViewController: UIViewController, SDErrorPlaceholderViewDelegate, S
         
         loadData()
         
-        #warning("send screen name")
-//        self.screenName = kGAScreenNameAbout
+        self.analytics.logScreenName(.about, class: SDAboutViewController.self)
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -102,9 +101,10 @@ class SDAboutViewController: UIViewController, SDErrorPlaceholderViewDelegate, S
     }
 
     @IBAction func didTapOn47Logo(_ sender: AnyObject) {
-        #warning("send analytics")
-//        SDGoogleAnalyticsHandler.sendGoogleAnalyticsTrackingWithScreenName(kGAScreenNameAbout, category: nil, action: kGAActionAboutGoToSite, label: nil)
-        launchSafariToUrl(URL(string: url47Website)!)
+        guard let url = URL(string: url47Website) else { return }
+        
+        self.analytics.logEvent(screenName: .about, category: .navigate, action: .goToSite)
+        _ = launchSafariToUrl(url)
     }
     
     // MARK: SDErrorPlaceholderViewDelegate protocol implementation

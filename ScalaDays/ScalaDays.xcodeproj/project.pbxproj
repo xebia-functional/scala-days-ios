@@ -71,11 +71,11 @@
 		59ACD78E1CA28E4800863C52 /* SDVotesPopoverViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 59ACD78C1CA28E4800863C52 /* SDVotesPopoverViewController.xib */; };
 		59D174621A8E0C2B001E87CF /* SDSponsorsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59D174611A8E0C2B001E87CF /* SDSponsorsTableViewCell.swift */; };
 		59D174641A8E0C3A001E87CF /* SDSponsorsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 59D174631A8E0C3A001E87CF /* SDSponsorsTableViewCell.xib */; };
-		59E430EF1A964BEF00185C41 /* SDGoogleAnalyticsHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59E430EE1A964BEF00185C41 /* SDGoogleAnalyticsHandler.swift */; };
 		59F0E2E61CA1518700BDD40E /* Vote.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59F0E2E51CA1518700BDD40E /* Vote.swift */; };
 		59F0E2E71CA15B7600BDD40E /* Vote.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59F0E2E51CA1518700BDD40E /* Vote.swift */; };
-		8B5818EF2406D96E00587211 /* FirebaseAnalytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B5818EE2406D96E00587211 /* FirebaseAnalytics.swift */; };
 		8B5818F12406DA1200587211 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8B5818F02406DA1200587211 /* GoogleService-Info.plist */; };
+		8B5818F42406F8E800587211 /* Analytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B5818F22406F8E700587211 /* Analytics.swift */; };
+		8B5818F52406F8E800587211 /* FirebaseScalaDays.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B5818F32406F8E700587211 /* FirebaseScalaDays.swift */; };
 		A13B434520AC773A00F78759 /* SDExternalKeys.plist in Resources */ = {isa = PBXBuildFile; fileRef = A13B434420AC773A00F78759 /* SDExternalKeys.plist */; };
 		A171433E1A88F6880068FD33 /* SDConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1FA1FF81A7BA95500338AF0 /* SDConstants.swift */; };
 		A171433F1A88F7730068FD33 /* SDDateHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 590DDD761A83C5E800E4CC3F /* SDDateHandler.swift */; };
@@ -183,12 +183,12 @@
 		59ACD78C1CA28E4800863C52 /* SDVotesPopoverViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SDVotesPopoverViewController.xib; sourceTree = "<group>"; };
 		59D174611A8E0C2B001E87CF /* SDSponsorsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SDSponsorsTableViewCell.swift; sourceTree = "<group>"; };
 		59D174631A8E0C3A001E87CF /* SDSponsorsTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SDSponsorsTableViewCell.xib; sourceTree = "<group>"; };
-		59E430EE1A964BEF00185C41 /* SDGoogleAnalyticsHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SDGoogleAnalyticsHandler.swift; sourceTree = "<group>"; };
 		59F0E2E51CA1518700BDD40E /* Vote.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Vote.swift; sourceTree = "<group>"; };
 		7DE3E72A5ED11E640A8CD7A9 /* Pods_ScalaDaysPods_ScalaDaysTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ScalaDaysPods_ScalaDaysTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		857E5518A29D51062F9155B4 /* Pods_ScalaDaysPods_ScalaDays.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ScalaDaysPods_ScalaDays.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		8B5818EE2406D96E00587211 /* FirebaseAnalytics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseAnalytics.swift; sourceTree = "<group>"; };
 		8B5818F02406DA1200587211 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; name = "GoogleService-Info.plist"; path = "ScalaDays/External/GoogleService-Info.plist"; sourceTree = SOURCE_ROOT; };
+		8B5818F22406F8E700587211 /* Analytics.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Analytics.swift; sourceTree = "<group>"; };
+		8B5818F32406F8E700587211 /* FirebaseScalaDays.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirebaseScalaDays.swift; sourceTree = "<group>"; };
 		9A5C79BA0AC4A59C8B4E657E /* Pods-ScalaDaysPods-ScalaDays.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ScalaDaysPods-ScalaDays.release.xcconfig"; path = "Pods/Target Support Files/Pods-ScalaDaysPods-ScalaDays/Pods-ScalaDaysPods-ScalaDays.release.xcconfig"; sourceTree = "<group>"; };
 		A13B434420AC773A00F78759 /* SDExternalKeys.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = SDExternalKeys.plist; path = ScalaDays/External/SDExternalKeys.plist; sourceTree = SOURCE_ROOT; };
 		A1551FB2207AD44A006BCE7A /* SwiftyJSON.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftyJSON.framework; path = "../../../../Library/Developer/Xcode/DerivedData/ScalaDays-cyovomhipwvxwdfjkdvbgvnlrjym/Build/Products/Debug-iphonesimulator/SwiftyJSON/SwiftyJSON.framework"; sourceTree = "<group>"; };
@@ -453,8 +453,8 @@
 		59E430ED1A964BDE00185C41 /* Analytics */ = {
 			isa = PBXGroup;
 			children = (
-				59E430EE1A964BEF00185C41 /* SDGoogleAnalyticsHandler.swift */,
-				8B5818EE2406D96E00587211 /* FirebaseAnalytics.swift */,
+				8B5818F22406F8E700587211 /* Analytics.swift */,
+				8B5818F32406F8E700587211 /* FirebaseScalaDays.swift */,
 			);
 			path = Analytics;
 			sourceTree = "<group>";
@@ -862,6 +862,7 @@
 			files = (
 				590DDD701A83BE9B00E4CC3F /* SDSpeakersTableViewCell.swift in Sources */,
 				A1FA1FFB1A7BAE5B00338AF0 /* SDFonts.swift in Sources */,
+				8B5818F42406F8E800587211 /* Analytics.swift in Sources */,
 				590DDD6A1A83BAC100E4CC3F /* SDSpeakersListViewController.swift in Sources */,
 				597E3B081AB2E58A00F41F17 /* Conference.swift in Sources */,
 				590DDD771A83C5E800E4CC3F /* SDDateHandler.swift in Sources */,
@@ -877,11 +878,11 @@
 				59ACD78D1CA28E4800863C52 /* SDVotesPopoverViewController.swift in Sources */,
 				592978091A82141400EE3BA3 /* SDSocialHandler.swift in Sources */,
 				A1FA1FEE1A7B91D100338AF0 /* SDScheduleViewController.swift in Sources */,
+				8B5818F52406F8E800587211 /* FirebaseScalaDays.swift in Sources */,
 				A1FA1FEF1A7B91D100338AF0 /* SDSocialViewController.swift in Sources */,
 				591DAB2C1A9B7F8D000B2D7A /* SDWebViewController.swift in Sources */,
 				A1FA1FED1A7B919900338AF0 /* SlideMenuController.swift in Sources */,
 				5925ADA11A897AAD000EA5E7 /* SDMapView-ZoomOut.swift in Sources */,
-				59E430EF1A964BEF00185C41 /* SDGoogleAnalyticsHandler.swift in Sources */,
 				A1C8B87A1A8E6F56008599FF /* SDTableHeaderView.swift in Sources */,
 				5920EA5E1A9484A800564014 /* SDErrorPlaceholderView.swift in Sources */,
 				1EA75E8B1A925BFF00884EC8 /* SDConferenceTableViewCell.swift in Sources */,
@@ -891,7 +892,6 @@
 				5920EA661A94B20800564014 /* SDMenuControllerItem.swift in Sources */,
 				A1FA1FEB1A7AA6AF00338AF0 /* SDColor.swift in Sources */,
 				593223C61A837C6A009189C0 /* SDAlertViewHelper.swift in Sources */,
-				8B5818EF2406D96E00587211 /* FirebaseAnalytics.swift in Sources */,
 				5928D17C1A88F53900E5049E /* SDString+RemoveWhiteSpaces.swift in Sources */,
 				59A7DF6B1A9371A8009F4639 /* SDSpeakerDetailView.swift in Sources */,
 				A1FA1FE81A7AA33F00338AF0 /* SDAboutViewController.swift in Sources */,

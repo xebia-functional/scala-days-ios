@@ -52,8 +52,7 @@ class SDSpeakersListViewController: UIViewController, UITableViewDelegate, UITab
         errorPlaceholderView.delegate = self
         self.view.addSubview(errorPlaceholderView)
         
-        #warning("send analytics")
-//        self.screenName = kGAScreenNameSpeakers
+        self.analytics.logScreenName(.speakers, class: SDSpeakersListViewController.self)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -111,9 +110,8 @@ class SDSpeakersListViewController: UIViewController, UITableViewDelegate, UITab
                                 launchSafariToUrl(url)
                             }
                         }
-                        
-                        #warning("send analytics")
-//                        SDGoogleAnalyticsHandler.sendGoogleAnalyticsTrackingWithScreenName(kGAScreenNameSpeakers, category: kGACategoryNavigate, action: kGAActionSpeakersGoToUser, label: nil)
+
+                        self.analytics.logEvent(screenName: .speakers, category: .navigate, action: .goToUser)
                     }
                 }
             }

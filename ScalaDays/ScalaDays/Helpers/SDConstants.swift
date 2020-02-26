@@ -57,12 +57,11 @@ let isIOS8OrLater = {() -> Bool in
     }
 }
 
-let launchSafariToUrl = {(url: URL) -> Bool in
-    if UIApplication.shared.canOpenURL(url) {
-        UIApplication.shared.openURL(url)
-        return true
-    }
-    return false
+@discardableResult
+func launchSafariToUrl(_ url: URL) -> Bool {
+    guard UIApplication.shared.canOpenURL(url) else { return false }
+    UIApplication.shared.openURL(url)
+    return true
 }
 
 let screenBounds = UIScreen.main.bounds

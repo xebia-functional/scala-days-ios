@@ -234,8 +234,7 @@ class SDSlideMenuViewController: UIViewController, UITableViewDelegate, UITableV
             self.slideMenuController()?.closeLeft()
             
             if let selectedConference = DataManager.sharedInstance.conferences?.conferences[indexPath.row] {
-                #warning("send analytics")
-//                SDGoogleAnalyticsHandler.sendGoogleAnalyticsTrackingWithScreenName(nil, category: kGACategoryNavigate, action: kGAActionMenuChangeConference, label: selectedConference.info.name)
+                self.analytics.logEvent(screenName: .slideMenu, category: .navigate, action: .menuChangeConference, label: selectedConference.info.name)
             }
             
         case (self.tblMenu, .some(.schedule)): self.slideMenuController()?.changeMainViewController(self.scheduleViewController, close: true)
@@ -246,10 +245,9 @@ class SDSlideMenuViewController: UIViewController, UITableViewDelegate, UITableV
         case (self.tblMenu, .some(.about)): self.slideMenuController()?.changeMainViewController(self.aboutViewController, close: true)
         case (self.tblMenu, .some(.speakers)): self.slideMenuController()?.changeMainViewController(self.speakersViewController, close: true)
         case (self.tblMenu, .some(.tickets)):
-            if let registration = self.infoSelected?.registrationSite {
-                #warning("send analytics")
-//                SDGoogleAnalyticsHandler.sendGoogleAnalyticsTrackingWithScreenName(nil, category: kGACategoryNavigate, action: kGAActionTicketsGoToTicket, label: nil)
-                launchSafariToUrl(URL(string: registration)!)
+            if let registration = self.infoSelected?.registrationSite, let url = URL(string: registration) {
+                self.analytics.logEvent(screenName: .slideMenu, category: .navigate, action: .goToTicket)
+                _ = launchSafariToUrl(url)
             }
         default: break
         }

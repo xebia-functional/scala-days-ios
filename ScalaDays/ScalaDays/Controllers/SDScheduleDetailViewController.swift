@@ -119,22 +119,19 @@ class SDScheduleDetailViewController: UIViewController {
                 }
             }
             
-            #warning("send analytics")
-//            self.screenName = kGAScreenNameSchedule
+            self.analytics.logScreenName(.schedule, class: SDScheduleDetailViewController.self)
         }
     }
     
     @objc func didTapFavoritesButton() {
-        #warning("send analytics")
-        
         if DataManager.sharedInstance.isFavoriteEvent(event, selectedConference: selectedConference) {
             DataManager.sharedInstance.storeOrRemoveFavoriteEvent(true, event: event, selectedConference: selectedConference)
             barButtonFavorites.tintColor = UIColor.white
-//            SDGoogleAnalyticsHandler.sendGoogleAnalyticsTrackingWithScreenName(kGAScreenNameSchedule, category: kGACategoryFavorites, action: kGAActionScheduleDetailRemoveToFavorite, label: event?.title)
+            self.analytics.logEvent(screenName: .schedule, category: .favorites, action: .removeToFavorite, label: event?.title ?? "event-no-title")
         } else {
             DataManager.sharedInstance.storeOrRemoveFavoriteEvent(false, event: event, selectedConference: selectedConference)
             barButtonFavorites.tintColor = UIColor.appRedColor()
-//            SDGoogleAnalyticsHandler.sendGoogleAnalyticsTrackingWithScreenName(kGAScreenNameSchedule, category: kGACategoryFavorites, action: kGAActionScheduleDetailAddToFavorite, label: event?.title)
+            self.analytics.logEvent(screenName: .schedule, category: .favorites, action: .addToFavorite, label: event?.title ?? "event-no-title")
         }
     }
     

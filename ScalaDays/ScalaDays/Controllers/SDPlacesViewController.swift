@@ -52,8 +52,7 @@ class SDPlacesViewController: UIViewController, MKMapViewDelegate, SDErrorPlaceh
         
         mapPlaces.delegate = self
         
-        #warning("send analytics")
-//        self.screenName = kGAScreenNamePlaces
+        self.analytics.logScreenName(.places, class: SDPlacesViewController.self)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -142,9 +141,8 @@ class SDPlacesViewController: UIViewController, MKMapViewDelegate, SDErrorPlaceh
                             let venue = conference.venues[indexOfVenue]
                             let urlString = "http://maps.apple.com/?ll=\(venue.latitude),\(venue.longitude)&daddr=\(venue.address.removeWhitespace().addingPercentEncoding(withAllowedCharacters: .urlHostAllowed))"
                             if let mapUrl = URL(string: urlString) {
-                                #warning("send analytics")
-//                                SDGoogleAnalyticsHandler.sendGoogleAnalyticsTrackingWithScreenName(kGAScreenNamePlaces, category: kGACategoryNavigate, action: kGAActionPlacesGoToMap, label: venue.name)
-                                launchSafariToUrl(mapUrl)
+                                self.analytics.logEvent(screenName: .places, category: .navigate, action: .goToMap, label: venue.name)
+                                _ = launchSafariToUrl(mapUrl)
                             }
                         }
                     }

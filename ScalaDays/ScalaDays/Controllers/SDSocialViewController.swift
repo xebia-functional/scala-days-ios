@@ -66,8 +66,7 @@ class SDSocialViewController: UIViewController, UITableViewDelegate, UITableView
         errorPlaceholderView.delegate = self
         self.view.addSubview(errorPlaceholderView)
 
-        #warning("send analytics")
-//        self.screenName = kGAScreenNameSocial
+        self.analytics.logScreenName(.social, class: SDSocialViewController.self)
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -180,8 +179,8 @@ class SDSocialViewController: UIViewController, UITableViewDelegate, UITableView
                         launchSafariToUrl(url)
                     }
                 }
-                #warning("send analytics")
-//                SDGoogleAnalyticsHandler.sendGoogleAnalyticsTrackingWithScreenName(kGAScreenNameSpeakers, category: kGACategoryNavigate, action: kGAActionSpeakersGoToUser, label: nil)
+
+                self.analytics.logEvent(screenName: .speakers, category: .navigate, action: .goToUser)
             }
         }
     }
@@ -238,10 +237,10 @@ class SDSocialViewController: UIViewController, UITableViewDelegate, UITableView
     @objc func didTapCreateTweetButton() {
         socialHandler.showTweetComposer(withTweetText: hashtag, on: self) { composerResult in
             switch(composerResult) {
-            case .cancelled: break
+            case .cancelled:
+                self.analytics.logEvent(screenName: .social, category: .navigate, action: .cancelTweet)
             case .done:
-                #warning("send analytics")
-//                SDGoogleAnalyticsHandler.sendGoogleAnalyticsTrackingWithScreenName(kGAScreenNameSocial, category: kGACategoryNavigate, action: kGAActionSocialPostTweet, label: nil)
+                self.analytics.logEvent(screenName: .social, category: .navigate, action: .postTweet)
             }
         }
     }

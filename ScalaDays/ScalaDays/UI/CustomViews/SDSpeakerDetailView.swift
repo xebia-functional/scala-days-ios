@@ -108,8 +108,7 @@ class SDSpeakerDetailView: UIView {
                     }
                 }
                 
-                #warning("send analytics")
-//                SDGoogleAnalyticsHandler.sendGoogleAnalyticsTrackingWithScreenName(kGAScreenNameSpeakers, category: kGACategoryNavigate, action: kGAActionSpeakersGoToUser, label: nil)
+                self.analytics.logEvent(screenName: .speakers, category: .navigate, action: .goToUser)
             }
         }
     }
