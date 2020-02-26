@@ -82,7 +82,7 @@ class DataManager {
                 if favoritedEvents.contains(currentEvent.id) {
                     if shouldRemove {
                         var temp = favoritedEvents
-                        temp.remove(at: favoritedEvents.index(of: currentEvent.id)!)
+                        temp.remove(at: favoritedEvents.firstIndex(of: currentEvent.id)!)
                         DataManager.sharedInstance.favoritedEvents![conference.info.id] = temp
                     }
                 } else {

@@ -84,7 +84,7 @@ class SDScheduleDetailViewController: UIViewController {
                 let roomTitle = NSLocalizedString("schedule_location_title", comment: "") + room.name
                 lblRoom.attributedText = NSAttributedString(string: roomTitle)
                 if let _ = currentEventLocationMapUrl() {
-                    lblRoom.attributedText = NSAttributedString(string: roomTitle, attributes: [NSAttributedStringKey.underlineStyle : NSUnderlineStyle.styleSingle.rawValue])
+                    lblRoom.attributedText = NSAttributedString(string: roomTitle, attributes: [NSAttributedString.Key.underlineStyle : NSUnderlineStyle.single.rawValue])
                     lblRoom.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(SDScheduleDetailViewController.didTapOnLocationLabel)))
                     lblRoom.isUserInteractionEnabled = true
                 }

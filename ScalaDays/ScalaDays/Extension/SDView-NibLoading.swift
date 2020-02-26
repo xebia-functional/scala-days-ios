@@ -68,8 +68,8 @@ extension UIView {
 
         if containerView != nil {
             let viewDictionary : NSDictionary = ["view" : containerView]
-            customConstraints.addObjects(from: NSLayoutConstraint.constraints(withVisualFormat: "H:|[view]|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: viewDictionary as! [String : AnyObject]))
-            customConstraints.addObjects(from: NSLayoutConstraint.constraints(withVisualFormat: "V:|[view]|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: viewDictionary as! [String:AnyObject]))
+            customConstraints.addObjects(from: NSLayoutConstraint.constraints(withVisualFormat: "H:|[view]|", options: NSLayoutConstraint.FormatOptions(rawValue: 0), metrics: nil, views: viewDictionary as! [String : AnyObject]))
+            customConstraints.addObjects(from: NSLayoutConstraint.constraints(withVisualFormat: "V:|[view]|", options: NSLayoutConstraint.FormatOptions(rawValue: 0), metrics: nil, views: viewDictionary as! [String:AnyObject]))
 
             for object in customConstraints {
                 if let const = object as? NSLayoutConstraint {

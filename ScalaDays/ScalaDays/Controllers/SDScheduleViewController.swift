@@ -106,7 +106,7 @@ class SDScheduleViewController: UIViewController,
                 (UIColor.enabledSendVoteButtonColor(), true) :
                 (UIColor.disabledButtonColor(), false)
             btnSendVote.isEnabled = enabled
-            btnSendVote.setTitleColor(color, for: UIControlState())
+            btnSendVote.setTitleColor(color, for: UIControl.State())
         }
     }
     var isDataLoaded : Bool = false
@@ -151,7 +151,7 @@ class SDScheduleViewController: UIViewController,
         errorPlaceholderView.delegate = self
         self.view.addSubview(errorPlaceholderView)
         
-        refreshControl.addTarget(self, action: #selector(SDScheduleViewController.didPullToRefresh), for: UIControlEvents.valueChanged)
+        refreshControl.addTarget(self, action: #selector(SDScheduleViewController.didPullToRefresh), for: UIControl.Event.valueChanged)
         tblSchedule.addSubview(refreshControl)
         
         self.analytics.logScreenName(.schedule, class: SDScheduleViewController.self)
@@ -164,11 +164,11 @@ class SDScheduleViewController: UIViewController,
         
         NotificationCenter.default.addObserver(self,
             selector: #selector(SDScheduleViewController.keyboardWillShow(_:)),
-            name: NSNotification.Name.UIKeyboardWillShow,
+            name: UIResponder.keyboardWillShowNotification,
             object: nil)
         NotificationCenter.default.addObserver(self,
             selector: #selector(SDScheduleViewController.keyboardWillHide(_:)),
-            name: NSNotification.Name.UIKeyboardWillHide,
+            name: UIResponder.keyboardWillHideNotification,
             object: nil)
 
     }
@@ -285,7 +285,7 @@ class SDScheduleViewController: UIViewController,
         case let (.some(cell)):
             return configureCell(cell, indexPath: indexPath)
         default:
-            let cell = SDScheduleListTableViewCell(style: UITableViewCellStyle.default, reuseIdentifier: kReuseIdentifier)
+            let cell = SDScheduleListTableViewCell(style: UITableViewCell.CellStyle.default, reuseIdentifier: kReuseIdentifier)
             return configureCell(cell, indexPath: indexPath)
         }
     }
@@ -332,10 +332,10 @@ class SDScheduleViewController: UIViewController,
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if (isIOS8OrLater()) {
-            return UITableViewAutomaticDimension
+            return UITableView.automaticDimension
         }
         let cell = self.tableView(tableView, cellForRowAt: indexPath) as! SDScheduleListTableViewCell
-        return cell.contentView.systemLayoutSizeFitting(UILayoutFittingCompressedSize).height
+        return cell.contentView.systemLayoutSizeFitting(UIView.layoutFittingCompressedSize).height
     }
 
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
@@ -531,7 +531,7 @@ class SDScheduleViewController: UIViewController,
         let clock = viewClock()
         if clock.result {
             let indexPath = IndexPath(row: clock.indexRow, section: clock.indexSection)
-            tblSchedule.scrollToRow(at: indexPath, at: UITableViewScrollPosition.top, animated: true)
+            tblSchedule.scrollToRow(at: indexPath, at: UITableView.ScrollPosition.top, animated: true)
         }
     }
     
@@ -612,7 +612,7 @@ class SDScheduleViewController: UIViewController,
     }
     
     func setVotingIconToButton(_ btn: UIButton, iconName: String) {
-        btn.setImage(UIImage(named: iconName), for: UIControlState())
+        btn.setImage(UIImage(named: iconName), for: UIControl.State())
     }
     
     func disableVoteIcons() {
@@ -708,8 +708,8 @@ class SDScheduleViewController: UIViewController,
     
     @objc func keyboardWillShow(_ notification: Notification) {
         if let notificationInfo = notification.userInfo,
-            let keyboardFrame = (notificationInfo[UIKeyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue,
-            let animationDuration = (notificationInfo[UIKeyboardAnimationDurationUserInfoKey] as? TimeInterval) {
+            let keyboardFrame = (notificationInfo[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue,
+            let animationDuration = (notificationInfo[UIResponder.keyboardAnimationDurationUserInfoKey] as? TimeInterval) {
             setVerticalPositionForVotingPopoverWithKeyboardHeight(keyboardFrame.size.height,
                 kbAnimationDuration: animationDuration)
         }
@@ -717,7 +717,7 @@ class SDScheduleViewController: UIViewController,
     
     @objc func keyboardWillHide(_ notification: Notification) {
         if let notificationInfo = notification.userInfo,
-            let animationDuration = (notificationInfo[UIKeyboardAnimationDurationUserInfoKey] as? TimeInterval) {
+            let animationDuration = (notificationInfo[UIResponder.keyboardAnimationDurationUserInfoKey] as? TimeInterval) {
                 UIView.animate(withDuration: animationDuration, animations: { () -> Void in
                     self.constraintForVotingPopoverTopSpace.constant = CGFloat(self.kVotePopoverDefaultTopPosition)
                 })
@@ -773,12 +773,12 @@ class SDScheduleViewController: UIViewController,
     
     func placeholderTextForComments() -> NSAttributedString {
         let placeholderString = NSLocalizedString("schedule_vote_comments_placeholder", comment: "")
-        return NSAttributedString(string: placeholderString, attributes: [NSAttributedStringKey.font: UIFont.fontHelveticaNeueItalic(kVotePlaceholderFontSize), NSAttributedStringKey.foregroundColor: UIColor.grayCommentsPlaceholder()])
+        return NSAttributedString(string: placeholderString, attributes: [NSAttributedString.Key.font: UIFont.fontHelveticaNeueItalic(kVotePlaceholderFontSize), NSAttributedString.Key.foregroundColor: UIColor.grayCommentsPlaceholder()])
     }
     
     func attributedStringForComment(_ comment: String) -> NSAttributedString {
-        return NSAttributedString(string: comment, attributes: [NSAttributedStringKey.font: UIFont.fontHelveticaNeueLight(kVotePlaceholderFontSize),
-            NSAttributedStringKey.foregroundColor: UIColor.blackForCommentsNormalText()])
+        return NSAttributedString(string: comment, attributes: [NSAttributedString.Key.font: UIFont.fontHelveticaNeueLight(kVotePlaceholderFontSize),
+            NSAttributedString.Key.foregroundColor: UIColor.blackForCommentsNormalText()])
     }
     
     func currentVotingComments() -> String? {

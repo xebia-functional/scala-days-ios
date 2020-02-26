@@ -87,7 +87,7 @@ class SDSpeakerDetailView: UIView {
     }
 
     func contentHeight() -> CGFloat {
-        return lblDescription.frame.origin.y + lblDescription.systemLayoutSizeFitting(UILayoutFittingCompressedSize).height + kBottomPadding
+        return lblDescription.frame.origin.y + lblDescription.systemLayoutSizeFitting(UIView.layoutFittingCompressedSize).height + kBottomPadding
     }
 
     func drawSeparator() {

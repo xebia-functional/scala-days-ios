@@ -120,10 +120,10 @@ class SDSpeakersListViewController: UIViewController, UITableViewDelegate, UITab
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if (isIOS8OrLater()) {
-            return UITableViewAutomaticDimension
+            return UITableView.automaticDimension
         }
         let cell = self.tableView(tableView, cellForRowAt: indexPath) as! SDSpeakersTableViewCell
-        return cell.contentView.systemLayoutSizeFitting(UILayoutFittingCompressedSize).height
+        return cell.contentView.systemLayoutSizeFitting(UIView.layoutFittingCompressedSize).height
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -139,7 +139,7 @@ class SDSpeakersListViewController: UIViewController, UITableViewDelegate, UITab
         case let(.some(cell)):
             return configureCell(cell, indexPath: indexPath)
         default:
-            let cell = SDSpeakersTableViewCell(style: UITableViewCellStyle.default, reuseIdentifier: kReuseIdentifier)
+            let cell = SDSpeakersTableViewCell(style: UITableViewCell.CellStyle.default, reuseIdentifier: kReuseIdentifier)
             return configureCell(cell, indexPath: indexPath)
         }
     }

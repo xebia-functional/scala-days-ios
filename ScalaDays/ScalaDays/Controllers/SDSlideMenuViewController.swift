@@ -187,11 +187,11 @@ class SDSlideMenuViewController: UIViewController, UITableViewDelegate, UITableV
             switch cell {
             case let(.some(cell)): return configureConferenceCell(cell, indexPath: indexPath)
             default:
-                let cell = SDConferenceTableViewCell(style: UITableViewCellStyle.default, reuseIdentifier: kConferenceReuseIdentifier)
+                let cell = SDConferenceTableViewCell(style: UITableViewCell.CellStyle.default, reuseIdentifier: kConferenceReuseIdentifier)
                 return configureConferenceCell(cell, indexPath: indexPath)
             }
         default :
-            let cell: UITableViewCell = UITableViewCell(style: UITableViewCellStyle.default, reuseIdentifier: "CellMenu")
+            let cell: UITableViewCell = UITableViewCell(style: UITableViewCell.CellStyle.default, reuseIdentifier: "CellMenu")
             cell.textLabel?.setCustomFont(UIFont.fontHelveticaNeue(15), colorFont: UIColor(white: 1, alpha: 0.8))
             cell.backgroundColor = UIColor.appColor()
             let bgColorView = UIView()

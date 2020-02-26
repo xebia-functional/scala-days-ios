@@ -123,7 +123,7 @@ class SDSponsorViewController: UIViewController, UITableViewDelegate, UITableVie
             configureCell(cell, indexPath: indexPath)
             return cell
         default:
-            let cell = SDSponsorsTableViewCell(style: UITableViewCellStyle.default, reuseIdentifier: kReuseIdentifier)
+            let cell = SDSponsorsTableViewCell(style: UITableViewCell.CellStyle.default, reuseIdentifier: kReuseIdentifier)
             configureCell(cell, indexPath: indexPath)
             return cell
         }

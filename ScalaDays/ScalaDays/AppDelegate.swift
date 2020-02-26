@@ -28,7 +28,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var menuViewController: SDSlideMenuViewController!
     private var analytics: FirebaseScalaDays!
     
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         setupThirdParties(application: application, launchOptions: launchOptions)
         initAppearence()
         createMenuView()
@@ -56,7 +56,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     private func initAppearence() {
         UINavigationBar.appearance().barTintColor = UIColor.appColor()
         UINavigationBar.appearance().tintColor = UIColor.white
-        UINavigationBar.appearance().titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.white]
+        UINavigationBar.appearance().titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
         UINavigationBar.appearance().backIndicatorImage = UIImage(named: "navigation_bar_icon_arrow")
         UINavigationBar.appearance().backIndicatorTransitionMaskImage = UIImage(named: "navigation_bar_icon_arrow")
         SVProgressHUD.setBackgroundColor(UIColor.clear)
@@ -91,7 +91,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     // MARK: deep link
-    func application(_ application: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey:Any] = [:]) -> Bool {
+    func application(_ application: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey:Any] = [:]) -> Bool {
         return TWTRTwitter.sharedInstance().application(application, open: url, options: options)
     }
 }
@@ -148,14 +148,14 @@ extension AppDelegate {
 extension AppDelegate {
     private static var externalKeys = AppDelegate.loadExternalKeys()
 
-    private func setupThirdParties(application: UIApplication, launchOptions: [UIApplicationLaunchOptionsKey: Any]?) {
+    private func setupThirdParties(application: UIApplication, launchOptions: [UIApplication.LaunchOptionsKey: Any]?) {
         localyticsPushNotifications(application: application, launchOptions: launchOptions)
         localytics(application: application, launchOptions: launchOptions)
         firebase(application: application)
         twitter(application: application)
     }
 
-    private func localyticsPushNotifications(application: UIApplication, launchOptions: [UIApplicationLaunchOptionsKey: Any]?) {
+    private func localyticsPushNotifications(application: UIApplication, launchOptions: [UIApplication.LaunchOptionsKey: Any]?) {
         if #available(iOS 12.0, *), objc_getClass("UNUserNotificationCenter") != nil {
             let options: UNAuthorizationOptions = [.provisional]
             UNUserNotificationCenter.current().requestAuthorization(options: options) { (granted, error) in
@@ -176,12 +176,12 @@ extension AppDelegate {
             application.registerUserNotificationSettings(settings)
         }
 
-        if let notificationInfo = launchOptions?[UIApplicationLaunchOptionsKey.localNotification] as? [AnyHashable: Any] {
+        if let notificationInfo = launchOptions?[UIApplication.LaunchOptionsKey.localNotification] as? [AnyHashable: Any] {
             Localytics.handleNotification(notificationInfo)
         }
     }
 
-    private func localytics(application: UIApplication, launchOptions: [UIApplicationLaunchOptionsKey: Any]?) {
+    private func localytics(application: UIApplication, launchOptions: [UIApplication.LaunchOptionsKey: Any]?) {
         guard let localyticsKey = AppDelegate.externalKeys.localyticsKey else { return }
 
         Localytics.autoIntegrate(localyticsKey, withLocalyticsOptions:[

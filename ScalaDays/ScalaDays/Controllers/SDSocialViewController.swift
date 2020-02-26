@@ -60,7 +60,7 @@ class SDSocialViewController: UIViewController, UITableViewDelegate, UITableView
         if isIOS8OrLater() {
             tblView?.estimatedRowHeight = kEstimatedDynamicCellsRowHeightHigh
         }
-        refreshControl.addTarget(self, action: #selector(SDSocialViewController.didActivateRefresh), for: UIControlEvents.valueChanged)
+        refreshControl.addTarget(self, action: #selector(SDSocialViewController.didActivateRefresh), for: UIControl.Event.valueChanged)
 
         errorPlaceholderView = SDErrorPlaceholderView(frame: screenBounds)
         errorPlaceholderView.delegate = self
@@ -187,10 +187,10 @@ class SDSocialViewController: UIViewController, UITableViewDelegate, UITableView
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if (isIOS8OrLater()) {
-            return UITableViewAutomaticDimension
+            return UITableView.automaticDimension
         }
         let cell = self.tableView(tableView, cellForRowAt: indexPath) as! SDSocialTableViewCell
-        return cell.contentView.systemLayoutSizeFitting(UILayoutFittingCompressedSize).height
+        return cell.contentView.systemLayoutSizeFitting(UIView.layoutFittingCompressedSize).height
     }
 
     // MARK: UITableViewDataSource protocol implementation
@@ -205,7 +205,7 @@ class SDSocialViewController: UIViewController, UITableViewDelegate, UITableView
         case let (.some(cell)):
             return configureCell(cell, indexPath: indexPath)
         default:
-            let cell = SDSocialTableViewCell(style: UITableViewCellStyle.default, reuseIdentifier: kReuseIdentifier)
+            let cell = SDSocialTableViewCell(style: UITableViewCell.CellStyle.default, reuseIdentifier: kReuseIdentifier)
             return configureCell(cell, indexPath: indexPath)
         }
     }

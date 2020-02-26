@@ -98,7 +98,7 @@ class SDScheduleListTableViewCell: UITableViewCell {
                         btnVote.isHidden = true
                         constraintForBtnEditVoteHeight.constant = kBtnEditVoteHeight
                         if let voteValue = VoteType(rawValue: vote.voteValue) {
-                            btnEditVote.setImage(UIImage(named: voteValue.iconNameForVoteType()), for: UIControlState())
+                            btnEditVote.setImage(UIImage(named: voteValue.iconNameForVoteType()), for: UIControl.State())
                         }
                         let (enabled, alpha) = isSafeToVote ? (true, kAlphaValueFull) : (false, kBtnEditVoteDisabledAlpha)
                         btnEditVote.isEnabled = enabled

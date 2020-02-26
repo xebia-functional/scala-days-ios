@@ -135,7 +135,7 @@ class SDPlacesViewController: UIViewController, MKMapViewDelegate, SDErrorPlaceh
             // it matches this situation: http://stackoverflow.com/questions/25194944/why-accessing-a-class-instance-member-gives-an-exc-bad-access-xcode-beta-5
             // So while this is fixed in a future XCode version, we have to access the venue's location and address from the conference object in a more cumbersome way:
             if let annotations = self.mapPlaces.annotations as? [SDMapAnnotation] {
-                if let indexOfVenue = annotations.index(of: annotation) {
+                if let indexOfVenue = annotations.firstIndex(of: annotation) {
                     if let conference = selectedConference {
                         if conference.venues.count > indexOfVenue {
                             let venue = conference.venues[indexOfVenue]

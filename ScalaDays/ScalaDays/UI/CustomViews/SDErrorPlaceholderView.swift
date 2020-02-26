@@ -78,7 +78,7 @@ class SDErrorPlaceholderView: UIView {
         if self.isHidden {
             self.alpha = 0
             self.isHidden = false
-            self.btnRefresh.setTitle(buttonTitle, for: UIControlState())
+            self.btnRefresh.setTitle(buttonTitle, for: UIControl.State())
             self.lblErrorMessage.text = message
             self.imgIcon.image = isGeneralMessage ? UIImage(named: "placeholder_general") : UIImage(named: "placeholder_error")
             UIView.animate(withDuration: kAnimationShowHideTimeInterval, animations: { () -> Void in
