@@ -52,7 +52,7 @@ class SDSpeakersListViewController: UIViewController, UITableViewDelegate, UITab
         errorPlaceholderView.delegate = self
         self.view.addSubview(errorPlaceholderView)
         
-        self.analytics.logScreenName(.speakers, class: SDSpeakersListViewController.self)
+        analytics.logScreenName(.speakers, class: SDSpeakersListViewController.self)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -111,7 +111,7 @@ class SDSpeakersListViewController: UIViewController, UITableViewDelegate, UITab
                             }
                         }
 
-                        self.analytics.logEvent(screenName: .speakers, category: .navigate, action: .goToUser)
+                        analytics.logEvent(screenName: .speakers, category: .navigate, action: .goToUser)
                     }
                 }
             }

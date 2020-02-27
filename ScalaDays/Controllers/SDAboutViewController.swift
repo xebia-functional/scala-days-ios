@@ -67,7 +67,7 @@ class SDAboutViewController: UIViewController, SDErrorPlaceholderViewDelegate, S
         
         loadData()
         
-        self.analytics.logScreenName(.about, class: SDAboutViewController.self)
+        analytics.logScreenName(.about, class: SDAboutViewController.self)
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -117,14 +117,14 @@ class SDAboutViewController: UIViewController, SDErrorPlaceholderViewDelegate, S
     @IBAction func didTapOn47Logo(_ sender: AnyObject) {
         guard let url = URL(string: url47Website) else { return }
         
-        self.analytics.logEvent(screenName: .about, category: .navigate, action: .goToSite)
+        analytics.logEvent(screenName: .about, category: .navigate, action: .goToSite)
         launchSafariToUrl(url)
     }
     
     @IBAction func didTapOnFeedback(_ button: UIButton) {
         guard let feedbackURL = feedbackURL else { return }
         
-        self.analytics.logEvent(screenName: .about, category: .navigate, action: .goToFeedbackForm)
+        analytics.logEvent(screenName: .about, category: .navigate, action: .goToFeedbackForm)
         launchSafariToUrl(feedbackURL)
     }
     

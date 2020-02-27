@@ -38,7 +38,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     // MARK: setup
     private func createMenuView() {
-        let scheduleViewController = SDScheduleViewController(analytics: self.analytics)
+        let scheduleViewController = SDScheduleViewController(analytics: analytics)
         menuViewController = SDSlideMenuViewController(analytics: analytics)
         let nvc: UINavigationController = UINavigationController(rootViewController: scheduleViewController)
 
@@ -148,11 +148,8 @@ extension AppDelegate {
         UNUserNotificationCenter.current().requestAuthorization(options: options) { (granted, error) in
             Localytics.didRequestUserNotificationAuthorization(withOptions: options.rawValue, granted: granted)
         }
+        
         application.registerForRemoteNotifications()
-
-        if let notificationInfo = launchOptions?[UIApplication.LaunchOptionsKey.remoteNotification] as? [AnyHashable: Any] {
-            Localytics.handleNotification(notificationInfo, withActionIdentifier: "")
-        }
     }
 
     private func localytics(application: UIApplication, launchOptions: [UIApplication.LaunchOptionsKey: Any]?) {

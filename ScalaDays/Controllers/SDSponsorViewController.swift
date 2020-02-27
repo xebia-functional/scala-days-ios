@@ -56,7 +56,7 @@ class SDSponsorViewController: UIViewController, UITableViewDelegate, UITableVie
         errorPlaceholderView.delegate = self
         self.view.addSubview(errorPlaceholderView)
         
-        self.analytics.logScreenName(.sponsors, class: SDSponsorViewController.self)
+        analytics.logScreenName(.sponsors, class: SDSponsorViewController.self)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -143,8 +143,8 @@ class SDSponsorViewController: UIViewController, UITableViewDelegate, UITableVie
         tableView.deselectRow(at: indexPath, animated: true)
         if let sponsors = filteredSponsors?[indexPath.section] {
             if let url = URL(string: sponsors[indexPath.row].url) {
-                self.analytics.logEvent(screenName: .sponsors, category: .navigate, action: .goToSponsor)
-                _ = launchSafariToUrl(url)
+                analytics.logEvent(screenName: .sponsors, category: .navigate, action: .goToSponsor)
+                launchSafariToUrl(url)
             }
         }        
     }

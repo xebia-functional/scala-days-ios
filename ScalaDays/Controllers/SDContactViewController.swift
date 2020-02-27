@@ -52,7 +52,7 @@ class SDContactViewController: UIViewController,
         self.title = NSLocalizedString("contacts", comment: "Contact")
         drawRegularFeedback()
         
-        self.analytics.logScreenName(.contact, class: SDContactViewController.self)
+        analytics.logScreenName(.contact, class: SDContactViewController.self)
     }
 
     // MARK: - QR Code scanning logic
@@ -68,7 +68,7 @@ class SDContactViewController: UIViewController,
         scannerVC.cameraOverlayView = scannerVCOverlayView
         
         self.present(scannerVC, animated: true, completion: nil)
-        self.analytics.logEvent(screenName: .contact, category: .navigate, action: .scanContact)
+        analytics.logEvent(screenName: .contact, category: .navigate, action: .scanContact)
     }
     
     func readerControllerDidFail(toRead reader: ZBarReaderController!, withRetry retry: Bool) {
