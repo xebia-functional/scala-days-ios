@@ -227,7 +227,7 @@ class SDSlideMenuViewController: UIViewController, UITableViewDelegate, UITableV
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         switch (tableView, Menu(rawValue: indexPath.item)) {
         case (self.tblConferences, _) :
-            DataManager.sharedInstance.selectedConferenceIndex = indexPath.row
+            DataManager.sharedInstance.selectConference(at: indexPath.row)
             drawSelectedConference()
             toggleTblConference()
             askControllersToReload()

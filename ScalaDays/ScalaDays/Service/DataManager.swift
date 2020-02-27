@@ -23,7 +23,7 @@ private let _DataManagerSharedInstance = DataManager()
 class DataManager {
 
     private let endpoint = ""
-    private let temporalDataURL = "http://scala-days-2015.s3.amazonaws.com/conferences_2016.json"
+    private let mockDataURL: URL? = URL(fileURLWithPath: Bundle.main.path(forResource: "conferences_2020", ofType: "json")!)
     
     @objc var conferences: Conferences?
 
@@ -104,7 +104,7 @@ class DataManager {
         }
     }
 
-    var selectedConferenceIndex = 0
+    private(set) var selectedConferenceIndex = 0
 
     var currentlySelectedConference: Conference? {
         get {
@@ -116,6 +116,7 @@ class DataManager {
             return nil
         }
     }
+    
 
     class var sharedInstance: DataManager {
 
@@ -140,10 +141,10 @@ class DataManager {
             }
         }
         
-        if forceConnection || shouldReconnect || self.conferences == nil {
+        if forceConnection || shouldReconnect || self.conferences == nil || self.mockDataURL != nil {
             getEndpoint { result in
                 switch result {
-                case .success(let url): self.loadData(endpoint: url, force: forceConnection, callback: callback)
+                case .success(let url): self.loadData(endpoint: url, force: forceConnection || self.mockDataURL != nil, callback: callback)
                 case .failure(let e): callback(false, e)
                 }
             }
@@ -153,23 +154,25 @@ class DataManager {
     }
     
     func parseAndStoreData(_ data: Data?) {
-        guard let data = data else { return }
+        guard let data = data,
+              let conferences = try? JSONDecoder().decode(Conferences.self, from: data) else { return }
         
-        self.conferences = try! JSONDecoder().decode(Conferences.self, from: data)
-        
-        if let _conferences = self.conferences {
-            StoringHelper.sharedInstance.storeConferenceData(_conferences)
-        }
+        self.conferences = conferences
+        StoringHelper.sharedInstance.storeConferenceData(conferences)
+    }
+    
+    func selectConference(at index: Int) {
+        self.selectedConferenceIndex = index
     }
 
     // MARK: - actions
     private func getEndpoint(callback: @escaping (Swift.Result<URL, NSError>) -> Void) {
-        guard let dataURL = URL(string: temporalDataURL) else {
-            callback(.failure(NSError.init(domain: temporalDataURL, code: -1)))
+        guard let mockDataURL = mockDataURL else {
+            callback(.failure(NSError.init(domain: "getEndpoint: must get data source url from REST", code: -1)))
             return
         }
         
-        callback(.success(dataURL))
+        callback(.success(mockDataURL))
     }
     
     private func loadData(endpoint: URL, force: Bool, callback: @escaping (Bool, NSError?) -> Void) {
@@ -194,6 +197,9 @@ class DataManager {
                             }
                         }
                     }
+                } else if let _data = response.data, force {
+                    self.parseAndStoreData(_data)
+                    callback(true, response.result.error as NSError?)
                 } else {
                     // We're here if we don't have a valid internet connection but we have cached data... we just relay it to the recipient:
                     callback(false, nil)
