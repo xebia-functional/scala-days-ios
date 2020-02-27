@@ -13,6 +13,7 @@
                 <outlet property="emptyMessage" destination="NLj-As-40x" id="kHB-9I-IuE"/>
                 <outlet property="emptyView" destination="db4-d6-uZk" id="wZp-zu-b2O"/>
                 <outlet property="loadingView" destination="iut-2s-T4p" id="I9R-4L-kz6"/>
+                <outlet property="tableView" destination="KiM-HH-F8n" id="vkF-VZ-EhU"/>
                 <outlet property="view" destination="iN0-l3-epB" id="SJ5-Lp-vk7"/>
             </connections>
         </placeholder>
@@ -21,19 +22,48 @@
             <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="KiM-HH-F8n">
+                    <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                    <connections>
+                        <outlet property="dataSource" destination="-1" id="66l-CM-843"/>
+                    </connections>
+                </tableView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iut-2s-T4p" userLabel="Loading View">
+                    <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                    <subviews>
+                        <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="Trg-Bk-Pla">
+                            <rect key="frame" x="197" y="259" width="20" height="20"/>
+                        </activityIndicatorView>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" placeholderIntrinsicWidth="544" placeholderIntrinsicHeight="78" text="Loading notifications..." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="0.0" translatesAutoresizingMaskIntoConstraints="NO" id="99G-Pt-AP9">
+                            <rect key="frame" x="24" y="283" width="366" height="78"/>
+                            <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="19"/>
+                            <color key="textColor" red="0.21176470589999999" green="0.27058823529999998" blue="0.31372549020000001" alpha="0.54000000000000004" colorSpace="custom" customColorSpace="sRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                    <constraints>
+                        <constraint firstAttribute="trailing" secondItem="99G-Pt-AP9" secondAttribute="trailing" constant="24" id="Vgd-0W-mnF"/>
+                        <constraint firstItem="99G-Pt-AP9" firstAttribute="leading" secondItem="iut-2s-T4p" secondAttribute="leading" constant="24" id="X5y-xl-kOZ"/>
+                        <constraint firstItem="Trg-Bk-Pla" firstAttribute="centerY" secondItem="iut-2s-T4p" secondAttribute="centerY" constant="-140" id="er3-Dp-Ao3"/>
+                        <constraint firstItem="99G-Pt-AP9" firstAttribute="top" secondItem="Trg-Bk-Pla" secondAttribute="bottom" constant="4" id="lGm-GX-256"/>
+                        <constraint firstItem="Trg-Bk-Pla" firstAttribute="centerX" secondItem="iut-2s-T4p" secondAttribute="centerX" id="zRl-q2-ekU"/>
+                    </constraints>
+                </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="db4-d6-uZk" userLabel="Empty View">
                     <rect key="frame" x="0.0" y="44" width="414" height="818"/>
                     <subviews>
                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="empty_notifications" translatesAutoresizingMaskIntoConstraints="NO" id="ycR-po-ZUW">
-                            <rect key="frame" x="157" y="179" width="100" height="100"/>
+                            <rect key="frame" x="137" y="159" width="140" height="140"/>
                             <constraints>
-                                <constraint firstAttribute="width" constant="100" id="2g9-De-wf7"/>
-                                <constraint firstAttribute="height" constant="100" id="nUS-sM-5HP"/>
+                                <constraint firstAttribute="width" constant="140" id="2g9-De-wf7"/>
+                                <constraint firstAttribute="height" constant="140" id="nUS-sM-5HP"/>
                             </constraints>
                         </imageView>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" placeholderIntrinsicWidth="544" placeholderIntrinsicHeight="78" text="Message" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="0.0" translatesAutoresizingMaskIntoConstraints="NO" id="NLj-As-40x">
-                            <rect key="frame" x="24" y="309" width="366" height="78"/>
-                            <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="19"/>
+                            <rect key="frame" x="24" y="329" width="366" height="78"/>
+                            <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="24"/>
                             <color key="textColor" red="0.21176470589999999" green="0.27058823529999998" blue="0.31372549020000001" alpha="0.54000000000000004" colorSpace="custom" customColorSpace="sRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
@@ -47,39 +77,21 @@
                         <constraint firstItem="ycR-po-ZUW" firstAttribute="centerX" secondItem="db4-d6-uZk" secondAttribute="centerX" id="sh9-gf-aC1"/>
                     </constraints>
                 </view>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iut-2s-T4p" userLabel="Loading View">
-                    <rect key="frame" x="0.0" y="44" width="414" height="818"/>
-                    <subviews>
-                        <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="Trg-Bk-Pla">
-                            <rect key="frame" x="188.5" y="250.5" width="37" height="37"/>
-                        </activityIndicatorView>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" placeholderIntrinsicWidth="544" placeholderIntrinsicHeight="78" text="Loading notifications..." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="0.0" translatesAutoresizingMaskIntoConstraints="NO" id="99G-Pt-AP9">
-                            <rect key="frame" x="24" y="303.5" width="366" height="78"/>
-                            <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="19"/>
-                            <color key="textColor" red="0.21176470589999999" green="0.27058823529999998" blue="0.31372549020000001" alpha="0.54000000000000004" colorSpace="custom" customColorSpace="sRGB"/>
-                            <nil key="highlightedColor"/>
-                        </label>
-                    </subviews>
-                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                    <constraints>
-                        <constraint firstAttribute="trailing" secondItem="99G-Pt-AP9" secondAttribute="trailing" constant="24" id="Vgd-0W-mnF"/>
-                        <constraint firstItem="99G-Pt-AP9" firstAttribute="leading" secondItem="iut-2s-T4p" secondAttribute="leading" constant="24" id="X5y-xl-kOZ"/>
-                        <constraint firstItem="Trg-Bk-Pla" firstAttribute="centerY" secondItem="iut-2s-T4p" secondAttribute="centerY" constant="-140" id="er3-Dp-Ao3"/>
-                        <constraint firstItem="99G-Pt-AP9" firstAttribute="top" secondItem="Trg-Bk-Pla" secondAttribute="bottom" constant="16" id="lGm-GX-256"/>
-                        <constraint firstItem="Trg-Bk-Pla" firstAttribute="centerX" secondItem="iut-2s-T4p" secondAttribute="centerX" id="zRl-q2-ekU"/>
-                    </constraints>
-                </view>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="iut-2s-T4p" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="9JP-GN-2pl"/>
+                <constraint firstItem="KiM-HH-F8n" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="FI7-xq-kkR"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="iut-2s-T4p" secondAttribute="trailing" id="FOJ-iL-BBn"/>
                 <constraint firstItem="db4-d6-uZk" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="FwF-lU-enc"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="iut-2s-T4p" secondAttribute="bottom" id="cqT-6b-iOr"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="db4-d6-uZk" secondAttribute="bottom" id="fWP-NB-WK7"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="db4-d6-uZk" secondAttribute="trailing" id="jaG-6o-rJx"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="KiM-HH-F8n" secondAttribute="trailing" id="nWF-U8-TUV"/>
+                <constraint firstItem="KiM-HH-F8n" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="pe5-8H-3Ll"/>
                 <constraint firstItem="db4-d6-uZk" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="r7F-1V-vJt"/>
                 <constraint firstItem="iut-2s-T4p" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="xJM-tF-IEW"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="KiM-HH-F8n" secondAttribute="bottom" id="xsB-Af-c97"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <point key="canvasLocation" x="141" y="154"/>

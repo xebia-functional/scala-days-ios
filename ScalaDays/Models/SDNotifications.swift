@@ -6,7 +6,7 @@ struct SDNotifications: Codable {
 }
 
 struct SDNotification: Codable {
-    let date: Date //"timestamp":"2019-07-08T18:40:25.842Z",
+    let date: Date
     let title: String
     let message: String
     let iosDelivered: Bool

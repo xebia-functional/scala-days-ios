@@ -1,7 +1,7 @@
 import Foundation
 import Alamofire
 
-enum NotificationError: Error {
+enum SDNotificationError: Error {
     case invalidEndpoint
     case empty
 }
@@ -9,7 +9,7 @@ enum NotificationError: Error {
 class NotificationManager {
     private let endpoint = "https://scaladays-backend.herokuapp.com/notifications"
     
-    func notifications(conference: Conference, callback: @escaping (Result<[SDNotification], NotificationError>) -> Void) {
+    func notifications(conference: Conference, callback: @escaping (Result<[SDNotification], SDNotificationError>) -> Void) {
         guard let url = endpoint(conferenceId: conference.info.id) else {
             callback(.failure(.invalidEndpoint)); return
         }

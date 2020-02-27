@@ -4,11 +4,13 @@ import SVProgressHUD
 class SDNotificationViewController: UIViewController {
     @IBOutlet weak var emptyView: UIView!
     @IBOutlet weak var loadingView: UIView!
+    @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var emptyMessage: UILabel!
     
     private let analytics: Analytics
     private let manager: NotificationManager
     private var state: NotificationViewState = .loading { didSet { reloadView() }}
+    private var notifications: [SDNotification] = [] { didSet { tableView.reloadData() }}
     
     init(analytics: Analytics, manager: NotificationManager) {
         self.analytics = analytics
@@ -34,35 +36,40 @@ class SDNotificationViewController: UIViewController {
         analytics.logScreenName(.notification, class: SDNotificationViewController.self)
     }
     
+    // MARK: appareance
     private func setupAppareance() {
-        setupEmptyView()
-    }
-    
-    private func setupEmptyView() {
         emptyMessage.text = i18n.emptyMessage
     }
     
     private func reloadView() {
         switch state {
         case .empty:
-            emptyView.isHidden = false
+            emptyView.isHidden   = false
             loadingView.isHidden = true
+            tableView.isHidden   = true
         case .loading:
-            emptyView.isHidden = true
+            emptyView.isHidden   = true
             loadingView.isHidden = false
+            tableView.isHidden   = true
             loadNotifications()
         case .notifications(let notifications):
-            fatalError()
+            emptyView.isHidden   = true
+            loadingView.isHidden = true
+            tableView.isHidden   = false
+            self.notifications = notifications
         }
     }
     
+    // MARK: actions
     private func loadNotifications() {
         guard let conference = DataManager.sharedInstance.currentlySelectedConference else {
-            state = .empty; return
+            state = .empty
+            return
         }
         
         manager.notifications(conference: conference) { result in
-            let b = 0
+            _ = result.map { response in self.state = .notifications(response) }
+                      .mapError { e -> SDNotificationError in self.state = .empty; return e }
         }
     }
 
@@ -81,6 +88,6 @@ class SDNotificationViewController: UIViewController {
     enum NotificationViewState {
         case loading
         case empty
-        case notifications([Notification])
+        case notifications([SDNotification])
     }
 }
