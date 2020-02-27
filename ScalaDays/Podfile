@@ -33,7 +33,7 @@ abstract_target 'ScalaDaysPods' do
     pod 'NSDate+TimeAgo', '~> 1.0.2'
 
     # Push notifications
-    pod 'Localytics', '~> 5.5'
+    pod 'Localytics', '~> 5.8'
   end
 
   target 'ScalaDaysTests' do

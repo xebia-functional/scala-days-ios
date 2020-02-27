@@ -92,6 +92,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     // MARK: deep link
     func application(_ application: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey:Any] = [:]) -> Bool {
+        Localytics.handleTestModeURL(url)
         return TWTRTwitter.sharedInstance().application(application, open: url, options: options)
     }
 }
@@ -114,11 +115,7 @@ extension AppDelegate {
 
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable: Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
         defer {
-            if #available(iOS 10.0, *) {
-                Localytics.handleNotificationReceived(userInfo)
-            } else {
-                Localytics.handleNotification(userInfo)
-            }
+            Localytics.handleNotificationReceived(userInfo)
             completionHandler(.noData)
         }
 
@@ -128,19 +125,10 @@ extension AppDelegate {
         DataManager.sharedInstance.lastConnectionAttemptDate = nil
         self.menuViewController.askControllersToReload()
     }
-
-    func application(_ application: UIApplication, didReceive notification: UILocalNotification) {
-        guard let userInfo = notification.userInfo else { return }
-        
-        if #available(iOS 10.0, *) {
-            Localytics.handleNotificationReceived(userInfo)
-        } else {
-            Localytics.handleNotification(userInfo)
-        }
-    }
-
-    func application(_ application: UIApplication, didRegister notificationSettings: UIUserNotificationSettings) {
-        Localytics.didRegisterUserNotificationSettings()
+    
+    func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
+        Localytics.didReceiveNotificationResponse(userInfo: response.notification.request.content.userInfo)
+        completionHandler()
     }
 }
 
@@ -156,28 +144,14 @@ extension AppDelegate {
     }
 
     private func localyticsPushNotifications(application: UIApplication, launchOptions: [UIApplication.LaunchOptionsKey: Any]?) {
-        if #available(iOS 12.0, *), objc_getClass("UNUserNotificationCenter") != nil {
-            let options: UNAuthorizationOptions = [.provisional]
-            UNUserNotificationCenter.current().requestAuthorization(options: options) { (granted, error) in
-                Localytics.didRequestUserNotificationAuthorization(withOptions: options.rawValue, granted: granted)
-            }
-            application.registerForRemoteNotifications()
+        let options: UNAuthorizationOptions = [.alert, .badge, .sound]
+        UNUserNotificationCenter.current().requestAuthorization(options: options) { (granted, error) in
+            Localytics.didRequestUserNotificationAuthorization(withOptions: options.rawValue, granted: granted)
         }
-        else if #available(iOS 10.0, *), objc_getClass("UNUserNotificationCenter") != nil {
-            let options: UNAuthorizationOptions = [.alert, .badge, .sound]
-            UNUserNotificationCenter.current().requestAuthorization(options: options) { (granted, error) in
-                Localytics.didRequestUserNotificationAuthorization(withOptions: options.rawValue, granted: granted)
-            }
-            application.registerForRemoteNotifications()
-        }
-        else {
-            let types: UIUserNotificationType = [.alert, .badge, .sound]
-            let settings = UIUserNotificationSettings(types: types, categories: nil)
-            application.registerUserNotificationSettings(settings)
-        }
+        application.registerForRemoteNotifications()
 
-        if let notificationInfo = launchOptions?[UIApplication.LaunchOptionsKey.localNotification] as? [AnyHashable: Any] {
-            Localytics.handleNotification(notificationInfo)
+        if let notificationInfo = launchOptions?[UIApplication.LaunchOptionsKey.remoteNotification] as? [AnyHashable: Any] {
+            Localytics.handleNotification(notificationInfo, withActionIdentifier: "")
         }
     }
 
