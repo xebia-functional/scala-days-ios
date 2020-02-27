@@ -15,13 +15,12 @@ Once the dependencies are downloaded Cocoapods will create a workspace file. Use
 
 ## External Keys
 
-As this project uses Crashlytics, Localytics, Google Analytics and TwitterKit, an external plist file (**SDExternalKeys.plist**) (located in the *External/Keys* folder) is used to store the API keys for those services. You need to create this file (it's not included in the repository), but you only need to fill the fields if you want to use your own keys for each service. The content is expected to be as follows:
+As this project uses Localytics, TwitterKit and Firebase (Analytics + Crashlytics) two external plist files, located in the *External/Keys* folder, are used to store the API keys for those services.
+You need to provide both files (not included in the repository for security reasons)
+
+**SDExternalKeys.plist**
 
 	<dict>
-		<key>GoogleAnalytics</key>
-		<string>***********</string>
-		<key>Crashlytics</key>
-		<string>***********</string>
 		<key>Localytics</key>
 		<string>***********</string>
 		<key>TwitterConsumerKey</key>
@@ -30,13 +29,17 @@ As this project uses Crashlytics, Localytics, Google Analytics and TwitterKit, a
 		<string>***********</string>
 	</dict>
 
+**GoogleService-Info.plist**
+
+You can find this plist in your [Firebase console](https://firebase.google.com/).
+
 ## Push Notifications
 
-Scala Days has a minimum time between network calls of **four hours**. To override this limit you can send a push notification with the following json key/value pair: 
+Scala Days has a minimum time between network calls of **four hours**. To override this limit you can send a push notification with the following json key/value pair:
 
 	jsonReload : true
-	
-For example, in our case :	
+
+For example, in our case :
 
 	{"aps":
 		{

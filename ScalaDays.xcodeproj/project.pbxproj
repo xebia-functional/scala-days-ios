@@ -73,10 +73,10 @@
 		59D174641A8E0C3A001E87CF /* SDSponsorsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 59D174631A8E0C3A001E87CF /* SDSponsorsTableViewCell.xib */; };
 		59F0E2E61CA1518700BDD40E /* Vote.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59F0E2E51CA1518700BDD40E /* Vote.swift */; };
 		59F0E2E71CA15B7600BDD40E /* Vote.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59F0E2E51CA1518700BDD40E /* Vote.swift */; };
+		8B39E3402407DC9D00338921 /* conferences_2020.json in Resources */ = {isa = PBXBuildFile; fileRef = 8B39E33F2407DC9D00338921 /* conferences_2020.json */; };
 		8B5818F12406DA1200587211 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8B5818F02406DA1200587211 /* GoogleService-Info.plist */; };
 		8B5818F42406F8E800587211 /* Analytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B5818F22406F8E700587211 /* Analytics.swift */; };
 		8B5818F52406F8E800587211 /* FirebaseScalaDays.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B5818F32406F8E700587211 /* FirebaseScalaDays.swift */; };
-		8BF8205E2407C47700C1C24E /* conferences_2020.json in Resources */ = {isa = PBXBuildFile; fileRef = 8BF8205D2407C47700C1C24E /* conferences_2020.json */; };
 		A13B434520AC773A00F78759 /* SDExternalKeys.plist in Resources */ = {isa = PBXBuildFile; fileRef = A13B434420AC773A00F78759 /* SDExternalKeys.plist */; };
 		A171433E1A88F6880068FD33 /* SDConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1FA1FF81A7BA95500338AF0 /* SDConstants.swift */; };
 		A171433F1A88F7730068FD33 /* SDDateHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 590DDD761A83C5E800E4CC3F /* SDDateHandler.swift */; };
@@ -187,10 +187,10 @@
 		59F0E2E51CA1518700BDD40E /* Vote.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Vote.swift; sourceTree = "<group>"; };
 		7DE3E72A5ED11E640A8CD7A9 /* Pods_ScalaDaysPods_ScalaDaysTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ScalaDaysPods_ScalaDaysTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		857E5518A29D51062F9155B4 /* Pods_ScalaDaysPods_ScalaDays.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ScalaDaysPods_ScalaDays.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8B39E33F2407DC9D00338921 /* conferences_2020.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = conferences_2020.json; sourceTree = "<group>"; };
 		8B5818F02406DA1200587211 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; name = "GoogleService-Info.plist"; path = "ScalaDays/External/GoogleService-Info.plist"; sourceTree = SOURCE_ROOT; };
 		8B5818F22406F8E700587211 /* Analytics.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Analytics.swift; sourceTree = "<group>"; };
 		8B5818F32406F8E700587211 /* FirebaseScalaDays.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirebaseScalaDays.swift; sourceTree = "<group>"; };
-		8BF8205D2407C47700C1C24E /* conferences_2020.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = conferences_2020.json; path = ../../../../../../../Downloads/conferences_2020.json; sourceTree = "<group>"; };
 		9A5C79BA0AC4A59C8B4E657E /* Pods-ScalaDaysPods-ScalaDays.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ScalaDaysPods-ScalaDays.release.xcconfig"; path = "Pods/Target Support Files/Pods-ScalaDaysPods-ScalaDays/Pods-ScalaDaysPods-ScalaDays.release.xcconfig"; sourceTree = "<group>"; };
 		A13B434420AC773A00F78759 /* SDExternalKeys.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = SDExternalKeys.plist; path = ScalaDays/External/SDExternalKeys.plist; sourceTree = SOURCE_ROOT; };
 		A1551FB2207AD44A006BCE7A /* SwiftyJSON.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftyJSON.framework; path = "../../../../Library/Developer/Xcode/DerivedData/ScalaDays-cyovomhipwvxwdfjkdvbgvnlrjym/Build/Products/Debug-iphonesimulator/SwiftyJSON/SwiftyJSON.framework"; sourceTree = "<group>"; };
@@ -480,7 +480,7 @@
 		8BF8205C2407C46D00C1C24E /* Response */ = {
 			isa = PBXGroup;
 			children = (
-				8BF8205D2407C47700C1C24E /* conferences_2020.json */,
+				8B39E33F2407DC9D00338921 /* conferences_2020.json */,
 			);
 			path = Response;
 			sourceTree = "<group>";
@@ -681,13 +681,13 @@
 				59A7DF6D1A93725E009F4639 /* SDSpeakerDetailView.xib in Resources */,
 				59A7DF651A936C84009F4639 /* SDScheduleDetailViewController.xib in Resources */,
 				590DDD6E1A83BAFD00E4CC3F /* SDSpeakersListViewController.xib in Resources */,
-				8BF8205E2407C47700C1C24E /* conferences_2020.json in Resources */,
 				591DAB2D1A9B7F8D000B2D7A /* SDWebViewController.xib in Resources */,
 				A1FA1FE51A7AA30F00338AF0 /* SDPlacesViewController.xib in Resources */,
 				1EA75E8C1A925BFF00884EC8 /* SDConferenceTableViewCell.xib in Resources */,
 				8B5818F12406DA1200587211 /* GoogleService-Info.plist in Resources */,
 				A1FA1FD41A7A9DA200338AF0 /* Localizable.strings in Resources */,
 				A1FA1FE11A7AA2FA00338AF0 /* SDSponsorViewController.xib in Resources */,
+				8B39E3402407DC9D00338921 /* conferences_2020.json in Resources */,
 				59D174641A8E0C3A001E87CF /* SDSponsorsTableViewCell.xib in Resources */,
 				A1D795D41A68267F009CCEB3 /* Images.xcassets in Resources */,
 				5920EA601A9484B600564014 /* SDErrorPlaceholderView.xib in Resources */,

@@ -1,0 +1,5240 @@
+{
+  "generalInfo": {
+    "version": "3.0.0"
+  },
+  "conferences": [
+    {
+      "info": {
+        "id": 20201,
+        "name": "scala-days-seattle-2020",
+        "longName": "Scala Days Seattle - 2020",
+        "nameAndLocation": "Scala Days Seattle - 2020, June 11th - 13th, Seattle, Washington",
+        "firstDay": "2020-06-11",
+        "lastDay": "2020-06-13",
+        "normalSite": "https://www.scaladays.org/",
+        "registrationSite": "https://meeting.artegis.com/event/Scala_Days_2019",
+        "utcTimezoneOffset": "Europe/Zurich",
+        "utcTimezoneOffsetMillis": 7200000,
+        "query": "#scaladays OR @scaladays -RT",
+        "hashtag": "#scaladays",
+        "readyForApp": true,
+        "city": "Seattle",
+        "pictures": [
+          {
+            "width": 298,
+            "height": 188,
+            "url": "http://scala-days-2015.s3.amazonaws.com/chicago.png"
+          },
+          {
+            "width": 596,
+            "height": 376,
+            "url": "http://scala-days-2015.s3.amazonaws.com/chicago@2x.png"
+          },
+          {
+            "width": 894,
+            "height": 564,
+            "url": "http://scala-days-2015.s3.amazonaws.com/chicago@3x.png"
+          }
+        ],
+        "feedback": "https://forms.gle/LpRzocUyCjoV3Sov7"
+      },
+      "schedule": [
+        {
+          "id": 0,
+          "title": "Workshop 1",
+          "description": "Description\n",
+          "type": 1,
+          "startTime": "2020-06-10T07:00:00Z",
+          "endTime": "2020-06-11T16:00:00Z",
+          "date": "Tuesday/Wednesday June 10th & 11th",
+          "track": {
+            "id": 0,
+            "name": "",
+            "host": "",
+            "shortdescription": "Workshops",
+            "description": ""
+          },
+          "location": {
+            "id": 0,
+            "sortPosition": 0,
+            "name": "TBD",
+            "mapUrl": ""
+          },
+          "speakers": [
+            {
+              "id": 0,
+              "name": "name",
+              "title": "",
+              "company": "",
+              "twitter": null,
+              "picture": "https://scaladays.org/assets/images/speakers/generic.png",
+              "bio": "Coming soon."
+            }
+          ]
+        },
+        {
+          "id": 1,
+          "title": "Workshop 2",
+          "description": "Description\n",
+          "type": 1,
+          "startTime": "2020-06-10T07:00:00Z",
+          "endTime": "2020-06-11T16:00:00Z",
+          "date": "Tuesday/Wednesday June 10th & 11th",
+          "track": {
+            "id": 0,
+            "name": "",
+            "host": "",
+            "shortdescription": "Workshops",
+            "description": ""
+          },
+          "location": {
+            "id": 0,
+            "sortPosition": 0,
+            "name": "TBD",
+            "mapUrl": ""
+          },
+          "speakers": [
+            {
+              "id": 0,
+              "name": "name",
+              "title": "",
+              "company": "",
+              "twitter": null,
+              "picture": "https://scaladays.org/assets/images/speakers/generic.png",
+              "bio": "Coming soon."
+            },
+            {
+              "id": 0,
+              "name": "name",
+              "title": "",
+              "company": "",
+              "twitter": null,
+              "picture": "https://scaladays.org/assets/images/speakers/generic.png",
+              "bio": "Coming soon."
+            }
+          ]
+        },
+        {
+          "id": 2,
+          "title": "Workshop 3",
+          "description": "Description\n",
+          "type": 1,
+          "startTime": "2020-06-10T07:00:00Z",
+          "endTime": "2020-06-11T16:00:00Z",
+          "date": "Tuesday/Wednesday June 10th & 11th",
+          "track": {
+            "id": 0,
+            "name": "",
+            "host": "",
+            "shortdescription": "Workshops",
+            "description": ""
+          },
+          "location": {
+            "id": 0,
+            "sortPosition": 0,
+            "name": "TBD",
+            "mapUrl": ""
+          },
+          "speakers": [
+            {
+              "id": 0,
+              "name": "name",
+              "title": "",
+              "company": "",
+              "twitter": null,
+              "picture": "https://scaladays.org/assets/images/speakers/generic.png",
+              "bio": "Coming soon."
+            }
+          ]
+        },
+        {
+          "id": 3,
+          "title": "Keynote-1",
+          "description": "Description\n",
+          "type": 2,
+          "startTime": "2020-06-11T15:00:00Z",
+          "endTime": "2020-06-11T16:00:00Z",
+          "date": "Tuesday June 11th",
+          "track": {
+            "id": 1,
+            "name": "",
+            "host": "",
+            "shortdescription": "",
+            "description": ""
+          },
+          "location": {
+            "id": 1,
+            "sortPosition": 1,
+            "name": "room1",
+            "mapUrl": ""
+          },
+          "speakers": [
+            {
+              "id": 0,
+              "name": "name",
+              "title": "",
+              "company": "",
+              "twitter": null,
+              "picture": "https://scaladays.org/assets/images/speakers/generic.png",
+              "bio": "Bio"
+            }
+          ]
+        },
+        {
+          "id": 4,
+          "title": "Keynote-2",
+          "description": "Description\n",
+          "type": 2,
+          "startTime": "2020-06-12T07:00:00Z",
+          "endTime": "2020-06-12T08:00:00Z",
+          "date": "Wednesday June 12th",
+          "track": {
+            "id": 1,
+            "name": "",
+            "host": "",
+            "shortdescription": "",
+            "description": ""
+          },
+          "location": {
+            "id": 1,
+            "sortPosition": 1,
+            "name": "room1",
+            "mapUrl": ""
+          },
+          "speakers": [
+            {
+              "id": 0,
+              "name": "name",
+              "title": "",
+              "company": "",
+              "twitter": null,
+              "picture": "https://scaladays.org/assets/images/speakers/generic.png",
+              "bio": "Bio"
+            }
+          ]
+        },
+        {
+          "id": 5,
+          "title": "title-1-block1",
+          "description": "Description\n",
+          "type": 2,
+          "startTime": "2020-06-12T08:15:00Z",
+          "endTime": "2020-06-12T09:00:00Z",
+          "date": "Wednesday June 12th",
+          "track": {
+            "id": 1,
+            "name": "",
+            "host": "",
+            "shortdescription": "",
+            "description": ""
+          },
+          "location": {
+            "id": 1,
+            "sortPosition": 1,
+            "name": "room1",
+            "mapUrl": ""
+          },
+          "speakers": [
+            {
+              "id": 0,
+              "name": "name",
+              "title": "",
+              "company": "",
+              "twitter": null,
+              "picture": "https://scaladays.org/assets/images/speakers/generic.png",
+              "bio": "Bio"
+            }
+          ]
+        },
+        {
+          "id": 6,
+          "title": "title-2-block1",
+          "description": "Description\n",
+          "type": 2,
+          "startTime": "2020-06-12T08:15:00Z",
+          "endTime": "2020-06-12T09:00:00Z",
+          "date": "Wednesday June 12th",
+          "track": {
+            "id": 2,
+            "name": "",
+            "host": "",
+            "shortdescription": "",
+            "description": ""
+          },
+          "location": {
+            "id": 2,
+            "sortPosition": 2,
+            "name": "room2",
+            "mapUrl": ""
+          },
+          "speakers": [
+            {
+              "id": 0,
+              "name": "name",
+              "title": "",
+              "company": "",
+              "twitter": null,
+              "picture": "https://scaladays.org/assets/images/speakers/generic.png",
+              "bio": "Bio"
+            }
+          ]
+        },
+        {
+          "id": 7,
+          "title": "title-3-block1",
+          "description": "Description\n",
+          "type": 2,
+          "startTime": "2020-06-12T08:15:00Z",
+          "endTime": "2020-06-12T09:00:00Z",
+          "date": "Wednesday June 12th",
+          "track": {
+            "id": 3,
+            "name": "",
+            "host": "",
+            "shortdescription": "",
+            "description": ""
+          },
+          "location": {
+            "id": 3,
+            "sortPosition": 3,
+            "name": "room3",
+            "mapUrl": ""
+          },
+          "speakers": [
+            {
+              "id": 0,
+              "name": "name",
+              "title": "",
+              "company": "",
+              "twitter": null,
+              "picture": "https://scaladays.org/assets/images/speakers/generic.png",
+              "bio": "Bio"
+            }
+          ]
+        },
+        {
+          "id": 8,
+          "title": "title-4-block1",
+          "description": "Description\n",
+          "type": 2,
+          "startTime": "2020-06-12T08:15:00Z",
+          "endTime": "2020-06-12T09:00:00Z",
+          "date": "Wednesday June 12th",
+          "track": {
+            "id": 4,
+            "name": "",
+            "host": "",
+            "shortdescription": "",
+            "description": ""
+          },
+          "location": {
+            "id": 4,
+            "sortPosition": 4,
+            "name": "room4",
+            "mapUrl": ""
+          },
+          "speakers": [
+            {
+              "id": 0,
+              "name": "name",
+              "title": "",
+              "company": "",
+              "twitter": null,
+              "picture": "https://scaladays.org/assets/images/speakers/generic.png",
+              "bio": "Bio"
+            }
+          ]
+        },
+        {
+          "id": 9,
+          "title": "title-1-block2",
+          "description": "Description\n",
+          "type": 2,
+          "startTime": "2020-06-12T09:15:00Z",
+          "endTime": "2020-06-12T10:00:00Z",
+          "date": "Wednesday June 12th",
+          "track": {
+            "id": 1,
+            "name": "",
+            "host": "",
+            "shortdescription": "General Sessions",
+            "description": ""
+          },
+          "location": {
+            "id": 1,
+            "sortPosition": 1,
+            "name": "room1",
+            "mapUrl": ""
+          },
+          "speakers": [
+            {
+              "id": 0,
+              "name": "name",
+              "title": "",
+              "company": "",
+              "twitter": null,
+              "picture": "https://scaladays.org/assets/images/speakers/generic.png",
+              "bio": "Bio"
+            }
+          ]
+        },
+        {
+          "id": 10,
+          "title": "title-2-block2",
+          "description": "Description\n",
+          "type": 2,
+          "startTime": "2020-06-12T09:15:00Z",
+          "endTime": "2020-06-12T10:00:00Z",
+          "date": "Wednesday June 12th",
+          "track": {
+            "id": 2,
+            "name": "",
+            "host": "",
+            "shortdescription": "General Sessions",
+            "description": ""
+          },
+          "location": {
+            "id": 2,
+            "sortPosition": 2,
+            "name": "room2",
+            "mapUrl": ""
+          },
+          "speakers": [
+            {
+              "id": 0,
+              "name": "name",
+              "title": "",
+              "company": "",
+              "twitter": null,
+              "picture": "https://scaladays.org/assets/images/speakers/generic.png",
+              "bio": "Bio"
+            }
+          ]
+        },
+        {
+          "id": 11,
+          "title": "title-3-block2",
+          "description": "Description\n",
+          "type": 2,
+          "startTime": "2020-06-12T09:15:00Z",
+          "endTime": "2020-06-12T10:00:00Z",
+          "date": "Wednesday June 12th",
+          "track": {
+            "id": 3,
+            "name": "",
+            "host": "",
+            "shortdescription": "General Sessions",
+            "description": ""
+          },
+          "location": {
+            "id": 3,
+            "sortPosition": 3,
+            "name": "room3",
+            "mapUrl": ""
+          },
+          "speakers": [
+            {
+              "id": 0,
+              "name": "name",
+              "title": "",
+              "company": "",
+              "twitter": null,
+              "picture": "https://scaladays.org/assets/images/speakers/generic.png",
+              "bio": "Bio"
+            }
+          ]
+        },
+        {
+          "id": 12,
+          "title": "title-4-block2",
+          "description": "Description\t\t\t\t\t\t\t\n",
+          "type": 2,
+          "startTime": "2020-06-12T09:15:00Z",
+          "endTime": "2020-06-12T10:00:00Z",
+          "date": "Wednesday June 12th",
+          "track": {
+            "id": 4,
+            "name": "",
+            "host": "",
+            "shortdescription": "General Sessions",
+            "description": ""
+          },
+          "location": {
+            "id": 4,
+            "sortPosition": 4,
+            "name": "room4",
+            "mapUrl": ""
+          },
+          "speakers": [
+            {
+              "id": 0,
+              "name": "name",
+              "title": "",
+              "company": "",
+              "twitter": null,
+              "picture": "https://scaladays.org/assets/images/speakers/generic.png",
+              "bio": "Bio"
+            }
+          ]
+        },
+        {
+          "id": 13,
+          "title": "title-1-block3",
+          "description": "Description\n",
+          "type": 2,
+          "startTime": "2020-06-12T10:15:00Z",
+          "endTime": "2020-06-12T11:00:00Z",
+          "date": "Wednesday June 12th",
+          "track": {
+            "id": 5,
+            "name": "",
+            "host": "",
+            "shortdescription": "General Sessions",
+            "description": ""
+          },
+          "location": {
+            "id": 5,
+            "sortPosition": 5,
+            "name": "room1 ",
+            "mapUrl": ""
+          },
+          "speakers": [
+            {
+              "id": 0,
+              "name": "name",
+              "title": "",
+              "company": "",
+              "twitter": null,
+              "picture": "https://scaladays.org/assets/images/speakers/generic.png",
+              "bio": "Bio"
+            },
+            {
+              "id": 0,
+              "name": "name",
+              "title": "",
+              "company": "",
+              "twitter": null,
+              "picture": "https://scaladays.org/assets/images/speakers/generic.png",
+              "bio": "Bio"
+            }
+          ]
+        },
+        {
+          "id": 14,
+          "title": "title-2-block3",
+          "description": "Description\n",
+          "type": 2,
+          "startTime": "2020-06-12T10:15:00Z",
+          "endTime": "2020-06-12T11:00:00Z",
+          "date": "Wednesday June 12th",
+          "track": {
+            "id": 2,
+            "name": "",
+            "host": "",
+            "shortdescription": "General Sessions",
+            "description": ""
+          },
+          "location": {
+            "id": 2,
+            "sortPosition": 2,
+            "name": "room2",
+            "mapUrl": ""
+          },
+          "speakers": [
+            {
+              "id": 0,
+              "name": "name",
+              "title": "",
+              "company": "",
+              "twitter": null,
+              "picture": "https://scaladays.org/assets/images/speakers/generic.png",
+              "bio": "Bio"
+            }
+          ]
+        },
+        {
+          "id": 15,
+          "title": "title-3-block3",
+          "description": "Description\n",
+          "type": 2,
+          "startTime": "2020-06-12T10:15:00Z",
+          "endTime": "2020-06-12T11:00:00Z",
+          "date": "Wednesday June 12th",
+          "track": {
+            "id": 3,
+            "name": "",
+            "host": "",
+            "shortdescription": "General Sessions",
+            "description": ""
+          },
+          "location": {
+            "id": 3,
+            "sortPosition": 3,
+            "name": "room3",
+            "mapUrl": ""
+          },
+          "speakers": [
+            {
+              "id": 0,
+              "name": "name",
+              "title": "",
+              "company": "",
+              "twitter": null,
+              "picture": "https://scaladays.org/assets/images/speakers/generic.png",
+              "bio": "Bio"
+            }
+          ]
+        },
+        {
+          "id": 16,
+          "title": "title-4-block3",
+          "description": "Description\n",
+          "type": 2,
+          "startTime": "2020-06-12T10:15:00Z",
+          "endTime": "2020-06-12T11:00:00Z",
+          "date": "Wednesday June 12th",
+          "track": {
+            "id": 4,
+            "name": "",
+            "host": "",
+            "shortdescription": "General Sessions",
+            "description": ""
+          },
+          "location": {
+            "id": 4,
+            "sortPosition": 4,
+            "name": "room4",
+            "mapUrl": ""
+          },
+          "speakers": [
+            {
+              "id": 0,
+              "name": "name",
+              "title": "",
+              "company": "",
+              "twitter": null,
+              "picture": "https://scaladays.org/assets/images/speakers/generic.png",
+              "bio": "Bio"
+            }
+          ]
+        },
+        {
+          "id": 17,
+          "title": "title-1-block4",
+          "description": "Description\n",
+          "type": 2,
+          "startTime": "2020-06-12T12:30:00Z",
+          "endTime": "2020-06-12T13:15:00Z",
+          "date": "Wednesday June 12th",
+          "track": {
+            "id": 1,
+            "name": "",
+            "host": "",
+            "shortdescription": "General Sessions",
+            "description": ""
+          },
+          "location": {
+            "id": 1,
+            "sortPosition": 1,
+            "name": "room1",
+            "mapUrl": ""
+          },
+          "speakers": [
+            {
+              "id": 0,
+              "name": "name",
+              "title": "",
+              "company": "",
+              "twitter": null,
+              "picture": "https://scaladays.org/assets/images/speakers/generic.png",
+              "bio": "Bio"
+            }
+          ]
+        },
+        {
+          "id": 18,
+          "title": "title-2-block4",
+          "description": "Description\n",
+          "type": 2,
+          "startTime": "2020-06-12T12:30:00Z",
+          "endTime": "2020-06-12T13:15:00Z",
+          "date": "Wednesday June 12th",
+          "track": {
+            "id": 2,
+            "name": "",
+            "host": "",
+            "shortdescription": "General Sessions",
+            "description": ""
+          },
+          "location": {
+            "id": 2,
+            "sortPosition": 2,
+            "name": "room2",
+            "mapUrl": ""
+          },
+          "speakers": [
+            {
+              "id": 0,
+              "name": "name",
+              "title": "",
+              "company": "",
+              "twitter": null,
+              "picture": "https://scaladays.org/assets/images/speakers/generic.png",
+              "bio": "Bio"
+            }
+          ]
+        },
+        {
+          "id": 19,
+          "title": "title-3-block4",
+          "description": "Description\n",
+          "type": 2,
+          "startTime": "2020-06-12T12:30:00Z",
+          "endTime": "2020-06-12T13:15:00Z",
+          "date": "Wednesday June 12th",
+          "track": {
+            "id": 3,
+            "name": "",
+            "host": "",
+            "shortdescription": "General Sessions",
+            "description": ""
+          },
+          "location": {
+            "id": 3,
+            "sortPosition": 3,
+            "name": "room3",
+            "mapUrl": ""
+          },
+          "speakers": [
+            {
+              "id": 0,
+              "name": "name",
+              "title": "",
+              "company": "",
+              "twitter": null,
+              "picture": "https://scaladays.org/assets/images/speakers/generic.png",
+              "bio": "Bio"
+            }
+          ]
+        },
+        {
+          "id": 20,
+          "title": "title-4-block4",
+          "description": "Description\n",
+          "type": 2,
+          "startTime": "2020-06-12T12:30:00Z",
+          "endTime": "2020-06-12T13:15:00Z",
+          "date": "Wednesday June 12th",
+          "track": {
+            "id": 4,
+            "name": "",
+            "host": "",
+            "shortdescription": "General Sessions",
+            "description": ""
+          },
+          "location": {
+            "id": 4,
+            "sortPosition": 4,
+            "name": "room4",
+            "mapUrl": ""
+          },
+          "speakers": [
+            {
+              "id": 0,
+              "name": "name",
+              "title": "",
+              "company": "",
+              "twitter": null,
+              "picture": "https://scaladays.org/assets/images/speakers/generic.png",
+              "bio": "Bio"
+            }
+          ]
+        },
+        {
+          "id": 21,
+          "title": "title-1-block5",
+          "description": "Description\n",
+          "type": 2,
+          "startTime": "2020-06-12T13:30:00Z",
+          "endTime": "2020-06-12T14:15:00Z",
+          "date": "Wednesday June 12th",
+          "track": {
+            "id": 1,
+            "name": "",
+            "host": "",
+            "shortdescription": "General Sessions",
+            "description": ""
+          },
+          "location": {
+            "id": 1,
+            "sortPosition": 1,
+            "name": "room1",
+            "mapUrl": ""
+          },
+          "speakers": [
+            {
+              "id": 0,
+              "name": "name",
+              "title": "",
+              "company": "",
+              "twitter": null,
+              "picture": "https://scaladays.org/assets/images/speakers/generic.png",
+              "bio": "Bio"
+            }
+          ]
+        },
+        {
+          "id": 22,
+          "title": "title-2-block5",
+          "description": "Description\n",
+          "type": 2,
+          "startTime": "2020-06-12T13:30:00Z",
+          "endTime": "2020-06-12T14:15:00Z",
+          "date": "Wednesday June 12th",
+          "track": {
+            "id": 2,
+            "name": "",
+            "host": "",
+            "shortdescription": "General Sessions",
+            "description": ""
+          },
+          "location": {
+            "id": 2,
+            "sortPosition": 2,
+            "name": "room2",
+            "mapUrl": ""
+          },
+          "speakers": [
+            {
+              "id": 0,
+              "name": "name",
+              "title": "",
+              "company": "",
+              "twitter": null,
+              "picture": "https://scaladays.org/assets/images/speakers/generic.png",
+              "bio": "Bio"
+            }
+          ]
+        },
+        {
+          "id": 23,
+          "title": "title-3-block5",
+          "description": "Description\n",
+          "type": 2,
+          "startTime": "2020-06-12T13:30:00Z",
+          "endTime": "2020-06-12T14:15:00Z",
+          "date": "Wednesday June 12th",
+          "track": {
+            "id": 3,
+            "name": "",
+            "host": "",
+            "shortdescription": "General Sessions",
+            "description": ""
+          },
+          "location": {
+            "id": 3,
+            "sortPosition": 3,
+            "name": "room3",
+            "mapUrl": ""
+          },
+          "speakers": [
+            {
+              "id": 0,
+              "name": "name",
+              "title": "",
+              "company": "",
+              "twitter": null,
+              "picture": "https://scaladays.org/assets/images/speakers/generic.png",
+              "bio": "Bio"
+            }
+          ]
+        },
+        {
+          "id": 24,
+          "title": "title-4-block5",
+          "description": "Description\n",
+          "type": 2,
+          "startTime": "2020-06-12T13:30:00Z",
+          "endTime": "2020-06-12T14:15:00Z",
+          "date": "Wednesday June 12th",
+          "track": {
+            "id": 4,
+            "name": "",
+            "host": "",
+            "shortdescription": "General Sessions",
+            "description": ""
+          },
+          "location": {
+            "id": 4,
+            "sortPosition": 4,
+            "name": "room4",
+            "mapUrl": ""
+          },
+          "speakers": [
+            {
+              "id": 0,
+              "name": "name",
+              "title": "",
+              "company": "",
+              "twitter": null,
+              "picture": "https://scaladays.org/assets/images/speakers/generic.png",
+              "bio": "Bio"
+            }
+          ]
+        },
+        {
+          "id": 25,
+          "title": "title-1-block6",
+          "description": "Description\n",
+          "type": 2,
+          "startTime": "2020-06-12T14:45:00Z",
+          "endTime": "2020-06-12T15:30:00Z",
+          "date": "Wednesday June 12th",
+          "track": {
+            "id": 1,
+            "name": "",
+            "host": "",
+            "shortdescription": "General Sessions",
+            "description": ""
+          },
+          "location": {
+            "id": 1,
+            "sortPosition": 1,
+            "name": "room1",
+            "mapUrl": ""
+          },
+          "speakers": [
+            {
+              "id": 0,
+              "name": "name",
+              "title": "",
+              "company": "",
+              "twitter": null,
+              "picture": "https://scaladays.org/assets/images/speakers/generic.png",
+              "bio": "Bio"
+            },
+            {
+              "id": 0,
+              "name": "name",
+              "title": "",
+              "company": "",
+              "twitter": null,
+              "picture": "https://scaladays.org/assets/images/speakers/generic.png",
+              "bio": "Bio"
+            },
+            {
+              "id": 0,
+              "name": "name",
+              "title": "",
+              "company": "",
+              "twitter": null,
+              "picture": "https://scaladays.org/assets/images/speakers/generic.png",
+              "bio": "Bio"
+            }
+          ]
+        },
+        {
+          "id": 26,
+          "title": "title-2-block6",
+          "description": "Description\n",
+          "type": 2,
+          "startTime": "2020-06-12T14:45:00Z",
+          "endTime": "2020-06-12T15:30:00Z",
+          "date": "Wednesday June 12th",
+          "track": {
+            "id": 2,
+            "name": "",
+            "host": "",
+            "shortdescription": "General Sessions",
+            "description": ""
+          },
+          "location": {
+            "id": 2,
+            "sortPosition": 2,
+            "name": "room2",
+            "mapUrl": ""
+          },
+          "speakers": [
+            {
+              "id": 0,
+              "name": "name",
+              "title": "",
+              "company": "",
+              "twitter": null,
+              "picture": "https://scaladays.org/assets/images/speakers/generic.png",
+              "bio": "Bio"
+            }
+          ]
+        },
+        {
+          "id": 27,
+          "title": "title-3-block6",
+          "description": "Description\n",
+          "type": 2,
+          "startTime": "2020-06-12T14:45:00Z",
+          "endTime": "2020-06-12T15:30:00Z",
+          "date": "Wednesday June 12th",
+          "track": {
+            "id": 3,
+            "name": "",
+            "host": "",
+            "shortdescription": "General Sessions",
+            "description": ""
+          },
+          "location": {
+            "id": 3,
+            "sortPosition": 3,
+            "name": "room3",
+            "mapUrl": ""
+          },
+          "speakers": [
+            {
+              "id": 0,
+              "name": "name",
+              "title": "",
+              "company": "",
+              "twitter": null,
+              "picture": "https://scaladays.org/assets/images/speakers/generic.png",
+              "bio": "Bio\n\t\t\t\t\t\t\t\t\t\t\t\t"
+            }
+          ]
+        },
+        {
+          "id": 28,
+          "title": "title-4-block6",
+          "description": "Description\n",
+          "type": 2,
+          "startTime": "2020-06-12T14:45:00Z",
+          "endTime": "2020-06-12T15:30:00Z",
+          "date": "Wednesday June 12th",
+          "track": {
+            "id": 4,
+            "name": "",
+            "host": "",
+            "shortdescription": "General Sessions",
+            "description": ""
+          },
+          "location": {
+            "id": 4,
+            "sortPosition": 4,
+            "name": "room4",
+            "mapUrl": ""
+          },
+          "speakers": [
+            {
+              "id": 0,
+              "name": "name",
+              "title": "",
+              "company": "",
+              "twitter": null,
+              "picture": "https://scaladays.org/assets/images/speakers/generic.png",
+              "bio": "Bio"
+            }
+          ]
+        },
+        {
+          "id": 29,
+          "title": "title-1-block7",
+          "description": "Description\n",
+          "type": 2,
+          "startTime": "2020-06-12T15:45:00Z",
+          "endTime": "2020-06-12T16:30:00Z",
+          "date": "Wednesday June 12th",
+          "track": {
+            "id": 1,
+            "name": "",
+            "host": "",
+            "shortdescription": "General Sessions",
+            "description": ""
+          },
+          "location": {
+            "id": 1,
+            "sortPosition": 1,
+            "name": "room1",
+            "mapUrl": ""
+          },
+          "speakers": [
+            {
+              "id": 0,
+              "name": "name",
+              "title": "",
+              "company": "",
+              "twitter": null,
+              "picture": "https://scaladays.org/assets/images/speakers/generic.png",
+              "bio": "Bio"
+            }
+          ]
+        },
+        {
+          "id": 30,
+          "title": "title-2-block7",
+          "description": "Description\n",
+          "type": 2,
+          "startTime": "2020-06-12T15:45:00Z",
+          "endTime": "2020-06-12T16:30:00Z",
+          "date": "Wednesday June 12th",
+          "track": {
+            "id": 2,
+            "name": "",
+            "host": "",
+            "shortdescription": "General Sessions",
+            "description": ""
+          },
+          "location": {
+            "id": 2,
+            "sortPosition": 2,
+            "name": "room2",
+            "mapUrl": ""
+          },
+          "speakers": [
+            {
+              "id": 0,
+              "name": "name",
+              "title": "",
+              "company": "",
+              "twitter": null,
+              "picture": "https://scaladays.org/assets/images/speakers/generic.png",
+              "bio": "Bio"
+            },
+            {
+              "id": 0,
+              "name": "name",
+              "title": "",
+              "company": "",
+              "twitter": null,
+              "picture": "https://scaladays.org/assets/images/speakers/generic.png",
+              "bio": "Bio"
+            }
+          ]
+        },
+        {
+          "id": 31,
+          "title": "title-3-block7",
+          "description": "Description\n",
+          "type": 2,
+          "startTime": "2020-06-12T15:45:00Z",
+          "endTime": "2020-06-12T16:30:00Z",
+          "date": "Wednesday June 12th",
+          "track": {
+            "id": 3,
+            "name": "",
+            "host": "",
+            "shortdescription": "General Sessions",
+            "description": ""
+          },
+          "location": {
+            "id": 3,
+            "sortPosition": 3,
+            "name": "room3",
+            "mapUrl": ""
+          },
+          "speakers": [
+            {
+              "id": 0,
+              "name": "name",
+              "title": "",
+              "company": "",
+              "twitter": null,
+              "picture": "https://scaladays.org/assets/images/speakers/generic.png",
+              "bio": "Bio"
+            }
+          ]
+        },
+        {
+          "id": 32,
+          "title": "title-4-block7",
+          "description": "Description\n",
+          "type": 2,
+          "startTime": "2020-06-12T15:45:00Z",
+          "endTime": "2020-06-12T16:30:00Z",
+          "date": "Wednesday June 12th",
+          "track": {
+            "id": 4,
+            "name": "",
+            "host": "",
+            "shortdescription": "General Sessions",
+            "description": ""
+          },
+          "location": {
+            "id": 4,
+            "sortPosition": 4,
+            "name": "room4",
+            "mapUrl": ""
+          },
+          "speakers": [
+            {
+              "id": 0,
+              "name": "name",
+              "title": "",
+              "company": "",
+              "twitter": null,
+              "picture": "https://scaladays.org/assets/images/speakers/generic.png",
+              "bio": "Bio"
+            }
+          ]
+        },
+        {
+          "id": 33,
+          "title": "Special Event",
+          "description": "Description\n",
+          "type": 0,
+          "startTime": "2020-06-12T17:00:00Z",
+          "endTime": "2020-06-12T21:00:00Z",
+          "date": "Wednesday June 12th",
+          "track": {
+            "id": 6,
+            "name": "",
+            "host": "",
+            "shortdescription": "Community Dinner: Sponsored by Lunatech",
+            "description": ""
+          },
+          "location": {
+            "id": 6,
+            "sortPosition": 6,
+            "name": "Olympic Museum",
+            "mapUrl": ""
+          },
+          "speakers": []
+        },
+        {
+          "id": 34,
+          "title": "Keynote-3",
+          "description": "Description\n",
+          "type": 2,
+          "startTime": "2020-06-13T07:00:00Z",
+          "endTime": "2020-06-13T08:00:00Z",
+          "date": "Thursday June 13th",
+          "track": {
+            "id": 1,
+            "name": "",
+            "host": "",
+            "shortdescription": "",
+            "description": ""
+          },
+          "location": {
+            "id": 1,
+            "sortPosition": 1,
+            "name": "room1",
+            "mapUrl": ""
+          },
+          "speakers": [
+            {
+              "id": 0,
+              "name": "name",
+              "title": "",
+              "company": "",
+              "twitter": null,
+              "picture": "https://scaladays.org/assets/images/speakers/generic.png",
+              "bio": "Bio"
+            }
+          ]
+        },
+        {
+          "id": 35,
+          "title": "title-1-block8",
+          "description": "Description\n",
+          "type": 2,
+          "startTime": "2020-06-13T08:15:00Z",
+          "endTime": "2020-06-13T09:00:00Z",
+          "date": "Thursday June 13th",
+          "track": {
+            "id": 1,
+            "name": "",
+            "host": "",
+            "shortdescription": "General Sessions",
+            "description": ""
+          },
+          "location": {
+            "id": 1,
+            "sortPosition": 1,
+            "name": "room1",
+            "mapUrl": ""
+          },
+          "speakers": [
+            {
+              "id": 0,
+              "name": "name",
+              "title": "",
+              "company": "",
+              "twitter": null,
+              "picture": "https://scaladays.org/assets/images/speakers/generic.png",
+              "bio": "Bio"
+            }
+          ]
+        },
+        {
+          "id": 36,
+          "title": "title-2-block8",
+          "description": "Description\n",
+          "type": 2,
+          "startTime": "2020-06-13T08:15:00Z",
+          "endTime": "2020-06-13T09:00:00Z",
+          "date": "Thursday June 13th",
+          "track": {
+            "id": 2,
+            "name": "",
+            "host": "",
+            "shortdescription": "General Sessions",
+            "description": ""
+          },
+          "location": {
+            "id": 2,
+            "sortPosition": 2,
+            "name": "room2",
+            "mapUrl": ""
+          },
+          "speakers": [
+            {
+              "id": 0,
+              "name": "name",
+              "title": "",
+              "company": "",
+              "twitter": null,
+              "picture": "https://scaladays.org/assets/images/speakers/generic.png",
+              "bio": "Bio/p>\n\t\t\t\t\t\t\t\t\t\t\t\t"
+            }
+          ]
+        },
+        {
+          "id": 37,
+          "title": "title-3-block8",
+          "description": "Description\n",
+          "type": 2,
+          "startTime": "2020-06-13T08:15:00Z",
+          "endTime": "2020-06-13T09:00:00Z",
+          "date": "Thursday June 13th",
+          "track": {
+            "id": 3,
+            "name": "",
+            "host": "",
+            "shortdescription": "General Sessions",
+            "description": ""
+          },
+          "location": {
+            "id": 3,
+            "sortPosition": 3,
+            "name": "room3",
+            "mapUrl": ""
+          },
+          "speakers": [
+            {
+              "id": 0,
+              "name": "name",
+              "title": "",
+              "company": "",
+              "twitter": null,
+              "picture": "https://scaladays.org/assets/images/speakers/generic.png",
+              "bio": "Bio"
+            }
+          ]
+        },
+        {
+          "id": 38,
+          "title": "title-4-block8",
+          "description": "Description\n",
+          "type": 2,
+          "startTime": "2020-06-13T08:15:00Z",
+          "endTime": "2020-06-13T09:00:00Z",
+          "date": "Thursday June 13th",
+          "track": {
+            "id": 4,
+            "name": "",
+            "host": "",
+            "shortdescription": "General Sessions",
+            "description": ""
+          },
+          "location": {
+            "id": 4,
+            "sortPosition": 4,
+            "name": "room4",
+            "mapUrl": ""
+          },
+          "speakers": [
+            {
+              "id": 0,
+              "name": "name",
+              "title": "",
+              "company": "",
+              "twitter": null,
+              "picture": "https://scaladays.org/assets/images/speakers/generic.png",
+              "bio": "Bio"
+            }
+          ]
+        },
+        {
+          "id": 39,
+          "title": "title-1-block9",
+          "description": "Description\n",
+          "type": 2,
+          "startTime": "2020-06-13T09:15:00Z",
+          "endTime": "2020-06-13T10:00:00Z",
+          "date": "Thursday June 13th",
+          "track": {
+            "id": 1,
+            "name": "",
+            "host": "",
+            "shortdescription": "General Sessions",
+            "description": ""
+          },
+          "location": {
+            "id": 1,
+            "sortPosition": 1,
+            "name": "room1",
+            "mapUrl": ""
+          },
+          "speakers": [
+            {
+              "id": 0,
+              "name": "name",
+              "title": "",
+              "company": "",
+              "twitter": null,
+              "picture": "https://scaladays.org/assets/images/speakers/generic.png",
+              "bio": "Bio"
+            }
+          ]
+        },
+        {
+          "id": 40,
+          "title": "title-2-block9",
+          "description": "Description\n",
+          "type": 2,
+          "startTime": "2020-06-13T09:15:00Z",
+          "endTime": "2020-06-13T10:00:00Z",
+          "date": "Thursday June 13th",
+          "track": {
+            "id": 2,
+            "name": "",
+            "host": "",
+            "shortdescription": "General Sessions",
+            "description": ""
+          },
+          "location": {
+            "id": 2,
+            "sortPosition": 2,
+            "name": "room2",
+            "mapUrl": ""
+          },
+          "speakers": [
+            {
+              "id": 0,
+              "name": "name",
+              "title": "",
+              "company": "",
+              "twitter": null,
+              "picture": "https://scaladays.org/assets/images/speakers/generic.png",
+              "bio": "Bio"
+            }
+          ]
+        },
+        {
+          "id": 41,
+          "title": "title-3-block9",
+          "description": "Description\n",
+          "type": 2,
+          "startTime": "2020-06-13T09:15:00Z",
+          "endTime": "2020-06-13T10:00:00Z",
+          "date": "Thursday June 13th",
+          "track": {
+            "id": 3,
+            "name": "",
+            "host": "",
+            "shortdescription": "General Sessions",
+            "description": ""
+          },
+          "location": {
+            "id": 3,
+            "sortPosition": 3,
+            "name": "room3",
+            "mapUrl": ""
+          },
+          "speakers": [
+            {
+              "id": 0,
+              "name": "name",
+              "title": "",
+              "company": "",
+              "twitter": null,
+              "picture": "https://scaladays.org/assets/images/speakers/generic.png",
+              "bio": "Bio"
+            }
+          ]
+        },
+        {
+          "id": 42,
+          "title": "title-4-block9",
+          "description": "Description\n",
+          "type": 2,
+          "startTime": "2020-06-13T09:15:00Z",
+          "endTime": "2020-06-13T10:00:00Z",
+          "date": "Thursday June 13th",
+          "track": {
+            "id": 4,
+            "name": "",
+            "host": "",
+            "shortdescription": "General Sessions",
+            "description": ""
+          },
+          "location": {
+            "id": 4,
+            "sortPosition": 4,
+            "name": "room4",
+            "mapUrl": ""
+          },
+          "speakers": [
+            {
+              "id": 0,
+              "name": "name",
+              "title": "",
+              "company": "",
+              "twitter": null,
+              "picture": "https://scaladays.org/assets/images/speakers/generic.png",
+              "bio": "Bio"
+            }
+          ]
+        },
+        {
+          "id": 43,
+          "title": "title-1-block10",
+          "description": "Description\n",
+          "type": 2,
+          "startTime": "2020-06-13T10:15:00Z",
+          "endTime": "2020-06-13T11:00:00Z",
+          "date": "Thursday June 13th",
+          "track": {
+            "id": 1,
+            "name": "",
+            "host": "",
+            "shortdescription": "General Sessions",
+            "description": ""
+          },
+          "location": {
+            "id": 1,
+            "sortPosition": 1,
+            "name": "room1",
+            "mapUrl": ""
+          },
+          "speakers": [
+            {
+              "id": 0,
+              "name": "name",
+              "title": "",
+              "company": "",
+              "twitter": null,
+              "picture": "https://scaladays.org/assets/images/speakers/generic.png",
+              "bio": "Bio"
+            }
+          ]
+        },
+        {
+          "id": 44,
+          "title": "title-2-block10",
+          "description": "Description\n",
+          "type": 2,
+          "startTime": "2020-06-13T10:15:00Z",
+          "endTime": "2020-06-13T11:00:00Z",
+          "date": "Thursday June 13th",
+          "track": {
+            "id": 2,
+            "name": "",
+            "host": "",
+            "shortdescription": "General Sessions",
+            "description": ""
+          },
+          "location": {
+            "id": 2,
+            "sortPosition": 2,
+            "name": "room2",
+            "mapUrl": ""
+          },
+          "speakers": [
+            {
+              "id": 0,
+              "name": "name",
+              "title": "",
+              "company": "",
+              "twitter": null,
+              "picture": "https://scaladays.org/assets/images/speakers/generic.png",
+              "bio": "Bio"
+            }
+          ]
+        },
+        {
+          "id": 45,
+          "title": "title-3-block10",
+          "description": "Description\n",
+          "type": 2,
+          "startTime": "2020-06-13T10:15:00Z",
+          "endTime": "2020-06-13T11:00:00Z",
+          "date": "Thursday June 13th",
+          "track": {
+            "id": 3,
+            "name": "",
+            "host": "",
+            "shortdescription": "General Sessions",
+            "description": ""
+          },
+          "location": {
+            "id": 3,
+            "sortPosition": 3,
+            "name": "room3",
+            "mapUrl": ""
+          },
+          "speakers": [
+            {
+              "id": 0,
+              "name": "name",
+              "title": "",
+              "company": "",
+              "twitter": null,
+              "picture": "https://scaladays.org/assets/images/speakers/generic.png",
+              "bio": "Bio"
+            },
+            {
+              "id": 1,
+              "name": "nameky",
+              "title": "",
+              "company": "",
+              "twitter": null,
+              "picture": "https://scaladays.org/assets/images/speakers/generic.png",
+              "bio": "Bio"
+            }
+          ]
+        },
+        {
+          "id": 46,
+          "title": "title-4-block10",
+          "description": "Description\n",
+          "type": 2,
+          "startTime": "2020-06-13T10:15:00Z",
+          "endTime": "2020-06-13T11:00:00Z",
+          "date": "Thursday June 13th",
+          "track": {
+            "id": 4,
+            "name": "",
+            "host": "",
+            "shortdescription": "General Sessions",
+            "description": ""
+          },
+          "location": {
+            "id": 4,
+            "sortPosition": 4,
+            "name": "room4",
+            "mapUrl": ""
+          },
+          "speakers": [
+            {
+              "id": 0,
+              "name": "name",
+              "title": "",
+              "company": "",
+              "twitter": null,
+              "picture": "https://scaladays.org/assets/images/speakers/generic.png",
+              "bio": "Bio\n\t\t\t\t\t\t\t\t\t\t\t\t"
+            }
+          ]
+        },
+        {
+          "id": 47,
+          "title": "Diversity and Inclusion Panel:  Bring the Thunder!",
+          "description": "Description\n",
+          "type": 2,
+          "startTime": "2020-06-13T12:30:00Z",
+          "endTime": "2020-06-13T13:30:00Z",
+          "date": "Thursday June 13th",
+          "track": {
+            "id": 1,
+            "name": "",
+            "host": "",
+            "shortdescription": "",
+            "description": ""
+          },
+          "location": {
+            "id": 1,
+            "sortPosition": 1,
+            "name": "room1",
+            "mapUrl": ""
+          },
+          "speakers": [
+            {
+              "id": 0,
+              "name": "name",
+              "title": "",
+              "company": "",
+              "twitter": null,
+              "picture": "https://scaladays.org/assets/images/speakers/generic.png",
+              "bio": "Bio"
+            },
+            {
+              "id": 0,
+              "name": "name",
+              "title": "",
+              "company": "",
+              "twitter": null,
+              "picture": "https://scaladays.org/assets/images/speakers/generic.png",
+              "bio": "Bio"
+            },
+            {
+              "id": 0,
+              "name": "name",
+              "title": "",
+              "company": "",
+              "twitter": null,
+              "picture": "https://scaladays.org/assets/images/speakers/generic.png",
+              "bio": "Bio"
+            }
+          ]
+        },
+        {
+          "id": 48,
+          "title": "title-1-block11",
+          "description": "Description\n",
+          "type": 2,
+          "startTime": "2020-06-13T13:45:00Z",
+          "endTime": "2020-06-13T14:30:00Z",
+          "date": "Thursday June 13th",
+          "track": {
+            "id": 1,
+            "name": "",
+            "host": "",
+            "shortdescription": "General Sessions",
+            "description": ""
+          },
+          "location": {
+            "id": 1,
+            "sortPosition": 1,
+            "name": "room1",
+            "mapUrl": ""
+          },
+          "speakers": [
+            {
+              "id": 0,
+              "name": "name",
+              "title": "",
+              "company": "",
+              "twitter": null,
+              "picture": "https://scaladays.org/assets/images/speakers/generic.png",
+              "bio": "Bio"
+            }
+          ]
+        },
+        {
+          "id": 49,
+          "title": "title-2-block11",
+          "description": "Description\n",
+          "type": 2,
+          "startTime": "2020-06-13T13:45:00Z",
+          "endTime": "2020-06-13T14:30:00Z",
+          "date": "Thursday June 13th",
+          "track": {
+            "id": 2,
+            "name": "",
+            "host": "",
+            "shortdescription": "General Sessions",
+            "description": ""
+          },
+          "location": {
+            "id": 2,
+            "sortPosition": 2,
+            "name": "room2",
+            "mapUrl": ""
+          },
+          "speakers": [
+            {
+              "id": 0,
+              "name": "name",
+              "title": "",
+              "company": "",
+              "twitter": null,
+              "picture": "https://scaladays.org/assets/images/speakers/generic.png",
+              "bio": "Bio\n\t\t\t\t\t\t\t\t\t\t\t\t"
+            }
+          ]
+        },
+        {
+          "id": 50,
+          "title": "title-3-block11",
+          "description": "Description\n",
+          "type": 2,
+          "startTime": "2020-06-13T13:45:00Z",
+          "endTime": "2020-06-13T14:30:00Z",
+          "date": "Thursday June 13th",
+          "track": {
+            "id": 3,
+            "name": "",
+            "host": "",
+            "shortdescription": "General Sessions",
+            "description": ""
+          },
+          "location": {
+            "id": 3,
+            "sortPosition": 3,
+            "name": "room3",
+            "mapUrl": ""
+          },
+          "speakers": [
+            {
+              "id": 0,
+              "name": "name",
+              "title": "",
+              "company": "",
+              "twitter": null,
+              "picture": "https://scaladays.org/assets/images/speakers/generic.png",
+              "bio": "Bio"
+            }
+          ]
+        },
+        {
+          "id": 51,
+          "title": "title-4-block11",
+          "description": "Description\n",
+          "type": 2,
+          "startTime": "2020-06-13T13:45:00Z",
+          "endTime": "2020-06-13T14:30:00Z",
+          "date": "Thursday June 13th",
+          "track": {
+            "id": 4,
+            "name": "",
+            "host": "",
+            "shortdescription": "General Sessions",
+            "description": ""
+          },
+          "location": {
+            "id": 4,
+            "sortPosition": 4,
+            "name": "room4",
+            "mapUrl": ""
+          },
+          "speakers": [
+            {
+              "id": 0,
+              "name": "name",
+              "title": "",
+              "company": "",
+              "twitter": null,
+              "picture": "https://scaladays.org/assets/images/speakers/generic.png",
+              "bio": "Bio"
+            },
+            {
+              "id": 0,
+              "name": "name",
+              "title": "",
+              "company": "",
+              "twitter": null,
+              "picture": "https://scaladays.org/assets/images/speakers/generic.png",
+              "bio": "Bio"
+            }
+          ]
+        },
+        {
+          "id": 52,
+          "title": "title-1-block12",
+          "description": "Description\n",
+          "type": 2,
+          "startTime": "2020-06-13T14:45:00Z",
+          "endTime": "2020-06-13T15:30:00Z",
+          "date": "Thursday June 13th",
+          "track": {
+            "id": 1,
+            "name": "",
+            "host": "",
+            "shortdescription": "General Sessions",
+            "description": ""
+          },
+          "location": {
+            "id": 1,
+            "sortPosition": 1,
+            "name": "room1",
+            "mapUrl": ""
+          },
+          "speakers": [
+            {
+              "id": 0,
+              "name": "name",
+              "title": "",
+              "company": "",
+              "twitter": null,
+              "picture": "https://scaladays.org/assets/images/speakers/generic.png",
+              "bio": "Bio"
+            }
+          ]
+        },
+        {
+          "id": 53,
+          "title": "title-2-block12",
+          "description": "Description\n",
+          "type": 2,
+          "startTime": "2020-06-13T14:45:00Z",
+          "endTime": "2020-06-13T15:30:00Z",
+          "date": "Thursday June 13th",
+          "track": {
+            "id": 2,
+            "name": "",
+            "host": "",
+            "shortdescription": "General Sessions",
+            "description": ""
+          },
+          "location": {
+            "id": 2,
+            "sortPosition": 2,
+            "name": "room2",
+            "mapUrl": ""
+          },
+          "speakers": [
+            {
+              "id": 0,
+              "name": "name",
+              "title": "",
+              "company": "",
+              "twitter": null,
+              "picture": "https://scaladays.org/assets/images/speakers/generic.png",
+              "bio": "Bio"
+            }
+          ]
+        },
+        {
+          "id": 54,
+          "title": "title-3-block12",
+          "description": "Description\n",
+          "type": 2,
+          "startTime": "2020-06-13T14:45:00Z",
+          "endTime": "2020-06-13T15:30:00Z",
+          "date": "Thursday June 13th",
+          "track": {
+            "id": 3,
+            "name": "",
+            "host": "",
+            "shortdescription": "General Sessions",
+            "description": ""
+          },
+          "location": {
+            "id": 3,
+            "sortPosition": 3,
+            "name": "room3",
+            "mapUrl": ""
+          },
+          "speakers": [
+            {
+              "id": 0,
+              "name": "name",
+              "title": "",
+              "company": "",
+              "twitter": null,
+              "picture": "https://scaladays.org/assets/images/speakers/generic.png",
+              "bio": "Bio"
+            }
+          ]
+        },
+        {
+          "id": 55,
+          "title": "title-4-block12",
+          "description": "Description\n",
+          "type": 2,
+          "startTime": "2020-06-13T14:45:00Z",
+          "endTime": "2020-06-13T15:30:00Z",
+          "date": "Thursday June 13th",
+          "track": {
+            "id": 4,
+            "name": "",
+            "host": "",
+            "shortdescription": "General Sessions",
+            "description": ""
+          },
+          "location": {
+            "id": 4,
+            "sortPosition": 4,
+            "name": "room4",
+            "mapUrl": ""
+          },
+          "speakers": [
+            {
+              "id": 0,
+              "name": "name",
+              "title": "",
+              "company": "",
+              "twitter": null,
+              "picture": "https://scaladays.org/assets/images/speakers/generic.png",
+              "bio": "Bio"
+            }
+          ]
+        },
+        {
+          "id": 56,
+          "title": "Closing panel",
+          "description": "Description\n",
+          "type": 2,
+          "startTime": "2020-06-13T15:45:00Z",
+          "endTime": "2020-06-13T16:45:00Z",
+          "date": "Thursday June 13th",
+          "track": {
+            "id": 1,
+            "name": "",
+            "host": "",
+            "shortdescription": "",
+            "description": ""
+          },
+          "location": {
+            "id": 1,
+            "sortPosition": 1,
+            "name": "room1",
+            "mapUrl": ""
+          },
+          "speakers": []
+        }
+      ],
+      "sponsors": [
+        {
+          "type": "Platinum",
+          "items": [
+            {
+              "logo": "https://scaladays.org/assets/images/sponsors/logo-sqooba-platinum-lausanne.png",
+              "url": "https://sqooba.io/"
+            },
+            {
+              "logo": "https://scaladays.org/assets/images/sponsors/logo-lunatech-platinum-lausanne.png",
+              "url": "https://lunatech.com/"
+            },
+            {
+              "logo": "https://scaladays.org/assets/images/sponsors/logo-virtuslab-propensive-platinum-lausanne.png",
+              "url": "https://virtuslab.com/"
+            }
+          ]
+        },
+        {
+          "type": "Gold",
+          "items": [
+            {
+              "logo": "https://scaladays.org/assets/images/sponsors/logo-jetbrains.png",
+              "url": "https://www.jetbrains.com/"
+            },
+            {
+              "logo": "https://scaladays.org/assets/images/sponsors/logo-signify-technology.png",
+              "url": "https://www.signifytechnology.com/"
+            },
+            {
+              "logo": "https://scaladays.org/assets/images/sponsors/logo-iterable.png",
+              "url": "https://iterable.com/"
+            }
+          ]
+        },
+        {
+          "type": "Produced By",
+          "items": [
+            {
+              "logo": "https://scaladays.org/assets/images/sponsors/logo-lightbend-producer.png",
+              "url": "https://www.lightbend.com"
+            },
+            {
+              "logo": "https://scaladays.org/assets/images/sponsors/logo-scalacenter-thanks-nyc.png",
+              "url": "https://scala.epfl.ch/"
+            }
+          ]
+        }
+      ],
+      "speakers": [
+        {
+          "id": 0,
+          "name": "name",
+          "title": "",
+          "company": "",
+          "twitter": null,
+          "picture": "https://scaladays.org/assets/images/speakers/generic.png",
+          "bio": "Coming soon."
+        },
+        {
+          "id": 0,
+          "name": "name",
+          "title": "",
+          "company": "",
+          "twitter": null,
+          "picture": "https://scaladays.org/assets/images/speakers/generic.png",
+          "bio": "Coming soon."
+        },
+        {
+          "id": 0,
+          "name": "name",
+          "title": "",
+          "company": "",
+          "twitter": null,
+          "picture": "https://scaladays.org/assets/images/speakers/generic.png",
+          "bio": "Coming soon."
+        },
+        {
+          "id": 0,
+          "name": "name",
+          "title": "",
+          "company": "",
+          "twitter": null,
+          "picture": "https://scaladays.org/assets/images/speakers/generic.png",
+          "bio": "Coming soon."
+        },
+        {
+          "id": 0,
+          "name": "name",
+          "title": "",
+          "company": "",
+          "twitter": null,
+          "picture": "https://scaladays.org/assets/images/speakers/generic.png",
+          "bio": "Bio"
+        },
+        {
+          "id": 0,
+          "name": "name",
+          "title": "",
+          "company": "",
+          "twitter": null,
+          "picture": "https://scaladays.org/assets/images/speakers/generic.png",
+          "bio": "Bio"
+        },
+        {
+          "id": 0,
+          "name": "name",
+          "title": "",
+          "company": "",
+          "twitter": null,
+          "picture": "https://scaladays.org/assets/images/speakers/generic.png",
+          "bio": "Bio"
+        },
+        {
+          "id": 0,
+          "name": "name",
+          "title": "",
+          "company": "",
+          "twitter": null,
+          "picture": "https://scaladays.org/assets/images/speakers/generic.png",
+          "bio": "Bio"
+        },
+        {
+          "id": 0,
+          "name": "name",
+          "title": "",
+          "company": "",
+          "twitter": null,
+          "picture": "https://scaladays.org/assets/images/speakers/generic.png",
+          "bio": "Bio"
+        },
+        {
+          "id": 0,
+          "name": "name",
+          "title": "",
+          "company": "",
+          "twitter": null,
+          "picture": "https://scaladays.org/assets/images/speakers/generic.png",
+          "bio": "Bio"
+        },
+        {
+          "id": 0,
+          "name": "name",
+          "title": "",
+          "company": "",
+          "twitter": null,
+          "picture": "https://scaladays.org/assets/images/speakers/generic.png",
+          "bio": "Bio"
+        },
+        {
+          "id": 0,
+          "name": "name",
+          "title": "",
+          "company": "",
+          "twitter": null,
+          "picture": "https://scaladays.org/assets/images/speakers/generic.png",
+          "bio": "Bio"
+        },
+        {
+          "id": 0,
+          "name": "name",
+          "title": "",
+          "company": "",
+          "twitter": null,
+          "picture": "https://scaladays.org/assets/images/speakers/generic.png",
+          "bio": "Bio"
+        },
+        {
+          "id": 0,
+          "name": "name",
+          "title": "",
+          "company": "",
+          "twitter": null,
+          "picture": "https://scaladays.org/assets/images/speakers/generic.png",
+          "bio": "Bio"
+        },
+        {
+          "id": 0,
+          "name": "name",
+          "title": "",
+          "company": "",
+          "twitter": null,
+          "picture": "https://scaladays.org/assets/images/speakers/generic.png",
+          "bio": "Bio"
+        },
+        {
+          "id": 0,
+          "name": "name",
+          "title": "",
+          "company": "",
+          "twitter": null,
+          "picture": "https://scaladays.org/assets/images/speakers/generic.png",
+          "bio": "Bio"
+        },
+        {
+          "id": 0,
+          "name": "name",
+          "title": "",
+          "company": "",
+          "twitter": null,
+          "picture": "https://scaladays.org/assets/images/speakers/generic.png",
+          "bio": "Bio"
+        },
+        {
+          "id": 0,
+          "name": "name",
+          "title": "",
+          "company": "",
+          "twitter": null,
+          "picture": "https://scaladays.org/assets/images/speakers/generic.png",
+          "bio": "Bio"
+        },
+        {
+          "id": 0,
+          "name": "name",
+          "title": "",
+          "company": "",
+          "twitter": null,
+          "picture": "https://scaladays.org/assets/images/speakers/generic.png",
+          "bio": "Bio"
+        },
+        {
+          "id": 0,
+          "name": "name",
+          "title": "",
+          "company": "",
+          "twitter": null,
+          "picture": "https://scaladays.org/assets/images/speakers/generic.png",
+          "bio": "Bio"
+        },
+        {
+          "id": 0,
+          "name": "name",
+          "title": "",
+          "company": "",
+          "twitter": null,
+          "picture": "https://scaladays.org/assets/images/speakers/generic.png",
+          "bio": "Bio"
+        },
+        {
+          "id": 0,
+          "name": "name",
+          "title": "",
+          "company": "",
+          "twitter": null,
+          "picture": "https://scaladays.org/assets/images/speakers/generic.png",
+          "bio": "Bio"
+        },
+        {
+          "id": 0,
+          "name": "name",
+          "title": "",
+          "company": "",
+          "twitter": null,
+          "picture": "https://scaladays.org/assets/images/speakers/generic.png",
+          "bio": "Bio"
+        },
+        {
+          "id": 0,
+          "name": "name",
+          "title": "",
+          "company": "",
+          "twitter": null,
+          "picture": "https://scaladays.org/assets/images/speakers/generic.png",
+          "bio": "Bio"
+        },
+        {
+          "id": 0,
+          "name": "name",
+          "title": "",
+          "company": "",
+          "twitter": null,
+          "picture": "https://scaladays.org/assets/images/speakers/generic.png",
+          "bio": "Bio"
+        },
+        {
+          "id": 0,
+          "name": "name",
+          "title": "",
+          "company": "",
+          "twitter": null,
+          "picture": "https://scaladays.org/assets/images/speakers/generic.png",
+          "bio": "Bio"
+        },
+        {
+          "id": 0,
+          "name": "name",
+          "title": "",
+          "company": "",
+          "twitter": null,
+          "picture": "https://scaladays.org/assets/images/speakers/generic.png",
+          "bio": "Bio"
+        },
+        {
+          "id": 0,
+          "name": "name",
+          "title": "",
+          "company": "",
+          "twitter": null,
+          "picture": "https://scaladays.org/assets/images/speakers/generic.png",
+          "bio": "Bio"
+        },
+        {
+          "id": 0,
+          "name": "name",
+          "title": "",
+          "company": "",
+          "twitter": null,
+          "picture": "https://scaladays.org/assets/images/speakers/generic.png",
+          "bio": "Bio"
+        },
+        {
+          "id": 0,
+          "name": "name",
+          "title": "",
+          "company": "",
+          "twitter": null,
+          "picture": "https://scaladays.org/assets/images/speakers/generic.png",
+          "bio": "Bio"
+        },
+        {
+          "id": 0,
+          "name": "name",
+          "title": "",
+          "company": "",
+          "twitter": null,
+          "picture": "https://scaladays.org/assets/images/speakers/generic.png",
+          "bio": "Bio"
+        },
+        {
+          "id": 0,
+          "name": "name",
+          "title": "",
+          "company": "",
+          "twitter": null,
+          "picture": "https://scaladays.org/assets/images/speakers/generic.png",
+          "bio": "Bio\n\t\t\t\t\t\t\t\t\t\t\t\t"
+        },
+        {
+          "id": 0,
+          "name": "name",
+          "title": "",
+          "company": "",
+          "twitter": null,
+          "picture": "https://scaladays.org/assets/images/speakers/generic.png",
+          "bio": "Bio"
+        },
+        {
+          "id": 0,
+          "name": "name",
+          "title": "",
+          "company": "",
+          "twitter": null,
+          "picture": "https://scaladays.org/assets/images/speakers/generic.png",
+          "bio": "Bio"
+        },
+        {
+          "id": 0,
+          "name": "name",
+          "title": "",
+          "company": "",
+          "twitter": null,
+          "picture": "https://scaladays.org/assets/images/speakers/generic.png",
+          "bio": "Bio"
+        },
+        {
+          "id": 0,
+          "name": "name",
+          "title": "",
+          "company": "",
+          "twitter": null,
+          "picture": "https://scaladays.org/assets/images/speakers/generic.png",
+          "bio": "Bio"
+        },
+        {
+          "id": 0,
+          "name": "name",
+          "title": "",
+          "company": "",
+          "twitter": null,
+          "picture": "https://scaladays.org/assets/images/speakers/generic.png",
+          "bio": "Bio"
+        },
+        {
+          "id": 0,
+          "name": "name",
+          "title": "",
+          "company": "",
+          "twitter": null,
+          "picture": "https://scaladays.org/assets/images/speakers/generic.png",
+          "bio": "Bio"
+        },
+        {
+          "id": 0,
+          "name": "name",
+          "title": "",
+          "company": "",
+          "twitter": null,
+          "picture": "https://scaladays.org/assets/images/speakers/generic.png",
+          "bio": "Bio"
+        },
+        {
+          "id": 0,
+          "name": "name",
+          "title": "",
+          "company": "",
+          "twitter": null,
+          "picture": "https://scaladays.org/assets/images/speakers/generic.png",
+          "bio": "Bio"
+        },
+        {
+          "id": 0,
+          "name": "name",
+          "title": "",
+          "company": "",
+          "twitter": null,
+          "picture": "https://scaladays.org/assets/images/speakers/generic.png",
+          "bio": "Bio/p>\n\t\t\t\t\t\t\t\t\t\t\t\t"
+        },
+        {
+          "id": 0,
+          "name": "name",
+          "title": "",
+          "company": "",
+          "twitter": null,
+          "picture": "https://scaladays.org/assets/images/speakers/generic.png",
+          "bio": "Bio"
+        },
+        {
+          "id": 0,
+          "name": "name",
+          "title": "",
+          "company": "",
+          "twitter": null,
+          "picture": "https://scaladays.org/assets/images/speakers/generic.png",
+          "bio": "Bio"
+        },
+        {
+          "id": 0,
+          "name": "name",
+          "title": "",
+          "company": "",
+          "twitter": null,
+          "picture": "https://scaladays.org/assets/images/speakers/generic.png",
+          "bio": "Bio"
+        },
+        {
+          "id": 0,
+          "name": "name",
+          "title": "",
+          "company": "",
+          "twitter": null,
+          "picture": "https://scaladays.org/assets/images/speakers/generic.png",
+          "bio": "Bio"
+        },
+        {
+          "id": 0,
+          "name": "name",
+          "title": "",
+          "company": "",
+          "twitter": null,
+          "picture": "https://scaladays.org/assets/images/speakers/generic.png",
+          "bio": "Bio"
+        },
+        {
+          "id": 0,
+          "name": "name",
+          "title": "",
+          "company": "",
+          "twitter": null,
+          "picture": "https://scaladays.org/assets/images/speakers/generic.png",
+          "bio": "Bio"
+        },
+        {
+          "id": 0,
+          "name": "name",
+          "title": "",
+          "company": "",
+          "twitter": null,
+          "picture": "https://scaladays.org/assets/images/speakers/generic.png",
+          "bio": "Bio"
+        },
+        {
+          "id": 0,
+          "name": "name",
+          "title": "",
+          "company": "",
+          "twitter": null,
+          "picture": "https://scaladays.org/assets/images/speakers/generic.png",
+          "bio": "Bio"
+        },
+        {
+          "id": 0,
+          "name": "name",
+          "title": "",
+          "company": "",
+          "twitter": null,
+          "picture": "https://scaladays.org/assets/images/speakers/generic.png",
+          "bio": "Bio"
+        },
+        {
+          "id": 1,
+          "name": "nameky",
+          "title": "",
+          "company": "",
+          "twitter": null,
+          "picture": "https://scaladays.org/assets/images/speakers/generic.png",
+          "bio": "Bio"
+        },
+        {
+          "id": 0,
+          "name": "name",
+          "title": "",
+          "company": "",
+          "twitter": null,
+          "picture": "https://scaladays.org/assets/images/speakers/generic.png",
+          "bio": "Bio\n\t\t\t\t\t\t\t\t\t\t\t\t"
+        },
+        {
+          "id": 0,
+          "name": "name",
+          "title": "",
+          "company": "",
+          "twitter": null,
+          "picture": "https://scaladays.org/assets/images/speakers/generic.png",
+          "bio": "Bio"
+        },
+        {
+          "id": 0,
+          "name": "name",
+          "title": "",
+          "company": "",
+          "twitter": null,
+          "picture": "https://scaladays.org/assets/images/speakers/generic.png",
+          "bio": "Bio"
+        },
+        {
+          "id": 0,
+          "name": "name",
+          "title": "",
+          "company": "",
+          "twitter": null,
+          "picture": "https://scaladays.org/assets/images/speakers/generic.png",
+          "bio": "Bio"
+        },
+        {
+          "id": 0,
+          "name": "name",
+          "title": "",
+          "company": "",
+          "twitter": null,
+          "picture": "https://scaladays.org/assets/images/speakers/generic.png",
+          "bio": "Bio"
+        },
+        {
+          "id": 0,
+          "name": "name",
+          "title": "",
+          "company": "",
+          "twitter": null,
+          "picture": "https://scaladays.org/assets/images/speakers/generic.png",
+          "bio": "Bio\n\t\t\t\t\t\t\t\t\t\t\t\t"
+        },
+        {
+          "id": 0,
+          "name": "name",
+          "title": "",
+          "company": "",
+          "twitter": null,
+          "picture": "https://scaladays.org/assets/images/speakers/generic.png",
+          "bio": "Bio"
+        },
+        {
+          "id": 0,
+          "name": "name",
+          "title": "",
+          "company": "",
+          "twitter": null,
+          "picture": "https://scaladays.org/assets/images/speakers/generic.png",
+          "bio": "Bio"
+        },
+        {
+          "id": 0,
+          "name": "name",
+          "title": "",
+          "company": "",
+          "twitter": null,
+          "picture": "https://scaladays.org/assets/images/speakers/generic.png",
+          "bio": "Bio"
+        },
+        {
+          "id": 0,
+          "name": "name",
+          "title": "",
+          "company": "",
+          "twitter": null,
+          "picture": "https://scaladays.org/assets/images/speakers/generic.png",
+          "bio": "Bio"
+        },
+        {
+          "id": 0,
+          "name": "name",
+          "title": "",
+          "company": "",
+          "twitter": null,
+          "picture": "https://scaladays.org/assets/images/speakers/generic.png",
+          "bio": "Bio"
+        },
+        {
+          "id": 0,
+          "name": "name",
+          "title": "",
+          "company": "",
+          "twitter": null,
+          "picture": "https://scaladays.org/assets/images/speakers/generic.png",
+          "bio": "Bio"
+        },
+        {
+          "id": 0,
+          "name": "name",
+          "title": "",
+          "company": "",
+          "twitter": null,
+          "picture": "https://scaladays.org/assets/images/speakers/generic.png",
+          "bio": "Bio"
+        }
+      ],
+      "venues": [
+        {
+          "name": "Bell Harbor International Conference Center",
+          "address": "2211 Alaskan Way, Seattle, WA 98121",
+          "website": "",
+          "latitude": -122.349233,
+          "longitude": 47.611198,
+          "zoom": 15
+        }
+      ],
+      "codeOfConduct": "Scala Days are dedicated to providing a conference for technologists from various regions and communities. We want to make it a fun experience for everyone, regardless of gender, race, and many different backgrounds. All participants, including speakers and sponsors, are asked to be respectful to each other and comply with the following code of conduct.\nAll communication should be appropriate for a technology conference with a professional audience including people of many different backgrounds. Scala Days do not tolerate harassment of conference participants in any form.\nWe expect all participants, including guests, exhibitors, sponsors, booth staff, and the organizers, to follow these rules at all conference venues and conference-related social events. Participants asked to stop any harassing behavior (regardless of the intention) are expected to comply immediately.\nHarassment includes, but is not limited to:\nAsking other participants out (comments about appearance, romatic or sextual interest) or inappropriate physical contact.Offensive verbal comments or discriminatory behaviors related to gender, gender identity and expression, sexual orientation, disability, physical appearance, body size, age, race, nationality, ethnicity, or religion.Sexual images in public spaces.Deliberate intimidation; stalking, following, harassing photography or recording.Sustained disruption of talks or other events.Use of sexualized images, activities, or other material during the session.Use of sexualized clothing/uniforms/costumes by the booth staff or volunteers, or otherwise creating sexualized environment in the booth or the displayed material.\nIf a participant engages in harassing behavior, the conference organizers may take any action they deem appropriate, including warning the offender or expulsion from the conference with no refund. All participants, including guests, exhibitors, sponsors, booth staff, must comply to the order by the conference organizers immediately without condition.\nThe code of conduct is subject to change without notice.\nContacts\nIf you are being harassed, notice that someone else is being harassed, please contact one of the following members or any nearby conference staff immediately.\nDarja Jovanovic (darja.jovanovic@@epfl.ch)Dajana Günther (daj@@trifork.com)Sébastien Doeraene (sebastien.doeraene@@epfl.ch)\nFor any questions or concerns, please email the organizers at info@@scaladays.org.\nThe text part of this policy is licensed under the Creative Commons Zero license. A similar code of conduct has been adopted by Scala Matsuri, PNW Scala, NE Scala, and Reactive Summit to provide a harassment-free conference. We also support the cause.\n"
+    },
+    {
+      "info": {
+        "id": 20202,
+        "name": "scala-days-berlin-2020",
+        "longName": "Scala Days Berlin - 2020",
+        "nameAndLocation": "Scala Days Berlin - 2020, June 11th - 13th, Berlin, Germany",
+        "firstDay": "2020-06-11",
+        "lastDay": "2020-06-13",
+        "normalSite": "https://www.scaladays.org/",
+        "registrationSite": "https://meeting.artegis.com/event/Scala_Days_2019",
+        "utcTimezoneOffset": "Europe/Zurich",
+        "utcTimezoneOffsetMillis": 7200000,
+        "query": "#scaladays OR @scaladays -RT",
+        "hashtag": "#scaladays",
+        "readyForApp": true,
+        "city": "Berlin",
+        "pictures": [
+          {
+            "width": 298,
+            "height": 188,
+            "url": "http://scala-days-2015.s3.amazonaws.com/berlin.png"
+          },
+          {
+            "width": 596,
+            "height": 376,
+            "url": "http://scala-days-2015.s3.amazonaws.com/berlin@2x.png"
+          },
+          {
+            "width": 894,
+            "height": 564,
+            "url": "http://scala-days-2015.s3.amazonaws.com/berlin@3x.png"
+          }
+        ],
+        "feedback": "https://forms.gle/LpRzocUyCjoV3Sov7"
+      },
+      "schedule": [
+        {
+          "id": 0,
+          "title": "Workshop 1",
+          "description": "Description\n",
+          "type": 1,
+          "startTime": "2020-06-10T07:00:00Z",
+          "endTime": "2020-06-11T16:00:00Z",
+          "date": "Tuesday/Wednesday June 10th & 11th",
+          "track": {
+            "id": 0,
+            "name": "",
+            "host": "",
+            "shortdescription": "Workshops",
+            "description": ""
+          },
+          "location": {
+            "id": 0,
+            "sortPosition": 0,
+            "name": "TBD",
+            "mapUrl": ""
+          },
+          "speakers": [
+            {
+              "id": 0,
+              "name": "name",
+              "title": "",
+              "company": "",
+              "twitter": null,
+              "picture": "https://scaladays.org/assets/images/speakers/generic.png",
+              "bio": "Coming soon."
+            }
+          ]
+        },
+        {
+          "id": 1,
+          "title": "Workshop 2",
+          "description": "Description\n",
+          "type": 1,
+          "startTime": "2020-06-10T07:00:00Z",
+          "endTime": "2020-06-11T16:00:00Z",
+          "date": "Tuesday/Wednesday June 10th & 11th",
+          "track": {
+            "id": 0,
+            "name": "",
+            "host": "",
+            "shortdescription": "Workshops",
+            "description": ""
+          },
+          "location": {
+            "id": 0,
+            "sortPosition": 0,
+            "name": "TBD",
+            "mapUrl": ""
+          },
+          "speakers": [
+            {
+              "id": 0,
+              "name": "name",
+              "title": "",
+              "company": "",
+              "twitter": null,
+              "picture": "https://scaladays.org/assets/images/speakers/generic.png",
+              "bio": "Coming soon."
+            },
+            {
+              "id": 0,
+              "name": "name",
+              "title": "",
+              "company": "",
+              "twitter": null,
+              "picture": "https://scaladays.org/assets/images/speakers/generic.png",
+              "bio": "Coming soon."
+            }
+          ]
+        },
+        {
+          "id": 2,
+          "title": "Workshop 3",
+          "description": "Description\n",
+          "type": 1,
+          "startTime": "2020-06-10T07:00:00Z",
+          "endTime": "2020-06-11T16:00:00Z",
+          "date": "Tuesday/Wednesday June 10th & 11th",
+          "track": {
+            "id": 0,
+            "name": "",
+            "host": "",
+            "shortdescription": "Workshops",
+            "description": ""
+          },
+          "location": {
+            "id": 0,
+            "sortPosition": 0,
+            "name": "TBD",
+            "mapUrl": ""
+          },
+          "speakers": [
+            {
+              "id": 0,
+              "name": "name",
+              "title": "",
+              "company": "",
+              "twitter": null,
+              "picture": "https://scaladays.org/assets/images/speakers/generic.png",
+              "bio": "Coming soon."
+            }
+          ]
+        },
+        {
+          "id": 3,
+          "title": "Keynote-1",
+          "description": "Description\n",
+          "type": 2,
+          "startTime": "2020-06-11T15:00:00Z",
+          "endTime": "2020-06-11T16:00:00Z",
+          "date": "Tuesday June 11th",
+          "track": {
+            "id": 1,
+            "name": "",
+            "host": "",
+            "shortdescription": "",
+            "description": ""
+          },
+          "location": {
+            "id": 1,
+            "sortPosition": 1,
+            "name": "room1",
+            "mapUrl": ""
+          },
+          "speakers": [
+            {
+              "id": 0,
+              "name": "name",
+              "title": "",
+              "company": "",
+              "twitter": null,
+              "picture": "https://scaladays.org/assets/images/speakers/generic.png",
+              "bio": "Bio"
+            }
+          ]
+        },
+        {
+          "id": 4,
+          "title": "Keynote-2",
+          "description": "Description\n",
+          "type": 2,
+          "startTime": "2020-06-12T07:00:00Z",
+          "endTime": "2020-06-12T08:00:00Z",
+          "date": "Wednesday June 12th",
+          "track": {
+            "id": 1,
+            "name": "",
+            "host": "",
+            "shortdescription": "",
+            "description": ""
+          },
+          "location": {
+            "id": 1,
+            "sortPosition": 1,
+            "name": "room1",
+            "mapUrl": ""
+          },
+          "speakers": [
+            {
+              "id": 0,
+              "name": "name",
+              "title": "",
+              "company": "",
+              "twitter": null,
+              "picture": "https://scaladays.org/assets/images/speakers/generic.png",
+              "bio": "Bio"
+            }
+          ]
+        },
+        {
+          "id": 5,
+          "title": "title-1-block1",
+          "description": "Description\n",
+          "type": 2,
+          "startTime": "2020-06-12T08:15:00Z",
+          "endTime": "2020-06-12T09:00:00Z",
+          "date": "Wednesday June 12th",
+          "track": {
+            "id": 1,
+            "name": "",
+            "host": "",
+            "shortdescription": "",
+            "description": ""
+          },
+          "location": {
+            "id": 1,
+            "sortPosition": 1,
+            "name": "room1",
+            "mapUrl": ""
+          },
+          "speakers": [
+            {
+              "id": 0,
+              "name": "name",
+              "title": "",
+              "company": "",
+              "twitter": null,
+              "picture": "https://scaladays.org/assets/images/speakers/generic.png",
+              "bio": "Bio"
+            }
+          ]
+        },
+        {
+          "id": 6,
+          "title": "title-2-block1",
+          "description": "Description\n",
+          "type": 2,
+          "startTime": "2020-06-12T08:15:00Z",
+          "endTime": "2020-06-12T09:00:00Z",
+          "date": "Wednesday June 12th",
+          "track": {
+            "id": 2,
+            "name": "",
+            "host": "",
+            "shortdescription": "",
+            "description": ""
+          },
+          "location": {
+            "id": 2,
+            "sortPosition": 2,
+            "name": "room2",
+            "mapUrl": ""
+          },
+          "speakers": [
+            {
+              "id": 0,
+              "name": "name",
+              "title": "",
+              "company": "",
+              "twitter": null,
+              "picture": "https://scaladays.org/assets/images/speakers/generic.png",
+              "bio": "Bio"
+            }
+          ]
+        },
+        {
+          "id": 7,
+          "title": "title-3-block1",
+          "description": "Description\n",
+          "type": 2,
+          "startTime": "2020-06-12T08:15:00Z",
+          "endTime": "2020-06-12T09:00:00Z",
+          "date": "Wednesday June 12th",
+          "track": {
+            "id": 3,
+            "name": "",
+            "host": "",
+            "shortdescription": "",
+            "description": ""
+          },
+          "location": {
+            "id": 3,
+            "sortPosition": 3,
+            "name": "room3",
+            "mapUrl": ""
+          },
+          "speakers": [
+            {
+              "id": 0,
+              "name": "name",
+              "title": "",
+              "company": "",
+              "twitter": null,
+              "picture": "https://scaladays.org/assets/images/speakers/generic.png",
+              "bio": "Bio"
+            }
+          ]
+        },
+        {
+          "id": 8,
+          "title": "title-4-block1",
+          "description": "Description\n",
+          "type": 2,
+          "startTime": "2020-06-12T08:15:00Z",
+          "endTime": "2020-06-12T09:00:00Z",
+          "date": "Wednesday June 12th",
+          "track": {
+            "id": 4,
+            "name": "",
+            "host": "",
+            "shortdescription": "",
+            "description": ""
+          },
+          "location": {
+            "id": 4,
+            "sortPosition": 4,
+            "name": "room4",
+            "mapUrl": ""
+          },
+          "speakers": [
+            {
+              "id": 0,
+              "name": "name",
+              "title": "",
+              "company": "",
+              "twitter": null,
+              "picture": "https://scaladays.org/assets/images/speakers/generic.png",
+              "bio": "Bio"
+            }
+          ]
+        },
+        {
+          "id": 9,
+          "title": "title-1-block2",
+          "description": "Description\n",
+          "type": 2,
+          "startTime": "2020-06-12T09:15:00Z",
+          "endTime": "2020-06-12T10:00:00Z",
+          "date": "Wednesday June 12th",
+          "track": {
+            "id": 1,
+            "name": "",
+            "host": "",
+            "shortdescription": "General Sessions",
+            "description": ""
+          },
+          "location": {
+            "id": 1,
+            "sortPosition": 1,
+            "name": "room1",
+            "mapUrl": ""
+          },
+          "speakers": [
+            {
+              "id": 0,
+              "name": "name",
+              "title": "",
+              "company": "",
+              "twitter": null,
+              "picture": "https://scaladays.org/assets/images/speakers/generic.png",
+              "bio": "Bio"
+            }
+          ]
+        },
+        {
+          "id": 10,
+          "title": "title-2-block2",
+          "description": "Description\n",
+          "type": 2,
+          "startTime": "2020-06-12T09:15:00Z",
+          "endTime": "2020-06-12T10:00:00Z",
+          "date": "Wednesday June 12th",
+          "track": {
+            "id": 2,
+            "name": "",
+            "host": "",
+            "shortdescription": "General Sessions",
+            "description": ""
+          },
+          "location": {
+            "id": 2,
+            "sortPosition": 2,
+            "name": "room2",
+            "mapUrl": ""
+          },
+          "speakers": [
+            {
+              "id": 0,
+              "name": "name",
+              "title": "",
+              "company": "",
+              "twitter": null,
+              "picture": "https://scaladays.org/assets/images/speakers/generic.png",
+              "bio": "Bio"
+            }
+          ]
+        },
+        {
+          "id": 11,
+          "title": "title-3-block2",
+          "description": "Description\n",
+          "type": 2,
+          "startTime": "2020-06-12T09:15:00Z",
+          "endTime": "2020-06-12T10:00:00Z",
+          "date": "Wednesday June 12th",
+          "track": {
+            "id": 3,
+            "name": "",
+            "host": "",
+            "shortdescription": "General Sessions",
+            "description": ""
+          },
+          "location": {
+            "id": 3,
+            "sortPosition": 3,
+            "name": "room3",
+            "mapUrl": ""
+          },
+          "speakers": [
+            {
+              "id": 0,
+              "name": "name",
+              "title": "",
+              "company": "",
+              "twitter": null,
+              "picture": "https://scaladays.org/assets/images/speakers/generic.png",
+              "bio": "Bio"
+            }
+          ]
+        },
+        {
+          "id": 12,
+          "title": "title-4-block2",
+          "description": "Description\t\t\t\t\t\t\t\n",
+          "type": 2,
+          "startTime": "2020-06-12T09:15:00Z",
+          "endTime": "2020-06-12T10:00:00Z",
+          "date": "Wednesday June 12th",
+          "track": {
+            "id": 4,
+            "name": "",
+            "host": "",
+            "shortdescription": "General Sessions",
+            "description": ""
+          },
+          "location": {
+            "id": 4,
+            "sortPosition": 4,
+            "name": "room4",
+            "mapUrl": ""
+          },
+          "speakers": [
+            {
+              "id": 0,
+              "name": "name",
+              "title": "",
+              "company": "",
+              "twitter": null,
+              "picture": "https://scaladays.org/assets/images/speakers/generic.png",
+              "bio": "Bio"
+            }
+          ]
+        },
+        {
+          "id": 13,
+          "title": "title-1-block3",
+          "description": "Description\n",
+          "type": 2,
+          "startTime": "2020-06-12T10:15:00Z",
+          "endTime": "2020-06-12T11:00:00Z",
+          "date": "Wednesday June 12th",
+          "track": {
+            "id": 5,
+            "name": "",
+            "host": "",
+            "shortdescription": "General Sessions",
+            "description": ""
+          },
+          "location": {
+            "id": 5,
+            "sortPosition": 5,
+            "name": "room1 ",
+            "mapUrl": ""
+          },
+          "speakers": [
+            {
+              "id": 0,
+              "name": "name",
+              "title": "",
+              "company": "",
+              "twitter": null,
+              "picture": "https://scaladays.org/assets/images/speakers/generic.png",
+              "bio": "Bio"
+            },
+            {
+              "id": 0,
+              "name": "name",
+              "title": "",
+              "company": "",
+              "twitter": null,
+              "picture": "https://scaladays.org/assets/images/speakers/generic.png",
+              "bio": "Bio"
+            }
+          ]
+        },
+        {
+          "id": 14,
+          "title": "title-2-block3",
+          "description": "Description\n",
+          "type": 2,
+          "startTime": "2020-06-12T10:15:00Z",
+          "endTime": "2020-06-12T11:00:00Z",
+          "date": "Wednesday June 12th",
+          "track": {
+            "id": 2,
+            "name": "",
+            "host": "",
+            "shortdescription": "General Sessions",
+            "description": ""
+          },
+          "location": {
+            "id": 2,
+            "sortPosition": 2,
+            "name": "room2",
+            "mapUrl": ""
+          },
+          "speakers": [
+            {
+              "id": 0,
+              "name": "name",
+              "title": "",
+              "company": "",
+              "twitter": null,
+              "picture": "https://scaladays.org/assets/images/speakers/generic.png",
+              "bio": "Bio"
+            }
+          ]
+        },
+        {
+          "id": 15,
+          "title": "title-3-block3",
+          "description": "Description\n",
+          "type": 2,
+          "startTime": "2020-06-12T10:15:00Z",
+          "endTime": "2020-06-12T11:00:00Z",
+          "date": "Wednesday June 12th",
+          "track": {
+            "id": 3,
+            "name": "",
+            "host": "",
+            "shortdescription": "General Sessions",
+            "description": ""
+          },
+          "location": {
+            "id": 3,
+            "sortPosition": 3,
+            "name": "room3",
+            "mapUrl": ""
+          },
+          "speakers": [
+            {
+              "id": 0,
+              "name": "name",
+              "title": "",
+              "company": "",
+              "twitter": null,
+              "picture": "https://scaladays.org/assets/images/speakers/generic.png",
+              "bio": "Bio"
+            }
+          ]
+        },
+        {
+          "id": 16,
+          "title": "title-4-block3",
+          "description": "Description\n",
+          "type": 2,
+          "startTime": "2020-06-12T10:15:00Z",
+          "endTime": "2020-06-12T11:00:00Z",
+          "date": "Wednesday June 12th",
+          "track": {
+            "id": 4,
+            "name": "",
+            "host": "",
+            "shortdescription": "General Sessions",
+            "description": ""
+          },
+          "location": {
+            "id": 4,
+            "sortPosition": 4,
+            "name": "room4",
+            "mapUrl": ""
+          },
+          "speakers": [
+            {
+              "id": 0,
+              "name": "name",
+              "title": "",
+              "company": "",
+              "twitter": null,
+              "picture": "https://scaladays.org/assets/images/speakers/generic.png",
+              "bio": "Bio"
+            }
+          ]
+        },
+        {
+          "id": 17,
+          "title": "title-1-block4",
+          "description": "Description\n",
+          "type": 2,
+          "startTime": "2020-06-12T12:30:00Z",
+          "endTime": "2020-06-12T13:15:00Z",
+          "date": "Wednesday June 12th",
+          "track": {
+            "id": 1,
+            "name": "",
+            "host": "",
+            "shortdescription": "General Sessions",
+            "description": ""
+          },
+          "location": {
+            "id": 1,
+            "sortPosition": 1,
+            "name": "room1",
+            "mapUrl": ""
+          },
+          "speakers": [
+            {
+              "id": 0,
+              "name": "name",
+              "title": "",
+              "company": "",
+              "twitter": null,
+              "picture": "https://scaladays.org/assets/images/speakers/generic.png",
+              "bio": "Bio"
+            }
+          ]
+        },
+        {
+          "id": 18,
+          "title": "title-2-block4",
+          "description": "Description\n",
+          "type": 2,
+          "startTime": "2020-06-12T12:30:00Z",
+          "endTime": "2020-06-12T13:15:00Z",
+          "date": "Wednesday June 12th",
+          "track": {
+            "id": 2,
+            "name": "",
+            "host": "",
+            "shortdescription": "General Sessions",
+            "description": ""
+          },
+          "location": {
+            "id": 2,
+            "sortPosition": 2,
+            "name": "room2",
+            "mapUrl": ""
+          },
+          "speakers": [
+            {
+              "id": 0,
+              "name": "name",
+              "title": "",
+              "company": "",
+              "twitter": null,
+              "picture": "https://scaladays.org/assets/images/speakers/generic.png",
+              "bio": "Bio"
+            }
+          ]
+        },
+        {
+          "id": 19,
+          "title": "title-3-block4",
+          "description": "Description\n",
+          "type": 2,
+          "startTime": "2020-06-12T12:30:00Z",
+          "endTime": "2020-06-12T13:15:00Z",
+          "date": "Wednesday June 12th",
+          "track": {
+            "id": 3,
+            "name": "",
+            "host": "",
+            "shortdescription": "General Sessions",
+            "description": ""
+          },
+          "location": {
+            "id": 3,
+            "sortPosition": 3,
+            "name": "room3",
+            "mapUrl": ""
+          },
+          "speakers": [
+            {
+              "id": 0,
+              "name": "name",
+              "title": "",
+              "company": "",
+              "twitter": null,
+              "picture": "https://scaladays.org/assets/images/speakers/generic.png",
+              "bio": "Bio"
+            }
+          ]
+        },
+        {
+          "id": 20,
+          "title": "title-4-block4",
+          "description": "Description\n",
+          "type": 2,
+          "startTime": "2020-06-12T12:30:00Z",
+          "endTime": "2020-06-12T13:15:00Z",
+          "date": "Wednesday June 12th",
+          "track": {
+            "id": 4,
+            "name": "",
+            "host": "",
+            "shortdescription": "General Sessions",
+            "description": ""
+          },
+          "location": {
+            "id": 4,
+            "sortPosition": 4,
+            "name": "room4",
+            "mapUrl": ""
+          },
+          "speakers": [
+            {
+              "id": 0,
+              "name": "name",
+              "title": "",
+              "company": "",
+              "twitter": null,
+              "picture": "https://scaladays.org/assets/images/speakers/generic.png",
+              "bio": "Bio"
+            }
+          ]
+        },
+        {
+          "id": 21,
+          "title": "title-1-block5",
+          "description": "Description\n",
+          "type": 2,
+          "startTime": "2020-06-12T13:30:00Z",
+          "endTime": "2020-06-12T14:15:00Z",
+          "date": "Wednesday June 12th",
+          "track": {
+            "id": 1,
+            "name": "",
+            "host": "",
+            "shortdescription": "General Sessions",
+            "description": ""
+          },
+          "location": {
+            "id": 1,
+            "sortPosition": 1,
+            "name": "room1",
+            "mapUrl": ""
+          },
+          "speakers": [
+            {
+              "id": 0,
+              "name": "name",
+              "title": "",
+              "company": "",
+              "twitter": null,
+              "picture": "https://scaladays.org/assets/images/speakers/generic.png",
+              "bio": "Bio"
+            }
+          ]
+        },
+        {
+          "id": 22,
+          "title": "title-2-block5",
+          "description": "Description\n",
+          "type": 2,
+          "startTime": "2020-06-12T13:30:00Z",
+          "endTime": "2020-06-12T14:15:00Z",
+          "date": "Wednesday June 12th",
+          "track": {
+            "id": 2,
+            "name": "",
+            "host": "",
+            "shortdescription": "General Sessions",
+            "description": ""
+          },
+          "location": {
+            "id": 2,
+            "sortPosition": 2,
+            "name": "room2",
+            "mapUrl": ""
+          },
+          "speakers": [
+            {
+              "id": 0,
+              "name": "name",
+              "title": "",
+              "company": "",
+              "twitter": null,
+              "picture": "https://scaladays.org/assets/images/speakers/generic.png",
+              "bio": "Bio"
+            }
+          ]
+        },
+        {
+          "id": 23,
+          "title": "title-3-block5",
+          "description": "Description\n",
+          "type": 2,
+          "startTime": "2020-06-12T13:30:00Z",
+          "endTime": "2020-06-12T14:15:00Z",
+          "date": "Wednesday June 12th",
+          "track": {
+            "id": 3,
+            "name": "",
+            "host": "",
+            "shortdescription": "General Sessions",
+            "description": ""
+          },
+          "location": {
+            "id": 3,
+            "sortPosition": 3,
+            "name": "room3",
+            "mapUrl": ""
+          },
+          "speakers": [
+            {
+              "id": 0,
+              "name": "name",
+              "title": "",
+              "company": "",
+              "twitter": null,
+              "picture": "https://scaladays.org/assets/images/speakers/generic.png",
+              "bio": "Bio"
+            }
+          ]
+        },
+        {
+          "id": 24,
+          "title": "title-4-block5",
+          "description": "Description\n",
+          "type": 2,
+          "startTime": "2020-06-12T13:30:00Z",
+          "endTime": "2020-06-12T14:15:00Z",
+          "date": "Wednesday June 12th",
+          "track": {
+            "id": 4,
+            "name": "",
+            "host": "",
+            "shortdescription": "General Sessions",
+            "description": ""
+          },
+          "location": {
+            "id": 4,
+            "sortPosition": 4,
+            "name": "room4",
+            "mapUrl": ""
+          },
+          "speakers": [
+            {
+              "id": 0,
+              "name": "name",
+              "title": "",
+              "company": "",
+              "twitter": null,
+              "picture": "https://scaladays.org/assets/images/speakers/generic.png",
+              "bio": "Bio"
+            }
+          ]
+        },
+        {
+          "id": 25,
+          "title": "title-1-block6",
+          "description": "Description\n",
+          "type": 2,
+          "startTime": "2020-06-12T14:45:00Z",
+          "endTime": "2020-06-12T15:30:00Z",
+          "date": "Wednesday June 12th",
+          "track": {
+            "id": 1,
+            "name": "",
+            "host": "",
+            "shortdescription": "General Sessions",
+            "description": ""
+          },
+          "location": {
+            "id": 1,
+            "sortPosition": 1,
+            "name": "room1",
+            "mapUrl": ""
+          },
+          "speakers": [
+            {
+              "id": 0,
+              "name": "name",
+              "title": "",
+              "company": "",
+              "twitter": null,
+              "picture": "https://scaladays.org/assets/images/speakers/generic.png",
+              "bio": "Bio"
+            },
+            {
+              "id": 0,
+              "name": "name",
+              "title": "",
+              "company": "",
+              "twitter": null,
+              "picture": "https://scaladays.org/assets/images/speakers/generic.png",
+              "bio": "Bio"
+            },
+            {
+              "id": 0,
+              "name": "name",
+              "title": "",
+              "company": "",
+              "twitter": null,
+              "picture": "https://scaladays.org/assets/images/speakers/generic.png",
+              "bio": "Bio"
+            }
+          ]
+        },
+        {
+          "id": 26,
+          "title": "title-2-block6",
+          "description": "Description\n",
+          "type": 2,
+          "startTime": "2020-06-12T14:45:00Z",
+          "endTime": "2020-06-12T15:30:00Z",
+          "date": "Wednesday June 12th",
+          "track": {
+            "id": 2,
+            "name": "",
+            "host": "",
+            "shortdescription": "General Sessions",
+            "description": ""
+          },
+          "location": {
+            "id": 2,
+            "sortPosition": 2,
+            "name": "room2",
+            "mapUrl": ""
+          },
+          "speakers": [
+            {
+              "id": 0,
+              "name": "name",
+              "title": "",
+              "company": "",
+              "twitter": null,
+              "picture": "https://scaladays.org/assets/images/speakers/generic.png",
+              "bio": "Bio"
+            }
+          ]
+        },
+        {
+          "id": 27,
+          "title": "title-3-block6",
+          "description": "Description\n",
+          "type": 2,
+          "startTime": "2020-06-12T14:45:00Z",
+          "endTime": "2020-06-12T15:30:00Z",
+          "date": "Wednesday June 12th",
+          "track": {
+            "id": 3,
+            "name": "",
+            "host": "",
+            "shortdescription": "General Sessions",
+            "description": ""
+          },
+          "location": {
+            "id": 3,
+            "sortPosition": 3,
+            "name": "room3",
+            "mapUrl": ""
+          },
+          "speakers": [
+            {
+              "id": 0,
+              "name": "name",
+              "title": "",
+              "company": "",
+              "twitter": null,
+              "picture": "https://scaladays.org/assets/images/speakers/generic.png",
+              "bio": "Bio\n\t\t\t\t\t\t\t\t\t\t\t\t"
+            }
+          ]
+        },
+        {
+          "id": 28,
+          "title": "title-4-block6",
+          "description": "Description\n",
+          "type": 2,
+          "startTime": "2020-06-12T14:45:00Z",
+          "endTime": "2020-06-12T15:30:00Z",
+          "date": "Wednesday June 12th",
+          "track": {
+            "id": 4,
+            "name": "",
+            "host": "",
+            "shortdescription": "General Sessions",
+            "description": ""
+          },
+          "location": {
+            "id": 4,
+            "sortPosition": 4,
+            "name": "room4",
+            "mapUrl": ""
+          },
+          "speakers": [
+            {
+              "id": 0,
+              "name": "name",
+              "title": "",
+              "company": "",
+              "twitter": null,
+              "picture": "https://scaladays.org/assets/images/speakers/generic.png",
+              "bio": "Bio"
+            }
+          ]
+        },
+        {
+          "id": 29,
+          "title": "title-1-block7",
+          "description": "Description\n",
+          "type": 2,
+          "startTime": "2020-06-12T15:45:00Z",
+          "endTime": "2020-06-12T16:30:00Z",
+          "date": "Wednesday June 12th",
+          "track": {
+            "id": 1,
+            "name": "",
+            "host": "",
+            "shortdescription": "General Sessions",
+            "description": ""
+          },
+          "location": {
+            "id": 1,
+            "sortPosition": 1,
+            "name": "room1",
+            "mapUrl": ""
+          },
+          "speakers": [
+            {
+              "id": 0,
+              "name": "name",
+              "title": "",
+              "company": "",
+              "twitter": null,
+              "picture": "https://scaladays.org/assets/images/speakers/generic.png",
+              "bio": "Bio"
+            }
+          ]
+        },
+        {
+          "id": 30,
+          "title": "title-2-block7",
+          "description": "Description\n",
+          "type": 2,
+          "startTime": "2020-06-12T15:45:00Z",
+          "endTime": "2020-06-12T16:30:00Z",
+          "date": "Wednesday June 12th",
+          "track": {
+            "id": 2,
+            "name": "",
+            "host": "",
+            "shortdescription": "General Sessions",
+            "description": ""
+          },
+          "location": {
+            "id": 2,
+            "sortPosition": 2,
+            "name": "room2",
+            "mapUrl": ""
+          },
+          "speakers": [
+            {
+              "id": 0,
+              "name": "name",
+              "title": "",
+              "company": "",
+              "twitter": null,
+              "picture": "https://scaladays.org/assets/images/speakers/generic.png",
+              "bio": "Bio"
+            },
+            {
+              "id": 0,
+              "name": "name",
+              "title": "",
+              "company": "",
+              "twitter": null,
+              "picture": "https://scaladays.org/assets/images/speakers/generic.png",
+              "bio": "Bio"
+            }
+          ]
+        },
+        {
+          "id": 31,
+          "title": "title-3-block7",
+          "description": "Description\n",
+          "type": 2,
+          "startTime": "2020-06-12T15:45:00Z",
+          "endTime": "2020-06-12T16:30:00Z",
+          "date": "Wednesday June 12th",
+          "track": {
+            "id": 3,
+            "name": "",
+            "host": "",
+            "shortdescription": "General Sessions",
+            "description": ""
+          },
+          "location": {
+            "id": 3,
+            "sortPosition": 3,
+            "name": "room3",
+            "mapUrl": ""
+          },
+          "speakers": [
+            {
+              "id": 0,
+              "name": "name",
+              "title": "",
+              "company": "",
+              "twitter": null,
+              "picture": "https://scaladays.org/assets/images/speakers/generic.png",
+              "bio": "Bio"
+            }
+          ]
+        },
+        {
+          "id": 32,
+          "title": "title-4-block7",
+          "description": "Description\n",
+          "type": 2,
+          "startTime": "2020-06-12T15:45:00Z",
+          "endTime": "2020-06-12T16:30:00Z",
+          "date": "Wednesday June 12th",
+          "track": {
+            "id": 4,
+            "name": "",
+            "host": "",
+            "shortdescription": "General Sessions",
+            "description": ""
+          },
+          "location": {
+            "id": 4,
+            "sortPosition": 4,
+            "name": "room4",
+            "mapUrl": ""
+          },
+          "speakers": [
+            {
+              "id": 0,
+              "name": "name",
+              "title": "",
+              "company": "",
+              "twitter": null,
+              "picture": "https://scaladays.org/assets/images/speakers/generic.png",
+              "bio": "Bio"
+            }
+          ]
+        },
+        {
+          "id": 33,
+          "title": "Special Event",
+          "description": "Description\n",
+          "type": 0,
+          "startTime": "2020-06-12T17:00:00Z",
+          "endTime": "2020-06-12T21:00:00Z",
+          "date": "Wednesday June 12th",
+          "track": {
+            "id": 6,
+            "name": "",
+            "host": "",
+            "shortdescription": "Community Dinner: Sponsored by Lunatech",
+            "description": ""
+          },
+          "location": {
+            "id": 6,
+            "sortPosition": 6,
+            "name": "Olympic Museum",
+            "mapUrl": ""
+          },
+          "speakers": []
+        },
+        {
+          "id": 34,
+          "title": "Keynote-3",
+          "description": "Description\n",
+          "type": 2,
+          "startTime": "2020-06-13T07:00:00Z",
+          "endTime": "2020-06-13T08:00:00Z",
+          "date": "Thursday June 13th",
+          "track": {
+            "id": 1,
+            "name": "",
+            "host": "",
+            "shortdescription": "",
+            "description": ""
+          },
+          "location": {
+            "id": 1,
+            "sortPosition": 1,
+            "name": "room1",
+            "mapUrl": ""
+          },
+          "speakers": [
+            {
+              "id": 0,
+              "name": "name",
+              "title": "",
+              "company": "",
+              "twitter": null,
+              "picture": "https://scaladays.org/assets/images/speakers/generic.png",
+              "bio": "Bio"
+            }
+          ]
+        },
+        {
+          "id": 35,
+          "title": "title-1-block8",
+          "description": "Description\n",
+          "type": 2,
+          "startTime": "2020-06-13T08:15:00Z",
+          "endTime": "2020-06-13T09:00:00Z",
+          "date": "Thursday June 13th",
+          "track": {
+            "id": 1,
+            "name": "",
+            "host": "",
+            "shortdescription": "General Sessions",
+            "description": ""
+          },
+          "location": {
+            "id": 1,
+            "sortPosition": 1,
+            "name": "room1",
+            "mapUrl": ""
+          },
+          "speakers": [
+            {
+              "id": 0,
+              "name": "name",
+              "title": "",
+              "company": "",
+              "twitter": null,
+              "picture": "https://scaladays.org/assets/images/speakers/generic.png",
+              "bio": "Bio"
+            }
+          ]
+        },
+        {
+          "id": 36,
+          "title": "title-2-block8",
+          "description": "Description\n",
+          "type": 2,
+          "startTime": "2020-06-13T08:15:00Z",
+          "endTime": "2020-06-13T09:00:00Z",
+          "date": "Thursday June 13th",
+          "track": {
+            "id": 2,
+            "name": "",
+            "host": "",
+            "shortdescription": "General Sessions",
+            "description": ""
+          },
+          "location": {
+            "id": 2,
+            "sortPosition": 2,
+            "name": "room2",
+            "mapUrl": ""
+          },
+          "speakers": [
+            {
+              "id": 0,
+              "name": "name",
+              "title": "",
+              "company": "",
+              "twitter": null,
+              "picture": "https://scaladays.org/assets/images/speakers/generic.png",
+              "bio": "Bio/p>\n\t\t\t\t\t\t\t\t\t\t\t\t"
+            }
+          ]
+        },
+        {
+          "id": 37,
+          "title": "title-3-block8",
+          "description": "Description\n",
+          "type": 2,
+          "startTime": "2020-06-13T08:15:00Z",
+          "endTime": "2020-06-13T09:00:00Z",
+          "date": "Thursday June 13th",
+          "track": {
+            "id": 3,
+            "name": "",
+            "host": "",
+            "shortdescription": "General Sessions",
+            "description": ""
+          },
+          "location": {
+            "id": 3,
+            "sortPosition": 3,
+            "name": "room3",
+            "mapUrl": ""
+          },
+          "speakers": [
+            {
+              "id": 0,
+              "name": "name",
+              "title": "",
+              "company": "",
+              "twitter": null,
+              "picture": "https://scaladays.org/assets/images/speakers/generic.png",
+              "bio": "Bio"
+            }
+          ]
+        },
+        {
+          "id": 38,
+          "title": "title-4-block8",
+          "description": "Description\n",
+          "type": 2,
+          "startTime": "2020-06-13T08:15:00Z",
+          "endTime": "2020-06-13T09:00:00Z",
+          "date": "Thursday June 13th",
+          "track": {
+            "id": 4,
+            "name": "",
+            "host": "",
+            "shortdescription": "General Sessions",
+            "description": ""
+          },
+          "location": {
+            "id": 4,
+            "sortPosition": 4,
+            "name": "room4",
+            "mapUrl": ""
+          },
+          "speakers": [
+            {
+              "id": 0,
+              "name": "name",
+              "title": "",
+              "company": "",
+              "twitter": null,
+              "picture": "https://scaladays.org/assets/images/speakers/generic.png",
+              "bio": "Bio"
+            }
+          ]
+        },
+        {
+          "id": 39,
+          "title": "title-1-block9",
+          "description": "Description\n",
+          "type": 2,
+          "startTime": "2020-06-13T09:15:00Z",
+          "endTime": "2020-06-13T10:00:00Z",
+          "date": "Thursday June 13th",
+          "track": {
+            "id": 1,
+            "name": "",
+            "host": "",
+            "shortdescription": "General Sessions",
+            "description": ""
+          },
+          "location": {
+            "id": 1,
+            "sortPosition": 1,
+            "name": "room1",
+            "mapUrl": ""
+          },
+          "speakers": [
+            {
+              "id": 0,
+              "name": "name",
+              "title": "",
+              "company": "",
+              "twitter": null,
+              "picture": "https://scaladays.org/assets/images/speakers/generic.png",
+              "bio": "Bio"
+            }
+          ]
+        },
+        {
+          "id": 40,
+          "title": "title-2-block9",
+          "description": "Description\n",
+          "type": 2,
+          "startTime": "2020-06-13T09:15:00Z",
+          "endTime": "2020-06-13T10:00:00Z",
+          "date": "Thursday June 13th",
+          "track": {
+            "id": 2,
+            "name": "",
+            "host": "",
+            "shortdescription": "General Sessions",
+            "description": ""
+          },
+          "location": {
+            "id": 2,
+            "sortPosition": 2,
+            "name": "room2",
+            "mapUrl": ""
+          },
+          "speakers": [
+            {
+              "id": 0,
+              "name": "name",
+              "title": "",
+              "company": "",
+              "twitter": null,
+              "picture": "https://scaladays.org/assets/images/speakers/generic.png",
+              "bio": "Bio"
+            }
+          ]
+        },
+        {
+          "id": 41,
+          "title": "title-3-block9",
+          "description": "Description\n",
+          "type": 2,
+          "startTime": "2020-06-13T09:15:00Z",
+          "endTime": "2020-06-13T10:00:00Z",
+          "date": "Thursday June 13th",
+          "track": {
+            "id": 3,
+            "name": "",
+            "host": "",
+            "shortdescription": "General Sessions",
+            "description": ""
+          },
+          "location": {
+            "id": 3,
+            "sortPosition": 3,
+            "name": "room3",
+            "mapUrl": ""
+          },
+          "speakers": [
+            {
+              "id": 0,
+              "name": "name",
+              "title": "",
+              "company": "",
+              "twitter": null,
+              "picture": "https://scaladays.org/assets/images/speakers/generic.png",
+              "bio": "Bio"
+            }
+          ]
+        },
+        {
+          "id": 42,
+          "title": "title-4-block9",
+          "description": "Description\n",
+          "type": 2,
+          "startTime": "2020-06-13T09:15:00Z",
+          "endTime": "2020-06-13T10:00:00Z",
+          "date": "Thursday June 13th",
+          "track": {
+            "id": 4,
+            "name": "",
+            "host": "",
+            "shortdescription": "General Sessions",
+            "description": ""
+          },
+          "location": {
+            "id": 4,
+            "sortPosition": 4,
+            "name": "room4",
+            "mapUrl": ""
+          },
+          "speakers": [
+            {
+              "id": 0,
+              "name": "name",
+              "title": "",
+              "company": "",
+              "twitter": null,
+              "picture": "https://scaladays.org/assets/images/speakers/generic.png",
+              "bio": "Bio"
+            }
+          ]
+        },
+        {
+          "id": 43,
+          "title": "title-1-block10",
+          "description": "Description\n",
+          "type": 2,
+          "startTime": "2020-06-13T10:15:00Z",
+          "endTime": "2020-06-13T11:00:00Z",
+          "date": "Thursday June 13th",
+          "track": {
+            "id": 1,
+            "name": "",
+            "host": "",
+            "shortdescription": "General Sessions",
+            "description": ""
+          },
+          "location": {
+            "id": 1,
+            "sortPosition": 1,
+            "name": "room1",
+            "mapUrl": ""
+          },
+          "speakers": [
+            {
+              "id": 0,
+              "name": "name",
+              "title": "",
+              "company": "",
+              "twitter": null,
+              "picture": "https://scaladays.org/assets/images/speakers/generic.png",
+              "bio": "Bio"
+            }
+          ]
+        },
+        {
+          "id": 44,
+          "title": "title-2-block10",
+          "description": "Description\n",
+          "type": 2,
+          "startTime": "2020-06-13T10:15:00Z",
+          "endTime": "2020-06-13T11:00:00Z",
+          "date": "Thursday June 13th",
+          "track": {
+            "id": 2,
+            "name": "",
+            "host": "",
+            "shortdescription": "General Sessions",
+            "description": ""
+          },
+          "location": {
+            "id": 2,
+            "sortPosition": 2,
+            "name": "room2",
+            "mapUrl": ""
+          },
+          "speakers": [
+            {
+              "id": 0,
+              "name": "name",
+              "title": "",
+              "company": "",
+              "twitter": null,
+              "picture": "https://scaladays.org/assets/images/speakers/generic.png",
+              "bio": "Bio"
+            }
+          ]
+        },
+        {
+          "id": 45,
+          "title": "title-3-block10",
+          "description": "Description\n",
+          "type": 2,
+          "startTime": "2020-06-13T10:15:00Z",
+          "endTime": "2020-06-13T11:00:00Z",
+          "date": "Thursday June 13th",
+          "track": {
+            "id": 3,
+            "name": "",
+            "host": "",
+            "shortdescription": "General Sessions",
+            "description": ""
+          },
+          "location": {
+            "id": 3,
+            "sortPosition": 3,
+            "name": "room3",
+            "mapUrl": ""
+          },
+          "speakers": [
+            {
+              "id": 0,
+              "name": "name",
+              "title": "",
+              "company": "",
+              "twitter": null,
+              "picture": "https://scaladays.org/assets/images/speakers/generic.png",
+              "bio": "Bio"
+            },
+            {
+              "id": 1,
+              "name": "nameky",
+              "title": "",
+              "company": "",
+              "twitter": null,
+              "picture": "https://scaladays.org/assets/images/speakers/generic.png",
+              "bio": "Bio"
+            }
+          ]
+        },
+        {
+          "id": 46,
+          "title": "title-4-block10",
+          "description": "Description\n",
+          "type": 2,
+          "startTime": "2020-06-13T10:15:00Z",
+          "endTime": "2020-06-13T11:00:00Z",
+          "date": "Thursday June 13th",
+          "track": {
+            "id": 4,
+            "name": "",
+            "host": "",
+            "shortdescription": "General Sessions",
+            "description": ""
+          },
+          "location": {
+            "id": 4,
+            "sortPosition": 4,
+            "name": "room4",
+            "mapUrl": ""
+          },
+          "speakers": [
+            {
+              "id": 0,
+              "name": "name",
+              "title": "",
+              "company": "",
+              "twitter": null,
+              "picture": "https://scaladays.org/assets/images/speakers/generic.png",
+              "bio": "Bio\n\t\t\t\t\t\t\t\t\t\t\t\t"
+            }
+          ]
+        },
+        {
+          "id": 47,
+          "title": "Diversity and Inclusion Panel:  Bring the Thunder!",
+          "description": "Description\n",
+          "type": 2,
+          "startTime": "2020-06-13T12:30:00Z",
+          "endTime": "2020-06-13T13:30:00Z",
+          "date": "Thursday June 13th",
+          "track": {
+            "id": 1,
+            "name": "",
+            "host": "",
+            "shortdescription": "",
+            "description": ""
+          },
+          "location": {
+            "id": 1,
+            "sortPosition": 1,
+            "name": "room1",
+            "mapUrl": ""
+          },
+          "speakers": [
+            {
+              "id": 0,
+              "name": "name",
+              "title": "",
+              "company": "",
+              "twitter": null,
+              "picture": "https://scaladays.org/assets/images/speakers/generic.png",
+              "bio": "Bio"
+            },
+            {
+              "id": 0,
+              "name": "name",
+              "title": "",
+              "company": "",
+              "twitter": null,
+              "picture": "https://scaladays.org/assets/images/speakers/generic.png",
+              "bio": "Bio"
+            },
+            {
+              "id": 0,
+              "name": "name",
+              "title": "",
+              "company": "",
+              "twitter": null,
+              "picture": "https://scaladays.org/assets/images/speakers/generic.png",
+              "bio": "Bio"
+            }
+          ]
+        },
+        {
+          "id": 48,
+          "title": "title-1-block11",
+          "description": "Description\n",
+          "type": 2,
+          "startTime": "2020-06-13T13:45:00Z",
+          "endTime": "2020-06-13T14:30:00Z",
+          "date": "Thursday June 13th",
+          "track": {
+            "id": 1,
+            "name": "",
+            "host": "",
+            "shortdescription": "General Sessions",
+            "description": ""
+          },
+          "location": {
+            "id": 1,
+            "sortPosition": 1,
+            "name": "room1",
+            "mapUrl": ""
+          },
+          "speakers": [
+            {
+              "id": 0,
+              "name": "name",
+              "title": "",
+              "company": "",
+              "twitter": null,
+              "picture": "https://scaladays.org/assets/images/speakers/generic.png",
+              "bio": "Bio"
+            }
+          ]
+        },
+        {
+          "id": 49,
+          "title": "title-2-block11",
+          "description": "Description\n",
+          "type": 2,
+          "startTime": "2020-06-13T13:45:00Z",
+          "endTime": "2020-06-13T14:30:00Z",
+          "date": "Thursday June 13th",
+          "track": {
+            "id": 2,
+            "name": "",
+            "host": "",
+            "shortdescription": "General Sessions",
+            "description": ""
+          },
+          "location": {
+            "id": 2,
+            "sortPosition": 2,
+            "name": "room2",
+            "mapUrl": ""
+          },
+          "speakers": [
+            {
+              "id": 0,
+              "name": "name",
+              "title": "",
+              "company": "",
+              "twitter": null,
+              "picture": "https://scaladays.org/assets/images/speakers/generic.png",
+              "bio": "Bio\n\t\t\t\t\t\t\t\t\t\t\t\t"
+            }
+          ]
+        },
+        {
+          "id": 50,
+          "title": "title-3-block11",
+          "description": "Description\n",
+          "type": 2,
+          "startTime": "2020-06-13T13:45:00Z",
+          "endTime": "2020-06-13T14:30:00Z",
+          "date": "Thursday June 13th",
+          "track": {
+            "id": 3,
+            "name": "",
+            "host": "",
+            "shortdescription": "General Sessions",
+            "description": ""
+          },
+          "location": {
+            "id": 3,
+            "sortPosition": 3,
+            "name": "room3",
+            "mapUrl": ""
+          },
+          "speakers": [
+            {
+              "id": 0,
+              "name": "name",
+              "title": "",
+              "company": "",
+              "twitter": null,
+              "picture": "https://scaladays.org/assets/images/speakers/generic.png",
+              "bio": "Bio"
+            }
+          ]
+        },
+        {
+          "id": 51,
+          "title": "title-4-block11",
+          "description": "Description\n",
+          "type": 2,
+          "startTime": "2020-06-13T13:45:00Z",
+          "endTime": "2020-06-13T14:30:00Z",
+          "date": "Thursday June 13th",
+          "track": {
+            "id": 4,
+            "name": "",
+            "host": "",
+            "shortdescription": "General Sessions",
+            "description": ""
+          },
+          "location": {
+            "id": 4,
+            "sortPosition": 4,
+            "name": "room4",
+            "mapUrl": ""
+          },
+          "speakers": [
+            {
+              "id": 0,
+              "name": "name",
+              "title": "",
+              "company": "",
+              "twitter": null,
+              "picture": "https://scaladays.org/assets/images/speakers/generic.png",
+              "bio": "Bio"
+            },
+            {
+              "id": 0,
+              "name": "name",
+              "title": "",
+              "company": "",
+              "twitter": null,
+              "picture": "https://scaladays.org/assets/images/speakers/generic.png",
+              "bio": "Bio"
+            }
+          ]
+        },
+        {
+          "id": 52,
+          "title": "title-1-block12",
+          "description": "Description\n",
+          "type": 2,
+          "startTime": "2020-06-13T14:45:00Z",
+          "endTime": "2020-06-13T15:30:00Z",
+          "date": "Thursday June 13th",
+          "track": {
+            "id": 1,
+            "name": "",
+            "host": "",
+            "shortdescription": "General Sessions",
+            "description": ""
+          },
+          "location": {
+            "id": 1,
+            "sortPosition": 1,
+            "name": "room1",
+            "mapUrl": ""
+          },
+          "speakers": [
+            {
+              "id": 0,
+              "name": "name",
+              "title": "",
+              "company": "",
+              "twitter": null,
+              "picture": "https://scaladays.org/assets/images/speakers/generic.png",
+              "bio": "Bio"
+            }
+          ]
+        },
+        {
+          "id": 53,
+          "title": "title-2-block12",
+          "description": "Description\n",
+          "type": 2,
+          "startTime": "2020-06-13T14:45:00Z",
+          "endTime": "2020-06-13T15:30:00Z",
+          "date": "Thursday June 13th",
+          "track": {
+            "id": 2,
+            "name": "",
+            "host": "",
+            "shortdescription": "General Sessions",
+            "description": ""
+          },
+          "location": {
+            "id": 2,
+            "sortPosition": 2,
+            "name": "room2",
+            "mapUrl": ""
+          },
+          "speakers": [
+            {
+              "id": 0,
+              "name": "name",
+              "title": "",
+              "company": "",
+              "twitter": null,
+              "picture": "https://scaladays.org/assets/images/speakers/generic.png",
+              "bio": "Bio"
+            }
+          ]
+        },
+        {
+          "id": 54,
+          "title": "title-3-block12",
+          "description": "Description\n",
+          "type": 2,
+          "startTime": "2020-06-13T14:45:00Z",
+          "endTime": "2020-06-13T15:30:00Z",
+          "date": "Thursday June 13th",
+          "track": {
+            "id": 3,
+            "name": "",
+            "host": "",
+            "shortdescription": "General Sessions",
+            "description": ""
+          },
+          "location": {
+            "id": 3,
+            "sortPosition": 3,
+            "name": "room3",
+            "mapUrl": ""
+          },
+          "speakers": [
+            {
+              "id": 0,
+              "name": "name",
+              "title": "",
+              "company": "",
+              "twitter": null,
+              "picture": "https://scaladays.org/assets/images/speakers/generic.png",
+              "bio": "Bio"
+            }
+          ]
+        },
+        {
+          "id": 55,
+          "title": "title-4-block12",
+          "description": "Description\n",
+          "type": 2,
+          "startTime": "2020-06-13T14:45:00Z",
+          "endTime": "2020-06-13T15:30:00Z",
+          "date": "Thursday June 13th",
+          "track": {
+            "id": 4,
+            "name": "",
+            "host": "",
+            "shortdescription": "General Sessions",
+            "description": ""
+          },
+          "location": {
+            "id": 4,
+            "sortPosition": 4,
+            "name": "room4",
+            "mapUrl": ""
+          },
+          "speakers": [
+            {
+              "id": 0,
+              "name": "name",
+              "title": "",
+              "company": "",
+              "twitter": null,
+              "picture": "https://scaladays.org/assets/images/speakers/generic.png",
+              "bio": "Bio"
+            }
+          ]
+        },
+        {
+          "id": 56,
+          "title": "Closing panel",
+          "description": "Description\n",
+          "type": 2,
+          "startTime": "2020-06-13T15:45:00Z",
+          "endTime": "2020-06-13T16:45:00Z",
+          "date": "Thursday June 13th",
+          "track": {
+            "id": 1,
+            "name": "",
+            "host": "",
+            "shortdescription": "",
+            "description": ""
+          },
+          "location": {
+            "id": 1,
+            "sortPosition": 1,
+            "name": "room1",
+            "mapUrl": ""
+          },
+          "speakers": []
+        }
+      ],
+      "sponsors": [
+        {
+          "type": "Platinum",
+          "items": [
+            {
+              "logo": "https://scaladays.org/assets/images/sponsors/logo-sqooba-platinum-lausanne.png",
+              "url": "https://sqooba.io/"
+            },
+            {
+              "logo": "https://scaladays.org/assets/images/sponsors/logo-lunatech-platinum-lausanne.png",
+              "url": "https://lunatech.com/"
+            },
+            {
+              "logo": "https://scaladays.org/assets/images/sponsors/logo-virtuslab-propensive-platinum-lausanne.png",
+              "url": "https://virtuslab.com/"
+            }
+          ]
+        },
+        {
+          "type": "Gold",
+          "items": [
+            {
+              "logo": "https://scaladays.org/assets/images/sponsors/logo-jetbrains.png",
+              "url": "https://www.jetbrains.com/"
+            },
+            {
+              "logo": "https://scaladays.org/assets/images/sponsors/logo-signify-technology.png",
+              "url": "https://www.signifytechnology.com/"
+            }
+          ]
+        },
+        {
+          "type": "Produced By",
+          "items": [
+            {
+              "logo": "https://scaladays.org/assets/images/sponsors/logo-lightbend-producer.png",
+              "url": "https://www.lightbend.com"
+            },
+            {
+              "logo": "https://scaladays.org/assets/images/sponsors/logo-scalacenter-thanks-nyc.png",
+              "url": "https://scala.epfl.ch/"
+            }
+          ]
+        }
+      ],
+      "speakers": [
+        {
+          "id": 0,
+          "name": "name",
+          "title": "",
+          "company": "",
+          "twitter": null,
+          "picture": "https://scaladays.org/assets/images/speakers/generic.png",
+          "bio": "Coming soon."
+        },
+        {
+          "id": 0,
+          "name": "name",
+          "title": "",
+          "company": "",
+          "twitter": null,
+          "picture": "https://scaladays.org/assets/images/speakers/generic.png",
+          "bio": "Coming soon."
+        },
+        {
+          "id": 0,
+          "name": "name",
+          "title": "",
+          "company": "",
+          "twitter": null,
+          "picture": "https://scaladays.org/assets/images/speakers/generic.png",
+          "bio": "Coming soon."
+        },
+        {
+          "id": 0,
+          "name": "name",
+          "title": "",
+          "company": "",
+          "twitter": null,
+          "picture": "https://scaladays.org/assets/images/speakers/generic.png",
+          "bio": "Coming soon."
+        },
+        {
+          "id": 0,
+          "name": "name",
+          "title": "",
+          "company": "",
+          "twitter": null,
+          "picture": "https://scaladays.org/assets/images/speakers/generic.png",
+          "bio": "Bio"
+        },
+        {
+          "id": 0,
+          "name": "name",
+          "title": "",
+          "company": "",
+          "twitter": null,
+          "picture": "https://scaladays.org/assets/images/speakers/generic.png",
+          "bio": "Bio"
+        },
+        {
+          "id": 0,
+          "name": "name",
+          "title": "",
+          "company": "",
+          "twitter": null,
+          "picture": "https://scaladays.org/assets/images/speakers/generic.png",
+          "bio": "Bio"
+        },
+        {
+          "id": 0,
+          "name": "name",
+          "title": "",
+          "company": "",
+          "twitter": null,
+          "picture": "https://scaladays.org/assets/images/speakers/generic.png",
+          "bio": "Bio"
+        },
+        {
+          "id": 0,
+          "name": "name",
+          "title": "",
+          "company": "",
+          "twitter": null,
+          "picture": "https://scaladays.org/assets/images/speakers/generic.png",
+          "bio": "Bio"
+        },
+        {
+          "id": 0,
+          "name": "name",
+          "title": "",
+          "company": "",
+          "twitter": null,
+          "picture": "https://scaladays.org/assets/images/speakers/generic.png",
+          "bio": "Bio"
+        },
+        {
+          "id": 0,
+          "name": "name",
+          "title": "",
+          "company": "",
+          "twitter": null,
+          "picture": "https://scaladays.org/assets/images/speakers/generic.png",
+          "bio": "Bio"
+        },
+        {
+          "id": 0,
+          "name": "name",
+          "title": "",
+          "company": "",
+          "twitter": null,
+          "picture": "https://scaladays.org/assets/images/speakers/generic.png",
+          "bio": "Bio"
+        },
+        {
+          "id": 0,
+          "name": "name",
+          "title": "",
+          "company": "",
+          "twitter": null,
+          "picture": "https://scaladays.org/assets/images/speakers/generic.png",
+          "bio": "Bio"
+        },
+        {
+          "id": 0,
+          "name": "name",
+          "title": "",
+          "company": "",
+          "twitter": null,
+          "picture": "https://scaladays.org/assets/images/speakers/generic.png",
+          "bio": "Bio"
+        },
+        {
+          "id": 0,
+          "name": "name",
+          "title": "",
+          "company": "",
+          "twitter": null,
+          "picture": "https://scaladays.org/assets/images/speakers/generic.png",
+          "bio": "Bio"
+        },
+        {
+          "id": 0,
+          "name": "name",
+          "title": "",
+          "company": "",
+          "twitter": null,
+          "picture": "https://scaladays.org/assets/images/speakers/generic.png",
+          "bio": "Bio"
+        },
+        {
+          "id": 0,
+          "name": "name",
+          "title": "",
+          "company": "",
+          "twitter": null,
+          "picture": "https://scaladays.org/assets/images/speakers/generic.png",
+          "bio": "Bio"
+        },
+        {
+          "id": 0,
+          "name": "name",
+          "title": "",
+          "company": "",
+          "twitter": null,
+          "picture": "https://scaladays.org/assets/images/speakers/generic.png",
+          "bio": "Bio"
+        },
+        {
+          "id": 0,
+          "name": "name",
+          "title": "",
+          "company": "",
+          "twitter": null,
+          "picture": "https://scaladays.org/assets/images/speakers/generic.png",
+          "bio": "Bio"
+        },
+        {
+          "id": 0,
+          "name": "name",
+          "title": "",
+          "company": "",
+          "twitter": null,
+          "picture": "https://scaladays.org/assets/images/speakers/generic.png",
+          "bio": "Bio"
+        },
+        {
+          "id": 0,
+          "name": "name",
+          "title": "",
+          "company": "",
+          "twitter": null,
+          "picture": "https://scaladays.org/assets/images/speakers/generic.png",
+          "bio": "Bio"
+        },
+        {
+          "id": 0,
+          "name": "name",
+          "title": "",
+          "company": "",
+          "twitter": null,
+          "picture": "https://scaladays.org/assets/images/speakers/generic.png",
+          "bio": "Bio"
+        },
+        {
+          "id": 0,
+          "name": "name",
+          "title": "",
+          "company": "",
+          "twitter": null,
+          "picture": "https://scaladays.org/assets/images/speakers/generic.png",
+          "bio": "Bio"
+        },
+        {
+          "id": 0,
+          "name": "name",
+          "title": "",
+          "company": "",
+          "twitter": null,
+          "picture": "https://scaladays.org/assets/images/speakers/generic.png",
+          "bio": "Bio"
+        },
+        {
+          "id": 0,
+          "name": "name",
+          "title": "",
+          "company": "",
+          "twitter": null,
+          "picture": "https://scaladays.org/assets/images/speakers/generic.png",
+          "bio": "Bio"
+        },
+        {
+          "id": 0,
+          "name": "name",
+          "title": "",
+          "company": "",
+          "twitter": null,
+          "picture": "https://scaladays.org/assets/images/speakers/generic.png",
+          "bio": "Bio"
+        },
+        {
+          "id": 0,
+          "name": "name",
+          "title": "",
+          "company": "",
+          "twitter": null,
+          "picture": "https://scaladays.org/assets/images/speakers/generic.png",
+          "bio": "Bio"
+        },
+        {
+          "id": 0,
+          "name": "name",
+          "title": "",
+          "company": "",
+          "twitter": null,
+          "picture": "https://scaladays.org/assets/images/speakers/generic.png",
+          "bio": "Bio"
+        },
+        {
+          "id": 0,
+          "name": "name",
+          "title": "",
+          "company": "",
+          "twitter": null,
+          "picture": "https://scaladays.org/assets/images/speakers/generic.png",
+          "bio": "Bio"
+        },
+        {
+          "id": 0,
+          "name": "name",
+          "title": "",
+          "company": "",
+          "twitter": null,
+          "picture": "https://scaladays.org/assets/images/speakers/generic.png",
+          "bio": "Bio"
+        },
+        {
+          "id": 0,
+          "name": "name",
+          "title": "",
+          "company": "",
+          "twitter": null,
+          "picture": "https://scaladays.org/assets/images/speakers/generic.png",
+          "bio": "Bio"
+        },
+        {
+          "id": 0,
+          "name": "name",
+          "title": "",
+          "company": "",
+          "twitter": null,
+          "picture": "https://scaladays.org/assets/images/speakers/generic.png",
+          "bio": "Bio\n\t\t\t\t\t\t\t\t\t\t\t\t"
+        },
+        {
+          "id": 0,
+          "name": "name",
+          "title": "",
+          "company": "",
+          "twitter": null,
+          "picture": "https://scaladays.org/assets/images/speakers/generic.png",
+          "bio": "Bio"
+        },
+        {
+          "id": 0,
+          "name": "name",
+          "title": "",
+          "company": "",
+          "twitter": null,
+          "picture": "https://scaladays.org/assets/images/speakers/generic.png",
+          "bio": "Bio"
+        },
+        {
+          "id": 0,
+          "name": "name",
+          "title": "",
+          "company": "",
+          "twitter": null,
+          "picture": "https://scaladays.org/assets/images/speakers/generic.png",
+          "bio": "Bio"
+        },
+        {
+          "id": 0,
+          "name": "name",
+          "title": "",
+          "company": "",
+          "twitter": null,
+          "picture": "https://scaladays.org/assets/images/speakers/generic.png",
+          "bio": "Bio"
+        },
+        {
+          "id": 0,
+          "name": "name",
+          "title": "",
+          "company": "",
+          "twitter": null,
+          "picture": "https://scaladays.org/assets/images/speakers/generic.png",
+          "bio": "Bio"
+        },
+        {
+          "id": 0,
+          "name": "name",
+          "title": "",
+          "company": "",
+          "twitter": null,
+          "picture": "https://scaladays.org/assets/images/speakers/generic.png",
+          "bio": "Bio"
+        },
+        {
+          "id": 0,
+          "name": "name",
+          "title": "",
+          "company": "",
+          "twitter": null,
+          "picture": "https://scaladays.org/assets/images/speakers/generic.png",
+          "bio": "Bio"
+        },
+        {
+          "id": 0,
+          "name": "name",
+          "title": "",
+          "company": "",
+          "twitter": null,
+          "picture": "https://scaladays.org/assets/images/speakers/generic.png",
+          "bio": "Bio"
+        },
+        {
+          "id": 0,
+          "name": "name",
+          "title": "",
+          "company": "",
+          "twitter": null,
+          "picture": "https://scaladays.org/assets/images/speakers/generic.png",
+          "bio": "Bio/p>\n\t\t\t\t\t\t\t\t\t\t\t\t"
+        },
+        {
+          "id": 0,
+          "name": "name",
+          "title": "",
+          "company": "",
+          "twitter": null,
+          "picture": "https://scaladays.org/assets/images/speakers/generic.png",
+          "bio": "Bio"
+        },
+        {
+          "id": 0,
+          "name": "name",
+          "title": "",
+          "company": "",
+          "twitter": null,
+          "picture": "https://scaladays.org/assets/images/speakers/generic.png",
+          "bio": "Bio"
+        },
+        {
+          "id": 0,
+          "name": "name",
+          "title": "",
+          "company": "",
+          "twitter": null,
+          "picture": "https://scaladays.org/assets/images/speakers/generic.png",
+          "bio": "Bio"
+        },
+        {
+          "id": 0,
+          "name": "name",
+          "title": "",
+          "company": "",
+          "twitter": null,
+          "picture": "https://scaladays.org/assets/images/speakers/generic.png",
+          "bio": "Bio"
+        },
+        {
+          "id": 0,
+          "name": "name",
+          "title": "",
+          "company": "",
+          "twitter": null,
+          "picture": "https://scaladays.org/assets/images/speakers/generic.png",
+          "bio": "Bio"
+        },
+        {
+          "id": 0,
+          "name": "name",
+          "title": "",
+          "company": "",
+          "twitter": null,
+          "picture": "https://scaladays.org/assets/images/speakers/generic.png",
+          "bio": "Bio"
+        },
+        {
+          "id": 0,
+          "name": "name",
+          "title": "",
+          "company": "",
+          "twitter": null,
+          "picture": "https://scaladays.org/assets/images/speakers/generic.png",
+          "bio": "Bio"
+        },
+        {
+          "id": 0,
+          "name": "name",
+          "title": "",
+          "company": "",
+          "twitter": null,
+          "picture": "https://scaladays.org/assets/images/speakers/generic.png",
+          "bio": "Bio"
+        },
+        {
+          "id": 0,
+          "name": "name",
+          "title": "",
+          "company": "",
+          "twitter": null,
+          "picture": "https://scaladays.org/assets/images/speakers/generic.png",
+          "bio": "Bio"
+        },
+        {
+          "id": 1,
+          "name": "nameky",
+          "title": "",
+          "company": "",
+          "twitter": null,
+          "picture": "https://scaladays.org/assets/images/speakers/generic.png",
+          "bio": "Bio"
+        },
+        {
+          "id": 0,
+          "name": "name",
+          "title": "",
+          "company": "",
+          "twitter": null,
+          "picture": "https://scaladays.org/assets/images/speakers/generic.png",
+          "bio": "Bio\n\t\t\t\t\t\t\t\t\t\t\t\t"
+        },
+        {
+          "id": 0,
+          "name": "name",
+          "title": "",
+          "company": "",
+          "twitter": null,
+          "picture": "https://scaladays.org/assets/images/speakers/generic.png",
+          "bio": "Bio"
+        },
+        {
+          "id": 0,
+          "name": "name",
+          "title": "",
+          "company": "",
+          "twitter": null,
+          "picture": "https://scaladays.org/assets/images/speakers/generic.png",
+          "bio": "Bio"
+        },
+        {
+          "id": 0,
+          "name": "name",
+          "title": "",
+          "company": "",
+          "twitter": null,
+          "picture": "https://scaladays.org/assets/images/speakers/generic.png",
+          "bio": "Bio"
+        },
+        {
+          "id": 0,
+          "name": "name",
+          "title": "",
+          "company": "",
+          "twitter": null,
+          "picture": "https://scaladays.org/assets/images/speakers/generic.png",
+          "bio": "Bio"
+        },
+        {
+          "id": 0,
+          "name": "name",
+          "title": "",
+          "company": "",
+          "twitter": null,
+          "picture": "https://scaladays.org/assets/images/speakers/generic.png",
+          "bio": "Bio\n\t\t\t\t\t\t\t\t\t\t\t\t"
+        },
+        {
+          "id": 0,
+          "name": "name",
+          "title": "",
+          "company": "",
+          "twitter": null,
+          "picture": "https://scaladays.org/assets/images/speakers/generic.png",
+          "bio": "Bio"
+        },
+        {
+          "id": 0,
+          "name": "name",
+          "title": "",
+          "company": "",
+          "twitter": null,
+          "picture": "https://scaladays.org/assets/images/speakers/generic.png",
+          "bio": "Bio"
+        },
+        {
+          "id": 0,
+          "name": "name",
+          "title": "",
+          "company": "",
+          "twitter": null,
+          "picture": "https://scaladays.org/assets/images/speakers/generic.png",
+          "bio": "Bio"
+        },
+        {
+          "id": 0,
+          "name": "name",
+          "title": "",
+          "company": "",
+          "twitter": null,
+          "picture": "https://scaladays.org/assets/images/speakers/generic.png",
+          "bio": "Bio"
+        },
+        {
+          "id": 0,
+          "name": "name",
+          "title": "",
+          "company": "",
+          "twitter": null,
+          "picture": "https://scaladays.org/assets/images/speakers/generic.png",
+          "bio": "Bio"
+        },
+        {
+          "id": 0,
+          "name": "name",
+          "title": "",
+          "company": "",
+          "twitter": null,
+          "picture": "https://scaladays.org/assets/images/speakers/generic.png",
+          "bio": "Bio"
+        },
+        {
+          "id": 0,
+          "name": "name",
+          "title": "",
+          "company": "",
+          "twitter": null,
+          "picture": "https://scaladays.org/assets/images/speakers/generic.png",
+          "bio": "Bio"
+        }
+      ],
+      "venues": [
+        {
+          "name": "bcc (Berlin Congress Center)",
+          "address": "Alexanderstraße 11, 10178 Berlin, Germany",
+          "website": "https://www.bcc-berlin.de/en",
+          "latitude": 52.520696,
+          "longitude": 13.416451,
+          "zoom": 15
+        }
+      ],
+      "codeOfConduct": "Scala Days are dedicated to providing a conference for technologists from various regions and communities. We want to make it a fun experience for everyone, regardless of gender, race, and many different backgrounds. All participants, including speakers and sponsors, are asked to be respectful to each other and comply with the following code of conduct.\nAll communication should be appropriate for a technology conference with a professional audience including people of many different backgrounds. Scala Days do not tolerate harassment of conference participants in any form.\nWe expect all participants, including guests, exhibitors, sponsors, booth staff, and the organizers, to follow these rules at all conference venues and conference-related social events. Participants asked to stop any harassing behavior (regardless of the intention) are expected to comply immediately.\nHarassment includes, but is not limited to:\nAsking other participants out (comments about appearance, romatic or sextual interest) or inappropriate physical contact.Offensive verbal comments or discriminatory behaviors related to gender, gender identity and expression, sexual orientation, disability, physical appearance, body size, age, race, nationality, ethnicity, or religion.Sexual images in public spaces.Deliberate intimidation; stalking, following, harassing photography or recording.Sustained disruption of talks or other events.Use of sexualized images, activities, or other material during the session.Use of sexualized clothing/uniforms/costumes by the booth staff or volunteers, or otherwise creating sexualized environment in the booth or the displayed material.\nIf a participant engages in harassing behavior, the conference organizers may take any action they deem appropriate, including warning the offender or expulsion from the conference with no refund. All participants, including guests, exhibitors, sponsors, booth staff, must comply to the order by the conference organizers immediately without condition.\nThe code of conduct is subject to change without notice.\nContacts\nIf you are being harassed, notice that someone else is being harassed, please contact one of the following members or any nearby conference staff immediately.\nDarja Jovanovic (darja.jovanovic@@epfl.ch)Dajana Günther (daj@@trifork.com)Sébastien Doeraene (sebastien.doeraene@@epfl.ch)\nFor any questions or concerns, please email the organizers at info@@scaladays.org.\nThe text part of this policy is licensed under the Creative Commons Zero license. A similar code of conduct has been adopted by Scala Matsuri, PNW Scala, NE Scala, and Reactive Summit to provide a harassment-free conference. We also support the cause.\n"
+    }
+  ]
+}
+
