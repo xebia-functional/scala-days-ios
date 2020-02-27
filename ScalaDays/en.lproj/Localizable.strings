@@ -69,3 +69,6 @@
 
 // About
 "feeback_button" = "Send anonymous feedback";
+
+// Notifications
+"empty_notification_message" = "In this section you'll find the timeline of notifications submitted to this conference";

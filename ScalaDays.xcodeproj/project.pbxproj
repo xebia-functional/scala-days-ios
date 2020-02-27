@@ -361,17 +361,17 @@
 		592978001A82106D00EE3BA3 /* TableViewCells */ = {
 			isa = PBXGroup;
 			children = (
+				1EA75E891A925BFF00884EC8 /* SDConferenceTableViewCell.swift */,
+				1EA75E8A1A925BFF00884EC8 /* SDConferenceTableViewCell.xib */,
 				A1C8B8771A8E6CE7008599FF /* SDScheduleListTableViewCell.swift */,
 				A1C8B8751A8E6C77008599FF /* SDScheduleListTableViewCell.xib */,
-				A1C8B8791A8E6F56008599FF /* SDTableHeaderView.swift */,
 				592978011A82106D00EE3BA3 /* SDSocialTableViewCell.swift */,
 				592978021A82106D00EE3BA3 /* SDSocialTableViewCell.xib */,
 				590DDD6F1A83BE9B00E4CC3F /* SDSpeakersTableViewCell.swift */,
 				590DDD711A83BEA800E4CC3F /* SDSpeakersTableViewCell.xib */,
 				59D174611A8E0C2B001E87CF /* SDSponsorsTableViewCell.swift */,
 				59D174631A8E0C3A001E87CF /* SDSponsorsTableViewCell.xib */,
-				1EA75E891A925BFF00884EC8 /* SDConferenceTableViewCell.swift */,
-				1EA75E8A1A925BFF00884EC8 /* SDConferenceTableViewCell.xib */,
+				A1C8B8791A8E6F56008599FF /* SDTableHeaderView.swift */,
 			);
 			path = TableViewCells;
 			sourceTree = "<group>";

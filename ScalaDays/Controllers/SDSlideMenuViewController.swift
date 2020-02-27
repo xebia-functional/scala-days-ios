@@ -110,8 +110,8 @@ class SDSlideMenuViewController: UIViewController, UITableViewDelegate, UITableV
         
         self.titleConference.setCustomFont(UIFont.fontHelveticaNeue(17), colorFont: UIColor.white)
         
-        let notificatiionViewController = SDNotificationViewController(analytics: analytics, manager: notificationManager)
-        self.notificationViewController = UINavigationController(rootViewController: notificatiionViewController)
+        let notificationViewController = SDNotificationViewController(analytics: analytics, manager: notificationManager)
+        self.notificationViewController = UINavigationController(rootViewController: notificationViewController)
         
         let socialViewController = SDSocialViewController(analytics: analytics)
         self.socialViewController = UINavigationController(rootViewController: socialViewController)
