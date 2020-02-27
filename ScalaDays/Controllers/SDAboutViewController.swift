@@ -23,12 +23,19 @@ class SDAboutViewController: UIViewController, SDErrorPlaceholderViewDelegate, S
     @IBOutlet weak var cnsRightLabel: NSLayoutConstraint!
     @IBOutlet weak var lblCodeConduct: UILabel!
     @IBOutlet weak var lblDescription: UILabel!
+    @IBOutlet weak var feedbackButton: UIButton!
+    @IBOutlet weak var separatorH: NSLayoutConstraint!
     
     var errorPlaceholderView : SDErrorPlaceholderView!
     var isDataLoaded = false
     
-    var selectedConference : Conference?
+    private(set) var selectedConference : Conference?
     private let analytics: Analytics
+    
+    private var feedbackURL: URL? {
+        guard let feedback = selectedConference?.info.feedback else { return nil }
+        return URL(string: feedback)
+    }
     
     init(analytics: Analytics) {
         self.analytics = analytics
@@ -44,8 +51,15 @@ class SDAboutViewController: UIViewController, SDErrorPlaceholderViewDelegate, S
 
         self.setNavigationBarItem()
         self.title = NSLocalizedString("about", comment: "About")
+        
+        self.separatorH.constant = 0.25
+        
         self.lblCodeConduct.setCustomFont(UIFont.fontHelveticaNeueMedium(17), colorFont: UIColor.appRedColor())
         self.lblDescription.setCustomFont(UIFont.fontHelveticaNeueLight(15), colorFont: UIColor.appColor())
+        
+        self.feedbackButton.setTitle(i18n.feebackTitle, for: .normal)
+        self.feedbackButton.setTitleColor(.white, for: .normal)
+        self.feedbackButton.backgroundColor = UIColor.appRedColor()
         
         errorPlaceholderView = SDErrorPlaceholderView(frame: screenBounds)
         errorPlaceholderView.delegate = self
@@ -104,7 +118,14 @@ class SDAboutViewController: UIViewController, SDErrorPlaceholderViewDelegate, S
         guard let url = URL(string: url47Website) else { return }
         
         self.analytics.logEvent(screenName: .about, category: .navigate, action: .goToSite)
-        _ = launchSafariToUrl(url)
+        launchSafariToUrl(url)
+    }
+    
+    @IBAction func didTapOnFeedback(_ button: UIButton) {
+        guard let feedbackURL = feedbackURL else { return }
+        
+        self.analytics.logEvent(screenName: .about, category: .navigate, action: .goToFeedbackForm)
+        launchSafariToUrl(feedbackURL)
     }
     
     // MARK: SDErrorPlaceholderViewDelegate protocol implementation
@@ -113,4 +134,7 @@ class SDAboutViewController: UIViewController, SDErrorPlaceholderViewDelegate, S
         loadData()
     }
     
+    enum i18n {
+        static let feebackTitle = NSLocalizedString("feeback_button", comment: "")
+    }
 }

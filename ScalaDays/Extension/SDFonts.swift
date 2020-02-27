@@ -42,11 +42,12 @@ extension UIFont {
 
 extension UILabel {
 
+    @discardableResult
     func setCustomFont(_ typeFont: UIFont, colorFont: UIColor) -> UILabel {
         self.font = typeFont
         self.textColor = colorFont
         self.sizeToFit()
-        return self;
+        return self
     }
 
 }

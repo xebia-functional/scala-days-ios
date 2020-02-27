@@ -60,9 +60,10 @@ class Information: NSObject, Codable {
     let hashtag: String
     let query: String?
     let pictures: Array<Picture>
+    let feedback: String
 
 
-    init(id: Int, name: String, longName: String, nameAndLocation: String, firstDay: String, lastDay: String, normalSite: String, registrationSite: String, utcTimezoneOffset: String, utcTimezoneOffsetMillis: Float, hashtag: String, query: String?, pictures: Array<Picture>) {
+    init(id: Int, name: String, longName: String, nameAndLocation: String, firstDay: String, lastDay: String, normalSite: String, registrationSite: String, utcTimezoneOffset: String, utcTimezoneOffsetMillis: Float, hashtag: String, query: String?, pictures: Array<Picture>, feedback: String) {
         self.id = id
         self.name = name
         self.longName = longName
@@ -76,6 +77,7 @@ class Information: NSObject, Codable {
         self.hashtag = hashtag
         self.query = query
         self.pictures = pictures
+        self.feedback = feedback
     }
 }
 
