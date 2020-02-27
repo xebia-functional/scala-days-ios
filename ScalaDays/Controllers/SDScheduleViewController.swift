@@ -659,7 +659,7 @@ class SDScheduleViewController: UIViewController,
         
         if let (event, conference) = selectedEventToVote,
             let uid = UIDevice.current.identifierForVendor?.uuidString {
-            Alamofire.request(votingUrl, method:HTTPMethod.post,
+            AF.request(votingUrl, method:HTTPMethod.post,
                 parameters: votingRequestParametersForVote(voteType,
                     event: event,
                     conference: conference,

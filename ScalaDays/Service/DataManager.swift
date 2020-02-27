@@ -176,7 +176,7 @@ class DataManager {
     }
     
     private func loadData(endpoint: URL, force: Bool, callback: @escaping (Bool, NSError?) -> Void) {
-        Alamofire.request(endpoint).responseJSON { response in
+        AF.request(endpoint).responseJSON  { response in
             self.lastConnectionAttemptDate = NSDate() as Date
             
             if let conferencesData = StoringHelper.sharedInstance.loadConferenceData() {
@@ -184,22 +184,22 @@ class DataManager {
                 if let date = response.response?.allHeaderFields[lastModifiedDate] as! String? {
                     let dateJson = SDDateHandler.sharedInstance.parseServerDate(date)
                     if (dateJson == self.lastDate && !force) {
-                        callback(false, (response.result.error as NSError?))
+                        callback(false, (response.error as NSError?))
                     } else {
-                        if let error = response.result.error {
+                        if let error = response.error {
                             callback(false, error as NSError)
                         } else {
                             if let _data = response.data {
                                 self.parseAndStoreData(_data)
-                                callback(true, response.result.error as NSError?)
+                                callback(true, response.error as NSError?)
                             } else {
-                                callback(true, response.result.error as NSError?)
+                                callback(true, response.error as NSError?)
                             }
                         }
                     }
                 } else if let _data = response.data, force {
                     self.parseAndStoreData(_data)
-                    callback(true, response.result.error as NSError?)
+                    callback(true, response.error as NSError?)
                 } else {
                     // We're here if we don't have a valid internet connection but we have cached data... we just relay it to the recipient:
                     callback(false, nil)
@@ -208,12 +208,14 @@ class DataManager {
                 if let date = response.response?.allHeaderFields[lastModifiedDate] as! String? {
                     self.lastDate = SDDateHandler.sharedInstance.parseServerDate(date)
                 }
-                if let error = response.result.error {
+                if let error = response.error {
                     callback(false, error as NSError)
-                } else {
-                    let jsonData = try? JSONSerialization.data(withJSONObject: response.result.value!)
+                } else if let value = response.value,
+                          let jsonData = try? JSONSerialization.data(withJSONObject: value) {
                     self.parseAndStoreData(jsonData)
                     callback(true, nil)
+                } else {
+                    callback(false, nil)
                 }
             }
         }

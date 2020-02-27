@@ -15,7 +15,7 @@ def firebase
 end
 
 abstract_target 'ScalaDaysPods' do
-  pod 'Alamofire', :git => 'https://github.com/Alamofire/Alamofire.git', :tag => '4.5.1'
+  pod 'Alamofire', '~> 5.0'
   pod 'TwitterKit', '3.3.0'
 
   target 'ScalaDays' do
