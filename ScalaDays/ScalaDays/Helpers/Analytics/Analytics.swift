@@ -12,6 +12,8 @@ enum AnalyticEvent {
         case places = "Places"
         case about = "About"
         case menu = "Menu"
+        case votes = "Votes"
+        case webView = "Web View"
     }
 
     enum Category: String {

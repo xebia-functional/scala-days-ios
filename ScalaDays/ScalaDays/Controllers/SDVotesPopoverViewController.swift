@@ -16,20 +16,31 @@
 
 import UIKit
 
-protocol SDVotesPopoverViewControllerDelegate {
+protocol SDVotesPopoverViewControllerDelegate: class {
     func didSelectVoteValue(_ voteType: VoteType)
 }
 
 class SDVotesPopoverViewController: UIViewController, UIPopoverPresentationControllerDelegate {
-
-    var delegate: SDVotesPopoverViewControllerDelegate?
     @IBOutlet weak var lblTalkTitle: UILabel!
     
-    convenience init(delegate d: SDVotesPopoverViewControllerDelegate) {
-        self.init()
-        delegate = d
+    private let analytics: Analytics
+    weak var delegate: SDVotesPopoverViewControllerDelegate?
+    
+    init(analytics: Analytics, delegate: SDVotesPopoverViewControllerDelegate) {
+        self.analytics = analytics
+        self.delegate = delegate
+        super.init(nibName: String(describing: SDVotesPopoverViewController.self), bundle: nil)
     }
-
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        self.analytics.logScreenName(.votes, class: SDVotesPopoverViewController.self)
+    }
+    
     @IBAction func didVoteLike(_ sender: AnyObject) {
         self.sendVoteElection(VoteType.like)
     }

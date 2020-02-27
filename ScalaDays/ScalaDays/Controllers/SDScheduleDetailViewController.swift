@@ -150,7 +150,7 @@ class SDScheduleDetailViewController: UIViewController {
     }
     
     @objc func didTapOnLocationLabel() {
-        let webViewController = SDWebViewController(nibName: "SDWebViewController", bundle: nil)
+        let webViewController = SDWebViewController(analytics: self.analytics)
         self.navigationController?.pushViewController(webViewController, animated: true)
         self.title = ""
         

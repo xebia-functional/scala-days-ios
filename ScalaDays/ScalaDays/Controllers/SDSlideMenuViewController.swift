@@ -124,6 +124,8 @@ class SDSlideMenuViewController: UIViewController, UITableViewDelegate, UITableV
         self.speakersViewController = UINavigationController(rootViewController: speakersViewController)
         
         controllers = [scheduleViewController.visibleViewController!, socialViewController, contactViewController, sponsorsViewController, placesViewController, aboutViewController, speakersViewController]
+        
+        self.analytics.logScreenName(.slideMenu, class: SDSlideMenuViewController.self)
     }
     
     override func viewWillAppear(_ animated: Bool) {

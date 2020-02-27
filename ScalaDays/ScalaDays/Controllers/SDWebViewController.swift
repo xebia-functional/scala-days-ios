@@ -20,6 +20,16 @@ class SDWebViewController: UIViewController {
 
     @IBOutlet weak var webView: UIWebView!
     var url: URL?
+    private let analytics: Analytics
+    
+    init(analytics: Analytics) {
+        self.analytics = analytics
+        super.init(nibName: String(describing: SDWebViewController.self), bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,6 +37,8 @@ class SDWebViewController: UIViewController {
         if let _url = url {
             loadUrl(_url)
         }
+        
+        self.analytics.logScreenName(.webView, class: SDWebViewController.self)
     }
 
     func loadUrl(_ url: URL) {
