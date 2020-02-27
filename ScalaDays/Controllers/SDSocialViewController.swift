@@ -66,7 +66,7 @@ class SDSocialViewController: UIViewController, UITableViewDelegate, UITableView
         errorPlaceholderView.delegate = self
         self.view.addSubview(errorPlaceholderView)
 
-        self.analytics.logScreenName(.social, class: SDSocialViewController.self)
+        analytics.logScreenName(.social, class: SDSocialViewController.self)
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -180,7 +180,7 @@ class SDSocialViewController: UIViewController, UITableViewDelegate, UITableView
                     }
                 }
 
-                self.analytics.logEvent(screenName: .speakers, category: .navigate, action: .goToUser)
+                analytics.logEvent(screenName: .speakers, category: .navigate, action: .goToUser)
             }
         }
     }
@@ -238,9 +238,9 @@ class SDSocialViewController: UIViewController, UITableViewDelegate, UITableView
         socialHandler.showTweetComposer(withTweetText: hashtag, on: self) { composerResult in
             switch(composerResult) {
             case .cancelled:
-                self.analytics.logEvent(screenName: .social, category: .navigate, action: .cancelTweet)
+                analytics.logEvent(screenName: .social, category: .navigate, action: .cancelTweet)
             case .done:
-                self.analytics.logEvent(screenName: .social, category: .navigate, action: .postTweet)
+                analytics.logEvent(screenName: .social, category: .navigate, action: .postTweet)
             }
         }
     }

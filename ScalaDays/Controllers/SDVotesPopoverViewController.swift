@@ -38,7 +38,7 @@ class SDVotesPopoverViewController: UIViewController, UIPopoverPresentationContr
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.analytics.logScreenName(.votes, class: SDVotesPopoverViewController.self)
+        analytics.logScreenName(.votes, class: SDVotesPopoverViewController.self)
     }
     
     @IBAction func didVoteLike(_ sender: AnyObject) {
