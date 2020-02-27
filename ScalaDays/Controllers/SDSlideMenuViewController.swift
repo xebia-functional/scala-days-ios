@@ -26,12 +26,14 @@ class SDSlideMenuViewController: UIViewController, UITableViewDelegate, UITableV
     @IBOutlet weak var heigthHeader: NSLayoutConstraint!
     @IBOutlet weak var imgHeader: UIImageView!
     @IBOutlet weak var tblConferences: UITableView!
+    
     let kConferenceReuseIdentifier = "ConferencesListCell"
     var controllers : [UIViewController]!
-    
+    private let notificationManager = NotificationManager()
     
     enum Menu: Int {
         case schedule = 0
+        case notification
         case social
         case contact
         case tickets
@@ -42,6 +44,7 @@ class SDSlideMenuViewController: UIViewController, UITableViewDelegate, UITableV
     }
     
     var menus = [NSLocalizedString("schedule", comment: "Schedule"),
+                 SDNotificationViewController.i18n.title,
                  NSLocalizedString("social", comment: "Social"),
                  NSLocalizedString("contacts", comment: "Contacts"),
                  NSLocalizedString("tickets", comment: "Tickets"),
@@ -51,6 +54,7 @@ class SDSlideMenuViewController: UIViewController, UITableViewDelegate, UITableV
                  NSLocalizedString("about", comment: "About")]
     
     var menusImage = [icon_menu_schedule,
+                      SDNotificationViewController.Image.iconNamed,
                       icon_menu_social,
                       icon_menu_contact,
                       icon_menu_ticket,
@@ -60,6 +64,7 @@ class SDSlideMenuViewController: UIViewController, UITableViewDelegate, UITableV
                       icon_menu_about]
     
     var scheduleViewController: UINavigationController!
+    var notificationViewController: UIViewController!
     var socialViewController: UIViewController!
     var contactViewController: UIViewController!
     var sponsorsViewController: UIViewController!
@@ -104,6 +109,9 @@ class SDSlideMenuViewController: UIViewController, UITableViewDelegate, UITableV
         self.tblConferences.scrollsToTop = false
         
         self.titleConference.setCustomFont(UIFont.fontHelveticaNeue(17), colorFont: UIColor.white)
+        
+        let notificatiionViewController = SDNotificationViewController(analytics: analytics, manager: notificationManager)
+        self.notificationViewController = UINavigationController(rootViewController: notificatiionViewController)
         
         let socialViewController = SDSocialViewController(analytics: analytics)
         self.socialViewController = UINavigationController(rootViewController: socialViewController)
@@ -240,6 +248,7 @@ class SDSlideMenuViewController: UIViewController, UITableViewDelegate, UITableV
             }
             
         case (self.tblMenu, .some(.schedule)): self.slideMenuController()?.changeMainViewController(self.scheduleViewController, close: true)
+        case (self.tblMenu, .some(.notification)): self.slideMenuController()?.changeMainViewController(self.notificationViewController, close: true)
         case (self.tblMenu, .some(.social)): self.slideMenuController()?.changeMainViewController(self.socialViewController, close: true)
         case (self.tblMenu, .some(.contact)): self.slideMenuController()?.changeMainViewController(self.contactViewController, close: true)
         case (self.tblMenu, .some(.sponsors)): self.slideMenuController()?.changeMainViewController(self.sponsorsViewController, close: true)

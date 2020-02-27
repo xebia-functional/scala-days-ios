@@ -74,6 +74,9 @@
 		59F0E2E61CA1518700BDD40E /* Vote.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59F0E2E51CA1518700BDD40E /* Vote.swift */; };
 		59F0E2E71CA15B7600BDD40E /* Vote.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59F0E2E51CA1518700BDD40E /* Vote.swift */; };
 		8B39E3402407DC9D00338921 /* conferences_2020.json in Resources */ = {isa = PBXBuildFile; fileRef = 8B39E33F2407DC9D00338921 /* conferences_2020.json */; };
+		8B39E3422408009B00338921 /* SDNotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B39E3412408009B00338921 /* SDNotificationViewController.swift */; };
+		8B39E344240800AA00338921 /* SDNotificationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8B39E343240800AA00338921 /* SDNotificationViewController.xib */; };
+		8B39E3462408010F00338921 /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B39E3452408010F00338921 /* NotificationManager.swift */; };
 		8B5818F12406DA1200587211 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8B5818F02406DA1200587211 /* GoogleService-Info.plist */; };
 		8B5818F42406F8E800587211 /* Analytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B5818F22406F8E700587211 /* Analytics.swift */; };
 		8B5818F52406F8E800587211 /* FirebaseScalaDays.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B5818F32406F8E700587211 /* FirebaseScalaDays.swift */; };
@@ -188,6 +191,9 @@
 		7DE3E72A5ED11E640A8CD7A9 /* Pods_ScalaDaysPods_ScalaDaysTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ScalaDaysPods_ScalaDaysTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		857E5518A29D51062F9155B4 /* Pods_ScalaDaysPods_ScalaDays.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ScalaDaysPods_ScalaDays.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8B39E33F2407DC9D00338921 /* conferences_2020.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = conferences_2020.json; sourceTree = "<group>"; };
+		8B39E3412408009B00338921 /* SDNotificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SDNotificationViewController.swift; sourceTree = "<group>"; };
+		8B39E343240800AA00338921 /* SDNotificationViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SDNotificationViewController.xib; sourceTree = "<group>"; };
+		8B39E3452408010F00338921 /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
 		8B5818F02406DA1200587211 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; name = "GoogleService-Info.plist"; path = "ScalaDays/External/GoogleService-Info.plist"; sourceTree = SOURCE_ROOT; };
 		8B5818F22406F8E700587211 /* Analytics.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Analytics.swift; sourceTree = "<group>"; };
 		8B5818F32406F8E700587211 /* FirebaseScalaDays.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirebaseScalaDays.swift; sourceTree = "<group>"; };
@@ -273,28 +279,30 @@
 		101B48707F372BB83194FA90 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				A1CC72091A7A71F400757B65 /* SDScheduleViewController.swift */,
-				A1CC720A1A7A71F400757B65 /* SDScheduleViewController.xib */,
-				A1CC720D1A7A722C00757B65 /* SDSocialViewController.swift */,
-				A1CC720E1A7A722C00757B65 /* SDSocialViewController.xib */,
-				A1CC72131A7A727F00757B65 /* SDSlideMenuViewController.swift */,
-				A1CC72141A7A727F00757B65 /* SDSlideMenuViewController.xib */,
-				A1FA1FDE1A7AA2FA00338AF0 /* SDSponsorViewController.swift */,
-				A1FA1FDF1A7AA2FA00338AF0 /* SDSponsorViewController.xib */,
-				A1FA1FE21A7AA30F00338AF0 /* SDPlacesViewController.swift */,
-				A1FA1FE31A7AA30F00338AF0 /* SDPlacesViewController.xib */,
 				A1FA1FE61A7AA33F00338AF0 /* SDAboutViewController.swift */,
 				A1FA1FE71A7AA33F00338AF0 /* SDAboutViewController.xib */,
 				A19C65C51A7FC30A00A206FC /* SDContactViewController.swift */,
 				A19C65C61A7FC30A00A206FC /* SDContactViewController.xib */,
-				590DDD691A83BAC100E4CC3F /* SDSpeakersListViewController.swift */,
-				590DDD6D1A83BAFD00E4CC3F /* SDSpeakersListViewController.xib */,
+				A1FA1FE21A7AA30F00338AF0 /* SDPlacesViewController.swift */,
+				A1FA1FE31A7AA30F00338AF0 /* SDPlacesViewController.xib */,
 				59A7DF621A936C84009F4639 /* SDScheduleDetailViewController.swift */,
 				59A7DF631A936C84009F4639 /* SDScheduleDetailViewController.xib */,
-				591DAB2A1A9B7F8D000B2D7A /* SDWebViewController.swift */,
-				591DAB2B1A9B7F8D000B2D7A /* SDWebViewController.xib */,
+				A1CC72091A7A71F400757B65 /* SDScheduleViewController.swift */,
+				A1CC720A1A7A71F400757B65 /* SDScheduleViewController.xib */,
+				A1CC72131A7A727F00757B65 /* SDSlideMenuViewController.swift */,
+				A1CC72141A7A727F00757B65 /* SDSlideMenuViewController.xib */,
+				A1CC720D1A7A722C00757B65 /* SDSocialViewController.swift */,
+				A1CC720E1A7A722C00757B65 /* SDSocialViewController.xib */,
+				590DDD691A83BAC100E4CC3F /* SDSpeakersListViewController.swift */,
+				590DDD6D1A83BAFD00E4CC3F /* SDSpeakersListViewController.xib */,
+				A1FA1FDE1A7AA2FA00338AF0 /* SDSponsorViewController.swift */,
+				A1FA1FDF1A7AA2FA00338AF0 /* SDSponsorViewController.xib */,
 				59ACD78B1CA28E4800863C52 /* SDVotesPopoverViewController.swift */,
 				59ACD78C1CA28E4800863C52 /* SDVotesPopoverViewController.xib */,
+				591DAB2A1A9B7F8D000B2D7A /* SDWebViewController.swift */,
+				591DAB2B1A9B7F8D000B2D7A /* SDWebViewController.xib */,
+				8B39E3412408009B00338921 /* SDNotificationViewController.swift */,
+				8B39E343240800AA00338921 /* SDNotificationViewController.xib */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -440,6 +448,7 @@
 			children = (
 				8BF8205C2407C46D00C1C24E /* Response */,
 				597E3B0F1AB2E5FD00F41F17 /* DataManager.swift */,
+				8B39E3452408010F00338921 /* NotificationManager.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -683,6 +692,7 @@
 				590DDD6E1A83BAFD00E4CC3F /* SDSpeakersListViewController.xib in Resources */,
 				591DAB2D1A9B7F8D000B2D7A /* SDWebViewController.xib in Resources */,
 				A1FA1FE51A7AA30F00338AF0 /* SDPlacesViewController.xib in Resources */,
+				8B39E344240800AA00338921 /* SDNotificationViewController.xib in Resources */,
 				1EA75E8C1A925BFF00884EC8 /* SDConferenceTableViewCell.xib in Resources */,
 				8B5818F12406DA1200587211 /* GoogleService-Info.plist in Resources */,
 				A1FA1FD41A7A9DA200338AF0 /* Localizable.strings in Resources */,
@@ -890,6 +900,7 @@
 				59ACD78D1CA28E4800863C52 /* SDVotesPopoverViewController.swift in Sources */,
 				592978091A82141400EE3BA3 /* SDSocialHandler.swift in Sources */,
 				A1FA1FEE1A7B91D100338AF0 /* SDScheduleViewController.swift in Sources */,
+				8B39E3422408009B00338921 /* SDNotificationViewController.swift in Sources */,
 				8B5818F52406F8E800587211 /* FirebaseScalaDays.swift in Sources */,
 				A1FA1FEF1A7B91D100338AF0 /* SDSocialViewController.swift in Sources */,
 				591DAB2C1A9B7F8D000B2D7A /* SDWebViewController.swift in Sources */,
@@ -917,6 +928,7 @@
 				A1FA1FE41A7AA30F00338AF0 /* SDPlacesViewController.swift in Sources */,
 				592978031A82106D00EE3BA3 /* SDSocialTableViewCell.swift in Sources */,
 				597E3B101AB2E5FD00F41F17 /* DataManager.swift in Sources */,
+				8B39E3462408010F00338921 /* NotificationManager.swift in Sources */,
 				A19C65C71A7FC30A00A206FC /* SDContactViewController.swift in Sources */,
 				59F0E2E61CA1518700BDD40E /* Vote.swift in Sources */,
 			);
