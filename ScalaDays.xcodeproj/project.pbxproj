@@ -80,6 +80,8 @@
 		8B5818F12406DA1200587211 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8B5818F02406DA1200587211 /* GoogleService-Info.plist */; };
 		8B5818F42406F8E800587211 /* Analytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B5818F22406F8E700587211 /* Analytics.swift */; };
 		8B5818F52406F8E800587211 /* FirebaseScalaDays.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B5818F32406F8E700587211 /* FirebaseScalaDays.swift */; };
+		8BC4E37C2408117300AAA7CE /* SDNotifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BC4E37B2408117300AAA7CE /* SDNotifications.swift */; };
+		8BC4E37E240814E700AAA7CE /* DateFormatter+Decoders.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BC4E37D240814E700AAA7CE /* DateFormatter+Decoders.swift */; };
 		A13B434520AC773A00F78759 /* SDExternalKeys.plist in Resources */ = {isa = PBXBuildFile; fileRef = A13B434420AC773A00F78759 /* SDExternalKeys.plist */; };
 		A171433E1A88F6880068FD33 /* SDConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1FA1FF81A7BA95500338AF0 /* SDConstants.swift */; };
 		A171433F1A88F7730068FD33 /* SDDateHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 590DDD761A83C5E800E4CC3F /* SDDateHandler.swift */; };
@@ -197,6 +199,8 @@
 		8B5818F02406DA1200587211 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; name = "GoogleService-Info.plist"; path = "ScalaDays/External/GoogleService-Info.plist"; sourceTree = SOURCE_ROOT; };
 		8B5818F22406F8E700587211 /* Analytics.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Analytics.swift; sourceTree = "<group>"; };
 		8B5818F32406F8E700587211 /* FirebaseScalaDays.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirebaseScalaDays.swift; sourceTree = "<group>"; };
+		8BC4E37B2408117300AAA7CE /* SDNotifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SDNotifications.swift; sourceTree = "<group>"; };
+		8BC4E37D240814E700AAA7CE /* DateFormatter+Decoders.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DateFormatter+Decoders.swift"; sourceTree = "<group>"; };
 		9A5C79BA0AC4A59C8B4E657E /* Pods-ScalaDaysPods-ScalaDays.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ScalaDaysPods-ScalaDays.release.xcconfig"; path = "Pods/Target Support Files/Pods-ScalaDaysPods-ScalaDays/Pods-ScalaDaysPods-ScalaDays.release.xcconfig"; sourceTree = "<group>"; };
 		A13B434420AC773A00F78759 /* SDExternalKeys.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = SDExternalKeys.plist; path = ScalaDays/External/SDExternalKeys.plist; sourceTree = SOURCE_ROOT; };
 		A1551FB2207AD44A006BCE7A /* SwiftyJSON.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftyJSON.framework; path = "../../../../Library/Developer/Xcode/DerivedData/ScalaDays-cyovomhipwvxwdfjkdvbgvnlrjym/Build/Products/Debug-iphonesimulator/SwiftyJSON/SwiftyJSON.framework"; sourceTree = "<group>"; };
@@ -437,8 +441,10 @@
 			children = (
 				597E3B051AB2E58A00F41F17 /* Conference.swift */,
 				597E3B061AB2E58A00F41F17 /* SDMapAnnotation.swift */,
+				8BC4E37B2408117300AAA7CE /* SDNotifications.swift */,
 				597E3B071AB2E58A00F41F17 /* SDTweet.swift */,
 				59F0E2E51CA1518700BDD40E /* Vote.swift */,
+				8BC4E37F240814F400AAA7CE /* Extensions */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -484,6 +490,14 @@
 				7DE3E72A5ED11E640A8CD7A9 /* Pods_ScalaDaysPods_ScalaDaysTests.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		8BC4E37F240814F400AAA7CE /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				8BC4E37D240814E700AAA7CE /* DateFormatter+Decoders.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 		8BF8205C2407C46D00C1C24E /* Response */ = {
@@ -902,6 +916,7 @@
 				A1FA1FEE1A7B91D100338AF0 /* SDScheduleViewController.swift in Sources */,
 				8B39E3422408009B00338921 /* SDNotificationViewController.swift in Sources */,
 				8B5818F52406F8E800587211 /* FirebaseScalaDays.swift in Sources */,
+				8BC4E37E240814E700AAA7CE /* DateFormatter+Decoders.swift in Sources */,
 				A1FA1FEF1A7B91D100338AF0 /* SDSocialViewController.swift in Sources */,
 				591DAB2C1A9B7F8D000B2D7A /* SDWebViewController.swift in Sources */,
 				A1FA1FED1A7B919900338AF0 /* SlideMenuController.swift in Sources */,
@@ -922,6 +937,7 @@
 				A1FA1FE01A7AA2FA00338AF0 /* SDSponsorViewController.swift in Sources */,
 				5928D1751A88A9FA00E5049E /* SDContactCreationHelper.m in Sources */,
 				593571E91A77DDA8005AA332 /* StoringHelper.swift in Sources */,
+				8BC4E37C2408117300AAA7CE /* SDNotifications.swift in Sources */,
 				592978061A8210B800EE3BA3 /* SDImageView-Circular.swift in Sources */,
 				59A7DF641A936C84009F4639 /* SDScheduleDetailViewController.swift in Sources */,
 				A1D795CD1A68267F009CCEB3 /* AppDelegate.swift in Sources */,

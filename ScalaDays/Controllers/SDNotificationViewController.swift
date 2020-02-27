@@ -6,7 +6,6 @@ class SDNotificationViewController: UIViewController {
     @IBOutlet weak var loadingView: UIView!
     @IBOutlet weak var emptyMessage: UILabel!
     
-    
     private let analytics: Analytics
     private let manager: NotificationManager
     private var state: NotificationViewState = .loading { didSet { reloadView() }}
@@ -51,8 +50,19 @@ class SDNotificationViewController: UIViewController {
         case .loading:
             emptyView.isHidden = true
             loadingView.isHidden = false
-        default:
+            loadNotifications()
+        case .notifications(let notifications):
             fatalError()
+        }
+    }
+    
+    private func loadNotifications() {
+        guard let conference = DataManager.sharedInstance.currentlySelectedConference else {
+            state = .empty; return
+        }
+        
+        manager.notifications(conference: conference) { result in
+            let b = 0
         }
     }
 
