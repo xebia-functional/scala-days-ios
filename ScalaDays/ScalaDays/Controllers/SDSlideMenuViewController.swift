@@ -125,7 +125,7 @@ class SDSlideMenuViewController: UIViewController, UITableViewDelegate, UITableV
         
         controllers = [scheduleViewController.visibleViewController!, socialViewController, contactViewController, sponsorsViewController, placesViewController, aboutViewController, speakersViewController]
         
-        self.analytics.logScreenName(.slideMenu, class: SDSlideMenuViewController.self)
+        analytics.logScreenName(.slideMenu, class: SDSlideMenuViewController.self)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -236,7 +236,7 @@ class SDSlideMenuViewController: UIViewController, UITableViewDelegate, UITableV
             self.slideMenuController()?.closeLeft()
             
             if let selectedConference = DataManager.sharedInstance.conferences?.conferences[indexPath.row] {
-                self.analytics.logEvent(screenName: .slideMenu, category: .navigate, action: .menuChangeConference, label: selectedConference.info.name)
+                analytics.logEvent(screenName: .slideMenu, category: .navigate, action: .menuChangeConference, label: selectedConference.info.name)
             }
             
         case (self.tblMenu, .some(.schedule)): self.slideMenuController()?.changeMainViewController(self.scheduleViewController, close: true)
@@ -248,8 +248,8 @@ class SDSlideMenuViewController: UIViewController, UITableViewDelegate, UITableV
         case (self.tblMenu, .some(.speakers)): self.slideMenuController()?.changeMainViewController(self.speakersViewController, close: true)
         case (self.tblMenu, .some(.tickets)):
             if let registration = self.infoSelected?.registrationSite, let url = URL(string: registration) {
-                self.analytics.logEvent(screenName: .slideMenu, category: .navigate, action: .goToTicket)
-                _ = launchSafariToUrl(url)
+                analytics.logEvent(screenName: .slideMenu, category: .navigate, action: .goToTicket)
+                launchSafariToUrl(url)
             }
         default: break
         }

@@ -38,7 +38,7 @@ class SDWebViewController: UIViewController {
             loadUrl(_url)
         }
         
-        self.analytics.logScreenName(.webView, class: SDWebViewController.self)
+        analytics.logScreenName(.webView, class: SDWebViewController.self)
     }
 
     func loadUrl(_ url: URL) {

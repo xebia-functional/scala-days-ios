@@ -53,7 +53,7 @@ class SDAboutViewController: UIViewController, SDErrorPlaceholderViewDelegate, S
         
         loadData()
         
-        self.analytics.logScreenName(.about, class: SDAboutViewController.self)
+        analytics.logScreenName(.about, class: SDAboutViewController.self)
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -103,8 +103,8 @@ class SDAboutViewController: UIViewController, SDErrorPlaceholderViewDelegate, S
     @IBAction func didTapOn47Logo(_ sender: AnyObject) {
         guard let url = URL(string: url47Website) else { return }
         
-        self.analytics.logEvent(screenName: .about, category: .navigate, action: .goToSite)
-        _ = launchSafariToUrl(url)
+        analytics.logEvent(screenName: .about, category: .navigate, action: .goToSite)
+        launchSafariToUrl(url)
     }
     
     // MARK: SDErrorPlaceholderViewDelegate protocol implementation

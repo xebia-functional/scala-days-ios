@@ -108,7 +108,7 @@ class SDSpeakerDetailView: UIView {
                     }
                 }
                 
-                self.analytics.logEvent(screenName: .speakers, category: .navigate, action: .goToUser)
+                analytics.logEvent(screenName: .speakers, category: .navigate, action: .goToUser)
             }
         }
     }

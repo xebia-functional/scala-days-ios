@@ -119,7 +119,7 @@ class SDScheduleDetailViewController: UIViewController {
                 }
             }
             
-            self.analytics.logScreenName(.schedule, class: SDScheduleDetailViewController.self)
+            analytics.logScreenName(.schedule, class: SDScheduleDetailViewController.self)
         }
     }
     
@@ -127,11 +127,11 @@ class SDScheduleDetailViewController: UIViewController {
         if DataManager.sharedInstance.isFavoriteEvent(event, selectedConference: selectedConference) {
             DataManager.sharedInstance.storeOrRemoveFavoriteEvent(true, event: event, selectedConference: selectedConference)
             barButtonFavorites.tintColor = UIColor.white
-            self.analytics.logEvent(screenName: .schedule, category: .favorites, action: .removeToFavorite, label: event?.title ?? "event-no-title")
+            analytics.logEvent(screenName: .schedule, category: .favorites, action: .removeToFavorite, label: event?.title ?? "event-no-title")
         } else {
             DataManager.sharedInstance.storeOrRemoveFavoriteEvent(false, event: event, selectedConference: selectedConference)
             barButtonFavorites.tintColor = UIColor.appRedColor()
-            self.analytics.logEvent(screenName: .schedule, category: .favorites, action: .addToFavorite, label: event?.title ?? "event-no-title")
+            analytics.logEvent(screenName: .schedule, category: .favorites, action: .addToFavorite, label: event?.title ?? "event-no-title")
         }
     }
     
@@ -150,7 +150,7 @@ class SDScheduleDetailViewController: UIViewController {
     }
     
     @objc func didTapOnLocationLabel() {
-        let webViewController = SDWebViewController(analytics: self.analytics)
+        let webViewController = SDWebViewController(analytics: analytics)
         self.navigationController?.pushViewController(webViewController, animated: true)
         self.title = ""
         

@@ -154,7 +154,7 @@ class SDScheduleViewController: UIViewController,
         refreshControl.addTarget(self, action: #selector(SDScheduleViewController.didPullToRefresh), for: UIControl.Event.valueChanged)
         tblSchedule.addSubview(refreshControl)
         
-        self.analytics.logScreenName(.schedule, class: SDScheduleViewController.self)
+        analytics.logScreenName(.schedule, class: SDScheduleViewController.self)
         
         self.btnSendVote.layer.borderWidth = CGFloat(kVotingButtonsBorderWidth)
         self.btnSendVote.layer.borderColor = UIColor.grayButtonBorder().cgColor
@@ -317,14 +317,14 @@ class SDScheduleViewController: UIViewController,
     // MARK: - UITableViewDelegate
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let scheduleDetailViewController = SDScheduleDetailViewController(analytics: self.analytics)
+        let scheduleDetailViewController = SDScheduleDetailViewController(analytics: analytics)
         if let events = eventsToShow {
             let event: Event = events[indexPath.section][indexPath.row]
             if (event.type == SDScheduleEventType.keynotes.rawValue || event.type == SDScheduleEventType.courses.rawValue) {
                 self.title = ""
                 scheduleDetailViewController.event = event
                 self.navigationController?.pushViewController(scheduleDetailViewController, animated: true)
-                self.analytics.logEvent(screenName: .schedule, category: .navigate, action: .goToDetail, label: event.title)
+                analytics.logEvent(screenName: .schedule, category: .navigate, action: .goToDetail, label: event.title)
             }
         }
         tableView.deselectRow(at: indexPath, animated: true)
@@ -485,12 +485,12 @@ class SDScheduleViewController: UIViewController,
             } else {
                 selectedDataSource = filter
                 tblSchedule.reloadData()
-                self.analytics.logEvent(screenName: .schedule, category: .filter, action: .filterFavorites)
+                analytics.logEvent(screenName: .schedule, category: .filter, action: .filterFavorites)
             }
         } else {
             selectedDataSource = filter
             tblSchedule.reloadData()
-            self.analytics.logEvent(screenName: .schedule, category: .filter, action: .filterAll)
+            analytics.logEvent(screenName: .schedule, category: .filter, action: .filterAll)
         }
     }
 
@@ -593,7 +593,7 @@ class SDScheduleViewController: UIViewController,
             txtViewVoteComments.attributedText = placeholderTextForComments()
         }
         
-        self.analytics.logEvent(screenName: .schedule, category: .vote, action: .showVotingDialog)
+        analytics.logEvent(screenName: .schedule, category: .vote, action: .showVotingDialog)
     }
     
     func enableVotingIconForVoteType(_ voteType: VoteType) {
@@ -700,7 +700,7 @@ class SDScheduleViewController: UIViewController,
             }
             selectedEventToVote = nil
             
-            self.analytics.logEvent(screenName: .schedule, category: .vote, action: .sendVote)
+            analytics.logEvent(screenName: .schedule, category: .vote, action: .sendVote)
         }
     }
     
