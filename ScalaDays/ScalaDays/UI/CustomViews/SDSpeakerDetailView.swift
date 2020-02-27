@@ -20,7 +20,8 @@ class SDSpeakerDetailView: UIView {
 
     let customConstraints: NSMutableArray = NSMutableArray()
     let tapTwitter = UITapGestureRecognizer()
-
+    private let analytics: Analytics
+    
     var containerView: UIView!
     @IBOutlet weak var imgView: UIImageView!
     @IBOutlet weak var lblName: UILabel!
@@ -34,14 +35,14 @@ class SDSpeakerDetailView: UIView {
     let kPaddingForSeparator: CGFloat = 15.0
     let selectorTwitter: Selector = #selector(SDSpeakerDetailView.onTwitter)
 
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-        commonInit()
-    }
-
-    override init(frame: CGRect) {
+    init(frame: CGRect, analytics: Analytics) {
+        self.analytics = analytics
         super.init(frame: frame)
         commonInit()
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError()
     }
 
     func commonInit() {
@@ -86,7 +87,7 @@ class SDSpeakerDetailView: UIView {
     }
 
     func contentHeight() -> CGFloat {
-        return lblDescription.frame.origin.y + lblDescription.systemLayoutSizeFitting(UILayoutFittingCompressedSize).height + kBottomPadding
+        return lblDescription.frame.origin.y + lblDescription.systemLayoutSizeFitting(UIView.layoutFittingCompressedSize).height + kBottomPadding
     }
 
     func drawSeparator() {
@@ -103,10 +104,11 @@ class SDSpeakerDetailView: UIView {
                 let result = launchSafariToUrl(urlApp)
                 if !result {
                     if let url = SDSocialHandler.urlForTwitterAccount(twitterAccount) {
-                        launchSafariToUrl(url)
+                        _ = launchSafariToUrl(url)
                     }
                 }
-                SDGoogleAnalyticsHandler.sendGoogleAnalyticsTrackingWithScreenName(kGAScreenNameSpeakers, category: kGACategoryNavigate, action: kGAActionSpeakersGoToUser, label: nil)
+                
+                analytics.logEvent(screenName: .speakers, category: .navigate, action: .goToUser)
             }
         }
     }

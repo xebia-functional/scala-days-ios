@@ -71,6 +71,17 @@ class SDSlideMenuViewController: UIViewController, UITableViewDelegate, UITableV
     
     var currentConferences: Conferences?
     
+    private let analytics: Analytics
+    
+    init(analytics: Analytics) {
+        self.analytics = analytics
+        super.init(nibName: String(describing: SDSlideMenuViewController.self), bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -94,25 +105,27 @@ class SDSlideMenuViewController: UIViewController, UITableViewDelegate, UITableV
         
         self.titleConference.setCustomFont(UIFont.fontHelveticaNeue(17), colorFont: UIColor.white)
         
-        let socialViewController = SDSocialViewController(nibName: "SDSocialViewController", bundle: nil)
+        let socialViewController = SDSocialViewController(analytics: analytics)
         self.socialViewController = UINavigationController(rootViewController: socialViewController)
         
-        let contactViewController = SDContactViewController(nibName: "SDContactViewController", bundle: nil)
+        let contactViewController = SDContactViewController(analytics: analytics)
         self.contactViewController = UINavigationController(rootViewController: contactViewController)
         
-        let sponsorsViewController = SDSponsorViewController(nibName: "SDSponsorViewController", bundle: nil)
+        let sponsorsViewController = SDSponsorViewController(analytics: analytics)
         self.sponsorsViewController = UINavigationController(rootViewController: sponsorsViewController)
         
-        let placesViewController = SDPlacesViewController(nibName: "SDPlacesViewController", bundle: nil)
+        let placesViewController = SDPlacesViewController(analytics: analytics)
         self.placesViewController = UINavigationController(rootViewController: placesViewController)
         
-        let aboutViewController = SDAboutViewController(nibName: "SDAboutViewController", bundle: nil)
+        let aboutViewController = SDAboutViewController(analytics: analytics)
         self.aboutViewController = UINavigationController(rootViewController: aboutViewController)
         
-        let speakersViewController = SDSpeakersListViewController(nibName: "SDSpeakersListViewController", bundle: nil)
+        let speakersViewController = SDSpeakersListViewController(analytics: analytics)
         self.speakersViewController = UINavigationController(rootViewController: speakersViewController)
         
         controllers = [scheduleViewController.visibleViewController!, socialViewController, contactViewController, sponsorsViewController, placesViewController, aboutViewController, speakersViewController]
+        
+        analytics.logScreenName(.slideMenu, class: SDSlideMenuViewController.self)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -176,11 +189,11 @@ class SDSlideMenuViewController: UIViewController, UITableViewDelegate, UITableV
             switch cell {
             case let(.some(cell)): return configureConferenceCell(cell, indexPath: indexPath)
             default:
-                let cell = SDConferenceTableViewCell(style: UITableViewCellStyle.default, reuseIdentifier: kConferenceReuseIdentifier)
+                let cell = SDConferenceTableViewCell(style: UITableViewCell.CellStyle.default, reuseIdentifier: kConferenceReuseIdentifier)
                 return configureConferenceCell(cell, indexPath: indexPath)
             }
         default :
-            let cell: UITableViewCell = UITableViewCell(style: UITableViewCellStyle.default, reuseIdentifier: "CellMenu")
+            let cell: UITableViewCell = UITableViewCell(style: UITableViewCell.CellStyle.default, reuseIdentifier: "CellMenu")
             cell.textLabel?.setCustomFont(UIFont.fontHelveticaNeue(15), colorFont: UIColor(white: 1, alpha: 0.8))
             cell.backgroundColor = UIColor.appColor()
             let bgColorView = UIView()
@@ -216,14 +229,14 @@ class SDSlideMenuViewController: UIViewController, UITableViewDelegate, UITableV
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         switch (tableView, Menu(rawValue: indexPath.item)) {
         case (self.tblConferences, _) :
-            DataManager.sharedInstance.selectedConferenceIndex = indexPath.row
+            DataManager.sharedInstance.selectConference(at: indexPath.row)
             drawSelectedConference()
             toggleTblConference()
             askControllersToReload()
             self.slideMenuController()?.closeLeft()
             
             if let selectedConference = DataManager.sharedInstance.conferences?.conferences[indexPath.row] {
-                SDGoogleAnalyticsHandler.sendGoogleAnalyticsTrackingWithScreenName(nil, category: kGACategoryNavigate, action: kGAActionMenuChangeConference, label: selectedConference.info.name)
+                analytics.logEvent(screenName: .slideMenu, category: .navigate, action: .menuChangeConference, label: selectedConference.info.name)
             }
             
         case (self.tblMenu, .some(.schedule)): self.slideMenuController()?.changeMainViewController(self.scheduleViewController, close: true)
@@ -234,9 +247,9 @@ class SDSlideMenuViewController: UIViewController, UITableViewDelegate, UITableV
         case (self.tblMenu, .some(.about)): self.slideMenuController()?.changeMainViewController(self.aboutViewController, close: true)
         case (self.tblMenu, .some(.speakers)): self.slideMenuController()?.changeMainViewController(self.speakersViewController, close: true)
         case (self.tblMenu, .some(.tickets)):
-            if let registration = self.infoSelected?.registrationSite {
-                SDGoogleAnalyticsHandler.sendGoogleAnalyticsTrackingWithScreenName(nil, category: kGACategoryNavigate, action: kGAActionTicketsGoToTicket, label: nil)
-                launchSafariToUrl(URL(string: registration)!)
+            if let registration = self.infoSelected?.registrationSite, let url = URL(string: registration) {
+                analytics.logEvent(screenName: .slideMenu, category: .navigate, action: .goToTicket)
+                launchSafariToUrl(url)
             }
         default: break
         }

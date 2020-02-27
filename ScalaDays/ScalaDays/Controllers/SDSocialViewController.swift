@@ -17,7 +17,7 @@
 import UIKit
 import SVProgressHUD
 
-class SDSocialViewController: GAITrackedViewController, UITableViewDelegate, UITableViewDataSource, SDErrorPlaceholderViewDelegate, SDMenuControllerItem {
+class SDSocialViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, SDErrorPlaceholderViewDelegate, SDMenuControllerItem {
 
     @IBOutlet weak var tblView: UITableView!
     @IBOutlet weak var viewError: UIView!
@@ -35,6 +35,17 @@ class SDSocialViewController: GAITrackedViewController, UITableViewDelegate, UIT
     var query: String?
     var isDataLoaded: Bool = false
 
+    private let analytics: Analytics
+    
+    init(analytics: Analytics) {
+        self.analytics = analytics
+        super.init(nibName: String(describing: SDSocialViewController.self), bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -49,13 +60,13 @@ class SDSocialViewController: GAITrackedViewController, UITableViewDelegate, UIT
         if isIOS8OrLater() {
             tblView?.estimatedRowHeight = kEstimatedDynamicCellsRowHeightHigh
         }
-        refreshControl.addTarget(self, action: #selector(SDSocialViewController.didActivateRefresh), for: UIControlEvents.valueChanged)
+        refreshControl.addTarget(self, action: #selector(SDSocialViewController.didActivateRefresh), for: UIControl.Event.valueChanged)
 
         errorPlaceholderView = SDErrorPlaceholderView(frame: screenBounds)
         errorPlaceholderView.delegate = self
         self.view.addSubview(errorPlaceholderView)
 
-        self.screenName = kGAScreenNameSocial
+        analytics.logScreenName(.social, class: SDSocialViewController.self)
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -168,17 +179,18 @@ class SDSocialViewController: GAITrackedViewController, UITableViewDelegate, UIT
                         launchSafariToUrl(url)
                     }
                 }
-                SDGoogleAnalyticsHandler.sendGoogleAnalyticsTrackingWithScreenName(kGAScreenNameSpeakers, category: kGACategoryNavigate, action: kGAActionSpeakersGoToUser, label: nil)
+
+                analytics.logEvent(screenName: .speakers, category: .navigate, action: .goToUser)
             }
         }
     }
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if (isIOS8OrLater()) {
-            return UITableViewAutomaticDimension
+            return UITableView.automaticDimension
         }
         let cell = self.tableView(tableView, cellForRowAt: indexPath) as! SDSocialTableViewCell
-        return cell.contentView.systemLayoutSizeFitting(UILayoutFittingCompressedSize).height
+        return cell.contentView.systemLayoutSizeFitting(UIView.layoutFittingCompressedSize).height
     }
 
     // MARK: UITableViewDataSource protocol implementation
@@ -193,7 +205,7 @@ class SDSocialViewController: GAITrackedViewController, UITableViewDelegate, UIT
         case let (.some(cell)):
             return configureCell(cell, indexPath: indexPath)
         default:
-            let cell = SDSocialTableViewCell(style: UITableViewCellStyle.default, reuseIdentifier: kReuseIdentifier)
+            let cell = SDSocialTableViewCell(style: UITableViewCell.CellStyle.default, reuseIdentifier: kReuseIdentifier)
             return configureCell(cell, indexPath: indexPath)
         }
     }
@@ -225,9 +237,10 @@ class SDSocialViewController: GAITrackedViewController, UITableViewDelegate, UIT
     @objc func didTapCreateTweetButton() {
         socialHandler.showTweetComposer(withTweetText: hashtag, on: self) { composerResult in
             switch(composerResult) {
-            case .cancelled: break
+            case .cancelled:
+                analytics.logEvent(screenName: .social, category: .navigate, action: .cancelTweet)
             case .done:
-                SDGoogleAnalyticsHandler.sendGoogleAnalyticsTrackingWithScreenName(kGAScreenNameSocial, category: kGACategoryNavigate, action: kGAActionSocialPostTweet, label: nil)
+                analytics.logEvent(screenName: .social, category: .navigate, action: .postTweet)
             }
         }
     }

@@ -17,7 +17,7 @@
 import UIKit
 import SVProgressHUD
 
-class SDSpeakersListViewController: GAITrackedViewController, UITableViewDelegate, UITableViewDataSource, SDErrorPlaceholderViewDelegate, SDMenuControllerItem {
+class SDSpeakersListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, SDErrorPlaceholderViewDelegate, SDMenuControllerItem {
     
     @IBOutlet weak var tblView: UITableView!
     var errorPlaceholderView : SDErrorPlaceholderView!
@@ -25,6 +25,16 @@ class SDSpeakersListViewController: GAITrackedViewController, UITableViewDelegat
     
     var speakers : Array<Speaker>?
     let kReuseIdentifier = "SpeakersListCell"
+    private let analytics: Analytics
+    
+    init(analytics: Analytics) {
+        self.analytics = analytics
+        super.init(nibName: String(describing: SDSpeakersListViewController.self), bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,7 +52,7 @@ class SDSpeakersListViewController: GAITrackedViewController, UITableViewDelegat
         errorPlaceholderView.delegate = self
         self.view.addSubview(errorPlaceholderView)
         
-        self.screenName = kGAScreenNameSpeakers
+        analytics.logScreenName(.speakers, class: SDSpeakersListViewController.self)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -100,7 +110,8 @@ class SDSpeakersListViewController: GAITrackedViewController, UITableViewDelegat
                                 launchSafariToUrl(url)
                             }
                         }
-                        SDGoogleAnalyticsHandler.sendGoogleAnalyticsTrackingWithScreenName(kGAScreenNameSpeakers, category: kGACategoryNavigate, action: kGAActionSpeakersGoToUser, label: nil)
+
+                        analytics.logEvent(screenName: .speakers, category: .navigate, action: .goToUser)
                     }
                 }
             }
@@ -109,10 +120,10 @@ class SDSpeakersListViewController: GAITrackedViewController, UITableViewDelegat
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if (isIOS8OrLater()) {
-            return UITableViewAutomaticDimension
+            return UITableView.automaticDimension
         }
         let cell = self.tableView(tableView, cellForRowAt: indexPath) as! SDSpeakersTableViewCell
-        return cell.contentView.systemLayoutSizeFitting(UILayoutFittingCompressedSize).height
+        return cell.contentView.systemLayoutSizeFitting(UIView.layoutFittingCompressedSize).height
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -128,7 +139,7 @@ class SDSpeakersListViewController: GAITrackedViewController, UITableViewDelegat
         case let(.some(cell)):
             return configureCell(cell, indexPath: indexPath)
         default:
-            let cell = SDSpeakersTableViewCell(style: UITableViewCellStyle.default, reuseIdentifier: kReuseIdentifier)
+            let cell = SDSpeakersTableViewCell(style: UITableViewCell.CellStyle.default, reuseIdentifier: kReuseIdentifier)
             return configureCell(cell, indexPath: indexPath)
         }
     }

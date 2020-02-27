@@ -18,7 +18,7 @@ import UIKit
 import MapKit
 import SVProgressHUD
 
-class SDPlacesViewController: GAITrackedViewController, MKMapViewDelegate, SDErrorPlaceholderViewDelegate, SDMenuControllerItem {
+class SDPlacesViewController: UIViewController, MKMapViewDelegate, SDErrorPlaceholderViewDelegate, SDMenuControllerItem {
 
     @IBOutlet weak var mapPlaces: MKMapView!
     var selectedConference : Conference?
@@ -29,6 +29,16 @@ class SDPlacesViewController: GAITrackedViewController, MKMapViewDelegate, SDErr
     
     var errorPlaceholderView : SDErrorPlaceholderView!
     var isDataLoaded = false
+    private let analytics: Analytics
+    
+    init(analytics: Analytics) {
+        self.analytics = analytics
+        super.init(nibName: String(describing: SDPlacesViewController.self), bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,7 +52,7 @@ class SDPlacesViewController: GAITrackedViewController, MKMapViewDelegate, SDErr
         
         mapPlaces.delegate = self
         
-        self.screenName = kGAScreenNamePlaces
+        analytics.logScreenName(.places, class: SDPlacesViewController.self)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -125,13 +135,13 @@ class SDPlacesViewController: GAITrackedViewController, MKMapViewDelegate, SDErr
             // it matches this situation: http://stackoverflow.com/questions/25194944/why-accessing-a-class-instance-member-gives-an-exc-bad-access-xcode-beta-5
             // So while this is fixed in a future XCode version, we have to access the venue's location and address from the conference object in a more cumbersome way:
             if let annotations = self.mapPlaces.annotations as? [SDMapAnnotation] {
-                if let indexOfVenue = annotations.index(of: annotation) {
+                if let indexOfVenue = annotations.firstIndex(of: annotation) {
                     if let conference = selectedConference {
                         if conference.venues.count > indexOfVenue {
                             let venue = conference.venues[indexOfVenue]
                             let urlString = "http://maps.apple.com/?ll=\(venue.latitude),\(venue.longitude)&daddr=\(venue.address.removeWhitespace().addingPercentEncoding(withAllowedCharacters: .urlHostAllowed))"
                             if let mapUrl = URL(string: urlString) {
-                                SDGoogleAnalyticsHandler.sendGoogleAnalyticsTrackingWithScreenName(kGAScreenNamePlaces, category: kGACategoryNavigate, action: kGAActionPlacesGoToMap, label: venue.name)
+                                analytics.logEvent(screenName: .places, category: .navigate, action: .goToMap, label: venue.name)
                                 launchSafariToUrl(mapUrl)
                             }
                         }

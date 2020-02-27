@@ -96,7 +96,7 @@ class SlideMenuController: UIViewController, UIGestureRecognizerDelegate {
     func initView() {
         mainContainerView = UIView(frame: view.bounds)
         mainContainerView.backgroundColor = UIColor.clear
-        mainContainerView.autoresizingMask = [UIViewAutoresizing.flexibleHeight, UIViewAutoresizing.flexibleWidth]
+        mainContainerView.autoresizingMask = [UIView.AutoresizingMask.flexibleHeight, UIView.AutoresizingMask.flexibleWidth]
         view.insertSubview(mainContainerView, at: 0)
 
         var opacityframe: CGRect = view.bounds
@@ -105,7 +105,7 @@ class SlideMenuController: UIViewController, UIGestureRecognizerDelegate {
         opacityframe.size.height = opacityframe.size.height - opacityOffset
         opacityView = UIView(frame: opacityframe)
         opacityView.backgroundColor = UIColor.black
-        opacityView.autoresizingMask = [UIViewAutoresizing.flexibleHeight, UIViewAutoresizing.flexibleWidth]
+        opacityView.autoresizingMask = [UIView.AutoresizingMask.flexibleHeight, UIView.AutoresizingMask.flexibleWidth]
         opacityView.layer.opacity = 0.0
         view.insertSubview(opacityView, at: 1)
         
@@ -117,7 +117,7 @@ class SlideMenuController: UIViewController, UIGestureRecognizerDelegate {
         leftFrame.size.height = leftFrame.size.height - leftOffset
         leftContainerView = UIView(frame: leftFrame)
         leftContainerView.backgroundColor = UIColor.clear
-        leftContainerView.autoresizingMask = UIViewAutoresizing.flexibleHeight
+        leftContainerView.autoresizingMask = UIView.AutoresizingMask.flexibleHeight
         view.insertSubview(leftContainerView, at: 2)
         
         var rightFrame: CGRect = view.bounds
@@ -128,7 +128,7 @@ class SlideMenuController: UIViewController, UIGestureRecognizerDelegate {
         rightFrame.size.height = rightFrame.size.height - rightOffset
         rightContainerView = UIView(frame: rightFrame)
         rightContainerView.backgroundColor = UIColor.clear
-        rightContainerView.autoresizingMask = UIViewAutoresizing.flexibleHeight
+        rightContainerView.autoresizingMask = UIView.AutoresizingMask.flexibleHeight
         view.insertSubview(rightContainerView, at: 3)
         
         addLeftGestures()
@@ -405,7 +405,7 @@ class SlideMenuController: UIViewController, UIGestureRecognizerDelegate {
         
         addShadowToView(leftContainerView)
         
-        UIView.animate(withDuration: duration, delay: 0.0, options: UIViewAnimationOptions(), animations: { [weak self]() -> Void in
+        UIView.animate(withDuration: duration, delay: 0.0, options: UIView.AnimationOptions(), animations: { [weak self]() -> Void in
             if let strongSelf = self {
                 strongSelf.leftContainerView.frame = frame
                 strongSelf.opacityView.layer.opacity = Float(SlideMenuOptions.contentViewOpacity)
@@ -436,7 +436,7 @@ class SlideMenuController: UIViewController, UIGestureRecognizerDelegate {
     
         addShadowToView(rightContainerView)
     
-        UIView.animate(withDuration: duration, delay: 0.0, options: UIViewAnimationOptions(), animations: { [weak self]() -> Void in
+        UIView.animate(withDuration: duration, delay: 0.0, options: UIView.AnimationOptions(), animations: { [weak self]() -> Void in
             if let strongSelf = self {
                 strongSelf.rightContainerView.frame = frame
                 strongSelf.opacityView.layer.opacity = Float(SlideMenuOptions.contentViewOpacity)
@@ -464,7 +464,7 @@ class SlideMenuController: UIViewController, UIGestureRecognizerDelegate {
             duration = Double(fmax(0.1, fmin(1.0, duration)))
         }
         
-        UIView.animate(withDuration: duration, delay: 0.0, options: UIViewAnimationOptions(), animations: { [weak self]() -> Void in
+        UIView.animate(withDuration: duration, delay: 0.0, options: UIView.AnimationOptions(), animations: { [weak self]() -> Void in
             if let strongSelf = self {
                 strongSelf.leftContainerView.frame = frame
                 strongSelf.opacityView.layer.opacity = 0.0
@@ -494,7 +494,7 @@ class SlideMenuController: UIViewController, UIGestureRecognizerDelegate {
             duration = Double(fmax(0.1, fmin(1.0, duration)))
         }
     
-        UIView.animate(withDuration: duration, delay: 0.0, options: UIViewAnimationOptions(), animations: { [weak self]() -> Void in
+        UIView.animate(withDuration: duration, delay: 0.0, options: UIView.AnimationOptions(), animations: { [weak self]() -> Void in
             if let strongSelf = self {
                 strongSelf.rightContainerView.frame = frame
                 strongSelf.opacityView.layer.opacity = 0.0
@@ -747,7 +747,7 @@ class SlideMenuController: UIViewController, UIGestureRecognizerDelegate {
         if (SlideMenuOptions.hideStatusBar) {
             DispatchQueue.main.async(execute: {
                 if let window = UIApplication.shared.keyWindow {
-                    window.windowLevel = UIWindowLevelStatusBar + 1
+                    window.windowLevel = UIWindow.Level.statusBar + 1
                 }
             })
         }
@@ -757,7 +757,7 @@ class SlideMenuController: UIViewController, UIGestureRecognizerDelegate {
         if (SlideMenuOptions.hideStatusBar) {
             DispatchQueue.main.async(execute: {
                 if let window = UIApplication.shared.keyWindow {
-                    window.windowLevel = UIWindowLevelNormal
+                    window.windowLevel = UIWindow.Level.normal
                 }
             })
         }
@@ -765,19 +765,19 @@ class SlideMenuController: UIViewController, UIGestureRecognizerDelegate {
     
     fileprivate func setUpViewController(_ targetView: UIView, targetViewController: UIViewController?) {
         if let viewController = targetViewController {
-            addChildViewController(viewController)
+            addChild(viewController)
             viewController.view.frame = targetView.bounds
             targetView.addSubview(viewController.view)
-            viewController.didMove(toParentViewController: self)
+            viewController.didMove(toParent: self)
         }
     }
     
     
     fileprivate func removeViewController(_ viewController: UIViewController?) {
         if let _viewController = viewController {
-            _viewController.willMove(toParentViewController: nil)
+            _viewController.willMove(toParent: nil)
             _viewController.view.removeFromSuperview()
-            _viewController.removeFromParentViewController()
+            _viewController.removeFromParent()
         }
     }
     
@@ -877,12 +877,12 @@ extension UIViewController {
     }
     
     func addLeftBarButtonWithImage(_ buttonImage: UIImage) {
-        let leftButton: UIBarButtonItem = UIBarButtonItem(image: buttonImage, style: UIBarButtonItemStyle.bordered, target: self, action: #selector(UIViewController.toggleLeft))
+        let leftButton: UIBarButtonItem = UIBarButtonItem(image: buttonImage, style: UIBarButtonItem.Style.bordered, target: self, action: #selector(UIViewController.toggleLeft))
         navigationItem.leftBarButtonItem = leftButton;
     }
     
     func addRightBarButtonWithImage(_ buttonImage: UIImage) {
-        let rightButton: UIBarButtonItem = UIBarButtonItem(image: buttonImage, style: UIBarButtonItemStyle.bordered, target: self, action: #selector(UIViewController.toggleRight))
+        let rightButton: UIBarButtonItem = UIBarButtonItem(image: buttonImage, style: UIBarButtonItem.Style.bordered, target: self, action: #selector(UIViewController.toggleRight))
         navigationItem.rightBarButtonItem = rightButton;
     }
     

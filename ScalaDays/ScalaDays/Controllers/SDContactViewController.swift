@@ -19,7 +19,7 @@ import MobileCoreServices
 import AddressBook
 import ZBarSDK
 
-class SDContactViewController: GAITrackedViewController,
+class SDContactViewController: UIViewController,
                                 ZBarReaderDelegate,
                                 UINavigationControllerDelegate,
                                 UIImagePickerControllerDelegate,
@@ -35,13 +35,24 @@ class SDContactViewController: GAITrackedViewController,
     @IBOutlet weak var imgIcon: UIImageView!
     @IBOutlet weak var constraintForImgTopSpace: NSLayoutConstraint!
     
+    private let analytics: Analytics
+    
+    init(analytics: Analytics) {
+        self.analytics = analytics
+        super.init(nibName: String(describing: SDContactViewController.self), bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setNavigationBarItem()
         self.title = NSLocalizedString("contacts", comment: "Contact")
         drawRegularFeedback()
         
-        self.screenName = kGAScreenNameContact
+        analytics.logScreenName(.contact, class: SDContactViewController.self)
     }
 
     // MARK: - QR Code scanning logic
@@ -57,8 +68,7 @@ class SDContactViewController: GAITrackedViewController,
         scannerVC.cameraOverlayView = scannerVCOverlayView
         
         self.present(scannerVC, animated: true, completion: nil)
-        
-        SDGoogleAnalyticsHandler.sendGoogleAnalyticsTrackingWithScreenName(kGAScreenNameContact, category: nil, action: kGAActionContactScanContact, label: nil)
+        analytics.logEvent(screenName: .contact, category: .navigate, action: .scanContact)
     }
     
     func readerControllerDidFail(toRead reader: ZBarReaderController!, withRetry retry: Bool) {

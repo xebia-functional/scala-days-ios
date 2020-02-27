@@ -19,7 +19,6 @@ import SVProgressHUD
 
 import UserNotifications
 import Localytics
-import Crashlytics
 import TwitterKit
 
 @UIApplicationMain
@@ -27,8 +26,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
     var menuViewController: SDSlideMenuViewController!
-
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+    private var analytics: FirebaseScalaDays!
+    
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         setupThirdParties(application: application, launchOptions: launchOptions)
         initAppearence()
         createMenuView()
@@ -38,8 +38,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     // MARK: setup
     private func createMenuView() {
-        let scheduleViewController = SDScheduleViewController(nibName: "SDScheduleViewController", bundle: nil)
-        menuViewController = SDSlideMenuViewController(nibName: "SDSlideMenuViewController", bundle: nil)
+        let scheduleViewController = SDScheduleViewController(analytics: analytics)
+        menuViewController = SDSlideMenuViewController(analytics: analytics)
         let nvc: UINavigationController = UINavigationController(rootViewController: scheduleViewController)
 
         menuViewController.scheduleViewController = nvc
@@ -56,7 +56,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     private func initAppearence() {
         UINavigationBar.appearance().barTintColor = UIColor.appColor()
         UINavigationBar.appearance().tintColor = UIColor.white
-        UINavigationBar.appearance().titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.white]
+        UINavigationBar.appearance().titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
         UINavigationBar.appearance().backIndicatorImage = UIImage(named: "navigation_bar_icon_arrow")
         UINavigationBar.appearance().backIndicatorTransitionMaskImage = UIImage(named: "navigation_bar_icon_arrow")
         SVProgressHUD.setBackgroundColor(UIColor.clear)
@@ -91,7 +91,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     // MARK: deep link
-    func application(_ application: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey:Any] = [:]) -> Bool {
+    func application(_ application: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey:Any] = [:]) -> Bool {
+        Localytics.handleTestModeURL(url)
         return TWTRTwitter.sharedInstance().application(application, open: url, options: options)
     }
 }
@@ -114,11 +115,7 @@ extension AppDelegate {
 
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable: Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
         defer {
-            if #available(iOS 10.0, *) {
-                Localytics.handleNotificationReceived(userInfo)
-            } else {
-                Localytics.handleNotification(userInfo)
-            }
+            Localytics.handleNotificationReceived(userInfo)
             completionHandler(.noData)
         }
 
@@ -128,19 +125,10 @@ extension AppDelegate {
         DataManager.sharedInstance.lastConnectionAttemptDate = nil
         self.menuViewController.askControllersToReload()
     }
-
-    func application(_ application: UIApplication, didReceive notification: UILocalNotification) {
-        guard let userInfo = notification.userInfo else { return }
-        
-        if #available(iOS 10.0, *) {
-            Localytics.handleNotificationReceived(userInfo)
-        } else {
-            Localytics.handleNotification(userInfo)
-        }
-    }
-
-    func application(_ application: UIApplication, didRegister notificationSettings: UIUserNotificationSettings) {
-        Localytics.didRegisterUserNotificationSettings()
+    
+    func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
+        Localytics.didReceiveNotificationResponse(userInfo: response.notification.request.content.userInfo)
+        completionHandler()
     }
 }
 
@@ -148,41 +136,23 @@ extension AppDelegate {
 extension AppDelegate {
     private static var externalKeys = AppDelegate.loadExternalKeys()
 
-    private func setupThirdParties(application: UIApplication, launchOptions: [UIApplicationLaunchOptionsKey: Any]?) {
+    private func setupThirdParties(application: UIApplication, launchOptions: [UIApplication.LaunchOptionsKey: Any]?) {
         localyticsPushNotifications(application: application, launchOptions: launchOptions)
         localytics(application: application, launchOptions: launchOptions)
-        googleAnalytics(application: application)
-        crashlytics(application: application)
+        firebase(application: application)
         twitter(application: application)
     }
 
-    private func localyticsPushNotifications(application: UIApplication, launchOptions: [UIApplicationLaunchOptionsKey: Any]?) {
-        if #available(iOS 12.0, *), objc_getClass("UNUserNotificationCenter") != nil {
-            let options: UNAuthorizationOptions = [.provisional]
-            UNUserNotificationCenter.current().requestAuthorization(options: options) { (granted, error) in
-                Localytics.didRequestUserNotificationAuthorization(withOptions: options.rawValue, granted: granted)
-            }
-            application.registerForRemoteNotifications()
+    private func localyticsPushNotifications(application: UIApplication, launchOptions: [UIApplication.LaunchOptionsKey: Any]?) {
+        let options: UNAuthorizationOptions = [.alert, .badge, .sound]
+        UNUserNotificationCenter.current().requestAuthorization(options: options) { (granted, error) in
+            Localytics.didRequestUserNotificationAuthorization(withOptions: options.rawValue, granted: granted)
         }
-        else if #available(iOS 10.0, *), objc_getClass("UNUserNotificationCenter") != nil {
-            let options: UNAuthorizationOptions = [.alert, .badge, .sound]
-            UNUserNotificationCenter.current().requestAuthorization(options: options) { (granted, error) in
-                Localytics.didRequestUserNotificationAuthorization(withOptions: options.rawValue, granted: granted)
-            }
-            application.registerForRemoteNotifications()
-        }
-        else {
-            let types: UIUserNotificationType = [.alert, .badge, .sound]
-            let settings = UIUserNotificationSettings(types: types, categories: nil)
-            application.registerUserNotificationSettings(settings)
-        }
-
-        if let notificationInfo = launchOptions?[UIApplicationLaunchOptionsKey.localNotification] as? [AnyHashable: Any] {
-            Localytics.handleNotification(notificationInfo)
-        }
+        
+        application.registerForRemoteNotifications()
     }
 
-    private func localytics(application: UIApplication, launchOptions: [UIApplicationLaunchOptionsKey: Any]?) {
+    private func localytics(application: UIApplication, launchOptions: [UIApplication.LaunchOptionsKey: Any]?) {
         guard let localyticsKey = AppDelegate.externalKeys.localyticsKey else { return }
 
         Localytics.autoIntegrate(localyticsKey, withLocalyticsOptions:[
@@ -199,14 +169,8 @@ extension AppDelegate {
         }
     }
 
-    private func googleAnalytics(application: UIApplication) {
-        guard let googleAnalyticsKey = AppDelegate.externalKeys.googleAnalyticsKey else { return }
-        GAI.sharedInstance().tracker(withTrackingId: googleAnalyticsKey)
-    }
-
-    private func crashlytics(application: UIApplication) {
-        guard let crashlyticsKey = AppDelegate.externalKeys.crashlyticsKey else { return }
-        Crashlytics.start(withAPIKey: crashlyticsKey)
+    private func firebase(application: UIApplication) {
+        self.analytics = FirebaseScalaDays()
     }
 
     private func twitter(application: UIApplication) {
@@ -220,13 +184,11 @@ extension AppDelegate {
 // MARK: helpers
 // <configuration>
 extension AppDelegate {
-    class func loadExternalKeys() -> (googleAnalyticsKey: String?, crashlyticsKey: String?, localyticsKey: String?, twitterConsumerKey: String?, twitterConsumerSecret: String?) {
+    class func loadExternalKeys() -> (localyticsKey: String?, twitterConsumerKey: String?, twitterConsumerSecret: String?) {
         guard let path = Bundle.main.path(forResource: kExternalKeysPlistFilename, ofType: "plist"),
-              let keysDict = NSDictionary(contentsOfFile: path) else { return (nil, nil, nil, nil, nil) }
+              let keysDict = NSDictionary(contentsOfFile: path) else { return (nil, nil, nil) }
 
-        return (keysDict[kExternalKeysDKGoogleAnalytics] as? String,
-                keysDict[kExternalKeysDKCrashlytics] as? String,
-                keysDict[kExternalKeysDKLocalytics] as? String,
+        return (keysDict[kExternalKeysDKLocalytics] as? String,
                 keysDict[kExternalKeysDKTwitterConsumerKey] as? String,
                 keysDict[kExternalKeysDKTwitterConsumerSecret] as? String)
     }

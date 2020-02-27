@@ -35,7 +35,7 @@ enum SDScheduleEventType: Int {
     case others = 3
 }
 
-class SDScheduleViewController: GAITrackedViewController,
+class SDScheduleViewController: UIViewController,
     UITableViewDelegate,
     UITableViewDataSource,
     UIActionSheetDelegate,
@@ -106,13 +106,24 @@ class SDScheduleViewController: GAITrackedViewController,
                 (UIColor.enabledSendVoteButtonColor(), true) :
                 (UIColor.disabledButtonColor(), false)
             btnSendVote.isEnabled = enabled
-            btnSendVote.setTitleColor(color, for: UIControlState())
+            btnSendVote.setTitleColor(color, for: UIControl.State())
         }
     }
     var isDataLoaded : Bool = false
     var selectedEventToVote: (eventId: Int, conferenceId: Int)?
     let refreshControl = UIRefreshControl()
 
+    private let analytics: Analytics
+    
+    init(analytics: Analytics) {
+        self.analytics = analytics
+        super.init(nibName: String(describing: SDScheduleViewController.self), bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         self.title = NSLocalizedString("schedule", comment: "Schedule")
         if isDataLoaded {
@@ -140,10 +151,10 @@ class SDScheduleViewController: GAITrackedViewController,
         errorPlaceholderView.delegate = self
         self.view.addSubview(errorPlaceholderView)
         
-        refreshControl.addTarget(self, action: #selector(SDScheduleViewController.didPullToRefresh), for: UIControlEvents.valueChanged)
+        refreshControl.addTarget(self, action: #selector(SDScheduleViewController.didPullToRefresh), for: UIControl.Event.valueChanged)
         tblSchedule.addSubview(refreshControl)
         
-        self.screenName = kGAScreenNameSchedule
+        analytics.logScreenName(.schedule, class: SDScheduleViewController.self)
         
         self.btnSendVote.layer.borderWidth = CGFloat(kVotingButtonsBorderWidth)
         self.btnSendVote.layer.borderColor = UIColor.grayButtonBorder().cgColor
@@ -153,11 +164,11 @@ class SDScheduleViewController: GAITrackedViewController,
         
         NotificationCenter.default.addObserver(self,
             selector: #selector(SDScheduleViewController.keyboardWillShow(_:)),
-            name: NSNotification.Name.UIKeyboardWillShow,
+            name: UIResponder.keyboardWillShowNotification,
             object: nil)
         NotificationCenter.default.addObserver(self,
             selector: #selector(SDScheduleViewController.keyboardWillHide(_:)),
-            name: NSNotification.Name.UIKeyboardWillHide,
+            name: UIResponder.keyboardWillHideNotification,
             object: nil)
 
     }
@@ -274,7 +285,7 @@ class SDScheduleViewController: GAITrackedViewController,
         case let (.some(cell)):
             return configureCell(cell, indexPath: indexPath)
         default:
-            let cell = SDScheduleListTableViewCell(style: UITableViewCellStyle.default, reuseIdentifier: kReuseIdentifier)
+            let cell = SDScheduleListTableViewCell(style: UITableViewCell.CellStyle.default, reuseIdentifier: kReuseIdentifier)
             return configureCell(cell, indexPath: indexPath)
         }
     }
@@ -306,14 +317,14 @@ class SDScheduleViewController: GAITrackedViewController,
     // MARK: - UITableViewDelegate
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let scheduleDetailViewController = SDScheduleDetailViewController(nibName: "SDScheduleDetailViewController", bundle: nil)
+        let scheduleDetailViewController = SDScheduleDetailViewController(analytics: analytics)
         if let events = eventsToShow {
             let event: Event = events[indexPath.section][indexPath.row]
             if (event.type == SDScheduleEventType.keynotes.rawValue || event.type == SDScheduleEventType.courses.rawValue) {
                 self.title = ""
                 scheduleDetailViewController.event = event
                 self.navigationController?.pushViewController(scheduleDetailViewController, animated: true)
-                SDGoogleAnalyticsHandler.sendGoogleAnalyticsTrackingWithScreenName(kGAScreenNameSchedule, category: kGACategoryNavigate, action: kGAActionScheduleGoToDetail, label: event.title)
+                analytics.logEvent(screenName: .schedule, category: .navigate, action: .goToDetail, label: event.title)
             }
         }
         tableView.deselectRow(at: indexPath, animated: true)
@@ -321,10 +332,10 @@ class SDScheduleViewController: GAITrackedViewController,
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if (isIOS8OrLater()) {
-            return UITableViewAutomaticDimension
+            return UITableView.automaticDimension
         }
         let cell = self.tableView(tableView, cellForRowAt: indexPath) as! SDScheduleListTableViewCell
-        return cell.contentView.systemLayoutSizeFitting(UILayoutFittingCompressedSize).height
+        return cell.contentView.systemLayoutSizeFitting(UIView.layoutFittingCompressedSize).height
     }
 
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
@@ -474,12 +485,12 @@ class SDScheduleViewController: GAITrackedViewController,
             } else {
                 selectedDataSource = filter
                 tblSchedule.reloadData()
-                SDGoogleAnalyticsHandler.sendGoogleAnalyticsTrackingWithScreenName(kGAScreenNameSchedule, category: kGACategoryFilter, action: kGAActionScheduleFilterFavorites, label: nil)
+                analytics.logEvent(screenName: .schedule, category: .filter, action: .filterFavorites)
             }
         } else {
             selectedDataSource = filter
             tblSchedule.reloadData()
-            SDGoogleAnalyticsHandler.sendGoogleAnalyticsTrackingWithScreenName(kGAScreenNameSchedule, category: kGACategoryFilter, action: kGAActionScheduleFilterAll, label: nil)
+            analytics.logEvent(screenName: .schedule, category: .filter, action: .filterAll)
         }
     }
 
@@ -520,7 +531,7 @@ class SDScheduleViewController: GAITrackedViewController,
         let clock = viewClock()
         if clock.result {
             let indexPath = IndexPath(row: clock.indexRow, section: clock.indexSection)
-            tblSchedule.scrollToRow(at: indexPath, at: UITableViewScrollPosition.top, animated: true)
+            tblSchedule.scrollToRow(at: indexPath, at: UITableView.ScrollPosition.top, animated: true)
         }
     }
     
@@ -582,10 +593,7 @@ class SDScheduleViewController: GAITrackedViewController,
             txtViewVoteComments.attributedText = placeholderTextForComments()
         }
         
-        SDGoogleAnalyticsHandler.sendGoogleAnalyticsTrackingWithScreenName(kGAScreenNameSchedule,
-            category: kGACategoryVote,
-            action: kGAActionShowVotingDialog,
-            label: nil)
+        analytics.logEvent(screenName: .schedule, category: .vote, action: .showVotingDialog)
     }
     
     func enableVotingIconForVoteType(_ voteType: VoteType) {
@@ -604,7 +612,7 @@ class SDScheduleViewController: GAITrackedViewController,
     }
     
     func setVotingIconToButton(_ btn: UIButton, iconName: String) {
-        btn.setImage(UIImage(named: iconName), for: UIControlState())
+        btn.setImage(UIImage(named: iconName), for: UIControl.State())
     }
     
     func disableVoteIcons() {
@@ -691,10 +699,8 @@ class SDScheduleViewController: GAITrackedViewController,
                     })
             }
             selectedEventToVote = nil
-            SDGoogleAnalyticsHandler.sendGoogleAnalyticsTrackingWithScreenName(kGAScreenNameSchedule,
-                category: kGACategoryVote,
-                action: kGAActionSendVote,
-                label: nil)
+            
+            analytics.logEvent(screenName: .schedule, category: .vote, action: .sendVote)
         }
     }
     
@@ -702,8 +708,8 @@ class SDScheduleViewController: GAITrackedViewController,
     
     @objc func keyboardWillShow(_ notification: Notification) {
         if let notificationInfo = notification.userInfo,
-            let keyboardFrame = (notificationInfo[UIKeyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue,
-            let animationDuration = (notificationInfo[UIKeyboardAnimationDurationUserInfoKey] as? TimeInterval) {
+            let keyboardFrame = (notificationInfo[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue,
+            let animationDuration = (notificationInfo[UIResponder.keyboardAnimationDurationUserInfoKey] as? TimeInterval) {
             setVerticalPositionForVotingPopoverWithKeyboardHeight(keyboardFrame.size.height,
                 kbAnimationDuration: animationDuration)
         }
@@ -711,7 +717,7 @@ class SDScheduleViewController: GAITrackedViewController,
     
     @objc func keyboardWillHide(_ notification: Notification) {
         if let notificationInfo = notification.userInfo,
-            let animationDuration = (notificationInfo[UIKeyboardAnimationDurationUserInfoKey] as? TimeInterval) {
+            let animationDuration = (notificationInfo[UIResponder.keyboardAnimationDurationUserInfoKey] as? TimeInterval) {
                 UIView.animate(withDuration: animationDuration, animations: { () -> Void in
                     self.constraintForVotingPopoverTopSpace.constant = CGFloat(self.kVotePopoverDefaultTopPosition)
                 })
@@ -767,12 +773,12 @@ class SDScheduleViewController: GAITrackedViewController,
     
     func placeholderTextForComments() -> NSAttributedString {
         let placeholderString = NSLocalizedString("schedule_vote_comments_placeholder", comment: "")
-        return NSAttributedString(string: placeholderString, attributes: [NSAttributedStringKey.font: UIFont.fontHelveticaNeueItalic(kVotePlaceholderFontSize), NSAttributedStringKey.foregroundColor: UIColor.grayCommentsPlaceholder()])
+        return NSAttributedString(string: placeholderString, attributes: [NSAttributedString.Key.font: UIFont.fontHelveticaNeueItalic(kVotePlaceholderFontSize), NSAttributedString.Key.foregroundColor: UIColor.grayCommentsPlaceholder()])
     }
     
     func attributedStringForComment(_ comment: String) -> NSAttributedString {
-        return NSAttributedString(string: comment, attributes: [NSAttributedStringKey.font: UIFont.fontHelveticaNeueLight(kVotePlaceholderFontSize),
-            NSAttributedStringKey.foregroundColor: UIColor.blackForCommentsNormalText()])
+        return NSAttributedString(string: comment, attributes: [NSAttributedString.Key.font: UIFont.fontHelveticaNeueLight(kVotePlaceholderFontSize),
+            NSAttributedString.Key.foregroundColor: UIColor.blackForCommentsNormalText()])
     }
     
     func currentVotingComments() -> String? {

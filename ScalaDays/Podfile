@@ -1,24 +1,25 @@
 source 'https://github.com/CocoaPods/Specs.git'
-# Target OS Version
-platform :ios, '9.0'
-
-# Inhibit warnings from dependencies
-inhibit_all_warnings!
+platform :ios, 10.0
 use_frameworks!
+use_modular_headers!
+inhibit_all_warnings!
+
+def firebase
+  pod 'Firebase/Analytics'
+  pod 'Firebase/Crashlytics'
+  pod 'Firebase/Performance'
+
+  # Pods for PodTest
+  pod 'Fabric', '~> 1.10.2'
+  pod 'Crashlytics', '~> 3.14.0'
+end
 
 abstract_target 'ScalaDaysPods' do
-  # Alamofire
   pod 'Alamofire', :git => 'https://github.com/Alamofire/Alamofire.git', :tag => '4.5.1'
-
-  # Twitter
   pod 'TwitterKit', '3.3.0'
 
   target 'ScalaDays' do
-    # Google Analytics
-    pod 'GoogleAnalytics'
-
-    # Crashlytics
-    pod 'Crashlytics', '3.10.1'
+    firebase
 
     # UI
     pod 'SDWebImage', '~> 3.5'
@@ -32,7 +33,7 @@ abstract_target 'ScalaDaysPods' do
     pod 'NSDate+TimeAgo', '~> 1.0.2'
 
     # Push notifications
-    pod 'Localytics', '~> 5.5'
+    pod 'Localytics', '~> 5.8'
   end
 
   target 'ScalaDaysTests' do

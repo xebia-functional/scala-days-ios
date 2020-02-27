@@ -18,13 +18,13 @@ import Foundation
 import UIKit
 import Alamofire
 
-
-let JsonURL = "http://scala-days-2015.s3.amazonaws.com/conferences_2016.json"
-
 private let _DataManagerSharedInstance = DataManager()
 
 class DataManager {
 
+    private let endpoint = ""
+    private let mockDataURL: URL? = URL(fileURLWithPath: Bundle.main.path(forResource: "conferences_2020", ofType: "json")!)
+    
     @objc var conferences: Conferences?
 
     var lastDate: Date? {
@@ -82,7 +82,7 @@ class DataManager {
                 if favoritedEvents.contains(currentEvent.id) {
                     if shouldRemove {
                         var temp = favoritedEvents
-                        temp.remove(at: favoritedEvents.index(of: currentEvent.id)!)
+                        temp.remove(at: favoritedEvents.firstIndex(of: currentEvent.id)!)
                         DataManager.sharedInstance.favoritedEvents![conference.info.id] = temp
                     }
                 } else {
@@ -104,7 +104,7 @@ class DataManager {
         }
     }
 
-    var selectedConferenceIndex = 0
+    private(set) var selectedConferenceIndex = 0
 
     var currentlySelectedConference: Conference? {
         get {
@@ -116,6 +116,7 @@ class DataManager {
             return nil
         }
     }
+    
 
     class var sharedInstance: DataManager {
 
@@ -140,51 +141,11 @@ class DataManager {
             }
         }
         
-        if forceConnection || shouldReconnect || self.conferences == nil {
-            Alamofire.request(JsonURL).responseJSON {
-                response in
-                
-                self.lastConnectionAttemptDate = NSDate() as Date
-                
-                if let conferencesData = StoringHelper.sharedInstance.loadConferenceData() {
-                    self.conferences = conferencesData
-                    if let date = response.response?.allHeaderFields[lastModifiedDate] as! String? {
-                        let dateJson = SDDateHandler.sharedInstance.parseServerDate(date)
-                        if (dateJson == self.lastDate && !forceConnection) {
-                            callback(false, (response.result.error as NSError?))
-                        } else {
-                            if let error = response.result.error {
-                                print("Error: \(error)")
-                                print(response.request)
-                                print(response.response)
-                                callback(false, error as NSError)
-                            } else {
-                                if let _data = response.data {
-                                    self.parseAndStoreData(_data)
-                                    callback(true, response.result.error as NSError?)
-                                } else {
-                                    callback(true, response.result.error as NSError?)
-                                }                                
-                            }
-                        }
-                    } else {
-                        // We're here if we don't have a valid internet connection but we have cached data... we just relay it to the recipient:
-                        callback(false, nil)
-                    }
-                } else {
-                    if let date = response.response?.allHeaderFields[lastModifiedDate] as! String? {
-                        self.lastDate = SDDateHandler.sharedInstance.parseServerDate(date)
-                    }
-                    if let error = response.result.error {
-                        NSLog("Error: \(error)")
-                        print(response.request)
-                        print(response.response)
-                        callback(false, error as NSError)
-                    } else {
-                        let jsonData = try? JSONSerialization.data(withJSONObject: response.result.value!)
-                        self.parseAndStoreData(jsonData)
-                        callback(true, nil)
-                    }
+        if forceConnection || shouldReconnect || self.conferences == nil || self.mockDataURL != nil {
+            getEndpoint { result in
+                switch result {
+                case .success(let url): self.loadData(endpoint: url, force: forceConnection || self.mockDataURL != nil, callback: callback)
+                case .failure(let e): callback(false, e)
                 }
             }
         } else {
@@ -193,14 +154,69 @@ class DataManager {
     }
     
     func parseAndStoreData(_ data: Data?) {
-        guard let data = data else { return }
+        guard let data = data,
+              let conferences = try? JSONDecoder().decode(Conferences.self, from: data) else { return }
         
-        self.conferences = try! JSONDecoder().decode(Conferences.self, from: data)
-        
-        if let _conferences = self.conferences {
-            StoringHelper.sharedInstance.storeConferenceData(_conferences)
-        }
+        self.conferences = conferences
+        StoringHelper.sharedInstance.storeConferenceData(conferences)
+    }
+    
+    func selectConference(at index: Int) {
+        self.selectedConferenceIndex = index
     }
 
+    // MARK: - actions
+    private func getEndpoint(callback: @escaping (Swift.Result<URL, NSError>) -> Void) {
+        guard let mockDataURL = mockDataURL else {
+            callback(.failure(NSError.init(domain: "getEndpoint: must get data source url from REST", code: -1)))
+            return
+        }
+        
+        callback(.success(mockDataURL))
+    }
+    
+    private func loadData(endpoint: URL, force: Bool, callback: @escaping (Bool, NSError?) -> Void) {
+        Alamofire.request(endpoint).responseJSON { response in
+            self.lastConnectionAttemptDate = NSDate() as Date
+            
+            if let conferencesData = StoringHelper.sharedInstance.loadConferenceData() {
+                self.conferences = conferencesData
+                if let date = response.response?.allHeaderFields[lastModifiedDate] as! String? {
+                    let dateJson = SDDateHandler.sharedInstance.parseServerDate(date)
+                    if (dateJson == self.lastDate && !force) {
+                        callback(false, (response.result.error as NSError?))
+                    } else {
+                        if let error = response.result.error {
+                            callback(false, error as NSError)
+                        } else {
+                            if let _data = response.data {
+                                self.parseAndStoreData(_data)
+                                callback(true, response.result.error as NSError?)
+                            } else {
+                                callback(true, response.result.error as NSError?)
+                            }
+                        }
+                    }
+                } else if let _data = response.data, force {
+                    self.parseAndStoreData(_data)
+                    callback(true, response.result.error as NSError?)
+                } else {
+                    // We're here if we don't have a valid internet connection but we have cached data... we just relay it to the recipient:
+                    callback(false, nil)
+                }
+            } else {
+                if let date = response.response?.allHeaderFields[lastModifiedDate] as! String? {
+                    self.lastDate = SDDateHandler.sharedInstance.parseServerDate(date)
+                }
+                if let error = response.result.error {
+                    callback(false, error as NSError)
+                } else {
+                    let jsonData = try? JSONSerialization.data(withJSONObject: response.result.value!)
+                    self.parseAndStoreData(jsonData)
+                    callback(true, nil)
+                }
+            }
+        }
+    }
 }
 
