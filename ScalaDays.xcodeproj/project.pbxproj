@@ -79,6 +79,8 @@
 		8B27271224095F9100103EFF /* UITableView+Cells.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B27271124095F9100103EFF /* UITableView+Cells.swift */; };
 		8B27271424095FE100103EFF /* Bundle+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B27271324095FE100103EFF /* Bundle+Extension.swift */; };
 		8B2727162409621400103EFF /* ScalaDayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B2727152409621400103EFF /* ScalaDayViewController.swift */; };
+		8B2727182409696E00103EFF /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B2727172409696E00103EFF /* UserManager.swift */; };
+		8B27271A24096AA300103EFF /* UserDefaults+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B27271924096AA300103EFF /* UserDefaults+Extension.swift */; };
 		8B39E3402407DC9D00338921 /* conferences_2020.json in Resources */ = {isa = PBXBuildFile; fileRef = 8B39E33F2407DC9D00338921 /* conferences_2020.json */; };
 		8B39E3422408009B00338921 /* SDNotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B39E3412408009B00338921 /* SDNotificationViewController.swift */; };
 		8B39E344240800AA00338921 /* SDNotificationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8B39E343240800AA00338921 /* SDNotificationViewController.xib */; };
@@ -204,6 +206,8 @@
 		8B27271124095F9100103EFF /* UITableView+Cells.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Cells.swift"; sourceTree = "<group>"; };
 		8B27271324095FE100103EFF /* Bundle+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+Extension.swift"; sourceTree = "<group>"; };
 		8B2727152409621400103EFF /* ScalaDayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScalaDayViewController.swift; sourceTree = "<group>"; };
+		8B2727172409696E00103EFF /* UserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
+		8B27271924096AA300103EFF /* UserDefaults+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+Extension.swift"; sourceTree = "<group>"; };
 		8B39E33F2407DC9D00338921 /* conferences_2020.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = conferences_2020.json; sourceTree = "<group>"; };
 		8B39E3412408009B00338921 /* SDNotificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SDNotificationViewController.swift; sourceTree = "<group>"; };
 		8B39E343240800AA00338921 /* SDNotificationViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SDNotificationViewController.xib; sourceTree = "<group>"; };
@@ -289,6 +293,7 @@
 				5928D18B1A89096500E5049E /* SDView-NibLoading.swift */,
 				5925ADA01A897AAD000EA5E7 /* SDMapView-ZoomOut.swift */,
 				8B27271324095FE100103EFF /* Bundle+Extension.swift */,
+				8B27271924096AA300103EFF /* UserDefaults+Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -418,13 +423,13 @@
 		593571E61A77DD73005AA332 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
-				592609901A973C520055A3D4 /* Animation */,
+				A1FA1FF81A7BA95500338AF0 /* SDConstants.swift */,
+				593223C41A837C51009189C0 /* Alerts */,
 				59E430ED1A964BDE00185C41 /* Analytics */,
-				5920EA641A94B1FB00564014 /* Protocols */,
+				592609901A973C520055A3D4 /* Animation */,
 				5928D1721A88A9E500E5049E /* Contacts */,
 				590DDD751A83C5DE00E4CC3F /* Dates */,
-				593223C41A837C51009189C0 /* Alerts */,
-				A1FA1FF81A7BA95500338AF0 /* SDConstants.swift */,
+				5920EA641A94B1FB00564014 /* Protocols */,
 				592978071A8213FF00EE3BA3 /* Social */,
 				593571E71A77DD97005AA332 /* Storing */,
 			);
@@ -473,6 +478,7 @@
 				8BF8205C2407C46D00C1C24E /* Response */,
 				597E3B0F1AB2E5FD00F41F17 /* DataManager.swift */,
 				8B39E3452408010F00338921 /* NotificationManager.swift */,
+				8B2727172409696E00103EFF /* UserManager.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -944,12 +950,14 @@
 				592978091A82141400EE3BA3 /* SDSocialHandler.swift in Sources */,
 				A1FA1FEE1A7B91D100338AF0 /* SDScheduleViewController.swift in Sources */,
 				8B39E3422408009B00338921 /* SDNotificationViewController.swift in Sources */,
+				8B2727182409696E00103EFF /* UserManager.swift in Sources */,
 				8B5818F52406F8E800587211 /* FirebaseScalaDays.swift in Sources */,
 				8BC4E37E240814E700AAA7CE /* DateFormatter+Decoders.swift in Sources */,
 				A1FA1FEF1A7B91D100338AF0 /* SDSocialViewController.swift in Sources */,
 				8B27271224095F9100103EFF /* UITableView+Cells.swift in Sources */,
 				591DAB2C1A9B7F8D000B2D7A /* SDWebViewController.swift in Sources */,
 				A1FA1FED1A7B919900338AF0 /* SlideMenuController.swift in Sources */,
+				8B27271A24096AA300103EFF /* UserDefaults+Extension.swift in Sources */,
 				5925ADA11A897AAD000EA5E7 /* SDMapView-ZoomOut.swift in Sources */,
 				A1C8B87A1A8E6F56008599FF /* SDTableHeaderView.swift in Sources */,
 				8B27270F24095EDF00103EFF /* CellPosition.swift in Sources */,

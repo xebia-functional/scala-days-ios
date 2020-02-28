@@ -30,6 +30,7 @@ class SDSlideMenuViewController: UIViewController, UITableViewDelegate, UITableV
     let kConferenceReuseIdentifier = "ConferencesListCell"
     var controllers : [UIViewController]!
     private let notificationManager = NotificationManager()
+    private let userManager = UserManager()
     
     enum Menu: Int {
         case schedule = 0
@@ -110,7 +111,7 @@ class SDSlideMenuViewController: UIViewController, UITableViewDelegate, UITableV
         
         self.titleConference.setCustomFont(UIFont.fontHelveticaNeue(17), colorFont: UIColor.white)
         
-        let notificationViewController = SDNotificationViewController(analytics: analytics, manager: notificationManager)
+        let notificationViewController = SDNotificationViewController(analytics: analytics, userManager: userManager, notificationManager: notificationManager)
         self.notificationViewController = UINavigationController(rootViewController: notificationViewController)
         
         let socialViewController = SDSocialViewController(analytics: analytics)
@@ -316,7 +317,9 @@ class SDSlideMenuViewController: UIViewController, UITableViewDelegate, UITableV
         
         // Reload scaladay viewcontrollers
         if let conference = DataManager.sharedInstance.currentlySelectedConference {
-            controllers.compactMap { $0 as? ScalaDayViewController }.forEach { $0.updateConference(conference) }
+            DispatchQueue.main.async {
+                self.controllers.compactMap { $0 as? ScalaDayViewController }.forEach { $0.updateConference(conference) }
+            }
         }
     }
     

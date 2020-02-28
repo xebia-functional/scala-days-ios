@@ -9,13 +9,17 @@ class SDNotificationViewController: UIViewController, ScalaDayViewController {
     @IBOutlet weak var tableView: UITableView!
     
     private let analytics: Analytics
-    private let manager: NotificationManager
-    private var state: NotificationViewState = .loading { didSet { reloadView() }}
-    private var notifications: [SDNotification] = [] { didSet { tableView.reloadData() }}
+    private let userManager: UserManager
+    private let notificationManager: NotificationManager
     
-    init(analytics: Analytics, manager: NotificationManager) {
+    private var lastVisited: Date = Date(timeIntervalSince1970: 0)
+    private var state: NotificationViewState = .loading { didSet { reloadView() }}
+    private var notifications: [SDNotification] = [] { didSet { reloadData() }}
+    
+    init(analytics: Analytics, userManager: UserManager, notificationManager: NotificationManager) {
         self.analytics = analytics
-        self.manager = manager
+        self.userManager = userManager
+        self.notificationManager = notificationManager
         super.init(nibName: String(describing: SDNotificationViewController.self), bundle: nil)
     }
     
@@ -25,7 +29,9 @@ class SDNotificationViewController: UIViewController, ScalaDayViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
         reloadView()
+        reloadLastVisited()
     }
     
     override func viewDidLoad() {
@@ -33,21 +39,15 @@ class SDNotificationViewController: UIViewController, ScalaDayViewController {
 
         self.setNavigationBarItem()
         self.title = i18n.title
-        analytics.logScreenName(.notification, class: SDNotificationViewController.self)
         
         setupCells()
         setupAppareance()
+        
+        analytics.logScreenName(.notification, class: SDNotificationViewController.self)
     }
     
     func updateConference(_ conference: Conference) {
-        manager.notifications(conference: conference) { result in
-            switch result {
-            case .success(let response):
-                self.state = .notifications(response)
-            case .failure:
-                self.state = .empty
-            }
-        }
+        state = .loading
     }
     
     // MARK: appareance
@@ -90,9 +90,33 @@ class SDNotificationViewController: UIViewController, ScalaDayViewController {
             return
         }
         
-        updateConference(conference)
+        notificationManager.notifications(conference: conference) { result in
+            switch result {
+            case .success(let response):
+                self.state = .notifications(response)
+            case .failure:
+                self.state = .empty
+            }
+        }
     }
 
+    private func reloadLastVisited() {
+        guard let conference = currentConference else { return }
+        lastVisited = userManager.lastVisited(viewController: SDNotificationViewController.self, conference: conference)
+    }
+    
+    private func updateLastVisited() {
+        guard let conference = currentConference else { return }
+        userManager.updateLastVisited(viewController: SDNotificationViewController.self, conference: conference)
+    }
+    
+    private func reloadData() {
+        guard notifications.count > 0 else { return }
+        
+        updateLastVisited()
+        tableView.reloadData()
+    }
+    
     // MARK: - Constants
     enum i18n {
         static let title = NSLocalizedString("notification", comment: "Notification section")
@@ -123,7 +147,7 @@ extension SDNotificationViewController: UITableViewDataSource {
         let position: CellPosition = notifications.count == 1 ? .only : indexPath.item == 0 ? .top : indexPath.item == (notifications.count - 1) ? .bottom : .middle
         
         let cell: SDNotificationTableViewCell = tableView.dequeueCell(for: indexPath)
-        cell.draw(notification: notification, position: position)
+        cell.draw(notification: notification, lastNotificationRead: lastVisited, position: position)
         
         return cell
     }
