@@ -9,16 +9,13 @@ class SDNotificationViewController: UIViewController, ScalaDayViewController {
     @IBOutlet weak var tableView: UITableView!
     
     private let analytics: Analytics
-    private let userManager: UserManager
     private let notificationManager: NotificationManager
     
-    private var lastVisited: Date = Date(timeIntervalSince1970: 0)
     private var state: NotificationViewState = .loading { didSet { reloadView() }}
     private var notifications: [SDNotification] = [] { didSet { reloadData() }}
     
-    init(analytics: Analytics, userManager: UserManager, notificationManager: NotificationManager) {
+    init(analytics: Analytics, notificationManager: NotificationManager) {
         self.analytics = analytics
-        self.userManager = userManager
         self.notificationManager = notificationManager
         super.init(nibName: String(describing: SDNotificationViewController.self), bundle: nil)
     }
@@ -29,9 +26,7 @@ class SDNotificationViewController: UIViewController, ScalaDayViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
         reloadView()
-        reloadLastVisited()
     }
     
     override func viewDidLoad() {
@@ -99,21 +94,9 @@ class SDNotificationViewController: UIViewController, ScalaDayViewController {
             }
         }
     }
-
-    private func reloadLastVisited() {
-        guard let conference = currentConference else { return }
-        lastVisited = userManager.lastVisited(viewController: SDNotificationViewController.self, conference: conference)
-    }
-    
-    private func updateLastVisited() {
-        guard let conference = currentConference else { return }
-        userManager.updateLastVisited(viewController: SDNotificationViewController.self, conference: conference)
-    }
     
     private func reloadData() {
         guard notifications.count > 0 else { return }
-        
-        updateLastVisited()
         tableView.reloadData()
     }
     
@@ -147,7 +130,7 @@ extension SDNotificationViewController: UITableViewDataSource {
         let position: CellPosition = notifications.count == 1 ? .only : indexPath.item == 0 ? .top : indexPath.item == (notifications.count - 1) ? .bottom : .middle
         
         let cell: SDNotificationTableViewCell = tableView.dequeueCell(for: indexPath)
-        cell.draw(notification: notification, lastNotificationRead: lastVisited, position: position)
+        cell.draw(notification: notification, position: position)
         
         return cell
     }

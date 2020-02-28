@@ -30,7 +30,6 @@ class SDSlideMenuViewController: UIViewController, UITableViewDelegate, UITableV
     let kConferenceReuseIdentifier = "ConferencesListCell"
     var controllers : [UIViewController]!
     private let notificationManager = NotificationManager()
-    private let userManager = UserManager()
     
     enum Menu: Int {
         case schedule = 0
@@ -111,7 +110,7 @@ class SDSlideMenuViewController: UIViewController, UITableViewDelegate, UITableV
         
         self.titleConference.setCustomFont(UIFont.fontHelveticaNeue(17), colorFont: UIColor.white)
         
-        let notificationViewController = SDNotificationViewController(analytics: analytics, userManager: userManager, notificationManager: notificationManager)
+        let notificationViewController = SDNotificationViewController(analytics: analytics, notificationManager: notificationManager)
         self.notificationViewController = UINavigationController(rootViewController: notificationViewController)
         
         let socialViewController = SDSocialViewController(analytics: analytics)

@@ -1,11 +1,6 @@
 import UIKit
 
 class SDNotificationTableViewCell: UITableViewCell {
-    enum NotificationState {
-        case read
-        case unread
-    }
-    
     @IBOutlet weak var timelineTop: UIView!
     @IBOutlet weak var timelineMiddle: UIView!
     @IBOutlet weak var timelineBotton: UIView!
@@ -18,14 +13,12 @@ class SDNotificationTableViewCell: UITableViewCell {
     @IBOutlet weak var message: UILabel!
     
     private var position: CellPosition = .only { didSet { updateTimelineView() }}
-    private var state: NotificationState = .unread { didSet { updateBulletView() }}
         
-    func draw(notification: SDNotification, lastNotificationRead: Date, position: CellPosition) {
+    func draw(notification: SDNotification, position: CellPosition) {
         setupStyle()
+        updateBulletState(isPending: Date() < notification.date)
         
         self.position = position
-        self.state = lastNotificationRead < notification.date ? .unread : .read
-        
         self.time.text = time(date: notification.date)
         self.date.text = day(date: notification.date)
         self.title.text = notification.title
@@ -41,11 +34,11 @@ class SDNotificationTableViewCell: UITableViewCell {
         date.textColor = UIColor.appRedColor()
     }
     
-    private func updateBulletView() {
+    private func updateBulletState(isPending: Bool) {
         bullet.layer.cornerRadius = bullet.frame.width * 0.5
         bullet.layer.borderColor = UIColor.appRedColor().cgColor
         bullet.layer.borderWidth = 1.25
-        bullet.backgroundColor = state == .read ? UIColor.appRedColor() : .white
+        bullet.backgroundColor = isPending ? .white : UIColor.appRedColor()
     }
     
     private func updateTimelineView() {
