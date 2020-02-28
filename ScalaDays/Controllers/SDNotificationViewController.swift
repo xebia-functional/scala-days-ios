@@ -1,7 +1,7 @@
 import UIKit
 import SVProgressHUD
 
-class SDNotificationViewController: UIViewController {
+class SDNotificationViewController: UIViewController, ScalaDayViewController {
     @IBOutlet weak var emptyView: UIView!
     @IBOutlet weak var loadingView: UIView!
     @IBOutlet weak var notificationsView: UIView!
@@ -39,6 +39,17 @@ class SDNotificationViewController: UIViewController {
         setupAppareance()
     }
     
+    func updateConference(_ conference: Conference) {
+        manager.notifications(conference: conference) { result in
+            switch result {
+            case .success(let response):
+                self.state = .notifications(response)
+            case .failure:
+                self.state = .empty
+            }
+        }
+    }
+    
     // MARK: appareance
     private func setupCells() {
         tableView.registerCell(SDNotificationTableViewCell.self)
@@ -50,6 +61,8 @@ class SDNotificationViewController: UIViewController {
     }
     
     private func reloadView() {
+        guard self.view != nil else { return }
+        
         switch state {
         case .empty:
             emptyView.isHidden   = false
@@ -77,14 +90,7 @@ class SDNotificationViewController: UIViewController {
             return
         }
         
-        manager.notifications(conference: conference) { result in
-            switch result {
-            case .success(let response):
-                self.state = .notifications(response)
-            case .failure:
-                self.state = .empty
-            }
-        }
+        updateConference(conference)
     }
 
     // MARK: - Constants

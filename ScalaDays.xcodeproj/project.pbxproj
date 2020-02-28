@@ -78,6 +78,7 @@
 		8B27270F24095EDF00103EFF /* CellPosition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B27270E24095EDF00103EFF /* CellPosition.swift */; };
 		8B27271224095F9100103EFF /* UITableView+Cells.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B27271124095F9100103EFF /* UITableView+Cells.swift */; };
 		8B27271424095FE100103EFF /* Bundle+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B27271324095FE100103EFF /* Bundle+Extension.swift */; };
+		8B2727162409621400103EFF /* ScalaDayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B2727152409621400103EFF /* ScalaDayViewController.swift */; };
 		8B39E3402407DC9D00338921 /* conferences_2020.json in Resources */ = {isa = PBXBuildFile; fileRef = 8B39E33F2407DC9D00338921 /* conferences_2020.json */; };
 		8B39E3422408009B00338921 /* SDNotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B39E3412408009B00338921 /* SDNotificationViewController.swift */; };
 		8B39E344240800AA00338921 /* SDNotificationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8B39E343240800AA00338921 /* SDNotificationViewController.xib */; };
@@ -202,6 +203,7 @@
 		8B27270E24095EDF00103EFF /* CellPosition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellPosition.swift; sourceTree = "<group>"; };
 		8B27271124095F9100103EFF /* UITableView+Cells.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Cells.swift"; sourceTree = "<group>"; };
 		8B27271324095FE100103EFF /* Bundle+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+Extension.swift"; sourceTree = "<group>"; };
+		8B2727152409621400103EFF /* ScalaDayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScalaDayViewController.swift; sourceTree = "<group>"; };
 		8B39E33F2407DC9D00338921 /* conferences_2020.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = conferences_2020.json; sourceTree = "<group>"; };
 		8B39E3412408009B00338921 /* SDNotificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SDNotificationViewController.swift; sourceTree = "<group>"; };
 		8B39E343240800AA00338921 /* SDNotificationViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SDNotificationViewController.xib; sourceTree = "<group>"; };
@@ -294,10 +296,13 @@
 		101B48707F372BB83194FA90 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				8B2727152409621400103EFF /* ScalaDayViewController.swift */,
 				A1FA1FE61A7AA33F00338AF0 /* SDAboutViewController.swift */,
 				A1FA1FE71A7AA33F00338AF0 /* SDAboutViewController.xib */,
 				A19C65C51A7FC30A00A206FC /* SDContactViewController.swift */,
 				A19C65C61A7FC30A00A206FC /* SDContactViewController.xib */,
+				8B39E3412408009B00338921 /* SDNotificationViewController.swift */,
+				8B39E343240800AA00338921 /* SDNotificationViewController.xib */,
 				A1FA1FE21A7AA30F00338AF0 /* SDPlacesViewController.swift */,
 				A1FA1FE31A7AA30F00338AF0 /* SDPlacesViewController.xib */,
 				59A7DF621A936C84009F4639 /* SDScheduleDetailViewController.swift */,
@@ -316,8 +321,6 @@
 				59ACD78C1CA28E4800863C52 /* SDVotesPopoverViewController.xib */,
 				591DAB2A1A9B7F8D000B2D7A /* SDWebViewController.swift */,
 				591DAB2B1A9B7F8D000B2D7A /* SDWebViewController.xib */,
-				8B39E3412408009B00338921 /* SDNotificationViewController.swift */,
-				8B39E343240800AA00338921 /* SDNotificationViewController.xib */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -920,6 +923,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8B2727162409621400103EFF /* ScalaDayViewController.swift in Sources */,
 				590DDD701A83BE9B00E4CC3F /* SDSpeakersTableViewCell.swift in Sources */,
 				A1FA1FFB1A7BAE5B00338AF0 /* SDFonts.swift in Sources */,
 				8B5818F42406F8E800587211 /* Analytics.swift in Sources */,

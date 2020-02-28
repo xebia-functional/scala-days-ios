@@ -131,7 +131,7 @@ class SDSlideMenuViewController: UIViewController, UITableViewDelegate, UITableV
         let speakersViewController = SDSpeakersListViewController(analytics: analytics)
         self.speakersViewController = UINavigationController(rootViewController: speakersViewController)
         
-        controllers = [scheduleViewController.visibleViewController!, socialViewController, contactViewController, sponsorsViewController, placesViewController, aboutViewController, speakersViewController]
+        controllers = [scheduleViewController.visibleViewController!, notificationViewController, socialViewController, contactViewController, sponsorsViewController, placesViewController, aboutViewController, speakersViewController]
         
         analytics.logScreenName(.slideMenu, class: SDSlideMenuViewController.self)
     }
@@ -312,6 +312,11 @@ class SDSlideMenuViewController: UIViewController, UITableViewDelegate, UITableV
         
         if let currentController = currentVisibleController() {
             currentController.loadData()
+        }
+        
+        // Reload scaladay viewcontrollers
+        if let conference = DataManager.sharedInstance.currentlySelectedConference {
+            controllers.compactMap { $0 as? ScalaDayViewController }.forEach { $0.updateConference(conference) }
         }
     }
     
