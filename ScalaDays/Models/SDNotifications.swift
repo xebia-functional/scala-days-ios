@@ -5,7 +5,7 @@ struct SDNotifications: Codable {
     let notifications: [SDNotification]
 }
 
-struct SDNotification: Codable {
+struct SDNotification: Codable, Equatable {
     let date: Date
     let title: String
     let message: String

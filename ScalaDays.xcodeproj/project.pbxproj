@@ -73,6 +73,11 @@
 		59D174641A8E0C3A001E87CF /* SDSponsorsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 59D174631A8E0C3A001E87CF /* SDSponsorsTableViewCell.xib */; };
 		59F0E2E61CA1518700BDD40E /* Vote.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59F0E2E51CA1518700BDD40E /* Vote.swift */; };
 		59F0E2E71CA15B7600BDD40E /* Vote.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59F0E2E51CA1518700BDD40E /* Vote.swift */; };
+		8B27270B24082A8000103EFF /* SDNotificationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B27270A24082A8000103EFF /* SDNotificationTableViewCell.swift */; };
+		8B27270D24082A8D00103EFF /* SDNotificationTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8B27270C24082A8D00103EFF /* SDNotificationTableViewCell.xib */; };
+		8B27270F24095EDF00103EFF /* CellPosition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B27270E24095EDF00103EFF /* CellPosition.swift */; };
+		8B27271224095F9100103EFF /* UITableView+Cells.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B27271124095F9100103EFF /* UITableView+Cells.swift */; };
+		8B27271424095FE100103EFF /* Bundle+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B27271324095FE100103EFF /* Bundle+Extension.swift */; };
 		8B39E3402407DC9D00338921 /* conferences_2020.json in Resources */ = {isa = PBXBuildFile; fileRef = 8B39E33F2407DC9D00338921 /* conferences_2020.json */; };
 		8B39E3422408009B00338921 /* SDNotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B39E3412408009B00338921 /* SDNotificationViewController.swift */; };
 		8B39E344240800AA00338921 /* SDNotificationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8B39E343240800AA00338921 /* SDNotificationViewController.xib */; };
@@ -192,6 +197,11 @@
 		59F0E2E51CA1518700BDD40E /* Vote.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Vote.swift; sourceTree = "<group>"; };
 		7DE3E72A5ED11E640A8CD7A9 /* Pods_ScalaDaysPods_ScalaDaysTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ScalaDaysPods_ScalaDaysTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		857E5518A29D51062F9155B4 /* Pods_ScalaDaysPods_ScalaDays.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ScalaDaysPods_ScalaDays.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8B27270A24082A8000103EFF /* SDNotificationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SDNotificationTableViewCell.swift; sourceTree = "<group>"; };
+		8B27270C24082A8D00103EFF /* SDNotificationTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SDNotificationTableViewCell.xib; sourceTree = "<group>"; };
+		8B27270E24095EDF00103EFF /* CellPosition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellPosition.swift; sourceTree = "<group>"; };
+		8B27271124095F9100103EFF /* UITableView+Cells.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Cells.swift"; sourceTree = "<group>"; };
+		8B27271324095FE100103EFF /* Bundle+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+Extension.swift"; sourceTree = "<group>"; };
 		8B39E33F2407DC9D00338921 /* conferences_2020.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = conferences_2020.json; sourceTree = "<group>"; };
 		8B39E3412408009B00338921 /* SDNotificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SDNotificationViewController.swift; sourceTree = "<group>"; };
 		8B39E343240800AA00338921 /* SDNotificationViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SDNotificationViewController.xib; sourceTree = "<group>"; };
@@ -276,6 +286,7 @@
 				5928D17B1A88F53900E5049E /* SDString+RemoveWhiteSpaces.swift */,
 				5928D18B1A89096500E5049E /* SDView-NibLoading.swift */,
 				5925ADA01A897AAD000EA5E7 /* SDMapView-ZoomOut.swift */,
+				8B27271324095FE100103EFF /* Bundle+Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -356,8 +367,10 @@
 		592977FF1A82106D00EE3BA3 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				8B27270E24095EDF00103EFF /* CellPosition.swift */,
 				595003041A84D87200A1C24F /* CustomViews */,
 				592978001A82106D00EE3BA3 /* TableViewCells */,
+				8B27271024095F8000103EFF /* Utils */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -367,6 +380,8 @@
 			children = (
 				1EA75E891A925BFF00884EC8 /* SDConferenceTableViewCell.swift */,
 				1EA75E8A1A925BFF00884EC8 /* SDConferenceTableViewCell.xib */,
+				8B27270A24082A8000103EFF /* SDNotificationTableViewCell.swift */,
+				8B27270C24082A8D00103EFF /* SDNotificationTableViewCell.xib */,
 				A1C8B8771A8E6CE7008599FF /* SDScheduleListTableViewCell.swift */,
 				A1C8B8751A8E6C77008599FF /* SDScheduleListTableViewCell.xib */,
 				592978011A82106D00EE3BA3 /* SDSocialTableViewCell.swift */,
@@ -490,6 +505,14 @@
 				7DE3E72A5ED11E640A8CD7A9 /* Pods_ScalaDaysPods_ScalaDaysTests.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		8B27271024095F8000103EFF /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				8B27271124095F9100103EFF /* UITableView+Cells.swift */,
+			);
+			path = Utils;
 			sourceTree = "<group>";
 		};
 		8BC4E37F240814F400AAA7CE /* Extensions */ = {
@@ -715,6 +738,7 @@
 				59D174641A8E0C3A001E87CF /* SDSponsorsTableViewCell.xib in Resources */,
 				A1D795D41A68267F009CCEB3 /* Images.xcassets in Resources */,
 				5920EA601A9484B600564014 /* SDErrorPlaceholderView.xib in Resources */,
+				8B27270D24082A8D00103EFF /* SDNotificationTableViewCell.xib in Resources */,
 				592978041A82106D00EE3BA3 /* SDSocialTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -911,6 +935,7 @@
 				597E3B0A1AB2E58A00F41F17 /* SDMapAnnotation.swift in Sources */,
 				A1FA1FF91A7BA95500338AF0 /* SDConstants.swift in Sources */,
 				A1FA1FF11A7B920700338AF0 /* SDSlideMenuViewController.swift in Sources */,
+				8B27270B24082A8000103EFF /* SDNotificationTableViewCell.swift in Sources */,
 				59ACD78D1CA28E4800863C52 /* SDVotesPopoverViewController.swift in Sources */,
 				592978091A82141400EE3BA3 /* SDSocialHandler.swift in Sources */,
 				A1FA1FEE1A7B91D100338AF0 /* SDScheduleViewController.swift in Sources */,
@@ -918,10 +943,12 @@
 				8B5818F52406F8E800587211 /* FirebaseScalaDays.swift in Sources */,
 				8BC4E37E240814E700AAA7CE /* DateFormatter+Decoders.swift in Sources */,
 				A1FA1FEF1A7B91D100338AF0 /* SDSocialViewController.swift in Sources */,
+				8B27271224095F9100103EFF /* UITableView+Cells.swift in Sources */,
 				591DAB2C1A9B7F8D000B2D7A /* SDWebViewController.swift in Sources */,
 				A1FA1FED1A7B919900338AF0 /* SlideMenuController.swift in Sources */,
 				5925ADA11A897AAD000EA5E7 /* SDMapView-ZoomOut.swift in Sources */,
 				A1C8B87A1A8E6F56008599FF /* SDTableHeaderView.swift in Sources */,
+				8B27270F24095EDF00103EFF /* CellPosition.swift in Sources */,
 				5920EA5E1A9484A800564014 /* SDErrorPlaceholderView.swift in Sources */,
 				1EA75E8B1A925BFF00884EC8 /* SDConferenceTableViewCell.swift in Sources */,
 				A1FA1FEC1A7B90DD00338AF0 /* SDUIViewControllerExtension.swift in Sources */,
@@ -929,6 +956,7 @@
 				595003061A84DE2600A1C24F /* SDQRScannerOverlayView.swift in Sources */,
 				5920EA661A94B20800564014 /* SDMenuControllerItem.swift in Sources */,
 				A1FA1FEB1A7AA6AF00338AF0 /* SDColor.swift in Sources */,
+				8B27271424095FE100103EFF /* Bundle+Extension.swift in Sources */,
 				593223C61A837C6A009189C0 /* SDAlertViewHelper.swift in Sources */,
 				5928D17C1A88F53900E5049E /* SDString+RemoveWhiteSpaces.swift in Sources */,
 				59A7DF6B1A9371A8009F4639 /* SDSpeakerDetailView.swift in Sources */,

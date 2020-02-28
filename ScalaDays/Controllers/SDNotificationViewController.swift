@@ -4,8 +4,9 @@ import SVProgressHUD
 class SDNotificationViewController: UIViewController {
     @IBOutlet weak var emptyView: UIView!
     @IBOutlet weak var loadingView: UIView!
-    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var notificationsView: UIView!
     @IBOutlet weak var emptyMessage: UILabel!
+    @IBOutlet weak var tableView: UITableView!
     
     private let analytics: Analytics
     private let manager: NotificationManager
@@ -24,7 +25,6 @@ class SDNotificationViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        setupAppareance()
         reloadView()
     }
     
@@ -34,9 +34,17 @@ class SDNotificationViewController: UIViewController {
         self.setNavigationBarItem()
         self.title = i18n.title
         analytics.logScreenName(.notification, class: SDNotificationViewController.self)
+        
+        setupCells()
+        setupAppareance()
     }
     
     // MARK: appareance
+    private func setupCells() {
+        tableView.registerCell(SDNotificationTableViewCell.self)
+        tableView.tableFooterView = UIView()
+    }
+    
     private func setupAppareance() {
         emptyMessage.text = i18n.emptyMessage
     }
@@ -46,30 +54,36 @@ class SDNotificationViewController: UIViewController {
         case .empty:
             emptyView.isHidden   = false
             loadingView.isHidden = true
-            tableView.isHidden   = true
+            notificationsView.isHidden = true
         case .loading:
             emptyView.isHidden   = true
             loadingView.isHidden = false
-            tableView.isHidden   = true
+            notificationsView.isHidden = true
             loadNotifications()
         case .notifications(let notifications):
             emptyView.isHidden   = true
             loadingView.isHidden = true
-            tableView.isHidden   = false
+            notificationsView.isHidden = false
             self.notifications = notifications
         }
     }
     
     // MARK: actions
+    private var currentConference: Conference? { DataManager.sharedInstance.currentlySelectedConference }
+    
     private func loadNotifications() {
-        guard let conference = DataManager.sharedInstance.currentlySelectedConference else {
+        guard let conference = currentConference else {
             state = .empty
             return
         }
         
         manager.notifications(conference: conference) { result in
-            _ = result.map { response in self.state = .notifications(response) }
-                      .mapError { e -> SDNotificationError in self.state = .empty; return e }
+            switch result {
+            case .success(let response):
+                self.state = .notifications(response)
+            case .failure:
+                self.state = .empty
+            }
         }
     }
 
@@ -89,5 +103,22 @@ class SDNotificationViewController: UIViewController {
         case loading
         case empty
         case notifications([SDNotification])
+    }
+}
+
+// MARK: TableView <datasource>
+extension SDNotificationViewController: UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        notifications.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let notification = self.notifications[indexPath.item]
+        let position: CellPosition = notifications.count == 1 ? .only : indexPath.item == 0 ? .top : indexPath.item == (notifications.count - 1) ? .bottom : .middle
+        
+        let cell: SDNotificationTableViewCell = tableView.dequeueCell(for: indexPath)
+        cell.draw(notification: notification, position: position)
+        
+        return cell
     }
 }
