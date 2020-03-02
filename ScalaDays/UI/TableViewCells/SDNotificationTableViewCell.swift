@@ -65,7 +65,7 @@ class SDNotificationTableViewCell: UITableViewCell {
     // MARK: helpers <DateFormatter>
     private func time(date: Date) -> String {
         let formatter = DateFormatter()
-        formatter.dateFormat = "HH:mm"
+        formatter.dateFormat = "hh:mm a"
         return formatter.string(from: date)
     }
     
