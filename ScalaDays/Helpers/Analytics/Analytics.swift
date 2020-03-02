@@ -38,6 +38,7 @@ enum AnalyticEvent {
         case goToSponsor = "Go to Sponsor"
         case goToMap = "Go to Map"
         case goToSite = "Go to 47Deg Website"
+        case goToFeedbackForm = "Go to anonymous feedback"
         case menuChangeConference = "Change Conference"
         case showVotingDialog = "Show Voting Dialog"
         case sendVote = "Send Vote"

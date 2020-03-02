@@ -65,3 +65,6 @@
 "error_message_no_data_available" = "There was an error while trying to retrieve the latest Scala Days information. Please tap on the \"RELOAD\" button to try again.";
 "error_insufficient_content" = "We haven't found any data for this section yet. Please tap on the \"RELOAD\" button to try again.";
 "error_no_favorites" = "You haven't favorited any events yet. You can select an event and mark it as a favorite by tapping on the button at the upper-right part of the screen.";
+
+// About
+"feeback_button" = "Send anonymous feedback";
