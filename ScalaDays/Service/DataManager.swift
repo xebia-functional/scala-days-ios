@@ -21,10 +21,7 @@ import Alamofire
 private let _DataManagerSharedInstance = DataManager()
 
 class DataManager {
-
-    private let endpoint = ""
-    private let mockDataURL: URL? = URL(fileURLWithPath: Bundle.main.path(forResource: "conferences_2020", ofType: "json")!)
-    
+    private let endpoint = "https://scaladays-backend.herokuapp.com/source"
     @objc var conferences: Conferences?
 
     var lastDate: Date? {
@@ -141,10 +138,10 @@ class DataManager {
             }
         }
         
-        if forceConnection || shouldReconnect || self.conferences == nil || self.mockDataURL != nil {
+        if forceConnection || shouldReconnect || self.conferences == nil {
             getEndpoint { result in
                 switch result {
-                case .success(let url): self.loadData(endpoint: url, force: forceConnection || self.mockDataURL != nil, callback: callback)
+                case .success(let url): self.loadData(endpoint: url, force: forceConnection, callback: callback)
                 case .failure(let e): callback(false, e)
                 }
             }
@@ -167,12 +164,19 @@ class DataManager {
 
     // MARK: - actions
     private func getEndpoint(callback: @escaping (Swift.Result<URL, NSError>) -> Void) {
-        guard let mockDataURL = mockDataURL else {
-            callback(.failure(NSError.init(domain: "getEndpoint: must get data source url from REST", code: -1)))
-            return
+        AF.request(self.endpoint).responseJSON  { response in
+            guard let data = response.data,
+                  let endpoint = String(data: data, encoding: .utf8)?.trimmingCharacters(in: .whitespacesAndNewlines)
+                                                                     .trimmingCharacters(in: .punctuationCharacters),
+                  let url = URL(string: endpoint) else {
+                    
+                let error = NSError(domain: response.error?.errorDescription ?? "DataManager.getEndpoint", code: -1, userInfo: nil)
+                callback(.failure(error))
+                return
+            }
+            
+            callback(.success(url))
         }
-        
-        callback(.success(mockDataURL))
     }
     
     private func loadData(endpoint: URL, force: Bool, callback: @escaping (Bool, NSError?) -> Void) {
