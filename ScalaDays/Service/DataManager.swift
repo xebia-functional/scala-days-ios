@@ -22,8 +22,11 @@ private let _DataManagerSharedInstance = DataManager()
 
 class DataManager {
     private let endpoint = "https://scaladays-backend.herokuapp.com/source"
-    @objc var conferences: Conferences?
-
+    private let userManager = UserManager()
+    
+    private(set) var selectedConferenceIndex = 0 { didSet { udpateSelectedConference() }}
+    @objc private(set) var conferences: Conferences?
+    
     var lastDate: Date? {
         get {
             return UserDefaults.standard.object(forKey: "date") as? Date
@@ -101,20 +104,6 @@ class DataManager {
         }
     }
 
-    private(set) var selectedConferenceIndex = 0
-
-    var currentlySelectedConference: Conference? {
-        get {
-            if let listOfConferences = conferences?.conferences {
-                if (listOfConferences.count > selectedConferenceIndex) {
-                    return listOfConferences[selectedConferenceIndex]
-                }
-            }
-            return nil
-        }
-    }
-    
-
     class var sharedInstance: DataManager {
 
         struct Static {
@@ -158,8 +147,28 @@ class DataManager {
         StoringHelper.sharedInstance.storeConferenceData(conferences)
     }
     
+    // MARK: - conference selection
     func selectConference(at index: Int) {
         self.selectedConferenceIndex = index
+    }
+    
+    func udpateSelectedConference() {
+        guard let conferences = conferences?.conferences,
+              let selection = conferences[safe: selectedConferenceIndex] else { return }
+        
+        userManager.select(conference: selection)
+    }
+    
+    var currentlySelectedConference: Conference? {
+        get {
+            let firstConference = conferences?.conferences.first
+            let firstActiveConference = conferences?.conferences.first { conference in conference.isActive }
+            let userSelection = conferences?.conferences.first { conference in
+                conference.info.id == userManager.selectedConferenceId
+            }
+            
+            return userSelection ?? firstActiveConference ?? firstConference
+        }
     }
 
     // MARK: - actions

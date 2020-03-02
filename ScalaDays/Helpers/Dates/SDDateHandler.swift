@@ -125,4 +125,23 @@ class SDDateHandler: NSObject {
         }
         return result
     }
+    
+    func localStartDate(conference: Conference) -> Date? {
+        conference.schedule.compactMap { schedule in SDDateHandler.sharedInstance.parseScheduleDate(schedule.startTime) }
+                           .compactMap { date in SDDateHandler.convertDateToLocalTime(date, timeZoneName: conference.info.utcTimezoneOffset) }
+                           .sorted(by: <).first
+    }
+    
+    func localEndDate(conference: Conference) -> Date? {
+        conference.schedule.compactMap { schedule in SDDateHandler.sharedInstance.parseScheduleDate(schedule.endTime) }
+                           .compactMap { date in SDDateHandler.convertDateToLocalTime(date, timeZoneName: conference.info.utcTimezoneOffset) }
+                           .sorted(by: >).first
+    }
+    
+    func isConferenceActive(_ conference: Conference) -> Bool {
+        guard let localCurrentDate = SDDateHandler.convertDateToLocalTime(Date(), timeZoneName: conference.info.utcTimezoneOffset),
+              let localEndDate = conference.localEndDate else { return false }
+        
+        return localCurrentDate <= localEndDate
+    }
 }

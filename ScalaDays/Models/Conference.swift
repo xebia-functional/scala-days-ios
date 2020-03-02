@@ -22,7 +22,7 @@ class Conferences: NSObject, Codable {
     let conferences: Array<Conference>
     
     init(conferences: Array<Conference>) {
-        self.conferences = conferences
+        self.conferences = conferences.sorted(by: { ($0.localStartDate ?? Date()) <= ($1.localStartDate ?? Date()) })
     }
 }
 
@@ -34,6 +34,18 @@ class Conference: NSObject, Codable {
     let venues: Array<Venue>
     let codeOfConduct: String
 
+    var localStartDate: Date? {
+        SDDateHandler.sharedInstance.localStartDate(conference: self)
+    }
+    
+    var localEndDate: Date? {
+        SDDateHandler.sharedInstance.localEndDate(conference: self)
+    }
+    
+    var isActive: Bool {
+        SDDateHandler.sharedInstance.isConferenceActive(self)
+    }
+    
     init(info: Information, schedule: Array<Event>, sponsors: Array<SponsorType>, speakers: Array<Speaker>, venues: Array<Venue>, codeOfConduct: String) {
         self.info = info
         self.schedule = schedule
