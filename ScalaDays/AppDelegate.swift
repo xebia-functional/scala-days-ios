@@ -114,16 +114,14 @@ extension AppDelegate {
     }
 
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable: Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
-        defer {
-            Localytics.handleNotificationReceived(userInfo)
-            completionHandler(.noData)
+        if let jsonReload = userInfo["jsonReload"] as? String, jsonReload.lowercased() == "true" {
+            DataManager.sharedInstance.lastConnectionAttemptDate = nil
+            menuViewController.askControllersToReload()
         }
-
-        guard let jsonReload = userInfo["jsonReload"] as? String,
-              jsonReload.lowercased() == "true" else { return }
-
-        DataManager.sharedInstance.lastConnectionAttemptDate = nil
-        self.menuViewController.askControllersToReload()
+        
+        menuViewController.showNotifications()
+        Localytics.handleNotificationReceived(userInfo)
+        completionHandler(.noData)
     }
     
     func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
