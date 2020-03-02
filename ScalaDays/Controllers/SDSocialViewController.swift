@@ -238,9 +238,9 @@ class SDSocialViewController: UIViewController, UITableViewDelegate, UITableView
         socialHandler.showTweetComposer(withTweetText: hashtag, on: self) { composerResult in
             switch(composerResult) {
             case .cancelled:
-                analytics.logEvent(screenName: .social, category: .navigate, action: .cancelTweet)
+                self.analytics.logEvent(screenName: .social, category: .navigate, action: .cancelTweet)
             case .done:
-                analytics.logEvent(screenName: .social, category: .navigate, action: .postTweet)
+                self.analytics.logEvent(screenName: .social, category: .navigate, action: .postTweet)
             }
         }
     }

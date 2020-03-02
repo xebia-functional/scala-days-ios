@@ -29,6 +29,7 @@
 "places" = "Places";
 "about" = "About";
 "speakers" = "Speakers";
+"notification" = "Notifications";
 
 // Schedule
 
@@ -68,3 +69,6 @@
 
 // About
 "feeback_button" = "Send anonymous feedback";
+
+// Notifications
+"empty_notification_message" = "No notifications have been sent yet";

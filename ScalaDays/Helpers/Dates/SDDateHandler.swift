@@ -16,22 +16,6 @@
 
 import UIKit
 
-func <=(lhs: Date, rhs: Date) -> Bool {
-    return lhs.timeIntervalSince1970 <= rhs.timeIntervalSince1970
-}
-func >=(lhs: Date, rhs: Date) -> Bool {
-    return lhs.timeIntervalSince1970 >= rhs.timeIntervalSince1970
-}
-func >(lhs: Date, rhs: Date) -> Bool {
-    return lhs.timeIntervalSince1970 > rhs.timeIntervalSince1970
-}
-func <(lhs: Date, rhs: Date) -> Bool {
-    return lhs.timeIntervalSince1970 < rhs.timeIntervalSince1970
-}
-func ==(lhs: Date, rhs: Date) -> Bool {
-    return lhs.timeIntervalSince1970 == rhs.timeIntervalSince1970
-}
-
 class SDDateHandler: NSObject {
     lazy var dateFormatter: DateFormatter = DateFormatter()
     let kResponseDateFormat = "EEE, dd MMM yyyy HH:mm:ss Z"
@@ -141,5 +125,4 @@ class SDDateHandler: NSObject {
         }
         return result
     }
-   
 }
