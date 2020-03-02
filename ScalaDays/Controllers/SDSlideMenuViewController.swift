@@ -161,6 +161,11 @@ class SDSlideMenuViewController: UIViewController, UITableViewDelegate, UITableV
         }
     }
     
+    // MARK: -  Router
+    func showNotifications() {
+        slideMenuController()?.changeMainViewController(self.notificationViewController, close: true)
+    }
+    
     // MARK: - UITableViewDataSource implementation
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -248,7 +253,7 @@ class SDSlideMenuViewController: UIViewController, UITableViewDelegate, UITableV
             }
             
         case (self.tblMenu, .some(.schedule)): self.slideMenuController()?.changeMainViewController(self.scheduleViewController, close: true)
-        case (self.tblMenu, .some(.notification)): self.slideMenuController()?.changeMainViewController(self.notificationViewController, close: true)
+        case (self.tblMenu, .some(.notification)): showNotifications()
         case (self.tblMenu, .some(.social)): self.slideMenuController()?.changeMainViewController(self.socialViewController, close: true)
         case (self.tblMenu, .some(.contact)): self.slideMenuController()?.changeMainViewController(self.contactViewController, close: true)
         case (self.tblMenu, .some(.sponsors)): self.slideMenuController()?.changeMainViewController(self.sponsorsViewController, close: true)
