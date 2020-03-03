@@ -26,7 +26,7 @@ class SDNotificationViewController: UIViewController, ScalaDayViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        reloadView()
+        state = .loading
     }
     
     override func viewDidAppear(_ animated: Bool) {
