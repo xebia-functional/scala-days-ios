@@ -19,6 +19,10 @@ class NotificationManager {
         reloadNotifications(endpoint: endpoint, callback: callback)
     }
     
+    func reset() {
+        self.cached = []
+    }
+    
     // MARK: GET
     private func reloadNotifications(endpoint: URL, callback: @escaping (Result<[SDNotification], NotificationManagerError>) -> Void) {
         AF.request(endpoint).responseJSON  { response in

@@ -119,7 +119,7 @@ extension AppDelegate {
             menuViewController.askControllersToReload()
         }
         
-        menuViewController.showNotifications()
+        menuViewController.showNotifications(receivedNotifications: true)
         Localytics.handleNotificationReceived(userInfo)
         completionHandler(.noData)
     }

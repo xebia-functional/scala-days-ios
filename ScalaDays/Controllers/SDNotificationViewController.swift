@@ -45,7 +45,11 @@ class SDNotificationViewController: UIViewController, ScalaDayViewController {
     }
     
     func updateConference(_ conference: Conference) {
-        state = .loading
+        state = .newNotifications
+    }
+    
+    func receivedNotifications() {
+        state = .newNotifications
     }
     
     // MARK: appareance
@@ -76,6 +80,9 @@ class SDNotificationViewController: UIViewController, ScalaDayViewController {
             loadingView.isHidden = true
             notificationsView.isHidden = false
             self.notifications = notifications
+        case .newNotifications:
+            notificationManager.reset()
+            state = .loading
         }
     }
     
@@ -119,6 +126,7 @@ class SDNotificationViewController: UIViewController, ScalaDayViewController {
         case loading
         case empty
         case notifications([SDNotification])
+        case newNotifications
     }
 }
 

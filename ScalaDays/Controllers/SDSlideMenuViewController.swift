@@ -64,7 +64,7 @@ class SDSlideMenuViewController: UIViewController, UITableViewDelegate, UITableV
                       icon_menu_about]
     
     var scheduleViewController: UINavigationController!
-    var notificationViewController: UIViewController!
+    var notificationNavigationController: UINavigationController!
     var socialViewController: UIViewController!
     var contactViewController: UIViewController!
     var sponsorsViewController: UIViewController!
@@ -111,7 +111,7 @@ class SDSlideMenuViewController: UIViewController, UITableViewDelegate, UITableV
         self.titleConference.setCustomFont(UIFont.fontHelveticaNeue(17), colorFont: UIColor.white)
         
         let notificationViewController = SDNotificationViewController(analytics: analytics, notificationManager: notificationManager)
-        self.notificationViewController = UINavigationController(rootViewController: notificationViewController)
+        self.notificationNavigationController = UINavigationController(rootViewController: notificationViewController)
         
         let socialViewController = SDSocialViewController(analytics: analytics)
         self.socialViewController = UINavigationController(rootViewController: socialViewController)
@@ -165,8 +165,12 @@ class SDSlideMenuViewController: UIViewController, UITableViewDelegate, UITableV
     }
     
     // MARK: -  Router
-    func showNotifications() {
-        slideMenuController()?.changeMainViewController(self.notificationViewController, close: true)
+    func showNotifications(receivedNotifications: Bool = false) {
+        slideMenuController()?.changeMainViewController(self.notificationNavigationController, close: true)
+        
+        if receivedNotifications, let vc = notificationNavigationController.topViewController as? SDNotificationViewController {
+            vc.receivedNotifications()
+        }
     }
     
     // MARK: - UITableViewDataSource implementation
