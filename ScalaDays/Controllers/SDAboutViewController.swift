@@ -66,14 +66,16 @@ class SDAboutViewController: UIViewController, SDErrorPlaceholderViewDelegate, S
         self.view.addSubview(errorPlaceholderView)
         
         loadData()
-        
-        analytics.logScreenName(.about, class: SDAboutViewController.self)
     }
 
     override func viewWillAppear(_ animated: Bool) {
-        if !isDataLoaded {
-            loadData()
-        }
+        super.viewWillAppear(animated)
+        if !isDataLoaded { loadData() }
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        analytics.logScreenName(.about, class: SDAboutViewController.self)
     }
     
     override func viewDidLayoutSubviews() {

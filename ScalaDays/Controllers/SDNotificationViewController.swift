@@ -29,6 +29,11 @@ class SDNotificationViewController: UIViewController, ScalaDayViewController {
         reloadView()
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        analytics.logScreenName(.notification, class: SDNotificationViewController.self)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -37,8 +42,6 @@ class SDNotificationViewController: UIViewController, ScalaDayViewController {
         
         setupCells()
         setupAppareance()
-        
-        analytics.logScreenName(.notification, class: SDNotificationViewController.self)
     }
     
     func updateConference(_ conference: Conference) {

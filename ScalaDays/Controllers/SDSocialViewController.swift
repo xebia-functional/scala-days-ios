@@ -65,14 +65,13 @@ class SDSocialViewController: UIViewController, UITableViewDelegate, UITableView
         errorPlaceholderView = SDErrorPlaceholderView(frame: screenBounds)
         errorPlaceholderView.delegate = self
         self.view.addSubview(errorPlaceholderView)
-
-        analytics.logScreenName(.social, class: SDSocialViewController.self)
     }
 
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         self.tblView.reloadData()
     }
-
+    
     override func viewDidAppear(_ animated: Bool) {
         if isDataLoaded {
             if let conference = selectedConference {
@@ -85,6 +84,8 @@ class SDSocialViewController: UIViewController, UITableViewDelegate, UITableView
         } else {
             loadData()
         }
+        
+        analytics.logScreenName(.social, class: SDSocialViewController.self)
     }
 
     // MARK: - Network access implementation

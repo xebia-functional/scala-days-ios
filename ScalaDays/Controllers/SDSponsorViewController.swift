@@ -55,14 +55,16 @@ class SDSponsorViewController: UIViewController, UITableViewDelegate, UITableVie
         errorPlaceholderView = SDErrorPlaceholderView(frame: screenBounds)
         errorPlaceholderView.delegate = self
         self.view.addSubview(errorPlaceholderView)
-        
-        analytics.logScreenName(.sponsors, class: SDSponsorViewController.self)
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        if !isDataLoaded {
-            loadData()
-        }
+        super.viewWillAppear(animated)
+        if !isDataLoaded { loadData() }
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        analytics.logScreenName(.sponsors, class: SDSponsorViewController.self)
     }
     
     // MARK: - Data loading

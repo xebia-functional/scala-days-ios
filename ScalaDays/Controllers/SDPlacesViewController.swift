@@ -52,13 +52,16 @@ class SDPlacesViewController: UIViewController, MKMapViewDelegate, SDErrorPlaceh
         
         mapPlaces.delegate = self
         
-        analytics.logScreenName(.places, class: SDPlacesViewController.self)
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        if !isDataLoaded {
-            loadData()
-        }
+        super.viewWillAppear(animated)
+        if !isDataLoaded { loadData() }
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        analytics.logScreenName(.places, class: SDPlacesViewController.self)
     }
     
     // MARK: - Data loading

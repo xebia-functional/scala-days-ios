@@ -118,9 +118,12 @@ class SDScheduleDetailViewController: UIViewController {
                     constraintForSpeakerListContainerHeight.constant = lastSpeakerBottomPos
                 }
             }
-            
-            analytics.logScreenName(.schedule, class: SDScheduleDetailViewController.self)
         }
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        analytics.logScreenName(.schedule, class: SDScheduleDetailViewController.self)
     }
     
     @objc func didTapFavoritesButton() {

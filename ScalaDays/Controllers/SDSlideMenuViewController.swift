@@ -132,14 +132,17 @@ class SDSlideMenuViewController: UIViewController, UITableViewDelegate, UITableV
         self.speakersViewController = UINavigationController(rootViewController: speakersViewController)
         
         controllers = [scheduleViewController.visibleViewController!, notificationViewController, socialViewController, contactViewController, sponsorsViewController, placesViewController, aboutViewController, speakersViewController]
-        
-        analytics.logScreenName(.slideMenu, class: SDSlideMenuViewController.self)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         componeConferenceTable()
         drawSelectedConference()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        analytics.logScreenName(.slideMenu, class: SDSlideMenuViewController.self)
     }
     
     func componeConferenceTable(){

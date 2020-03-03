@@ -125,12 +125,19 @@ class SDScheduleViewController: UIViewController,
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
         self.title = NSLocalizedString("schedule", comment: "Schedule")
         if isDataLoaded {
             self.loadFavorites()
         } else {
             self.loadData()
         }
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        analytics.logScreenName(.schedule, class: SDScheduleViewController.self)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -153,8 +160,6 @@ class SDScheduleViewController: UIViewController,
         
         refreshControl.addTarget(self, action: #selector(SDScheduleViewController.didPullToRefresh), for: UIControl.Event.valueChanged)
         tblSchedule.addSubview(refreshControl)
-        
-        analytics.logScreenName(.schedule, class: SDScheduleViewController.self)
         
         self.btnSendVote.layer.borderWidth = CGFloat(kVotingButtonsBorderWidth)
         self.btnSendVote.layer.borderColor = UIColor.grayButtonBorder().cgColor

@@ -51,7 +51,10 @@ class SDContactViewController: UIViewController,
         self.setNavigationBarItem()
         self.title = NSLocalizedString("contacts", comment: "Contact")
         drawRegularFeedback()
-        
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
         analytics.logScreenName(.contact, class: SDContactViewController.self)
     }
 

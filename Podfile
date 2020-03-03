@@ -5,14 +5,17 @@ use_modular_headers!
 inhibit_all_warnings!
 
 def firebase
+  # enabled Analytics
   pod 'Firebase/Analytics'
-  pod 'Firebase/Crashlytics'
-  pod 'Firebase/Performance'
 
-  # Pods for PodTest
+  # enabled Crashlytics (Firebase)
   pod 'Fabric', '~> 1.10.2'
   pod 'Crashlytics', '~> 3.14.0'
+
+  # enabled Performance Monitoring
+  pod 'Firebase/Performance'
 end
+
 
 abstract_target 'ScalaDaysPods' do
   pod 'Alamofire', '~> 5.0'

@@ -51,14 +51,16 @@ class SDSpeakersListViewController: UIViewController, UITableViewDelegate, UITab
         errorPlaceholderView = SDErrorPlaceholderView(frame: screenBounds)
         errorPlaceholderView.delegate = self
         self.view.addSubview(errorPlaceholderView)
-        
-        analytics.logScreenName(.speakers, class: SDSpeakersListViewController.self)
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        if !isDataLoaded {
-            loadData()
-        }
+        super.viewWillAppear(animated)
+        if !isDataLoaded { loadData() }
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        analytics.logScreenName(.speakers, class: SDSpeakersListViewController.self)
     }
     
     // MARK: - Data loading

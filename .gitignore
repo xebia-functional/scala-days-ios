@@ -18,7 +18,7 @@ DerivedData
 
 #CocoaPods
 Pods
-Podfile.lock
+/ScalaDays/Podfile.lock
 
 #Local keys file
 SDExternalKeys.plist

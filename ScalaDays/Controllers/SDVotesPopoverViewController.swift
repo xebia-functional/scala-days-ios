@@ -36,8 +36,8 @@ class SDVotesPopoverViewController: UIViewController, UIPopoverPresentationContr
         fatalError("init(coder:) has not been implemented")
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
         analytics.logScreenName(.votes, class: SDVotesPopoverViewController.self)
     }
     

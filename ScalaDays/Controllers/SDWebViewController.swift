@@ -37,10 +37,13 @@ class SDWebViewController: UIViewController {
         if let _url = url {
             loadUrl(_url)
         }
-        
-        analytics.logScreenName(.webView, class: SDWebViewController.self)
     }
 
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        analytics.logScreenName(.webView, class: SDWebViewController.self)
+    }
+    
     func loadUrl(_ url: URL) {
         webView.loadRequest(URLRequest(url: url))
     }
