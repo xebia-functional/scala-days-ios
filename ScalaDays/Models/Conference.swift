@@ -33,6 +33,7 @@ class Conference: NSObject, Codable {
     let speakers: Array<Speaker>
     let venues: Array<Venue>
     let codeOfConduct: String
+    let testMode: Bool
 
     var localStartDate: Date? {
         SDDateHandler.sharedInstance.localStartDate(conference: self)
@@ -46,13 +47,14 @@ class Conference: NSObject, Codable {
         SDDateHandler.sharedInstance.isConferenceActive(self)
     }
     
-    init(info: Information, schedule: Array<Event>, sponsors: Array<SponsorType>, speakers: Array<Speaker>, venues: Array<Venue>, codeOfConduct: String) {
+    init(info: Information, schedule: Array<Event>, sponsors: Array<SponsorType>, speakers: Array<Speaker>, venues: Array<Venue>, codeOfConduct: String, testMode: Bool) {
         self.info = info
         self.schedule = schedule
         self.sponsors = sponsors
         self.speakers = speakers
         self.venues = venues
         self.codeOfConduct = codeOfConduct
+        self.testMode = testMode
     }
 }
 
@@ -72,10 +74,8 @@ class Information: NSObject, Codable {
     let hashtag: String
     let query: String?
     let pictures: Array<Picture>
-    let feedback: String
 
-
-    init(id: Int, name: String, longName: String, nameAndLocation: String, firstDay: String, lastDay: String, normalSite: String, registrationSite: String, utcTimezoneOffset: String, utcTimezoneOffsetMillis: Float, hashtag: String, query: String?, pictures: Array<Picture>, feedback: String) {
+    init(id: Int, name: String, longName: String, nameAndLocation: String, firstDay: String, lastDay: String, normalSite: String, registrationSite: String, utcTimezoneOffset: String, utcTimezoneOffsetMillis: Float, hashtag: String, query: String?, pictures: Array<Picture>) {
         self.id = id
         self.name = name
         self.longName = longName
@@ -89,7 +89,6 @@ class Information: NSObject, Codable {
         self.hashtag = hashtag
         self.query = query
         self.pictures = pictures
-        self.feedback = feedback
     }
 }
 

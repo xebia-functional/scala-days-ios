@@ -22,13 +22,7 @@ private let _DataManagerSharedInstance = DataManager()
 
 class DataManager {
     private let userManager = UserManager()
-    private var endpoint: String {
-        #if DEBUG
-        return "https://scaladays-backend.herokuapp.com/source?testMode=true"
-        #else
-        return "https://scaladays-backend.herokuapp.com/source"
-        #endif
-    }
+    private let endpoint = "https://scaladays-backend.herokuapp.com/source"
     
     private(set) var selectedConferenceIndex = 0 { didSet { udpateSelectedConference() }}
     @objc private(set) var conferences: Conferences?
@@ -149,7 +143,12 @@ class DataManager {
         guard let data = data,
               let conferences = try? JSONDecoder().decode(Conferences.self, from: data) else { return }
         
+        #if DEBUG
         self.conferences = conferences
+        #else
+        self.conferences = .init(conferences: conferences.conferences.filter { !$0.testMode })
+        #endif
+                     
         StoringHelper.sharedInstance.storeConferenceData(conferences)
     }
     

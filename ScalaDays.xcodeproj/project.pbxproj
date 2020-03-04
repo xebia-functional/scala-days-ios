@@ -76,6 +76,8 @@
 		8B02A9AB240E9A87006CD991 /* UserDefaults+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B02A9AA240E9A87006CD991 /* UserDefaults+Extension.swift */; };
 		8B18E252240D214200AED41C /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B18E251240D214200AED41C /* UserManager.swift */; };
 		8B18E256240D251100AED41C /* Array+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B18E255240D251100AED41C /* Array+Extension.swift */; };
+		8B1D1B3B241005D800B8528D /* UITextView+HTML.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B1D1B3A241005D800B8528D /* UITextView+HTML.swift */; };
+		8B1D1B3D241007AB00B8528D /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B1D1B3C241007AB00B8528D /* UIColor+Extension.swift */; };
 		8B27270B24082A8000103EFF /* SDNotificationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B27270A24082A8000103EFF /* SDNotificationTableViewCell.swift */; };
 		8B27270D24082A8D00103EFF /* SDNotificationTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8B27270C24082A8D00103EFF /* SDNotificationTableViewCell.xib */; };
 		8B27270F24095EDF00103EFF /* CellPosition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B27270E24095EDF00103EFF /* CellPosition.swift */; };
@@ -204,6 +206,8 @@
 		8B02A9AA240E9A87006CD991 /* UserDefaults+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+Extension.swift"; sourceTree = "<group>"; };
 		8B18E251240D214200AED41C /* UserManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
 		8B18E255240D251100AED41C /* Array+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Extension.swift"; sourceTree = "<group>"; };
+		8B1D1B3A241005D800B8528D /* UITextView+HTML.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextView+HTML.swift"; sourceTree = "<group>"; };
+		8B1D1B3C241007AB00B8528D /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
 		8B27270A24082A8000103EFF /* SDNotificationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SDNotificationTableViewCell.swift; sourceTree = "<group>"; };
 		8B27270C24082A8D00103EFF /* SDNotificationTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SDNotificationTableViewCell.xib; sourceTree = "<group>"; };
 		8B27270E24095EDF00103EFF /* CellPosition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellPosition.swift; sourceTree = "<group>"; };
@@ -258,6 +262,8 @@
 		A1FA1FF81A7BA95500338AF0 /* SDConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SDConstants.swift; sourceTree = "<group>"; };
 		A1FA1FFA1A7BAE5B00338AF0 /* SDFonts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SDFonts.swift; sourceTree = "<group>"; };
 		ABF9038973313EDBBD18EB45 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		CB0D16F53D7B0C5B9108F6C9 /* Pods-ScalaDaysPods-ScalaDays.adhoc.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ScalaDaysPods-ScalaDays.adhoc.xcconfig"; path = "Pods/Target Support Files/Pods-ScalaDaysPods-ScalaDays/Pods-ScalaDaysPods-ScalaDays.adhoc.xcconfig"; sourceTree = "<group>"; };
+		CC4723C7FE05D67C9D7678CD /* Pods-ScalaDaysPods-ScalaDaysTests.adhoc.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ScalaDaysPods-ScalaDaysTests.adhoc.xcconfig"; path = "Pods/Target Support Files/Pods-ScalaDaysPods-ScalaDaysTests/Pods-ScalaDaysPods-ScalaDaysTests.adhoc.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -296,6 +302,7 @@
 				5925ADA01A897AAD000EA5E7 /* SDMapView-ZoomOut.swift */,
 				8B27271324095FE100103EFF /* Bundle+Extension.swift */,
 				8B18E255240D251100AED41C /* Array+Extension.swift */,
+				8B1D1B3C241007AB00B8528D /* UIColor+Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -522,6 +529,7 @@
 		8B27271024095F8000103EFF /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				8B1D1B3A241005D800B8528D /* UITextView+HTML.swift */,
 				8B27271124095F9100103EFF /* UITableView+Cells.swift */,
 			);
 			path = Utils;
@@ -619,6 +627,8 @@
 				9A5C79BA0AC4A59C8B4E657E /* Pods-ScalaDaysPods-ScalaDays.release.xcconfig */,
 				0256E37AB85427EDF899EF98 /* Pods-ScalaDaysPods-ScalaDaysTests.debug.xcconfig */,
 				27CC132DAC4EB8C5D5F3EC28 /* Pods-ScalaDaysPods-ScalaDaysTests.release.xcconfig */,
+				CB0D16F53D7B0C5B9108F6C9 /* Pods-ScalaDaysPods-ScalaDays.adhoc.xcconfig */,
+				CC4723C7FE05D67C9D7678CD /* Pods-ScalaDaysPods-ScalaDaysTests.adhoc.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -953,8 +963,10 @@
 				592978091A82141400EE3BA3 /* SDSocialHandler.swift in Sources */,
 				A1FA1FEE1A7B91D100338AF0 /* SDScheduleViewController.swift in Sources */,
 				8B39E3422408009B00338921 /* SDNotificationViewController.swift in Sources */,
+				8B1D1B3D241007AB00B8528D /* UIColor+Extension.swift in Sources */,
 				8B18E252240D214200AED41C /* UserManager.swift in Sources */,
 				8B5818F52406F8E800587211 /* FirebaseScalaDays.swift in Sources */,
+				8B1D1B3B241005D800B8528D /* UITextView+HTML.swift in Sources */,
 				8BC4E37E240814E700AAA7CE /* DateFormatter+Decoders.swift in Sources */,
 				A1FA1FEF1A7B91D100338AF0 /* SDSocialViewController.swift in Sources */,
 				8B27271224095F9100103EFF /* UITableView+Cells.swift in Sources */,
@@ -1104,7 +1116,7 @@
 		};
 		8B02A9A8240E996D006CD991 /* AdHoc */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 9A5C79BA0AC4A59C8B4E657E /* Pods-ScalaDaysPods-ScalaDays.release.xcconfig */;
+			baseConfigurationReference = CB0D16F53D7B0C5B9108F6C9 /* Pods-ScalaDaysPods-ScalaDays.adhoc.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -1134,7 +1146,7 @@
 		};
 		8B02A9A9240E996D006CD991 /* AdHoc */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 27CC132DAC4EB8C5D5F3EC28 /* Pods-ScalaDaysPods-ScalaDaysTests.release.xcconfig */;
+			baseConfigurationReference = CC4723C7FE05D67C9D7678CD /* Pods-ScalaDaysPods-ScalaDaysTests.adhoc.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Manual;

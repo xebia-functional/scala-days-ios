@@ -18,24 +18,14 @@ import UIKit
 import SVProgressHUD
 
 class SDAboutViewController: UIViewController, SDErrorPlaceholderViewDelegate, SDMenuControllerItem {
-
-    @IBOutlet weak var cnsLeftLabel: NSLayoutConstraint!
-    @IBOutlet weak var cnsRightLabel: NSLayoutConstraint!
-    @IBOutlet weak var lblCodeConduct: UILabel!
-    @IBOutlet weak var lblDescription: UILabel!
-    @IBOutlet weak var feedbackButton: UIButton!
     @IBOutlet weak var separatorH: NSLayoutConstraint!
+    @IBOutlet weak var descriptionTextView: UITextView!
     
     var errorPlaceholderView : SDErrorPlaceholderView!
     var isDataLoaded = false
     
     private(set) var selectedConference : Conference?
     private let analytics: Analytics
-    
-    private var feedbackURL: URL? {
-        guard let feedback = selectedConference?.info.feedback else { return nil }
-        return URL(string: feedback)
-    }
     
     init(analytics: Analytics) {
         self.analytics = analytics
@@ -48,23 +38,14 @@ class SDAboutViewController: UIViewController, SDErrorPlaceholderViewDelegate, S
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        self.title = i18n.codeConductTitle
         self.setNavigationBarItem()
-        self.title = NSLocalizedString("about", comment: "About")
-        
-        self.separatorH.constant = 0.25
-        
-        self.lblCodeConduct.setCustomFont(UIFont.fontHelveticaNeueMedium(17), colorFont: UIColor.appRedColor())
-        self.lblDescription.setCustomFont(UIFont.fontHelveticaNeueLight(15), colorFont: UIColor.appColor())
-        
-        self.feedbackButton.setTitle(i18n.feebackTitle, for: .normal)
-        self.feedbackButton.setTitleColor(.white, for: .normal)
-        self.feedbackButton.backgroundColor = UIColor.appRedColor()
         
         errorPlaceholderView = SDErrorPlaceholderView(frame: screenBounds)
         errorPlaceholderView.delegate = self
         self.view.addSubview(errorPlaceholderView)
         
+        setupAppareance()
         loadData()
     }
 
@@ -78,16 +59,13 @@ class SDAboutViewController: UIViewController, SDErrorPlaceholderViewDelegate, S
         analytics.logScreenName(.about, class: SDAboutViewController.self)
     }
     
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        self.lblDescription.preferredMaxLayoutWidth = UIScreen.main.bounds.width
-            - self.cnsLeftLabel.constant
-            - self.cnsRightLabel.constant
-        self.view.layoutIfNeeded()
+    private func setupAppareance() {
+        separatorH.constant = 0.25
+        descriptionTextView.textColor = UIColor.appColor()
+        descriptionTextView.linkTextAttributes = [.foregroundColor: UIColor.appRedColor()]
     }
     
     // MARK: - Data loading
-    
     func loadData() {
         SVProgressHUD.show()
         DataManager.sharedInstance.loadDataJson() {
@@ -107,7 +85,7 @@ class SDAboutViewController: UIViewController, SDErrorPlaceholderViewDelegate, S
                         self.errorPlaceholderView.show(NSLocalizedString("error_insufficient_content", comment: ""), isGeneralMessage: true)
                     } else {
                         self.errorPlaceholderView.hide()
-                        self.lblDescription.text = conference.codeOfConduct
+                        self.descriptionTextView.textHTML = conference.codeOfConduct
                     }
                 } else {
                     self.errorPlaceholderView.show(NSLocalizedString("error_message_no_data_available", comment: ""))
@@ -123,13 +101,6 @@ class SDAboutViewController: UIViewController, SDErrorPlaceholderViewDelegate, S
         launchSafariToUrl(url)
     }
     
-    @IBAction func didTapOnFeedback(_ button: UIButton) {
-        guard let feedbackURL = feedbackURL else { return }
-        
-        analytics.logEvent(screenName: .about, category: .navigate, action: .goToFeedbackForm)
-        launchSafariToUrl(feedbackURL)
-    }
-    
     // MARK: SDErrorPlaceholderViewDelegate protocol implementation
     
     func didTapRefreshButtonInErrorPlaceholder() {
@@ -137,6 +108,6 @@ class SDAboutViewController: UIViewController, SDErrorPlaceholderViewDelegate, S
     }
     
     enum i18n {
-        static let feebackTitle = NSLocalizedString("feeback_button", comment: "")
+        static let codeConductTitle = NSLocalizedString("code_conduct", comment: "")
     }
 }
