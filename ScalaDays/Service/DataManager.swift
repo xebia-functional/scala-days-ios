@@ -21,8 +21,14 @@ import Alamofire
 private let _DataManagerSharedInstance = DataManager()
 
 class DataManager {
-    private let endpoint = "https://scaladays-backend.herokuapp.com/source"
     private let userManager = UserManager()
+    private var endpoint: String {
+        #if DEBUG
+        return "https://scaladays-backend.herokuapp.com/source?testMode=true"
+        #else
+        return "https://scaladays-backend.herokuapp.com/source"
+        #endif
+    }
     
     private(set) var selectedConferenceIndex = 0 { didSet { udpateSelectedConference() }}
     @objc private(set) var conferences: Conferences?
@@ -128,7 +134,7 @@ class DataManager {
         }
         
         if forceConnection || shouldReconnect || self.conferences == nil {
-            getEndpoint { result in
+            getEndpoint(from: self.endpoint) { result in
                 switch result {
                 case .success(let url): self.loadData(endpoint: url, force: forceConnection, callback: callback)
                 case .failure(let e): callback(false, e)
@@ -172,8 +178,8 @@ class DataManager {
     }
 
     // MARK: - actions
-    private func getEndpoint(callback: @escaping (Swift.Result<URL, NSError>) -> Void) {
-        AF.request(self.endpoint).responseJSON  { response in
+    private func getEndpoint(from endpoint: String, callback: @escaping (Swift.Result<URL, NSError>) -> Void) {
+        AF.request(endpoint).responseJSON  { response in
             guard let data = response.data,
                   let endpoint = String(data: data, encoding: .utf8)?.trimmingCharacters(in: .whitespacesAndNewlines)
                                                                      .trimmingCharacters(in: .punctuationCharacters),
