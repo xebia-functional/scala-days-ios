@@ -46,6 +46,10 @@ class Conference: NSObject, Codable {
         SDDateHandler.sharedInstance.isConferenceActive(self)
     }
     
+    var isQA: Bool {
+        info.testMode
+    }
+    
     init(info: Information, schedule: Array<Event>, sponsors: Array<SponsorType>, speakers: Array<Speaker>, venues: Array<Venue>, codeOfConduct: String) {
         self.info = info
         self.schedule = schedule
@@ -72,10 +76,9 @@ class Information: NSObject, Codable {
     let hashtag: String
     let query: String?
     let pictures: Array<Picture>
-    let feedback: String
+    let testMode: Bool
 
-
-    init(id: Int, name: String, longName: String, nameAndLocation: String, firstDay: String, lastDay: String, normalSite: String, registrationSite: String, utcTimezoneOffset: String, utcTimezoneOffsetMillis: Float, hashtag: String, query: String?, pictures: Array<Picture>, feedback: String) {
+    init(id: Int, name: String, longName: String, nameAndLocation: String, firstDay: String, lastDay: String, normalSite: String, registrationSite: String, utcTimezoneOffset: String, utcTimezoneOffsetMillis: Float, hashtag: String, query: String?, pictures: Array<Picture>, testMode: Bool) {
         self.id = id
         self.name = name
         self.longName = longName
@@ -89,7 +92,7 @@ class Information: NSObject, Codable {
         self.hashtag = hashtag
         self.query = query
         self.pictures = pictures
-        self.feedback = feedback
+        self.testMode = testMode
     }
 }
 
