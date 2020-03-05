@@ -27,6 +27,7 @@ private let kTwitterBaseAppURLUser = "twitter://user?screen_name="
 enum SDGetTweetsError: Int {
     case invalidRequest
     case unknown
+    case unauthorized
 }
 
 enum SDTweetComposerResult {
@@ -49,6 +50,8 @@ class SDSocialHandler {
                 completion(.cancelled)
             case .done:
                 completion(.done)
+            @unknown default:
+                completion(.cancelled)
             }
         }
     }
@@ -66,9 +69,13 @@ class SDSocialHandler {
                                                                     languageCode: nil,
                                                                     maxTweetsPerRequest: UInt(max(count, 0)),
                                                                     resultType: nil)
-        searchTimelineDataSource.loadPreviousTweets(beforePosition: nil) { (tweets, _, _) in
+        
+        searchTimelineDataSource.loadPreviousTweets(beforePosition: nil) { (tweets, _, error) in
             if let tweets = tweets {
                 completion(.success(tweets: tweets.map { $0.sdTweet() }))
+            } else if let _ = error, let userId = userID {
+                TWTRTwitter.sharedInstance().sessionStore.logOutUserID(userId)
+                completion(.failure(error: .unauthorized))
             } else {
                 completion(.failure(error: .unknown))
             }

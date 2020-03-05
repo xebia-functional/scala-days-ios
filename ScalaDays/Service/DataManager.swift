@@ -143,12 +143,7 @@ class DataManager {
         guard let data = data,
               let conferences = try? JSONDecoder().decode(Conferences.self, from: data) else { return }
         
-        #if DEBUG
-        self.conferences = conferences
-        #else
-        self.conferences = .init(conferences: conferences.conferences.filter { !$0.isQA })
-        #endif
-                     
+        self.conferences = conferences       
         StoringHelper.sharedInstance.storeConferenceData(conferences)
     }
     
