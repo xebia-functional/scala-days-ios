@@ -116,8 +116,8 @@ PODS:
   - SDWebImage/Core (3.8.3)
   - SVProgressHUD (1.1.3)
   - TwitterCore (3.2.0)
-  - TwitterKit (3.3.0):
-    - TwitterCore (>= 3.1.0)
+  - TwitterKit (3.4.2):
+    - TwitterCore (>= 3.2.0)
   - "UIView+AutoLayout (1.3.0)"
   - ZBarSDK (1.3.1)
 
@@ -131,7 +131,7 @@ DEPENDENCIES:
   - "NSDate+TimeAgo (~> 1.0.2)"
   - SDWebImage (~> 3.5)
   - SVProgressHUD (~> 1.0)
-  - TwitterKit (= 3.3.0)
+  - TwitterKit (= 3.4.2)
   - "UIView+AutoLayout (~> 1.3)"
   - ZBarSDK (~> 1.3.1)
 
@@ -198,10 +198,10 @@ SPEC CHECKSUMS:
   SDWebImage: a72e880a8fe0f7fc31efe15aaed443c074d2a80c
   SVProgressHUD: 748080e4f36e603f6c02aec292664239df5279c1
   TwitterCore: 8cbc9ad34d91c63a0035ea05bfbfc0d7ca72a28c
-  TwitterKit: a2e60ddcedbf54091eac6f27685ca7a87681e1d7
+  TwitterKit: 5e4f41d70b9abdb41df5467f52d7aa2c0fd26ebb
   "UIView+AutoLayout": d5f741a74b68fa27f97fdf24b08a2497e0e957db
   ZBarSDK: 4c1b5daeb7d6cc67dc9355e690af0230a661f6ec
 
-PODFILE CHECKSUM: dda73ad2ff8a9e5cf110a7b81cc98252368bce6f
+PODFILE CHECKSUM: d45f9893581c93073173b18b2dfdfa210a35dbef
 
 COCOAPODS: 1.9.0
