@@ -21,9 +21,8 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="avo-oW-dXi">
-                    <rect key="frame" x="16" y="44" width="394" height="774"/>
+                    <rect key="frame" x="0.0" y="44" width="414" height="774"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                    <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                     <color key="textColor" red="0.26051741839999998" green="0.2605243921" blue="0.260520637" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="15"/>
                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -74,9 +73,9 @@
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="avo-oW-dXi" firstAttribute="top" secondItem="PZ9-aM-5ah" secondAttribute="top" id="7uu-XL-NYR"/>
-                <constraint firstItem="PZ9-aM-5ah" firstAttribute="trailing" secondItem="avo-oW-dXi" secondAttribute="trailing" constant="4" id="D96-zi-oR0"/>
+                <constraint firstItem="PZ9-aM-5ah" firstAttribute="trailing" secondItem="avo-oW-dXi" secondAttribute="trailing" id="D96-zi-oR0"/>
                 <constraint firstAttribute="trailing" secondItem="8tL-Xa-Mlu" secondAttribute="trailing" id="LaC-pd-hEn"/>
-                <constraint firstItem="avo-oW-dXi" firstAttribute="leading" secondItem="PZ9-aM-5ah" secondAttribute="leading" constant="16" id="gAY-aM-Ref"/>
+                <constraint firstItem="avo-oW-dXi" firstAttribute="leading" secondItem="PZ9-aM-5ah" secondAttribute="leading" id="gAY-aM-Ref"/>
                 <constraint firstItem="8tL-Xa-Mlu" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="rxB-TP-lmA"/>
                 <constraint firstItem="PZ9-aM-5ah" firstAttribute="bottom" secondItem="8tL-Xa-Mlu" secondAttribute="bottom" id="tWC-F6-AU7"/>
                 <constraint firstItem="8tL-Xa-Mlu" firstAttribute="top" secondItem="avo-oW-dXi" secondAttribute="bottom" id="vdh-dA-eZb"/>

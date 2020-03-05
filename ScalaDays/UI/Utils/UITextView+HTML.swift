@@ -2,32 +2,37 @@ import UIKit
 
 extension UITextView {
     var textHTML: String? {
-        get {
-            return self.text
-        }
+        get { text }
         set(value) {
-            let font = self.font ?? UIFont.systemFont(ofSize: UIFont.systemFontSize)
-            setTextHTML(value ?? "", font: font)
+            setTextHTML(value ?? "",
+                        font: self.font ?? UIFont.systemFont(ofSize: UIFont.systemFontSize))
         }
     }
     
+    func setHTMLAppareance(_ appareance: [NSAttributedString.Key : Any], textColor: UIColor? = nil, font: UIFont? = nil) {
+        self.textColor = textColor ?? self.textColor
+        self.font = font ?? self.font
+        self.linkTextAttributes = appareance
+    }
+    
+    // MARK: - private <helpers>
     private func setTextHTML(_ text: String, font: UIFont) {
-        guard !text.isEmpty else { return }
-        let attributedString = "\(styleHTML(font: font))\(text.plain2HTML)".htmlAttributedString
-        self.attributedText = attributedString
+        guard !text.isEmpty,
+              let attributedText = "\(styleHTML(font: font))\(text.plain2HTML)".htmlAttributedString else { return }
+        
+        self.attributedText = attributedText
     }
     
     private func styleHTML(font: UIFont) -> String {
-        let style = """
-                    <style type='text/css'>
-                        body {
-                            font-family: '\(font.fontName)';
-                            font-size: \(font.pointSize)px;
-                            color: "#\(textColor?.hex ?? "#000000");
-                        };
-                    </style>
-                    """
-        return style
+        """
+        <style type='text/css'>
+            body {
+                font-family: '\(font.fontName)';
+                font-size: \(font.pointSize)px;
+                color: "#\(textColor?.hex ?? "#000000");
+            };
+        </style>
+        """
     }
 }
 

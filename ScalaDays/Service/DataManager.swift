@@ -146,7 +146,7 @@ class DataManager {
         #if DEBUG
         self.conferences = conferences
         #else
-        self.conferences = .init(conferences: conferences.conferences.filter { !$0.testMode })
+        self.conferences = .init(conferences: conferences.conferences.filter { !$0.isQA })
         #endif
                      
         StoringHelper.sharedInstance.storeConferenceData(conferences)
