@@ -40,11 +40,9 @@
 		5933EFC41A9B256100383C7F /* scala_days_complete_sf.json in Resources */ = {isa = PBXBuildFile; fileRef = 5933EFC31A9B256100383C7F /* scala_days_complete_sf.json */; };
 		593571E91A77DDA8005AA332 /* StoringHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 593571E81A77DDA8005AA332 /* StoringHelper.swift */; };
 		593571EA1A77E41C005AA332 /* StoringHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 593571E81A77DDA8005AA332 /* StoringHelper.swift */; };
-		595003011A84C1DA00A1C24F /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 595003001A84C1DA00A1C24F /* MobileCoreServices.framework */; };
 		595003031A84C43B00A1C24F /* SDZBarSymbolSet-Enumeration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 595003021A84C43B00A1C24F /* SDZBarSymbolSet-Enumeration.swift */; };
 		595003061A84DE2600A1C24F /* SDQRScannerOverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 595003051A84DE2600A1C24F /* SDQRScannerOverlayView.swift */; };
 		595003081A84DE3B00A1C24F /* SDQRScannerOverlayView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 595003071A84DE3B00A1C24F /* SDQRScannerOverlayView.xib */; };
-		5950030A1A84EDD500A1C24F /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 595003091A84EDD500A1C24F /* AddressBook.framework */; };
 		595FD6C81A9CD3820033D0C6 /* scala_days_wrong.json in Resources */ = {isa = PBXBuildFile; fileRef = 595FD6C71A9CD3820033D0C6 /* scala_days_wrong.json */; };
 		595FD6CA1A9CD6900033D0C6 /* scala_days_empty.json in Resources */ = {isa = PBXBuildFile; fileRef = 595FD6C91A9CD6900033D0C6 /* scala_days_empty.json */; };
 		597E3B081AB2E58A00F41F17 /* Conference.swift in Sources */ = {isa = PBXBuildFile; fileRef = 597E3B051AB2E58A00F41F17 /* Conference.swift */; };
@@ -272,8 +270,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				5928D1781A88E5C800E5049E /* MapKit.framework in Frameworks */,
-				5950030A1A84EDD500A1C24F /* AddressBook.framework in Frameworks */,
-				595003011A84C1DA00A1C24F /* MobileCoreServices.framework in Frameworks */,
 				12E3C2517E2B2D10F7D9FEA8 /* Pods_ScalaDaysPods_ScalaDays.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -15,9 +15,8 @@
 */
 
 import UIKit
-import MobileCoreServices
-import AddressBook
 import ZBarSDK
+import Contacts
 
 class SDContactViewController: UIViewController,
                                 ZBarReaderDelegate,
@@ -36,6 +35,7 @@ class SDContactViewController: UIViewController,
     @IBOutlet weak var constraintForImgTopSpace: NSLayoutConstraint!
     
     private let analytics: Analytics
+    private let contactStore = CNContactStore()
     
     init(analytics: Analytics) {
         self.analytics = analytics
@@ -63,9 +63,10 @@ class SDContactViewController: UIViewController,
     @IBAction func didTapScanButton() {
         scannerVC.readerDelegate = self
         scannerVC.readerView.torchMode = 0
-        // Disabled recognition of rarely used I2/5 symbology to improve performance:
         scannerVC.scanner.setSymbology(ZBAR_I25, config: ZBAR_CFG_ENABLE, to: 0)
         scannerVC.showsZBarControls = false
+        scannerVC.modalPresentationStyle = .fullScreen
+        
         let scannerVCOverlayView = SDQRScannerOverlayView(frame: self.view.frame)
         scannerVCOverlayView.delegate = self
         scannerVC.cameraOverlayView = scannerVCOverlayView
@@ -75,57 +76,37 @@ class SDContactViewController: UIViewController,
     }
     
     func readerControllerDidFail(toRead reader: ZBarReaderController!, withRetry retry: Bool) {
-        self.handleResultsFromAddressBookWithErrorMessage(.invalidVCardData)
+        handleResultsFromAddressBookWithErrorMessage(.invalidVCardData)
     }
     
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         scannerVC.dismiss(animated: true, completion: nil)
-        let results = info[ZBarReaderControllerResults] as! ZBarSymbolSet
-        if results.count > 0 {
-            for symbol in results {
-                if (symbol as! ZBarSymbol).data != nil {
-                    processQRScan((symbol as AnyObject).data)
-                    return
-                }
-            }
-        } else {
-            self.handleResultsFromAddressBookWithErrorMessage(.invalidVCardData)
-            return
+        
+        guard let readerResult = info.first(where: { $0.key.rawValue == ZBarReaderControllerResults }),
+              let symbolsSet = readerResult.value as? ZBarSymbolSet,
+              let qr = symbolsSet.compactMap({ $0 as? ZBarSymbol}).first else {
+                
+                handleResultsFromAddressBookWithErrorMessage(.invalidVCardData)
+                return
         }
+        
+        saveContactFromVCardString(qr.data)
     }
     
     func didTapCancelButtonInQRScanner() {
         scannerVC.dismiss(animated: true, completion: nil)
     }
     
-    func processQRScan(_ result: String?) {
-        if let successfulResult = result {
-            saveContactFromVCardString(successfulResult)
-        } else {
-            self.handleResultsFromAddressBookWithErrorMessage(.invalidVCardData)
-        }
-    }
-    
     // MARK: - VCard handling
-    
     func saveContactFromVCardString(_ vCardString: String) {
-        if let book: ABAddressBook = ABAddressBookCreateWithOptions(nil, nil).takeRetainedValue() {
-            switch(ABAddressBookGetAuthorizationStatus()) {
-            case .notDetermined:
-                ABAddressBookRequestAccessWithCompletion(book) {
-                    (granted:Bool, err:CFError!) in
-                    if granted {
-                        self.showAlertToRequestContactAddWithContactName(SDContactCreationHelper.contactName(fromVCardString: vCardString), vCardString: vCardString)
-                    } else {
-                        self.drawErrorWithMessage(NSLocalizedString("contacts_regular_feedback_error_no_access", comment: ""))
-                    }
-                }
-            case .authorized:
-                self.showAlertToRequestContactAddWithContactName(SDContactCreationHelper.contactName(fromVCardString: vCardString), vCardString: vCardString)
-            default:
+        contactStore.requestAccess(for: .contacts) { (granted, error) in
+            guard error == nil, granted else {
                 self.drawErrorWithMessage(NSLocalizedString("contacts_regular_feedback_error_no_access", comment: ""))
+                return
             }
-        }        
+            
+            self.showAlertToRequestAddContact(vCardString: vCardString)
+        }
     }
     
     // MARK: - UI changes for feedback
@@ -158,9 +139,9 @@ class SDContactViewController: UIViewController,
     
     // MARK: - Alert views
     
-    func showAlertToRequestContactAddWithContactName(_ contactName: String?, vCardString: String) {
-        var message : String
-        if let properName = contactName {
+    func showAlertToRequestAddContact(vCardString: String) {
+        let message : String
+        if let properName = SDContactCreationHelper.contactName(fromVCardString: vCardString) {
             message = NSString(format: NSLocalizedString("contacts_add_contact_request", comment: "") as NSString, properName as String) as String
         } else {
             message = NSLocalizedString("contacts_add_contact_request_no_name", comment: "")
