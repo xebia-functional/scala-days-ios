@@ -63,9 +63,9 @@ class SDContactViewController: UIViewController,
     @IBAction func didTapScanButton() {
         scannerVC.readerDelegate = self
         scannerVC.readerView.torchMode = 0
-        // Disabled recognition of rarely used I2/5 symbology to improve performance:
         scannerVC.scanner.setSymbology(ZBAR_I25, config: ZBAR_CFG_ENABLE, to: 0)
         scannerVC.showsZBarControls = false
+        
         let scannerVCOverlayView = SDQRScannerOverlayView(frame: self.view.frame)
         scannerVCOverlayView.delegate = self
         scannerVC.cameraOverlayView = scannerVCOverlayView
@@ -75,39 +75,28 @@ class SDContactViewController: UIViewController,
     }
     
     func readerControllerDidFail(toRead reader: ZBarReaderController!, withRetry retry: Bool) {
-        self.handleResultsFromAddressBookWithErrorMessage(.invalidVCardData)
+        handleResultsFromAddressBookWithErrorMessage(.invalidVCardData)
     }
     
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-        scannerVC.dismiss(animated: true, completion: nil)
-        let results = info[ZBarReaderControllerResults] as! ZBarSymbolSet
-        if results.count > 0 {
-            for symbol in results {
-                if (symbol as! ZBarSymbol).data != nil {
-                    processQRScan((symbol as AnyObject).data)
-                    return
-                }
-            }
-        } else {
-            self.handleResultsFromAddressBookWithErrorMessage(.invalidVCardData)
-            return
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        defer { scannerVC.dismiss(animated: true, completion: nil) }
+        
+        guard let readerResult = info.first(where: { $0.key.rawValue == ZBarReaderControllerResults }),
+              let symbolsSet = readerResult.value as? ZBarSymbolSet,
+              let qr = symbolsSet.compactMap({ $0 as? ZBarSymbol}).first else {
+                
+                handleResultsFromAddressBookWithErrorMessage(.invalidVCardData)
+                return
         }
+        
+        saveContactFromVCardString(qr.data)
     }
     
     func didTapCancelButtonInQRScanner() {
         scannerVC.dismiss(animated: true, completion: nil)
     }
     
-    func processQRScan(_ result: String?) {
-        if let successfulResult = result {
-            saveContactFromVCardString(successfulResult)
-        } else {
-            self.handleResultsFromAddressBookWithErrorMessage(.invalidVCardData)
-        }
-    }
-    
     // MARK: - VCard handling
-    
     func saveContactFromVCardString(_ vCardString: String) {
         if let book: ABAddressBook = ABAddressBookCreateWithOptions(nil, nil).takeRetainedValue() {
             switch(ABAddressBookGetAuthorizationStatus()) {
