@@ -15,9 +15,9 @@
 */
 
 import UIKit
-import MobileCoreServices
-import AddressBook
 import ZBarSDK
+import MobileCoreServices
+import Contacts
 
 class SDContactViewController: UIViewController,
                                 ZBarReaderDelegate,
@@ -36,6 +36,7 @@ class SDContactViewController: UIViewController,
     @IBOutlet weak var constraintForImgTopSpace: NSLayoutConstraint!
     
     private let analytics: Analytics
+    private let contactStore = CNContactStore()
     
     init(analytics: Analytics) {
         self.analytics = analytics
@@ -79,7 +80,7 @@ class SDContactViewController: UIViewController,
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        defer { scannerVC.dismiss(animated: true, completion: nil) }
+        scannerVC.dismiss(animated: true, completion: nil)
         
         guard let readerResult = info.first(where: { $0.key.rawValue == ZBarReaderControllerResults }),
               let symbolsSet = readerResult.value as? ZBarSymbolSet,
@@ -98,23 +99,14 @@ class SDContactViewController: UIViewController,
     
     // MARK: - VCard handling
     func saveContactFromVCardString(_ vCardString: String) {
-        if let book: ABAddressBook = ABAddressBookCreateWithOptions(nil, nil).takeRetainedValue() {
-            switch(ABAddressBookGetAuthorizationStatus()) {
-            case .notDetermined:
-                ABAddressBookRequestAccessWithCompletion(book) {
-                    (granted:Bool, err:CFError!) in
-                    if granted {
-                        self.showAlertToRequestContactAddWithContactName(SDContactCreationHelper.contactName(fromVCardString: vCardString), vCardString: vCardString)
-                    } else {
-                        self.drawErrorWithMessage(NSLocalizedString("contacts_regular_feedback_error_no_access", comment: ""))
-                    }
-                }
-            case .authorized:
-                self.showAlertToRequestContactAddWithContactName(SDContactCreationHelper.contactName(fromVCardString: vCardString), vCardString: vCardString)
-            default:
+        contactStore.requestAccess(for: .contacts) { (granted, error) in
+            guard error == nil, granted else {
                 self.drawErrorWithMessage(NSLocalizedString("contacts_regular_feedback_error_no_access", comment: ""))
+                return
             }
-        }        
+            
+            self.showAlertToRequestAddContact(vCardString: vCardString)
+        }
     }
     
     // MARK: - UI changes for feedback
@@ -147,9 +139,9 @@ class SDContactViewController: UIViewController,
     
     // MARK: - Alert views
     
-    func showAlertToRequestContactAddWithContactName(_ contactName: String?, vCardString: String) {
-        var message : String
-        if let properName = contactName {
+    func showAlertToRequestAddContact(vCardString: String) {
+        let message : String
+        if let properName = SDContactCreationHelper.contactName(fromVCardString: vCardString) {
             message = NSString(format: NSLocalizedString("contacts_add_contact_request", comment: "") as NSString, properName as String) as String
         } else {
             message = NSLocalizedString("contacts_add_contact_request_no_name", comment: "")
