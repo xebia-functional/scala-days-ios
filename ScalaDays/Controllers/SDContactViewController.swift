@@ -16,7 +16,6 @@
 
 import UIKit
 import ZBarSDK
-import MobileCoreServices
 import Contacts
 
 class SDContactViewController: UIViewController,
