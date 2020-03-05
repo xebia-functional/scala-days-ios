@@ -66,6 +66,7 @@ class SDContactViewController: UIViewController,
         scannerVC.readerView.torchMode = 0
         scannerVC.scanner.setSymbology(ZBAR_I25, config: ZBAR_CFG_ENABLE, to: 0)
         scannerVC.showsZBarControls = false
+        scannerVC.modalPresentationStyle = .fullScreen
         
         let scannerVCOverlayView = SDQRScannerOverlayView(frame: self.view.frame)
         scannerVCOverlayView.delegate = self
