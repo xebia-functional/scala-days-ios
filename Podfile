@@ -19,7 +19,7 @@ end
 
 abstract_target 'ScalaDaysPods' do
   pod 'Alamofire', '~> 5.0'
-  pod 'TwitterKit', '3.3.0'
+  pod 'TwitterKit', '3.4.2'
 
   target 'ScalaDays' do
     firebase

@@ -22,7 +22,7 @@ class Conferences: NSObject, Codable {
     let conferences: Array<Conference>
     
     init(conferences: Array<Conference>) {
-        self.conferences = conferences.sorted(by: { ($0.localStartDate ?? Date()) <= ($1.localStartDate ?? Date()) })
+        self.conferences = conferences
     }
 }
 
