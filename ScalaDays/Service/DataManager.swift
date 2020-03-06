@@ -143,7 +143,15 @@ class DataManager {
         guard let data = data,
               let conferences = try? JSONDecoder().decode(Conferences.self, from: data) else { return }
         
-        self.conferences = conferences       
+        let sorted = conferences.conferences.sorted { ($0.localStartDate ?? Date()) <= ($1.localStartDate ?? Date()) }
+        let filtered = sorted.filter { !$0.isQA }
+        
+        #if DEBUG
+        self.conferences = .init(conferences: sorted)
+        #else
+        self.conferences = .init(conferences: filtered)
+        #endif
+             
         StoringHelper.sharedInstance.storeConferenceData(conferences)
     }
     

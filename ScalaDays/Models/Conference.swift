@@ -22,14 +22,7 @@ class Conferences: NSObject, Codable {
     let conferences: Array<Conference>
     
     init(conferences: Array<Conference>) {
-        let sorted = conferences.sorted { ($0.localStartDate ?? Date()) <= ($1.localStartDate ?? Date()) }
-        let filtered = sorted.filter { !$0.isQA }
-        
-        #if DEBUG
-        self.conferences = sorted
-        #else
-        self.conferences = filtered
-        #endif
+        self.conferences = conferences
     }
 }
 
