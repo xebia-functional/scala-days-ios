@@ -51,10 +51,7 @@ class SDSocialViewController: UIViewController, UITableViewDelegate, UITableView
 
         self.setNavigationBarItem()
         self.title = NSLocalizedString("social", comment: "social")
-
-        let barButtonCreateTweet = UIBarButtonItem(image: UIImage(named: "navigation_bar_icon_create"), style: .plain, target: self, action: #selector(SDSocialViewController.didTapCreateTweetButton))
-        self.navigationItem.rightBarButtonItem = barButtonCreateTweet
-
+        
         tblView?.register(UINib(nibName: "SDSocialTableViewCell", bundle: nil), forCellReuseIdentifier: kReuseIdentifier)
         tblView?.addSubview(refreshControl)
         if isIOS8OrLater() {
@@ -70,6 +67,7 @@ class SDSocialViewController: UIViewController, UITableViewDelegate, UITableView
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.tblView.reloadData()
+        initializePostTwitterButton()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -87,9 +85,19 @@ class SDSocialViewController: UIViewController, UITableViewDelegate, UITableView
         
         analytics.logScreenName(.social, class: SDSocialViewController.self)
     }
+    
+    private func initializePostTwitterButton() {
+        guard TwitterSocialController.installed else {
+            self.navigationItem.rightBarButtonItem = nil
+            return
+        }
+        
+        let barButtonCreateTweet = UIBarButtonItem(image: UIImage(named: "navigation_bar_post_tweet"), style: .plain, target: self, action: #selector(didTapPostTweet))
+        barButtonCreateTweet.imageInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: -14)
+        self.navigationItem.rightBarButtonItem = barButtonCreateTweet
+    }
 
     // MARK: - Network access implementation
-
     func loadData() {
         SVProgressHUD.show()
         DataManager.sharedInstance.loadDataJson() {
@@ -134,7 +142,7 @@ class SDSocialViewController: UIViewController, UITableViewDelegate, UITableView
         }
         
         if let query = query, !query.isEmpty {
-            socialHandler.requestTweetList(withHashtag: query, count: count) { [weak self] getTweetsResult in
+            socialHandler.fetchTweetList(withHashtag: query, count: count) { [weak self] getTweetsResult in
                 guard let `self` = self else { return }
                 
                 self.hideProgressHUD()
@@ -226,24 +234,17 @@ class SDSocialViewController: UIViewController, UITableViewDelegate, UITableView
             SDAnimationHelper.showViewWithFadeInAnimation(tblView)
         }
     }
+    
+    // MARK: - Composing tweet
+    @objc func didTapPostTweet() {
+        TwitterSocialController.present(in: self, text: hashtag)
+        analytics.logEvent(screenName: .social, category: .navigate, action: .postTweet)
+    }
 
     // MARK: - SDErrorPlaceholderViewDelegate protocol implementation
 
     func didTapRefreshButtonInErrorPlaceholder() {
         loadData()
-    }
-
-    // MARK: - Composing tweet
-
-    @objc func didTapCreateTweetButton() {
-        socialHandler.showTweetComposer(withTweetText: hashtag, on: self) { composerResult in
-            switch(composerResult) {
-            case .cancelled:
-                self.analytics.logEvent(screenName: .social, category: .navigate, action: .cancelTweet)
-            case .done:
-                self.analytics.logEvent(screenName: .social, category: .navigate, action: .postTweet)
-            }
-        }
     }
 
     // MARK: - Progress HUD
@@ -260,5 +261,4 @@ class SDSocialViewController: UIViewController, UITableViewDelegate, UITableView
             self.refreshControl.endRefreshing()
         }
     }
-
 }

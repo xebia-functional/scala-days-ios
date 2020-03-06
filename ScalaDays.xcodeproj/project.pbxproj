@@ -27,7 +27,6 @@
 		5925ADA11A897AAD000EA5E7 /* SDMapView-ZoomOut.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5925ADA01A897AAD000EA5E7 /* SDMapView-ZoomOut.swift */; };
 		592609921A973C610055A3D4 /* SDAnimationHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 592609911A973C610055A3D4 /* SDAnimationHelper.swift */; };
 		5928D1751A88A9FA00E5049E /* SDContactCreationHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 5928D1741A88A9FA00E5049E /* SDContactCreationHelper.m */; };
-		5928D1781A88E5C800E5049E /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5928D1761A88E5AB00E5049E /* MapKit.framework */; };
 		5928D17C1A88F53900E5049E /* SDString+RemoveWhiteSpaces.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5928D17B1A88F53900E5049E /* SDString+RemoveWhiteSpaces.swift */; };
 		5928D17D1A88F53900E5049E /* SDString+RemoveWhiteSpaces.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5928D17B1A88F53900E5049E /* SDString+RemoveWhiteSpaces.swift */; };
 		5928D18C1A89096500E5049E /* SDView-NibLoading.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5928D18B1A89096500E5049E /* SDView-NibLoading.swift */; };
@@ -89,6 +88,7 @@
 		8B5818F12406DA1200587211 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8B5818F02406DA1200587211 /* GoogleService-Info.plist */; };
 		8B5818F42406F8E800587211 /* Analytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B5818F22406F8E700587211 /* Analytics.swift */; };
 		8B5818F52406F8E800587211 /* FirebaseScalaDays.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B5818F32406F8E700587211 /* FirebaseScalaDays.swift */; };
+		8B8AF6BF24129EF7009A8D6C /* TwitterSocialController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B8AF6BE24129EF7009A8D6C /* TwitterSocialController.swift */; };
 		8BC4E37C2408117300AAA7CE /* SDNotifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BC4E37B2408117300AAA7CE /* SDNotifications.swift */; };
 		8BC4E37E240814E700AAA7CE /* DateFormatter+Decoders.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BC4E37D240814E700AAA7CE /* DateFormatter+Decoders.swift */; };
 		A13B434520AC773A00F78759 /* SDExternalKeys.plist in Resources */ = {isa = PBXBuildFile; fileRef = A13B434420AC773A00F78759 /* SDExternalKeys.plist */; };
@@ -219,6 +219,7 @@
 		8B5818F02406DA1200587211 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; name = "GoogleService-Info.plist"; path = "ScalaDays/External/GoogleService-Info.plist"; sourceTree = SOURCE_ROOT; };
 		8B5818F22406F8E700587211 /* Analytics.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Analytics.swift; sourceTree = "<group>"; };
 		8B5818F32406F8E700587211 /* FirebaseScalaDays.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirebaseScalaDays.swift; sourceTree = "<group>"; };
+		8B8AF6BE24129EF7009A8D6C /* TwitterSocialController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwitterSocialController.swift; sourceTree = "<group>"; };
 		8BC4E37B2408117300AAA7CE /* SDNotifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SDNotifications.swift; sourceTree = "<group>"; };
 		8BC4E37D240814E700AAA7CE /* DateFormatter+Decoders.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DateFormatter+Decoders.swift"; sourceTree = "<group>"; };
 		9A5C79BA0AC4A59C8B4E657E /* Pods-ScalaDaysPods-ScalaDays.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ScalaDaysPods-ScalaDays.release.xcconfig"; path = "Pods/Target Support Files/Pods-ScalaDaysPods-ScalaDays/Pods-ScalaDaysPods-ScalaDays.release.xcconfig"; sourceTree = "<group>"; };
@@ -269,7 +270,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5928D1781A88E5C800E5049E /* MapKit.framework in Frameworks */,
 				12E3C2517E2B2D10F7D9FEA8 /* Pods_ScalaDaysPods_ScalaDays.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -413,6 +413,7 @@
 			children = (
 				592978081A82141400EE3BA3 /* SDSocialHandler.swift */,
 				0D21FB2F2090ED1200441767 /* TWTRTweet+SDTweet.swift */,
+				8B8AF6BE24129EF7009A8D6C /* TwitterSocialController.swift */,
 			);
 			path = Social;
 			sourceTree = "<group>";
@@ -953,6 +954,7 @@
 				8B27270B24082A8000103EFF /* SDNotificationTableViewCell.swift in Sources */,
 				59ACD78D1CA28E4800863C52 /* SDVotesPopoverViewController.swift in Sources */,
 				592978091A82141400EE3BA3 /* SDSocialHandler.swift in Sources */,
+				8B8AF6BF24129EF7009A8D6C /* TwitterSocialController.swift in Sources */,
 				A1FA1FEE1A7B91D100338AF0 /* SDScheduleViewController.swift in Sources */,
 				8B39E3422408009B00338921 /* SDNotificationViewController.swift in Sources */,
 				8B1D1B3D241007AB00B8528D /* UIColor+Extension.swift in Sources */,
@@ -1114,7 +1116,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = ScalaDays/ScalaDays.entitlements;
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 14;
+				CURRENT_PROJECT_VERSION = 30;
 				DEVELOPMENT_TEAM = P548S5LU96;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1284,7 +1286,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = ScalaDays/ScalaDays.entitlements;
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 14;
+				CURRENT_PROJECT_VERSION = 30;
 				DEVELOPMENT_TEAM = P548S5LU96;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1314,7 +1316,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = ScalaDays/ScalaDays.entitlements;
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 14;
+				CURRENT_PROJECT_VERSION = 30;
 				DEVELOPMENT_TEAM = P548S5LU96;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
