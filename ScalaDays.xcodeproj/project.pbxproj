@@ -27,7 +27,6 @@
 		5925ADA11A897AAD000EA5E7 /* SDMapView-ZoomOut.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5925ADA01A897AAD000EA5E7 /* SDMapView-ZoomOut.swift */; };
 		592609921A973C610055A3D4 /* SDAnimationHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 592609911A973C610055A3D4 /* SDAnimationHelper.swift */; };
 		5928D1751A88A9FA00E5049E /* SDContactCreationHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 5928D1741A88A9FA00E5049E /* SDContactCreationHelper.m */; };
-		5928D1781A88E5C800E5049E /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5928D1761A88E5AB00E5049E /* MapKit.framework */; };
 		5928D17C1A88F53900E5049E /* SDString+RemoveWhiteSpaces.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5928D17B1A88F53900E5049E /* SDString+RemoveWhiteSpaces.swift */; };
 		5928D17D1A88F53900E5049E /* SDString+RemoveWhiteSpaces.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5928D17B1A88F53900E5049E /* SDString+RemoveWhiteSpaces.swift */; };
 		5928D18C1A89096500E5049E /* SDView-NibLoading.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5928D18B1A89096500E5049E /* SDView-NibLoading.swift */; };
@@ -271,7 +270,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5928D1781A88E5C800E5049E /* MapKit.framework in Frameworks */,
 				12E3C2517E2B2D10F7D9FEA8 /* Pods_ScalaDaysPods_ScalaDays.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
