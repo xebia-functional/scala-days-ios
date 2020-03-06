@@ -30,33 +30,14 @@ enum SDGetTweetsError: Int {
     case unauthorized
 }
 
-enum SDTweetComposerResult {
-    case cancelled
-    case done
-}
-
 enum SDGetTweetsResult {
     case success(tweets: [SDTweet])
     case failure(error: SDGetTweetsError)
 }
 
 class SDSocialHandler {
-    func showTweetComposer(withTweetText tweetText: String, on viewController: UIViewController, completion: @escaping (SDTweetComposerResult) -> Void) {
-        let composer = TWTRComposer()
-        composer.setText(tweetText)
-        composer.show(from: viewController) { composerResult  in
-            switch (composerResult) {
-            case .cancelled:
-                completion(.cancelled)
-            case .done:
-                completion(.done)
-            @unknown default:
-                completion(.cancelled)
-            }
-        }
-    }
     
-    func requestTweetList(withHashtag hashtag: String, count: Int, completion: @escaping (SDGetTweetsResult) -> Void) {
+    func fetchTweetList(withHashtag hashtag: String, count: Int, completion: @escaping (SDGetTweetsResult) -> Void) {
         guard let hashtag = hashtag.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed) else {
             completion(.failure(error: .invalidRequest))
             return

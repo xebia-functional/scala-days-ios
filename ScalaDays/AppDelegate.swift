@@ -91,9 +91,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     // MARK: deep link
-    func application(_ application: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey:Any] = [:]) -> Bool {
+    func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
         Localytics.handleTestModeURL(url)
-        return TWTRTwitter.sharedInstance().application(application, open: url, options: options)
     }
 }
 
