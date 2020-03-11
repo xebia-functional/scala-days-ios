@@ -27,10 +27,9 @@ extension MKMapView {
     // http://natashatherobot.com/functional-swift-tail-recursion/
     
     func zoomToFitMapAnnotations() {
+        guard self.annotations.count != 0 else { return }
+        
         let kZoomOutRatio = 50.0
-        if self.annotations.count == 0 {
-            return
-        }
         var topLeftCoord = CLLocationCoordinate2D(latitude: -90, longitude: 180)
         var bottomRightCoord = CLLocationCoordinate2D(latitude: 90, longitude: -180)
         for annotation in self.annotations {
@@ -42,6 +41,19 @@ extension MKMapView {
         let region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: topLeftCoord.latitude - (topLeftCoord.latitude - bottomRightCoord.latitude) * 0.5,
             longitude: topLeftCoord.longitude + (bottomRightCoord.longitude - topLeftCoord.longitude) * 0.5),
             span: MKCoordinateSpan(latitudeDelta: fabs(topLeftCoord.latitude - bottomRightCoord.latitude) * kZoomOutRatio, longitudeDelta: fabs(topLeftCoord.latitude - bottomRightCoord.latitude) * kZoomOutRatio))
-        self.setRegion(region, animated: true)
+        
+        let regionFits = self.regionThatFits(region)
+        guard !regionFits.isInvalid else { return }
+        self.setRegion(regionFits, animated: true)
     }
+}
+
+
+// MARK: - Helpers
+extension MKCoordinateRegion {
+    var isInvalid: Bool { span.isInvalid }
+}
+
+extension MKCoordinateSpan {
+    var isInvalid: Bool { latitudeDelta.isNaN || longitudeDelta.isNaN }
 }
