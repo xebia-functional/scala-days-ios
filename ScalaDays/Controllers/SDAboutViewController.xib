@@ -21,7 +21,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="avo-oW-dXi">
-                    <rect key="frame" x="0.0" y="44" width="414" height="774"/>
+                    <rect key="frame" x="0.0" y="44" width="414" height="771.5"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                     <color key="textColor" red="0.26051741839999998" green="0.2605243921" blue="0.260520637" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="15"/>
@@ -29,7 +29,7 @@
                     <dataDetectorType key="dataDetectorTypes" link="YES"/>
                 </textView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8tL-Xa-Mlu" userLabel="View47">
-                    <rect key="frame" x="0.0" y="818" width="414" height="44"/>
+                    <rect key="frame" x="0.0" y="815.5" width="414" height="46.5"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7gj-Jz-JgV" userLabel="separator">
                             <rect key="frame" x="0.0" y="0.0" width="414" height="1"/>
@@ -39,14 +39,14 @@
                             </constraints>
                         </view>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo_47deg" translatesAutoresizingMaskIntoConstraints="NO" id="dvg-HY-4XP">
-                            <rect key="frame" x="12" y="10" width="34" height="34"/>
+                            <rect key="frame" x="12" y="6.5" width="34" height="34"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="34" id="4Wb-a9-9hF"/>
                                 <constraint firstAttribute="width" constant="34" id="lFn-Du-GkY"/>
                             </constraints>
                         </imageView>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="The official Scala Days App for iOS handcrafted by 47 Degrees" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="0.0" translatesAutoresizingMaskIntoConstraints="NO" id="jG5-ky-XNF">
-                            <rect key="frame" x="56" y="16" width="350" height="22"/>
+                            <rect key="frame" x="56" y="16" width="350" height="14.5"/>
                             <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="12"/>
                             <color key="textColor" red="0.3333333432674408" green="0.3333333432674408" blue="0.3333333432674408" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <nil key="highlightedColor"/>
@@ -58,7 +58,7 @@
                         <constraint firstItem="dvg-HY-4XP" firstAttribute="centerY" secondItem="jG5-ky-XNF" secondAttribute="centerY" id="W90-Mk-KBH"/>
                         <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="44" id="X7O-Qb-sNw"/>
                         <constraint firstItem="7gj-Jz-JgV" firstAttribute="top" secondItem="8tL-Xa-Mlu" secondAttribute="top" id="ZNg-b2-Ggb"/>
-                        <constraint firstAttribute="bottom" secondItem="jG5-ky-XNF" secondAttribute="bottom" constant="6" id="aja-2I-PPN"/>
+                        <constraint firstAttribute="bottom" secondItem="jG5-ky-XNF" secondAttribute="bottom" constant="16" id="aja-2I-PPN"/>
                         <constraint firstAttribute="trailing" secondItem="7gj-Jz-JgV" secondAttribute="trailing" id="dBf-Wa-bso"/>
                         <constraint firstAttribute="trailing" secondItem="jG5-ky-XNF" secondAttribute="trailing" constant="8" id="hcy-U4-5gG"/>
                         <constraint firstItem="dvg-HY-4XP" firstAttribute="leading" secondItem="8tL-Xa-Mlu" secondAttribute="leading" constant="12" id="oTN-CD-DYR"/>

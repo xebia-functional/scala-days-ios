@@ -645,6 +645,7 @@
 				A1C8B87B1A8E7597008599FF /* ShellScript */,
 				4ABA015E8B8A751D0D8829A2 /* [CP] Embed Pods Frameworks */,
 				3121FD84F860465807A09E8E /* [CP] Copy Pods Resources */,
+				8BAF4ADA241A4195009653FC /* DSYMs */,
 			);
 			buildRules = (
 			);
@@ -875,6 +876,24 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ScalaDaysPods-ScalaDaysTests/Pods-ScalaDaysPods-ScalaDaysTests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		8BAF4ADA241A4195009653FC /* DSYMs */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = DSYMs;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "ls \"${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}\"\ncat \"${PROJECT_DIR}/ScalaDays/External/GoogleService-Info.plist\"\n";
+		};
 		A1C8B87B1A8E7597008599FF /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -886,7 +905,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Fabric/run\" 650c56fa5bc6a759a4802ae63f430cfaf6c8158a 2c56ab5ccb4f21cd496c8f733a95205cb91e19601dadd81a60e13f963f31c19c";
+			shellScript = "\"${PODS_ROOT}/Fabric/run\" 650c56fa5bc6a759a4802ae63f430cfaf6c8158a 2c56ab5ccb4f21cd496c8f733a95205cb91e19601dadd81a60e13f963f31c19c\n";
 		};
 		F08C9BFD17F15CD0A11F13FD /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
