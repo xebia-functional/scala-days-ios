@@ -16,16 +16,24 @@
 
 import UIKit
 
+
 class SDDateHandler: NSObject {
-    lazy var dateFormatter: DateFormatter = DateFormatter()
-    let kResponseDateFormat = "EEE, dd MMM yyyy HH:mm:ss Z"
-    let kScheduleDateFormat = "yyyy-MM-dd'T'HH:mm:ss'Z'"
-    let kConferenceDateFormat = "yyyy-MM-dd"
-    let kScheduleOutputWeekDay = "EEEE"
-    let kScheduleOutputMonthDay = "dd"
-    let kScheduleOutputMonthName = "MMM"
-    let kScheduleOutputHours = "HH"
-    let kScheduleOutputMinutes = "mm"
+    
+    private lazy var dateFormatter: DateFormatter = DateFormatter()
+    
+    private enum Formatter: String {
+        case response = "EEE, dd MMM yyyy HH:mm:ss Z"
+        case schedule = "yyyy-MM-dd'T'HH:mm:ss'Z'"
+        case conference = "yyyy-MM-dd"
+        
+        enum Component: String {
+            case weekDay = "EEEE"
+            case monthDay = "dd"
+            case monthName = "MMM"
+            case hours = "HH"
+            case minutes = "mm"
+        }
+    }
     
     class var sharedInstance: SDDateHandler {
 
@@ -37,38 +45,36 @@ class SDDateHandler: NSObject {
     }
 
     func parseServerDate(_ dateString: String) -> Date? {
-        dateFormatter.dateFormat = kResponseDateFormat
+        dateFormatter.dateFormat = Formatter.response.rawValue
         dateFormatter.timeZone = TimeZone(abbreviation: "GMT")
         dateFormatter.locale = Locale(identifier: "en_US_POSIX")
         return dateFormatter.date(from: dateString)
     }
 
     func parseScheduleDate(_ dateString: String) -> Date? {
-        dateFormatter.dateFormat = kScheduleDateFormat
+        dateFormatter.dateFormat = Formatter.schedule.rawValue
         dateFormatter.timeZone = TimeZone(abbreviation: "UTC")
         dateFormatter.locale = Locale(identifier: "en_US_POSIX")
         return dateFormatter.date(from: dateString)
     }
     
     func parseConferenceDate(_ dateString: String) -> Date? {
-        dateFormatter.dateFormat = kConferenceDateFormat
+        dateFormatter.dateFormat = Formatter.conference.rawValue
         dateFormatter.timeZone = TimeZone(abbreviation: "UTC")
         dateFormatter.locale = Locale(identifier: "en_US_POSIX")
         return dateFormatter.date(from: dateString)
     }
     
     func formatScheduleDetailDate(_ date: Date) -> String? {
-        
-        
-        dateFormatter.dateFormat = kScheduleOutputWeekDay
+        dateFormatter.dateFormat = Formatter.Component.weekDay.rawValue
         let weekDay = dateFormatter.string(from: date)
-        dateFormatter.dateFormat = kScheduleOutputMonthDay
+        dateFormatter.dateFormat = Formatter.Component.monthDay.rawValue
         let monthDayNumber = dateFormatter.string(from: date)
-        dateFormatter.dateFormat = kScheduleOutputMonthName
+        dateFormatter.dateFormat = Formatter.Component.monthName.rawValue
         let monthName = dateFormatter.string(from: date)
-        dateFormatter.dateFormat = kScheduleOutputHours
+        dateFormatter.dateFormat = Formatter.Component.hours.rawValue
         let hours = dateFormatter.string(from: date)
-        dateFormatter.dateFormat = kScheduleOutputMinutes
+        dateFormatter.dateFormat = Formatter.Component.minutes.rawValue
         let minutes = dateFormatter.string(from: date)
         
         if let monNumber = Int(monthDayNumber){
