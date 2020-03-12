@@ -42,6 +42,14 @@ class Conference: NSObject, Codable {
         SDDateHandler.sharedInstance.localEndDate(conference: self)
     }
     
+    var localStartDateFirstEvent: Date? {
+        SDDateHandler.sharedInstance.localStartDateFirstEvent(conference: self)
+    }
+    
+    var localEndDateLastEvent: Date? {
+        SDDateHandler.sharedInstance.localEndDateLastEvent(conference: self)
+    }
+    
     var isActive: Bool {
         SDDateHandler.sharedInstance.isConferenceActive(self)
     }

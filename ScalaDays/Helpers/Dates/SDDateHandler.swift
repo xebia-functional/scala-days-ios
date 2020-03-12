@@ -20,6 +20,7 @@ class SDDateHandler: NSObject {
     lazy var dateFormatter: DateFormatter = DateFormatter()
     let kResponseDateFormat = "EEE, dd MMM yyyy HH:mm:ss Z"
     let kScheduleDateFormat = "yyyy-MM-dd'T'HH:mm:ss'Z'"
+    let kConferenceDateFormat = "yyyy-MM-dd"
     let kScheduleOutputWeekDay = "EEEE"
     let kScheduleOutputMonthDay = "dd"
     let kScheduleOutputMonthName = "MMM"
@@ -44,6 +45,13 @@ class SDDateHandler: NSObject {
 
     func parseScheduleDate(_ dateString: String) -> Date? {
         dateFormatter.dateFormat = kScheduleDateFormat
+        dateFormatter.timeZone = TimeZone(abbreviation: "UTC")
+        dateFormatter.locale = Locale(identifier: "en_US_POSIX")
+        return dateFormatter.date(from: dateString)
+    }
+    
+    func parseConferenceDate(_ dateString: String) -> Date? {
+        dateFormatter.dateFormat = kConferenceDateFormat
         dateFormatter.timeZone = TimeZone(abbreviation: "UTC")
         dateFormatter.locale = Locale(identifier: "en_US_POSIX")
         return dateFormatter.date(from: dateString)
@@ -127,12 +135,24 @@ class SDDateHandler: NSObject {
     }
     
     func localStartDate(conference: Conference) -> Date? {
+        SDDateHandler.sharedInstance
+            .parseConferenceDate(conference.info.firstDay)
+            .flatMap { date in SDDateHandler.convertDateToLocalTime(date, timeZoneName: conference.info.utcTimezoneOffset) }
+    }
+    
+    func localEndDate(conference: Conference) -> Date? {
+        SDDateHandler.sharedInstance
+            .parseConferenceDate(conference.info.lastDay)
+            .flatMap { date in SDDateHandler.convertDateToLocalTime(date, timeZoneName: conference.info.utcTimezoneOffset) }
+    }
+    
+    func localStartDateFirstEvent(conference: Conference) -> Date? {
         conference.schedule.compactMap { schedule in SDDateHandler.sharedInstance.parseScheduleDate(schedule.startTime) }
                            .compactMap { date in SDDateHandler.convertDateToLocalTime(date, timeZoneName: conference.info.utcTimezoneOffset) }
                            .sorted(by: <).first
     }
     
-    func localEndDate(conference: Conference) -> Date? {
+    func localEndDateLastEvent(conference: Conference) -> Date? {
         conference.schedule.compactMap { schedule in SDDateHandler.sharedInstance.parseScheduleDate(schedule.endTime) }
                            .compactMap { date in SDDateHandler.convertDateToLocalTime(date, timeZoneName: conference.info.utcTimezoneOffset) }
                            .sorted(by: >).first
