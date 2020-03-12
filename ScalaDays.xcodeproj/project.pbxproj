@@ -892,7 +892,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "ls \"${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}\"\ncat \"${PROJECT_DIR}/ScalaDays/External/GoogleService-Info.plist\"\n";
+			shellScript = "if [ \"${CONFIGURATION}\" = \"AdHoc\" ]; then\n    \"${PODS_ROOT}/Fabric/upload-symbols\" -gsp \"${PROJECT_DIR}/ScalaDays/External/GoogleService-Info.plist\" -p ios \"${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}\"\nfi\n";
 		};
 		A1C8B87B1A8E7597008599FF /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
