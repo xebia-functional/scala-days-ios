@@ -42,6 +42,14 @@ class Conference: NSObject, Codable {
         SDDateHandler.sharedInstance.localEndDate(conference: self)
     }
     
+    var localStartDateFirstEvent: Date? {
+        SDDateHandler.sharedInstance.localStartDateFirstEvent(conference: self)
+    }
+    
+    var localEndDateLastEvent: Date? {
+        SDDateHandler.sharedInstance.localEndDateLastEvent(conference: self)
+    }
+    
     var isActive: Bool {
         SDDateHandler.sharedInstance.isConferenceActive(self)
     }
@@ -93,6 +101,25 @@ class Information: NSObject, Codable {
         self.query = query
         self.pictures = pictures
         self.testMode = testMode
+    }
+    
+    required init(from decoder: Decoder) throws {
+        let values = try decoder.container(keyedBy: CodingKeys.self)
+        
+        id = try values.decode(Int.self, forKey: .id)
+        name = try values.decode(String.self, forKey: .name)
+        longName = try values.decode(String.self, forKey: .longName)
+        nameAndLocation = try values.decode(String.self, forKey: .nameAndLocation)
+        firstDay = try values.decode(String.self, forKey: .firstDay)
+        lastDay = try values.decode(String.self, forKey: .lastDay)
+        normalSite = try values.decode(String.self, forKey: .normalSite)
+        registrationSite = try values.decode(String.self, forKey: .registrationSite)
+        utcTimezoneOffset = (try values.decode(String.self, forKey: .utcTimezoneOffset)).replacingOccurrences(of: " ", with: "_")
+        utcTimezoneOffsetMillis = try values.decode(Float.self, forKey: .utcTimezoneOffsetMillis)
+        hashtag = try values.decode(String.self, forKey: .hashtag)
+        query = try values.decode(String?.self, forKey: .query)
+        pictures = try values.decode([Picture].self, forKey: .pictures)
+        testMode = try values.decode(Bool.self, forKey: .testMode)
     }
 }
 
