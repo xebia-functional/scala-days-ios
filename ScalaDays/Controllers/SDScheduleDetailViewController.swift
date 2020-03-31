@@ -107,13 +107,9 @@ class SDScheduleDetailViewController: UIViewController {
                         speakerView.drawSpeakerData(speaker)
                         viewSpeakerListContainer.addSubview(speakerView)
                         
-                        if speakers.last != speaker {
-                            speakerView.drawSeparator()
-                        }
-                        
                         let height = speakerView.contentHeight()
                         speakerView.frame = CGRect(x: 0, y: lastSpeakerBottomPos, width: screenBounds.width, height: height)
-                        lastSpeakerBottomPos += height
+                        lastSpeakerBottomPos += height - 32
                     }
                     constraintForSpeakerListContainerHeight.constant = lastSpeakerBottomPos
                 }
