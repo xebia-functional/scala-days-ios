@@ -62,7 +62,7 @@ class SDAboutViewController: UIViewController, SDErrorPlaceholderViewDelegate, S
     private func setupAppareance() {
         separatorH.constant = 0.25
 
-        descriptionTextView.contentInset = UIEdgeInsets(top: 8, left: 12, bottom: -18, right: 8)
+        descriptionTextView.contentInset = UIEdgeInsets(top: 6, left: 12, bottom: -22, right: 8)
         descriptionTextView.setHTMLAppareance([.foregroundColor: UIColor.appRedColor()],
                                               textColor: .appColor())
     }
