@@ -108,7 +108,7 @@ class SDSlideMenuViewController: UIViewController, UITableViewDelegate, UITableV
         self.tblMenu.scrollsToTop = false
         self.tblConferences.scrollsToTop = false
         
-        self.titleConference.setCustomFont(UIFont.fontHelveticaNeue(17), colorFont: UIColor.white)
+        self.titleConference.setCustomFont(UIFont.fontHelveticaNeue(16), colorFont: UIColor.white)
         
         let notificationViewController = SDNotificationViewController(analytics: analytics, notificationManager: notificationManager)
         self.notificationNavigationController = UINavigationController(rootViewController: notificationViewController)

@@ -54,6 +54,7 @@ class SDSocialViewController: UIViewController, UITableViewDelegate, UITableView
         
         tblView?.register(UINib(nibName: "SDSocialTableViewCell", bundle: nil), forCellReuseIdentifier: kReuseIdentifier)
         tblView?.addSubview(refreshControl)
+        tblView?.tableFooterView = UIView()
         if isIOS8OrLater() {
             tblView?.estimatedRowHeight = kEstimatedDynamicCellsRowHeightHigh
         }
