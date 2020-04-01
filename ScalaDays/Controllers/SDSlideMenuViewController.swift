@@ -108,7 +108,7 @@ class SDSlideMenuViewController: UIViewController, UITableViewDelegate, UITableV
         self.tblMenu.scrollsToTop = false
         self.tblConferences.scrollsToTop = false
         
-        self.titleConference.setCustomFont(UIFont.fontHelveticaNeue(16), colorFont: UIColor.white)
+        self.titleConference.setCustomFont(UIFont.fontHelveticaNeue(15), colorFont: UIColor.white)
         
         let notificationViewController = SDNotificationViewController(analytics: analytics, notificationManager: notificationManager)
         self.notificationNavigationController = UINavigationController(rootViewController: notificationViewController)
@@ -214,13 +214,14 @@ class SDSlideMenuViewController: UIViewController, UITableViewDelegate, UITableV
             }
         default :
             let cell: UITableViewCell = UITableViewCell(style: UITableViewCell.CellStyle.default, reuseIdentifier: "CellMenu")
-            cell.textLabel?.setCustomFont(UIFont.fontHelveticaNeue(15), colorFont: UIColor(white: 1, alpha: 0.8))
+            cell.textLabel?.setCustomFont(UIFont.fontHelveticaNeue(15), colorFont: UIColor(white: 1, alpha: 0.9))
             cell.backgroundColor = UIColor.appColor()
             let bgColorView = UIView()
             bgColorView.backgroundColor = UIColor.selectedCellMenu()
             cell.selectedBackgroundView = bgColorView
             cell.textLabel?.text = menus[indexPath.row]
             cell.imageView?.image = UIImage(named: menusImage[indexPath.row] as String)
+            cell.imageView?.contentMode = .scaleAspectFit
             cell.layoutIfNeeded()
             return cell
         }
