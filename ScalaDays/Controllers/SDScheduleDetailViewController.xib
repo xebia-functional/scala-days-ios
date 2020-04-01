@@ -52,10 +52,11 @@
                     <rect key="frame" x="0.0" y="66" width="414" height="830"/>
                     <subviews>
                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="schedule_icon_details" translatesAutoresizingMaskIntoConstraints="NO" id="QfL-GF-VBC">
-                            <rect key="frame" x="16" y="16" width="26" height="26"/>
+                            <rect key="frame" x="16" y="16" width="24" height="24"/>
+                            <color key="tintColor" red="0.19705060120000001" green="0.23922359939999999" blue="0.27643677589999999" alpha="0.80000000000000004" colorSpace="custom" customColorSpace="displayP3"/>
                             <constraints>
-                                <constraint firstAttribute="height" constant="26" id="0nd-hc-viH"/>
-                                <constraint firstAttribute="width" constant="26" id="3Vm-2K-USw"/>
+                                <constraint firstAttribute="height" constant="24" id="0nd-hc-viH"/>
+                                <constraint firstAttribute="width" constant="24" id="3Vm-2K-USw"/>
                             </constraints>
                         </imageView>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="0.0" translatesAutoresizingMaskIntoConstraints="NO" id="f0G-BH-eqJ" userLabel="Label - Date">
@@ -164,6 +165,6 @@
         </view>
     </objects>
     <resources>
-        <image name="schedule_icon_details" width="18" height="18"/>
+        <image name="schedule_icon_details" width="28.5" height="32"/>
     </resources>
 </document>
