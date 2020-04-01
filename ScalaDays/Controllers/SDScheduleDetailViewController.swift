@@ -94,7 +94,6 @@ class SDScheduleDetailViewController: UIViewController {
             }
             
             lblDescription.text = currentEvent.apiDescription
-            lblDescription.preferredMaxLayoutWidth = screenBounds.width - (kPadding * 2)
             
             if let speakers = currentEvent.speakers {
                 if (speakers.count < 1) {
