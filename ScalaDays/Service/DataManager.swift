@@ -127,15 +127,14 @@ class DataManager {
             }
         }
         
-        if forceConnection || shouldReconnect || self.conferences == nil {
-            getEndpoint(from: self.endpoint) { result in
-                switch result {
-                case .success(let url): self.loadData(endpoint: url, force: forceConnection, callback: callback)
-                case .failure(let e): callback(false, e)
-                }
+        loadCachedData(callback: callback)
+        guard forceConnection || shouldReconnect || self.conferences == nil else { return }
+        
+        getEndpoint(from: self.endpoint) { result in
+            switch result {
+            case .success(let url): self.loadData(endpoint: url, force: forceConnection, callback: callback)
+            case .failure(let e): callback(false, e)
             }
-        } else {
-            callback(false, nil)
         }
     }
     
@@ -194,6 +193,11 @@ class DataManager {
             
             callback(.success(url))
         }
+    }
+    
+    private func loadCachedData(callback: @escaping (Bool, NSError?) -> Void) {
+        guard conferences != nil else { return }
+        callback(false, nil)
     }
     
     private func loadData(endpoint: URL, force: Bool, callback: @escaping (Bool, NSError?) -> Void) {
