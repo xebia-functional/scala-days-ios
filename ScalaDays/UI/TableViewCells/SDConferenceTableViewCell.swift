@@ -25,7 +25,7 @@ class SDConferenceTableViewCell: UITableViewCell {
         super.awakeFromNib()
         self.conferenceImageView.circularImage()
         self.lblConferenceName.numberOfLines = 0
-        self.lblConferenceName.setCustomFont(UIFont.fontHelveticaNeue(15), colorFont: UIColor(white: 1, alpha: 0.8))
+        self.lblConferenceName.setCustomFont(UIFont.fontHelveticaNeue(15), colorFont: UIColor(white: 1, alpha: 0.9))
         self.backgroundColor = UIColor.appColor()
         let bgColorView = UIView()
         bgColorView.backgroundColor = UIColor.selectedCellMenu()

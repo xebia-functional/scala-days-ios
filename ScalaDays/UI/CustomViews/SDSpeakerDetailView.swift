@@ -30,9 +30,9 @@ class SDSpeakerDetailView: UIView {
     @IBOutlet weak var lblDescription: UILabel!
 
     let kSeparatorHeight: CGFloat = 1.0
-    let kBottomPadding: CGFloat = 30.0
-    let kHorizontalPadding: CGFloat = 18.0
-    let kPaddingForSeparator: CGFloat = 15.0
+    let kBottomPadding: CGFloat = 16.0
+    let kHorizontalPadding: CGFloat = 16.0
+    let kPaddingForSeparator: CGFloat = 16.0
     let selectorTwitter: Selector = #selector(SDSpeakerDetailView.onTwitter)
 
     init(frame: CGRect, analytics: Analytics) {

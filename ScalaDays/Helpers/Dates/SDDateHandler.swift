@@ -72,13 +72,9 @@ class SDDateHandler: NSObject {
         let monthDayNumber = dateFormatter.string(from: date)
         dateFormatter.dateFormat = Formatter.Component.monthName.rawValue
         let monthName = dateFormatter.string(from: date)
-        dateFormatter.dateFormat = Formatter.Component.hours.rawValue
-        let hours = dateFormatter.string(from: date)
-        dateFormatter.dateFormat = Formatter.Component.minutes.rawValue
-        let minutes = dateFormatter.string(from: date)
         
         if let monNumber = Int(monthDayNumber){
-            return "\(weekDay) (\(monNumber)\(SDDateHandler.ordinalSuffixFromDayNumber(monNumber)) \(monthName).) \(hours):\(minutes)"
+            return "\(weekDay) (\(monNumber)\(SDDateHandler.ordinalSuffixFromDayNumber(monNumber)) \(monthName).) \(time12H(date: date))"
         } else {
             dateFormatter.dateStyle = .full
             dateFormatter.timeStyle = .short
@@ -86,6 +82,12 @@ class SDDateHandler: NSObject {
             
             return dateFormatter.string(from: date)
         }
+    }
+    
+    private func time12H(date: Date) -> String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "hh:mm a"
+        return formatter.string(from: date)
     }
 
     
