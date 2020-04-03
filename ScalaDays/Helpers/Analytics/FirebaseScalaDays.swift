@@ -1,11 +1,7 @@
 import Foundation
 import Firebase
 
-struct FirebaseScalaDays: Analytics {
-    
-    init() {
-        FirebaseApp.configure()
-    }
+struct ScalaDaysAnalytics: Analytics {
     
     func logScreenName(_ screen: AnalyticEvent.ScreenName, class screenClass: UIViewController.Type) {
         Firebase.Analytics.setScreenName("\(screen)", screenClass: String(describing: screenClass))
