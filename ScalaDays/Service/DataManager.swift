@@ -18,14 +18,22 @@ import Foundation
 import UIKit
 import Alamofire
 
-private let _DataManagerSharedInstance = DataManager()
-
 class DataManager {
     private let userManager = UserManager()
     private let endpoint = "https://scaladays-backend.herokuapp.com/source"
     
     private(set) var selectedConferenceIndex = 0 { didSet { udpateSelectedConference() }}
     @objc private(set) var conferences: Conferences?
+    private let subscriber: SubscriberNotification
+    
+    
+    init(subscriber: SubscriberNotification) {
+        self.subscriber = subscriber
+        
+        if let conferencesData = StoringHelper.sharedInstance.loadConferenceData() {
+            self.conferences = conferencesData
+        }
+    }
     
     var lastDate: Date? {
         get {
@@ -107,16 +115,10 @@ class DataManager {
     class var sharedInstance: DataManager {
 
         struct Static {
-            static let instance: DataManager = DataManager()
+            static let instance: DataManager = DataManager(subscriber: FirebaseSubscriber())
         }
 
         return Static.instance
-    }
-
-    init() {
-        if let conferencesData = StoringHelper.sharedInstance.loadConferenceData() {
-            self.conferences = conferencesData
-        }
     }
 
     func loadDataJson(_ forceConnection: Bool = false, callback: @escaping (Bool, NSError?) -> ()) {
@@ -151,6 +153,7 @@ class DataManager {
         self.conferences = .init(conferences: filtered)
         #endif
              
+        self.conferences.flatMap(subscriber.subscribe)
         StoringHelper.sharedInstance.storeConferenceData(conferences)
     }
     

@@ -87,6 +87,7 @@
 		8B5818F12406DA1200587211 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8B5818F02406DA1200587211 /* GoogleService-Info.plist */; };
 		8B5818F42406F8E800587211 /* Analytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B5818F22406F8E700587211 /* Analytics.swift */; };
 		8B5818F52406F8E800587211 /* FirebaseScalaDays.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B5818F32406F8E700587211 /* FirebaseScalaDays.swift */; };
+		8B85D82E24375C4D00BF5F3D /* FirebaseNotifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B85D82D24375C4D00BF5F3D /* FirebaseNotifications.swift */; };
 		8B8AF6BF24129EF7009A8D6C /* TwitterSocialController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B8AF6BE24129EF7009A8D6C /* TwitterSocialController.swift */; };
 		8B9F38D9243730C900924A8A /* AppDelegate+PushNoticications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B9F38D8243730C900924A8A /* AppDelegate+PushNoticications.swift */; };
 		8B9F38E1243734CB00924A8A /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B9F38E0243734CB00924A8A /* NotificationService.swift */; };
@@ -240,6 +241,7 @@
 		8B5818F02406DA1200587211 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; name = "GoogleService-Info.plist"; path = "ScalaDays/External/GoogleService-Info.plist"; sourceTree = SOURCE_ROOT; };
 		8B5818F22406F8E700587211 /* Analytics.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Analytics.swift; sourceTree = "<group>"; };
 		8B5818F32406F8E700587211 /* FirebaseScalaDays.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirebaseScalaDays.swift; sourceTree = "<group>"; };
+		8B85D82D24375C4D00BF5F3D /* FirebaseNotifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseNotifications.swift; sourceTree = "<group>"; };
 		8B8AF6BE24129EF7009A8D6C /* TwitterSocialController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwitterSocialController.swift; sourceTree = "<group>"; };
 		8B9F38D8243730C900924A8A /* AppDelegate+PushNoticications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppDelegate+PushNoticications.swift"; sourceTree = "<group>"; };
 		8B9F38DE243734CB00924A8A /* ScalaDays Notifications.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "ScalaDays Notifications.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -518,6 +520,7 @@
 			isa = PBXGroup;
 			children = (
 				597E3B0F1AB2E5FD00F41F17 /* DataManager.swift */,
+				8B85D82D24375C4D00BF5F3D /* FirebaseNotifications.swift */,
 				8B39E3452408010F00338921 /* NotificationManager.swift */,
 				8B18E251240D214200AED41C /* UserManager.swift */,
 				8BF8205C2407C46D00C1C24E /* Response */,
@@ -1054,6 +1057,7 @@
 				A1FA1FE81A7AA33F00338AF0 /* SDAboutViewController.swift in Sources */,
 				59D174621A8E0C2B001E87CF /* SDSponsorsTableViewCell.swift in Sources */,
 				A1FA1FE01A7AA2FA00338AF0 /* SDSponsorViewController.swift in Sources */,
+				8B85D82E24375C4D00BF5F3D /* FirebaseNotifications.swift in Sources */,
 				5928D1751A88A9FA00E5049E /* SDContactCreationHelper.m in Sources */,
 				593571E91A77DDA8005AA332 /* StoringHelper.swift in Sources */,
 				8BC4E37C2408117300AAA7CE /* SDNotifications.swift in Sources */,
@@ -1258,7 +1262,7 @@
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.fortysevendeg.scaladays.ScalaDays-Notifications";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE_SPECIFIER = "ScalaDays Notification Dev";
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_VERSION = 5.0;
 			};
@@ -1283,7 +1287,7 @@
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.fortysevendeg.scaladays.ScalaDays-Notifications";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE_SPECIFIER = "ScalaDays Notification AppStore";
 				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
@@ -1307,7 +1311,7 @@
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.fortysevendeg.scaladays.ScalaDays-Notifications";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE_SPECIFIER = "ScalaDays Notification AdHoc";
 				SWIFT_VERSION = 5.0;
 			};
 			name = AdHoc;
