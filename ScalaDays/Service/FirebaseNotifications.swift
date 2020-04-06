@@ -9,6 +9,7 @@ class FirebaseSubscriber: SubscriberNotification {
     func subscribe(conferences: Conferences) {
         conferences.conferences.map(\.info.id).forEach { conferenceId in
             Messaging.messaging().subscribe(toTopic: "\(conferenceId)_\(environment)_ios".lowercased())
+            Messaging.messaging().subscribe(toTopic: "\(environment)_ios".lowercased())
         }
     }
     
