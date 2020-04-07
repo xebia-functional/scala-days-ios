@@ -15,14 +15,11 @@ Once the dependencies are downloaded Cocoapods will create a workspace file. Use
 
 ## External Keys
 
-As this project uses Localytics, TwitterKit and Firebase (Analytics + Crashlytics) two external plist files, located in the *External/Keys* folder, are used to store the API keys for those services.
-You need to provide both files (not included in the repository for security reasons)
+As this project uses TwitterKit and Firebase (Analytics + Crashlytics + Cloud Messaging) frameworks, you need to provide the whole API keys (not included in the repo for security reasons). They are distributed in two external `plist files`, located in the *External/Keys* folder.
 
 **SDExternalKeys.plist**
 
 	<dict>
-		<key>Localytics</key>
-		<string>***********</string>
 		<key>TwitterConsumerKey</key>
 		<string>***********</string>
 		<key>TwitterConsumerSecret</key>
@@ -33,28 +30,9 @@ You need to provide both files (not included in the repository for security reas
 
 You can find this plist in your [Firebase console](https://firebase.google.com/).
 
-## Push Notifications
-
-Scala Days has a minimum time between network calls of **four hours**. To override this limit you can send a push notification with the following json key/value pair:
-
-	jsonReload : true
-
-For example, in our case :
-
-	{"aps":
-		{
-		 "alert":" Scala Days just added a new event"
-		 },
-	"jsonReload": true
-	}
-
 ## Crash Reporting
 
-Crash reporting is handled through Crashlytics. All uncaught exceptions are sent to Crashlytics.
-
-## Functional code
-
-By using Swift in the development of this project we’ve had the chance to bring some **functional programming** aspects to it, i.e.: pattern matching, use of higher-order functions, immutability (wherever possible, Swift 1.2 will let us improve this area further). We consider the Scala Days project as our little first step in the way towards an even more functional development in Apple’s platforms, a target we’re deeply committed to. For a deeper look to what Swift and Scala have in common (in our humble opinion) please refer to this [blog post](http://www.47deg.com/blog/swift-scala).
+Crash reporting is handled through Crashlytics. All uncaught exceptions are sent to Firebase/Crashlytics.
 
 ## License
 Copyright (C) 2015 47 Degrees, LLC http://47deg.com hello@47deg.com

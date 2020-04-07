@@ -10,10 +10,9 @@
 		0D21FB302090ED1200441767 /* TWTRTweet+SDTweet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D21FB2F2090ED1200441767 /* TWTRTweet+SDTweet.swift */; };
 		0D21FB312091F84900441767 /* TWTRTweet+SDTweet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D21FB2F2090ED1200441767 /* TWTRTweet+SDTweet.swift */; };
 		0DEDC40E20AC7197004C7643 /* VoteTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DEDC40D20AC7197004C7643 /* VoteTests.swift */; };
-		12E3C2517E2B2D10F7D9FEA8 /* Pods_ScalaDaysPods_ScalaDays.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 857E5518A29D51062F9155B4 /* Pods_ScalaDaysPods_ScalaDays.framework */; };
-		18DAE816976C232E95E125FE /* Pods_ScalaDaysPods_ScalaDaysTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7DE3E72A5ED11E640A8CD7A9 /* Pods_ScalaDaysPods_ScalaDaysTests.framework */; };
 		1EA75E8B1A925BFF00884EC8 /* SDConferenceTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EA75E891A925BFF00884EC8 /* SDConferenceTableViewCell.swift */; };
 		1EA75E8C1A925BFF00884EC8 /* SDConferenceTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1EA75E8A1A925BFF00884EC8 /* SDConferenceTableViewCell.xib */; };
+		39036EAE63064913990C96C3 /* Pods_ScalaDays_Notifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D960E86E02CD5B9889AF42A6 /* Pods_ScalaDays_Notifications.framework */; };
 		590DDD6A1A83BAC100E4CC3F /* SDSpeakersListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 590DDD691A83BAC100E4CC3F /* SDSpeakersListViewController.swift */; };
 		590DDD6E1A83BAFD00E4CC3F /* SDSpeakersListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 590DDD6D1A83BAFD00E4CC3F /* SDSpeakersListViewController.xib */; };
 		590DDD701A83BE9B00E4CC3F /* SDSpeakersTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 590DDD6F1A83BE9B00E4CC3F /* SDSpeakersTableViewCell.swift */; };
@@ -88,7 +87,11 @@
 		8B5818F12406DA1200587211 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8B5818F02406DA1200587211 /* GoogleService-Info.plist */; };
 		8B5818F42406F8E800587211 /* Analytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B5818F22406F8E700587211 /* Analytics.swift */; };
 		8B5818F52406F8E800587211 /* FirebaseScalaDays.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B5818F32406F8E700587211 /* FirebaseScalaDays.swift */; };
+		8B85D82E24375C4D00BF5F3D /* FirebaseNotifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B85D82D24375C4D00BF5F3D /* FirebaseNotifications.swift */; };
 		8B8AF6BF24129EF7009A8D6C /* TwitterSocialController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B8AF6BE24129EF7009A8D6C /* TwitterSocialController.swift */; };
+		8B9F38D9243730C900924A8A /* AppDelegate+PushNoticications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B9F38D8243730C900924A8A /* AppDelegate+PushNoticications.swift */; };
+		8B9F38E1243734CB00924A8A /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B9F38E0243734CB00924A8A /* NotificationService.swift */; };
+		8B9F38E5243734CB00924A8A /* ScalaDays Notifications.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 8B9F38DE243734CB00924A8A /* ScalaDays Notifications.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		8BC4E37C2408117300AAA7CE /* SDNotifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BC4E37B2408117300AAA7CE /* SDNotifications.swift */; };
 		8BC4E37E240814E700AAA7CE /* DateFormatter+Decoders.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BC4E37D240814E700AAA7CE /* DateFormatter+Decoders.swift */; };
 		A13B434520AC773A00F78759 /* SDExternalKeys.plist in Resources */ = {isa = PBXBuildFile; fileRef = A13B434420AC773A00F78759 /* SDExternalKeys.plist */; };
@@ -122,9 +125,17 @@
 		A1FA1FF61A7B98FE00338AF0 /* SDSlideMenuViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A1CC72141A7A727F00757B65 /* SDSlideMenuViewController.xib */; };
 		A1FA1FF91A7BA95500338AF0 /* SDConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1FA1FF81A7BA95500338AF0 /* SDConstants.swift */; };
 		A1FA1FFB1A7BAE5B00338AF0 /* SDFonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1FA1FFA1A7BAE5B00338AF0 /* SDFonts.swift */; };
+		C516D5BD48401C99524A22E9 /* Pods_ScalaDays.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A536D60380EF52CB5F59C3DA /* Pods_ScalaDays.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		8B9F38E3243734CB00924A8A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A1D795BF1A68267F009CCEB3 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8B9F38DD243734CB00924A8A;
+			remoteInfo = "ScalaDays Notifications";
+		};
 		A1D795DD1A68267F009CCEB3 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = A1D795BF1A68267F009CCEB3 /* Project object */;
@@ -135,6 +146,17 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
+		8B9F38EA243734CB00924A8A /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				8B9F38E5243734CB00924A8A /* ScalaDays Notifications.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		A163DC141A6D6C7C00A21B8E /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -148,13 +170,14 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		0256E37AB85427EDF899EF98 /* Pods-ScalaDaysPods-ScalaDaysTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ScalaDaysPods-ScalaDaysTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ScalaDaysPods-ScalaDaysTests/Pods-ScalaDaysPods-ScalaDaysTests.debug.xcconfig"; sourceTree = "<group>"; };
+		0287199FDEB787EA163C309E /* Pods-ScalaDays Notifications.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ScalaDays Notifications.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ScalaDays Notifications/Pods-ScalaDays Notifications.debug.xcconfig"; sourceTree = "<group>"; };
 		02C3CA31C911ADCA6C7CA1B8 /* Pods-ScalaDaysPods-ScalaDays.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ScalaDaysPods-ScalaDays.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ScalaDaysPods-ScalaDays/Pods-ScalaDaysPods-ScalaDays.debug.xcconfig"; sourceTree = "<group>"; };
 		0D21FB2F2090ED1200441767 /* TWTRTweet+SDTweet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TWTRTweet+SDTweet.swift"; sourceTree = "<group>"; };
 		0DEDC40D20AC7197004C7643 /* VoteTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoteTests.swift; sourceTree = "<group>"; };
 		1EA75E891A925BFF00884EC8 /* SDConferenceTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SDConferenceTableViewCell.swift; sourceTree = "<group>"; };
 		1EA75E8A1A925BFF00884EC8 /* SDConferenceTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SDConferenceTableViewCell.xib; sourceTree = "<group>"; };
-		27CC132DAC4EB8C5D5F3EC28 /* Pods-ScalaDaysPods-ScalaDaysTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ScalaDaysPods-ScalaDaysTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ScalaDaysPods-ScalaDaysTests/Pods-ScalaDaysPods-ScalaDaysTests.release.xcconfig"; sourceTree = "<group>"; };
+		4DFA1B90D4E247FCC9E09CA0 /* Pods-ScalaDays Notifications.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ScalaDays Notifications.release.xcconfig"; path = "Pods/Target Support Files/Pods-ScalaDays Notifications/Pods-ScalaDays Notifications.release.xcconfig"; sourceTree = "<group>"; };
+		50A5C2BB4BFDDAB0A3D445DB /* Pods-ScalaDays Notifications.adhoc.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ScalaDays Notifications.adhoc.xcconfig"; path = "Pods/Target Support Files/Pods-ScalaDays Notifications/Pods-ScalaDays Notifications.adhoc.xcconfig"; sourceTree = "<group>"; };
 		590DDD691A83BAC100E4CC3F /* SDSpeakersListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SDSpeakersListViewController.swift; sourceTree = "<group>"; };
 		590DDD6D1A83BAFD00E4CC3F /* SDSpeakersListViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SDSpeakersListViewController.xib; sourceTree = "<group>"; };
 		590DDD6F1A83BE9B00E4CC3F /* SDSpeakersTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SDSpeakersTableViewCell.swift; sourceTree = "<group>"; };
@@ -199,8 +222,7 @@
 		59D174611A8E0C2B001E87CF /* SDSponsorsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SDSponsorsTableViewCell.swift; sourceTree = "<group>"; };
 		59D174631A8E0C3A001E87CF /* SDSponsorsTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SDSponsorsTableViewCell.xib; sourceTree = "<group>"; };
 		59F0E2E51CA1518700BDD40E /* Vote.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Vote.swift; sourceTree = "<group>"; };
-		7DE3E72A5ED11E640A8CD7A9 /* Pods_ScalaDaysPods_ScalaDaysTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ScalaDaysPods_ScalaDaysTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		857E5518A29D51062F9155B4 /* Pods_ScalaDaysPods_ScalaDays.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ScalaDaysPods_ScalaDays.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		679E8210A12478E88B514A2B /* Pods-ScalaDays.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ScalaDays.release.xcconfig"; path = "Pods/Target Support Files/Pods-ScalaDays/Pods-ScalaDays.release.xcconfig"; sourceTree = "<group>"; };
 		8B02A9AA240E9A87006CD991 /* UserDefaults+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+Extension.swift"; sourceTree = "<group>"; };
 		8B18E251240D214200AED41C /* UserManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
 		8B18E255240D251100AED41C /* Array+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Extension.swift"; sourceTree = "<group>"; };
@@ -219,7 +241,12 @@
 		8B5818F02406DA1200587211 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; name = "GoogleService-Info.plist"; path = "ScalaDays/External/GoogleService-Info.plist"; sourceTree = SOURCE_ROOT; };
 		8B5818F22406F8E700587211 /* Analytics.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Analytics.swift; sourceTree = "<group>"; };
 		8B5818F32406F8E700587211 /* FirebaseScalaDays.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirebaseScalaDays.swift; sourceTree = "<group>"; };
+		8B85D82D24375C4D00BF5F3D /* FirebaseNotifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseNotifications.swift; sourceTree = "<group>"; };
 		8B8AF6BE24129EF7009A8D6C /* TwitterSocialController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwitterSocialController.swift; sourceTree = "<group>"; };
+		8B9F38D8243730C900924A8A /* AppDelegate+PushNoticications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppDelegate+PushNoticications.swift"; sourceTree = "<group>"; };
+		8B9F38DE243734CB00924A8A /* ScalaDays Notifications.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "ScalaDays Notifications.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		8B9F38E0243734CB00924A8A /* NotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
+		8B9F38E2243734CB00924A8A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8BC4E37B2408117300AAA7CE /* SDNotifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SDNotifications.swift; sourceTree = "<group>"; };
 		8BC4E37D240814E700AAA7CE /* DateFormatter+Decoders.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DateFormatter+Decoders.swift"; sourceTree = "<group>"; };
 		9A5C79BA0AC4A59C8B4E657E /* Pods-ScalaDaysPods-ScalaDays.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ScalaDaysPods-ScalaDays.release.xcconfig"; path = "Pods/Target Support Files/Pods-ScalaDaysPods-ScalaDays/Pods-ScalaDaysPods-ScalaDays.release.xcconfig"; sourceTree = "<group>"; };
@@ -260,17 +287,28 @@
 		A1FA1FEA1A7AA6AF00338AF0 /* SDColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SDColor.swift; sourceTree = "<group>"; };
 		A1FA1FF81A7BA95500338AF0 /* SDConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SDConstants.swift; sourceTree = "<group>"; };
 		A1FA1FFA1A7BAE5B00338AF0 /* SDFonts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SDFonts.swift; sourceTree = "<group>"; };
+		A536D60380EF52CB5F59C3DA /* Pods_ScalaDays.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ScalaDays.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A81D14EFE1A576D550FC603B /* Pods-ScalaDays.adhoc.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ScalaDays.adhoc.xcconfig"; path = "Pods/Target Support Files/Pods-ScalaDays/Pods-ScalaDays.adhoc.xcconfig"; sourceTree = "<group>"; };
 		ABF9038973313EDBBD18EB45 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CB0D16F53D7B0C5B9108F6C9 /* Pods-ScalaDaysPods-ScalaDays.adhoc.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ScalaDaysPods-ScalaDays.adhoc.xcconfig"; path = "Pods/Target Support Files/Pods-ScalaDaysPods-ScalaDays/Pods-ScalaDaysPods-ScalaDays.adhoc.xcconfig"; sourceTree = "<group>"; };
-		CC4723C7FE05D67C9D7678CD /* Pods-ScalaDaysPods-ScalaDaysTests.adhoc.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ScalaDaysPods-ScalaDaysTests.adhoc.xcconfig"; path = "Pods/Target Support Files/Pods-ScalaDaysPods-ScalaDaysTests/Pods-ScalaDaysPods-ScalaDaysTests.adhoc.xcconfig"; sourceTree = "<group>"; };
+		D960E86E02CD5B9889AF42A6 /* Pods_ScalaDays_Notifications.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ScalaDays_Notifications.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		DFB6C80ED129C13C97CA921D /* Pods-ScalaDays.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ScalaDays.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ScalaDays/Pods-ScalaDays.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		8B9F38DB243734CB00924A8A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				39036EAE63064913990C96C3 /* Pods_ScalaDays_Notifications.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		A1D795C41A68267F009CCEB3 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				12E3C2517E2B2D10F7D9FEA8 /* Pods_ScalaDaysPods_ScalaDays.framework in Frameworks */,
+				C516D5BD48401C99524A22E9 /* Pods_ScalaDays.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -278,7 +316,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				18DAE816976C232E95E125FE /* Pods_ScalaDaysPods_ScalaDaysTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -483,6 +520,7 @@
 			isa = PBXGroup;
 			children = (
 				597E3B0F1AB2E5FD00F41F17 /* DataManager.swift */,
+				8B85D82D24375C4D00BF5F3D /* FirebaseNotifications.swift */,
 				8B39E3452408010F00338921 /* NotificationManager.swift */,
 				8B18E251240D214200AED41C /* UserManager.swift */,
 				8BF8205C2407C46D00C1C24E /* Response */,
@@ -517,8 +555,8 @@
 				595003001A84C1DA00A1C24F /* MobileCoreServices.framework */,
 				A163DC2E1A6E595B00A21B8E /* libPods-SwiftyJSON.a */,
 				ABF9038973313EDBBD18EB45 /* Pods.framework */,
-				857E5518A29D51062F9155B4 /* Pods_ScalaDaysPods_ScalaDays.framework */,
-				7DE3E72A5ED11E640A8CD7A9 /* Pods_ScalaDaysPods_ScalaDaysTests.framework */,
+				A536D60380EF52CB5F59C3DA /* Pods_ScalaDays.framework */,
+				D960E86E02CD5B9889AF42A6 /* Pods_ScalaDays_Notifications.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -530,6 +568,15 @@
 				8B27271124095F9100103EFF /* UITableView+Cells.swift */,
 			);
 			path = Utils;
+			sourceTree = "<group>";
+		};
+		8B9F38DF243734CB00924A8A /* ScalaDays Notifications */ = {
+			isa = PBXGroup;
+			children = (
+				8B9F38E0243734CB00924A8A /* NotificationService.swift */,
+				8B9F38E2243734CB00924A8A /* Info.plist */,
+			);
+			path = "ScalaDays Notifications";
 			sourceTree = "<group>";
 		};
 		8BC4E37F240814F400AAA7CE /* Extensions */ = {
@@ -553,6 +600,7 @@
 			children = (
 				A1D795C91A68267F009CCEB3 /* ScalaDays */,
 				A1D795DF1A68267F009CCEB3 /* ScalaDaysTests */,
+				8B9F38DF243734CB00924A8A /* ScalaDays Notifications */,
 				A1D795C81A68267F009CCEB3 /* Products */,
 				6DBA1EBEE9CFF41D967A4DF1 /* Frameworks */,
 				D06138476345BCEDEC247207 /* Pods */,
@@ -564,6 +612,7 @@
 			children = (
 				A1D795C71A68267F009CCEB3 /* ScalaDays.app */,
 				A1D795DC1A68267F009CCEB3 /* ScalaDaysTests.xctest */,
+				8B9F38DE243734CB00924A8A /* ScalaDays Notifications.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -574,6 +623,7 @@
 				A1AB2E9A1E893C4E00CFE768 /* ScalaDays.entitlements */,
 				A17D3AC71A690E3A00024062 /* Bridging-Header.h */,
 				A1D795CC1A68267F009CCEB3 /* AppDelegate.swift */,
+				8B9F38D8243730C900924A8A /* AppDelegate+PushNoticications.swift */,
 				A1D795D31A68267F009CCEB3 /* Images.xcassets */,
 				597E3B041AB2E58A00F41F17 /* Models */,
 				597E3B0E1AB2E5FD00F41F17 /* Service */,
@@ -622,10 +672,13 @@
 			children = (
 				02C3CA31C911ADCA6C7CA1B8 /* Pods-ScalaDaysPods-ScalaDays.debug.xcconfig */,
 				9A5C79BA0AC4A59C8B4E657E /* Pods-ScalaDaysPods-ScalaDays.release.xcconfig */,
-				0256E37AB85427EDF899EF98 /* Pods-ScalaDaysPods-ScalaDaysTests.debug.xcconfig */,
-				27CC132DAC4EB8C5D5F3EC28 /* Pods-ScalaDaysPods-ScalaDaysTests.release.xcconfig */,
 				CB0D16F53D7B0C5B9108F6C9 /* Pods-ScalaDaysPods-ScalaDays.adhoc.xcconfig */,
-				CC4723C7FE05D67C9D7678CD /* Pods-ScalaDaysPods-ScalaDaysTests.adhoc.xcconfig */,
+				DFB6C80ED129C13C97CA921D /* Pods-ScalaDays.debug.xcconfig */,
+				679E8210A12478E88B514A2B /* Pods-ScalaDays.release.xcconfig */,
+				A81D14EFE1A576D550FC603B /* Pods-ScalaDays.adhoc.xcconfig */,
+				0287199FDEB787EA163C309E /* Pods-ScalaDays Notifications.debug.xcconfig */,
+				4DFA1B90D4E247FCC9E09CA0 /* Pods-ScalaDays Notifications.release.xcconfig */,
+				50A5C2BB4BFDDAB0A3D445DB /* Pods-ScalaDays Notifications.adhoc.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -633,6 +686,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		8B9F38DD243734CB00924A8A /* ScalaDays Notifications */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8B9F38E6243734CB00924A8A /* Build configuration list for PBXNativeTarget "ScalaDays Notifications" */;
+			buildPhases = (
+				E8B48D7B0E635F3D73E4965A /* [CP] Check Pods Manifest.lock */,
+				8B9F38DA243734CB00924A8A /* Sources */,
+				8B9F38DB243734CB00924A8A /* Frameworks */,
+				8B9F38DC243734CB00924A8A /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "ScalaDays Notifications";
+			productName = "ScalaDays Notifications";
+			productReference = 8B9F38DE243734CB00924A8A /* ScalaDays Notifications.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 		A1D795C61A68267F009CCEB3 /* ScalaDays */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = A1D795E61A68267F009CCEB3 /* Build configuration list for PBXNativeTarget "ScalaDays" */;
@@ -646,10 +717,12 @@
 				4ABA015E8B8A751D0D8829A2 /* [CP] Embed Pods Frameworks */,
 				3121FD84F860465807A09E8E /* [CP] Copy Pods Resources */,
 				8BAF4ADA241A4195009653FC /* DSYMs */,
+				8B9F38EA243734CB00924A8A /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				8B9F38E4243734CB00924A8A /* PBXTargetDependency */,
 			);
 			name = ScalaDays;
 			productName = ScalaDays;
@@ -660,12 +733,9 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = A1D795E91A68267F009CCEB3 /* Build configuration list for PBXNativeTarget "ScalaDaysTests" */;
 			buildPhases = (
-				335B04AA5CFE12E35FEF219F /* [CP] Check Pods Manifest.lock */,
 				A1D795D81A68267F009CCEB3 /* Sources */,
 				A1D795D91A68267F009CCEB3 /* Frameworks */,
 				A1D795DA1A68267F009CCEB3 /* Resources */,
-				F08C9BFD17F15CD0A11F13FD /* [CP] Embed Pods Frameworks */,
-				5917D74B01E4D29CAD47F4D5 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -684,10 +754,14 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftMigration = 0720;
-				LastSwiftUpdateCheck = 0930;
+				LastSwiftUpdateCheck = 1140;
 				LastUpgradeCheck = 1130;
 				ORGANIZATIONNAME = "47 Degrees";
 				TargetAttributes = {
+					8B9F38DD243734CB00924A8A = {
+						CreatedOnToolsVersion = 11.4;
+						ProvisioningStyle = Manual;
+					};
 					A1D795C61A68267F009CCEB3 = {
 						CreatedOnToolsVersion = 6.1.1;
 						LastSwiftMigration = 1130;
@@ -724,11 +798,19 @@
 			targets = (
 				A1D795C61A68267F009CCEB3 /* ScalaDays */,
 				A1D795DB1A68267F009CCEB3 /* ScalaDaysTests */,
+				8B9F38DD243734CB00924A8A /* ScalaDays Notifications */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		8B9F38DC243734CB00924A8A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		A1D795C51A68267F009CCEB3 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -782,34 +864,18 @@
 			files = (
 			);
 			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-ScalaDaysPods-ScalaDays/Pods-ScalaDaysPods-ScalaDays-resources.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-ScalaDays/Pods-ScalaDays-resources.sh",
+				"${PODS_CONFIGURATION_BUILD_DIR}/FirebaseInAppMessaging/InAppMessagingDisplayResources.bundle",
 				"${PODS_ROOT}/TwitterKit/iOS/TwitterKit.framework/TwitterKitResources.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/InAppMessagingDisplayResources.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/TwitterKitResources.bundle",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ScalaDaysPods-ScalaDays/Pods-ScalaDaysPods-ScalaDays-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		335B04AA5CFE12E35FEF219F /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-ScalaDaysPods-ScalaDaysTests-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ScalaDays/Pods-ScalaDays-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		4ABA015E8B8A751D0D8829A2 /* [CP] Embed Pods Frameworks */ = {
@@ -818,19 +884,18 @@
 			files = (
 			);
 			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-ScalaDaysPods-ScalaDays/Pods-ScalaDaysPods-ScalaDays-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-ScalaDays/Pods-ScalaDays-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
-				"${PODS_ROOT}/TwitterCore/iOS/TwitterCore.framework",
-				"${PODS_ROOT}/TwitterKit/iOS/TwitterKit.framework",
 				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
-				"${PODS_ROOT}/Localytics/Localytics-iOS-5.8.0/Localytics.framework",
 				"${BUILT_PRODUCTS_DIR}/NSDate+TimeAgo/NSDate_TimeAgo.framework",
 				"${BUILT_PRODUCTS_DIR}/PromisesObjC/FBLPromises.framework",
 				"${BUILT_PRODUCTS_DIR}/Protobuf/protobuf.framework",
 				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
 				"${BUILT_PRODUCTS_DIR}/SVProgressHUD/SVProgressHUD.framework",
+				"${PODS_ROOT}/TwitterCore/iOS/TwitterCore.framework",
+				"${PODS_ROOT}/TwitterKit/iOS/TwitterKit.framework",
 				"${BUILT_PRODUCTS_DIR}/UIView+AutoLayout/UIView_AutoLayout.framework",
 				"${BUILT_PRODUCTS_DIR}/ZBarSDK/ZBarSDK.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
@@ -838,42 +903,23 @@
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TwitterCore.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TwitterKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Localytics.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/NSDate_TimeAgo.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBLPromises.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/protobuf.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SVProgressHUD.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TwitterCore.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TwitterKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/UIView_AutoLayout.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ZBarSDK.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ScalaDaysPods-ScalaDays/Pods-ScalaDaysPods-ScalaDays-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		5917D74B01E4D29CAD47F4D5 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-ScalaDaysPods-ScalaDaysTests/Pods-ScalaDaysPods-ScalaDaysTests-resources.sh",
-				"${PODS_ROOT}/TwitterKit/iOS/TwitterKit.framework/TwitterKitResources.bundle",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/TwitterKitResources.bundle",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ScalaDaysPods-ScalaDaysTests/Pods-ScalaDaysPods-ScalaDaysTests-resources.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ScalaDays/Pods-ScalaDays-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		8BAF4ADA241A4195009653FC /* DSYMs */ = {
@@ -907,26 +953,26 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Fabric/run\" 650c56fa5bc6a759a4802ae63f430cfaf6c8158a 2c56ab5ccb4f21cd496c8f733a95205cb91e19601dadd81a60e13f963f31c19c\n";
 		};
-		F08C9BFD17F15CD0A11F13FD /* [CP] Embed Pods Frameworks */ = {
+		E8B48D7B0E635F3D73E4965A /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
-			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-ScalaDaysPods-ScalaDaysTests/Pods-ScalaDaysPods-ScalaDaysTests-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
-				"${PODS_ROOT}/TwitterCore/iOS/TwitterCore.framework",
-				"${PODS_ROOT}/TwitterKit/iOS/TwitterKit.framework",
+			inputFileListPaths = (
 			);
-			name = "[CP] Embed Pods Frameworks";
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TwitterCore.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TwitterKit.framework",
+				"$(DERIVED_FILE_DIR)/Pods-ScalaDays Notifications-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ScalaDaysPods-ScalaDaysTests/Pods-ScalaDaysPods-ScalaDaysTests-frameworks.sh\"\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 		F8B581528B7986FBD4884AF5 /* [CP] Check Pods Manifest.lock */ = {
@@ -940,7 +986,7 @@
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-ScalaDaysPods-ScalaDays-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-ScalaDays-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -950,6 +996,14 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		8B9F38DA243734CB00924A8A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8B9F38E1243734CB00924A8A /* NotificationService.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		A1D795C31A68267F009CCEB3 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -995,6 +1049,7 @@
 				595003061A84DE2600A1C24F /* SDQRScannerOverlayView.swift in Sources */,
 				5920EA661A94B20800564014 /* SDMenuControllerItem.swift in Sources */,
 				A1FA1FEB1A7AA6AF00338AF0 /* SDColor.swift in Sources */,
+				8B9F38D9243730C900924A8A /* AppDelegate+PushNoticications.swift in Sources */,
 				8B27271424095FE100103EFF /* Bundle+Extension.swift in Sources */,
 				593223C61A837C6A009189C0 /* SDAlertViewHelper.swift in Sources */,
 				5928D17C1A88F53900E5049E /* SDString+RemoveWhiteSpaces.swift in Sources */,
@@ -1002,6 +1057,7 @@
 				A1FA1FE81A7AA33F00338AF0 /* SDAboutViewController.swift in Sources */,
 				59D174621A8E0C2B001E87CF /* SDSponsorsTableViewCell.swift in Sources */,
 				A1FA1FE01A7AA2FA00338AF0 /* SDSponsorViewController.swift in Sources */,
+				8B85D82E24375C4D00BF5F3D /* FirebaseNotifications.swift in Sources */,
 				5928D1751A88A9FA00E5049E /* SDContactCreationHelper.m in Sources */,
 				593571E91A77DDA8005AA332 /* StoringHelper.swift in Sources */,
 				8BC4E37C2408117300AAA7CE /* SDNotifications.swift in Sources */,
@@ -1050,6 +1106,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		8B9F38E4243734CB00924A8A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8B9F38DD243734CB00924A8A /* ScalaDays Notifications */;
+			targetProxy = 8B9F38E3243734CB00924A8A /* PBXContainerItemProxy */;
+		};
 		A1D795DE1A68267F009CCEB3 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = A1D795C61A68267F009CCEB3 /* ScalaDays */;
@@ -1100,7 +1161,8 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
-				COPY_PHASE_STRIP = YES;
+				CODE_SIGN_STYLE = Manual;
+				COPY_PHASE_STRIP = NO;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -1124,18 +1186,19 @@
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 				VALIDATE_PRODUCT = YES;
+				VALID_ARCHS = "arm64 arm64e armv7s";
 			};
 			name = AdHoc;
 		};
 		8B02A9A8240E996D006CD991 /* AdHoc */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = CB0D16F53D7B0C5B9108F6C9 /* Pods-ScalaDaysPods-ScalaDays.adhoc.xcconfig */;
+			baseConfigurationReference = A81D14EFE1A576D550FC603B /* Pods-ScalaDays.adhoc.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = ScalaDays/ScalaDays.entitlements;
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 32;
+				CURRENT_PROJECT_VERSION = 33;
 				DEVELOPMENT_TEAM = P548S5LU96;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1159,7 +1222,6 @@
 		};
 		8B02A9A9240E996D006CD991 /* AdHoc */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = CC4723C7FE05D67C9D7678CD /* Pods-ScalaDaysPods-ScalaDaysTests.adhoc.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Manual;
@@ -1179,6 +1241,86 @@
 				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ScalaDays.app/ScalaDays";
+			};
+			name = AdHoc;
+		};
+		8B9F38E7243734CB00924A8A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0287199FDEB787EA163C309E /* Pods-ScalaDays Notifications.debug.xcconfig */;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_STYLE = Manual;
+				CURRENT_PROJECT_VERSION = 33;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = P548S5LU96;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = "ScalaDays Notifications/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				MARKETING_VERSION = 3.2.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.fortysevendeg.scaladays.ScalaDays-Notifications";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "ScalaDays Notification Dev";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		8B9F38E8243734CB00924A8A /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4DFA1B90D4E247FCC9E09CA0 /* Pods-ScalaDays Notifications.release.xcconfig */;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_STYLE = Manual;
+				CURRENT_PROJECT_VERSION = 33;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = P548S5LU96;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = "ScalaDays Notifications/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				MARKETING_VERSION = 3.2.0;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.fortysevendeg.scaladays.ScalaDays-Notifications";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "ScalaDays Notification AppStore";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		8B9F38E9243734CB00924A8A /* AdHoc */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 50A5C2BB4BFDDAB0A3D445DB /* Pods-ScalaDays Notifications.adhoc.xcconfig */;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_STYLE = Manual;
+				CURRENT_PROJECT_VERSION = 33;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = P548S5LU96;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = "ScalaDays Notifications/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				MARKETING_VERSION = 3.2.0;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.fortysevendeg.scaladays.ScalaDays-Notifications";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "ScalaDays Notification AdHoc";
+				SWIFT_VERSION = 5.0;
 			};
 			name = AdHoc;
 		};
@@ -1213,6 +1355,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
 				COPY_PHASE_STRIP = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
@@ -1237,9 +1380,10 @@
 				OTHER_SWIFT_FLAGS = "-D DEBUG";
 				PROVISIONING_PROFILE = "78583264-b056-4bff-9bf5-11006370761d";
 				SDKROOT = iphoneos;
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
+				VALID_ARCHS = "arm64 arm64e armv7s";
 			};
 			name = Debug;
 		};
@@ -1274,7 +1418,8 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
-				COPY_PHASE_STRIP = YES;
+				CODE_SIGN_STYLE = Manual;
+				COPY_PHASE_STRIP = NO;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -1294,18 +1439,19 @@
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 				VALIDATE_PRODUCT = YES;
+				VALID_ARCHS = "arm64 arm64e armv7s";
 			};
 			name = Release;
 		};
 		A1D795E71A68267F009CCEB3 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 02C3CA31C911ADCA6C7CA1B8 /* Pods-ScalaDaysPods-ScalaDays.debug.xcconfig */;
+			baseConfigurationReference = DFB6C80ED129C13C97CA921D /* Pods-ScalaDays.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = ScalaDays/ScalaDays.entitlements;
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 32;
+				CURRENT_PROJECT_VERSION = 33;
 				DEVELOPMENT_TEAM = P548S5LU96;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1329,13 +1475,13 @@
 		};
 		A1D795E81A68267F009CCEB3 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 9A5C79BA0AC4A59C8B4E657E /* Pods-ScalaDaysPods-ScalaDays.release.xcconfig */;
+			baseConfigurationReference = 679E8210A12478E88B514A2B /* Pods-ScalaDays.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = ScalaDays/ScalaDays.entitlements;
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 32;
+				CURRENT_PROJECT_VERSION = 33;
 				DEVELOPMENT_TEAM = P548S5LU96;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1359,7 +1505,6 @@
 		};
 		A1D795EA1A68267F009CCEB3 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 0256E37AB85427EDF899EF98 /* Pods-ScalaDaysPods-ScalaDaysTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Manual;
@@ -1388,7 +1533,6 @@
 		};
 		A1D795EB1A68267F009CCEB3 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 27CC132DAC4EB8C5D5F3EC28 /* Pods-ScalaDaysPods-ScalaDaysTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Manual;
@@ -1414,6 +1558,16 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		8B9F38E6243734CB00924A8A /* Build configuration list for PBXNativeTarget "ScalaDays Notifications" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8B9F38E7243734CB00924A8A /* Debug */,
+				8B9F38E8243734CB00924A8A /* Release */,
+				8B9F38E9243734CB00924A8A /* AdHoc */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		A1D795C21A68267F009CCEB3 /* Build configuration list for PBXProject "ScalaDays" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

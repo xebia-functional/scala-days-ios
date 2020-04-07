@@ -8,6 +8,11 @@ def firebase
   # enabled Analytics
   pod 'Firebase/Analytics'
 
+  # enabled push notifications
+  pod 'Firebase'
+  pod 'Firebase/Messaging'
+  pod 'Firebase/InAppMessaging'
+
   # enabled Crashlytics (Firebase)
   pod 'Fabric', '~> 1.10.2'
   pod 'Crashlytics', '~> 3.14.0'
@@ -17,28 +22,22 @@ def firebase
 end
 
 
-abstract_target 'ScalaDaysPods' do
+target 'ScalaDays' do
+  firebase
+  
   pod 'Alamofire', '~> 5.0'
   pod 'TwitterKit', '3.4.2'
-
-  target 'ScalaDays' do
-    firebase
-
-    # UI
-    pod 'SDWebImage', '~> 3.5'
-    pod 'SVProgressHUD', '~> 1.0'
-    pod 'UIView+AutoLayout', '~> 1.3'
-
-    # QR code library
-    pod 'ZBarSDK', '~> 1.3.1'
-
-    # Miscellaneous Utils
-    pod 'NSDate+TimeAgo', '~> 1.0.2'
-
-    # Push notifications
-    pod 'Localytics', '~> 5.8'
-  end
-
-  target 'ScalaDaysTests' do
+  pod 'ZBarSDK', '~> 1.3.1'
+  
+  # UI
+  pod 'SDWebImage', '~> 3.5'
+  pod 'SVProgressHUD', '~> 1.0'
+  pod 'UIView+AutoLayout', '~> 1.3'
+  
+  # Utils
+  pod 'NSDate+TimeAgo', '~> 1.0.2'
+  
+  target 'ScalaDays Notifications' do
+    inherit! :search_paths
   end
 end
