@@ -74,7 +74,7 @@ class SDDateHandler: NSObject {
         let monthName = dateFormatter.string(from: date)
         
         if let monNumber = Int(monthDayNumber){
-            return "\(weekDay) (\(monNumber)\(SDDateHandler.ordinalSuffixFromDayNumber(monNumber)) \(monthName).) \(time12H(date: date))"
+            return "\(weekDay) (\(monNumber)\(SDDateHandler.ordinalSuffixFromDayNumber(monNumber)) \(monthName).) \(hoursAndMinutesFromDate(date))"
         } else {
             dateFormatter.dateStyle = .full
             dateFormatter.timeStyle = .short
@@ -84,20 +84,13 @@ class SDDateHandler: NSObject {
         }
     }
     
-    private func time12H(date: Date) -> String {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "hh:mm a"
-        return formatter.string(from: date)
-    }
-
-    
-    func hoursAndMinutesFromDate(_ date: Date) -> String? {
+    func hoursAndMinutesFromDate(_ date: Date) -> String {
         dateFormatter.locale = Locale.current
         dateFormatter.dateStyle = .none
         dateFormatter.timeStyle = .short
+        dateFormatter.dateFormat = "hh:mm a"
         return dateFormatter.string(from: date)
     }
-    
     
     class func ordinalSuffixFromDayNumber(_ day: Int) -> String {
         let suffixes = ["th", "st", "nd", "rd", "th", "th", "th", "th", "th", "th"]

@@ -130,6 +130,7 @@ class SDScheduleViewController: UIViewController,
         self.title = NSLocalizedString("schedule", comment: "Schedule")
         if isDataLoaded {
             self.loadFavorites()
+            self.loadNavigationBar()
         } else {
             self.loadData()
         }
@@ -182,11 +183,8 @@ class SDScheduleViewController: UIViewController,
         let barButtonOptions = UIBarButtonItem(image: UIImage(named: "navigation_bar_icon_filter"), style: .plain, target: self, action: #selector(SDScheduleViewController.didTapOptionsButton))
         let barButtonClock = UIBarButtonItem(image: UIImage(named: "navigation_bar_icon_clock"), style: .plain, target: self, action: #selector(SDScheduleViewController.didTapOptionsButtonClock))
         
-        if viewClock().result {
-            self.navigationItem.rightBarButtonItems = [barButtonOptions,barButtonClock]
-        } else {
-            self.navigationItem.rightBarButtonItem = barButtonOptions
-        }
+        self.navigationItem.rightBarButtonItems = firstActiveEvent != nil ? [barButtonOptions, barButtonClock]
+                                                                          : [barButtonOptions]
     }
     
     override func viewDidLayoutSubviews() {
@@ -515,29 +513,26 @@ class SDScheduleViewController: UIViewController,
     }
     
     //MARK: - Clock
-    
-    func viewClock() -> (result :Bool, indexRow : Int, indexSection: Int){
-        var result = false
-        _ = Date()
-        if let events = eventsToShow {
-            for (indexSection, eventSection) in events.enumerated(){
-                for (indexRow, event) in eventSection.enumerated(){
-                    if SDDateHandler.sharedInstance.isCurrentDateActive(event.startTime, endTime: event.endTime){
-                        result = true
-                        return (result, indexRow, indexSection)
-                   }
+    var firstActiveEvent: IndexPath? {
+        guard let events = eventsToShow else { return nil }
+        
+        let currentActiveEvents: [[IndexPath]] = events.enumerated().compactMap { isection, section in
+            section.enumerated().compactMap { irow, event in
+                guard SDDateHandler.sharedInstance.isCurrentDateActive(event.startTime, endTime: event.endTime) else {
+                    return nil
                 }
+                
+                return IndexPath(row: irow, section: isection)
             }
         }
-        return (result, 0, 0)
+        
+        let firstActiveIndexPath = currentActiveEvents.first { !$0.isEmpty }?.first
+        return firstActiveIndexPath
     }
     
     @objc func didTapOptionsButtonClock() {
-        let clock = viewClock()
-        if clock.result {
-            let indexPath = IndexPath(row: clock.indexRow, section: clock.indexSection)
-            tblSchedule.scrollToRow(at: indexPath, at: UITableView.ScrollPosition.top, animated: true)
-        }
+        guard let indexPath = firstActiveEvent else { return }
+        tblSchedule.scrollToRow(at: indexPath, at: .top, animated: true)
     }
     
     // MARK: - Voting
