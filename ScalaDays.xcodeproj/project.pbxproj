@@ -8,8 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		0D21FB302090ED1200441767 /* TWTRTweet+SDTweet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D21FB2F2090ED1200441767 /* TWTRTweet+SDTweet.swift */; };
-		0D21FB312091F84900441767 /* TWTRTweet+SDTweet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D21FB2F2090ED1200441767 /* TWTRTweet+SDTweet.swift */; };
-		0DEDC40E20AC7197004C7643 /* VoteTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DEDC40D20AC7197004C7643 /* VoteTests.swift */; };
 		1EA75E8B1A925BFF00884EC8 /* SDConferenceTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EA75E891A925BFF00884EC8 /* SDConferenceTableViewCell.swift */; };
 		1EA75E8C1A925BFF00884EC8 /* SDConferenceTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1EA75E8A1A925BFF00884EC8 /* SDConferenceTableViewCell.xib */; };
 		39036EAE63064913990C96C3 /* Pods_ScalaDays_Notifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D960E86E02CD5B9889AF42A6 /* Pods_ScalaDays_Notifications.framework */; };
@@ -27,48 +25,29 @@
 		592609921A973C610055A3D4 /* SDAnimationHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 592609911A973C610055A3D4 /* SDAnimationHelper.swift */; };
 		5928D1751A88A9FA00E5049E /* SDContactCreationHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 5928D1741A88A9FA00E5049E /* SDContactCreationHelper.m */; };
 		5928D17C1A88F53900E5049E /* SDString+RemoveWhiteSpaces.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5928D17B1A88F53900E5049E /* SDString+RemoveWhiteSpaces.swift */; };
-		5928D17D1A88F53900E5049E /* SDString+RemoveWhiteSpaces.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5928D17B1A88F53900E5049E /* SDString+RemoveWhiteSpaces.swift */; };
 		5928D18C1A89096500E5049E /* SDView-NibLoading.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5928D18B1A89096500E5049E /* SDView-NibLoading.swift */; };
-		5928D18D1A89096500E5049E /* SDView-NibLoading.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5928D18B1A89096500E5049E /* SDView-NibLoading.swift */; };
 		592978031A82106D00EE3BA3 /* SDSocialTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 592978011A82106D00EE3BA3 /* SDSocialTableViewCell.swift */; };
 		592978041A82106D00EE3BA3 /* SDSocialTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 592978021A82106D00EE3BA3 /* SDSocialTableViewCell.xib */; };
 		592978061A8210B800EE3BA3 /* SDImageView-Circular.swift in Sources */ = {isa = PBXBuildFile; fileRef = 592978051A8210B800EE3BA3 /* SDImageView-Circular.swift */; };
 		592978091A82141400EE3BA3 /* SDSocialHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 592978081A82141400EE3BA3 /* SDSocialHandler.swift */; };
 		593223C61A837C6A009189C0 /* SDAlertViewHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 593223C51A837C6A009189C0 /* SDAlertViewHelper.swift */; };
-		5933EFC41A9B256100383C7F /* scala_days_complete_sf.json in Resources */ = {isa = PBXBuildFile; fileRef = 5933EFC31A9B256100383C7F /* scala_days_complete_sf.json */; };
 		593571E91A77DDA8005AA332 /* StoringHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 593571E81A77DDA8005AA332 /* StoringHelper.swift */; };
-		593571EA1A77E41C005AA332 /* StoringHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 593571E81A77DDA8005AA332 /* StoringHelper.swift */; };
 		595003031A84C43B00A1C24F /* SDZBarSymbolSet-Enumeration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 595003021A84C43B00A1C24F /* SDZBarSymbolSet-Enumeration.swift */; };
 		595003061A84DE2600A1C24F /* SDQRScannerOverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 595003051A84DE2600A1C24F /* SDQRScannerOverlayView.swift */; };
 		595003081A84DE3B00A1C24F /* SDQRScannerOverlayView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 595003071A84DE3B00A1C24F /* SDQRScannerOverlayView.xib */; };
-		595FD6C81A9CD3820033D0C6 /* scala_days_wrong.json in Resources */ = {isa = PBXBuildFile; fileRef = 595FD6C71A9CD3820033D0C6 /* scala_days_wrong.json */; };
-		595FD6CA1A9CD6900033D0C6 /* scala_days_empty.json in Resources */ = {isa = PBXBuildFile; fileRef = 595FD6C91A9CD6900033D0C6 /* scala_days_empty.json */; };
 		597E3B081AB2E58A00F41F17 /* Conference.swift in Sources */ = {isa = PBXBuildFile; fileRef = 597E3B051AB2E58A00F41F17 /* Conference.swift */; };
-		597E3B091AB2E58A00F41F17 /* Conference.swift in Sources */ = {isa = PBXBuildFile; fileRef = 597E3B051AB2E58A00F41F17 /* Conference.swift */; };
 		597E3B0A1AB2E58A00F41F17 /* SDMapAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 597E3B061AB2E58A00F41F17 /* SDMapAnnotation.swift */; };
-		597E3B0B1AB2E58A00F41F17 /* SDMapAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 597E3B061AB2E58A00F41F17 /* SDMapAnnotation.swift */; };
 		597E3B0C1AB2E58A00F41F17 /* SDTweet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 597E3B071AB2E58A00F41F17 /* SDTweet.swift */; };
-		597E3B0D1AB2E58A00F41F17 /* SDTweet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 597E3B071AB2E58A00F41F17 /* SDTweet.swift */; };
 		597E3B101AB2E5FD00F41F17 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 597E3B0F1AB2E5FD00F41F17 /* DataManager.swift */; };
-		597E3B111AB2E5FD00F41F17 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 597E3B0F1AB2E5FD00F41F17 /* DataManager.swift */; };
 		59A7DF641A936C84009F4639 /* SDScheduleDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59A7DF621A936C84009F4639 /* SDScheduleDetailViewController.swift */; };
 		59A7DF651A936C84009F4639 /* SDScheduleDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 59A7DF631A936C84009F4639 /* SDScheduleDetailViewController.xib */; };
 		59A7DF6B1A9371A8009F4639 /* SDSpeakerDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59A7DF6A1A9371A8009F4639 /* SDSpeakerDetailView.swift */; };
 		59A7DF6D1A93725E009F4639 /* SDSpeakerDetailView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 59A7DF6C1A93725E009F4639 /* SDSpeakerDetailView.xib */; };
-		59A7DF701A938A41009F4639 /* SDAlertViewHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 593223C51A837C6A009189C0 /* SDAlertViewHelper.swift */; };
-		59A7DF711A938A41009F4639 /* SDSocialHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 592978081A82141400EE3BA3 /* SDSocialHandler.swift */; };
-		59A7DF731A938A41009F4639 /* SDQRScannerOverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 595003051A84DE2600A1C24F /* SDQRScannerOverlayView.swift */; };
-		59A7DF751A938A41009F4639 /* SDTableHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1C8B8791A8E6F56008599FF /* SDTableHeaderView.swift */; };
-		59A7DF831A938A41009F4639 /* SDImageView-Circular.swift in Sources */ = {isa = PBXBuildFile; fileRef = 592978051A8210B800EE3BA3 /* SDImageView-Circular.swift */; };
-		59A7DF841A938A41009F4639 /* SDFonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1FA1FFA1A7BAE5B00338AF0 /* SDFonts.swift */; };
-		59A7DF851A938A41009F4639 /* SDColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1FA1FEA1A7AA6AF00338AF0 /* SDColor.swift */; };
-		59A7DF881A938A41009F4639 /* SDMapView-ZoomOut.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5925ADA01A897AAD000EA5E7 /* SDMapView-ZoomOut.swift */; };
 		59ACD78D1CA28E4800863C52 /* SDVotesPopoverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59ACD78B1CA28E4800863C52 /* SDVotesPopoverViewController.swift */; };
 		59ACD78E1CA28E4800863C52 /* SDVotesPopoverViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 59ACD78C1CA28E4800863C52 /* SDVotesPopoverViewController.xib */; };
 		59D174621A8E0C2B001E87CF /* SDSponsorsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59D174611A8E0C2B001E87CF /* SDSponsorsTableViewCell.swift */; };
 		59D174641A8E0C3A001E87CF /* SDSponsorsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 59D174631A8E0C3A001E87CF /* SDSponsorsTableViewCell.xib */; };
 		59F0E2E61CA1518700BDD40E /* Vote.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59F0E2E51CA1518700BDD40E /* Vote.swift */; };
-		59F0E2E71CA15B7600BDD40E /* Vote.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59F0E2E51CA1518700BDD40E /* Vote.swift */; };
 		8B02A9AB240E9A87006CD991 /* UserDefaults+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B02A9AA240E9A87006CD991 /* UserDefaults+Extension.swift */; };
 		8B18E252240D214200AED41C /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B18E251240D214200AED41C /* UserManager.swift */; };
 		8B18E256240D251100AED41C /* Array+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B18E255240D251100AED41C /* Array+Extension.swift */; };
@@ -95,8 +74,6 @@
 		8BC4E37C2408117300AAA7CE /* SDNotifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BC4E37B2408117300AAA7CE /* SDNotifications.swift */; };
 		8BC4E37E240814E700AAA7CE /* DateFormatter+Decoders.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BC4E37D240814E700AAA7CE /* DateFormatter+Decoders.swift */; };
 		A13B434520AC773A00F78759 /* SDExternalKeys.plist in Resources */ = {isa = PBXBuildFile; fileRef = A13B434420AC773A00F78759 /* SDExternalKeys.plist */; };
-		A171433E1A88F6880068FD33 /* SDConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1FA1FF81A7BA95500338AF0 /* SDConstants.swift */; };
-		A171433F1A88F7730068FD33 /* SDDateHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 590DDD761A83C5E800E4CC3F /* SDDateHandler.swift */; };
 		A19C65C71A7FC30A00A206FC /* SDContactViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A19C65C51A7FC30A00A206FC /* SDContactViewController.swift */; };
 		A19C65C81A7FC30A00A206FC /* SDContactViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A19C65C61A7FC30A00A206FC /* SDContactViewController.xib */; };
 		A1A47E7C1B035FA600C6CC58 /* SDSpeakerScheduleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1A47E7B1B035FA600C6CC58 /* SDSpeakerScheduleView.swift */; };
@@ -106,7 +83,6 @@
 		A1C8B87A1A8E6F56008599FF /* SDTableHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1C8B8791A8E6F56008599FF /* SDTableHeaderView.swift */; };
 		A1D795CD1A68267F009CCEB3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1D795CC1A68267F009CCEB3 /* AppDelegate.swift */; };
 		A1D795D41A68267F009CCEB3 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A1D795D31A68267F009CCEB3 /* Images.xcassets */; };
-		A1D795E31A68267F009CCEB3 /* ScalaDaysTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1D795E21A68267F009CCEB3 /* ScalaDaysTests.swift */; };
 		A1FA1FD41A7A9DA200338AF0 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = A1FA1FD61A7A9DA200338AF0 /* Localizable.strings */; };
 		A1FA1FE01A7AA2FA00338AF0 /* SDSponsorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1FA1FDE1A7AA2FA00338AF0 /* SDSponsorViewController.swift */; };
 		A1FA1FE11A7AA2FA00338AF0 /* SDSponsorViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A1FA1FDF1A7AA2FA00338AF0 /* SDSponsorViewController.xib */; };
@@ -135,13 +111,6 @@
 			proxyType = 1;
 			remoteGlobalIDString = 8B9F38DD243734CB00924A8A;
 			remoteInfo = "ScalaDays Notifications";
-		};
-		A1D795DD1A68267F009CCEB3 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = A1D795BF1A68267F009CCEB3 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = A1D795C61A68267F009CCEB3;
-			remoteInfo = ScalaDays;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -173,7 +142,6 @@
 		0287199FDEB787EA163C309E /* Pods-ScalaDays Notifications.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ScalaDays Notifications.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ScalaDays Notifications/Pods-ScalaDays Notifications.debug.xcconfig"; sourceTree = "<group>"; };
 		02C3CA31C911ADCA6C7CA1B8 /* Pods-ScalaDaysPods-ScalaDays.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ScalaDaysPods-ScalaDays.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ScalaDaysPods-ScalaDays/Pods-ScalaDaysPods-ScalaDays.debug.xcconfig"; sourceTree = "<group>"; };
 		0D21FB2F2090ED1200441767 /* TWTRTweet+SDTweet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TWTRTweet+SDTweet.swift"; sourceTree = "<group>"; };
-		0DEDC40D20AC7197004C7643 /* VoteTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoteTests.swift; sourceTree = "<group>"; };
 		1EA75E891A925BFF00884EC8 /* SDConferenceTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SDConferenceTableViewCell.swift; sourceTree = "<group>"; };
 		1EA75E8A1A925BFF00884EC8 /* SDConferenceTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SDConferenceTableViewCell.xib; sourceTree = "<group>"; };
 		4DFA1B90D4E247FCC9E09CA0 /* Pods-ScalaDays Notifications.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ScalaDays Notifications.release.xcconfig"; path = "Pods/Target Support Files/Pods-ScalaDays Notifications/Pods-ScalaDays Notifications.release.xcconfig"; sourceTree = "<group>"; };
@@ -200,15 +168,12 @@
 		592978051A8210B800EE3BA3 /* SDImageView-Circular.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SDImageView-Circular.swift"; sourceTree = "<group>"; };
 		592978081A82141400EE3BA3 /* SDSocialHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SDSocialHandler.swift; sourceTree = "<group>"; };
 		593223C51A837C6A009189C0 /* SDAlertViewHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SDAlertViewHelper.swift; sourceTree = "<group>"; };
-		5933EFC31A9B256100383C7F /* scala_days_complete_sf.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = scala_days_complete_sf.json; sourceTree = "<group>"; };
 		593571E81A77DDA8005AA332 /* StoringHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoringHelper.swift; sourceTree = "<group>"; };
 		595003001A84C1DA00A1C24F /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		595003021A84C43B00A1C24F /* SDZBarSymbolSet-Enumeration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SDZBarSymbolSet-Enumeration.swift"; sourceTree = "<group>"; };
 		595003051A84DE2600A1C24F /* SDQRScannerOverlayView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SDQRScannerOverlayView.swift; sourceTree = "<group>"; };
 		595003071A84DE3B00A1C24F /* SDQRScannerOverlayView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SDQRScannerOverlayView.xib; sourceTree = "<group>"; };
 		595003091A84EDD500A1C24F /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
-		595FD6C71A9CD3820033D0C6 /* scala_days_wrong.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = scala_days_wrong.json; sourceTree = "<group>"; };
-		595FD6C91A9CD6900033D0C6 /* scala_days_empty.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = scala_days_empty.json; sourceTree = "<group>"; };
 		597E3B051AB2E58A00F41F17 /* Conference.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Conference.swift; sourceTree = "<group>"; };
 		597E3B061AB2E58A00F41F17 /* SDMapAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SDMapAnnotation.swift; sourceTree = "<group>"; };
 		597E3B071AB2E58A00F41F17 /* SDTweet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SDTweet.swift; sourceTree = "<group>"; };
@@ -274,9 +239,6 @@
 		A1D795CB1A68267F009CCEB3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A1D795CC1A68267F009CCEB3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A1D795D31A68267F009CCEB3 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		A1D795DC1A68267F009CCEB3 /* ScalaDaysTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ScalaDaysTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		A1D795E11A68267F009CCEB3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		A1D795E21A68267F009CCEB3 /* ScalaDaysTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScalaDaysTests.swift; sourceTree = "<group>"; };
 		A1FA1FD51A7A9DA200338AF0 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		A1FA1FDE1A7AA2FA00338AF0 /* SDSponsorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SDSponsorViewController.swift; sourceTree = "<group>"; };
 		A1FA1FDF1A7AA2FA00338AF0 /* SDSponsorViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SDSponsorViewController.xib; sourceTree = "<group>"; };
@@ -309,13 +271,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				C516D5BD48401C99524A22E9 /* Pods_ScalaDays.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		A1D795D91A68267F009CCEB3 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -599,7 +554,6 @@
 			isa = PBXGroup;
 			children = (
 				A1D795C91A68267F009CCEB3 /* ScalaDays */,
-				A1D795DF1A68267F009CCEB3 /* ScalaDaysTests */,
 				8B9F38DF243734CB00924A8A /* ScalaDays Notifications */,
 				A1D795C81A68267F009CCEB3 /* Products */,
 				6DBA1EBEE9CFF41D967A4DF1 /* Frameworks */,
@@ -611,7 +565,6 @@
 			isa = PBXGroup;
 			children = (
 				A1D795C71A68267F009CCEB3 /* ScalaDays.app */,
-				A1D795DC1A68267F009CCEB3 /* ScalaDaysTests.xctest */,
 				8B9F38DE243734CB00924A8A /* ScalaDays Notifications.appex */,
 			);
 			name = Products;
@@ -642,27 +595,6 @@
 			children = (
 				A1FA1FD61A7A9DA200338AF0 /* Localizable.strings */,
 				A1D795CB1A68267F009CCEB3 /* Info.plist */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		A1D795DF1A68267F009CCEB3 /* ScalaDaysTests */ = {
-			isa = PBXGroup;
-			children = (
-				A1D795E21A68267F009CCEB3 /* ScalaDaysTests.swift */,
-				0DEDC40D20AC7197004C7643 /* VoteTests.swift */,
-				A1D795E01A68267F009CCEB3 /* Supporting Files */,
-			);
-			path = ScalaDaysTests;
-			sourceTree = "<group>";
-		};
-		A1D795E01A68267F009CCEB3 /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				595FD6C91A9CD6900033D0C6 /* scala_days_empty.json */,
-				5933EFC31A9B256100383C7F /* scala_days_complete_sf.json */,
-				A1D795E11A68267F009CCEB3 /* Info.plist */,
-				595FD6C71A9CD3820033D0C6 /* scala_days_wrong.json */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -729,24 +661,6 @@
 			productReference = A1D795C71A68267F009CCEB3 /* ScalaDays.app */;
 			productType = "com.apple.product-type.application";
 		};
-		A1D795DB1A68267F009CCEB3 /* ScalaDaysTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = A1D795E91A68267F009CCEB3 /* Build configuration list for PBXNativeTarget "ScalaDaysTests" */;
-			buildPhases = (
-				A1D795D81A68267F009CCEB3 /* Sources */,
-				A1D795D91A68267F009CCEB3 /* Frameworks */,
-				A1D795DA1A68267F009CCEB3 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				A1D795DE1A68267F009CCEB3 /* PBXTargetDependency */,
-			);
-			name = ScalaDaysTests;
-			productName = ScalaDaysTests;
-			productReference = A1D795DC1A68267F009CCEB3 /* ScalaDaysTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -775,12 +689,6 @@
 							};
 						};
 					};
-					A1D795DB1A68267F009CCEB3 = {
-						CreatedOnToolsVersion = 6.1.1;
-						LastSwiftMigration = 1130;
-						ProvisioningStyle = Manual;
-						TestTargetID = A1D795C61A68267F009CCEB3;
-					};
 				};
 			};
 			buildConfigurationList = A1D795C21A68267F009CCEB3 /* Build configuration list for PBXProject "ScalaDays" */;
@@ -797,7 +705,6 @@
 			projectRoot = "";
 			targets = (
 				A1D795C61A68267F009CCEB3 /* ScalaDays */,
-				A1D795DB1A68267F009CCEB3 /* ScalaDaysTests */,
 				8B9F38DD243734CB00924A8A /* ScalaDays Notifications */,
 			);
 		};
@@ -842,16 +749,6 @@
 				5920EA601A9484B600564014 /* SDErrorPlaceholderView.xib in Resources */,
 				8B27270D24082A8D00103EFF /* SDNotificationTableViewCell.xib in Resources */,
 				592978041A82106D00EE3BA3 /* SDSocialTableViewCell.xib in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		A1D795DA1A68267F009CCEB3 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				5933EFC41A9B256100383C7F /* scala_days_complete_sf.json in Resources */,
-				595FD6C81A9CD3820033D0C6 /* scala_days_wrong.json in Resources */,
-				595FD6CA1A9CD6900033D0C6 /* scala_days_empty.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1075,34 +972,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		A1D795D81A68267F009CCEB3 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				59A7DF701A938A41009F4639 /* SDAlertViewHelper.swift in Sources */,
-				59A7DF711A938A41009F4639 /* SDSocialHandler.swift in Sources */,
-				597E3B0D1AB2E58A00F41F17 /* SDTweet.swift in Sources */,
-				0D21FB312091F84900441767 /* TWTRTweet+SDTweet.swift in Sources */,
-				59A7DF731A938A41009F4639 /* SDQRScannerOverlayView.swift in Sources */,
-				59A7DF751A938A41009F4639 /* SDTableHeaderView.swift in Sources */,
-				59A7DF831A938A41009F4639 /* SDImageView-Circular.swift in Sources */,
-				59A7DF841A938A41009F4639 /* SDFonts.swift in Sources */,
-				597E3B0B1AB2E58A00F41F17 /* SDMapAnnotation.swift in Sources */,
-				597E3B111AB2E5FD00F41F17 /* DataManager.swift in Sources */,
-				59A7DF851A938A41009F4639 /* SDColor.swift in Sources */,
-				59A7DF881A938A41009F4639 /* SDMapView-ZoomOut.swift in Sources */,
-				0DEDC40E20AC7197004C7643 /* VoteTests.swift in Sources */,
-				A171433F1A88F7730068FD33 /* SDDateHandler.swift in Sources */,
-				597E3B091AB2E58A00F41F17 /* Conference.swift in Sources */,
-				A171433E1A88F6880068FD33 /* SDConstants.swift in Sources */,
-				5928D18D1A89096500E5049E /* SDView-NibLoading.swift in Sources */,
-				5928D17D1A88F53900E5049E /* SDString+RemoveWhiteSpaces.swift in Sources */,
-				59F0E2E71CA15B7600BDD40E /* Vote.swift in Sources */,
-				593571EA1A77E41C005AA332 /* StoringHelper.swift in Sources */,
-				A1D795E31A68267F009CCEB3 /* ScalaDaysTests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -1110,11 +979,6 @@
 			isa = PBXTargetDependency;
 			target = 8B9F38DD243734CB00924A8A /* ScalaDays Notifications */;
 			targetProxy = 8B9F38E3243734CB00924A8A /* PBXContainerItemProxy */;
-		};
-		A1D795DE1A68267F009CCEB3 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = A1D795C61A68267F009CCEB3 /* ScalaDays */;
-			targetProxy = A1D795DD1A68267F009CCEB3 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -1217,30 +1081,6 @@
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "ScalaDays AdHoc Distrib";
 				SWIFT_OBJC_BRIDGING_HEADER = "ScalaDays/Bridging-Header.h";
-			};
-			name = AdHoc;
-		};
-		8B02A9A9240E996D006CD991 /* AdHoc */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = P548S5LU96;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = ScalaDaysTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				OTHER_SWIFT_FLAGS = "$(inherited)";
-				PRODUCT_BUNDLE_IDENTIFIER = "fortysevendeg.$(PRODUCT_NAME:rfc1034identifier)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = "";
-				"PROVISIONING_PROFILE_SPECIFIER[sdk=macosx*]" = "";
-				SWIFT_OBJC_BRIDGING_HEADER = "";
-				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ScalaDays.app/ScalaDays";
 			};
 			name = AdHoc;
 		};
@@ -1503,58 +1343,6 @@
 			};
 			name = Release;
 		};
-		A1D795EA1A68267F009CCEB3 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = P548S5LU96;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = ScalaDaysTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				OTHER_SWIFT_FLAGS = "$(inherited)";
-				PRODUCT_BUNDLE_IDENTIFIER = "fortysevendeg.$(PRODUCT_NAME:rfc1034identifier)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = "";
-				"PROVISIONING_PROFILE_SPECIFIER[sdk=macosx*]" = "";
-				SWIFT_OBJC_BRIDGING_HEADER = "";
-				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ScalaDays.app/ScalaDays";
-			};
-			name = Debug;
-		};
-		A1D795EB1A68267F009CCEB3 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = P548S5LU96;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = ScalaDaysTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				OTHER_SWIFT_FLAGS = "$(inherited)";
-				PRODUCT_BUNDLE_IDENTIFIER = "fortysevendeg.$(PRODUCT_NAME:rfc1034identifier)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = "";
-				"PROVISIONING_PROFILE_SPECIFIER[sdk=macosx*]" = "";
-				SWIFT_OBJC_BRIDGING_HEADER = "";
-				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ScalaDays.app/ScalaDays";
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -1584,16 +1372,6 @@
 				A1D795E71A68267F009CCEB3 /* Debug */,
 				A1D795E81A68267F009CCEB3 /* Release */,
 				8B02A9A8240E996D006CD991 /* AdHoc */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		A1D795E91A68267F009CCEB3 /* Build configuration list for PBXNativeTarget "ScalaDaysTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				A1D795EA1A68267F009CCEB3 /* Debug */,
-				A1D795EB1A68267F009CCEB3 /* Release */,
-				8B02A9A9240E996D006CD991 /* AdHoc */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

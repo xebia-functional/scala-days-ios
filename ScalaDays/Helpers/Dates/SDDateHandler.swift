@@ -112,9 +112,13 @@ class SDDateHandler: NSObject {
     }
     
     class func isSafeToVoteForConferenceWithDate(_ confDate: Date, fromReferenceDate refDate: Date) -> Bool {
-        let calendar = Calendar.current
-        let confDateDay = (calendar as NSCalendar).component(NSCalendar.Unit.day, from: confDate)
-        let refDateDay = (calendar as NSCalendar).component(NSCalendar.Unit.day, from: refDate)
+        let dateFormatter = DateFormatter()
+        dateFormatter.timeZone = TimeZone(abbreviation: "UTC")
+        dateFormatter.locale = Locale(identifier: "en_US_POSIX")
+        dateFormatter.dateFormat = Formatter.Component.monthDay.rawValue
+        let confDateDay = dateFormatter.string(from: confDate)
+        let refDateDay = dateFormatter.string(from: refDate)
+        
         return confDate.compare(refDate) == ComparisonResult.orderedAscending && confDateDay == refDateDay
     }
     
