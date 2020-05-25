@@ -146,6 +146,10 @@ class Event: NSObject, Codable {
     let track: Track?
     let location: Location?
     let speakers: Array<Speaker>?
+    
+    var eventDescription: String {
+        apiDescription.components(separatedBy: "\n").filter { !$0.isEmpty }.joined(separator: "\n\n")
+    }
 
     init(id: Int, title: String, apiDescription: String, type: Int, startTime: String, endTime: String, date: String, track: Track?, location: Location?, speakers: Array<Speaker>?) {
         self.id = id

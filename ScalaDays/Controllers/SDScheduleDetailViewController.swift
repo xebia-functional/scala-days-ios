@@ -93,7 +93,7 @@ class SDScheduleDetailViewController: UIViewController {
                 constraintForLblDescriptionTopSpace.constant = 0
             }
             
-            lblDescription.text = currentEvent.apiDescription
+            lblDescription.text = currentEvent.eventDescription
             
             if let speakers = currentEvent.speakers {
                 if (speakers.count < 1) {
