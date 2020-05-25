@@ -28,9 +28,9 @@ class SDDateHandler: NSObject {
         
         enum Component: String {
             case weekDay = "EEEE"
-            case monthDay = "dd"
+            case monthDay = "d"
             case monthName = "MMM"
-            case hours = "HH"
+            case hours = "h"
             case minutes = "mm"
         }
     }
@@ -74,7 +74,7 @@ class SDDateHandler: NSObject {
         let monthName = dateFormatter.string(from: date)
         
         if let monNumber = Int(monthDayNumber){
-            return "\(weekDay) (\(monNumber)\(SDDateHandler.ordinalSuffixFromDayNumber(monNumber)) \(monthName).) \(hoursAndMinutesFromDate(date))"
+            return "\(weekDay) \(monthName) \(monNumber)\(SDDateHandler.ordinalSuffixFromDayNumber(monNumber)) \(hoursAndMinutesFromDate(date))"
         } else {
             dateFormatter.dateStyle = .full
             dateFormatter.timeStyle = .short
@@ -88,7 +88,7 @@ class SDDateHandler: NSObject {
         dateFormatter.locale = Locale.current
         dateFormatter.dateStyle = .none
         dateFormatter.timeStyle = .short
-        dateFormatter.dateFormat = "hh:mm a"
+        dateFormatter.dateFormat = "h:mm a"
         return dateFormatter.string(from: date)
     }
     
