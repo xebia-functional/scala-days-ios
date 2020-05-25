@@ -116,6 +116,7 @@ class SDDateHandler: NSObject {
         dateFormatter.timeZone = TimeZone(abbreviation: "UTC")
         dateFormatter.locale = Locale(identifier: "en_US_POSIX")
         dateFormatter.dateFormat = Formatter.Component.monthDay.rawValue
+        
         let confDateDay = dateFormatter.string(from: confDate)
         let refDateDay = dateFormatter.string(from: refDate)
         

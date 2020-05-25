@@ -42,8 +42,8 @@ class SDSocialTableViewCell: UITableViewCell {
     }
     
     internal func drawTweetData(_ tweet: SDTweet) {
-        lblFullName.text = tweet.fullName
-        lblUsername.text = "@\(tweet.username)"
+        lblFullName.text = tweet.username
+        lblUsername.text = "@\(tweet.fullName)"
         lblContent.text = tweet.tweetText
         lblDate.text = (tweet.date as NSDate).timeAgoSimple()
         let imageUrl = URL(string: tweet.profileImage)
