@@ -35,19 +35,15 @@ extension AppDelegate: UNUserNotificationCenterDelegate, MessagingDelegate {
         completionHandler()
     }
     
-    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
-        show(userInfo: userInfo)
-        didTapOnNotification(userInfo: userInfo)
-        completionHandler(.noData)
-    }
-    
     private func didTapOnNotification(userInfo: [AnyHashable: Any]) {
+        guard let conferenceId = userInfo["conferenceId"] as? String else { return }
+        
         if let jsonReload = userInfo["jsonReload"] as? String, jsonReload.lowercased() == "true" {
             DataManager.sharedInstance.lastConnectionAttemptDate = nil
             menuViewController.askControllersToReload()
         }
         
-        menuViewController.showNotifications(receivedNotifications: true)
+        menuViewController.showNotifications(conferenceId: conferenceId)
     }
     
     // MARK: Messaging

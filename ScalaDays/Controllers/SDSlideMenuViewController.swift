@@ -73,9 +73,8 @@ class SDSlideMenuViewController: UIViewController, UITableViewDelegate, UITableV
     var speakersViewController: UIViewController!
     
     var infoSelected: Information?
-    
     var currentConferences: Conferences?
-    
+    private var pendingNotification: Conference?
     private let analytics: Analytics
     
     init(analytics: Analytics) {
@@ -142,6 +141,7 @@ class SDSlideMenuViewController: UIViewController, UITableViewDelegate, UITableV
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        showPendingNotifications()
         analytics.logScreenName(.slideMenu, class: SDSlideMenuViewController.self)
     }
     
@@ -152,24 +152,61 @@ class SDSlideMenuViewController: UIViewController, UITableViewDelegate, UITableV
         }
     }
     
-    func drawSelectedConference(){
-        if let  info = DataManager.sharedInstance.currentlySelectedConference?.info{
-            self.infoSelected = info
-            self.titleConference.text = info.longName
-            let image = info.pictures[2]
-            let imageUrl = URL(string: image.url)
-            if let infoImageUrl = imageUrl {
-                self.imgHeader.sd_setImage(with: infoImageUrl, placeholderImage: UIImage(named: "placeholder_menu"))
-            }
+    func drawSelectedConference() {
+        guard let info = DataManager.sharedInstance.currentlySelectedConference?.info else { return }
+        self.infoSelected = info
+        self.titleConference.text = info.longName
+        
+        if let image = info.pictures[safe: 2],
+           let infoImageUrl = URL(string: image.url) {
+            self.imgHeader.sd_setImage(with: infoImageUrl, placeholderImage: UIImage(named: "placeholder_menu"))
         }
     }
     
     // MARK: -  Router
-    func showNotifications(receivedNotifications: Bool = false) {
-        slideMenuController()?.changeMainViewController(self.notificationNavigationController, close: true)
+    func showNotifications(conferenceId: String = "") {
+        guard isViewLoaded else {
+            pendingNotification = getConference(id: conferenceId); return
+        }
+        guard let notificationViewController = notificationNavigationController?.topViewController as? SDNotificationViewController else { return }
         
-        if receivedNotifications, let vc = notificationNavigationController.topViewController as? SDNotificationViewController {
-            vc.receivedNotifications()
+        selectConference(id: conferenceId)
+        slideMenuController()?.changeMainViewController(notificationNavigationController, close: true)
+        notificationViewController.receivedNotifications()
+    }
+    
+    func showPendingNotifications() {
+        guard let conference = self.pendingNotification else { return }
+        self.pendingNotification = nil
+        showNotifications(conferenceId: "\(conference.info.id)")
+    }
+    
+    func getConference(id conferenceId: String) -> Conference? {
+        guard let conferences = DataManager.sharedInstance.conferences?.conferences,
+              let conference = conferences.first(where: {"\($0.info.id)" == conferenceId}) else { return nil }
+        
+        return conference
+    }
+    
+    func selectConference(id conferenceId: String) {
+        guard let conferences = DataManager.sharedInstance.conferences?.conferences,
+            let (index, _) = conferences.enumerated().first(where: {"\($1.info.id)" == conferenceId}) else { return }
+        
+        selectConference(at: index)
+    }
+    
+    func selectConference(at index: Int) {
+        guard let conferences = DataManager.sharedInstance.conferences?.conferences,
+              index >= 0, index < conferences.count else { return }
+        
+        DataManager.sharedInstance.selectConference(at: index)
+        drawSelectedConference()
+        showTblConferenceDetails()
+        askControllersToReload()
+        slideMenuController()?.closeLeft()
+
+        if let selectedConference = DataManager.sharedInstance.conferences?.conferences[index] {
+            analytics.logEvent(screenName: .slideMenu, category: .navigate, action: .menuChangeConference, label: selectedConference.info.name)
         }
     }
     
@@ -249,19 +286,9 @@ class SDSlideMenuViewController: UIViewController, UITableViewDelegate, UITableV
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         switch (tableView, Menu(rawValue: indexPath.item)) {
-        case (self.tblConferences, _) :
-            DataManager.sharedInstance.selectConference(at: indexPath.row)
-            drawSelectedConference()
-            toggleTblConference()
-            askControllersToReload()
-            self.slideMenuController()?.closeLeft()
-            
-            if let selectedConference = DataManager.sharedInstance.conferences?.conferences[indexPath.row] {
-                analytics.logEvent(screenName: .slideMenu, category: .navigate, action: .menuChangeConference, label: selectedConference.info.name)
-            }
-            
+        case (self.tblConferences, _) : self.selectConference(at: indexPath.row)
         case (self.tblMenu, .some(.schedule)): self.slideMenuController()?.changeMainViewController(self.scheduleViewController, close: true)
-        case (self.tblMenu, .some(.notification)): showNotifications()
+        case (self.tblMenu, .some(.notification)): self.showNotifications()
         case (self.tblMenu, .some(.social)): self.slideMenuController()?.changeMainViewController(self.socialViewController, close: true)
         case (self.tblMenu, .some(.contact)): self.slideMenuController()?.changeMainViewController(self.contactViewController, close: true)
         case (self.tblMenu, .some(.sponsors)): self.slideMenuController()?.changeMainViewController(self.sponsorsViewController, close: true)
@@ -282,24 +309,24 @@ class SDSlideMenuViewController: UIViewController, UITableViewDelegate, UITableV
     }
     
     func toggleTblConference() {
-        if (self.tblConferences.alpha == 0.0) {
-            UIView.animate(withDuration: 0.5, animations: {
-                self.tblConferences.alpha = 1.0
-                self.tblMenu.alpha = 0.0
-                return
-            })
-        } else {
-            hideTblConference()
+        tblMenu.alpha > 0 ? hideTblConferenceDetails() : showTblConferenceDetails()
+    }
+    
+    func showTblConferenceDetails() {
+        guard tblConferences.alpha > 0 else { return }
+        
+        UIView.animate(withDuration: 0.5) {
+            self.tblConferences.alpha = 0.0
+            self.tblMenu.alpha = 1.0
         }
     }
     
-    func hideTblConference() {
-        if tblConferences.alpha > 0 {
-            UIView.animate(withDuration: 0.5, animations: {
-                self.tblConferences.alpha = 0.0
-                self.tblMenu.alpha = 1.0
-                return
-            })
+    func hideTblConferenceDetails() {
+        guard tblConferences.alpha == 0 else { return }
+        
+        UIView.animate(withDuration: 0.5) {
+            self.tblConferences.alpha = 1.0
+            self.tblMenu.alpha = 0.0
         }
     }
     
@@ -315,6 +342,8 @@ class SDSlideMenuViewController: UIViewController, UITableViewDelegate, UITableV
     }
     
     func askControllersToReload() {
+        guard isViewLoaded else { return }
+        
         // We need to notify our main controllers that their data need to be updated, also our visible controller needs to reload ASAP:
         for controller in controllers {
             if controller is SDMenuControllerItem {
@@ -336,8 +365,7 @@ class SDSlideMenuViewController: UIViewController, UITableViewDelegate, UITableV
     }
     
     // MARK: - SDSliderMenuBar protocol implementation
-    
     func didCloseMenu() {
-        hideTblConference()
+        showTblConferenceDetails()
     }
 }

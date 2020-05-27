@@ -13,7 +13,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         setupThirdParties(application: application, launchOptions: launchOptions)
         initAppearence()
         createMenuView()
-
+        
         return true
     }
 
