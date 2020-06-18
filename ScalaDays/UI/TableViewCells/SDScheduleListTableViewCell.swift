@@ -78,8 +78,12 @@ class SDScheduleListTableViewCell: UITableViewCell {
     func drawEventData(_ event: Event, conferenceId: Int) {
         if let timeZoneName = DataManager.sharedInstance.conferences?.conferences[DataManager.sharedInstance.selectedConferenceIndex].info.utcTimezoneOffset,
             let startDate = SDDateHandler.sharedInstance.parseScheduleDate(event.startTime),
-            let localStartDate = SDDateHandler.convertDateToLocalTime(startDate, timeZoneName: timeZoneName) {
-                let isSafeToVote = SDDateHandler.isSafeToVoteForConferenceWithDate(startDate, fromReferenceDate: Date()) && event.type == kEventTypeConference
+            let localStartDate = SDDateHandler.convertDateToLocalTime(startDate, timeZoneName: timeZoneName),
+            let endDate = SDDateHandler.sharedInstance.parseScheduleDate(event.endTime),
+            let localEndDate = SDDateHandler.convertDateToLocalTime(endDate, timeZoneName: timeZoneName),
+            let currentDate = SDDateHandler.convertDateToLocalTime(Date(), timeZoneName: timeZoneName) {
+            
+                let isSafeToVote = SDDateHandler.isSafeToVoteForConferenceWithDate(localEndDate, fromReferenceDate: currentDate) && event.type == kEventTypeConference
                 // Vote button configuration:
                 lblTime.text = SDDateHandler.sharedInstance.hoursAndMinutesFromDate(localStartDate)
                 viewTime.backgroundColor = SDDateHandler.sharedInstance.isCurrentDateActive(event.startTime, endTime: event.endTime) ? colorScheduleTimeActive : colorScheduleTime

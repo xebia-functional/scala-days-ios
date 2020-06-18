@@ -93,22 +93,24 @@ class SDScheduleDetailViewController: UIViewController {
                 constraintForLblDescriptionTopSpace.constant = 0
             }
             
-            lblDescription.text = currentEvent.apiDescription
+            lblDescription.text = currentEvent.eventDescription
             
             if let speakers = currentEvent.speakers {
                 if (speakers.count < 1) {
                     viewSpeaker.isHidden = true
                 } else {
                     var lastSpeakerBottomPos : CGFloat = 0
-                    for (_, speaker) in speakers.enumerated() {
+                    speakers.forEach { speaker in
                         let speakerView = SDSpeakerDetailView(frame: CGRect(x: 0, y: lastSpeakerBottomPos, width: screenBounds.width, height: 0),
                                                               analytics: self.analytics)
                         speakerView.drawSpeakerData(speaker)
                         viewSpeakerListContainer.addSubview(speakerView)
+                        viewSpeakerListContainer.setNeedsLayout()
+                        viewSpeakerListContainer.layoutIfNeeded()
                         
                         let height = speakerView.contentHeight()
                         speakerView.frame = CGRect(x: 0, y: lastSpeakerBottomPos, width: screenBounds.width, height: height)
-                        lastSpeakerBottomPos += height - 32
+                        lastSpeakerBottomPos += height
                     }
                     constraintForSpeakerListContainerHeight.constant = lastSpeakerBottomPos
                 }

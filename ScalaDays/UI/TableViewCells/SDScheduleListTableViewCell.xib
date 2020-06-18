@@ -1,12 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
-    <device id="retina5_9" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina5_9" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -16,11 +13,11 @@
             <rect key="frame" x="0.0" y="0.0" width="640" height="133"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="uQB-Ol-iqi" id="WYi-j6-dN4">
-                <rect key="frame" x="0.0" y="0.0" width="640" height="132.66666666666666"/>
+                <rect key="frame" x="0.0" y="0.0" width="640" height="133"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gAd-Vu-ffH" userLabel="Selected BG View">
-                        <rect key="frame" x="0.0" y="0.0" width="640" height="131"/>
+                        <rect key="frame" x="0.0" y="0.0" width="640" height="132"/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="640" id="Ovl-JX-5ha"/>
@@ -32,11 +29,11 @@
                         </variation>
                     </view>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iZC-Ux-GCx" userLabel="Main Background">
-                        <rect key="frame" x="81" y="0.0" width="559" height="131"/>
+                        <rect key="frame" x="81" y="0.0" width="559" height="132"/>
                         <color key="backgroundColor" red="0.33333333333333331" green="0.69803921568627447" blue="0.80784313725490198" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uOZ-dw-dqz" userLabel="Time container view">
-                        <rect key="frame" x="0.0" y="0.0" width="80" height="131"/>
+                        <rect key="frame" x="0.0" y="0.0" width="80" height="132"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" placeholderIntrinsicWidth="100" placeholderIntrinsicHeight="25" text="08:00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="60" translatesAutoresizingMaskIntoConstraints="NO" id="RdK-wi-8OD">
                                 <rect key="frame" x="-10" y="14" width="100" height="25"/>
@@ -45,7 +42,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PbI-e3-2yJ">
-                                <rect key="frame" x="13" y="49" width="55" height="30"/>
+                                <rect key="frame" x="12.666666666666664" y="49" width="54.999999999999993" height="30"/>
                                 <color key="backgroundColor" red="0.18431372549019609" green="0.23921568627450981" blue="0.28235294117647058" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="55" id="8TL-Bg-9af"/>
@@ -85,11 +82,11 @@
                         </constraints>
                     </view>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" placeholderIntrinsicWidth="290" placeholderIntrinsicHeight="23" text="Track" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="200" translatesAutoresizingMaskIntoConstraints="NO" id="Abz-WY-eRT">
-                        <rect key="frame" x="95" y="12" width="510" height="15"/>
+                        <rect key="frame" x="95" y="12" width="515" height="15"/>
                         <constraints>
                             <constraint firstAttribute="height" priority="750" constant="15" id="mRK-bW-J79"/>
                         </constraints>
-                        <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="12"/>
+                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="12"/>
                         <color key="textColor" red="0.25882352941176467" green="0.49411764705882355" blue="0.56862745098039214" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
@@ -98,7 +95,7 @@
                         <constraints>
                             <constraint firstAttribute="height" priority="750" constant="15" id="Hqa-4c-DTu"/>
                         </constraints>
-                        <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="12"/>
+                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="12"/>
                         <color key="textColor" red="0.25882352939999997" green="0.4941176471" blue="0.56862745100000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
@@ -116,7 +113,7 @@
                         </constraints>
                     </imageView>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dIV-zd-tWR" userLabel="View-Speakers">
-                        <rect key="frame" x="95" y="83" width="510" height="2"/>
+                        <rect key="frame" x="95" y="83" width="515" height="36"/>
                         <constraints>
                             <constraint firstAttribute="height" priority="750" constant="36" id="YXE-du-dG3"/>
                         </constraints>

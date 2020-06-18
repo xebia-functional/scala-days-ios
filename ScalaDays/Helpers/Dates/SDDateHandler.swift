@@ -28,9 +28,9 @@ class SDDateHandler: NSObject {
         
         enum Component: String {
             case weekDay = "EEEE"
-            case monthDay = "dd"
+            case monthDay = "d"
             case monthName = "MMM"
-            case hours = "HH"
+            case hours = "h"
             case minutes = "mm"
         }
     }
@@ -74,7 +74,7 @@ class SDDateHandler: NSObject {
         let monthName = dateFormatter.string(from: date)
         
         if let monNumber = Int(monthDayNumber){
-            return "\(weekDay) (\(monNumber)\(SDDateHandler.ordinalSuffixFromDayNumber(monNumber)) \(monthName).) \(time12H(date: date))"
+            return "\(weekDay) \(monthName) \(monNumber)\(SDDateHandler.ordinalSuffixFromDayNumber(monNumber)) \(hoursAndMinutesFromDate(date))"
         } else {
             dateFormatter.dateStyle = .full
             dateFormatter.timeStyle = .short
@@ -84,20 +84,13 @@ class SDDateHandler: NSObject {
         }
     }
     
-    private func time12H(date: Date) -> String {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "hh:mm a"
-        return formatter.string(from: date)
-    }
-
-    
-    func hoursAndMinutesFromDate(_ date: Date) -> String? {
+    func hoursAndMinutesFromDate(_ date: Date) -> String {
         dateFormatter.locale = Locale.current
         dateFormatter.dateStyle = .none
         dateFormatter.timeStyle = .short
+        dateFormatter.dateFormat = "h:mm a"
         return dateFormatter.string(from: date)
     }
-    
     
     class func ordinalSuffixFromDayNumber(_ day: Int) -> String {
         let suffixes = ["th", "st", "nd", "rd", "th", "th", "th", "th", "th", "th"]
@@ -119,9 +112,14 @@ class SDDateHandler: NSObject {
     }
     
     class func isSafeToVoteForConferenceWithDate(_ confDate: Date, fromReferenceDate refDate: Date) -> Bool {
-        let calendar = Calendar.current
-        let confDateDay = (calendar as NSCalendar).component(NSCalendar.Unit.day, from: confDate)
-        let refDateDay = (calendar as NSCalendar).component(NSCalendar.Unit.day, from: refDate)
+        let dateFormatter = DateFormatter()
+        dateFormatter.timeZone = TimeZone(abbreviation: "UTC")
+        dateFormatter.locale = Locale(identifier: "en_US_POSIX")
+        dateFormatter.dateFormat = Formatter.Component.monthDay.rawValue
+        
+        let confDateDay = dateFormatter.string(from: confDate)
+        let refDateDay = dateFormatter.string(from: refDate)
+        
         return confDate.compare(refDate) == ComparisonResult.orderedAscending && confDateDay == refDateDay
     }
     

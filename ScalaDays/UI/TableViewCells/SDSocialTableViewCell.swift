@@ -42,14 +42,62 @@ class SDSocialTableViewCell: UITableViewCell {
     }
     
     internal func drawTweetData(_ tweet: SDTweet) {
-        lblFullName.text = tweet.fullName
-        lblUsername.text = "@\(tweet.username)"
-        lblContent.text = tweet.tweetText
+        lblFullName.text = tweet.username
+        lblUsername.text = "@\(tweet.fullName)"
+        lblContent.attributedText = tweet.tweetText.tweetAttributedText
         lblDate.text = (tweet.date as NSDate).timeAgoSimple()
         let imageUrl = URL(string: tweet.profileImage)
         if let profileImageUrl = imageUrl {
             imgView.sd_setImage(with: profileImageUrl)
         }
         layoutSubviews()
+    }
+}
+
+// MARK: - Tweets style <helpers>
+
+private extension String {
+    var tweetAttributedText: NSAttributedString {
+        let attributedText = NSMutableAttributedString(string: self)
+        guard let regexHastags = Regex.hastagsOrMentions.regularExpression,
+              let regexURLs = NSTextCheckingResult.CheckingType.link.regularExpression else {
+            return attributedText
+        }
+        
+        regexHastags.matches(in: attributedText.string).forEach { range in
+            attributedText.addAttribute(.foregroundColor, value: Color.highlight, range: range)
+        }
+        
+        regexURLs.matches(in: attributedText.string).forEach { range in
+            attributedText.addAttribute(.foregroundColor, value: Color.highlight, range: range)
+        }
+
+        return attributedText
+    }
+    
+    enum Regex {
+        static let hastagsOrMentions = "\\B([\\#|\\@][a-zA-Z0-9_]+\\b)(?!;)"
+    }
+    
+    enum Color {
+        static let highlight = UIColor.init(red: 27/255.0, green: 149/255.0, blue: 224/255.0, alpha: 1)
+    }
+}
+
+private extension String {
+    var regularExpression: NSRegularExpression? {
+        try? NSRegularExpression(pattern: self, options: [])
+    }
+}
+
+private extension NSTextCheckingResult.CheckingType {
+    var regularExpression: NSRegularExpression? {
+        try? NSDataDetector(types: rawValue)
+    }
+}
+
+private extension NSRegularExpression {
+    func matches(in input: String) -> [NSRange] {
+        matches(in: input, options: [], range: NSMakeRange(0, input.utf16.count)).map(\.range)
     }
 }
